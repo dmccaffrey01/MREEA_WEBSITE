@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+<section class="section home-hero-section">
+    <div class="container-row home-hero-container carousel-container">
+        <div class="container-col home-hero-content-container carousel-item carousel-item-1">
+            <div class="home-hero-content-wrapper">
+                <div class="container-col hero-img-container img-container">
+                    <div class="hero-overlay"></div>
+                    <img src="https://res.cloudinary.com/dzwyiggcp/image/upload/v1689249989/MREEA/wljccaeipntw7fp9yyeo.png" alt="Real Estate picture" class="hero-image">
+                </div>
+                <div class="hero-card hero-card-1 container-col">
+                    <div class="hero-card-heading white-text heading">Upcoming Events 1</div>
+                    <div class="hero-card-content-container container-col">
+                        <div class="white-text">Date: 30/07/23</div>
+                        <div class="white-text">Group Meeting</div>
+                        <div class="white-text">Link: https:asdfasdfasdf</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container-col home-hero-content-container carousel-item carousel-item-2">
+            <div class="home-hero-content-wrapper">
+                <div class="container-col hero-img-container img-container">
+                    <div class="hero-overlay"></div>
+                    <img src="https://res.cloudinary.com/dzwyiggcp/image/upload/v1689249989/MREEA/wljccaeipntw7fp9yyeo.png" alt="Real Estate picture" class="hero-image">
+                </div>
+                <div class="hero-card hero-card-2 container-col">
+                    <div class="hero-card-heading white-text heading">Upcoming Events 2</div>
+                    <div class="hero-card-content-container container-col">
+                        <div class="white-text">Date: 30/07/23</div>
+                        <div class="white-text">Group Meeting</div>
+                        <div class="white-text">Link: https:asdfasdfasdf</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container-col home-hero-content-container carousel-item carousel-item-3">
+            <div class="home-hero-content-wrapper">
+                <div class="container-col hero-img-container img-container">
+                    <div class="hero-overlay"></div>
+                    <img src="https://res.cloudinary.com/dzwyiggcp/image/upload/v1689249989/MREEA/wljccaeipntw7fp9yyeo.png" alt="Real Estate picture" class="hero-image">
+                </div>
+                <div class="hero-card hero-card-3 container-col">
+                    <div class="hero-card-heading white-text heading">Upcoming Events 3</div>
+                    <div class="hero-card-content-container container-col">
+                        <div class="white-text">Date: 30/07/23</div>
+                        <div class="white-text">Group Meeting</div>
+                        <div class="white-text">Link: https:asdfasdfasdf</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="swipe-left carousel-swipe container-col">
+            <i class="fa-solid fa-chevron-left"></i>
+        </div>
+        <div class="swipe-right carousel-swipe container-col">
+            <i class="fa-solid fa-chevron-right"></i>
+        </div>
+        <div class="carousel-dots-container container-row">
+            <div class="carousel-dot carousel-dot-1 active"></div>
+            <div class="carousel-dot carousel-dot-2"></div>
+            <div class="carousel-dot carousel-dot-3"></div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
+
+{% block js %}
+
+<script src="{% static 'js/home-hero-carousel.js' %}"></script>
+
+{% endblock %}
