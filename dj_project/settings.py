@@ -41,11 +41,30 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
     'cloudinary_storage',
     'django.contrib.staticfiles',
     'cloudinary',
     'main_app',
 ]
+
+AUTH_USER_MODEL = 'main_app.User'
+
+ACCOUNT_AUTHENTICATION_METHOD = 'email'
+
+ACCOUNT_USER_MODEL_USERNAME_FIELD = None
+
+ACCOUNT_EMAIL_REQUIRED = True
+
+SITE_ID = 1
+
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

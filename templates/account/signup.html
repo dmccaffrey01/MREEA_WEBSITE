@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% load i18n %}
+{% load static %}
+{% block head_title %}{% trans "Signup" %}{% endblock %}
+
+{% block content %}
+<section class="account-section login-account-section section">
+    <div class="container-col account-card">
+        <div class="account-card-section login-account-section-upper container-col">
+          <div class="account-card-wrapper container-col">
+              <div class="heading white-text">Begin your Journey</div>
+              {% if membership %}
+              <div class="white-text">Please Sign Up or Sign In to access membership</div>
+              {% else %}
+              <div class="white-text">
+                  {% blocktrans %}Already have an account? Then please <a class="unregistered-account-link" href="{{ login_url }}">sign in</a>.{% endblocktrans %}
+              </div>
+              {% endif %}
+          </div>
+          <div class="account-card-img-overlay dark-overlay"></div>
+          <div class="account-card-bg-img-container">
+              <img src="https://res.cloudinary.com/dzwyiggcp/image/upload/v1689337701/MREEA/x0menjt0ltvpptqz3en0.png" alt="Starry background image" class="img-100a account-card-bg-img">
+          </div>
+        </div>
+        <div class="account-card-section container-col login-accouint-section-lower">
+            <div class="sub-heading dark-blue-text sign-in-heading">User {% trans "Sign Up" %}</div>
+            <form class="account-form login-form container-col" id="signup_form" method="post" action="{% url 'account_signup' %}">
+              {% csrf_token %}
+              {{ form.as_p }}
+              {% if redirect_field_value %}
+              <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+              {% endif %}
+              <button class="dark-btn btn white-text" type="submit">{% trans "Sign Up" %}</button>
+            </form>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
+
+{% block js %}
+
+<script src="{% static 'js/register.js' %}"></script>
+
+{% endblock %}

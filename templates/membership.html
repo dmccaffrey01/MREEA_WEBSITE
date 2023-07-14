@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+<section class="section">
+    <div class="container-col">
+        {% if user.is_authenticated %}
+        <div class="container-col">
+            <div class="dark-text">Thank you for logging in</div>
+        </div>
+        {% else %}
+        <div class="container-row">
+            <a href="{% url 'account_login' %}" class="btn">
+                Login
+            </a>
+            <a href="{% url 'account_signup' %}" class="btn register-btn">
+                Register
+            </a>
+        </div>
+        {% endif %}
+    </div>     
+    
+</section>
+
+{% endblock %}
+
+{% block js %}
+
+{% endblock %}

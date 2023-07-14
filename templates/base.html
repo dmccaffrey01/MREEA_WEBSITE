@@ -34,7 +34,7 @@
             <nav class="nav-bar">
                 <ul class="nav-menu">
                     <li class="nav-item">
-                        <a href="#" class="nav-link">Membership</a>
+                        <a href="{% url 'membership' %}" class="nav-link">Membership</a>
                     </li>
                     <li class="nav-item">
                         <a href="#" class="nav-link">Announcements</a>
@@ -62,14 +62,14 @@
                     <a href="#" class="dark-text nav-link">
                         Account
                     </a>
-                    <a href="#" class="btn logout-btn">
+                    <a href="{% url 'account_logout' %}" class="btn logout-btn">
                         Log Out
                     </a>
                     {% else %}
-                    <a href="#" class="dark-text">
+                    <a href="{% url 'account_login' %}" class="dark-text">
                         Login
                     </a>
-                    <a href="#" class="btn register-btn">
+                    <a href="{% url 'account_signup' %}" class="btn register-btn">
                         Register
                     </a>
                     {% endif %}
