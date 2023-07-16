@@ -9,15 +9,25 @@
             <div class="home-hero-content-wrapper">
                 <div class="container-col hero-img-container img-container">
                     <div class="hero-overlay"></div>
-                    <img src="https://res.cloudinary.com/dzwyiggcp/image/upload/v1689249989/MREEA/wljccaeipntw7fp9yyeo.png" alt="Real Estate picture" class="hero-image">
+                    <img src="https://res.cloudinary.com/dzwyiggcp/image/upload/v1689506829/MREEA/hero-1-HdsRd5l4u-transformed_t4jhzg.png" alt="Real Estate picture" class="hero-image">
                 </div>
                 <div class="hero-card hero-card-1 container-col">
-                    <div class="hero-card-heading white-text heading">Upcoming Events 1</div>
+                    {% if user.is_authenticated %}
                     <div class="hero-card-content-container container-col">
-                        <div class="white-text">Date: 30/07/23</div>
-                        <div class="white-text">Group Meeting</div>
-                        <div class="white-text">Link: https:asdfasdfasdf</div>
+                        <div class="hero-card-heading white-text heading">Join / Renew Membership</div>
+                        <div class="white-text">Simply click the button to join or renew our memebership and access our community</div>
+                        <div class="btn">Join / Renew</div>
                     </div>
+                    {% else %}
+                    <div class="hero-card-content-container container-col">
+                        <div class="hero-card-heading white-text heading">Login / Register</div>
+                        <div class="white-text">Login in or register a account, to get access to join our membership and access our member information</div>
+                        <div class="btns-container container-row">
+                            <div class="btn">Log in</div>
+                            <div class="btn">Register</div>
+                        </div>
+                    </div>
+                    {% endif %}
                 </div>
             </div>
         </div>
@@ -26,14 +36,17 @@
             <div class="home-hero-content-wrapper">
                 <div class="container-col hero-img-container img-container">
                     <div class="hero-overlay"></div>
-                    <img src="https://res.cloudinary.com/dzwyiggcp/image/upload/v1689249989/MREEA/wljccaeipntw7fp9yyeo.png" alt="Real Estate picture" class="hero-image">
+                    <img src="https://res.cloudinary.com/dzwyiggcp/image/upload/v1689506832/MREEA/hero-2-transformed_qzjltn.jpg" alt="Real Estate picture" class="hero-image">
                 </div>
                 <div class="hero-card hero-card-2 container-col">
-                    <div class="hero-card-heading white-text heading">Upcoming Events 2</div>
                     <div class="hero-card-content-container container-col">
-                        <div class="white-text">Date: 30/07/23</div>
-                        <div class="white-text">Group Meeting</div>
-                        <div class="white-text">Link: https:asdfasdfasdf</div>
+                        <div class="hero-card-heading white-text heading">Upcoming Events</div>
+                        <div class="hero-card-text-container container-col">
+                            <div class="white-text">Date: 30/07/23</div>
+                            <div class="white-text">Group Meeting</div>
+                            <div class="white-text">Link: https:asdfasdfasdf</div>
+                        </div>
+                        <a href="#" class="btn">Go To Announcements</a>
                     </div>
                 </div>
             </div>
@@ -43,15 +56,10 @@
             <div class="home-hero-content-wrapper">
                 <div class="container-col hero-img-container img-container">
                     <div class="hero-overlay"></div>
-                    <img src="https://res.cloudinary.com/dzwyiggcp/image/upload/v1689249989/MREEA/wljccaeipntw7fp9yyeo.png" alt="Real Estate picture" class="hero-image">
+                    <img src="https://res.cloudinary.com/dzwyiggcp/image/upload/v1689506831/MREEA/hero-3-transformed_ykoty6.jpg" alt="Real Estate picture" class="hero-image">
                 </div>
                 <div class="hero-card hero-card-3 container-col">
-                    <div class="hero-card-heading white-text heading">Upcoming Events 3</div>
-                    <div class="hero-card-content-container container-col">
-                        <div class="white-text">Date: 30/07/23</div>
-                        <div class="white-text">Group Meeting</div>
-                        <div class="white-text">Link: https:asdfasdfasdf</div>
-                    </div>
+                    <div class="calendar"></div>
                 </div>
             </div>
         </div>
@@ -70,10 +78,27 @@
     </div>
 </section>
 
+<section class="section home-welcome-section">
+    <div class="home-welcome-section-container section-container container-col">
+        <div class="home-welcome-section-heading dark-text heading">Introducing M<span class="red-text">R</span><span class="yellow-text">E</span>E<span class="yellow-text">A</span></div>
+        <div class="home-welcome-content-container container-row">
+            <div class="home-welcome-img-container img-container">
+                <img src="https://res.cloudinary.com/dzwyiggcp/image/upload/v1689257491/MREEA/uwjiymtjgpcrfncnhlzk.png" alt="MREEA Logo" class="home-welcome-img img-100a">
+            </div>
+            <div class="hero-welcome-text-container container-col">
+                <div class="dark-text">
+                    Welcome to the Maryland Real Estate Educators Association (MREEA) - a dynamic group of real estate professionals dedicated to providing exceptional education and resources to industry practitioners in Maryland. Our diverse membership includes instructors, school owners, regulators, real estate attorneys, lenders, home inspectors, title officers, and anyone passionate about real estate education. Through quarterly meetings, we foster professional development, facilitate knowledge sharing, and engage with industry leaders to ensure we are at the forefront of real estate education in Maryland. Join us to enhance your skills, broaden your network, and make a lasting impact in the real estate education community.
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
 {% endblock %}
 
 {% block js %}
 
 <script src="{% static 'js/home-hero-carousel.js' %}"></script>
+<script src="{% static 'js/calendar.js' %}"></script>
 
 {% endblock %}
