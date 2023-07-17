@@ -639,6 +639,26 @@ footer {
     z-index: -1;
 }
 
+.calendar .calendar-inner .calendar-body .today-event .dateNumber .highlight {
+    background-color: var(--TRANSPARENT-LIGHT-1);
+}
+
+.info-box {
+    position: absolute;
+    display: none;
+    left: 0;
+    top: 0;
+    width: 150px;
+    height: 100px;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: var(--RED-LOGO-TRANSPARENT);
+    gap: 5px;
+    border-radius: 5px;
+    z-index: 10;
+}
+
 .calendar .calendar-inner .calendar-body .number-item:hover::before {
     display: flex;
 }
@@ -1009,38 +1029,77 @@ footer {
 .upcoming-event-container, .past-event-container {
     justify-content: space-between;
     width: 100%;
-    border: 2px solid var(--GRAY-DARK-2);
     border-radius: 5px;
     height: fit-content;
-    overflow: hidden;
 }
 
 .event-date-container {
-    width: 150px;
-    height: 150px;
-    justify-content: space-evenly;
+    width: 175px;
+    height: 175px;
+    justify-content: flex-start;
+    position: relative;
+    background: transparent;
+}
+
+.event-start-end-date-container {
+    width: 175px;
+    height: 175px;
     background-color: var(--RED-LOGO);
+    justify-content: space-evenly;
+    cursor: pointer;
+    color: var(--WHITE);
+    border-radius: 20px 0 0 20px;
 }
 
 .event-details-container {
-    width: 70%;
+    width: calc(100% - 475px);
+    height: 175px;
     padding: 0 50px;
+    border: 2px solid var(--GRAY-DARK-2);
+    border-left: none;
+    border-right: none;
+    align-items: flex-start;
 }
 
 .event-learn-more-btn-container {
-    width: calc(100% - 70% - 150px);
+    width: 300px;
+    height: 175px;
+    gap: 10px;
+    border: 2px solid var(--GRAY-DARK-2);
+    border-left: none;
+    border-radius: 0 20px 20px 0;
+    padding-right: 50px;
+    align-items: flex-end;
 }
 
-.red-container .event-date-container, .red-container .event-learn-more-btn {
+.event-learn-more-btn {
+    width: 200px;
+}
+
+.event-date-text {
+    font-size: 2.1rem;
+}
+
+.red-container .event-start-end-date-container, .yellow-container .event-end-date-container {
     background-color: var(--RED-LOGO);
-    color: var(--WHITE);
-
 }
 
-.yellow-container .event-date-container, .yellow-container .event-learn-more-btn {
+.yellow-container .event-start-end-date-container, .red-container .event-end-date-container {
     background-color: var(--YELLOW-LOGO);
-    color: var(--GRAY-DARK-1);
 }
+
+.event-end-date-container {
+    color: var(--GRAY-DARK-1);
+    display: none;
+    position: absolute;
+    right: calc(100% + 20px);
+    border-radius: 20px;
+}
+
+.event-date-container:hover .event-end-date-container {
+    display: flex;
+}
+
 
 /* Announcements Calendar Section */
 
@@ -1071,4 +1130,81 @@ footer {
     padding: 50px;
     gap: 30px;
     text-align: center;
+}
+
+/* Create Event Section */
+
+.create-event-form-section {
+    padding: 100px;
+    background-color: #D61810;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 1000'%3E%3Cg %3E%3Ccircle fill='%23D61810' cx='50' cy='0' r='50'/%3E%3Cg fill='%23da290c' %3E%3Ccircle cx='0' cy='50' r='50'/%3E%3Ccircle cx='100' cy='50' r='50'/%3E%3C/g%3E%3Ccircle fill='%23de3606' cx='50' cy='100' r='50'/%3E%3Cg fill='%23e14200' %3E%3Ccircle cx='0' cy='150' r='50'/%3E%3Ccircle cx='100' cy='150' r='50'/%3E%3C/g%3E%3Ccircle fill='%23e54c00' cx='50' cy='200' r='50'/%3E%3Cg fill='%23e85600' %3E%3Ccircle cx='0' cy='250' r='50'/%3E%3Ccircle cx='100' cy='250' r='50'/%3E%3C/g%3E%3Ccircle fill='%23eb6000' cx='50' cy='300' r='50'/%3E%3Cg fill='%23ee6900' %3E%3Ccircle cx='0' cy='350' r='50'/%3E%3Ccircle cx='100' cy='350' r='50'/%3E%3C/g%3E%3Ccircle fill='%23f07200' cx='50' cy='400' r='50'/%3E%3Cg fill='%23f37a00' %3E%3Ccircle cx='0' cy='450' r='50'/%3E%3Ccircle cx='100' cy='450' r='50'/%3E%3C/g%3E%3Ccircle fill='%23f58300' cx='50' cy='500' r='50'/%3E%3Cg fill='%23f78c00' %3E%3Ccircle cx='0' cy='550' r='50'/%3E%3Ccircle cx='100' cy='550' r='50'/%3E%3C/g%3E%3Ccircle fill='%23f89400' cx='50' cy='600' r='50'/%3E%3Cg fill='%23fa9c00' %3E%3Ccircle cx='0' cy='650' r='50'/%3E%3Ccircle cx='100' cy='650' r='50'/%3E%3C/g%3E%3Ccircle fill='%23fba500' cx='50' cy='700' r='50'/%3E%3Cg fill='%23fcad00' %3E%3Ccircle cx='0' cy='750' r='50'/%3E%3Ccircle cx='100' cy='750' r='50'/%3E%3C/g%3E%3Ccircle fill='%23fdb500' cx='50' cy='800' r='50'/%3E%3Cg fill='%23febe00' %3E%3Ccircle cx='0' cy='850' r='50'/%3E%3Ccircle cx='100' cy='850' r='50'/%3E%3C/g%3E%3Ccircle fill='%23ffc600' cx='50' cy='900' r='50'/%3E%3Cg fill='%23ffce00' %3E%3Ccircle cx='0' cy='950' r='50'/%3E%3Ccircle cx='100' cy='950' r='50'/%3E%3C/g%3E%3Ccircle fill='%23FFD600' cx='50' cy='1000' r='50'/%3E%3C/g%3E%3C/svg%3E");
+    background-attachment: fixed;
+    background-size: contain;
+}
+
+.create-event-form-section-container {
+    width: 1200px;
+    gap: 50px;
+}
+
+.create-event-form-container {
+    width: 100%;
+    padding: 50px;
+    background-color: var(--TRANSPARENT-DARK-3);
+    border-radius: 15px;
+}
+
+.create-event-form {
+    width: 100%;
+}
+
+.create-event-form label {
+    color: var(--WHITE);
+    font-size: 1.5rem;
+    margin: 0;
+}
+
+.create-event-form input, .create-event-form textarea {
+    width: 100%;
+    padding: 10px 20px;
+    font-size: 1.5rem;
+    margin: 5px 0 20px 0;
+    border: 3px solid var(--GRAY-DARK-1);
+    border-radius: 15px;
+    background-color: var(--GRAY-LIGHT-1);
+}
+
+.create-event-form input:focus, .create-event-form textarea:focus {
+    border: 3px solid var(--RED-LOGO);
+    outline: none;
+}
+
+.create-event-form-btns-container {
+    justify-content: space-between;
+    width: 100%;
+}
+
+.create-event-form input[type="submit"], .create-event-cancel-btn{
+    width: 45%;
+    border: none;
+    padding: 20px;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    border-radius: 10px;
+}
+
+.create-event-form input[type="submit"][value="Save"] {
+    background: var(--YELLOW-LOGO);
+}
+
+.create-event-form input[type="submit"][value="Delete"] {
+    background: var(--RED-LOGO);
+    color: var(--WHITE);
+}
+
+/* Event Details Seciton */
+
+.event-detail-section-container {
+    gap: 20px;
 }

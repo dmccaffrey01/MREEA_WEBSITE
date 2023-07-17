@@ -3,25 +3,36 @@
 
 {% block content %}
 
-<section class="section">
-    <div class="section-container container-col">
-        <form method="post">
-            {% csrf_token %}
-            {{ form.as_p }}
-            
-            {% if event.id %}
-              <input type="submit" name="delete" value="Delete">
-            {% else %}
-              <a class="btn" href="{% url 'announcements' %}">Cancel</a>
-            {% endif %}
-            
-            <input type="submit" value="Save">
-          </form>
+<section class="section create-event-form-section">
+    <div class="container-col create-event-form-section-container">
+      {% if event.id %}
+      <div class="heading dark-text">Edit Event</div>
+      {% else %}
+      <div class="heading dark-text">Create Event</div>
+      {% endif %}
+        <div class="container-col create-event-form-container">
+          <form method="post" class="create-event-form">
+              {% csrf_token %}
+              {{ form.as_p }}
+              
+              <div class="create-event-form-btns-container container-row">
+                {% if event.id %}
+                <input type="submit" name="delete" value="Delete">
+                {% else %}
+                <a class="btn create-event-cancel-btn" href="{% url 'announcements' %}">Cancel</a>
+                {% endif %}
+                
+                <input type="submit" value="Save" class="btn create-event-submit-btn yellow-btn">
+              </div>
+            </form>
+        </div>
     </div>
 </section>
 
 {% endblock %}
 
 {% block js %}
+
+<script src="{% static 'js/create-event.js' %}"></script>
 
 {% endblock %}

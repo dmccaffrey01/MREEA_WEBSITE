@@ -2,6 +2,16 @@
 //Fixed day highlight
 //Added previous month and next month view
 
+const getEventsData = async () => {
+    try {
+      const response = await fetch(`/get_event_data/`);
+      const results = await response.json();
+      return results;
+    } catch (error) {
+      console.log(error);
+    }
+};
+
 function CalendarControl() {
     const calendar = new Date();
     const calendarControl = {
@@ -129,14 +139,14 @@ function CalendarControl() {
           } else {
             document.querySelector(
               ".calendar .calendar-body"
-            ).innerHTML += `<div class="number-item" data-num=${count}><a class="dateNumber" href="#">${count++}</a></div>`;
+            ).innerHTML += `<div class="number-item" data-num=${count}><a class="dateNumber" href="#calendar-section">${count++}</a></div>`;
           }
         }
         //remaining dates after month dates
         for (let j = 0; j < prevDateCount + 1; j++) {
           document.querySelector(
             ".calendar .calendar-body"
-          ).innerHTML += `<div class="number-item" data-num=${count}><a class="dateNumber" href="#">${count++}</a></div>`;
+          ).innerHTML += `<div class="number-item" data-num=${count}><a class="dateNumber" href="#calendar-section">${count++}</a></div>`;
         }
         calendarControl.highlightToday();
         calendarControl.plotPrevMonthDates(prevMonthDatesArray);
@@ -177,6 +187,9 @@ function CalendarControl() {
           document
             .querySelectorAll(".number-item")
             [calendar.getDate() - 1].classList.add("calendar-event");
+          document
+            .querySelectorAll(".number-item")
+            [calendar.getDate() - 1].classList.add("today-event");
         }
       },
       plotPrevMonthDates: function(dates){
@@ -209,7 +222,52 @@ function CalendarControl() {
             }
         }
       },
-      highlightEvents: function () {
+      createEventElements: function(eventsData) {
+        let month = calendarControl.localDate.getMonth() + 1
+
+        const options = { day: 'numeric', month: 'short', year: 'numeric', hour: 'numeric', minute: 'numeric' };
+        
+        eventsData.forEach(event => {
+          let eventStartDate = new Date(event["start_date"]);
+          let eventEndDate = new Date(event["end_date"]);
+          
+
+          let startDay = eventStartDate.getDate();
+          let endDay = eventEndDate.getDate();
+          let startMonth = eventStartDate.getMonth() + 1;
+          let endMonth = eventEndDate.getMonth() + 1;
+
+          if (startMonth == month || endMonth == month) {
+            for (let i = startDay; i < endDay + 1; i++) {
+              let info = document.createElement("div");
+              info.classList.add("info-box");
+              let calNum = document.querySelectorAll(".number-item")[i - 1];
+              calNum.classList.add("calendar-event");
+              info.innerText = `${event["title"]}`;
+              parent = calNum.parentNode;
+              grandParent = parent.parentNode;
+              greatGrandParent = grandParent.parentNode;
+              greatGrandParent.appendChild(info);
+              calNum.addEventListener("mousemove", (event) => {
+                let x = event.clientX - greatGrandParent.getBoundingClientRect().left;
+                let y = event.clientY - greatGrandParent.getBoundingClientRect().top;
+                info.style.display = "flex";
+                info.style.left = (x - 75) + "px";
+                info.style.top = (y + 30) + "px";
+                console.log(info);
+                calNum.addEventListener("mouseleave", () => {
+                  info.style.display = "none";
+                });
+              });
+            }
+          }
+        });
+      },
+      highlightEvents: async function () {
+        let eventsResponse = await getEventsData();
+        let eventsData = eventsResponse["events"];
+        calendarControl.createEventElements(eventsData);
+
         let events = document.querySelectorAll(".calendar-event");
         events.forEach((event) => {
             let number = event.querySelector(".dateNumber");

@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+<section class="section announcements-hero-section">
+    <div class="container-row announcements-hero-container">
+        <div class="announcements-hero-img-container img-container container-col">
+            <div class="hero-overlay"></div>
+            <img src="https://res.cloudinary.com/dzwyiggcp/image/upload/v1689582480/MREEA/mreea-meeting-2_adho8o.png" alt="MREEA Meeting" class="hero-image">
+        </div>
+        <div class="announcements-hero-heading-container container-col">
+            <div class="heading white-text">{{ event.title }}</div>
+        </div>
+    </div>
+</section>
+
+<section class="section event-detail-section">
+    <div class="section-container event-detail-section-container container-col">
+        <div class="heading dark-text">{{ event.title }}</div>
+        <div class="dark-text">{{ event.description }}</div>
+        <div class="dark-text">Starts - {{ event.start_date }}</div>
+        <div class="dark-text">Ends - {{ event.end_date }}</div>
+        <div class="dark-text">Location - {{ event.location }}</div>
+
+        <a href="{% url 'edit_event' event.unique_event_id %}" class="btn">Edit Event</a>
+    </div>
+</section>
+
+<section class="section announcements-calendar-section" id="calendar-section">
+    <div class="section-container container-col announcements-section-container">
+        <div class="heading dark-text section-heading">Calendar</div>
+        <div class="calendar-container">
+            <div class="calendar"></div>
+        </div>
+    </div>
+</section>
+
+<section class="section account-member-section">
+    <div class="section-container container-col account-member-section-container">
+        {% if user.is_authenticated %}
+        <div class="account-member-wrapper container-col">
+            <div class="account-member-content-container container-col">
+                <div class="heading dark-text">Join / Renew</div>
+                <div class="dark-text">Join our wonderful community, where you have endless opportunities to learn and grow. Already a previous member? You can easily renew your membership.</div>
+                <a href="#" class="btn">Join / Renew</a>
+            </div>
+        </div>
+        {% else %}
+        <div class="account-member-wrapper container-col">
+            <div class="account-member-content-container container-col">
+                <div class="heading dark-text">Sign In / Sign Up</div>
+                <div class="dark-text">Sign up and become a member to join an amazing community where you can learn and grow. Already a member or have an account? Then sign in to join or renew your membership.</div>
+                <div class="btns-container container-row">
+                    <a href="{% url 'account_login' %}" class="btn">Log in</a>
+                    <a href="{% url 'account_signup' %}" class="btn">Register</a>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</section>
+
+{% endblock %}
+
+{% block js %}
+
+<script src="{% static 'js/calendar.js' %}"></script>
+
+{% endblock %}

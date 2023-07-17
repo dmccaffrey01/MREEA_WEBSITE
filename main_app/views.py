@@ -1,6 +1,6 @@
 import os
 import requests
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 import json
 from django.http import JsonResponse
 from django.db.models import Q
@@ -84,9 +84,9 @@ def announcements(request):
 
     current_date = timezone.now()
 
-    upcoming_events = Event.objects.filter(start_date__gt=current_date).order_by('start_date')[:5]
+    upcoming_events = Event.objects.filter(start_date__gt=current_date).order_by('start_date')
 
-    past_events = Event.objects.filter(end_date__lt=current_date).order_by('-end_date')[:5]
+    past_events = Event.objects.filter(end_date__lt=current_date).order_by('-end_date')
 
     context = {
         'logged_in': logged_in,
@@ -115,7 +115,8 @@ def edit_event(request, unique_event_id):
         form = EventForm(instance=event)
     
     context = {
-        'form': form
+        'form': form,
+        'event': event,
     }
     return render(request, 'create_event.html', context)
 
@@ -134,13 +135,23 @@ def create_event(request):
     return render(request, 'create_event.html', context)
 
 
+def event_detail(request, unique_event_id):
+    event = Event.objects.get(unique_event_id=unique_event_id)
+    
+    context = {
+        'event': event
+    }
+
+    return render(request, 'event_detail.html', context)
+
+
 def get_event_data(request):
     events = Event.objects.all()
 
     events_values = events.values()
 
     data = {
-        'events': events_values,
+        'events': list(events_values),
     }
 
     return JsonResponse(data, safe=False)
