@@ -1,6 +1,7 @@
 from django import forms
 from allauth.account.forms import SignupForm
 from django.contrib.auth.models import User
+from .models import Event
 
 
 class CustomSignupForm(SignupForm):
@@ -18,3 +19,9 @@ class CustomSignupForm(SignupForm):
         user = super(CustomSignupForm, self).save(request)
         self.custom_signup(request, user)
         return user
+    
+
+class EventForm(forms.ModelForm):
+    class Meta:
+        model = Event
+        fields = ('title', 'description', 'start_date', 'end_date', 'location')

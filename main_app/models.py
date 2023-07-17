@@ -54,3 +54,16 @@ class User(AbstractBaseUser, PermissionsMixin):
     
     def get_short_name(self):
         return self.first_name
+    
+
+class Event(models.Model):
+    title = models.CharField(max_length=100)
+    description = models.TextField()
+    start_date = models.DateTimeField()
+    end_date = models.DateTimeField()
+    location = models.CharField(max_length=200)
+    created_at = models.DateTimeField(auto_now_add=True)
+    unique_event_id = models.CharField(max_length=200)
+
+    def __str__(self):
+        return self.title

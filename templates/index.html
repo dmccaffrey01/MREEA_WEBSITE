@@ -16,15 +16,15 @@
                     <div class="hero-card-content-container container-col">
                         <div class="hero-card-heading white-text heading">Join / Renew Membership</div>
                         <div class="white-text">Simply click the button to join or renew our memebership and access our community</div>
-                        <div class="btn">Join / Renew</div>
+                        <a class="btn">Join / Renew</a>
                     </div>
                     {% else %}
                     <div class="hero-card-content-container container-col">
                         <div class="hero-card-heading white-text heading">Login / Register</div>
                         <div class="white-text">Login in or register a account, to get access to join our membership and access our member information</div>
                         <div class="btns-container container-row">
-                            <div class="btn">Log in</div>
-                            <div class="btn">Register</div>
+                            <a href="{% url 'account_login' %}" class="btn">Log in</a>
+                            <a href="{% url 'account_signup' %}" class="btn">Register</a>
                         </div>
                     </div>
                     {% endif %}
@@ -52,7 +52,7 @@
             </div>
         </div>
 
-        <div class="container-col home-hero-content-container carousel-item carousel-item-3">
+        <div class="container-col home-hero-content-container carousel-item carousel-item-3" id="calendar-section">
             <div class="home-hero-content-wrapper">
                 <div class="container-col hero-img-container img-container">
                     <div class="hero-overlay"></div>

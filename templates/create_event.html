@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+<section class="section">
+    <div class="section-container container-col">
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            
+            {% if event.id %}
+              <input type="submit" name="delete" value="Delete">
+            {% else %}
+              <a class="btn" href="{% url 'announcements' %}">Cancel</a>
+            {% endif %}
+            
+            <input type="submit" value="Save">
+          </form>
+    </div>
+</section>
+
+{% endblock %}
+
+{% block js %}
+
+{% endblock %}
