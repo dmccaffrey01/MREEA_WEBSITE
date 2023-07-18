@@ -194,7 +194,7 @@ def edit_member_profile(request, member_short_uuid):
         form = MemberProfileForm(request.POST, instance=member_profile)
         if form.is_valid():
             form.save()
-            return redirect('member_profile')
+            return redirect('member_profile', member_short_uuid=member_short_uuid)
     else:
         form = MemberProfileForm(instance=member_profile)
     

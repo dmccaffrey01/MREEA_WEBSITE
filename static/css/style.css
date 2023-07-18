@@ -1258,3 +1258,26 @@ footer {
     width: 700px;
     height: 700px;
 }
+
+/* Member Profile Section */
+
+.member-profile-section-container {
+    gap: 20px;
+    min-height: calc(100vh - 100px);
+    padding: 100px 0;
+}
+
+.member-profile-info-container {
+    gap: 30px;
+    align-items: flex-start;
+    width: 600px;
+    padding: 50px;
+    border: 2px solid var(--GRAY-DARK-1);
+    border-radius: 15px;
+}
+
+.member-profile-data-container {
+    gap: 10px;
+    flex-direction: column;
+    align-items: flex-start;
+}

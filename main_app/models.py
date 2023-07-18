@@ -2,6 +2,7 @@ from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, UserM
 from django.db import models
 from django.utils import timezone
 import uuid
+from cloudinary.models import CloudinaryField
 
 
 class CustomUserManager(UserManager):
@@ -172,12 +173,17 @@ class MemberProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     first_name = models.CharField(max_length=255, blank=True, default='')
     last_name = models.CharField(max_length=255, blank=True, default='')
+    profile_image = CloudinaryField('Profile Image', null=True, blank=True)
     display_email = models.BooleanField(default=True)
     personal_email = models.EmailField(blank=True)
     office_email = models.EmailField(blank=True)
     display_number = models.BooleanField(default=True)
     mobile_number = models.CharField(max_length=255, blank=True)
     office_number = models.CharField(max_length=255, blank=True)
+    display_address = models.BooleanField(default=True)
+    address_line_1 = models.CharField(max_length=255, blank=True)
+    address_line_2 = models.CharField(max_length=255, blank=True)
+    address_line_3 = models.CharField(max_length=255, blank=True)
     website = models.CharField(max_length=255, blank=True, default='')
     bio = models.TextField(default='', blank=True)
     company_organization = models.CharField(max_length=255, blank=True, default='')

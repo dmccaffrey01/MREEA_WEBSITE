@@ -30,7 +30,7 @@ class EventForm(forms.ModelForm):
 class MemberProfileForm(forms.ModelForm):
     class Meta:
         model = MemberProfile
-        fields = ('first_name', 'last_name', 'display_email', 'personal_email', 'office_email', 'display_number', 'mobile_number', 'office_number', 'website', 'bio', 'company_organization', 'state', 'category', 'certificate')
+        fields = ('profile_image', 'first_name', 'last_name', 'display_email', 'personal_email', 'office_email', 'display_number', 'mobile_number', 'office_number', 'display_address', 'address_line_1', 'address_line_2', 'address_line_3', 'website', 'bio', 'company_organization', 'state', 'category', 'certificate')
 
 
 # class MemberSearchForm(forms.ModelForm):
