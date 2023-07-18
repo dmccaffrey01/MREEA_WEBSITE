@@ -23,7 +23,7 @@
         <div class="dark-text">Ends - {{ event.end_date }}</div>
         <div class="dark-text">Location - {{ event.location }}</div>
 
-        <a href="{% url 'edit_event' event.unique_event_id %}" class="btn">Edit Event</a>
+        <a href="{% url 'edit_event' event.event_short_uuid %}" class="btn">Edit Event</a>
     </div>
 </section>
 

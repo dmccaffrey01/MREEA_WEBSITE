@@ -46,9 +46,9 @@
                 </div>
                 <div class="container-col event-learn-more-btn-container">
                     {% if user.is_superuser %}
-                    <a href="{% url 'edit_event' event.unique_event_id %}" class="btn yellow-btn event-learn-more-btn">Edit Event</a>
+                    <a href="{% url 'edit_event' event.event_short_uuid %}" class="btn yellow-btn event-learn-more-btn">Edit Event</a>
                     {% endif %}
-                    <a href="{% url 'event_detail' event.unique_event_id %}" class="event-learn-more-btn btn">Learn More</a>
+                    <a href="{% url 'event_detail' event.event_short_uuid %}" class="event-learn-more-btn btn">Learn More</a>
                 </div>
             </div>
         </div>
@@ -117,7 +117,7 @@
         {% if user.is_authenticated %}
         <div class="account-member-wrapper container-col">
             <div class="account-member-content-container container-col">
-                <div class="heading dark-text">Join / Renew</div>
+                <div class="heading dark-text">Maryland Real Estate Educators Asscociation</div>
                 <div class="dark-text">Join our wonderful community, where you have endless opportunities to learn and grow. Already a previous member? You can easily renew your membership.</div>
                 <a href="#" class="btn">Join / Renew</a>
             </div>
@@ -125,7 +125,7 @@
         {% else %}
         <div class="account-member-wrapper container-col">
             <div class="account-member-content-container container-col">
-                <div class="heading dark-text">Sign In / Sign Up</div>
+                <div class="heading dark-text">Maryland Real Estate Educators Asscociation</div>
                 <div class="dark-text">Sign up and become a member to join an amazing community where you can learn and grow. Already a member or have an account? Then sign in to join or renew your membership.</div>
                 <div class="btns-container container-row">
                     <a href="{% url 'account_login' %}" class="btn">Log in</a>

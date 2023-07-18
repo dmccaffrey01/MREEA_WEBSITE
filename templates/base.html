@@ -40,7 +40,7 @@
                         <a href="{% url 'announcements' %}" class="nav-link">Announcements</a>
                     </li>
                     <li class="nav-item">
-                        <a href="#" class="nav-link">Members</a>
+                        <a href="{% url 'members' %}" class="nav-link">Members</a>
                     </li>
                     <li class="nav-item">
                         <a href="#" class="nav-link">Learn</a>
@@ -59,8 +59,8 @@
             <div class="account-login-container">
                 <div class="account-login-btns-container">
                     {% if user.is_authenticated %}
-                    <a href="#" class="dark-text nav-link">
-                        Account
+                    <a href="{% url 'member_profile' user.member_short_uuid %}" class="dark-text nav-link">
+                        Profile
                     </a>
                     <a href="{% url 'account_logout' %}" class="btn logout-btn">
                         Log Out

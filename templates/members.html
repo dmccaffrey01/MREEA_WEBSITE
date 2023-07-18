@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+<section class="section account-member-section">
+    <div class="section-container container-col account-member-section-container members-page-account-seciton-1">
+        {% if user.is_authenticated %}
+        <div class="account-member-wrapper container-col">
+            <div class="account-member-content-container container-col">
+                <div class="heading dark-text">Maryland Real Estate Educators Asscociation</div>
+                <div class="dark-text">Thank you for creating an account, if you haven't purchased a membership or your membership is expired or expiring, you can simply join or renew with a few clicks</div>
+                <a href="#" class="btn">Join / Renew</a>
+            </div>
+        </div>
+        {% else %}
+        <div class="account-member-wrapper container-col members-page-no-account-wrapper">
+            <div class="account-member-content-container container-col">
+                <div class="heading dark-text">Maryland Real Estate Educators Asscociation</div>
+                <div class="dark-text">To get access to finding and searching members, please sign in or sign up. Sign up and become a member to join an amazing community where you can learn and grow. Already a member or have an account? Then sign in to join or renew your membership.</div>
+                <div class="btns-container container-row">
+                    <a href="{% url 'account_login' %}" class="btn">Log in</a>
+                    <a href="{% url 'account_signup' %}" class="btn">Register</a>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</section>
+
+{% if user.is_authenticated %}
+
+<section class="section members-search-form-section">
+    <div class="section-container container-col members-search-form-section-container">
+        <div class="container-col members-search-form-card members-search-form-reasons">
+            <div class="sub-heading white-text">Find a MREEA Member in your area</div>
+            <div class="sub-heading-2 white-text">What can a MREEA Member do for you?</div>
+            <ul class="container-col members-search-reasons-container">
+                <li class="members-search-reason white-text">Deliver high-quality instruction for maximum member engagement and learning.</li>
+                <li class="members-search-reason white-text">Design a variety of courses that cater to the unique learning preferences and needs of adult learners, ensuring a more personalized and fulfilling educational experience.</li>
+                <li class="members-search-reason white-text">Conduct systematic evaluations of existing educational programs to identify areas for improvement and make necessary enhancements.</li>
+                <li class="members-search-reason white-text">Evaluate the performance and competence of current instructors to maintain the standard of instruction.</li>
+                <li class="members-search-reason white-text">Assess both present and future educational requirements to align with the changing needs of your members.</li>
+            </ul>
+        </div>
+        <div class="members-search-img-container img-container">
+            <img src="https://res.cloudinary.com/dzwyiggcp/image/upload/v1689674694/MREEA/mreea-search-img__2_-transformed_drou2w.png" alt="Business Woman and Man shaking hands" class="img-100a">
+        </div>
+    </div>
+</section>
+
+{% endif %}
+{% endblock %}
+
+{% block js %}
+
+
+{% endblock %}

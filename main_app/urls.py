@@ -10,7 +10,10 @@ urlpatterns = [
     path('membership/', views.membership, name='membership'),
     path('announcements/', views.announcements, name='announcements'),
     path('events/create/', views.create_event, name='create_event'),
-    path('events/<str:unique_event_id>/', views.event_detail, name='event_detail'),
-    path('events/<str:unique_event_id>/edit/', views.edit_event, name='edit_event'),
+    path('events/<str:event_short_uuid>/', views.event_detail, name='event_detail'),
+    path('events/<str:event_short_uuid>/edit/', views.edit_event, name='edit_event'),
     path('get_event_data/', views.get_event_data, name='get_event_data'),
+    path('members/', views.members, name='members'),
+    path('profile/<str:member_short_uuid>/', views.member_profile, name='member_profile'),
+    path('profile/<str:member_short_uuid>/edit', views.edit_member_profile, name='edit_member_profile'),
 ]

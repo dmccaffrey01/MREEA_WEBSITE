@@ -6,8 +6,8 @@ from django.http import JsonResponse
 from django.db.models import Q
 from .forms import CustomSignupForm
 from django.contrib.auth import login
-from .models import Event
-from .forms import EventForm
+from .models import Event, MemberProfile
+from .forms import EventForm, MemberProfileForm
 from django.utils import timezone
 
 
@@ -99,8 +99,8 @@ def announcements(request):
     return render(request, 'announcements.html', context)
 
 
-def edit_event(request, unique_event_id):
-    event = get_object_or_404(Event, unique_event_id=unique_event_id)
+def edit_event(request, event_short_uuid):
+    event = get_object_or_404(Event, event_short_uuid=event_short_uuid)
 
     if request.method == 'POST':
         if 'delete' in request.POST:
@@ -135,8 +135,8 @@ def create_event(request):
     return render(request, 'create_event.html', context)
 
 
-def event_detail(request, unique_event_id):
-    event = Event.objects.get(unique_event_id=unique_event_id)
+def event_detail(request, event_short_uuid):
+    event = Event.objects.get(event_short_uuid=event_short_uuid)
     
     context = {
         'event': event
@@ -155,3 +155,51 @@ def get_event_data(request):
     }
 
     return JsonResponse(data, safe=False)
+
+
+def members(request):
+    global previous_url
+    
+    previous_url = '/members/'
+
+    context = {
+        
+    }
+
+    return render(request, 'members.html', context)
+
+
+def member_profile(request, member_short_uuid):
+    user = request.user
+
+    global previous_url
+
+    member_profile, created = MemberProfile.objects.get_or_create(user=user)
+
+    previous_url = f'/profile/{member_short_uuid}'
+
+    context = {
+        'user': user,
+        'member_profile': member_profile,
+        'previous_url': previous_url,
+    }
+
+    return render(request, 'member-profile.html', context)
+
+
+def edit_member_profile(request, member_short_uuid):
+    member_profile = get_object_or_404(MemberProfile, user__member_short_uuid=member_short_uuid)
+
+    if request.method == 'POST':
+        form = MemberProfileForm(request.POST, instance=member_profile)
+        if form.is_valid():
+            form.save()
+            return redirect('member_profile')
+    else:
+        form = MemberProfileForm(instance=member_profile)
+    
+    context = {
+        'form': form,
+        'member_profile': member_profile,
+    }
+    return render(request, 'edit_profile.html', context)

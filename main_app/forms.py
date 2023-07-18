@@ -1,7 +1,7 @@
 from django import forms
 from allauth.account.forms import SignupForm
 from django.contrib.auth.models import User
-from .models import Event
+from .models import Event, MemberProfile
 
 
 class CustomSignupForm(SignupForm):
@@ -25,3 +25,15 @@ class EventForm(forms.ModelForm):
     class Meta:
         model = Event
         fields = ('title', 'description', 'start_date', 'end_date', 'location')
+
+
+class MemberProfileForm(forms.ModelForm):
+    class Meta:
+        model = MemberProfile
+        fields = ('first_name', 'last_name', 'display_email', 'personal_email', 'office_email', 'display_number', 'mobile_number', 'office_number', 'website', 'bio', 'company_organization', 'state', 'category', 'certificate')
+
+
+# class MemberSearchForm(forms.ModelForm):
+#     class Meta:
+#         model = MemberProfile
+#         fields = ('last_name', 'first_name',)

@@ -1100,7 +1100,6 @@ footer {
     display: flex;
 }
 
-
 /* Announcements Calendar Section */
 
 .announcements-section-container{
@@ -1207,4 +1206,55 @@ footer {
 
 .event-detail-section-container {
     gap: 20px;
+}
+
+/* Members Page Secton */
+
+.members-page-account-seciton-1 {
+    padding: 0;
+}
+
+.members-page-no-account-wrapper {
+    height: calc(100vh - 100px);
+}
+
+.members-search-form-section-container {
+    position: relative;
+}
+
+.members-search-form-card {
+    position: absolute;
+    padding: 50px;
+    border-radius: 15px;
+    background-color: var(--TRANSPARENT-DARK-3);
+    width: 550px;
+}
+
+.members-search-form-reasons {
+    left: 0;
+    top: 100px;
+    gap: 10px;
+    align-items: flex-start;
+}
+
+.members-search-form-reasons .sub-heading,
+.members-search-form-reasons .sub-heading-2 {
+    font-weight: 800;
+}
+
+.members-search-form-reasons .sub-heading-2 {
+    color: var(--YELLOW-LOGO);
+}
+
+.members-search-reasons-container {
+    gap: 10px;
+}
+
+.members-search-reason {
+    font-size: 1.1rem;
+}
+
+.members-search-img-container {
+    width: 700px;
+    height: 700px;
 }
