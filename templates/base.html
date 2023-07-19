@@ -10,8 +10,10 @@
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="{% static 'favicon.ico' %}">
 
+
     <!-- CSS -->
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    
 
     <title>MREEA</title>
 </head>
@@ -43,10 +45,10 @@
                         <a href="{% url 'members' %}" class="nav-link">Members</a>
                     </li>
                     <li class="nav-item">
-                        <a href="#" class="nav-link">Learn</a>
+                        <a href="{% url 'learn' %}" class="nav-link">Learn</a>
                     </li>
                     <li class="nav-item">
-                        <a href="#" class="nav-link">Contact</a>
+                        <a href="{% url 'contact' %}" class="nav-link">Contact</a>
                     </li>
                 </ul>
                 <div class="hamburger">
@@ -104,6 +106,7 @@
     <script src="https://kit.fontawesome.com/5821df7d40.js" crossorigin="anonymous"></script>
 
     <script src="{% static 'js/nav-menu.js' %}"></script>
+
     {% block js %}
     {% endblock %}
     

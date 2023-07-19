@@ -4,18 +4,223 @@
 {% block content %}
 
 <div class="section member-profile-section">
-    <div class="section-container container-col member-profile-section-container">
-        <div class="heading dark-text">{{ member_profile.first_name }}'s Profile </div>
-        <div class="member-profile-basic-info container-col">
-            <div class="profile-img-container">
-                <img src="{{ member_profile.profile_image.url }}" alt="{{ member_profile.first_name }} Profile Image" class="profile-img img-100a"></img>
+    <div class="section-container container-row member-profile-section-container">
+        <div class="profile-left-side-container container-col">
+            <div class="profile-card container-col profile-picture-card">
+                <div class="profile-picture-col-container container-col">
+                    <div class="profile-img-container">
+                        <img src="{{ member_profile.profile_image.url }}" alt="{{ member_profile.first_name }} Profile Image" class="profile-img img-100a"></img>
+                    </div>
+                    <div class="profile-name dark-text sub-heading">{{ member_profile.first_name }}'s Profile</div>
+                </div>
             </div>
-            <div class="profile-name">{{ member_profile.first_name }} {{ member_profile.last_name }}</div>
-            <a href="{% url 'edit_member_profile' user.member_short_uuid %}" class="btn">Edit Profile</a>
+            <div class="profile-card container-col password-email-card">
+                <div class="password-email-col-container container-col">
+                    <div class="password-email-row-container container-row">
+                        <div class="light-text">Email</div>
+                        <div class="dark-text">{{ member_profile.user.email }}</div>
+                    </div>
+                    <a href="#" class="btn">Change Email</a>
+                </div>
+                <div class="password-email-col-container container-col">
+                    <div class="password-email-row-container container-row">
+                        <div class="light-text">Password</div>
+                        <div class="dark-text">●●●●●●●●</div>
+                    </div>
+                    <a href="#" class="btn">Change Password</a>
+                </div>
+            </div>
+        </div>
+        <div class="profile-right-side-container container-col">
+            <div class="profile-card container-col profile-details-card">
+                <div class="profile-details-row-container container-row">
+                    <div class="profile-details-row-container double-row container-row">
+                        <div class="light-text">First Name</div>
+                        {% if member_profile.first_name %}
+                        <div class="dark-text">{{ member_profile.first_name }}</div>
+                        {% else %}
+                        <div class="dark-text nothing-displayed">*Nothing Displayed</div>
+                        {% endif %}
+                    </div>
+                    <div class="profile-details-row-container double-row container-row">
+                        <div class="light-text">Last Name</div>
+                        {% if member_profile.last_name %}
+                        <div class="dark-text">{{ member_profile.last_name }}</div>
+                        {% else %}
+                        <div class="dark-text nothing-displayed">*Nothing Displayed</div>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="profile-details-row-container container-row">
+                    <div class="light-text">Bio</div>
+                    {% if member_profile.bio %}
+                    <div class="dark-text">{{ member_profile.bio }}</div>
+                    {% else %}
+                    <div class="dark-text nothing-displayed">*Nothing Displayed</div>
+                    {% endif %}
+                </div>
+                <div class="profile-details-row-container container-row">
+                    <div class="profile-details-row-container container-row double-row">
+                        <div class="light-text">Personal Email</div>
+                        {% if member_profile.display_email %}
+                        {% if member_profile.personal_email %}
+                        <div class="dark-text">{{ member_profile.personal_email }}</div>
+                        {% else %}
+                        <div class="dark-text nothing-displayed">*Nothing Displayed</div>
+                        {% endif %}
+                        {% else %}
+                        <div class="dark-text">Email Not Displayed</div>
+                        {% endif %}
+                    </div>
+                    <div class="profile-details-row-container container-row double-row">
+                        <div class="light-text">Office Email</div>
+                        {% if member_profile.display_email %}
+                        {% if member_profile.office_email %}
+                        <div class="dark-text">{{ member_profile.office_email }}</div>
+                        {% else %}
+                        <div class="dark-text nothing-displayed">*Nothing Displayed</div>
+                        {% endif %}
+                        {% else %}
+                        <div class="dark-text">Email Not Displayed</div>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="profile-details-row-container container-row">
+                    <div class="profile-details-row-container container-row double-row">
+                        <div class="light-text">Mobile Number</div>
+                        {% if member_profile.display_number %}
+                        {% if member_profile.mobile_number %}
+                        <div class="dark-text">{{ member_profile.mobile_number }}</div>
+                        {% else %}
+                        <div class="dark-text nothing-displayed">*Nothing Displayed</div>
+                        {% endif %}
+                        {% else %}
+                        <div class="dark-text">Phone Number Not Displayed</div>
+                        {% endif %}
+                    </div>
+                    <div class="profile-details-row-container container-row double-row">
+                        <div class="light-text">Office Number</div>
+                        {% if member_profile.display_number %}
+                        {% if member_profile.office_number %}
+                        <div class="dark-text">{{ member_profile.office_number }}</div>
+                        {% else %}
+                        <div class="dark-text nothing-displayed">*Nothing Displayed</div>
+                        {% endif %}
+                        {% else %}
+                        <div class="dark-text">Phone Number Not Displayed</div>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="profile-details-row-container container-row">
+                    <div class="profile-details-row-container container-row double-row">
+                        <div class="light-text">Address Line 1</div>
+                        {% if member_profile.display_address %}
+                        {% if member_profile.address_line_1 %}
+                        <div class="dark-text">{{ member_profile.address_line_1 }}</div>
+                        {% else %}
+                        <div class="dark-text nothing-displayed">*Nothing Displayed</div>
+                        {% endif %}
+                        {% else %}
+                        <div class="dark-text">Address Not Displayed</div>
+                        {% endif %}
+                    </div>
+                    <div class="profile-details-row-container container-row double-row">
+                        <div class="light-text">Address Line 2</div>
+                        {% if member_profile.display_address %}
+                        {% if member_profile.address_line_2 %}
+                        <div class="dark-text">{{ member_profile.address_line_2 }}</div>
+                        {% else %}
+                        <div class="dark-text nothing-displayed">*Nothing Displayed</div>
+                        {% endif %}
+                        {% else %}
+                        <div class="dark-text">Address Not Displayed</div>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="profile-details-row-container container-row">
+                    <div class="profile-details-row-container container-row double-row">
+                        <div class="light-text">Address Line 3</div>
+                        {% if member_profile.display_address %}
+                        {% if member_profile.address_line_3 %}
+                        <div class="dark-text">{{ member_profile.address_line_3 }}</div>
+                        {% else %}
+                        <div class="dark-text nothing-displayed">*Nothing Displayed</div>
+                        {% endif %}
+                        {% else %}
+                        <div class="dark-text">Address Not Displayed</div>
+                        {% endif %}
+                    </div>
+                    <div class="profile-details-row-container container-row double-row">
+                        <div class="light-text">State</div>
+                        {% if member_profile.state and member_profile.state != 'all' %}
+                        <div class="dark-text">{{ member_profile.state }}</div>
+                        {% else %}
+                        <div class="dark-text nothing-displayed">*Nothing Displayed</div>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="profile-details-row-container container-row">
+                    <div class="profile-details-row-container container-row double-row">
+                        <div class="light-text">Company/Org</div>
+                        {% if member_profile.company_organization %}
+                        <div class="dark-text">{{ member_profile.company_organization }}</div>
+                        {% else %}
+                        <div class="dark-text nothing-displayed">*Nothing Displayed</div>
+                        {% endif %}
+                    </div>
+
+                    <div class="profile-details-row-container container-row double-row">
+                        <div class="light-text">Category</div>
+                        {% if member_profile.category and member_profile.category != 'all'%}
+                        <div class="dark-text">{{ member_profile.category }}</div>
+                        {% else %}
+                        <div class="dark-text nothing-displayed">*Nothing Displayed</div>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="profile-details-row-container container-row">
+                    <div class="profile-details-row-container container-row double-row">
+                        <div class="light-text">Certificate</div>
+                        {% if member_profile.certificate and member_profile.certificate != 'any' %}
+                        <div class="dark-text">{{ member_profile.certificate }}</div>
+                        {% else %}
+                        <div class="dark-text nothing-displayed">*Nothing Displayed</div>
+                        {% endif %}
+                    </div>
+                    <div class="profile-details-row-container container-row double-row">
+                        <div class="light-text">Website</div>
+                        {% if member_profile.website %}
+                        <div class="dark-text">{{ member_profile.website }}</div>
+                        {% else %}
+                        <div class="dark-text nothing-displayed">*Nothing Displayed</div>
+                        {% endif %}
+                    </div>
+                </div>
+                <a href="{% url 'edit_member_profile' user.member_short_uuid %}" class="btn">Edit Profile</a>
+            </div>
         </div>
     </div>
 </div>
 
+{% if edit_profile %}
+
+<section class="edit-profile-section section">
+    <div class="edit-profile-card container-col">
+        <div class="edit-profile-form-container container-col">
+            <div class="heading dark-text">{{ member_profile.first_name }}'s Profile </div>
+            <form method="post" class="edit-profile-form">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <div class="create-event-form-btns-container container-row">
+                    <input type="submit" name="cancel" value="Cancel">
+                    <input type="submit" value="Save" class="btn">
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+
+{% endif %}
 
 {% endblock %}
 

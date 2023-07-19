@@ -9,7 +9,7 @@
 
 :root {
     --WHITE: #ffffff;
-    --GRAY-DARK-1: #010101;
+    --GRAY-DARK-1: #333333;
     --RED-LOGO: #d61810;
     --RED-LOGO-TRANSPARENT: #d61710cc;
     --YELLOW-LOGO: #ffd600;
@@ -186,12 +186,17 @@ header {
 
 .btn {
     background-color: var(--RED-LOGO);
-    padding: 15px 35px;
+    padding: 10px 35px;
     border-radius: 5px;
     cursor: pointer;
     font-size: 1.5rem;
     text-align: center;
     width: fit-content;
+    color: var(--WHITE);
+}
+
+.btn:hover {
+    background-color: var(--RED-LOGO);
     color: var(--WHITE);
 }
 
@@ -541,6 +546,11 @@ footer {
 
 .dark-text {
     color: var(--GRAY-DARK-1);
+    font-size: 1.5rem;
+}
+
+.light-text {
+    color: var(--GRAY-DARK-2);
     font-size: 1.5rem;
 }
 
@@ -1261,23 +1271,372 @@ footer {
 
 /* Member Profile Section */
 
+.member-profile-section {
+    background-color: var(--GRAY-DARK-1);
+}
+
 .member-profile-section-container {
     gap: 20px;
     min-height: calc(100vh - 100px);
-    padding: 100px 0;
+    padding: 75px 0;
 }
 
-.member-profile-info-container {
-    gap: 30px;
-    align-items: flex-start;
-    width: 600px;
-    padding: 50px;
-    border: 2px solid var(--GRAY-DARK-1);
+.profile-left-side-container {
+    width: 390px;
+    gap: 20px;
+}
+
+.profile-right-side-container {
+    width: 790px;
+}
+
+.profile-card {
+    padding: 20px;
+    background-color: var(--GRAY-LIGHT-1);
     border-radius: 15px;
 }
 
-.member-profile-data-container {
+.profile-picture-card {
+    width: 100%;
+    height: 390px;
+    justify-content: space-between;
+}
+
+.password-email-card {
+    width: 100%;
+    height: 290px;
+    justify-content: space-between;
+    padding: 30px;
+}
+
+.profile-details-card {
+    width: 100%;
+    height: 700px;
+    justify-content: space-between;
+}
+
+.profile-picture-col-container {
     gap: 10px;
+}
+
+.profile-img-container {
+    width: 290px;
+    height: 290px;
+    border-radius: 50%;
+    border: 2px solid var(--GRAY-DARK-1);
+    overflow: hidden;
+}
+
+.password-email-col-container {
+    width: 100%;
+    gap: 20px;
+}
+
+.password-email-row-container {
+    width: 100%;
+    justify-content: space-between;
+}
+
+.profile-details-row-container {
+    width: 100%;
+    justify-content: space-between;
+}
+
+.profile-details-row-container .light-text {
+    width: 130px;
+    font-size: 1.1rem;
+}
+
+.profile-details-row-container .dark-text {
+    width: calc(100% - 130px);
+    font-size: 1.1rem;
+    display: flex;
+    border: 1px solid var(--GRAY-DARK-1);
+    padding: 10px 20px 10px 20px;
+    border-radius: 5px;
+}
+
+.profile-details-row-container .nothing-displayed {
+    color: var(--RED-LOGO);
+}
+
+.profile-details-row-container.double-row  {
+    width: calc(50% - 10px);
+}
+
+/* Edit Profile Section */
+
+.edit-profile-section {
+    background-color: var(--TRANSPARENT-DARK-2);
+    backdrop-filter: blur(5px);
+    position: absolute;
+    width: 100%;
+    height: calc(100% - 200px);
+    pointer-events: all;
+    left: 0;
+    top: 100px; 
+}
+
+.edit-profile-card {
+    width: 900px;
+    padding: 50px 0;
+    height: 100%;
+    justify-content: flex-start;
+}
+
+.edit-profile-form-container {
+    width: 100%;
+    padding: 50px;
+    background-color: var(--GRAY-LIGHT-1);
+    border-radius: 15px;
+    overflow-y: scroll;
+    justify-content: flex-start;
+}
+
+.edit-profile-form {
+    width: 100%;
+}
+
+.edit-profile-form label {
+    color: var(--GRAY-DARK-1);
+    font-size: 1.5rem;
+    margin: 0;
+}
+
+.edit-profile-form input, .edit-profile-form textarea {
+    width: 100%;
+    padding: 10px 20px;
+    font-size: 1.5rem;
+    margin: 5px 0 20px 0;
+    border: 3px solid var(--GRAY-DARK-1);
+    border-radius: 15px;
+    background-color: var(--GRAY-LIGHT-1);
+}
+
+.edit-profile-form input:focus, .edit-profile-form textarea:focus {
+    border: 3px solid var(--RED-LOGO);
+    outline: none;
+}
+
+.edit-profile-form input[type="submit"] {
+    width: calc(50% - 20px);
+    border: none;
+    padding: 20px;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    border-radius: 10px;
+}
+
+.edit-profile-form input[type="submit"][value="Save"] {
+    background: var(--YELLOW-LOGO);
+}
+
+.edit-profile-form input[type="submit"][value="Cancel"] {
+    background: var(--RED-LOGO);
+    color: var(--WHITE);
+}
+
+/* Learn Section */
+
+.learn-welcome-section-container {
+    justify-content: space-between;
+    flex-direction: row;
+}
+
+.learn-welcome-section-content-container {
+    gap: 20px;
+    width: 575px;
+    height: 575px;
+    padding: 20px;
+}
+
+.learn-section-img-container {
+    width: 575px;
+    height: 575px;
+    background-color: var(--RED-LOGO);
+}
+
+.learn-hero-welcome-section-content-container {
+    width: 1000px;
+    gap: 30px;
+}
+
+.learn-reasons-section-container {
+    flex-direction: row-reverse;
+}
+
+/* Contact Details Section */
+
+.contact-details-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     flex-direction: column;
+    gap: 50px;
+    background-color: var(--GRAY-DARK-1);
+}
+
+.contact-details-section-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 50px;
+    padding: 0 0 100px 0;
+}
+
+.contact-details-heading {
+    font-size: 4rem;
+    color: var(--WHITE);
+}
+
+.contact-details-container {
+    width: 1000px;
+    display: flex;
+    justify-content: center;
     align-items: flex-start;
+}
+
+.contact-details-col {
+    width: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.contact-details-icon-container {
+    width: 130px;
+    height: 130px;
+    padding: 20px;
+    border-radius: 50%;
+    background-color: var(--RED-LOGO);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.contact-details-icon {
+    width: 100%;
+    height: auto;
+}
+
+.contact-details-col-heading {
+    font-size: 1.8rem;
+    color: var(--WHITE);
+    text-transform: uppercase;
+    text-align: center;
+}
+
+.contact-details-info-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.contact-details-info-heading {
+    font-size: 1.5rem;
+    color: var(--WHITE);
+}
+
+.contact-details-info-text {
+    font-size: 1.2rem;
+    text-align: center;
+    color: var(--YELLOW-LOGO);
+    padding: 0 30px;
+}
+
+.contact-details-info-text a {
+    color: var(--YELLOW-LOGO);
+}
+
+/* Google Maps Section */
+
+.google-maps-section {
+    width: 100%;
+    padding: 0 0 100px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--GRAY-DARK-1);
+}
+
+.google-maps-section-container {
+    width: 950px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.google-maps-container {
+    position: relative;
+    width: 100%;
+    height: 0;
+    padding-bottom: 40%;
+    overflow: hidden;
+}
+
+.google-maps-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 950px;
+    height: 100%;
+}
+
+.google-maps-btn {
+    position: absolute;
+    left: 50%;
+    bottom: 20px;
+    transform: translateX(-50%);
+    font-size: 1.3rem;
+}
+
+/* Contact Form Section */
+
+.contact-form-container {
+    width: 100%;
+    padding: 50px;
+    background-color: var(--TRANSPARENT-DARK-3);
+    border-radius: 15px;
+}
+
+.contact-form {
+    width: 100%;
+}
+
+.contact-form label {
+    color: var(--WHITE);
+    font-size: 1.5rem;
+    margin: 0;
+}
+
+.contact-form input, .contact-form textarea {
+    width: 100%;
+    padding: 10px 20px;
+    font-size: 1.5rem;
+    margin: 5px 0 20px 0;
+    border: 3px solid var(--GRAY-DARK-1);
+    border-radius: 15px;
+    background-color: var(--GRAY-LIGHT-1);
+}
+
+.contact-form input:focus, .contact-form textarea:focus {
+    border: 3px solid var(--RED-LOGO);
+    outline: none;
+}
+
+.contact-form button{
+    width: 100%;
+    border: none;
+    padding: 20px;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    border-radius: 10px;
 }

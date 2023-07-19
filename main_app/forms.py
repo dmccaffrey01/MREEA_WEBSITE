@@ -1,7 +1,7 @@
 from django import forms
 from allauth.account.forms import SignupForm
 from django.contrib.auth.models import User
-from .models import Event, MemberProfile
+from .models import Event, MemberProfile, ContactMessage
 
 
 class CustomSignupForm(SignupForm):
@@ -30,7 +30,13 @@ class EventForm(forms.ModelForm):
 class MemberProfileForm(forms.ModelForm):
     class Meta:
         model = MemberProfile
-        fields = ('profile_image', 'first_name', 'last_name', 'display_email', 'personal_email', 'office_email', 'display_number', 'mobile_number', 'office_number', 'display_address', 'address_line_1', 'address_line_2', 'address_line_3', 'website', 'bio', 'company_organization', 'state', 'category', 'certificate')
+        fields = ('first_name', 'last_name', 'display_email', 'personal_email', 'office_email', 'display_number', 'mobile_number', 'office_number', 'display_address', 'address_line_1', 'address_line_2', 'address_line_3', 'website', 'bio', 'company_organization', 'state', 'category', 'certificate')
+
+
+class ContactForm(forms.ModelForm):
+    class Meta:
+        model = ContactMessage
+        fields = ['name', 'email', 'message']
 
 
 # class MemberSearchForm(forms.ModelForm):

@@ -7,8 +7,9 @@ from django.db.models import Q
 from .forms import CustomSignupForm
 from django.contrib.auth import login
 from .models import Event, MemberProfile
-from .forms import EventForm, MemberProfileForm
+from .forms import EventForm, MemberProfileForm, ContactForm
 from django.utils import timezone
+from django.core.mail import send_mail
 
 
 previous_url = '/'
@@ -188,6 +189,8 @@ def member_profile(request, member_short_uuid):
 
 
 def edit_member_profile(request, member_short_uuid):
+    user = request.user
+    
     member_profile = get_object_or_404(MemberProfile, user__member_short_uuid=member_short_uuid)
 
     if request.method == 'POST':
@@ -199,7 +202,57 @@ def edit_member_profile(request, member_short_uuid):
         form = MemberProfileForm(instance=member_profile)
     
     context = {
+        'user': user,
         'form': form,
         'member_profile': member_profile,
+        'edit_profile': True,
     }
-    return render(request, 'edit_profile.html', context)
+    return render(request, 'member-profile.html', context)
+
+
+def learn_page(request):
+    user = request.user
+
+    global previous_url
+
+    previous_url = f'/learn/'
+
+    context = {
+        'user': user,
+        'previous_url': previous_url,
+    }
+
+    return render(request, 'learn.html', context)
+
+
+def contact_page(request):
+    user = request.user
+
+    global previous_url
+
+    previous_url = f'/contact/'
+
+    if request.method == 'POST':
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            form.save()  # Save the form data to the database
+            send_contact_email(form.cleaned_data)  # Send the email
+            return redirect('announcements')
+    else:
+        form = ContactForm()
+
+    context = {
+        'user': user,
+        'previous_url': previous_url,
+        'form': form,
+    }
+
+    return render(request, 'contact.html', context)
+
+
+def send_contact_email(data):
+    subject = 'New Contact Message'
+    message = f"Name: {data['name']}\nEmail: {data['email']}\n\n{data['message']}"
+    from_email = os.environ.get('CONTACT_FROM_EMAIL')  # Update with your email address
+    to_email = [os.environ.get('CONTACT_TO_EMAIL')]  # Update with the recipient's email address
+    send_mail(subject, message, from_email, to_email)

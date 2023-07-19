@@ -173,7 +173,7 @@ class MemberProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     first_name = models.CharField(max_length=255, blank=True, default='')
     last_name = models.CharField(max_length=255, blank=True, default='')
-    profile_image = CloudinaryField('Profile Image', null=True, blank=True)
+    profile_image = CloudinaryField('Profile Image', null=True, blank=True, default='https://res.cloudinary.com/dzwyiggcp/image/upload/v1689692743/MREEA/default-profile-pic_yp9kzz.png')
     display_email = models.BooleanField(default=True)
     personal_email = models.EmailField(blank=True)
     office_email = models.EmailField(blank=True)
@@ -209,3 +209,13 @@ class MemberProfile(models.Model):
 
     def __str__(self):
         return self.user.first_name + ' ' + self.user.last_name
+    
+
+class ContactMessage(models.Model):
+    name = models.CharField(max_length=255)
+    email = models.EmailField()
+    message = models.TextField()
+    timestamp = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.name

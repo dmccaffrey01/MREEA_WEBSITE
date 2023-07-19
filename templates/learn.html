@@ -1,0 +1,173 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+<section class="section announcements-hero-section">
+    <div class="container-row announcements-hero-container">
+        <div class="announcements-hero-img-container img-container container-col">
+            <div class="hero-overlay"></div>
+            <img src="https://res.cloudinary.com/dzwyiggcp/image/upload/v1689582480/MREEA/mreea-meeting-1_ucilgt.png" alt="MREEA Meeting" class="hero-image">
+        </div>
+        <div class="announcements-hero-heading-container container-col">
+            <div class="heading white-text">Welcome to MREEA's Learning Resources Section!</div>
+        </div>
+    </div>
+</section>
+
+<section class="section learn-welcome-section">
+    <div class="section-container container-col learn-hero-welcome-section-container">
+        <div class="learn-hero-welcome-section-content-container container-col">
+            <div class="dark-text">
+                At MREEA (Maryland Real Estate Educators Association), we are passionate about empowering individuals like you to achieve success in the dynamic world of real estate. Whether you're a seasoned professional or just starting your journey, this learning resources section is designed to provide you with a wealth of knowledge and tools to enhance your skills and expand your expertise.
+            </div>
+            <div class="dark-text">
+                Our mission is to foster a community of lifelong learners, where individuals can access comprehensive resources and stay up to date with the latest industry trends. Here, you will find a diverse range of educational materials, carefully curated to cater to the needs of aspiring real estate professionals, investors, brokers, and anyone seeking to gain a deeper understanding of the real estate market.
+            </div>
+        </div>
+    </div>
+</section>
+
+{% if user.is_member %}
+
+<section class="section learn-resources-section">
+    <div class="section-container container-col learn-welcome-section-container learn-resources-section-container">
+        
+        <div class="learn-welcome-section-content-container container-col learn-resources-section-content-container">
+            <div class="sub-heading heading dark-text welcome-section-heading resources-section-heading">
+                Explore a Wealth of Knowledge:
+            </div>
+            <div class="dark-text">
+                Uncover a treasure trove of resources, including articles, ebooks, videos, webinars, and case studies, all focused on various aspects of real estate. Our content covers a wide array of topics, ranging from the fundamentals of property investment and market analysis to advanced strategies for successful negotiations and property management. No matter your level of experience, you'll find valuable insights and practical tips to further your expertise.
+            </div>
+            <div class="dark-text">
+                Visit the Fair Housing Coach Newsletter resources here by clicking the button
+            </div>
+            <a href="https://drive.google.com/drive/folders/12yox06b4N2I0XkpxFNhItxo5-auA-RDm" class="btn" target="_blank">Fair Housing Coach</a>
+        </div>
+        <div class="learn-section-img-container img-container">
+            <img src="" alt="" class="learn-section-img img-100a">
+        </div>
+    </div>
+</section>
+
+<section class="section learn-reasons-section">
+    <div class="section-container container-col learn-welcome-section-container learn-reasons-section-container">
+        
+        <div class="learn-welcome-section-content-container container-col learn-reasons-section-content-container">
+            <div class="sub-heading heading dark-text welcome-section-heading reasons-section-heading">
+                Connect and Collaborate:
+            </div>
+            <div class="dark-text">
+                Learning doesn't happen in isolation, and at MREEA, we value the power of connection. Join our vibrant community of like-minded individuals, where you can network, share ideas, and collaborate with fellow learners, industry professionals, and mentors. Exchange insights, seek advice, and build relationships that will enrich your journey in the real estate field.
+            </div>
+            <div class="dark-text">Register or Log in to gain access to our members, here you can connect with people in your area, to help speed up the learning process</div>
+            <a href="{% url 'members' %}" class="btn">Find a Member</a>
+        </div>
+        <div class="learn-section-img-container img-container">
+            <img src="" alt="" class="learn-section-img img-100a">
+        </div>
+    </div>
+</section>
+
+<section class="section account-member-section">
+    <div class="section-container container-col account-member-section-container">
+        <div class="account-member-wrapper container-col">
+            <div class="account-member-content-container container-col">
+                <div class="heading dark-text">Maryland Real Estate Educators Asscociation</div>
+                <div class="dark-text">Thank you for being apart of our community, if your membership is expiring, you can simply renew with a few clicks</div>
+                <div class="dark-text">You will need membership to get access to the learning material</div>
+                <a href="#" class="btn">Join / Renew</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% else %}
+
+<section class="section learn-reasons-section">
+    <div class="section-container container-col learn-welcome-section-container learn-reasons-section-container">
+        <div class="learn-welcome-section-content-container container-col learn-reasons-section-content-container">
+            <div class="sub-heading heading dark-text welcome-section-heading reasons-section-heading">
+                Stay Ahead of the Curve:
+            </div>
+            <div class="dark-text">
+                The world of real estate is constantly evolving, and staying ahead of the curve is crucial for success. Our learning resources section keeps you updated with the latest market trends, regulatory changes, and innovative technologies shaping the industry. By staying informed, you can adapt your strategies, identify new opportunities, and make informed decisions in a competitive market.
+            </div>
+        </div>
+        <div class="learn-section-img-container img-container">
+            <img src="" alt="" class="learn-section-img img-100a">
+        </div>
+    </div>
+</section>
+
+<section class="section learn-resources-section">
+    <div class="section-container container-col learn-welcome-section-container learn-resources-section-container">
+        
+        <div class="learn-welcome-section-content-container container-col learn-resources-section-content-container">
+            <div class="sub-heading heading dark-text welcome-section-heading resources-section-heading">
+                Explore a Wealth of Knowledge:
+            </div>
+            <div class="dark-text">
+                Uncover a treasure trove of resources, including articles, ebooks, videos, webinars, and case studies, all focused on various aspects of real estate. Our content covers a wide array of topics, ranging from the fundamentals of property investment and market analysis to advanced strategies for successful negotiations and property management. No matter your level of experience, you'll find valuable insights and practical tips to further your expertise.
+            </div>
+        </div>
+        <div class="learn-section-img-container img-container">
+            <img src="" alt="" class="learn-section-img img-100a">
+        </div>
+    </div>
+</section>
+
+<section class="section learn-reasons-section">
+    <div class="section-container container-col learn-welcome-section-container learn-reasons-section-container">
+        
+        <div class="learn-welcome-section-content-container container-col learn-reasons-section-content-container">
+            <div class="sub-heading heading dark-text welcome-section-heading reasons-section-heading">
+                Connect and Collaborate:
+            </div>
+            <div class="dark-text">
+                Learning doesn't happen in isolation, and at MREEA, we value the power of connection. Join our vibrant community of like-minded individuals, where you can network, share ideas, and collaborate with fellow learners, industry professionals, and mentors. Exchange insights, seek advice, and build relationships that will enrich your journey in the real estate field.
+            </div>
+            <div class="dark-text">Register or Log in to gain access to our members, here you can connect with people in your area, to help speed up the learning process</div>
+            <a href="{% url 'members' %}" class="btn">Find a Member</a>
+        </div>
+        <div class="learn-section-img-container img-container">
+            <img src="" alt="" class="learn-section-img img-100a">
+        </div>
+    </div>
+</section>
+
+<section class="section account-member-section">
+    <div class="section-container container-col account-member-section-container">
+        {% if user.is_authenticated %}
+        <div class="account-member-wrapper container-col">
+            <div class="account-member-content-container container-col">
+                <div class="heading dark-text">Maryland Real Estate Educators Asscociation</div>
+                <div class="dark-text">Thank you for creating an account, if you haven't purchased a membership or your membership is expired or expiring, you can simply join or renew with a few clicks</div>
+                <div class="dark-text">You will need membership to get access to the learning material</div>
+                <a href="#" class="btn">Join / Renew</a>
+            </div>
+        </div>
+        {% else %}
+        <div class="account-member-wrapper container-col">
+            <div class="account-member-content-container container-col">
+                <div class="heading dark-text">Maryland Real Estate Educators Asscociation</div>
+                <div class="dark-text">To get access to the learning material, please sign in or sign up. Sign up and become a member to join an amazing community where you can learn and grow. Already a member or have an account? Then sign in to join or renew your membership.</div>
+                <div class="btns-container container-row">
+                    <a href="{% url 'account_login' %}" class="btn">Log in</a>
+                    <a href="{% url 'account_signup' %}" class="btn">Register</a>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</section>
+
+{% endif %}
+
+{% endblock %}
+
+{% block js %}
+
+
+{% endblock %}
