@@ -7,7 +7,7 @@ from django.db.models import Q
 from .forms import CustomSignupForm
 from django.contrib.auth import login
 from .models import Event, MemberProfile
-from .forms import EventForm, MemberProfileForm, ContactForm
+from .forms import EventForm, MemberProfileForm, ContactForm, MemberSearchForm
 from django.utils import timezone
 from django.core.mail import send_mail
 
@@ -160,13 +160,51 @@ def get_event_data(request):
 
 def members(request):
     global previous_url
-    
     previous_url = '/members/'
 
+    form = MemberSearchForm()
+    members = None
+    search_results = False
+
+    if request.method == 'GET':
+        form = MemberSearchForm(request.GET)
+        if form.is_valid():
+            last_name = form.cleaned_data.get('last_name')
+            company_organization = form.cleaned_data.get('company_organization')
+            state = form.cleaned_data.get('state')
+            category = form.cleaned_data.get('category')
+            certificate = form.cleaned_data.get('certificate')
+
+            # Query the MemberProfile model based on the search criteria
+            members = MemberProfile.objects.all()
+
+            # Apply filters based on search criteria if provided
+            if last_name:
+                members = members.filter(last_name__icontains=last_name)
+            if company_organization:
+                members = members.filter(company_organization__icontains=company_organization)
+
+            # Check if state is 'all'; if not, filter by state
+            if state and state != 'all':
+                members = members.filter(state=state)
+
+            # Check if category is 'all'; if not, filter by category
+            if category and category != 'all':
+                members = members.filter(category=category)
+
+            # Check if certificate is 'any'; if not, filter by certificate
+            if certificate and certificate != 'any':
+                members = members.filter(certificate=certificate)
+
+            search_results = True
+
     context = {
-        
+        'members': members,
+        'form': form,
+        'search_results': search_results,
     }
 
+    # Render the members.html template with the context
     return render(request, 'members.html', context)
 
 
@@ -194,6 +232,8 @@ def edit_member_profile(request, member_short_uuid):
     member_profile = get_object_or_404(MemberProfile, user__member_short_uuid=member_short_uuid)
 
     if request.method == 'POST':
+        if 'cancel' in request.POST:
+            return redirect('member_profile', member_short_uuid=member_short_uuid)
         form = MemberProfileForm(request.POST, instance=member_profile)
         if form.is_valid():
             form.save()

@@ -95,7 +95,7 @@
                         <div class="dark-text nothing-displayed">*Nothing Displayed</div>
                         {% endif %}
                         {% else %}
-                        <div class="dark-text">Phone Number Not Displayed</div>
+                        <div class="dark-text">Number Not Displayed</div>
                         {% endif %}
                     </div>
                     <div class="profile-details-row-container container-row double-row">
@@ -107,7 +107,7 @@
                         <div class="dark-text nothing-displayed">*Nothing Displayed</div>
                         {% endif %}
                         {% else %}
-                        <div class="dark-text">Phone Number Not Displayed</div>
+                        <div class="dark-text">Number Not Displayed</div>
                         {% endif %}
                     </div>
                 </div>
@@ -212,9 +212,10 @@
                 {% csrf_token %}
                 {{ form.as_p }}
                 <div class="create-event-form-btns-container container-row">
-                    <input type="submit" name="cancel" value="Cancel">
-                    <input type="submit" value="Save" class="btn">
+                    <input type="submit" name="cancel" value="Cancel" class="form-cancel-btn btn">
+                    <input type="submit" value="Save" class="btn form-save-btn">
                 </div>
+                <input type="submit" name="cancel" value="&#10006;" class="form-close-btn">
             </form>
         </div>
     </div>
