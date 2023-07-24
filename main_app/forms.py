@@ -1,5 +1,5 @@
 from django import forms
-from allauth.account.forms import SignupForm
+from allauth.account.forms import SignupForm, LoginForm
 from django.contrib.auth.models import User
 from .models import Event, MemberProfile, ContactMessage
 

@@ -223,7 +223,7 @@ function CalendarControl() {
         }
       },
       createEventElements: function(eventsData) {
-        let month = calendarControl.localDate.getMonth() + 1
+        let month = calendar.getMonth() + 1
 
         const options = { day: 'numeric', month: 'short', year: 'numeric', hour: 'numeric', minute: 'numeric' };
         
@@ -236,7 +236,6 @@ function CalendarControl() {
           let endDay = eventEndDate.getDate();
           let startMonth = eventStartDate.getMonth() + 1;
           let endMonth = eventEndDate.getMonth() + 1;
-
           if (startMonth == month || endMonth == month) {
             for (let i = startDay; i < endDay + 1; i++) {
               let info = document.createElement("div");

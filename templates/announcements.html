@@ -7,10 +7,16 @@
     <div class="container-row announcements-hero-container">
         <div class="announcements-hero-img-container img-container container-col">
             <div class="hero-overlay"></div>
-            <img src="https://res.cloudinary.com/dzwyiggcp/image/upload/v1689582480/MREEA/mreea-meeting-2_adho8o.png" alt="MREEA Meeting" class="hero-image">
+            <img src="https://res.cloudinary.com/dzwyiggcp/image/upload/v1690195123/MREEA/announcements_dahj3g.png" alt="MREEA Meeting" class="hero-image">
         </div>
-        <div class="announcements-hero-heading-container container-col">
-            <div class="heading white-text">Explore Upcoming and Past Events, Browse Our Calendar</div>
+        <div class="announcements-hero-heading-container container-col choose-hero-heading-container">
+            <div class="hero-text-container">
+                <div class="hero-heading">Events & Calendar</div>
+                <div class="white-text">
+                    Explore our Upcoming and Past Events, Browse Our Calendar and click on the events to find out more.
+                    MREEA hosts a number of events throughout the year allowing you to connect to other members and increase your growth here.
+                </div>
+            </div>
         </div>
     </div>
 </section>
@@ -66,27 +72,40 @@
     </div>
 </section>
 
-<section class="section past-events-section">
+<section class="section upcoming-events-section container-col">
     <div class="section-container container-col upcoming-events-section-container">
         <div class="heading dark-text section-heading">Past Events</div>
         {% if past_events %}
         {% for event in past_events %}
         {% if forloop.counter|divisibleby:2 %}
-        <div class="container-col past-events-content-container red-container">
+        <div class="container-col upcoming-events-content-container yellow-container">
         {% else %}
-        <div class="container-col past-events-content-container yellow-container">
+        <div class="container-col upcoming-events-content-container red-container">
         {% endif %}
-            <div class="container-row past-event-container">
-                <div class="container-col event-date-container">
-                    <div class="reg-text event-date-text">JUL</div>
-                    <div class="reg-text event-date-text">19</div>
-                    <div class="reg-text event-date-text">2023</div>
+            <div class="container-row upcoming-event-container">
+                <div class="container-row event-date-container">
+                    <div class="container-col event-start-end-date-container">
+                        <div class="reg-text event-date-text">{{ event.start_date|date:"d" }}</div>
+                        <div class="reg-text event-date-text">{{ event.start_date|date:"M" }}</div>
+                        <div class="reg-text event-date-text">{{ event.start_date|time:"H:i" }}</div>
+                    </div>
+                    <div class="container-col event-start-end-date-container event-end-date-container">
+                        <div class="reg-text event-date-text">{{ event.end_date|date:"d" }}</div>
+                        <div class="reg-text event-date-text">{{ event.end_date|date:"M" }}</div>
+                        <div class="reg-text event-date-text">{{ event.end_date|time:"H:i" }}</div>
+                    </div>
                 </div>
                 <div class="container-col event-details-container">
-                    <div class="dark-text event-details">Quartely Meeting taking place on the 19th of July. All members are welcome to come.</div>
+                    <div class="dark-text event-details">{{ event.title }}</div>
+                    <div class="dark-text event-details">{{ event.description }}</div>
+                    <div class="dark-text event-details">Start Date: {{ event.start_date|date:"m" }}/{{ event.start_date|date:"d" }}/{{ event.start_date|date:"Y" }} at {{ event.start_date|time:"H:i" }}</div>
+                    <div class="dark-text event-details">End Date: {{ event.end_date|date:"m" }}/{{ event.end_date|date:"d" }}/{{ event.end_date|date:"Y" }} at {{ event.end_date|time:"H:i" }}</div>
                 </div>
                 <div class="container-col event-learn-more-btn-container">
-                    <a href="#" class="event-learn-more-btn btn">Learn More</a>
+                    {% if user.is_superuser %}
+                    <a href="{% url 'edit_event' event.event_short_uuid %}" class="btn yellow-btn event-learn-more-btn">Edit Event</a>
+                    {% endif %}
+                    <a href="{% url 'event_detail' event.event_short_uuid %}" class="event-learn-more-btn btn">Learn More</a>
                 </div>
             </div>
         </div>
@@ -97,10 +116,11 @@
         </div>
         {% endif %}
         {% if user.is_superuser %}
-        <a href="{% url 'create_event' %}" class="btn">Add Event</a>
+        <div class="add-event-btn-container container-col">
+            <a href="{% url 'create_event' %}" class="btn">Add Event</a>
+        </div>
         {% endif %}
     </div>
-    
 </section>
 
 <section class="section announcements-calendar-section" id="calendar-section">

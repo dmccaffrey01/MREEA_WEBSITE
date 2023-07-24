@@ -11,7 +11,6 @@ from .forms import EventForm, MemberProfileForm, ContactForm, MemberSearchForm
 from django.utils import timezone
 from django.core.mail import send_mail
 
-
 previous_url = '/'
 
 
@@ -46,10 +45,6 @@ def membership(request):
 
 def signup_view(request):
     global previous_url
-    if previous_url.endswith('/membership/'):
-        membership = True
-    else:
-        membership = False
 
     if request.method == 'POST':
         form = CustomSignupForm(request.POST)
@@ -66,7 +61,6 @@ def signup_view(request):
     
     return render(request, 'account/signup.html', {
         'form': form,
-        'membership': membership,
     })
 
 
@@ -85,7 +79,7 @@ def announcements(request):
 
     current_date = timezone.now()
 
-    upcoming_events = Event.objects.filter(start_date__gt=current_date).order_by('start_date')
+    upcoming_events = Event.objects.filter(end_date__gt=current_date).order_by('start_date')
 
     past_events = Event.objects.filter(end_date__lt=current_date).order_by('-end_date')
 

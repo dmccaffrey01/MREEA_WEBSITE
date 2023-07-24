@@ -3,30 +3,27 @@
 
 {% block content %}
 
-<section class="section announcements-hero-section">
+<section class="section learning-hero-section">
     <div class="container-row announcements-hero-container">
         <div class="announcements-hero-img-container img-container container-col">
             <div class="hero-overlay"></div>
-            <img src="https://res.cloudinary.com/dzwyiggcp/image/upload/v1689582480/MREEA/mreea-meeting-1_ucilgt.png" alt="MREEA Meeting" class="hero-image">
+            <img src="https://res.cloudinary.com/dzwyiggcp/image/upload/v1690196002/MREEA/learning_qgw7c6.png" alt="MREEA Meeting" class="hero-image">
         </div>
-        <div class="announcements-hero-heading-container container-col">
-            <div class="heading white-text">Welcome to MREEA's Learning Resources Section!</div>
+        <div class="announcements-hero-heading-container container-col choose-hero-heading-container">
+            <div class="hero-text-container learn-hero-welcome-section-content-container container-col">
+                <div class="hero-heading">Learning Resources</div>
+                <div class="white-text">
+                    At MREEA (Maryland Real Estate Educators Association), we are passionate about empowering individuals like you to achieve success in the dynamic world of real estate. Whether you're a seasoned professional or just starting your journey, this learning resources section is designed to provide you with a wealth of knowledge and tools to enhance your skills and expand your expertise.
+                </div>
+                <div class="white-text">
+                    Our mission is to foster a community of lifelong learners, where individuals can access comprehensive resources and stay up to date with the latest industry trends. Here, you will find a diverse range of educational materials, carefully curated to cater to the needs of aspiring real estate professionals, investors, brokers, and anyone seeking to gain a deeper understanding of the real estate market.
+                </div>
+            </div>
         </div>
     </div>
 </section>
 
-<section class="section learn-welcome-section">
-    <div class="section-container container-col learn-hero-welcome-section-container">
-        <div class="learn-hero-welcome-section-content-container container-col">
-            <div class="dark-text">
-                At MREEA (Maryland Real Estate Educators Association), we are passionate about empowering individuals like you to achieve success in the dynamic world of real estate. Whether you're a seasoned professional or just starting your journey, this learning resources section is designed to provide you with a wealth of knowledge and tools to enhance your skills and expand your expertise.
-            </div>
-            <div class="dark-text">
-                Our mission is to foster a community of lifelong learners, where individuals can access comprehensive resources and stay up to date with the latest industry trends. Here, you will find a diverse range of educational materials, carefully curated to cater to the needs of aspiring real estate professionals, investors, brokers, and anyone seeking to gain a deeper understanding of the real estate market.
-            </div>
-        </div>
-    </div>
-</section>
+
 
 {% if user.is_member %}
 
@@ -46,7 +43,7 @@
             <a href="https://drive.google.com/drive/folders/12yox06b4N2I0XkpxFNhItxo5-auA-RDm" class="btn" target="_blank">Fair Housing Coach</a>
         </div>
         <div class="learn-section-img-container img-container">
-            <img src="" alt="" class="learn-section-img img-100a">
+            <img src="https://res.cloudinary.com/dzwyiggcp/image/upload/v1690196403/learn-hand_y6jfdl.png" alt="Raising Hand" class="learn-section-img img-100a">
         </div>
     </div>
 </section>
@@ -65,7 +62,7 @@
             <a href="{% url 'members' %}" class="btn">Find a Member</a>
         </div>
         <div class="learn-section-img-container img-container">
-            <img src="" alt="" class="learn-section-img img-100a">
+            <img src="https://res.cloudinary.com/dzwyiggcp/image/upload/v1690196403/learn-connect_lyf9ix.png" alt="MREEA meeting" class="learn-section-img img-100a">
         </div>
     </div>
 </section>

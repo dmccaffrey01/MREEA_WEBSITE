@@ -47,8 +47,8 @@ const getIconArray = () => {
     return [firstNameInput, lastNameInput, emailInput, phoneNumberInput, password1Input, password2Input];
 }
 
-window.onload = () => {
+document.addEventListener('DOMContentLoaded', () => {
     let inputs = getIconArray();
     console.log(inputs);
     addIcons(inputs);
-}
+});

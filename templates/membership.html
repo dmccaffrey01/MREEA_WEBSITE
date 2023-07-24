@@ -3,24 +3,105 @@
 
 {% block content %}
 
-<section class="section">
-    <div class="container-col">
+<section class="section choose-section">
+    <div class="container-row announcements-hero-container choose-hero-container">
+        <div class="announcements-hero-img-container img-container container-col">
+            <div class="hero-overlay"></div>
+            <img src="https://res.cloudinary.com/dzwyiggcp/image/upload/v1690188575/mreea-meeting-3_y7t0px.png" alt="MREEA Meeting" class="hero-image">
+        </div>
+        <div class="announcements-hero-heading-container container-col choose-hero-heading-container">
+            <div class="hero-text-container">
+                <div class="hero-heading">Why Choose Us</div>
+                <div class="white-text">
+                    Maryland Real Estate Educators Association is an ideal group to join for individuals seeking to excel in the real estate education field. With a strong emphasis on networking, professional development, and advocacy, MREEA offers a comprehensive package of benefits. Members gain invaluable connections, access to top-notch educational resources, and a platform to influence positive change in the industry. By becoming a part of MREEA, individuals can position themselves as knowledgeable leaders in real estate education, enriching their careers and contributing to the continuous improvement of the profession
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section benefits-section">
+    <div class="section-container container-col benefits-section-container">
+        <div class="heading dark-text">Benefits to Joining</div>
+        <div class="benefits-col-container container-row">
+            <div class="benefit-col container-col">
+                <div class="benefit-col-img-container img-container container-col">
+                    <img src="https://res.cloudinary.com/dzwyiggcp/image/upload/v1690187257/MREEA/professional-development_rhibm6.png" alt="Professional Development Icon" class="benefit-img img-100a">
+                </div>
+                <div class="sub-heading dark-text">Professional Development</div>
+                <div class="benefit-col-text-container container-col">
+                    <div class="dark-text">
+                        Specialized training and resources for enhancing teaching skills, instructional techniques, and curriculum development
+                    </div>
+                    <div class="dark-text">
+                        Stay updated on changes in real estate regulations, laws, and market dynamics
+                    </div>
+                    <div class="dark-text">
+                        Access to a vast repository of educational materials, webinars, and conferences
+                    </div>
+                </div>
+            </div>
+            <div class="benefit-col container-col">
+                <div class="benefit-col-img-container img-container container-col second">
+                    <img src="https://res.cloudinary.com/dzwyiggcp/image/upload/v1690187257/MREEA/networking_cwp4jk.png" alt="Professional Development Icon" class="benefit-img img-100a">
+                </div>
+                <div class="sub-heading dark-text">Networking</div>
+                <div class="benefit-col-text-container container-col">
+                    <div class="dark-text">
+                        Connects members with a diverse community of real estate professionals, educators, and industry leaders
+                    </div>
+                    <div class="dark-text">
+                        Opens doors to potential partnerships, collaborations, and business opportunities
+                    </div>
+                    <div class="dark-text">
+                        Access to networking events, workshops, and seminars
+                    </div>
+                </div>
+            </div>
+            <div class="benefit-col container-col">
+                <div class="benefit-col-img-container img-container container-col">
+                    <img src="https://res.cloudinary.com/dzwyiggcp/image/upload/v1690187257/MREEA/career-impact_gkk5jc.png" alt="Professional Development Icon" class="benefit-img img-100a">
+                </div>
+                <div class="sub-heading dark-text">Career Impact</div>
+                <div class="benefit-col-text-container container-col">
+                    <div class="dark-text">
+                        Elevates members' standing in the real estate education realm
+                    </div>
+                    <div class="dark-text">
+                        Enhances professional growth and expertise through continuous learning opportunities
+                    </div>
+                    <div class="dark-text">
+                        Contributes to the advancement and improvement of the entire real estate education industry
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section account-member-section">
+    <div class="section-container container-col account-member-section-container members-page-account-seciton-1">
         {% if user.is_authenticated %}
-        <div class="container-col">
-            <div class="dark-text">Thank you for logging in</div>
+        <div class="account-member-wrapper container-col">
+            <div class="account-member-content-container container-col">
+                <div class="heading dark-text">Maryland Real Estate Educators Asscociation</div>
+                <div class="dark-text">Thank you for creating an account, if you haven't purchased a membership or your membership is expired or expiring, you can simply join or renew with a few clicks</div>
+                <a href="#" class="btn">Join / Renew</a>
+            </div>
         </div>
         {% else %}
-        <div class="container-row">
-            <a href="{% url 'account_login' %}" class="btn">
-                Login
-            </a>
-            <a href="{% url 'account_signup' %}" class="btn register-btn">
-                Register
-            </a>
+        <div class="account-member-wrapper container-col members-page-no-account-wrapper">
+            <div class="account-member-content-container container-col">
+                <div class="heading dark-text">Maryland Real Estate Educators Asscociation</div>
+                <div class="dark-text">Sign up and become a member to join an amazing community where you can learn and grow. Already a member or have an account? Then sign in to join or renew your membership.</div>
+                <div class="btns-container container-row">
+                    <a href="{% url 'account_login' %}" class="btn">Log in</a>
+                    <a href="{% url 'account_signup' %}" class="btn">Register</a>
+                </div>
+            </div>
         </div>
         {% endif %}
-    </div>     
-    
+    </div>
 </section>
 
 {% endblock %}

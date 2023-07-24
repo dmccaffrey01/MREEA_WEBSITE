@@ -61,8 +61,8 @@ const fixRememberAndForget = () => {
     })
 }
 
-window.onload = () => {
+document.addEventListener('DOMContentLoaded', () => {
     let inputs = getIconArray();
     addIcons(inputs);
     fixRememberAndForget();
-}
+});
