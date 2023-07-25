@@ -16,6 +16,7 @@ urlpatterns = [
     path('members/', views.members, name='members'),
     path('profile/<str:member_short_uuid>/', views.member_profile, name='member_profile'),
     path('profile/<str:member_short_uuid>/edit', views.edit_member_profile, name='edit_member_profile'),
+    path('profile/<str:member_short_uuid>/edit_profile_picture', views.edit_profile_picture, name='edit_profile_picture'),
     path('learn/', views.learn_page, name='learn'),
     path('contact/', views.contact_page, name='contact'),
 ]

@@ -1001,6 +1001,7 @@ footer {
 
 .account-btn:hover {
     background-color: var(--YELLOW-LOGO);
+    color: var(--GRAY-DARK-1);
 }
 
 .account-password-reset-section-container {
@@ -1493,8 +1494,8 @@ footer {
 .password-email-card {
     width: 100%;
     height: 290px;
-    justify-content: space-between;
     padding: 30px;
+    gap: 30px;
 }
 
 .profile-details-card {
@@ -1511,8 +1512,41 @@ footer {
     width: 290px;
     height: 290px;
     border-radius: 50%;
-    border: 2px solid var(--GRAY-DARK-1);
+    border: 5px solid var(--GRAY-DARK-1);
     overflow: hidden;
+    cursor: pointer;
+    position: relative;
+}
+
+.edit-picture-btn {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 10;
+    display: none;
+    transform: translate(-50%, -50%);
+}
+
+.edit-picture-btn i {
+    font-size: 3rem;
+    color: var(--WHITE);
+}
+
+.edit-picture-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background-color: var(--TRANSPARENT-DARK-1);
+    backdrop-filter: blur(10px);
+    z-index: 9;
+    display: none;
+}
+
+.profile-img-container:hover .edit-picture-btn, .profile-img-container:hover .edit-picture-overlay {
+    display: flex;
 }
 
 .password-email-col-container {
@@ -1528,6 +1562,7 @@ footer {
 .profile-details-row-container {
     width: 100%;
     justify-content: space-between;
+    position: relative;
 }
 
 .profile-details-row-container .light-text {
@@ -1550,6 +1585,55 @@ footer {
 
 .profile-details-row-container.double-row  {
     width: calc(50% - 10px);
+}
+
+.expand-bio-btn {
+    position: absolute;
+    right: 12px;
+    cursor: pointer;
+}
+
+.expand-bio-btn i {
+    font-size: 1.5rem;
+    color: var(--RED-LOGO);
+}
+
+.expand-bio-container {
+    display: none;
+    position: absolute;
+    left: -740px;
+    top: -108px;
+    padding: 140px 40px 0 40px;
+    background-color: var(--TRANSPARENT-DARK-1);
+    width: 800px;
+    height: 704px;
+    backdrop-filter: blur(5px);
+    z-index: 10;
+    justify-content: flex-start;
+    gap: 20px;
+}
+
+.expand-bio-text {
+    padding: 20px 20px 20px 20px;
+    border-radius: 15px;
+    background-color: var(--GRAY-LIGHT-1);
+}
+
+.expand-bio-btn.active .expand-bio-container {
+    display: flex;
+}
+
+.close-expand-bio-btn {
+    display: none;
+    position: absolute;
+    top: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 11;
+}
+
+.close-expand-bio-btn.active {
+    display: flex;
 }
 
 /* Edit Profile Section */
@@ -1731,6 +1815,65 @@ footer {
   
 .edit-profile-form input[type="checkbox"]:checked::before {
     opacity: 1;
+}
+
+.edit-profile-picture-form-wrapper {
+    display: none;
+}
+
+.edit-pp-container {
+    padding: 50px 0 20px 0;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.edit-pp-input-container {
+    width: 80%;
+}
+
+.upload-clear-container {
+    width: 100%;
+    justify-content: space-between;
+}
+
+#clearPP {
+    margin: 0;
+}
+
+.clear-pp-container {
+    gap: 10px;
+    width: fit-content;
+}
+
+.clear-pp-text {
+    font-size: 2rem;
+    color: var(--RED-LOGO);
+}
+
+.crop-pp-img-container {
+    width: 600px;
+    height: 600px;
+}
+
+.preview-pp-container {
+    display: none;
+    width: 100%;
+    padding: 20px 0;
+    gap: 30px;
+}
+
+.preview-pp-img-container {
+    width: 80%;
+    border-radius: 50%;
+    border: 5px solid var(--GRAY-DARK-1);
+    overflow: hidden;
+}
+
+.crop-image {
+    display: block;
+    max-width: 100%;
 }
 
 /* Learn Section */
@@ -1991,4 +2134,40 @@ footer {
 
 .mission-section .choose-hero-container {
     height: 1000px;
+}
+
+/* Profile Btns */
+
+.account-profile-container {
+    width: 75px;
+    height: 75px;
+    border-radius: 50%;
+    border: 5px solid var(--RED-LOGO);
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+.profile-btns-container {
+    position: absolute;
+    top: calc(100% + 8px);
+    padding: 20px;
+    width: 250px;
+    border-radius: 15px;
+    background-color: var(--GRAY-LIGHT-2);
+    left: 50%;
+    z-index: 999;
+    transform: translateX(-50%);
+    border: 2px solid var(--GRAY-DARK-1);
+    gap: 20px;
+    display: none;
+}
+
+.account-profile-container.active .profile-btns-container {
+    display: flex;
+}
+
+.profile-btn-link {
+    font-size: 1.5rem;
+    color: var(--GRAY-DARK-1);
 }

@@ -7,36 +7,46 @@ from django.db.models import Q
 from .forms import CustomSignupForm
 from django.contrib.auth import login
 from .models import Event, MemberProfile
-from .forms import EventForm, MemberProfileForm, ContactForm, MemberSearchForm
+from .forms import EventForm, MemberProfileForm, ContactForm, MemberSearchForm, MemberProfilePictureForm
 from django.utils import timezone
 from django.core.mail import send_mail
-
-previous_url = '/'
+from cloudinary.uploader import upload
+import base64
+from django.core.files.base import ContentFile
+import cloudinary.uploader
 
 
 def index(request):
-    global previous_url
     
-    previous_url = '/'
+    user = request.user
+
+    if user.is_authenticated:
+        member_profile = MemberProfile.objects.filter(user=user).first()
+    else:
+        member_profile = False
 
     context = {
-        
+        'member_profile': member_profile,
     }
 
     return render(request, 'index.html', context)
 
 
 def membership(request):
-    global previous_url
     
     user = request.user
 
-    previous_url = '/membership/'
+    if user.is_authenticated:
+        member_profile = MemberProfile.objects.filter(user=user).first()
+    else:
+        member_profile = False
+
 
     logged_in = user.is_authenticated
 
     context = {
         'logged_in': logged_in,
+        'member_profile': member_profile,
     }
 
     return render(request, 'membership.html', context)
@@ -44,7 +54,6 @@ def membership(request):
 
 
 def signup_view(request):
-    global previous_url
 
     if request.method == 'POST':
         form = CustomSignupForm(request.POST)
@@ -52,10 +61,7 @@ def signup_view(request):
             user = form.save(request)
             login(request, user)
             
-            if previous_url:
-                return redirect(previous_url)
-            else:
-                return redirect('home')
+            return redirect('home')
     else:
         form = CustomSignupForm()
     
@@ -65,15 +71,17 @@ def signup_view(request):
 
 
 def announcements(request):
-    global previous_url
     
     user = request.user
-
-    previous_url = '/announcements/'
 
     logged_in = user.is_authenticated
 
     is_admin = user.is_superuser
+
+    if user.is_authenticated:
+        member_profile = MemberProfile.objects.filter(user=user).first()
+    else:
+        member_profile = False
 
     events = Event.objects.all()
 
@@ -89,6 +97,7 @@ def announcements(request):
         'events': events,
         'upcoming_events': upcoming_events,
         'past_events': past_events,
+        'member_profile': member_profile,
     }
 
     return render(request, 'announcements.html', context)
@@ -153,8 +162,13 @@ def get_event_data(request):
 
 
 def members(request):
-    global previous_url
-    previous_url = '/members/'
+
+    user = request.user
+
+    if user.is_authenticated:
+        member_profile = MemberProfile.objects.filter(user=user).first()
+    else:
+        member_profile = False
 
     form = MemberSearchForm()
     members = None
@@ -196,6 +210,7 @@ def members(request):
         'members': members,
         'form': form,
         'search_results': search_results,
+        'member_profile': member_profile,
     }
 
     # Render the members.html template with the context
@@ -205,16 +220,18 @@ def members(request):
 def member_profile(request, member_short_uuid):
     user = request.user
 
-    global previous_url
-
     member_profile, created = MemberProfile.objects.get_or_create(user=user)
 
-    previous_url = f'/profile/{member_short_uuid}'
+    if len(member_profile.bio) > 70:
+        member_profile.short_bio = member_profile.bio[:70] + "..."
+    else:
+        member_profile.short_bio = member_profile.bio
+
+    member_profile.save()
 
     context = {
         'user': user,
         'member_profile': member_profile,
-        'previous_url': previous_url,
     }
 
     return render(request, 'member-profile.html', context)
@@ -241,19 +258,62 @@ def edit_member_profile(request, member_short_uuid):
         'member_profile': member_profile,
         'edit_profile': True,
     }
+
+    return render(request, 'member-profile.html', context)
+
+
+def edit_profile_picture(request, member_short_uuid):
+    user = request.user
+
+    member_profile = get_object_or_404(MemberProfile, user__member_short_uuid=member_short_uuid)
+
+    if request.method == 'POST':
+        if 'cancel' in request.POST:
+            return redirect('member_profile', member_short_uuid=member_short_uuid)
+        form = MemberProfilePictureForm(request.POST, instance=member_profile)
+        print(form.is_valid())
+        if form.is_valid():
+            form.save()
+            cropped_image_data = request.POST.get('croppedImageData')
+        if cropped_image_data:
+            # Decode the Base64 image data
+            image_data = base64.b64decode(cropped_image_data.split(',')[-1])
+
+            image_file = ContentFile(image_data)
+
+            # Upload the image file to Cloudinary
+            cloudinary_response = cloudinary.uploader.upload(image_file, public_id="profile_image")
+
+            # Save the Cloudinary image URL in the profile_image field of the MemberProfile model
+            member_profile = MemberProfile.objects.get(user=request.user)
+            member_profile.profile_image = cloudinary_response['secure_url']
+            member_profile.save()
+            return redirect('member_profile', member_short_uuid=member_short_uuid)
+    else:
+        form = MemberProfilePictureForm(instance=member_profile)
+
+    context = {
+        'user': user,
+        'form': form,
+        'member_profile': member_profile,
+        'edit_profile': True,
+        'edit_profile_picture': True,
+    }
+
     return render(request, 'member-profile.html', context)
 
 
 def learn_page(request):
     user = request.user
 
-    global previous_url
-
-    previous_url = f'/learn/'
+    if user.is_authenticated:
+        member_profile = MemberProfile.objects.filter(user=user).first()
+    else:
+        member_profile = False
 
     context = {
         'user': user,
-        'previous_url': previous_url,
+        'member_profile': member_profile,
     }
 
     return render(request, 'learn.html', context)
@@ -262,9 +322,10 @@ def learn_page(request):
 def contact_page(request):
     user = request.user
 
-    global previous_url
-
-    previous_url = f'/contact/'
+    if user.is_authenticated:
+        member_profile = MemberProfile.objects.filter(user=user).first()
+    else:
+        member_profile = False
 
     if request.method == 'POST':
         form = ContactForm(request.POST)
@@ -277,8 +338,8 @@ def contact_page(request):
 
     context = {
         'user': user,
-        'previous_url': previous_url,
         'form': form,
+        'member_profile': member_profile,
     }
 
     return render(request, 'contact.html', context)
@@ -287,6 +348,6 @@ def contact_page(request):
 def send_contact_email(data):
     subject = 'New Contact Message'
     message = f"Name: {data['name']}\nEmail: {data['email']}\n\n{data['message']}"
-    from_email = os.environ.get('CONTACT_FROM_EMAIL')  # Update with your email address
+    from_email = os.environ.get('HOST_EMAIL')  # Update with your email address
     to_email = [os.environ.get('CONTACT_TO_EMAIL')]  # Update with the recipient's email address
     send_mail(subject, message, from_email, to_email)

@@ -10,6 +10,11 @@
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="{% static 'favicon.ico' %}">
 
+    <!-- Cropper -->
+    {% if edit_profile_picture %}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cropperjs@1.5.12/dist/cropper.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/cropperjs@1.5.12/dist/cropper.min.js"></script>
+    {% endif %}
 
     <!-- CSS -->
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
@@ -61,12 +66,21 @@
             <div class="account-login-container">
                 <div class="account-login-btns-container">
                     {% if user.is_authenticated %}
-                    <a href="{% url 'member_profile' user.member_short_uuid %}" class="dark-text nav-link">
-                        Profile
-                    </a>
-                    <a href="{% url 'account_logout' %}" class="btn logout-btn">
-                        Log Out
-                    </a>
+                    <div class="account-profile-container">
+                        {% if member_profile %}
+                        <img src="{{ member_profile.profile_image }}" alt="Profile Picture" class="account-profile-img img-100a">
+                        {% else %}
+                        <img src="https://res.cloudinary.com/dzwyiggcp/image/upload/v1689692743/MREEA/default-profile-pic_yp9kzz.png" alt="Profile Picture" class="account-profile-img img-100a">
+                        {% endif %}
+                        <div class="profile-btns-container container-col">
+                            <a href="{% url 'member_profile' user.member_short_uuid %}" class="profile-btn-link">
+                                View Profile
+                            </a>
+                            <a href="{% url 'account_logout' %}" class="btn logout-btn">
+                                Log Out
+                            </a>
+                        </div>
+                    </div>
                     {% else %}
                     <a href="{% url 'account_login' %}" class="dark-text">
                         Login

@@ -174,6 +174,7 @@ class MemberProfile(models.Model):
     first_name = models.CharField(max_length=255, blank=True, default='')
     last_name = models.CharField(max_length=255, blank=True, default='')
     profile_image = CloudinaryField('Profile Image', null=True, blank=True, default='https://res.cloudinary.com/dzwyiggcp/image/upload/v1689692743/MREEA/default-profile-pic_yp9kzz.png')
+    profile_image_change = models.CharField(max_length=1000, blank=True, default='')
     display_email = models.BooleanField(default=True)
     personal_email = models.EmailField(blank=True)
     office_email = models.EmailField(blank=True)
@@ -190,6 +191,8 @@ class MemberProfile(models.Model):
     state = models.CharField(max_length=255, choices=STATE_CHOICES, default='all')
     category = models.CharField(max_length=255, choices=CATEGORY_CHOICES, default='all')
     certificate = models.CharField(max_length=255, choices=CERTIFICATE_CHOICES, default='any')
+
+    short_bio = models.CharField(max_length=80, blank=True, default='')
 
     is_member = models.BooleanField(default='False')
 

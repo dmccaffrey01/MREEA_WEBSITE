@@ -43,3 +43,9 @@ class MemberSearchForm(forms.ModelForm):
     class Meta:
         model = MemberProfile
         fields = ('last_name', 'company_organization', 'state', 'category', 'certificate')
+
+
+class MemberProfilePictureForm(forms.ModelForm):
+    class Meta:
+        model = MemberProfile
+        fields = ['profile_image_change']

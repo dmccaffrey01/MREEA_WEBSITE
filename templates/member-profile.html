@@ -10,9 +10,14 @@
                 <div class="profile-picture-col-container container-col">
                     <div class="profile-img-container">
                         <img src="{{ member_profile.profile_image.url }}" alt="{{ member_profile.first_name }} Profile Image" class="profile-img img-100a"></img>
+                        <a href="{% url 'edit_profile_picture' user.member_short_uuid %}" class="edit-picture-btn">
+                            <i class="fa-solid fa-pen-to-square"></i>
+                        </a>
+                        <div class="edit-picture-overlay"></div>
                     </div>
                     <div class="profile-name dark-text sub-heading">{{ member_profile.first_name }}'s Profile</div>
                 </div>
+                
             </div>
             <div class="profile-card container-col password-email-card">
                 <div class="password-email-col-container container-col">
@@ -20,14 +25,13 @@
                         <div class="light-text">Email</div>
                         <div class="dark-text">{{ member_profile.user.email }}</div>
                     </div>
-                    <a href="#" class="btn">Change Email</a>
                 </div>
                 <div class="password-email-col-container container-col">
                     <div class="password-email-row-container container-row">
                         <div class="light-text">Password</div>
                         <div class="dark-text">●●●●●●●●</div>
                     </div>
-                    <a href="#" class="btn">Change Password</a>
+                    <a href="/accounts/password/reset/" class="btn">Change Password</a>
                 </div>
             </div>
         </div>
@@ -53,8 +57,15 @@
                 </div>
                 <div class="profile-details-row-container container-row">
                     <div class="light-text">Bio</div>
-                    {% if member_profile.bio %}
-                    <div class="dark-text">{{ member_profile.bio }}</div>
+                    {% if member_profile.short_bio %}
+                    <div class="dark-text">{{ member_profile.short_bio }}</div>
+                    <div class="expand-bio-btn">
+                        <div class="expand-bio-container container-col">
+                            <div class="expand-bio-text">{{ member_profile.bio }}</div>
+                        </div>
+                        <i class="fa-solid fa-expand"></i>
+                    </div>
+                    <div class="close-expand-bio-btn btn">Close &times;</div>
                     {% else %}
                     <div class="dark-text nothing-displayed">*Nothing Displayed</div>
                     {% endif %}
@@ -210,12 +221,50 @@
             <div class="heading dark-text">{{ member_profile.first_name }}'s Profile </div>
             <form method="post" class="edit-profile-form">
                 {% csrf_token %}
+                {% if edit_profile_picture %}
+                <div class="edit-profile-picture-form-wrapper container-col">
+                    {{ form }}
+                    <input type="hidden" name="croppedImageData" id="croppedImageData">
+                </div>
+                <div class="edit-pp-container container-col">
+                    <div class="edit-pp-input-container">
+                        <input type="file" id="imageInput" accept="image/*">
+                    </div>
+
+                    <div class="clear-pp-container container-row">
+                        <div class="clear-pp-text">Clear</div>
+                        <input type="checkbox" id="clearPP">
+                    </div>
+
+                    <div class="sub-heading dark-text">Crop</div>
+                    <div class="crop-pp-img-container">
+                        <img id="croppedImage" src="{{ member_profile.profile_image }}" alt="Cropped Image Preview" class="crop-image">
+                    </div>
+
+                    <input type="submit" name="cancel" value="&#10006;" class="form-close-btn">
+
+                    <div class="btn preview-btn">Preview</div>
+                </div>
+                <div class="preview-pp-container container-col">
+                    <div class="sub-heading dark-text">Preview</div>
+                    <div class="preview-pp-img-container container-col">
+                        <img id="previewImage" src="{{ member_profile.profile_image }}" alt="Cropped Image Preview" class="img-100a">
+                    </div>
+
+                    <div class="create-event-form-btns-container container-row">
+                        <input type="submit" name="cancel" value="Cancel" class="form-cancel-btn btn">
+                        <input type="submit" value="Save" class="btn form-save-btn">
+                    </div>
+                    <input type="submit" name="cancel" value="&#10006;" class="form-close-btn">
+                </div>
+                {% else %}
                 {{ form.as_p }}
                 <div class="create-event-form-btns-container container-row">
                     <input type="submit" name="cancel" value="Cancel" class="form-cancel-btn btn">
                     <input type="submit" value="Save" class="btn form-save-btn">
                 </div>
                 <input type="submit" name="cancel" value="&#10006;" class="form-close-btn">
+                {% endif %}
             </form>
         </div>
     </div>
@@ -227,5 +276,11 @@
 
 {% block js %}
 
+{% if edit_profile_picture %}
+
+<script src="{% static 'js/crop-pp.js' %}"></script>
+
+{% endif %}
+<script src="{% static 'js/member-profile.js' %}"></script>
 
 {% endblock %}
