@@ -67,11 +67,13 @@
                 <div class="account-login-btns-container">
                     {% if user.is_authenticated %}
                     <div class="account-profile-container">
-                        {% if member_profile %}
-                        <img src="{{ member_profile.profile_image }}" alt="Profile Picture" class="account-profile-img img-100a">
-                        {% else %}
-                        <img src="https://res.cloudinary.com/dzwyiggcp/image/upload/v1689692743/MREEA/default-profile-pic_yp9kzz.png" alt="Profile Picture" class="account-profile-img img-100a">
-                        {% endif %}
+                        <div class="account-profile-img-container">
+                            {% if member_profile %}
+                            <img src="{{ member_profile.profile_image }}" alt="Profile Picture" class="account-profile-img img-100a">
+                            {% else %}
+                            <img src="https://res.cloudinary.com/dzwyiggcp/image/upload/v1689692743/MREEA/default-profile-pic_yp9kzz.png" alt="Profile Picture" class="account-profile-img img-100a">
+                            {% endif %}
+                        </div>
                         <div class="profile-btns-container container-col">
                             <a href="{% url 'member_profile' user.member_short_uuid %}" class="profile-btn-link">
                                 View Profile

@@ -14,6 +14,9 @@ from cloudinary.uploader import upload
 import base64
 from django.core.files.base import ContentFile
 import cloudinary.uploader
+from allauth.account.views import PasswordChangeView
+from django.template.response import TemplateResponse
+from django.conf import settings
 
 
 def index(request):
@@ -25,8 +28,16 @@ def index(request):
     else:
         member_profile = False
 
+    current_date = timezone.now()
+
+    upcoming_events = Event.objects.filter(end_date__gt=current_date).order_by('start_date')
+
+    upcoming_event = upcoming_events.first()
+
     context = {
         'member_profile': member_profile,
+        'upcoming_events': upcoming_events,
+        'upcoming_event': upcoming_event,
     }
 
     return render(request, 'index.html', context)
@@ -351,3 +362,10 @@ def send_contact_email(data):
     from_email = os.environ.get('HOST_EMAIL')  # Update with your email address
     to_email = [os.environ.get('CONTACT_TO_EMAIL')]  # Update with the recipient's email address
     send_mail(subject, message, from_email, to_email)
+
+
+class CustomPasswordChangeView(PasswordChangeView):
+    def form_valid(self, form):
+        response = super().form_valid(form)
+        success_message = "Your password has been successfully changed."
+        return TemplateResponse(self.request, settings.POPUP_MESSAGE_TEMPLATE, {'message': success_message})

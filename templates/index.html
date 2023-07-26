@@ -42,11 +42,13 @@
                     <div class="hero-card-content-container container-col">
                         <div class="hero-card-heading white-text heading">Upcoming Events</div>
                         <div class="hero-card-text-container container-col">
-                            <div class="white-text">Date: 30/07/23</div>
-                            <div class="white-text">Group Meeting</div>
-                            <div class="white-text">Link: https:asdfasdfasdf</div>
+                            <div class="white-text">{{ upcoming_event.title }}</div>
+                            <div class="white-text">{{ upcoming_event.description }}</div>
+                            <div class="white-text">Starts - {{ upcoming_event.start_date }}</div>
+                            <div class="white-text">Ends - {{ upcoming_event.end_date }}</div>
+                            <div class="white-text">Location - {{ upcoming_event.location }}</div>
                         </div>
-                        <a href="#" class="btn">Go To Announcements</a>
+                        <a href="{% url 'announcements' %}" class="btn">Go To Announcements</a>
                     </div>
                 </div>
             </div>
@@ -170,14 +172,70 @@
     </div>
 </section>
 
-<section class="section account-member-section">
+<section class="section account-member-section home-page-account-section">
     <div class="section-container container-col account-member-section-container members-page-account-seciton-1">
         {% if user.is_authenticated %}
         <div class="account-member-wrapper container-col">
             <div class="account-member-content-container container-col">
                 <div class="heading dark-text">Maryland Real Estate Educators Asscociation</div>
                 <div class="dark-text">Thank you for creating an account, if you haven't purchased a membership or your membership is expired or expiring, you can simply join or renew with a few clicks</div>
-                <a href="#" class="btn">Join / Renew</a>
+                <a href="https://next.waveapps.com/checkouts/7d1108f10cbe4cbaae8599386fe3ea17" target="_blank" class="btn">Join / Renew</a>
+            </div>
+        </div>
+        {% else %}
+        <div class="account-member-wrapper container-col members-page-no-account-wrapper">
+            <div class="account-member-content-container container-col">
+                <div class="heading dark-text">Maryland Real Estate Educators Asscociation</div>
+                <div class="dark-text">Sign up and become a member to join an amazing community where you can learn and grow. Already a member or have an account? Then sign in to join or renew your membership.</div>
+                <div class="btns-container container-row">
+                    <a href="{% url 'account_login' %}" class="btn">Log in</a>
+                    <a href="{% url 'account_signup' %}" class="btn">Register</a>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</section>
+
+<section class="history-section">
+    <div class="c-heroImageGrid">
+        <div class="container">
+            <div class="column"></div>
+            <div class="column">
+                <div class="row"></div>
+                <div class="row">
+                    <div>
+                        <div class="text">
+                            <h6>
+                                Our Story - Our History
+                            </h6>
+                            <p class="p1">
+                                The Maryland Real Estate Educators Association (MREEA) was established in 1978 with the mission of promoting excellence and professionalism in real estate education. 
+                            </p>
+                            <p class="p2">
+                                Since its inception, MREEA has played a crucial role in shaping Maryland's real estate education landscape, advocating for legislative changes, and providing comprehensive professional development opportunities for educators. 
+                            </p>
+                            <p class="p3">
+                                Through community outreach programs and technological advancements, MREEA continues to empower both educators and the public, ensuring a well-informed and capable real estate workforce in the state.
+                            </p>
+                        </div>
+                    </div>
+                    <div></div>
+                </div>
+                <div class="row"></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section account-member-section home-page-account-section">
+    <div class="section-container container-col account-member-section-container members-page-account-seciton-1">
+        {% if user.is_authenticated %}
+        <div class="account-member-wrapper container-col">
+            <div class="account-member-content-container container-col">
+                <div class="heading dark-text">Maryland Real Estate Educators Asscociation</div>
+                <div class="dark-text">Thank you for creating an account, if you haven't purchased a membership or your membership is expired or expiring, you can simply join or renew with a few clicks</div>
+                <a href="https://next.waveapps.com/checkouts/7d1108f10cbe4cbaae8599386fe3ea17" target="_blank" class="btn">Join / Renew</a>
             </div>
         </div>
         {% else %}

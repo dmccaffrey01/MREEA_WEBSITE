@@ -19,4 +19,5 @@ urlpatterns = [
     path('profile/<str:member_short_uuid>/edit_profile_picture', views.edit_profile_picture, name='edit_profile_picture'),
     path('learn/', views.learn_page, name='learn'),
     path('contact/', views.contact_page, name='contact'),
+    path('accounts/password/change/', views.CustomPasswordChangeView.as_view(), name='account_change_password'),
 ]
