@@ -84,16 +84,20 @@
                         </div>
                     </div>
                     {% else %}
-                    <a href="{% url 'account_login' %}" class="dark-text">
-                        Login
-                    </a>
-                    <a href="{% url 'account_signup' %}" class="btn register-btn">
-                        Register
-                    </a>
+                    <div class="account-profile-container">
+                        <div class="account-profile-img-container not-logged-in">
+                            <img src="https://res.cloudinary.com/dzwyiggcp/image/upload/v1690486403/log-in_qo9dg3.png" alt="Profile Picture" class="account-profile-img img-100a">
+                        </div>
+                        <div class="profile-btns-container container-col">
+                            <a href="{% url 'account_login' %}" class="dark-text">
+                                Login
+                            </a>
+                            <a href="{% url 'account_signup' %}" class="btn register-btn">
+                                Register
+                            </a>
+                        </div>
+                    </div>
                     {% endif %}
-                </div>
-                <div class="account-login-icon-container">
-                    <i class="fa-solid fa-right-to-bracket account-login-icon"></i>
                 </div>
             </div>
         </div>

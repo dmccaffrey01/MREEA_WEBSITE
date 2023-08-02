@@ -14,7 +14,7 @@
               <div class="white-text">Please Sign Up or Sign In to access membership</div>
               {% else %}
               <div class="white-text">
-                  {% blocktrans %}Already have an account? Then please <a class="unregistered-account-link" href="{{ login_url }}">sign in</a>.{% endblocktrans %}
+                  Already have an account? Then please <a class="unregistered-account-link" href="{% url 'account_login' %}">sign in</a>.
               </div>
               {% endif %}
           </div>

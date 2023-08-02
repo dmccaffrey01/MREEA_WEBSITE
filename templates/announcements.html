@@ -38,11 +38,6 @@
                         <div class="reg-text event-date-text">{{ event.start_date|date:"M" }}</div>
                         <div class="reg-text event-date-text">{{ event.start_date|time:"H:i" }}</div>
                     </div>
-                    <div class="container-col event-start-end-date-container event-end-date-container">
-                        <div class="reg-text event-date-text">{{ event.end_date|date:"d" }}</div>
-                        <div class="reg-text event-date-text">{{ event.end_date|date:"M" }}</div>
-                        <div class="reg-text event-date-text">{{ event.end_date|time:"H:i" }}</div>
-                    </div>
                 </div>
                 <div class="container-col event-details-container">
                     <div class="dark-text event-details">{{ event.title }}</div>
@@ -52,9 +47,9 @@
                 </div>
                 <div class="container-col event-learn-more-btn-container">
                     {% if user.is_superuser %}
-                    <a href="{% url 'edit_event' event.event_short_uuid %}" class="btn yellow-btn event-learn-more-btn">Edit Event</a>
+                    <a href="{% url 'edit_event' event.event_short_uuid %}" class="btn event-learn-more-btn">Edit Event</a>
                     {% endif %}
-                    <a href="{% url 'event_detail' event.event_short_uuid %}" class="event-learn-more-btn btn">Learn More</a>
+                    <a href="{% url 'event_detail' event.event_short_uuid %}" class="event-learn-more-btn btn yellow-btn">Learn More</a>
                 </div>
             </div>
         </div>
@@ -89,11 +84,6 @@
                         <div class="reg-text event-date-text">{{ event.start_date|date:"M" }}</div>
                         <div class="reg-text event-date-text">{{ event.start_date|time:"H:i" }}</div>
                     </div>
-                    <div class="container-col event-start-end-date-container event-end-date-container">
-                        <div class="reg-text event-date-text">{{ event.end_date|date:"d" }}</div>
-                        <div class="reg-text event-date-text">{{ event.end_date|date:"M" }}</div>
-                        <div class="reg-text event-date-text">{{ event.end_date|time:"H:i" }}</div>
-                    </div>
                 </div>
                 <div class="container-col event-details-container">
                     <div class="dark-text event-details">{{ event.title }}</div>
@@ -103,9 +93,9 @@
                 </div>
                 <div class="container-col event-learn-more-btn-container">
                     {% if user.is_superuser %}
-                    <a href="{% url 'edit_event' event.event_short_uuid %}" class="btn yellow-btn event-learn-more-btn">Edit Event</a>
+                    <a href="{% url 'edit_event' event.event_short_uuid %}" class="btn event-learn-more-btn">Edit Event</a>
                     {% endif %}
-                    <a href="{% url 'event_detail' event.event_short_uuid %}" class="event-learn-more-btn btn">Learn More</a>
+                    <a href="{% url 'event_detail' event.event_short_uuid %}" class="event-learn-more-btn btn yellow-btn">Learn More</a>
                 </div>
             </div>
         </div>
@@ -139,7 +129,7 @@
             <div class="account-member-content-container container-col">
                 <div class="heading dark-text">Maryland Real Estate Educators Asscociation</div>
                 <div class="dark-text">Join our wonderful community, where you have endless opportunities to learn and grow. Already a previous member? You can easily renew your membership.</div>
-                <a href="#" class="btn">Join / Renew</a>
+                <a href="https://next.waveapps.com/checkouts/7d1108f10cbe4cbaae8599386fe3ea17" target="_blank"  class="btn">Join / Renew</a>
             </div>
         </div>
         {% else %}
