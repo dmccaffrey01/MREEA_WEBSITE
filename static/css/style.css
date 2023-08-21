@@ -1745,17 +1745,16 @@ svg#bigTriangleColor {
 }
 
 .members-search-form-results-section {
-    background: rgb(245,245,245);
-    background: linear-gradient(90deg, rgba(245,245,245,1) 20%, rgba(240,240,240,1) 50%, rgba(245,245,245,1) 80%);
-}
-
-.members-search-form-results-section-container {
-    padding: 30px 0;
+    background-color: var(--GRAY-LIGHT-1);
 }
 
 .members-search-form-results-section .member-profile-section-container {
     padding: 40px 0 0 0;
     gap: 20px;
+}
+
+.members-search-form-results-section-container {
+    padding: 0 0 40px 0;
 }
 
 .members-search-form-results-section-container .password-email-card .dark-text {
@@ -1779,6 +1778,23 @@ svg#bigTriangleColor {
 
 .bio-container .dark-text {
     height: 100%;
+}
+
+.members-results-circle {
+	fill: var(--GRAY-LIGHT-1);
+	stroke: none;
+    display: block;
+    transform: rotate(180deg);
+    background-color: var(--GRAY-LIGHT-2);
+}
+
+.members-search-form-results-section:nth-child(even) .members-results-circle {
+    background-color: var(--GRAY-LIGHT-1);
+    fill: var(--GRAY-LIGHT-2);
+}
+
+.members-search-form-results-section:nth-child(even) {
+    background-color: var(--GRAY-LIGHT-2);
 }
 
 /* Member Profile Section */
@@ -1807,10 +1823,9 @@ svg#bigTriangleColor {
     padding: 20px;
     background-color: var(--GRAY-LIGHT-1);
     border-radius: 15px;
-    border: 2px solid var(--GRAY-DARK-1);
-    box-shadow: -3px 0px 53px -12px rgba(0,0,0,0.96);
-    -webkit-box-shadow: -3px 0px 53px -12px rgba(0,0,0,0.96);
-    -moz-box-shadow: -3px 0px 53px -12px rgba(0,0,0,0.96);
+    box-shadow: 0px 0px 27px -6px rgba(0,0,0,0.86);
+    -webkit-box-shadow: 0px 0px 27px -6px rgba(0,0,0,0.86);
+    -moz-box-shadow: 0px 0px 27px -6px rgba(0,0,0,0.86);
 }
 
 .profile-picture-card {
@@ -1834,6 +1849,10 @@ svg#bigTriangleColor {
 
 .profile-picture-col-container {
     gap: 10px;
+}
+
+.members-search-form-results-section .profile-picture-card, .members-search-form-results-section .profile-picture-col-container {
+    justify-content: center;
 }
 
 .profile-img-container {
@@ -1982,6 +2001,55 @@ svg#bigTriangleColor {
 
 .close-expand-bio-btn.active {
     display: flex;
+}
+
+/* Members Searhc Results */
+
+.members-search-form-results-section .profile-left-side-container,
+.members-search-form-results-section .member-profile-section-container {
+    width: 100%;
+}
+
+.members-search-form-results-section .profile-left-side-container {
+    gap: 30px;
+}
+
+.members-search-form-results-section .profile-picture-card,
+.members-search-form-results-section .password-email-card,
+.members-search-form-results-section .profile-details-card {
+    height: 500px;
+}
+
+.members-search-form-results-section .profile-picture-card {
+    width: 350px;
+}
+
+.members-search-form-results-section .profile-picture-col-container {
+    gap: 20px;
+}
+
+.members-search-form-results-section .password-email-card {
+    width: 450px;
+    padding: 40px 30px;
+}
+
+.members-search-form-results-section .profile-details-card {
+    width: 540px;
+}
+
+.members-search-form-results-section .profile-details-card .light-text {
+    align-self: center;
+    margin: 0;
+    font-size: 1.5rem;
+}
+
+.members-search-form-results-section .profile-details-card .short-bio {
+    height: calc(100% - 30px);
+    font-size: 1.3rem;
+}
+
+.members-search-form-results-section .profile-details-card .bio-container {
+    height: 100%;
 }
 
 /* Edit Profile Section */

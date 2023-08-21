@@ -56,90 +56,78 @@
 
 {% if members %}
 
-<section class="section members-search-form-results-section">
-    <div class="section-container container-col members-search-form-results-section-container">
-        {% for member in members %}
-        <div class="container-row member-profile-section-container">
-            <div class="profile-left-side-container container-col">
-                <div class="profile-card container-col profile-picture-card">
-                    <div class="profile-picture-col-container container-col">
-                        <div class="profile-img-container">
-                            <img src="{{ member.profile_image.url }}" alt="{{ member.first_name }} Profile Image" class="profile-img img-100a"></img>
+<section class="members-results-section">
+    {% for member in members %}
+    <div class="section members-search-form-results-section container-col">
+        <div class="section-container container-col members-search-form-results-section-container">
+            <div class="container-col member-profile-section-container">
+                <div class="profile-left-side-container container-row">
+                    <div class="profile-card container-col profile-picture-card">
+                        <div class="profile-picture-col-container container-col">
+                            <div class="profile-img-container">
+                                <img src="{{ member.profile_image.url }}" alt="{{ member.first_name }} Profile Image" class="profile-img img-100a"></img>
+                            </div>
+                            <div class="profile-details-row-container container-row">
+                                <div class="light-text">First Name</div>
+                                {% if member.first_name %}
+                                <div class="dark-text">{{ member.first_name }}</div>
+                                {% else %}
+                                <div class="dark-text nothing-displayed">Nothing Displayed</div>
+                                {% endif %}
+                            </div>
+                            <div class="profile-details-row-container container-row">
+                                <div class="light-text">Last Name</div>
+                                {% if member.last_name %}
+                                <div class="dark-text">{{ member.last_name }}</div>
+                                {% else %}
+                                <div class="dark-text nothing-displayed">Nothing Displayed</div>
+                                {% endif %}
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="profile-card container-col password-email-card">
-                    <div class="profile-details-row-container container-row">
-                        <div class="light-text">First Name</div>
-                        {% if member.first_name %}
-                        <div class="dark-text">{{ member.first_name }}</div>
-                        {% else %}
-                        <div class="dark-text nothing-displayed">Nothing Displayed</div>
-                        {% endif %}
-                    </div>
-                    <div class="profile-details-row-container container-row">
-                        <div class="light-text">Last Name</div>
-                        {% if member.last_name %}
-                        <div class="dark-text">{{ member.last_name }}</div>
-                        {% else %}
-                        <div class="dark-text nothing-displayed">Nothing Displayed</div>
-                        {% endif %}
-                    </div>
-                    <div class="profile-details-row-container container-row">
-                        <div class="light-text">Email</div>
-                        {% if member.display_email %}
-                        {% if member.email %}
-                        <div class="dark-text">{{ member.email }}</div>
-                        {% else %}
-                        <div class="dark-text nothing-displayed">Nothing Displayed</div>
-                        {% endif %}
-                        {% else %}
-                        <div class="dark-text">Email Not Displayed</div>
-                        {% endif %}
-                    </div>
-                    <div class="profile-details-row-container container-row">
-                        <div class="light-text">Phone Number</div>
-                        {% if member.display_number %}
-                        {% if member.phone_number %}
-                        <div class="dark-text">{{ member.phone_number }}</div>
-                        {% else %}
-                        <div class="dark-text nothing-displayed">Nothing Displayed</div>
-                        {% endif %}
-                        {% else %}
-                        <div class="dark-text">Number Not Displayed</div>
-                        {% endif %}
-                    </div>
-                    <div class="profile-details-row-container container-row">
-                        <div class="light-text">Facebook</div>
-                        {% if member.facebook %}
-                        <div class="dark-text">{{ member.facebook }}</div>
-                        {% else %}
-                        <div class="dark-text nothing-displayed">Nothing Displayed</div>
-                        {% endif %}
-                    </div>
-                    <div class="profile-details-row-container container-row">
-                        <div class="light-text">Website</div>
-                        {% if member.website %}
-                        <div class="dark-text">{{ member.website }}</div>
-                        {% else %}
-                        <div class="dark-text nothing-displayed">Nothing Displayed</div>
-                        {% endif %}
-                    </div>
-                </div>
-            </div>
-            <div class="profile-right-side-container container-col">
-                <div class="profile-card container-col profile-details-card">
-                    <div class="profile-details-col-container container-col bio-container">
-                        <div class="light-text">Bio</div>
-                        {% if member.bio %}
-                        <div class="dark-text short-bio">{{ member.bio|linebreaksbr }}</div>
-                        {% else %}
-                        <div class="dark-text nothing-displayed">Nothing Displayed</div>
-                        {% endif %}
-                    </div>
-        
-                    <div class="profile-details-row-container container-row">
-                        <div class="profile-details-col-container container-col double-row">
+
+                    <div class="profile-card container-col password-email-card">
+                        <div class="profile-details-row-container container-row">
+                            <div class="light-text">Email</div>
+                            {% if member.display_email %}
+                            {% if member.email %}
+                            <div class="dark-text">{{ member.email }}</div>
+                            {% else %}
+                            <div class="dark-text nothing-displayed">Nothing Displayed</div>
+                            {% endif %}
+                            {% else %}
+                            <div class="dark-text">Email Not Displayed</div>
+                            {% endif %}
+                        </div>
+                        <div class="profile-details-row-container container-row">
+                            <div class="light-text">Phone Number</div>
+                            {% if member.display_number %}
+                            {% if member.phone_number %}
+                            <div class="dark-text">{{ member.phone_number }}</div>
+                            {% else %}
+                            <div class="dark-text nothing-displayed">Nothing Displayed</div>
+                            {% endif %}
+                            {% else %}
+                            <div class="dark-text">Number Not Displayed</div>
+                            {% endif %}
+                        </div>
+                        <div class="profile-details-row-container container-row">
+                            <div class="light-text">Facebook</div>
+                            {% if member.facebook %}
+                            <div class="dark-text">{{ member.facebook }}</div>
+                            {% else %}
+                            <div class="dark-text nothing-displayed">Nothing Displayed</div>
+                            {% endif %}
+                        </div>
+                        <div class="profile-details-row-container container-row">
+                            <div class="light-text">Website</div>
+                            {% if member.website %}
+                            <div class="dark-text">{{ member.website }}</div>
+                            {% else %}
+                            <div class="dark-text nothing-displayed">Nothing Displayed</div>
+                            {% endif %}
+                        </div>
+                        <div class="profile-details-row-container container-row">
                             <div class="light-text">Teaching Category</div>
                             {% if member.teaching_category and member.teaching_category != 'nothing' %}
                             <div class="dark-text">{{ member.teaching_category }}</div>
@@ -147,7 +135,7 @@
                             <div class="dark-text nothing-displayed">Nothing Displayed</div>
                             {% endif %}
                         </div>
-                        <div class="profile-details-col-container container-col double-row">
+                        <div class="profile-details-row-container container-row">
                             <div class="light-text">Class</div>
                             {% if member.classes and member.classes != 'nothing' %}
                             <div class="dark-text">{{ member.classes }}</div>
@@ -156,11 +144,21 @@
                             {% endif %}
                         </div>
                     </div>
+                    <div class="profile-card container-col profile-details-card">
+                        <div class="profile-details-col-container container-col bio-container">
+                            <div class="light-text">Bio</div>
+                            {% if member.bio %}
+                            <div class="dark-text short-bio">{{ member.bio|linebreaksbr }}</div>
+                            {% else %}
+                            <div class="dark-text nothing-displayed">Nothing Displayed</div>
+                            {% endif %}
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-        {% endfor %}
     </div>
+    {% endfor %}
 </section>
 
 {% elif search_results %}
