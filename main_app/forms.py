@@ -30,7 +30,7 @@ class EventForm(forms.ModelForm):
 class MemberProfileForm(forms.ModelForm):
     class Meta:
         model = MemberProfile
-        fields = ('first_name', 'last_name', 'bio', 'display_email', 'personal_email', 'office_email', 'display_number', 'mobile_number', 'office_number', 'display_address', 'address_line_1', 'state', 'address_line_2', 'address_line_3', 'category', 'company_organization', 'certificate', 'website')
+        fields = ('first_name', 'last_name', 'bio', 'display_email', 'email', 'display_number', 'phone_number', 'website', 'facebook')
 
 
 class ContactForm(forms.ModelForm):
@@ -42,7 +42,7 @@ class ContactForm(forms.ModelForm):
 class MemberSearchForm(forms.ModelForm):
     class Meta:
         model = MemberProfile
-        fields = ('last_name', 'company_organization', 'state', 'category', 'certificate')
+        fields = ('last_name', 'first_name', 'teaching_category', 'classes')
 
 
 class MemberProfilePictureForm(forms.ModelForm):

@@ -189,10 +189,9 @@ def members(request):
         form = MemberSearchForm(request.GET)
         if form.is_valid():
             last_name = form.cleaned_data.get('last_name')
-            company_organization = form.cleaned_data.get('company_organization')
-            state = form.cleaned_data.get('state')
-            category = form.cleaned_data.get('category')
-            certificate = form.cleaned_data.get('certificate')
+            first_name = form.cleaned_data.get('first_name')
+            teaching_category = form.cleaned_data.get('teaching_category')
+            classes = form.cleaned_data.get('classes')
 
             # Query the MemberProfile model based on the search criteria
             members = MemberProfile.objects.all()
@@ -200,21 +199,12 @@ def members(request):
             # Apply filters based on search criteria if provided
             if last_name:
                 members = members.filter(last_name__icontains=last_name)
-            if company_organization:
-                members = members.filter(company_organization__icontains=company_organization)
-
-            # Check if state is 'all'; if not, filter by state
-            if state and state != 'all':
-                members = members.filter(state=state)
-
-            # Check if category is 'all'; if not, filter by category
-            if category and category != 'all':
-                members = members.filter(category=category)
-
-            # Check if certificate is 'any'; if not, filter by certificate
-            if certificate and certificate != 'any':
-                members = members.filter(certificate=certificate)
-
+            if first_name:
+                members = members.filter(first_name__icontains=first_name)
+            if teaching_category:
+                members = members.filter(teaching_category__icontains=teaching_category)
+            if classes:
+                members = members.filter(classes__icontains=classes)
             search_results = True
 
     context = {
@@ -232,11 +222,6 @@ def member_profile(request, member_short_uuid):
     user = request.user
 
     member_profile, created = MemberProfile.objects.get_or_create(user=user)
-
-    if len(member_profile.bio) > 70:
-        member_profile.short_bio = member_profile.bio[:70] + "..."
-    else:
-        member_profile.short_bio = member_profile.bio
 
     member_profile.save()
 

@@ -14,13 +14,13 @@
                 <div class="hero-card hero-card-1 container-col">
                     {% if user.is_authenticated %}
                     <div class="hero-card-content-container container-col">
-                        <div class="hero-card-heading white-text heading">Maryland Real Estate Educators Asscociation</div>
+                        <h2 class="hero-card-heading white-text heading">Maryland Real Estate Educators Asscociation</h2>
                         <div class="white-text">Simply click the button to join or renew our memebership and access our community</div>
                         <a href="https://next.waveapps.com/checkouts/7d1108f10cbe4cbaae8599386fe3ea17" target="_blank"  class="btn">Join / Renew</a>
                     </div>
                     {% else %}
                     <div class="hero-card-content-container container-col">
-                        <div class="hero-card-heading white-text heading">Maryland Real Estate Educators Asscociation</div>
+                        <h2 class="hero-card-heading white-text heading">Maryland Real Estate Educators Asscociation</h2>
                         <div class="white-text">Login in or register a account, to get access to join our membership and access our member information</div>
                         <div class="btns-container container-row">
                             <a href="{% url 'account_login' %}" class="btn">Log in</a>
@@ -40,7 +40,8 @@
                 </div>
                 <div class="hero-card hero-card-2 container-col">
                     <div class="hero-card-content-container container-col">
-                        <div class="hero-card-heading white-text heading">Upcoming Events</div>
+                        {% if upcoming_event %}
+                        <h2 class="hero-card-heading white-text heading">Upcoming Events</h2>
                         <div class="hero-card-text-container container-col">
                             <div class="white-text">{{ upcoming_event.title }}</div>
                             <div class="white-text">{{ upcoming_event.description }}</div>
@@ -48,6 +49,9 @@
                             <div class="white-text">Ends - {{ upcoming_event.end_date }}</div>
                             <div class="white-text">Location - {{ upcoming_event.location }}</div>
                         </div>
+                        {% else %}
+                        <h2 class="hero-card-heading white-text heading">No Upcoming Events</h2>
+                        {% endif %}
                         <a href="{% url 'announcements' %}" class="btn">Go To Announcements</a>
                     </div>
                 </div>
@@ -61,7 +65,12 @@
                     <img src="https://res.cloudinary.com/dzwyiggcp/image/upload/v1689506831/MREEA/hero-3-transformed_ykoty6.jpg" alt="Real Estate picture" class="hero-image">
                 </div>
                 <div class="hero-card hero-card-3 container-col">
-                    <div class="calendar"></div>
+                    <h2 class="white-text heading hero-card-heading">Connect with others</h2>
+                    <div class="hero-card-text-container container-col">
+                        <div class="white-text">Find and get in contact with other members of the group!</div>
+                        <div class="white-text">Visit out member page and look through our member directory</div>
+                    </div>
+                    <a href="{% url 'members' %}" class="btn">Go To Members</a>
                 </div>
             </div>
         </div>
@@ -80,21 +89,27 @@
     </div>
 </section>
 
-<section class="section home-welcome-section">
+<section class="section home-welcome-section ss-style-bigtriangle">
     <div class="home-welcome-section-container section-container container-col">
-        <div class="home-welcome-section-heading dark-text heading">Introducing M<span class="red-text">R</span><span class="yellow-text">E</span>E<span class="yellow-text">A</span></div>
         <div class="home-welcome-content-container container-row">
             <div class="home-welcome-img-container img-container">
                 <img src="https://res.cloudinary.com/dzwyiggcp/image/upload/v1689257491/MREEA/uwjiymtjgpcrfncnhlzk.png" alt="MREEA Logo" class="home-welcome-img img-100a">
             </div>
             <div class="hero-welcome-text-container container-col">
-                <div class="dark-text">
-                    Welcome to the Maryland Real Estate Educators Association (MREEA) - a dynamic group of real estate professionals dedicated to providing exceptional education and resources to industry practitioners in Maryland. Our diverse membership includes instructors, school owners, regulators, real estate attorneys, lenders, home inspectors, title officers, and anyone passionate about real estate education. Through quarterly meetings, we foster professional development, facilitate knowledge sharing, and engage with industry leaders to ensure we are at the forefront of real estate education in Maryland. Join us to enhance your skills, broaden your network, and make a lasting impact in the real estate education community.
-                </div>
+                <h2 class="sub-heading dark-text">Welcome to the Maryland Real Estate Educators Association (MREEA)</h2>
+                <div class="home-welcome-main-text-container container-col">
+                    <div class="dark-text">
+                        We're a dynamic Maryland real estate professionals group, committed to top-notch education for industry practitioners. Our diverse membership includes instructors, regulators, attorneys, lenders, and more. Through quarterly meetings, we drive professional growth, knowledge sharing, and industry leadership. Elevate your skills, expand your network, and shape real estate education with us.
+                    </div>
+                    <a href="#" class="btn">Visit About</a>
             </div>
         </div>
     </div>
 </section>
+
+<svg id="bigTriangleColor" xmlns="http://www.w3.org/2000/svg" version="1.1" width="100%" height="100" viewBox="0 0 100 102" preserveAspectRatio="none">
+    <path d="M0 0 L50 100 L100 0 Z" />
+</svg>
 
 <section class="section benefits-section">
     <div class="section-container container-col benefits-section-container">
@@ -213,7 +228,7 @@
             </div>
         </div>
     </div>
-    <div class="dark-overlay"></div>
+    <div class="hero-overlay"></div>
     <div class="heroImageGrid-text-content-container container-col">
         <div class="hero-text-container container-col heroImageGridTextContainer">
             <div class="hero-heading">
@@ -262,6 +277,5 @@
 {% block js %}
 
 <script src="{% static 'js/home-hero-carousel.js' %}"></script>
-<script src="{% static 'js/calendar.js' %}"></script>
 
 {% endblock %}

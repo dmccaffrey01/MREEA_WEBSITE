@@ -41,9 +41,6 @@
             <nav class="nav-bar">
                 <ul class="nav-menu">
                     <li class="nav-item">
-                        <a href="{% url 'membership' %}" class="nav-link">Membership</a>
-                    </li>
-                    <li class="nav-item">
                         <a href="{% url 'announcements' %}" class="nav-link">Announcements</a>
                     </li>
                     <li class="nav-item">
@@ -75,6 +72,7 @@
                             {% endif %}
                         </div>
                         <div class="profile-btns-container container-col">
+                            <a href="{% url 'membership' %}" class="profile-btn-link">Membership</a>
                             <a href="{% url 'member_profile' user.member_short_uuid %}" class="profile-btn-link">
                                 View Profile
                             </a>
@@ -89,6 +87,7 @@
                             <img src="https://res.cloudinary.com/dzwyiggcp/image/upload/v1690486403/log-in_qo9dg3.png" alt="Profile Picture" class="account-profile-img img-100a">
                         </div>
                         <div class="profile-btns-container container-col">
+                            <a href="{% url 'membership' %}" class="profile-btn-link">Membership</a>
                             <a href="{% url 'account_login' %}" class="dark-text">
                                 Login
                             </a>

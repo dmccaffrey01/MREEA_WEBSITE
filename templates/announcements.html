@@ -25,6 +25,21 @@
     <div class="section-container container-col upcoming-events-section-container">
         <div class="heading dark-text section-heading">Upcoming Events</div>
         {% if upcoming_events %}
+        <div class="container-row events-carousel-container">
+            <div class="events-carousel-item container-col">
+                
+            </div>
+        </div>
+        {% else %}
+        <div class="container-col no-events-message">
+            <div class="dark-text">No Upcoming Events!</div>
+        </div>
+</section>
+
+<section class="section upcoming-events-section container-col">
+    <div class="section-container container-col upcoming-events-section-container">
+        <div class="heading dark-text section-heading">Upcoming Events</div>
+        {% if upcoming_events %}
         {% for event in upcoming_events %}
         {% if forloop.counter|divisibleby:2 %}
         <div class="container-col upcoming-events-content-container yellow-container">
@@ -95,7 +110,9 @@
                     {% if user.is_superuser %}
                     <a href="{% url 'edit_event' event.event_short_uuid %}" class="btn event-learn-more-btn">Edit Event</a>
                     {% endif %}
+                    {% if user.is_member %}
                     <a href="{% url 'event_detail' event.event_short_uuid %}" class="event-learn-more-btn btn yellow-btn">Learn More</a>
+                    {% endif %}
                 </div>
             </div>
         </div>
@@ -110,15 +127,6 @@
             <a href="{% url 'create_event' %}" class="btn">Add Event</a>
         </div>
         {% endif %}
-    </div>
-</section>
-
-<section class="section announcements-calendar-section" id="calendar-section">
-    <div class="section-container container-col announcements-section-container">
-        <div class="heading dark-text section-heading">Calendar</div>
-        <div class="calendar-container">
-            <div class="calendar"></div>
-        </div>
     </div>
 </section>
 
