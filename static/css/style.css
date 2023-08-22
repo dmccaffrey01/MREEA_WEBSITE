@@ -891,7 +891,7 @@ svg#bigTriangleColor {
 	content: "";
 	width: 37vw;
 	height: 38vw;
-	background-image: url(https://res.cloudinary.com/dzwyiggcp/image/upload/v1690371652/MREEA/history-1_ozevmt.png);
+	background-image: url(https://res.cloudinary.com/dikcjjfpo/image/upload/v1692718614/history-1_wgmvwi.png);
 }
 
 
@@ -923,7 +923,7 @@ svg#bigTriangleColor {
 	content: "";
 	width: 65vw;
 	height: 39vw;
-	background-image: url(https://res.cloudinary.com/dzwyiggcp/image/upload/v1690450797/history-2-c_ajmdjv.png);
+	background-image: url(https://res.cloudinary.com/dikcjjfpo/image/upload/v1692719089/history-2-c_ns2g39.png);
 }
 
 .c-heroImageGrid .container .column:nth-of-type(2) .row:nth-of-type(2) {
@@ -951,7 +951,7 @@ svg#bigTriangleColor {
 	background-size: cover;
 	transform: rotateZ(-45deg);
 	content: "";
-	background-image: url(https://res.cloudinary.com/dzwyiggcp/image/upload/v1690450796/history-5-a_r5enk3.png);
+	background-image: url(https://res.cloudinary.com/dikcjjfpo/image/upload/v1692718571/history-5-a_znuzhx.png);
 }
 
 
@@ -972,7 +972,7 @@ svg#bigTriangleColor {
 	background-size: cover;
 	transform: rotateZ(-45deg);
 	content: "";
-	background-image: url(https://res.cloudinary.com/dzwyiggcp/image/upload/v1690375058/MREEA/history-3-c_gvm8pc.png);
+	background-image: url(https://res.cloudinary.com/dikcjjfpo/image/upload/v1692718624/history-3-c_k2ndln.png);
 }
 
 .c-heroImageGrid .container .column:nth-of-type(2) .row:nth-of-type(3) {
@@ -991,7 +991,7 @@ svg#bigTriangleColor {
 	background-size: cover;
 	transform: rotateZ(-45deg);
 	content: "";
-	background-image: url(https://res.cloudinary.com/dzwyiggcp/image/upload/v1690374223/MREEA/history-4-a_xewvxe.png);
+	background-image: url(https://res.cloudinary.com/dikcjjfpo/image/upload/v1692718575/history-4-a_btzjtx.png);
 }
 
 @media (max-width: 1250px) {
@@ -1478,32 +1478,6 @@ svg#bigTriangleColor {
     }
 }
 
-/* Announcements Calendar Section */
-
-.announcements-section-container{
-    gap: 30px;
-}
-
-.calendar-container {
-    width: 650px;
-    height: 450px;
-    background-color: var(--GRAY-DARK-1);
-    border-radius: 15px;
-}
-
-@media (max-width:768px) {
-    .calendar-container {
-        width: 335px;
-        height: 450px;
-    }
-
-    .calendar .calendar-inner .calendar-body .number-item .dateNumber .highlight {
-        width: 35px;
-        height: 35px;
-        top: -10px;
-    }
-}
-
 /* Account Member Section */
 
 .account-member-section-container {
@@ -1598,6 +1572,79 @@ svg#bigTriangleColor {
 .create-event-form input[type="submit"][value="Delete"] {
     background: var(--RED-LOGO);
     color: var(--WHITE);
+}
+
+.event-image-preview-container {
+    align-items: flex-start;
+    gap: 30px;
+}
+
+.event-form-img-container {
+    width: 320px;
+    height: 180px;
+}
+
+.event-image-upload .btn {
+    align-self: flex-start;
+    margin: 30px 0;
+}
+
+.event-image-change-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: calc(100vw);
+    height: calc(100vh);
+    background-color: var(--TRANSPARENT-LIGHT-1);
+    backdrop-filter: blur(10px);
+    z-index: 9;
+    display: none;
+}
+
+.event-image-change-container .cancel-btn {
+    background-color: var(--YELLOW-LOGO);
+    color: var(--GRAY-DARK-1);
+}
+
+.edit-event-img-input-container {
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    width: 600px;
+    height: 600px;
+    border-radius: 15px;
+    background-color: var(--GRAY-DARK-1);
+    transform: translate(-50%, -50%);
+    display: none;
+}
+
+.event-image-change-container #imageInput {
+    width: fit-content;
+    align-self: center;
+}
+
+.crop-event-img-container {
+    width: 480px;
+    height: 270px;
+    margin: 20px 0;
+}
+
+.preview-event-img-change-container {
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    width: 600px;
+    height: 600px;
+    border-radius: 15px;
+    background-color: var(--GRAY-DARK-1);
+    transform: translate(-50%, -50%);
+    display: none;
+}
+
+.preview-event-img-container {
+    width: 480px;
+    height: 270px;
+    margin: 20px 0;
 }
 
 /* Event Details Seciton */

@@ -11,7 +11,7 @@
     <link rel="icon" type="image/x-icon" href="{% static 'favicon.ico' %}">
 
     <!-- Cropper -->
-    {% if edit_profile_picture %}
+    {% if edit_image %}
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cropperjs@1.5.12/dist/cropper.min.css">
     <script src="https://cdn.jsdelivr.net/npm/cropperjs@1.5.12/dist/cropper.min.js"></script>
     {% endif %}
@@ -31,7 +31,7 @@
                 <a href="{% url 'home' %}" class="logo">
                     
                     <div class="logo-img-container">
-                        <img src="https://res.cloudinary.com/dzwyiggcp/image/upload/v1689257491/MREEA/uwjiymtjgpcrfncnhlzk.png" alt="MREEA Logo"
+                        <img src="https://res.cloudinary.com/dikcjjfpo/image/upload/v1692718431/mreea-logo-1_lmfhvl.png" alt="MREEA Logo"
                             class="logo-img">
                     </div>
 
@@ -68,7 +68,7 @@
                             {% if member_profile %}
                             <img src="{{ member_profile.profile_image }}" alt="Profile Picture" class="account-profile-img img-100a">
                             {% else %}
-                            <img src="https://res.cloudinary.com/dzwyiggcp/image/upload/v1689692743/MREEA/default-profile-pic_yp9kzz.png" alt="Profile Picture" class="account-profile-img img-100a">
+                            <img src="https://res.cloudinary.com/dikcjjfpo/image/upload/v1692718355/default-profile-pic_nwq7pg.png" alt="Profile Picture" class="account-profile-img img-100a">
                             {% endif %}
                         </div>
                         <div class="profile-btns-container container-col">
@@ -84,7 +84,7 @@
                     {% else %}
                     <div class="account-profile-container">
                         <div class="account-profile-img-container not-logged-in">
-                            <img src="https://res.cloudinary.com/dzwyiggcp/image/upload/v1690486403/log-in_qo9dg3.png" alt="Profile Picture" class="account-profile-img img-100a">
+                            <img src="https://res.cloudinary.com/dikcjjfpo/image/upload/v1692718355/log-in_lihbz1.png" alt="Profile Picture" class="account-profile-img img-100a">
                         </div>
                         <div class="profile-btns-container container-col">
                             <a href="{% url 'membership' %}" class="profile-btn-link">Membership</a>
@@ -113,7 +113,7 @@
             </div>
             <!-- Footer Logo -->
             <div class="footer-logo-img-container">
-                <img src="https://res.cloudinary.com/dzwyiggcp/image/upload/v1689257491/MREEA/nsd84exqufcvrfhuuzi5.png" alt="MREEA Logo"
+                <img src="https://res.cloudinary.com/dikcjjfpo/image/upload/v1692718431/mreea-logo-1-gray_azwepf.png" alt="MREEA Logo"
                     class="footer-logo">
             </div>
         </div>

@@ -74,6 +74,8 @@ class Event(models.Model):
     start_date = models.DateTimeField()
     end_date = models.DateTimeField()
     location = models.CharField(max_length=200)
+    event_image = CloudinaryField('Event Image', null=True, blank=True, default='https://res.cloudinary.com/dzwyiggcp/image/upload/v1689582480/MREEA/mreea-meeting-2_adho8o.png')
+    event_image_change = models.CharField(max_length=1000, blank=True, default='')
     created_at = models.DateTimeField(auto_now_add=True)
 
     event_uuid = models.UUIDField(default=uuid.uuid4, editable=False)

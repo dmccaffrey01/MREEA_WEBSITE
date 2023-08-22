@@ -122,30 +122,46 @@ def edit_event(request, event_short_uuid):
             event.delete()
             return redirect('announcements')
         
-        form = EventForm(request.POST, instance=event)
-        if form.is_valid():
-            form.save()
+        event_form = EventForm(request.POST, instance=event)
+        if event_form.is_valid():
+            event_form.save()
             return redirect('announcements')
     else:
-        form = EventForm(instance=event)
+        event_form = EventForm(instance=event)
     
     context = {
-        'form': form,
+        'event_form': event_form,
         'event': event,
+        'edit_image': True,
     }
     return render(request, 'create_event.html', context)
 
 def create_event(request):
     if request.method == 'POST':
-        form = EventForm(request.POST)
-        if form.is_valid():
-            form.save()
+        event_form = EventForm(request.POST)
+        if event_form.is_valid():
+            event = event_form.save()
+            cropped_image_data = request.POST.get('croppedImageData')
+            if cropped_image_data:
+                # Decode the Base64 image data
+                image_data = base64.b64decode(cropped_image_data.split(',')[-1])
+
+                image_file = ContentFile(image_data)
+
+                # Upload the image file to Cloudinary
+                cloudinary_response = cloudinary.uploader.upload(image_file, public_id="event_image")
+
+                # Save the Cloudinary image URL in the profile_image field of the MemberProfile model
+                event.event_image = cloudinary_response['secure_url']
+                event.save()
+
             return redirect('announcements')
     else:
-        form = EventForm()
+        event_form = EventForm()
     
     context = {
-        'form': form
+        'event_form': event_form,
+        'edit_image': True,
     }
     return render(request, 'create_event.html', context)
 
@@ -267,7 +283,6 @@ def edit_profile_picture(request, member_short_uuid):
         if 'cancel' in request.POST:
             return redirect('member_profile', member_short_uuid=member_short_uuid)
         form = MemberProfilePictureForm(request.POST, instance=member_profile)
-        print(form.is_valid())
         if form.is_valid():
             form.save()
             cropped_image_data = request.POST.get('croppedImageData')
@@ -293,7 +308,7 @@ def edit_profile_picture(request, member_short_uuid):
         'form': form,
         'member_profile': member_profile,
         'edit_profile': True,
-        'edit_profile_picture': True,
+        'edit_image': True,
     }
 
     return render(request, 'member-profile.html', context)
