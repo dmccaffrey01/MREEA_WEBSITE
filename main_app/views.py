@@ -124,7 +124,20 @@ def edit_event(request, event_short_uuid):
         
         event_form = EventForm(request.POST, instance=event)
         if event_form.is_valid():
-            event_form.save()
+            event = event_form.save()
+            cropped_image_data = request.POST.get('croppedImageData')
+            if cropped_image_data:
+                # Decode the Base64 image data
+                image_data = base64.b64decode(cropped_image_data.split(',')[-1])
+
+                image_file = ContentFile(image_data)
+
+                # Upload the image file to Cloudinary
+                cloudinary_response = cloudinary.uploader.upload(image_file, public_id="event_image")
+
+                # Save the Cloudinary image URL in the profile_image field of the MemberProfile model
+                event.event_image = cloudinary_response['secure_url']
+                event.save()
             return redirect('announcements')
     else:
         event_form = EventForm(instance=event)

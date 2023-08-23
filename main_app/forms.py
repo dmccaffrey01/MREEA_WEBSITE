@@ -24,7 +24,7 @@ class CustomSignupForm(SignupForm):
 class EventForm(forms.ModelForm):
     class Meta:
         model = Event
-        fields = ('title', 'description', 'start_date', 'end_date', 'location', 'event_image_change')
+        fields = ('title', 'description', 'start_date', 'end_date', 'location')
 
 
 class MemberProfileForm(forms.ModelForm):

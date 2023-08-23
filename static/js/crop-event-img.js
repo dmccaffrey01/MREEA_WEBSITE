@@ -12,13 +12,13 @@ document.getElementById('imageInput').addEventListener('change', function() {
         }
 
         // Attach the new image to the DOM
-        const imageContainer = document.querySelector('.crop-pp-img-container');
+        const imageContainer = document.querySelector('.crop-event-img-container');
         imageContainer.innerHTML = '';
         imageContainer.appendChild(img);
 
         // Initialize Cropper.js
         window.cropper = new Cropper(img, {
-          aspectRatio: 1, // Set to 1 for square cropping
+          aspectRatio: 16 / 9, // Set to 1 for square cropping
           viewMode: 1,    // Set to 1 to restrict the crop box to the container
           crop(event) {
             // Update the cropped preview image
@@ -32,29 +32,45 @@ document.getElementById('imageInput').addEventListener('change', function() {
 
 const previewBtn = document.querySelector(".preview-btn");
 const previewImg = document.querySelector("#previewImage");
-const previewContainer = document.querySelector(".preview-pp-container");
-const editContainer = document.querySelector(".edit-pp-container");
-
-previewBtn.addEventListener("click", () => {
-    if (typeof cropper !== "undefined") {
-      let croppedImage = cropper.getCroppedCanvas().toDataURL('image/jpeg', 0.7);
-      previewImg.src = croppedImage;
-    } else if (clearCheck.checked) {
-      previewImg.src = 'https://res.cloudinary.com/dzwyiggcp/image/upload/v1689692743/MREEA/default-profile-pic_yp9kzz.png';
-    }
-    
-    editContainer.style.display = "none";
-    previewContainer.style.display = "flex";
-
-    const croppedImageData = previewImg.src;
-    document.getElementById('id_profile_image_change').value = "changed";
-    document.getElementById('croppedImageData').value = croppedImageData;
-});
+const previewContainer = document.querySelector(".preview-event-img-change-container");
 
 const changeEventImgBtn = document.querySelector(".change-event-img-btn");
 const eventImgChangeContainer = document.querySelector(".event-image-change-container");
 const editEventImgContainer = document.querySelector(".edit-event-img-input-container");
 
+previewBtn.addEventListener("click", () => {
+    if (typeof cropper !== "undefined") {
+      let croppedImage = cropper.getCroppedCanvas().toDataURL('image/jpeg', 0.7);
+      previewImg.src = croppedImage;
+    } 
+    
+    editEventImgContainer.style.display = "none";
+    previewContainer.style.display = "flex";
+
+    const croppedImageData = previewImg.src;
+    document.getElementById('croppedImageData').value = croppedImageData;
+});
+
 changeEventImgBtn.addEventListener("click", () => {
     eventImgChangeContainer.style.display = "flex";
+    editEventImgContainer.style.display = "flex";
+    previewContainer.style.display = "none";
+});
+
+const cancelBtns = document.querySelectorAll(".cancel-btn");
+
+cancelBtns.forEach(btn => {
+    btn.addEventListener("click", () => {
+        eventImgChangeContainer.style.display = "none";
+        editEventImgContainer.style.display = "none";
+        document.getElementById('croppedImageData').value = "";
+    });
+});
+
+const saveEventImgBtn = document.querySelector(".save-crop-btn");
+
+saveEventImgBtn.addEventListener("click", () => {
+    eventImgChangeContainer.style.display = "none";
+    editEventImgContainer.style.display = "none";
+    document.querySelector(".event-form-img-preview").src = document.getElementById('croppedImageData').value;
 });

@@ -25,110 +25,106 @@
     <div class="section-container container-col upcoming-events-section-container">
         <div class="heading dark-text section-heading">Upcoming Events</div>
         {% if upcoming_events %}
-        <div class="container-row events-carousel-container">
-            <div class="events-carousel-item container-col">
-                
+        <div class="container-row upcoming-events-carousel-container events-carousel-container">
+            <div class="upcoming-loading-icon-overlay loading-icon-overlay">
+                <div class="loading-icon-container">
+                    <div class="loading-icon"></div>
+                </div>
             </div>
-        </div>
-        {% else %}
-        <div class="container-col no-events-message">
-            <div class="dark-text">No Upcoming Events!</div>
-        </div>
-        {% endif %}
-</section>
-
-<section class="section upcoming-events-section container-col">
-    <div class="section-container container-col upcoming-events-section-container">
-        <div class="heading dark-text section-heading">Upcoming Events</div>
-        {% if upcoming_events %}
-        {% for event in upcoming_events %}
-        {% if forloop.counter|divisibleby:2 %}
-        <div class="container-col upcoming-events-content-container yellow-container">
-        {% else %}
-        <div class="container-col upcoming-events-content-container red-container">
-        {% endif %}
-            <div class="container-row upcoming-event-container">
-                <div class="container-row event-date-container">
-                    <div class="container-col event-start-end-date-container">
-                        <div class="reg-text event-date-text">{{ event.start_date|date:"d" }}</div>
-                        <div class="reg-text event-date-text">{{ event.start_date|date:"M" }}</div>
-                        <div class="reg-text event-date-text">{{ event.start_date|time:"H:i" }}</div>
+            {% for event in upcoming_events %}
+            <div class="upcoming-events-carousel-item container-col events-carousel-item ">
+                <div class="event-card container-col">
+                    <div class="event-card-img-container container-col">
+                        <div class="dark-overlay"></div>
+                        <img src="{{ event.event_image }}" alt="Event image" class="img-100a event-card-img">
+                        <div class="container-row event-card-date">
+                            <div class="white-text">{{ event.start_date|date:"d" }}</div>
+                            <div class="white-text">{{ event.start_date|date:"M" }}</div>
+                            <div class="white-text">{{ event.start_date|time:"H:i" }}</div>
+                        </div>
+                        <div class="event-card-title white-text">{{ event.title }}</div>
+                    </div>
+                    <div class="event-card-content-container container-col">
+                        <div class="dark-text event-card-description">{{ event.description }}</div>
+                        <div class="container-row event-card-btns-container">
+                            {% if user.is_superuser %}
+                            <a href="{% url 'edit_event' event.event_short_uuid %}" class="btn event-learn-more-btn">Edit Event</a>
+                            {% endif %}
+                            <a href="{% url 'event_detail' event.event_short_uuid %}" class="event-learn-more-btn btn yellow-btn">Learn More</a>
+                        </div>
                     </div>
                 </div>
-                <div class="container-col event-details-container">
-                    <div class="dark-text event-details">{{ event.title }}</div>
-                    <div class="dark-text event-details">{{ event.description }}</div>
-                    <div class="dark-text event-details">Start Date: {{ event.start_date|date:"m" }}/{{ event.start_date|date:"d" }}/{{ event.start_date|date:"Y" }} at {{ event.start_date|time:"H:i" }}</div>
-                    <div class="dark-text event-details">End Date: {{ event.end_date|date:"m" }}/{{ event.end_date|date:"d" }}/{{ event.end_date|date:"Y" }} at {{ event.end_date|time:"H:i" }}</div>
-                </div>
-                <div class="container-col event-learn-more-btn-container">
-                    {% if user.is_superuser %}
-                    <a href="{% url 'edit_event' event.event_short_uuid %}" class="btn event-learn-more-btn">Edit Event</a>
-                    {% endif %}
-                    <a href="{% url 'event_detail' event.event_short_uuid %}" class="event-learn-more-btn btn yellow-btn">Learn More</a>
-                </div>
             </div>
+            {% endfor %}
         </div>
-        {% endfor %}
+        <div class="upcoming-swipe-left carousel-swipe container-col swipe-left">
+            <i class="fa-solid fa-chevron-left"></i>
+        </div>
+        <div class="upcoming-swipe-right carousel-swipe container-col swipe-right">
+            <i class="fa-solid fa-chevron-right"></i>
+        </div>
         {% else %}
         <div class="container-col no-events-message">
             <div class="dark-text">No Upcoming Events!</div>
-        </div>
-        {% endif %}
-        {% if user.is_superuser %}
-        <div class="add-event-btn-container container-col">
-            <a href="{% url 'create_event' %}" class="btn">Add Event</a>
         </div>
         {% endif %}
     </div>
+    {% if user.is_superuser %}
+    <a href="{% url 'create_event' %}" class="btn create-event-btn">Create Event</a>
+    {% endif %}
 </section>
 
 <section class="section upcoming-events-section container-col">
     <div class="section-container container-col upcoming-events-section-container">
         <div class="heading dark-text section-heading">Past Events</div>
         {% if past_events %}
-        {% for event in past_events %}
-        {% if forloop.counter|divisibleby:2 %}
-        <div class="container-col upcoming-events-content-container yellow-container">
-        {% else %}
-        <div class="container-col upcoming-events-content-container red-container">
-        {% endif %}
-            <div class="container-row upcoming-event-container">
-                <div class="container-row event-date-container">
-                    <div class="container-col event-start-end-date-container">
-                        <div class="reg-text event-date-text">{{ event.start_date|date:"d" }}</div>
-                        <div class="reg-text event-date-text">{{ event.start_date|date:"M" }}</div>
-                        <div class="reg-text event-date-text">{{ event.start_date|time:"H:i" }}</div>
-                    </div>
-                </div>
-                <div class="container-col event-details-container">
-                    <div class="dark-text event-details">{{ event.title }}</div>
-                    <div class="dark-text event-details">{{ event.description }}</div>
-                    <div class="dark-text event-details">Start Date: {{ event.start_date|date:"m" }}/{{ event.start_date|date:"d" }}/{{ event.start_date|date:"Y" }} at {{ event.start_date|time:"H:i" }}</div>
-                    <div class="dark-text event-details">End Date: {{ event.end_date|date:"m" }}/{{ event.end_date|date:"d" }}/{{ event.end_date|date:"Y" }} at {{ event.end_date|time:"H:i" }}</div>
-                </div>
-                <div class="container-col event-learn-more-btn-container">
-                    {% if user.is_superuser %}
-                    <a href="{% url 'edit_event' event.event_short_uuid %}" class="btn event-learn-more-btn">Edit Event</a>
-                    {% endif %}
-                    {% if user.is_member %}
-                    <a href="{% url 'event_detail' event.event_short_uuid %}" class="event-learn-more-btn btn yellow-btn">Learn More</a>
-                    {% endif %}
+        <div class="container-row events-carousel-container past-events-carousel-container">
+            <div class="loading-icon-overlay past-loading-icon-overlay">
+                <div class="loading-icon-container">
+                    <div class="loading-icon"></div>
                 </div>
             </div>
+            {% for event in past_events %}
+            <div class="events-carousel-item container-col past-events-carousel-item">
+                <div class="event-card container-col">
+                    <div class="event-card-img-container container-col">
+                        <div class="dark-overlay"></div>
+                        <img src="{{ event.event_image }}" alt="Event image" class="img-100a event-card-img">
+                        <div class="container-row event-card-date">
+                            <div class="white-text">{{ event.start_date|date:"d" }}</div>
+                            <div class="white-text">{{ event.start_date|date:"M" }}</div>
+                            <div class="white-text">{{ event.start_date|time:"H:i" }}</div>
+                        </div>
+                        <div class="event-card-title white-text">{{ event.title }}</div>
+                    </div>
+                    <div class="event-card-content-container container-col">
+                        <div class="dark-text event-card-description">{{ event.description }}</div>
+                        <div class="container-row event-card-btns-container">
+                            {% if user.is_superuser %}
+                            <a href="{% url 'edit_event' event.event_short_uuid %}" class="btn event-learn-more-btn">Edit Event</a>
+                            {% endif %}
+                            <a href="{% url 'event_detail' event.event_short_uuid %}" class="event-learn-more-btn btn yellow-btn">Learn More</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
         </div>
-        {% endfor %}
+        <div class="swipe-left carousel-swipe container-col past-swipe-left">
+            <i class="fa-solid fa-chevron-left"></i>
+        </div>
+        <div class="swipe-right carousel-swipe container-col past-swipe-right">
+            <i class="fa-solid fa-chevron-right"></i>
+        </div>
         {% else %}
         <div class="container-col no-events-message">
             <div class="dark-text">No Past Events!</div>
         </div>
         {% endif %}
-        {% if user.is_superuser %}
-        <div class="add-event-btn-container container-col">
-            <a href="{% url 'create_event' %}" class="btn">Add Event</a>
-        </div>
-        {% endif %}
     </div>
+    {% if user.is_superuser %}
+    <a href="{% url 'create_event' %}" class="btn create-event-btn">Create Event</a>
+    {% endif %}
 </section>
 
 <section class="section account-member-section">
@@ -160,6 +156,6 @@
 
 {% block js %}
 
-<script src="{% static 'js/calendar.js' %}"></script>
+<script src="{% static 'js/announcements.js' %}"></script>
 
 {% endblock %}

@@ -74,8 +74,7 @@ class Event(models.Model):
     start_date = models.DateTimeField()
     end_date = models.DateTimeField()
     location = models.CharField(max_length=200)
-    event_image = CloudinaryField('Event Image', null=True, blank=True, default='https://res.cloudinary.com/dzwyiggcp/image/upload/v1689582480/MREEA/mreea-meeting-2_adho8o.png')
-    event_image_change = models.CharField(max_length=1000, blank=True, default='')
+    event_image = CloudinaryField('Event Image', null=True, blank=True, default='https://res.cloudinary.com/dikcjjfpo/image/upload/v1692796802/mreea-meeting-2_oeygy7.png')
     created_at = models.DateTimeField(auto_now_add=True)
 
     event_uuid = models.UUIDField(default=uuid.uuid4, editable=False)
@@ -94,7 +93,7 @@ class MemberProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     first_name = models.CharField(max_length=255, blank=True, default='')
     last_name = models.CharField(max_length=255, blank=True, default='')
-    profile_image = CloudinaryField('Profile Image', null=True, blank=True, default='https://res.cloudinary.com/dzwyiggcp/image/upload/v1689692743/MREEA/default-profile-pic_yp9kzz.png')
+    profile_image = CloudinaryField('Profile Image', null=True, blank=True, default='https://res.cloudinary.com/dikcjjfpo/image/upload/v1692718355/default-profile-pic_nwq7pg.png')
     profile_image_change = models.CharField(max_length=1000, blank=True, default='')
     display_email = models.BooleanField(default=True)
     email = models.EmailField(blank=True)

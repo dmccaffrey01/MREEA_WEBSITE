@@ -1370,40 +1370,156 @@ svg#bigTriangleColor {
     align-items: flex-start;
 }
 
-.event-learn-more-btn-container {
-    width: 300px;
-    height: 175px;
+.upcoming-events-section-container {
+    position: relative;
+}
+
+.upcoming-events-section-container .carousel-swipe {
+    color: var(--GRAY-DARK-1);
+}
+
+.upcoming-events-section-container .swipe-left {
+    left: 0;
+}
+
+.upcoming-events-section-container .swipe-right {
+    right: 0;
+}
+
+.event-card {
+    width: 400px;
+    height: 540px;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0px 0px 27px -6px rgba(0,0,0,0.86);
+    -webkit-box-shadow: 0px 0px 27px -6px rgba(0,0,0,0.86);
+    -moz-box-shadow: 0px 0px 27px -6px rgba(0,0,0,0.86);
+    background-color: var(--GRAY-LIGHT-1);
+}
+
+.event-card-img-container {
+    position: relative;
+    height: 225px;
+    width: 100%;
+}
+
+.event-card-content-container {
+    height: calc(100% - 225px);
+    justify-content: space-between;
+    padding: 40px 20px;
+    align-items: flex-start;
+}
+
+.event-card-date {
+    position: absolute;
     gap: 10px;
-    border: 2px solid var(--GRAY-DARK-2);
-    border-left: none;
-    border-radius: 0 20px 20px 0;
-    padding-right: 50px;
-    align-items: flex-end;
+    right: 20px;
+    top: 20px;
+}
+
+.event-card-date .white-text {
+    font-size: 1.8rem;
+}
+
+.event-card-title {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 3rem;
+}
+
+.event-card-btns-container {
+    gap: 20px;
+    align-self: center;
 }
 
 .event-learn-more-btn {
-    width: 200px;
+    width: 160px;
+    padding: 10px;
 }
 
-.event-date-text {
-    font-size: 2.1rem;
+.event-card-description {
+    height: 150px;
+    overflow-y: scroll;
 }
 
-.event-end-date-container {
-    background-color: var(--YELLOW-LOGO);
+.events-carousel-container {
+    position: relative;
+    width: 100%;
+    height: 600px;
+    overflow: hidden;
 }
 
-.event-end-date-container {
-    color: var(--GRAY-DARK-1);
-    display: none;
+.events-carousel-item {
     position: absolute;
-    right: calc(100% + 20px);
-    border-radius: 20px;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    transition: all 0.5s ease;
 }
 
-.event-date-container:hover .event-end-date-container {
-    display: flex;
+.loading-icon-overlay {
+    width: 100%;
+    height: 100%;
+    background-color: var(--GRAY-LIGHT-1);
+    position: absolute;
+    left: 0;
+    right: 0;
+    z-index: 10;
 }
+
+.loading-icon {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 10px solid var(--GRAY-LIGHT-2);
+    border-top: 10px solid var(--RED-LOGO);
+    animation: spin 1s infinite linear;
+}
+
+.loading-icon-container {
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 11;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+::-webkit-scrollbar {
+    width: 5px; /* Width of the scrollbar */
+}
+  
+::-webkit-scrollbar-track {
+    background-color: var(--GRAY-LIGHT-1); /* Track color */
+}
+  
+  /* Styles for the scrollbar thumb (the draggable handle) */
+::-webkit-scrollbar-thumb {
+    background-color: var(--RED-LOGO); /* Thumb color */
+    border-radius: 10px; /* Rounded corners */
+}
+  
+::-webkit-scrollbar-thumb:hover {
+    background-color: var(--RED-LOGO-TRANSPARENT); /* Thumb color on hover */
+}
+  
+  /* Styles for the scrollbar buttons (arrows at the ends) */
+::-webkit-scrollbar-button {
+    display: none; /* Hide scrollbar buttons */
+}
+
+.create-event-btn {
+    margin-top: 50px;
+}
+
 
 @media (max-width: 1000px) {
     .event-date-container, .event-start-end-date-container {
@@ -1613,9 +1729,12 @@ svg#bigTriangleColor {
     width: 600px;
     height: 600px;
     border-radius: 15px;
-    background-color: var(--GRAY-DARK-1);
+    background-color: var(--GRAY-LIGHT-3);
     transform: translate(-50%, -50%);
     display: none;
+    box-shadow: 0px 0px 27px -6px rgba(0,0,0,0.86);
+    -webkit-box-shadow: 0px 0px 27px -6px rgba(0,0,0,0.86);
+    -moz-box-shadow: 0px 0px 27px -6px rgba(0,0,0,0.86);
 }
 
 .event-image-change-container #imageInput {
@@ -1626,7 +1745,7 @@ svg#bigTriangleColor {
 .crop-event-img-container {
     width: 480px;
     height: 270px;
-    margin: 20px 0;
+    margin: 20px 0 40px 0;
 }
 
 .preview-event-img-change-container {
@@ -1636,7 +1755,7 @@ svg#bigTriangleColor {
     width: 600px;
     height: 600px;
     border-radius: 15px;
-    background-color: var(--GRAY-DARK-1);
+    background-color: var(--GRAY-LIGHT-3);
     transform: translate(-50%, -50%);
     display: none;
 }

@@ -14,6 +14,7 @@
           <form method="post" class="create-event-form">
               {% csrf_token %}
               {{ event_form.as_p }}
+              <input type="hidden" name="croppedImageData" id="croppedImageData">
               <div class="event-image-preview-container container-col">
                 <div class="white-text">Current Image:</div>
                 <div class="event-form-img-container container-col">
@@ -25,11 +26,11 @@
                 </div>
               </div>
               <div class="event-image-upload container-col">
-                <div class="white-text btn change-event-img-btn">Upload Image</div>
+                <div class="btn change-event-img-btn">Upload Image</div>
                 <div class="container-col event-image-change-container">
                   <div class="edit-event-img-input-container container-col">
                     <input type="file" id="imageInput" accept="image/*">
-                    <div class="sub-heading white-text">Crop</div>
+                    <div class="sub-heading dark-text">Crop</div>
                     <div class="crop-event-img-container">
                         <img id="croppedImage" src="https://res.cloudinary.com/dikcjjfpo/image/upload/v1692719680/mreea-meeting-3_leh5cl.png" alt="Cropped Image Preview" class="crop-image img-100a">
                     </div>
@@ -39,7 +40,7 @@
                     </div>
                   </div>
                   <div class="preview-event-img-change-container container-col">
-                    <div class="sub-heading white-text">Preview</div>
+                    <div class="sub-heading dark-text">Preview</div>
                     <div class="preview-event-img-container container-col">
                         <img id="previewImage" src="https://res.cloudinary.com/dikcjjfpo/image/upload/v1692719680/mreea-meeting-3_leh5cl.png" alt="Cropped Image Preview" class="img-100a">
                     </div>
