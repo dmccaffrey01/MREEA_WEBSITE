@@ -20,4 +20,7 @@ urlpatterns = [
     path('learn/', views.learn_page, name='learn'),
     path('contact/', views.contact_page, name='contact'),
     path('accounts/password/change/', views.CustomPasswordChangeView.as_view(), name='account_change_password'),
+    path('learn/resources', views.resources_page, name='resources'),
+    path('learn/resources/add', views.add_resource, name='add_resource'),
+    path('learn/resources/edit', views.add_resource, name='edit_resource'),
 ]

@@ -121,11 +121,12 @@
             <div class="heading dark-text">{{ member_profile.first_name }}'s Profile </div>
             <form method="post" class="edit-profile-form">
                 {% csrf_token %}
-                {% if edit_profile_picture %}
+                {% if edit_image %}
                 <div class="edit-profile-picture-form-wrapper container-col">
                     {{ form }}
                     <input type="hidden" name="croppedImageData" id="croppedImageData">
                 </div>
+                <input type="submit" name="cancel" value="&#10006;" class="form-close-btn">
                 <div class="edit-pp-container container-col">
                     <div class="edit-pp-input-container">
                         <input type="file" id="imageInput" accept="image/*">
@@ -138,10 +139,8 @@
 
                     <div class="sub-heading dark-text">Crop</div>
                     <div class="crop-pp-img-container">
-                        <img id="croppedImage" src="{{ member_profile.profile_image }}" alt="Cropped Image Preview" class="crop-image">
+                        <img id="croppedImage" src="{{ member_profile.profile_image }}" alt="Cropped Image Preview" class="crop-image img-100a">
                     </div>
-
-                    <input type="submit" name="cancel" value="&#10006;" class="form-close-btn">
 
                     <div class="btn preview-btn">Preview</div>
                 </div>
@@ -218,11 +217,14 @@
 
 {% block js %}
 
-{% if edit_profile_picture %}
+{% if edit_image %}
 
 <script src="{% static 'js/crop-pp.js' %}"></script>
 
-{% endif %}
+{% else %}
+
 <script src="{% static 'js/member-profile.js' %}"></script>
+
+{% endif %}
 
 {% endblock %}

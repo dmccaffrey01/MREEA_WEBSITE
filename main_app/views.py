@@ -6,9 +6,8 @@ from django.http import JsonResponse
 from django.db.models import Q
 from .forms import CustomSignupForm
 from django.contrib.auth import login
-from .models import Event, MemberProfile
-from .forms import EventForm, MemberProfileForm, ContactForm, MemberSearchForm, MemberProfilePictureForm
-from django.utils import timezone
+from .models import Event, MemberProfile, ResourceLinkType, ResourceCategory, Resource
+from .forms import EventForm, MemberProfileForm, ContactForm, MemberSearchForm, MemberProfilePictureForm, AddResourceForm
 from django.core.mail import send_mail
 from cloudinary.uploader import upload
 import base64
@@ -382,3 +381,62 @@ class CustomPasswordChangeView(PasswordChangeView):
         response = super().form_valid(form)
         success_message = "Your password has been successfully changed."
         return TemplateResponse(self.request, settings.POPUP_MESSAGE_TEMPLATE, {'message': success_message})
+    
+
+def resources_page(request):
+    user = request.user
+
+    if user.is_authenticated:
+        member_profile = MemberProfile.objects.filter(user=user).first()
+    else:
+        member_profile = False
+    
+    context = {
+        'user': user,
+        'member_profile': member_profile,
+    }
+
+    return render(request, 'resources.html', context)
+
+
+def add_resource(request):
+    user = request.user
+
+    if user.is_authenticated:
+        member_profile = MemberProfile.objects.filter(user=user).first()
+    else:
+        member_profile = False
+
+    if request.method == 'POST':
+        add_resource_form = AddResourceForm(request.POST)
+        if add_resource_form.is_valid():
+            new_resource = add_resource_form.save(commit=False)
+            selected_category = request.POST.get('id_category_input')
+            selected_link_type = request.POST.get('id_link_type_input')
+
+            link_type = ResourceLinkType.objects.filter(link_type=selected_link_type).first()
+            category = ResourceCategory.objects.filter(category=selected_category).first()
+
+            new_resource.link_type = link_type
+            new_resource.category = category
+
+            new_resource.save()
+            
+            return redirect('resources')
+    else:
+        add_resource_form = AddResourceForm()
+
+    link_types = ResourceLinkType.objects.all()
+    categories = ResourceCategory.objects.all()
+    
+    context = {
+        'user': user,
+        'member_profile': member_profile,
+        'add_resource_form': add_resource_form,
+        'link_types': link_types,
+        'categories': categories,
+    }
+
+    return render(request, 'add-resource.html', context)
+
+

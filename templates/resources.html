@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+<section class="section resources-page-section">
+    <div class="section-container container-col resources-page-section-container">
+        {% if user.is_superuser %}
+        <a href="{% url 'add_resource' %}" class="btn">Add Resource</a>
+        {% endif %}
+    </div>
+</section>
+
+{% endblock %}
+
+{% block js %}
+
+{% endblock %}

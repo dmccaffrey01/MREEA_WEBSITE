@@ -146,3 +146,28 @@ class ContactMessage(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class ResourceCategory(models.Model):
+    category = models.CharField(max_length=255, default="Other")
+
+    def __str__(self):
+        return self.category
+
+
+class ResourceLinkType(models.Model):
+    link_type = models.CharField(max_length=255, default="Other")
+
+    def __str__(self):
+        return self.link_type
+
+
+class Resource(models.Model):
+    link = models.CharField(max_length=255, default="")
+
+    link_type = models.ForeignKey(ResourceLinkType, on_delete=models.SET_DEFAULT, default=None, null=True)
+
+    category = models.ForeignKey(ResourceCategory, on_delete=models.SET_DEFAULT, default=None, null=True)
+
+    def __str__(self):
+        return self.link

@@ -1,7 +1,7 @@
 from django import forms
 from allauth.account.forms import SignupForm, LoginForm
 from django.contrib.auth.models import User
-from .models import Event, MemberProfile, ContactMessage
+from .models import Event, MemberProfile, ContactMessage, Resource, ResourceLinkType, ResourceCategory
 
 
 class CustomSignupForm(SignupForm):
@@ -49,3 +49,9 @@ class MemberProfilePictureForm(forms.ModelForm):
     class Meta:
         model = MemberProfile
         fields = ['profile_image_change']
+
+
+class AddResourceForm(forms.ModelForm):
+    class Meta:
+        model = Resource
+        fields = ['link']
