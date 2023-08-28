@@ -49,6 +49,22 @@
                     </div>
                 </div>
 
+                <div class="add-resource-form-item">
+                    <div class="dark-text">Sub Category</div>
+                    <input type="hidden" class="hidden-form-item" name="id_subcategory_input" id="id_subcategory_input">
+                    <div class="add-resource-form-dropdown container-row subcategory-dropdown">
+                        <div class="add-resource-form-dropdown-selected-text subcategory-dropdown-selected-text">Select</div>
+                        <div class="add-resource-form-dropdown-icon-container container-col">
+                            <i class="fa-solid fa-caret-down subcategory-icon"></i>
+                        </div>
+                    </div>
+                    <div class="add-resource-form-dropdown-options-container container-col subcategory-dropdown-container">
+                        {% for option in subcategories %}
+                        <div class="add-resource-form-dropdown-item subcategory-dropdown-item">{{ option.subcategory }} - {{ option.category.category }}</div>
+                        {% endfor %}
+                    </div>
+                </div>
+
                 <div class="add-resource-form-btns container-row">
                     {% if resource %}
                     <input type="submit" name="delete" value="Delete" class="btn">

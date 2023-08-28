@@ -12,7 +12,6 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 
 from pathlib import Path
 import os
-import dj_database_url
 if os.path.isfile('env.py'):
     import env
 
@@ -51,6 +50,12 @@ INSTALLED_APPS = [
     'main_app',
 ]
 
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': os.environ.get('CLOUDINARY_NAME'),
+    'API_KEY': os.environ.get('CLOUDINARY_API'),
+    'API_SECRET': os.environ.get('CLOUDINARY_SECRET'),
+}
+
 AUTH_USER_MODEL = 'main_app.User'
 
 ACCOUNT_AUTHENTICATION_METHOD = 'email'
@@ -58,6 +63,8 @@ ACCOUNT_AUTHENTICATION_METHOD = 'email'
 ACCOUNT_USER_MODEL_USERNAME_FIELD = None
 
 ACCOUNT_EMAIL_REQUIRED = True
+
+ACCOUNT_USERNAME_REQUIRED = False
 
 SITE_ID = 1
 
@@ -108,7 +115,14 @@ WSGI_APPLICATION = 'dj_project.wsgi.application'
 # }
 
 DATABASES = {
-    'default': dj_database_url.parse(os.environ.get("DATABASE_URL"))
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': os.environ.get('DB_NAME'),
+        'USER': os.environ.get('DB_USER'),
+        'PASSWORD': os.environ.get('DB_PASSWORD'),
+        'HOST': os.environ.get('DB_HOST'),
+        'PORT': os.environ.get('DB_PORT'),
+    }
 }
 
 
@@ -150,7 +164,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATICFILES_STORAGE = 'cloudinary_storage.storage.StaticHashedCloudinaryStorage'
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+STATICFILES_DIRS = [BASE_DIR / 'static']
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 MEDIA_URL = '/media/'

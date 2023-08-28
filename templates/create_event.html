@@ -14,6 +14,7 @@
           <form method="post" class="create-event-form">
               {% csrf_token %}
               {{ event_form.as_p }}
+
               <input type="hidden" name="croppedImageData" id="croppedImageData">
               <div class="event-image-preview-container container-col">
                 <div class="dark-text">Current Image:</div>
@@ -51,6 +52,36 @@
                   </div>
                 </div>
               </div>
+
+              <div class="event-current-resources-container container-col">
+                {% if event_resources %}
+                {% for resource in event_resources %}
+                <div class="event-current-resource-item dark-text">{{ resource.link }}</div>
+                {% endfor %}
+                {% endif %}
+                <div class="dark-text"><span class="event-form-resource-count">{{ number_of_event_resources }}</span> Resources Added!</div>
+              </div>
+              <div class="event-form-select-resources-btn btn">Select Resources</div>
+
+              <div class="event-form-select-resources-wrapper container-col">
+                <div class="event-form-select-resources-container container-col">
+                  <div class="sub-heading dark-text">Choose Resource(s)</div>
+                  <div class="select-resource-items-container container-col">
+                    {% if event_resources %}
+                    {% for resource in event_resources %}
+                    <div class="select-resource-item selected">{{ resource.link }}</div>
+                    {% endfor %}
+                    {% endif %}
+                    {% for resource in resources %}
+                    <div class="select-resource-item">{{ resource.link }}</div>
+                    {% endfor %}
+                  </div>
+                  <div class="select-resource-confirm-btn btn">Select (<span class="select-resource-count">{{ number_of_event_resources }}</span>)</div>
+                  <input type="hidden" name="selectedResources" id="selectedResources">
+                  <div class="select-resource-close-btn">&times;</div>
+                </div>
+              </div>
+
               <div class="create-event-form-btns-container container-row">
                 {% if event.id %}
                 <input type="submit" name="delete" value="Delete" class="btn">
@@ -64,6 +95,8 @@
         </div>
     </div>
 </section>
+
+<div class="event-form-select-resources-overlay"></div>
 
 {% endblock %}
 

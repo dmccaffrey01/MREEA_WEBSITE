@@ -6,7 +6,7 @@ from django.http import JsonResponse
 from django.db.models import Q
 from .forms import CustomSignupForm
 from django.contrib.auth import login
-from .models import Event, MemberProfile, ResourceLinkType, ResourceCategory, Resource
+from .models import Event, MemberProfile, ResourceLinkType, ResourceCategory, Resource, ResourceSubCategory
 from .forms import EventForm, MemberProfileForm, ContactForm, MemberSearchForm, MemberProfilePictureForm, AddResourceForm
 from django.core.mail import send_mail
 from cloudinary.uploader import upload
@@ -16,6 +16,7 @@ import cloudinary.uploader
 from allauth.account.views import PasswordChangeView
 from django.template.response import TemplateResponse
 from django.conf import settings
+from django.utils import timezone
 
 
 def index(request):
@@ -116,6 +117,12 @@ def announcements(request):
 def edit_event(request, event_short_uuid):
     event = get_object_or_404(Event, event_short_uuid=event_short_uuid)
 
+    event_resources = event.resources.all()
+
+    number_of_event_resources = event_resources.count()
+
+    resources = Resource.objects.filter(category__category="Event Resource").exclude(pk__in=event_resources)
+
     if request.method == 'POST':
         if 'delete' in request.POST:
             event.delete()
@@ -137,6 +144,17 @@ def edit_event(request, event_short_uuid):
                 # Save the Cloudinary image URL in the profile_image field of the MemberProfile model
                 event.event_image = cloudinary_response['secure_url']
                 event.save()
+            
+            selected_resource_data = request.POST.get('selectedResources')
+            if selected_resource_data:
+                parsed_selected_resource_data = json.loads(selected_resource_data)
+
+                for link in parsed_selected_resource_data:
+                    resource = Resource.objects.get(link=link)
+                    event.resources.add(resource)
+                
+                event.save()
+
             return redirect('announcements')
     else:
         event_form = EventForm(instance=event)
@@ -145,10 +163,15 @@ def edit_event(request, event_short_uuid):
         'event_form': event_form,
         'event': event,
         'edit_image': True,
+        'resources': resources,
+        'event_resources': event_resources,
+        'number_of_event_resources': number_of_event_resources,
     }
     return render(request, 'create_event.html', context)
 
 def create_event(request):
+    resources = Resource.objects.filter(category__category="Event Resource")
+    
     if request.method == 'POST':
         event_form = EventForm(request.POST)
         if event_form.is_valid():
@@ -166,6 +189,16 @@ def create_event(request):
                 # Save the Cloudinary image URL in the profile_image field of the MemberProfile model
                 event.event_image = cloudinary_response['secure_url']
                 event.save()
+            
+            selected_resource_data = request.POST.get('selectedResources')
+            if selected_resource_data:
+                parsed_selected_resource_data = json.loads(selected_resource_data)
+
+                for link in parsed_selected_resource_data:
+                    resource = Resource.objects.get(link=link)
+                    event.resources.add(resource)
+                
+                event.save()
 
             return redirect('announcements')
     else:
@@ -174,6 +207,9 @@ def create_event(request):
     context = {
         'event_form': event_form,
         'edit_image': True,
+        'resources': resources,
+        'event_resources': False,
+        'number_of_event_resources': 0,
     }
     return render(request, 'create_event.html', context)
 
@@ -389,11 +425,28 @@ def resources_page(request):
     if user.is_authenticated:
         member_profile = MemberProfile.objects.filter(user=user).first()
     else:
-        member_profile = False
+        member_profile = None
     
+    # create_subcategory(request)
+
+    # Query all categories and subcategories
+    categories = ResourceCategory.objects.all()
+    subcategories = ResourceSubCategory.objects.all()
+
+    # Create a dictionary to store category, subcategory, and their associated resources
+    categories_with_subcategories = {}
+    for category in categories:
+        subcategories_for_category = subcategories.filter(category=category)
+        subcategories_with_resources = {}
+        for subcategory in subcategories_for_category:
+            resources = Resource.objects.filter(subcategory=subcategory)
+            subcategories_with_resources[subcategory] = resources
+        categories_with_subcategories[category] = subcategories_with_resources
+
     context = {
         'user': user,
         'member_profile': member_profile,
+        'categories_with_subcategories': categories_with_subcategories,
     }
 
     return render(request, 'resources.html', context)
@@ -412,13 +465,16 @@ def add_resource(request):
         if add_resource_form.is_valid():
             new_resource = add_resource_form.save(commit=False)
             selected_category = request.POST.get('id_category_input')
+            selected_subcategory = request.POST.get('id_subcategory_input')
             selected_link_type = request.POST.get('id_link_type_input')
 
             link_type = ResourceLinkType.objects.filter(link_type=selected_link_type).first()
             category = ResourceCategory.objects.filter(category=selected_category).first()
+            subcategory = ResourceSubCategory.objects.filter(subcategory=selected_subcategory, category=category).first()
 
             new_resource.link_type = link_type
             new_resource.category = category
+            new_resource.subcategory = subcategory
 
             new_resource.save()
             
@@ -428,6 +484,7 @@ def add_resource(request):
 
     link_types = ResourceLinkType.objects.all()
     categories = ResourceCategory.objects.all()
+    subcategories = ResourceSubCategory.objects.all()
     
     context = {
         'user': user,
@@ -435,8 +492,15 @@ def add_resource(request):
         'add_resource_form': add_resource_form,
         'link_types': link_types,
         'categories': categories,
+        'subcategories': subcategories,
     }
 
     return render(request, 'add-resource.html', context)
 
 
+def create_subcategory(request):
+    categories = ResourceCategory.objects.all()
+
+    for category in categories:
+        subcategory, created = ResourceSubCategory.objects.get_or_create(category=category)
+        subcategory.save()

@@ -68,27 +68,6 @@ class User(AbstractBaseUser, PermissionsMixin):
         return self.first_name
     
 
-class Event(models.Model):
-    title = models.CharField(max_length=100)
-    description = models.TextField()
-    start_date = models.DateTimeField()
-    end_date = models.DateTimeField()
-    location = models.CharField(max_length=200)
-    event_image = CloudinaryField('Event Image', null=True, blank=True, default='https://res.cloudinary.com/dikcjjfpo/image/upload/v1692796802/mreea-meeting-2_oeygy7.png')
-    created_at = models.DateTimeField(auto_now_add=True)
-
-    event_uuid = models.UUIDField(default=uuid.uuid4, editable=False)
-    event_short_uuid = models.CharField(max_length=10, unique=True, editable=False, default='')
-
-    def save(self, *args, **kwargs):
-        if not self.event_short_uuid:
-            self.event_short_uuid = str(self.event_uuid)[:10]
-        super().save(*args, **kwargs)
-
-    def __str__(self):
-        return self.title
-
-
 class MemberProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     first_name = models.CharField(max_length=255, blank=True, default='')
@@ -153,6 +132,14 @@ class ResourceCategory(models.Model):
 
     def __str__(self):
         return self.category
+    
+
+class ResourceSubCategory(models.Model):
+    subcategory = models.CharField(max_length=255, default="None")
+    category = models.ForeignKey(ResourceCategory, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.category.category + "-" + self.subcategory
 
 
 class ResourceLinkType(models.Model):
@@ -169,5 +156,31 @@ class Resource(models.Model):
 
     category = models.ForeignKey(ResourceCategory, on_delete=models.SET_DEFAULT, default=None, null=True)
 
+    subcategory = models.ForeignKey(ResourceSubCategory, on_delete=models.SET_DEFAULT, default=None, null=True)
+
+
     def __str__(self):
         return self.link
+    
+
+class Event(models.Model):
+    title = models.CharField(max_length=100)
+    description = models.TextField()
+    start_date = models.DateTimeField()
+    end_date = models.DateTimeField()
+    location = models.CharField(max_length=200)
+    event_image = CloudinaryField('Event Image', null=True, blank=True, default='https://res.cloudinary.com/dikcjjfpo/image/upload/v1692796802/mreea-meeting-2_oeygy7.png')
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    event_uuid = models.UUIDField(default=uuid.uuid4, editable=False)
+    event_short_uuid = models.CharField(max_length=10, unique=True, editable=False, default='')
+
+    resources = models.ManyToManyField(Resource)
+
+    def save(self, *args, **kwargs):
+        if not self.event_short_uuid:
+            self.event_short_uuid = str(self.event_uuid)[:10]
+        super().save(*args, **kwargs)
+
+    def __str__(self):
+        return self.title

@@ -26,11 +26,15 @@
         <div class="heading dark-text section-heading">Upcoming Events</div>
         {% if upcoming_events %}
         <div class="container-row upcoming-events-carousel-container events-carousel-container">
+        {% else %}
+        <div class="container-row no-events-carousel-container events-carousel-container">
+        {% endif %}
             <div class="upcoming-loading-icon-overlay loading-icon-overlay">
                 <div class="loading-icon-container">
                     <div class="loading-icon"></div>
                 </div>
             </div>
+            {% if upcoming_events %}
             {% for event in upcoming_events %}
             <div class="upcoming-events-carousel-item container-col events-carousel-item ">
                 <div class="event-card container-col">
@@ -56,6 +60,11 @@
                 </div>
             </div>
             {% endfor %}
+            {% else %}
+            <div class="container-col no-events-message">
+                <div class="dark-text">No Upcoming Events!</div>
+            </div>
+            {% endif %}
         </div>
         <div class="upcoming-swipe-left carousel-swipe container-col swipe-left">
             <i class="fa-solid fa-chevron-left"></i>
@@ -63,27 +72,26 @@
         <div class="upcoming-swipe-right carousel-swipe container-col swipe-right">
             <i class="fa-solid fa-chevron-right"></i>
         </div>
-        {% else %}
-        <div class="container-col no-events-message">
-            <div class="dark-text">No Upcoming Events!</div>
-        </div>
-        {% endif %}
     </div>
     {% if user.is_superuser %}
     <a href="{% url 'create_event' %}" class="btn create-event-btn">Create Event</a>
     {% endif %}
 </section>
 
-<section class="section upcoming-events-section container-col">
+<section class="section upcoming-events-section container-col past-events-section">
     <div class="section-container container-col upcoming-events-section-container">
         <div class="heading dark-text section-heading">Past Events</div>
         {% if past_events %}
         <div class="container-row events-carousel-container past-events-carousel-container">
+        {% else %}
+        <div class="container-row no-events-carousel-container events-carousel-container">
+        {% endif %}
             <div class="loading-icon-overlay past-loading-icon-overlay">
                 <div class="loading-icon-container">
                     <div class="loading-icon"></div>
                 </div>
             </div>
+            {% if past_events %}
             {% for event in past_events %}
             <div class="events-carousel-item container-col past-events-carousel-item">
                 <div class="event-card container-col">
@@ -109,6 +117,11 @@
                 </div>
             </div>
             {% endfor %}
+            {% else %}
+            <div class="container-col no-events-message">
+                <div class="dark-text">No Past Events!</div>
+            </div>
+            {% endif %}
         </div>
         <div class="swipe-left carousel-swipe container-col past-swipe-left">
             <i class="fa-solid fa-chevron-left"></i>
@@ -116,11 +129,6 @@
         <div class="swipe-right carousel-swipe container-col past-swipe-right">
             <i class="fa-solid fa-chevron-right"></i>
         </div>
-        {% else %}
-        <div class="container-col no-events-message">
-            <div class="dark-text">No Past Events!</div>
-        </div>
-        {% endif %}
     </div>
     {% if user.is_superuser %}
     <a href="{% url 'create_event' %}" class="btn create-event-btn">Create Event</a>

@@ -8,6 +8,7 @@ const loadingOverlayUpcoming = document.querySelector(".upcoming-loading-icon-ov
 const swipeLeftPast = document.querySelector(".past-swipe-left");
 const swipeRightPast = document.querySelector(".past-swipe-right");
 
+
 const carouselItemsPast = document.querySelectorAll(".past-events-carousel-item");
 const carouselContainerPast = document.querySelector(".past-events-carousel-container");
 const loadingOverlayPast = document.querySelector(".past-loading-icon-overlay");
@@ -32,7 +33,6 @@ const checkSwipes = (carouselIems, swipeLeft, swipeRight) => {
         swipeRight.style.display = "none";
     } else {
         let currentNum = findCurrentItem(carouselIems);
-        console.log(currentNum);
         if (currentNum == 0) {
             swipeLeft.style.display = "none";
             swipeRight.style.display = "flex";
@@ -44,6 +44,7 @@ const checkSwipes = (carouselIems, swipeLeft, swipeRight) => {
 }
 
 const addClassNextItem = (num, carouselItems) => {
+    console.log(carouselItems, num, carouselItems[num]);
     carouselItems[num].classList.add("current");
 }
 
@@ -54,7 +55,7 @@ const removeClassCurrentItem = (num, carouselItems) => {
 const moveCarouseItems = (move, carouselItems) => {
     let n = findCurrentItem(carouselItems);
     let nextItem = n + move;
-    if ((nextItem == carouselItems.length - 2) && (carouselItems.length != 2) || nextItem < 0) {
+    if ((nextItem == carouselItems.length - 2) && (carouselItems.length != 2) || nextItem < 0 || carouselItems.length == 0) {
         return;
     } else if (carouselItems.length == 1) {
         carouselItems[0].style.left = "50%";

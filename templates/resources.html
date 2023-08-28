@@ -5,6 +5,17 @@
 
 <section class="section resources-page-section">
     <div class="section-container container-col resources-page-section-container">
+        {% for category, subcategories_with_resources in categories_with_subcategories.items %}
+            <h2>{{ category }}</h2>
+            {% for subcategory, resources in subcategories_with_resources.items %}
+                <h3>{{ subcategory }}</h3>
+                <ul>
+                    {% for resource in resources %}
+                        <li>{{ resource.link }}</li>
+                    {% endfor %}
+                </ul>
+            {% endfor %}
+        {% endfor %}
         {% if user.is_superuser %}
         <a href="{% url 'add_resource' %}" class="btn">Add Resource</a>
         {% endif %}
