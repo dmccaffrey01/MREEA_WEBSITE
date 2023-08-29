@@ -54,4 +54,4 @@ class MemberProfilePictureForm(forms.ModelForm):
 class AddResourceForm(forms.ModelForm):
     class Meta:
         model = Resource
-        fields = ['link']
+        fields = ['name', 'link']

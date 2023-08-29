@@ -3,6 +3,13 @@ from django.db import models
 from django.utils import timezone
 import uuid
 from cloudinary.models import CloudinaryField
+import random
+import string
+
+
+def generate_random_string(length):
+    letters = string.ascii_letters
+    return ''.join(random.choice(letters) for _ in range(length))
 
 
 class CustomUserManager(UserManager):
@@ -149,18 +156,39 @@ class ResourceLinkType(models.Model):
         return self.link_type
 
 
+
 class Resource(models.Model):
+    name = models.CharField(max_length=255, default="")
     link = models.CharField(max_length=255, default="")
-
     link_type = models.ForeignKey(ResourceLinkType, on_delete=models.SET_DEFAULT, default=None, null=True)
-
     category = models.ForeignKey(ResourceCategory, on_delete=models.SET_DEFAULT, default=None, null=True)
-
     subcategory = models.ForeignKey(ResourceSubCategory, on_delete=models.SET_DEFAULT, default=None, null=True)
-
+    embed_link = models.CharField(max_length=255, default="", null=True, blank=True)
 
     def __str__(self):
-        return self.link
+        return self.name
+    
+    def save(self, *args, **kwargs):
+        if not self.name:
+            index = Resource.objects.count() + 1
+            self.name = f"Resource {index}"
+        
+        if not self.embed_link and self.link_type and self.link_type.link_type == "PDF":
+            url = self.link
+            parts = url.split("/")
+            parts[-1] = "preview"
+            new_url = "/".join(parts)
+            self.embed_link = new_url
+
+        if not self.embed_link and self.link_type and self.link_type.link_type == "Youtube":
+            url = self.link
+            url = url.replace("watch?v=", "embed/")
+            parts = url.split("&ab_channel")
+            parts[-1] = ""
+            new_url = "".join(parts)
+            self.embed_link = new_url
+            
+        super().save(*args, **kwargs)
     
 
 class Event(models.Model):

@@ -6,15 +6,57 @@
 <section class="section resources-page-section">
     <div class="section-container container-col resources-page-section-container">
         {% for category, subcategories_with_resources in categories_with_subcategories.items %}
-            <h2>{{ category }}</h2>
-            {% for subcategory, resources in subcategories_with_resources.items %}
-                <h3>{{ subcategory }}</h3>
-                <ul>
-                    {% for resource in resources %}
-                        <li>{{ resource.link }}</li>
-                    {% endfor %}
-                </ul>
-            {% endfor %}
+        
+        <div class="resources-category-container resources-page-dropdown container-col">
+            <div class="container-row resources-page-dropdown-heading resources-category-dropdown-heading">
+                <div class="resources-category-heading dark-text">{{ category }}</div>
+                <div class="resources-category-dropdown-icon-container resources-page-dropdonw-icon-container">
+                    <i class="fa-solid fa-chevron-down resources-category-dropdown-icon"></i>
+                </div>
+            </div>
+            <div class="container-col resources-category-items-container resources-page-items-container">
+                {% for subcategory, resources in subcategories_with_resources.items %}
+                <div class="resources-subcategory-container resources-page-dropdown container-col">
+                    <div class="container-row resources-page-dropdown-heading resources-subcategory-dropdown-heading">
+                        <div class="resources-subcategory-heading dark-text">{{ subcategory.subcategory }}</div>
+                        <div class="resources-subcategory-dropdown-icon-container resources-page-dropdonw-icon-container">
+                            <i class="fa-solid fa-chevron-down resources-subcategory-dropdown-icon"></i>
+                        </div>
+                    </div>
+                    <div class="container-col resources-subcategory-items-container resources-page-items-container">
+                        {% for resource in resources %}
+                        <div class="resources-page-dropdown-heading resource-link-dropdown-item container-row">
+                            <div class="resources-type-img-container">
+                                {% if resource.link_type.link_type == 'Youtube' %}
+                                <img src="https://res.cloudinary.com/dikcjjfpo/image/upload/v1693300603/youtube_mhh1wj.png" alt="Youtube Logo" class="img-100a">
+                                {% elif resource.link_type.link_type == 'PDF' %}
+                                <img src="https://res.cloudinary.com/dikcjjfpo/image/upload/v1693300603/pdf_rcq2o5.png" alt="Youtube Logo" class="img-100a">
+                                {% else %}
+                                <img src="https://res.cloudinary.com/dikcjjfpo/image/upload/v1693301018/link_fvjmsd.png" alt="Youtube Logo" class="img-100a">
+                                {% endif %}
+                            </div>
+                            <div class="resources-resource-heading container-col">
+                                <div class="resources-resource-name-heading">
+                                    {{ resource.name }}:
+                                </div>
+                                <a class="resources-resource-link-heading" href="{{ resource.link}}" target="_blank">{{ resource.link }}</a>
+                                <div class="hidden-resource-data resource-embed-link-data">{{ resource.embed_link }}</div>
+                                <div class="hidden-resource-data resource-link-type-data">{{ resource.link_type.link_type }}</div>
+                            </div>
+                            <div class="resources-resource-open-btn container-col">
+                                <i class="fa-solid fa-ellipsis-vertical"></i>
+                            </div>
+                            <div class="resources-resource-open-container container-col">
+                                <div class="dark-text resources-resource-open-text resource-open-here-btn">Open here</div>
+                                <a href="{{ resource.link}}" target="_blank" class="dark-text resources-resource-open-text">Open in new tab</a>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
         {% endfor %}
         {% if user.is_superuser %}
         <a href="{% url 'add_resource' %}" class="btn">Add Resource</a>
@@ -22,8 +64,18 @@
     </div>
 </section>
 
+<div class="resource-link-embed-section container-col">
+    <div class="iframe-video-container">
+        <iframe src="https://www.youtube.com/embed/7PIji8OubXU" width="100%" height="100%" title="Youtube Video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen class="youtube-iframe"></iframe>
+    </div>
+    <iframe src="https://drive.google.com/file/d/1aA76C_4a6cKyx2-61Fg1F3fimfAY9zJx/preview" width="100%" height="100%" frameborder="0" allow="autoplay" class="pdf-iframe"></iframe>
+    <div class="btn close-resource-link-embed-btn">Close &times;</div>
+</div>
+
 {% endblock %}
 
 {% block js %}
+
+<script src="{% static 'js/resources.js' %}"></script>
 
 {% endblock %}

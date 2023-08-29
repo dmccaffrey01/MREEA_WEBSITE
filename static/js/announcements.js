@@ -44,7 +44,6 @@ const checkSwipes = (carouselIems, swipeLeft, swipeRight) => {
 }
 
 const addClassNextItem = (num, carouselItems) => {
-    console.log(carouselItems, num, carouselItems[num]);
     carouselItems[num].classList.add("current");
 }
 

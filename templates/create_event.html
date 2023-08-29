@@ -56,7 +56,7 @@
               <div class="event-current-resources-container container-col">
                 {% if event_resources %}
                 {% for resource in event_resources %}
-                <div class="event-current-resource-item dark-text">{{ resource.link }}</div>
+                <div class="event-current-resource-item dark-text">{{ resource.name }} - {{ resource.link }}</div>
                 {% endfor %}
                 {% endif %}
                 <div class="dark-text"><span class="event-form-resource-count">{{ number_of_event_resources }}</span> Resources Added!</div>
@@ -69,11 +69,11 @@
                   <div class="select-resource-items-container container-col">
                     {% if event_resources %}
                     {% for resource in event_resources %}
-                    <div class="select-resource-item selected">{{ resource.link }}</div>
+                    <div class="select-resource-item selected">{{ resource.name }} - {{ resource.link }}</div>
                     {% endfor %}
                     {% endif %}
                     {% for resource in resources %}
-                    <div class="select-resource-item">{{ resource.link }}</div>
+                    <div class="select-resource-item">{{ resource.name }} - {{ resource.link }}</div>
                     {% endfor %}
                   </div>
                   <div class="select-resource-confirm-btn btn">Select (<span class="select-resource-count">{{ number_of_event_resources }}</span>)</div>

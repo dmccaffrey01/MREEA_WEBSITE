@@ -442,7 +442,7 @@ def resources_page(request):
             resources = Resource.objects.filter(subcategory=subcategory)
             subcategories_with_resources[subcategory] = resources
         categories_with_subcategories[category] = subcategories_with_resources
-
+        
     context = {
         'user': user,
         'member_profile': member_profile,

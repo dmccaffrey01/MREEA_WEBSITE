@@ -69,7 +69,9 @@ const updateResourceInput = () => {
 
     selectResourceItems.forEach(item => {
         if (item.classList.contains("selected")) {
-            let link = item.textContent;
+            
+            let linkName = item.textContent;
+            let link = linkName.split(" - ")[2];
             selectedItems.push(link);
         }
     });
