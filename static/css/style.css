@@ -1163,6 +1163,63 @@ svg.bigTriangleColor.flip {
     }
 }
 
+/* Testimonial Section */
+
+.testimonial-section {
+    background-color: var(--GRAY-LIGHT-3);
+}
+
+.testimonial-section-container {
+    padding: 100px 0;
+    justify-content: space-between;
+}
+
+.testimonial-card {
+    width: 420px;
+    height: 420px;
+    border-radius: 20px;
+    background-color: var(--GRAY-LIGHT-3);
+    border: 7px solid var(--RED-LOGO);
+    position: relative;
+    padding: 70px 60px;
+    box-shadow: -25px 29px 21px -30px rgba(0,0,0,0.75);
+    -webkit-box-shadow: -25px 29px 21px -30px rgba(0,0,0,0.75);
+    -moz-box-shadow: -25px 29px 21px -30px rgba(0,0,0,0.75);
+}
+
+.testimonial-img-container {
+    position: absolute;
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 7px solid var(--RED-LOGO);
+    right: 0;
+    top: 0;
+    transform: translate(50%, -50%);
+    outline: 14px solid var(--GRAY-LIGHT-3);
+}
+
+.testimonial-quote-container {
+    width: 60px;
+    height: 60px;
+    position: absolute;
+    z-index: 2;
+}
+
+.quote-marks-1 {
+    left: 10px;
+    top: 10px;
+}
+
+.quote-marks-2 {
+    right: 10px;
+    bottom: 10px;
+}
+
+.testimonail-text {
+    z-index: 3;
+}
 
 /* Call To Action Section */
 
