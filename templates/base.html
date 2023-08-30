@@ -24,7 +24,7 @@
 </head>
 <body>
     <!-- Header Logo, Nav Bar and Social Links -->
-    <header>
+    <header class="header-section">
         <div class="header-container">
             <!-- Logo -->
             <div class="logo-container">
@@ -41,16 +41,43 @@
             <nav class="nav-bar">
                 <ul class="nav-menu">
                     <li class="nav-item">
-                        <a href="{% url 'announcements' %}" class="nav-link">Announcements</a>
+                        <a href="{% url 'announcements' %}" class="nav-link">Events</a>
                     </li>
                     <li class="nav-item">
                         <a href="{% url 'members' %}" class="nav-link">Members</a>
                     </li>
-                    <li class="nav-item">
-                        <a href="{% url 'learn' %}" class="nav-link">Learn</a>
+                    <li class="nav-item-dropdown-btn container-col nav-item">
+                        <div class="nav-item-dropdown-heading">Learn <i class="fa-solid fa-caret-down nav-dropdown-icon"></i></div>
+                        <div class="nav-item-dropdown-container">
+                            <ul class="nav-item-dropdown">
+                                <li class="nav-item">
+                                    <a href="{% url 'learn' %}" class="nav-link">Learn</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{% url 'resources' %}" class="nav-link">Resources</a>
+                                </li>
+                                
+                            </ul>
+                        </div>
                     </li>
                     <li class="nav-item">
-                        <a href="{% url 'contact' %}" class="nav-link">Contact</a>
+                        <a href="#" class="nav-link">Blog</a>
+                    </li>
+                    <li class="nav-item-dropdown-btn container-col nav-item">
+                        <div class="nav-item-dropdown-heading">More <i class="fa-solid fa-caret-down nav-dropdown-icon"></i></div>
+                        <div class="nav-item-dropdown-container">
+                            <ul class="nav-item-dropdown">
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link">About</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{% url 'membership' %}" class="nav-link">Membership</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{% url 'contact' %}" class="nav-link">Contact</a>
+                                </li>
+                            </ul>
+                        </div>
                     </li>
                 </ul>
                 <div class="hamburger">
@@ -63,38 +90,26 @@
             <div class="account-login-container">
                 <div class="account-login-btns-container">
                     {% if user.is_authenticated %}
-                    <div class="account-profile-container">
-                        <div class="account-profile-img-container">
+                    <div class="account-profile-container container-row">
+                        <a href="{% url 'member_profile' user.member_short_uuid %}" class="account-profile-img-container">
                             {% if member_profile %}
                             <img src="{{ member_profile.profile_image }}" alt="Profile Picture" class="account-profile-img img-100a">
                             {% else %}
                             <img src="https://res.cloudinary.com/dikcjjfpo/image/upload/v1692718355/default-profile-pic_nwq7pg.png" alt="Profile Picture" class="account-profile-img img-100a">
                             {% endif %}
-                        </div>
-                        <div class="profile-btns-container container-col">
-                            <a href="{% url 'membership' %}" class="profile-btn-link">Membership</a>
-                            <a href="{% url 'member_profile' user.member_short_uuid %}" class="profile-btn-link">
-                                View Profile
-                            </a>
-                            <a href="{% url 'account_logout' %}" class="btn logout-btn">
-                                Log Out
-                            </a>
-                        </div>
+                        </a>
+                        <a href="{% url 'account_logout' %}" class="dark-text">
+                            Log Out
+                        </a>
                     </div>
                     {% else %}
-                    <div class="account-profile-container">
-                        <div class="account-profile-img-container not-logged-in">
-                            <img src="https://res.cloudinary.com/dikcjjfpo/image/upload/v1692718355/log-in_lihbz1.png" alt="Profile Picture" class="account-profile-img img-100a">
-                        </div>
-                        <div class="profile-btns-container container-col">
-                            <a href="{% url 'membership' %}" class="profile-btn-link">Membership</a>
-                            <a href="{% url 'account_login' %}" class="dark-text">
-                                Login
-                            </a>
-                            <a href="{% url 'account_signup' %}" class="btn register-btn">
-                                Register
-                            </a>
-                        </div>
+                    <div class="account-profile-container container-row">
+                        <a href="{% url 'account_login' %}" class="dark-text">
+                            Login
+                        </a>
+                        <a href="{% url 'account_signup' %}" class="btn register-btn">
+                            Register
+                        </a>
                     </div>
                     {% endif %}
                 </div>

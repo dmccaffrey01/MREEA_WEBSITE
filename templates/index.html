@@ -4,111 +4,166 @@
 {% block content %}
 
 <section class="section home-hero-section">
-    <div class="container-row home-hero-container carousel-container">
-        <div class="container-col home-hero-content-container carousel-item carousel-item-1">
-            <div class="home-hero-content-wrapper">
-                <div class="container-col hero-img-container img-container">
-                    <div class="hero-overlay"></div>
-                    <img src="https://res.cloudinary.com/dikcjjfpo/image/upload/v1692718472/hero-1-HdsRd5l4u-transformed_zzvnrg.png" alt="Real Estate picture" class="hero-image">
-                </div>
-                <div class="hero-card hero-card-1 container-col">
-                    {% if user.is_authenticated %}
-                    <div class="hero-card-content-container container-col">
-                        <h2 class="hero-card-heading white-text heading">Maryland Real Estate Educators Asscociation</h2>
-                        <div class="white-text">Simply click the button to join or renew our memebership and access our community</div>
-                        <a href="https://next.waveapps.com/checkouts/7d1108f10cbe4cbaae8599386fe3ea17" target="_blank"  class="btn">Join / Renew</a>
-                    </div>
-                    {% else %}
-                    <div class="hero-card-content-container container-col">
-                        <h2 class="hero-card-heading white-text heading">Maryland Real Estate Educators Asscociation</h2>
-                        <div class="white-text">Login in or register a account, to get access to join our membership and access our member information</div>
-                        <div class="btns-container container-row">
-                            <a href="{% url 'account_login' %}" class="btn">Log in</a>
-                            <a href="{% url 'account_signup' %}" class="btn">Register</a>
-                        </div>
-                    </div>
-                    {% endif %}
-                </div>
+    <div class="section-container container-row home-hero-section-container">
+        <div class="container-col home-hero-hook-container">
+            <div class="home-hero-hook-heading-container container-col">
+                <h2 class="dark-text home-hero-hook-heading">Real Estate Mastery</h2>
+                <h2 class="dark-text home-hero-hook-heading">Starts Here</h2>
             </div>
-        </div>
-
-        <div class="container-col home-hero-content-container carousel-item carousel-item-2">
-            <div class="home-hero-content-wrapper">
-                <div class="container-col hero-img-container img-container">
-                    <div class="hero-overlay"></div>
-                    <img src="https://res.cloudinary.com/dikcjjfpo/image/upload/v1692718471/hero-2-transformed_vvlza0.jpg" alt="Real Estate picture" class="hero-image">
-                </div>
-                <div class="hero-card hero-card-2 container-col">
-                    <div class="hero-card-content-container container-col">
-                        {% if upcoming_event %}
-                        <h2 class="hero-card-heading white-text heading">Upcoming Events</h2>
-                        <div class="hero-card-text-container container-col">
-                            <div class="white-text">{{ upcoming_event.title }}</div>
-                            <div class="white-text">{{ upcoming_event.description }}</div>
-                            <div class="white-text">Starts - {{ upcoming_event.start_date }}</div>
-                            <div class="white-text">Ends - {{ upcoming_event.end_date }}</div>
-                            <div class="white-text">Location - {{ upcoming_event.location }}</div>
-                        </div>
-                        {% else %}
-                        <h2 class="hero-card-heading white-text heading">No Upcoming Events</h2>
-                        {% endif %}
-                        <a href="{% url 'announcements' %}" class="btn">Go To Announcements</a>
-                    </div>
-                </div>
+            <div class="container-col home-hero-hook-content-container">
+                <h3 class="dark-text home-hero-hook-subheading">Maryland Real Estate Education Association</h3>
+                <div class="dark-text">Your Journey to Success Begins here</div>
+                <div class="dark-text">Building Minds, Building Futures</div>
+                <a href="{% url 'membership' %}" class="btn home-hero-hook-btn">Join Now</a>
             </div>
+            
         </div>
-
-        <div class="container-col home-hero-content-container carousel-item carousel-item-3" id="calendar-section">
-            <div class="home-hero-content-wrapper">
-                <div class="container-col hero-img-container img-container">
-                    <div class="hero-overlay"></div>
-                    <img src="https://res.cloudinary.com/dikcjjfpo/image/upload/v1692718469/hero-3-transformed_efg6jc.jpg" alt="Real Estate picture" class="hero-image">
-                </div>
-                <div class="hero-card hero-card-3 container-col">
-                    <h2 class="white-text heading hero-card-heading">Connect with others</h2>
-                    <div class="hero-card-text-container container-col">
-                        <div class="white-text">Find and get in contact with other members of the group!</div>
-                        <div class="white-text">Visit out member page and look through our member directory</div>
-                    </div>
-                    <a href="{% url 'members' %}" class="btn">Go To Members</a>
-                </div>
-            </div>
-        </div>
-
-        <div class="swipe-left carousel-swipe container-col">
-            <i class="fa-solid fa-chevron-left"></i>
-        </div>
-        <div class="swipe-right carousel-swipe container-col">
-            <i class="fa-solid fa-chevron-right"></i>
-        </div>
-        <div class="carousel-dots-container container-row">
-            <div class="carousel-dot carousel-dot-1 active"></div>
-            <div class="carousel-dot carousel-dot-2"></div>
-            <div class="carousel-dot carousel-dot-3"></div>
-        </div>
+    </div>
+    <div class="big-triangle-svg-container">
+        <svg class="bigTriangleColor flip" xmlns="http://www.w3.org/2000/svg" version="1.1" width="100%" height="200px" viewBox="0 0 100 102" preserveAspectRatio="none">
+            <path d="M0 0 L50 100 L100 0 Z" />
+        </svg>
     </div>
 </section>
 
 <section class="section home-welcome-section ss-style-bigtriangle">
     <div class="home-welcome-section-container section-container container-col">
         <div class="home-welcome-content-container container-row">
-            <div class="home-welcome-img-container img-container">
-                <img src="https://res.cloudinary.com/dikcjjfpo/image/upload/v1692718431/mreea-logo-1_lmfhvl.png" alt="MREEA Logo" class="home-welcome-img img-100a">
+            <div class="home-welcome-img-section-container container-col">
+                <div class="home-welcome-img-container img-container">
+                    <img src="https://res.cloudinary.com/dikcjjfpo/image/upload/v1693407046/welcome-1_rmlibh.png" alt="MREEA Logo" class="home-welcome-img img-100a">
+                </div>
             </div>
             <div class="hero-welcome-text-container container-col">
-                <h2 class="sub-heading dark-text">Welcome to the Maryland Real Estate Educators Association (MREEA)</h2>
+                <h2 class="sub-heading dark-text">Who is MREEA?</h2>
                 <div class="home-welcome-main-text-container container-col">
-                    <div class="dark-text">
-                        We're a dynamic Maryland real estate professionals group, committed to top-notch education for industry practitioners. Our diverse membership includes instructors, regulators, attorneys, lenders, and more. Through quarterly meetings, we drive professional growth, knowledge sharing, and industry leadership. Elevate your skills, expand your network, and shape real estate education with us.
+                    <div class="home-welcome-item-container container-row">
+                        <div class="home-welcome-item-icon-container container-col">
+                            <img src="https://res.cloudinary.com/dikcjjfpo/image/upload/v1693401839/community-1_k8gypj.png" alt="Communit Icon" class="img-100a">
+                        </div>
+                        <div class="dark-text">
+                            MREEA unites real estate educators, including instructors, school owners, regulators, attorneys, lenders, inspectors, and more, fostering a comprehensive network
+                        </div>
+                    </div>
+                    <div class="home-welcome-item-container container-row">
+                        <div class="home-welcome-item-icon-container container-col">
+                            <img src="https://res.cloudinary.com/dikcjjfpo/image/upload/v1693401839/improvement-1_brt6do.png" alt="Improvements Icon" class="img-100a">
+                        </div>
+                        <div class="dark-text">
+                            Join us quarterly to learn, connect, and engage with industry leaders. Elevate your skills and knowledge to excel as a Maryland real estate educator
+                        </div>
+                    </div>
+                    
+                    <div class="home-welcome-item-container container-row">
+                        <div class="home-welcome-item-icon-container container-col">
+                            <img src="https://res.cloudinary.com/dikcjjfpo/image/upload/v1693401839/empowerment-1_phewiq.png" alt="Empower Icon" class="img-100a">
+                        </div>
+                        <div class="dark-text">
+                            MREEA empowers members through shared insights, networking, and continuous development. Together, we enhance real estate education in Maryland.
+                        </div>
                     </div>
                     <a href="#" class="btn">Visit About</a>
+                </div>
             </div>
         </div>
     </div>
 </section>
 
-<svg id="bigTriangleColor" xmlns="http://www.w3.org/2000/svg" version="1.1" width="100%" height="100" viewBox="0 0 100 102" preserveAspectRatio="none">
+<svg class="bigTriangleColor" xmlns="http://www.w3.org/2000/svg" version="1.1" width="100%" height="200px" viewBox="0 0 100 102" preserveAspectRatio="none">
     <path d="M0 0 L50 100 L100 0 Z" />
+</svg>
+
+<section class="section home-problems-section">
+    <div class="section-container container-row home-problems-section-container">
+        <div class="home-problems-text-container container-col">
+            <h2 class="sub-heading dark-text">We know your struggles</h2>
+            <div class="home-problems-main-text-container container-col">
+                <div class="home-problems-item-container container-row">
+                    <div class="home-problems-item-icon-container container-col">
+                        <img src="https://res.cloudinary.com/dikcjjfpo/image/upload/v1693407956/arrow-1_b9oouc.png" alt="Communit Icon" class="img-100a">
+                    </div>
+                    <div class="dark-text">
+                        Your often confused by the intricate nature of real estate education without any proper guidance or resources
+                    </div>
+                    
+                </div>
+                <div class="home-problems-item-container container-row">
+                    <div class="home-problems-item-icon-container container-col">
+                        <img src="https://res.cloudinary.com/dikcjjfpo/image/upload/v1693407956/arrow-1_b9oouc.png" alt="Improvements Icon" class="img-100a">
+                    </div>
+                    <div class="dark-text">
+                        It's challenging and time-contsuming to keep up with the constantly evolving regulations, teaching methods and industry trends
+                    </div>
+                </div>
+                
+                <div class="home-problems-item-container container-row">
+                    <div class="home-problems-item-icon-container container-col">
+                        <img src="https://res.cloudinary.com/dikcjjfpo/image/upload/v1693407956/arrow-1_b9oouc.png" alt="Empower Icon" class="img-100a">
+                    </div>
+                    <div class="dark-text">
+                        The feeling of isolation with no one to share experiences or connect with when a problem arises
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="home-problems-img-section-container container-col">
+            <div class="home-problems-img-container img-container">
+                <img src="https://res.cloudinary.com/dikcjjfpo/image/upload/v1693405494/problems_n2ydey.png" alt="MREEA Logo" class="home-problems-img img-100a">
+            </div>
+        </div>
+    </div>
+</section>
+
+<svg class="bigHalfCircle-b" xmlns="http://www.w3.org/2000/svg" version="1.1" width="100%" height="100" viewBox="0 0 100 100" preserveAspectRatio="none">
+    <path d="M0 100 C40 0 60 0 100 100 Z" />
+</svg>
+
+<section class="section home-solutions-section">
+    <div class="section-container container-row home-solutions-section-container">
+        <div class="home-problems-img-section-container container-col">
+            <div class="home-problems-img-container img-container">
+                <img src="https://res.cloudinary.com/dikcjjfpo/image/upload/v1693405494/solutions_msmoax.png" alt="MREEA Logo" class="home-problems-img img-100a">
+            </div>
+        </div>
+
+        <div class="home-solutions-text-container container-col">
+            <h2 class="sub-heading dark-text">We have your answers</h2>
+            <div class="home-solutions-main-text-container container-col">
+                <div class="home-solutions-item-container container-row">
+                    <div class="home-solutions-item-icon-container container-col">
+                        <img src="https://res.cloudinary.com/dikcjjfpo/image/upload/v1693407933/check-1_ju095u.png" alt="Communit Icon" class="img-100a">
+                    </div>
+                    <div class="dark-text">
+                        MREEA simplifies the complexities of real estate education by offering valuable resources, shared insights, and a platform for collaborative problem-solving, making your journey easy
+                    </div>
+                    
+                </div>
+                <div class="home-solutions-item-container container-row">
+                    <div class="home-solutions-item-icon-container container-col">
+                        <img src="https://res.cloudinary.com/dikcjjfpo/image/upload/v1693407933/check-1_ju095u.png" alt="Improvements Icon" class="img-100a">
+                    </div>
+                    <div class="dark-text">
+                        Through regular interactions with industry leaders, MREEA provides access to the latest updates, regulations, and effective teaching strategies
+                    </div>
+                </div>
+                
+                <div class="home-solutions-item-container container-row">
+                    <div class="home-solutions-item-icon-container container-col">
+                        <img src="https://res.cloudinary.com/dikcjjfpo/image/upload/v1693407933/check-1_ju095u.png" alt="Empower Icon" class="img-100a">
+                    </div>
+                    <div class="dark-text">
+                        MREEA offers a vibrant community where real estate educators can connect, collaborate, and learn from diverse peers, eliminating isolation
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+</section>
+
+<svg class="bigHalfCircle-b flip" xmlns="http://www.w3.org/2000/svg" version="1.1" width="100%" height="100" viewBox="0 0 100 100" preserveAspectRatio="none">
+    <path d="M0 100 C40 0 60 0 100 100 Z" />
 </svg>
 
 <section class="section benefits-section">
@@ -117,52 +172,82 @@
         <div class="benefits-col-container container-row">
             <div class="benefit-col container-col">
                 <div class="benefit-col-img-container img-container container-col">
-                    <img src="https://res.cloudinary.com/dikcjjfpo/image/upload/v1692718483/professional-development_jtvqdr.png" alt="Professional Development Icon" class="benefit-img img-100a">
+                    <img src="https://res.cloudinary.com/dikcjjfpo/image/upload/v1693415548/communit-1_tmeve6.png" alt="Community Icon" class="benefit-img img-100a">
                 </div>
-                <div class="sub-heading dark-text">Professional Development</div>
-                <div class="benefit-col-text-container container-col">
-                    <div class="white-text">
-                        Specialized training and resources for enhancing teaching skills, instructional techniques, and curriculum development
-                    </div>
-                    <div class="white-text">
-                        Stay updated on changes in real estate regulations, laws, and market dynamics
-                    </div>
-                    <div class="white-text">
-                        Access to a vast repository of educational materials, webinars, and conferences
-                    </div>
+                <div class="container-col benefit-heading-container">
+                    <div class="benefit-heading dark-text">Community</div>
+                    <div class="benefit-heading dark-text">Collaboration</div>
                 </div>
-            </div>
-            <div class="benefit-col container-col">
-                <div class="benefit-col-img-container img-container container-col second">
-                    <img src="https://res.cloudinary.com/dikcjjfpo/image/upload/v1692718483/networking_w8cfno.png" alt="Professional Development Icon" class="benefit-img img-100a">
-                </div>
-                <div class="sub-heading dark-text">Networking</div>
-                <div class="benefit-col-text-container container-col">
-                    <div class="white-text">
-                        Connects members with a diverse community of real estate professionals, educators, and industry leaders
+                <div class="benefit-points-container container-col">
+                    <div class="benefit-point-container container-row">
+                        <div class="benefit-point-img-container container-col">
+                            <img src="https://res.cloudinary.com/dikcjjfpo/image/upload/v1693416631/circle-2_p5luwx.png" alt="Benefit Bullet point" class="img-100a">
+                        </div>
+                        <div class="benefit-point-text dark-text">
+                            <span class="benefit-point-highlight">Peer Learning:</span> Engage with a diverse network of real estate educators, sharing insights and experiences that enhance your teaching methods
+                        </div>
                     </div>
-                    <div class="white-text">
-                        Opens doors to potential partnerships, collaborations, and business opportunities
-                    </div>
-                    <div class="white-text">
-                        Access to networking events, workshops, and seminars
+                    <div class="benefit-point-container container-row">
+                        <div class="benefit-point-img-container container-col">
+                            <img src="https://res.cloudinary.com/dikcjjfpo/image/upload/v1693416631/circle-2_p5luwx.png" alt="Benefit Bullet point" class="img-100a">
+                        </div>
+                        <div class="benefit-point-text dark-text">
+                            <span class="benefit-point-highlight">Collaborative Help:</span> Tap into collective wisdom to address challenges and find innovative solutions through community discussions
+                        </div>
                     </div>
                 </div>
             </div>
             <div class="benefit-col container-col">
                 <div class="benefit-col-img-container img-container container-col">
-                    <img src="https://res.cloudinary.com/dikcjjfpo/image/upload/v1692718483/career-impact_tfw5qv.png" alt="Professional Development Icon" class="benefit-img img-100a">
+                    <img src="https://res.cloudinary.com/dikcjjfpo/image/upload/v1693415548/progress-1_knqvf5.png" alt="Progress Icon" class="benefit-img img-100a">
                 </div>
-                <div class="sub-heading dark-text">Career Impact</div>
-                <div class="benefit-col-text-container container-col">
-                    <div class="white-text">
-                        Elevates members' standing in the real estate education realm
+                <div class="container-col benefit-heading-container">
+                    <div class="benefit-heading dark-text">Professional</div>
+                    <div class="benefit-heading dark-text">Advancement</div>
+                </div>
+                <div class="benefit-points-container container-col">
+                    <div class="benefit-point-container container-row">
+                        <div class="benefit-point-img-container container-col">
+                            <img src="https://res.cloudinary.com/dikcjjfpo/image/upload/v1693416631/circle-2_p5luwx.png" alt="Benefit Bullet point" class="img-100a">
+                        </div>
+                        <div class="benefit-point-text dark-text">
+                            <span class="benefit-point-highlight">Industry Insights:</span> Gain exclusive access to industry leaders' expertise and stay informed about regulatory changes, trends, and best practices.
+                        </div>
                     </div>
-                    <div class="white-text">
-                        Enhances professional growth and expertise through continuous learning opportunities
+                    <div class="benefit-point-container container-row">
+                        <div class="benefit-point-img-container container-col">
+                            <img src="https://res.cloudinary.com/dikcjjfpo/image/upload/v1693416631/circle-2_p5luwx.png" alt="Benefit Bullet point" class="img-100a">
+                        </div>
+                        <div class="benefit-point-text dark-text">
+                            <span class="benefit-point-highlight">Continuous Development: </span> Participate in workshops, seminars, and events that empower you to refine your skills, ultimately elevating your career as an educator.
+                        </div>
                     </div>
-                    <div class="white-text">
-                        Contributes to the advancement and improvement of the entire real estate education industry
+                </div>
+            </div>
+            <div class="benefit-col container-col">
+                <div class="benefit-col-img-container img-container container-col">
+                    <img src="https://res.cloudinary.com/dikcjjfpo/image/upload/v1693415548/resource-support-1_crw11r.png" alt="Support Icon" class="benefit-img img-100a">
+                </div>
+                <div class="container-col benefit-heading-container">
+                    <div class="benefit-heading dark-text">Resourceful</div>
+                    <div class="benefit-heading dark-text">Support</div>
+                </div>
+                <div class="benefit-points-container container-col">
+                    <div class="benefit-point-container container-row">
+                        <div class="benefit-point-img-container container-col">
+                            <img src="https://res.cloudinary.com/dikcjjfpo/image/upload/v1693416631/circle-2_p5luwx.png" alt="Benefit Bullet point" class="img-100a">
+                        </div>
+                        <div class="benefit-point-text dark-text">
+                            <span class="benefit-point-highlight">Resource Hub:</span> Access a wealth of curated materials, lesson plans, and educational resources, streamlining your curriculum planning
+                        </div>
+                    </div>
+                    <div class="benefit-point-container container-row">
+                        <div class="benefit-point-img-container container-col">
+                            <img src="https://res.cloudinary.com/dikcjjfpo/image/upload/v1693416631/circle-2_p5luwx.png" alt="Benefit Bullet point" class="img-100a">
+                        </div>
+                        <div class="benefit-point-text dark-text">
+                            <span class="benefit-point-highlight">Guidance and Mentorship:</span> Benefit from experienced educators' mentorship, offering personalized guidance for your professional growth
+                        </div>
                     </div>
                 </div>
             </div>
@@ -170,103 +255,21 @@
     </div>
 </section>
 
-<section class="section mission-section">
-    <div class="container-row announcements-hero-container choose-hero-container">
-        <div class="announcements-hero-img-container img-container container-col">
-            <div class="hero-overlay"></div>
-            <img src="https://res.cloudinary.com/dikcjjfpo/image/upload/v1692718591/mission_bggya3.png" alt="MREEA Meeting" class="hero-image">
-        </div>
-        <div class="announcements-hero-heading-container container-col choose-hero-heading-container">
-            <div class="hero-text-container">
-                <div class="hero-heading">MISSION</div>
-                <div class="white-text">
-                    At MREEA, our mission is to empower and elevate the real estate education community in Maryland through a steadfast commitment to networking, professional development, and advocacy. We strive to cultivate a dynamic platform that connects real estate educators, professionals, and industry leaders, fostering collaboration, innovation, and mutual growth. Our association is dedicated to providing exceptional learning resources and specialized training, equipping educators with the knowledge and skills needed to deliver high-quality instruction and stay ahead of industry trends. As advocates, we actively engage with policymakers and stakeholders to shape progressive policies that support the advancement of real estate education and strengthen the integrity of our profession. Together, we aim to create a positive impact, nurturing a thriving, knowledgeable, and forward-looking real estate education landscape in Maryland.
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<section class="section account-member-section home-page-account-section">
-    <div class="section-container container-col account-member-section-container members-page-account-seciton-1">
+<section class="section cta-section">
+    <div class="section-container container-col cta-section-container">
+        <div class="cta-heading">Ready to elevate your real estate education journey?</div>
         {% if user.is_authenticated %}
-        <div class="account-member-wrapper container-col">
-            <div class="account-member-content-container container-col">
-                <div class="heading dark-text">Maryland Real Estate Educators Asscociation</div>
-                <div class="dark-text">Thank you for creating an account, if you haven't purchased a membership or your membership is expired or expiring, you can simply join or renew with a few clicks</div>
-                <a href="https://next.waveapps.com/checkouts/7d1108f10cbe4cbaae8599386fe3ea17" target="_blank" class="btn">Join / Renew</a>
-            </div>
-        </div>
+        {% if user.is_member %}
+        <a href="https://next.waveapps.com/checkouts/7d1108f10cbe4cbaae8599386fe3ea17" target="_blank" class="btn cta-btn">Renew</a>
         {% else %}
-        <div class="account-member-wrapper container-col">
-            <div class="account-member-content-container container-col">
-                <div class="heading dark-text">Maryland Real Estate Educators Asscociation</div>
-                <div class="dark-text">Sign up and become a member to join an amazing community where you can learn and grow. Already a member or have an account? Then sign in to join or renew your membership.</div>
-                <div class="btns-container container-row">
-                    <a href="{% url 'account_login' %}" class="btn">Log in</a>
-                    <a href="{% url 'account_signup' %}" class="btn">Register</a>
-                </div>
-            </div>
-        </div>
+        <a href="https://next.waveapps.com/checkouts/7d1108f10cbe4cbaae8599386fe3ea17" target="_blank" class="btn cta-btn">Join Now</a>
         {% endif %}
-    </div>
-</section>
-
-<section class="history-section">
-    <div class="c-heroImageGrid">
-        <div class="container">
-            <div class="column"></div>
-            <div class="column">
-                <div class="row"></div>
-                <div class="row">
-                    <div>
-                        
-                    </div>
-                    <div></div>
-                </div>
-                <div class="row"></div>
-            </div>
-        </div>
-    </div>
-    <div class="hero-overlay"></div>
-    <div class="heroImageGrid-text-content-container container-col">
-        <div class="hero-text-container container-col heroImageGridTextContainer">
-            <div class="hero-heading">
-                Our Story - Our History
-            </div>
-            <div class="white-text">
-                The Maryland Real Estate Educators Association (MREEA) was established in 1978 with the mission of promoting excellence and professionalism in real estate education. 
-            </div>
-            <div class="white-text">
-                Since its inception, MREEA has played a crucial role in shaping Maryland's real estate education landscape, advocating for legislative changes, and providing comprehensive professional development opportunities for educators. 
-            </div>
-            <div class="white-text">
-                Through community outreach programs and technological advancements, MREEA continues to empower both educators and the public, ensuring a well-informed and capable real estate workforce in the state.
-            </div>
-        </div>
-    </div>
-</section>
-
-<section class="section account-member-section home-page-account-section">
-    <div class="section-container container-col account-member-section-container members-page-account-seciton-1">
-        {% if user.is_authenticated %}
-        <div class="account-member-wrapper container-col">
-            <div class="account-member-content-container container-col">
-                <div class="heading dark-text">Maryland Real Estate Educators Asscociation</div>
-                <div class="dark-text">Thank you for creating an account, if you haven't purchased a membership or your membership is expired or expiring, you can simply join or renew with a few clicks</div>
-                <a href="https://next.waveapps.com/checkouts/7d1108f10cbe4cbaae8599386fe3ea17" target="_blank" class="btn">Join / Renew</a>
-            </div>
-        </div>
         {% else %}
-        <div class="account-member-wrapper container-col">
-            <div class="account-member-content-container container-col">
-                <div class="heading dark-text">Maryland Real Estate Educators Asscociation</div>
-                <div class="dark-text">Sign up and become a member to join an amazing community where you can learn and grow. Already a member or have an account? Then sign in to join or renew your membership.</div>
-                <div class="btns-container container-row">
-                    <a href="{% url 'account_login' %}" class="btn">Log in</a>
-                    <a href="{% url 'account_signup' %}" class="btn">Register</a>
-                </div>
+        <div class="btn cta-btn container-col">
+            <div class="cta-btn-arrow-container container-col">
+                <i class="fa-solid fa-arrow-right"></i>
             </div>
+            <div class="cta-btn-text">Join Now</div>
         </div>
         {% endif %}
     </div>
@@ -276,6 +279,6 @@
 
 {% block js %}
 
-<script src="{% static 'js/home-hero-carousel.js' %}"></script>
+<script src="{% static 'js/cta-btn.js' %}"></script>
 
 {% endblock %}
