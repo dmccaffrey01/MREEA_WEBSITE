@@ -38,10 +38,11 @@ resourcesCategoryDropdownHeading.forEach((heading, index) => {
             let resourceLinkItem = resourceLinkItems[j];
             let embedLinkData = resourceLinkItem.querySelector(".resource-embed-link-data").innerText;
             let linkTypeData = resourceLinkItem.querySelector(".resource-link-type-data").innerText;
-            let openNewTabBtn = resourceLinkItem.querySelector(".resource-open-here-btn");
+            let openHereTabBtn = resourceLinkItem.querySelector(".resource-open-here-btn");
+            let linkData = resourceLinkItem.querySelector(".resources-resource-link-heading").innerText;
             
 
-            openNewTabBtn.addEventListener("click", () => {
+            openHereTabBtn.addEventListener("click", () => {
                 pdfIframe.style.display = "none";
                 youtubeIframe.style.display = "none";
                 if (linkTypeData == "PDF" && embedLinkData) {
@@ -52,6 +53,8 @@ resourcesCategoryDropdownHeading.forEach((heading, index) => {
                     youtubeIframe.src = embedLinkData;
                     youtubeIframe.style.display = "flex";
                     resourceLinkEmbedSection.style.display = "flex";
+                } else {
+                    window.open(linkData, '_blank');
                 }
             });
         });

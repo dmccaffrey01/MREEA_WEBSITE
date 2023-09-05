@@ -91,20 +91,37 @@
     </div>
 </section>
 
-<svg class="bigHalfCircle-b" xmlns="http://www.w3.org/2000/svg" version="1.1" width="100%" height="100" viewBox="0 0 100 100" preserveAspectRatio="none">
+<svg class="bigHalfCircle-red" xmlns="http://www.w3.org/2000/svg" version="1.1" width="100%" height="100" viewBox="0 0 100 100" preserveAspectRatio="none">
     <path d="M0 100 C40 0 60 0 100 100 Z" />
 </svg>
 
-<section class="section account-member-section">
-    <div class="section-container container-col account-member-section-container">
-        <div class="account-member-wrapper container-col">
-            <div class="account-member-content-container container-col">
-                <div class="heading dark-text">Maryland Real Estate Educators Asscociation</div>
-                <div class="dark-text">Thank you for being apart of our community, if your membership is expiring, you can simply renew with a few clicks</div>
-                <div class="dark-text">You will need membership to get access to the learning material</div>
-                <a href="https://next.waveapps.com/checkouts/7d1108f10cbe4cbaae8599386fe3ea17" target="_blank"  class="btn">Join / Renew</a>
+<section class="section cta-section">
+    <div class="section-container container-col cta-section-container">
+        <div class="cta-heading">Ready to elevate your real estate education journey?</div>
+        {% if user.is_authenticated %}
+        {% if user.is_member %}
+        <a href="https://next.waveapps.com/checkouts/7d1108f10cbe4cbaae8599386fe3ea17" target="_blank" class="btn cta-btn container-col">
+            <div class="cta-btn-arrow-container container-col">
+                <i class="fa-solid fa-arrow-right"></i>
             </div>
-        </div>
+            <div class="cta-btn-text">Renew</div>
+        </a>
+        {% else %}
+        <a href="https://next.waveapps.com/checkouts/7d1108f10cbe4cbaae8599386fe3ea17" target="_blank" class="btn cta-btn container-col">
+            <div class="cta-btn-arrow-container container-col">
+                <i class="fa-solid fa-arrow-right"></i>
+            </div>
+            <div class="cta-btn-text">Join Now</div>
+        </a>
+        {% endif %}
+        {% else %}
+        <a href="{% url 'membership' %}" class="btn cta-btn container-col">
+            <div class="cta-btn-arrow-container container-col">
+                <i class="fa-solid fa-arrow-right"></i>
+            </div>
+            <div class="cta-btn-text">Join Now</div>
+        </a>
+        {% endif %}
     </div>
 </section>
 
@@ -192,32 +209,36 @@
     </div>
 </section>
 
-<svg class="bigHalfCircle-b" xmlns="http://www.w3.org/2000/svg" version="1.1" width="100%" height="100" viewBox="0 0 100 100" preserveAspectRatio="none">
+<svg class="bigHalfCircle-red" xmlns="http://www.w3.org/2000/svg" version="1.1" width="100%" height="100" viewBox="0 0 100 100" preserveAspectRatio="none">
     <path d="M0 100 C40 0 60 0 100 100 Z" />
 </svg>
 
-<section class="section account-member-section">
-    <div class="section-container container-col account-member-section-container">
+<section class="section cta-section">
+    <div class="section-container container-col cta-section-container">
+        <div class="cta-heading">Ready to elevate your real estate education journey?</div>
         {% if user.is_authenticated %}
-        <div class="account-member-wrapper container-col">
-            <div class="account-member-content-container container-col">
-                <div class="heading dark-text">Maryland Real Estate Educators Asscociation</div>
-                <div class="dark-text">Thank you for creating an account, if you haven't purchased a membership or your membership is expired or expiring, you can simply join or renew with a few clicks</div>
-                <div class="dark-text">You will need membership to get access to the learning material</div>
-                <a href="https://next.waveapps.com/checkouts/7d1108f10cbe4cbaae8599386fe3ea17" target="_blank"  class="btn">Join / Renew</a>
+        {% if user.is_member %}
+        <a href="https://next.waveapps.com/checkouts/7d1108f10cbe4cbaae8599386fe3ea17" target="_blank" class="btn cta-btn container-col">
+            <div class="cta-btn-arrow-container container-col">
+                <i class="fa-solid fa-arrow-right"></i>
             </div>
-        </div>
+            <div class="cta-btn-text">Renew</div>
+        </a>
         {% else %}
-        <div class="account-member-wrapper container-col">
-            <div class="account-member-content-container container-col">
-                <div class="heading dark-text">Maryland Real Estate Educators Asscociation</div>
-                <div class="dark-text">To get access to the learning material, please sign in or sign up. Sign up and become a member to join an amazing community where you can learn and grow. Already a member or have an account? Then sign in to join or renew your membership.</div>
-                <div class="btns-container container-row">
-                    <a href="{% url 'account_login' %}" class="btn">Log in</a>
-                    <a href="{% url 'account_signup' %}" class="btn">Register</a>
-                </div>
+        <a href="https://next.waveapps.com/checkouts/7d1108f10cbe4cbaae8599386fe3ea17" target="_blank" class="btn cta-btn container-col">
+            <div class="cta-btn-arrow-container container-col">
+                <i class="fa-solid fa-arrow-right"></i>
             </div>
-        </div>
+            <div class="cta-btn-text">Join Now</div>
+        </a>
+        {% endif %}
+        {% else %}
+        <a href="{% url 'membership' %}" class="btn cta-btn container-col">
+            <div class="cta-btn-arrow-container container-col">
+                <i class="fa-solid fa-arrow-right"></i>
+            </div>
+            <div class="cta-btn-text">Join Now</div>
+        </a>
         {% endif %}
     </div>
 </section>
@@ -228,5 +249,6 @@
 
 {% block js %}
 
+<script src="{% static 'js/cta-btn.js' %}"></script>
 
 {% endblock %}

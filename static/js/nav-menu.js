@@ -32,8 +32,13 @@ navLinks.forEach((navLink) => {
     }
 });
 
-const accountProfileContainer = document.querySelector(".account-profile-container");
+const navItemDropdownBtns = document.querySelectorAll(".nav-item-dropdown-btn");
 
-accountProfileContainer.addEventListener("click", () => {
-    accountProfileContainer.classList.toggle("active");
-})
+navItemDropdownBtns.forEach(dropdownBtn => {
+    dropdownBtn.addEventListener("click", () => {
+        let dropdownContainer = dropdownBtn.querySelector(".nav-item-dropdown-container");
+
+        dropdownContainer.classList.toggle("active");
+        console.log(dropdownContainer)
+    });
+});

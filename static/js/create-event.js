@@ -14,7 +14,7 @@ formInputs.forEach((input) => {
 });
 
 const selectResourcesFormBtn = document.querySelector(".event-form-select-resources-btn");
-const selectResourcesOverlay = document.querySelector(".event-form-select-resources-overlay");
+const selectResourcesOverlay = document.querySelector(".event-form-select-overlay");
 const selectResourcesWrapper = document.querySelector(".event-form-select-resources-wrapper");
 const selectResourceCloseBtn = document.querySelector(".select-resource-close-btn");
 const selectResourceConfirmBtn = document.querySelector(".select-resource-confirm-btn");
@@ -93,4 +93,79 @@ selectResourceConfirmBtn.addEventListener("click", () => {
     let selectedCount = updateResourceCount();
 
     updateEventFormResourceCount(selectedCount);
+});
+
+
+const selectImgFormBtn = document.querySelector(".event-form-select-image-btn");
+const selectImgOverlay = document.querySelector(".event-form-select-overlay");
+const selectImgWrapper = document.querySelector(".event-form-select-image-wrapper");
+const selectImgCloseBtn = document.querySelector(".select-image-close-btn");
+const selectImgConfirmBtn = document.querySelector(".select-image-confirm-btn");
+const selectImgItems = document.querySelectorAll(".select-image-item");
+const selectImgInput = document.querySelector("#selectedImage");
+
+const openSelectImage = () => {
+    selectImgOverlay.style.display = "flex";
+    selectImgWrapper.style.display = "flex";
+}
+
+const closeSelectImage = () => {
+    selectImgOverlay.style.display = "none";
+    selectImgWrapper.style.display = "none";
+}
+
+selectImgFormBtn.addEventListener("click", () => {
+    openSelectImage();
+});
+
+selectImgCloseBtn.addEventListener("click", () => {
+    closeSelectImage();
 })
+
+const unselectOtherItems = (i) => {
+    selectImgItems.forEach((item, index) => {
+        if (index != i) {
+            item.classList.remove("selected");
+        }
+    });
+}
+
+selectImgItems.forEach((item, i) => {
+    item.addEventListener("click", () => {
+        item.classList.toggle("selected");
+        unselectOtherItems(i);
+    });
+    
+});
+
+const updateImageInput = () => {
+    let url;
+    
+    selectImgItems.forEach(item => {
+        if (item.classList.contains("selected")) {
+            url = item.querySelector(".hidden-select-image-src-data").innerText;
+            uuid = item.querySelector(".hidden-select-image-uuid-data").innerText;
+        }
+    });
+    document.querySelector(".event-form-img-preview").src = url;
+
+    selectImgInput.value = uuid;
+}
+
+selectImgConfirmBtn.addEventListener("click", () => {
+    updateImageInput();
+
+    closeSelectImage();
+});
+
+const deleteEventBtn = document.querySelector(".delete-event-btn");
+const cancelDeleteBtn = document.querySelector(".cancel-delete-btn");
+const confirmDeleteContainer = document.querySelector(".confirm-delete-container");
+
+deleteEventBtn.addEventListener("click", () => {
+    confirmDeleteContainer.style.display = "flex";
+
+    cancelDeleteBtn.addEventListener("click", () => {
+        confirmDeleteContainer.style.display = "none";
+    });
+});

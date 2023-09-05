@@ -212,3 +212,22 @@ class Event(models.Model):
 
     def __str__(self):
         return self.title
+    
+
+class AspectRatio(models.Model):
+    width = models.PositiveIntegerField()
+    height = models.PositiveIntegerField()
+
+    def __str__(self):
+        return f"{self.width}:{self.height}"
+
+
+class ImageSelect(models.Model):
+    name = models.CharField(max_length=255, default="")
+    image = CloudinaryField('Image', null=True, blank=True, default=None)
+    aspect_ratio = models.ForeignKey(AspectRatio, on_delete=models.CASCADE)
+
+    image_uuid = models.UUIDField(default=uuid.uuid4, unique=True, editable=False)
+
+    def __str__(self):
+        return self.name

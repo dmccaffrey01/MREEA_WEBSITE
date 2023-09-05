@@ -3,6 +3,7 @@
 
 {% block content %}
 
+{% if user.is_member %}
 <section class="section resources-page-section">
     <div class="section-container container-col resources-page-section-container">
         {% for category, subcategories_with_resources in categories_with_subcategories.items %}
@@ -18,7 +19,11 @@
                 {% for subcategory, resources in subcategories_with_resources.items %}
                 <div class="resources-subcategory-container resources-page-dropdown container-col">
                     <div class="container-row resources-page-dropdown-heading resources-subcategory-dropdown-heading">
+                        {% if subcategory.subcategory == "None" %}
+                        <div class="resources-subcategory-heading dark-text">No Subcategory in {{ category }}</div>
+                        {% else %}
                         <div class="resources-subcategory-heading dark-text">{{ subcategory.subcategory }}</div>
+                        {% endif %}
                         <div class="resources-subcategory-dropdown-icon-container resources-page-dropdonw-icon-container">
                             <i class="fa-solid fa-chevron-down resources-subcategory-dropdown-icon"></i>
                         </div>
@@ -71,11 +76,59 @@
     <iframe src="https://drive.google.com/file/d/1aA76C_4a6cKyx2-61Fg1F3fimfAY9zJx/preview" width="100%" height="100%" frameborder="0" allow="autoplay" class="pdf-iframe"></iframe>
     <div class="btn close-resource-link-embed-btn">Close &times;</div>
 </div>
+{% else %}
+
+<section class="resourses-not-member-section section">
+    <div class="section-container resoures-not-member-section-container container-col">
+        <div class="heading dark-text">
+            To get access to the resources please become a member
+        </div>
+        <div class="dark-text">Click the Join button down bellow</div>
+        <div class="dark-text">To be redirected to the membership page</div>
+    </div>
+</section>
+
+<svg class="bigHalfCircle-red" xmlns="http://www.w3.org/2000/svg" version="1.1" width="100%" height="100" viewBox="0 0 100 100" preserveAspectRatio="none">
+    <path d="M0 100 C40 0 60 0 100 100 Z" />
+</svg>
+
+<section class="section cta-section">
+    <div class="section-container container-col cta-section-container">
+        <div class="cta-heading">Ready to elevate your real estate education journey?</div>
+        {% if user.is_authenticated %}
+        {% if user.is_member %}
+        <a href="https://next.waveapps.com/checkouts/7d1108f10cbe4cbaae8599386fe3ea17" target="_blank" class="btn cta-btn container-col">
+            <div class="cta-btn-arrow-container container-col">
+                <i class="fa-solid fa-arrow-right"></i>
+            </div>
+            <div class="cta-btn-text">Renew</div>
+        </a>
+        {% else %}
+        <a href="https://next.waveapps.com/checkouts/7d1108f10cbe4cbaae8599386fe3ea17" target="_blank" class="btn cta-btn container-col">
+            <div class="cta-btn-arrow-container container-col">
+                <i class="fa-solid fa-arrow-right"></i>
+            </div>
+            <div class="cta-btn-text">Join Now</div>
+        </a>
+        {% endif %}
+        {% else %}
+        <a href="https://next.waveapps.com/checkouts/7d1108f10cbe4cbaae8599386fe3ea17" class="btn cta-btn container-col">
+            <div class="cta-btn-arrow-container container-col">
+                <i class="fa-solid fa-arrow-right"></i>
+            </div>
+            <div class="cta-btn-text">Join Now</div>
+        </a>
+        {% endif %}
+    </div>
+</section>
+
+{% endif %}
 
 {% endblock %}
 
 {% block js %}
 
 <script src="{% static 'js/resources.js' %}"></script>
+<script src="{% static 'js/cta-btn.js' %}"></script>
 
 {% endblock %}

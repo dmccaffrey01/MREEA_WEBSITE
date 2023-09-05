@@ -54,7 +54,11 @@
                                     <a href="{% url 'learn' %}" class="nav-link">Learn</a>
                                 </li>
                                 <li class="nav-item">
+                                    {% if user.is_member %}
                                     <a href="{% url 'resources' %}" class="nav-link">Resources</a>
+                                    {% else %}
+                                    <a href="{% url 'membership' %}" class="nav-link">Resources</a>
+                                    {% endif %}
                                 </li>
                                 
                             </ul>
@@ -79,6 +83,9 @@
                             </ul>
                         </div>
                     </li>
+                    <li class="nav-item logout-nav-item">
+                        <a href="{% url 'account_logout' %}" class="nav-link">Log Out</a>
+                    </li>
                 </ul>
                 <div class="hamburger">
                     <span class="bar"></span>
@@ -98,7 +105,7 @@
                             <img src="https://res.cloudinary.com/dikcjjfpo/image/upload/v1692718355/default-profile-pic_nwq7pg.png" alt="Profile Picture" class="account-profile-img img-100a">
                             {% endif %}
                         </a>
-                        <a href="{% url 'account_logout' %}" class="dark-text">
+                        <a href="{% url 'account_logout' %}" class="dark-text logout-account-btn">
                             Log Out
                         </a>
                     </div>

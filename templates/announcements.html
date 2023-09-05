@@ -65,12 +65,12 @@
                 <div class="dark-text">No Upcoming Events!</div>
             </div>
             {% endif %}
-        </div>
-        <div class="upcoming-swipe-left carousel-swipe container-col swipe-left">
-            <i class="fa-solid fa-chevron-left"></i>
-        </div>
-        <div class="upcoming-swipe-right carousel-swipe container-col swipe-right">
-            <i class="fa-solid fa-chevron-right"></i>
+            <div class="upcoming-swipe-left carousel-swipe container-col swipe-left">
+                <i class="fa-solid fa-chevron-left"></i>
+            </div>
+            <div class="upcoming-swipe-right carousel-swipe container-col swipe-right">
+                <i class="fa-solid fa-chevron-right"></i>
+            </div>
         </div>
     </div>
     {% if user.is_superuser %}
@@ -122,12 +122,12 @@
                 <div class="dark-text">No Past Events!</div>
             </div>
             {% endif %}
-        </div>
-        <div class="swipe-left carousel-swipe container-col past-swipe-left">
-            <i class="fa-solid fa-chevron-left"></i>
-        </div>
-        <div class="swipe-right carousel-swipe container-col past-swipe-right">
-            <i class="fa-solid fa-chevron-right"></i>
+            <div class="swipe-left carousel-swipe container-col past-swipe-left">
+                <i class="fa-solid fa-chevron-left"></i>
+            </div>
+            <div class="swipe-right carousel-swipe container-col past-swipe-right">
+                <i class="fa-solid fa-chevron-right"></i>
+            </div>
         </div>
     </div>
     {% if user.is_superuser %}
@@ -135,27 +135,36 @@
     {% endif %}
 </section>
 
-<section class="section account-member-section">
-    <div class="section-container container-col account-member-section-container">
+<svg class="bigHalfCircle-red" xmlns="http://www.w3.org/2000/svg" version="1.1" width="100%" height="100" viewBox="0 0 100 100" preserveAspectRatio="none">
+    <path d="M0 100 C40 0 60 0 100 100 Z" />
+</svg>
+
+<section class="section cta-section">
+    <div class="section-container container-col cta-section-container">
+        <div class="cta-heading">Ready to elevate your real estate education journey?</div>
         {% if user.is_authenticated %}
-        <div class="account-member-wrapper container-col">
-            <div class="account-member-content-container container-col">
-                <div class="heading dark-text">Maryland Real Estate Educators Asscociation</div>
-                <div class="dark-text">Join our wonderful community, where you have endless opportunities to learn and grow. Already a previous member? You can easily renew your membership.</div>
-                <a href="https://next.waveapps.com/checkouts/7d1108f10cbe4cbaae8599386fe3ea17" target="_blank"  class="btn">Join / Renew</a>
+        {% if user.is_member %}
+        <a href="https://next.waveapps.com/checkouts/7d1108f10cbe4cbaae8599386fe3ea17" target="_blank" class="btn cta-btn container-col">
+            <div class="cta-btn-arrow-container container-col">
+                <i class="fa-solid fa-arrow-right"></i>
             </div>
-        </div>
+            <div class="cta-btn-text">Renew</div>
+        </a>
         {% else %}
-        <div class="account-member-wrapper container-col">
-            <div class="account-member-content-container container-col">
-                <div class="heading dark-text">Maryland Real Estate Educators Asscociation</div>
-                <div class="dark-text">Sign up and become a member to join an amazing community where you can learn and grow. Already a member or have an account? Then sign in to join or renew your membership.</div>
-                <div class="btns-container container-row">
-                    <a href="{% url 'account_login' %}" class="btn">Log in</a>
-                    <a href="{% url 'account_signup' %}" class="btn">Register</a>
-                </div>
+        <a href="https://next.waveapps.com/checkouts/7d1108f10cbe4cbaae8599386fe3ea17" target="_blank" class="btn cta-btn container-col">
+            <div class="cta-btn-arrow-container container-col">
+                <i class="fa-solid fa-arrow-right"></i>
             </div>
-        </div>
+            <div class="cta-btn-text">Join Now</div>
+        </a>
+        {% endif %}
+        {% else %}
+        <a href="{% url 'membership' %}" class="btn cta-btn container-col">
+            <div class="cta-btn-arrow-container container-col">
+                <i class="fa-solid fa-arrow-right"></i>
+            </div>
+            <div class="cta-btn-text">Join Now</div>
+        </a>
         {% endif %}
     </div>
 </section>
@@ -165,5 +174,6 @@
 {% block js %}
 
 <script src="{% static 'js/announcements.js' %}"></script>
+<script src="{% static 'js/cta-btn.js' %}"></script>
 
 {% endblock %}

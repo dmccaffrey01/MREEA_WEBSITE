@@ -12,9 +12,18 @@
         <div class="container-col event-detail-content-container">
             <div class="heading dark-text">{{ event.title }}</div>
             <div class="dark-text">{{ event.description }}</div>
-            <div class="dark-text">Starts - {{ event.start_date }}</div>
-            <div class="dark-text">Ends - {{ event.end_date }}</div>
-            <div class="dark-text">Location - {{ event.location }}</div>
+            <div class="container-col event-detail-text-container">
+                <div class="sub-heading dark-text">Starts:</div>
+                <div class="dark-text">{{ event.start_date }}</div>
+            </div>
+            <div class="container-col event-detail-text-container">
+                <div class="sub-heading dark-text">Ends:</div>
+                <div class="dark-text">{{ event.end_date }}</div>
+            </div>
+            <div class="container-col event-detail-text-container">
+                <div class="sub-heading dark-text">Location:</div>
+                <div class="dark-text">{{ event.location }}</div>
+            </div>
             <a href="{% url 'edit_event' event.event_short_uuid %}" class="btn">Edit Event</a>
         </div>
 
@@ -22,41 +31,87 @@
 </section>
 
 <section class="section event-resources-section">
-    <div class="section-container container-col event-resources section-container">
+    <div class="section-container container-col event-resources-section-container">
         <div class="heading dark-text">Event Resources</div>
-        <div class="dark-text">Event resources will go here</div>
-    </div>
-</section>
-
-<section class="section account-member-section">
-    <div class="section-container container-col account-member-section-container">
-        {% if user.is_authenticated %}
-        <div class="account-member-wrapper container-col">
-            <div class="account-member-content-container container-col">
-                <div class="heading dark-text">Join / Renew</div>
-                <div class="dark-text">Join our wonderful community, where you have endless opportunities to learn and grow. Already a previous member? You can easily renew your membership.</div>
-                <a href="https://next.waveapps.com/checkouts/7d1108f10cbe4cbaae8599386fe3ea17" target="_blank"  class="btn">Join / Renew</a>
+        {% if event_resources %}
+        {% for resource in event_resources %}
+        <div class="resources-page-dropdown-heading resource-link-dropdown-item container-row">
+            <div class="resources-type-img-container">
+                {% if resource.link_type.link_type == 'Youtube' %}
+                <img src="https://res.cloudinary.com/dikcjjfpo/image/upload/v1693300603/youtube_mhh1wj.png" alt="Youtube Logo" class="img-100a">
+                {% elif resource.link_type.link_type == 'PDF' %}
+                <img src="https://res.cloudinary.com/dikcjjfpo/image/upload/v1693300603/pdf_rcq2o5.png" alt="Youtube Logo" class="img-100a">
+                {% else %}
+                <img src="https://res.cloudinary.com/dikcjjfpo/image/upload/v1693301018/link_fvjmsd.png" alt="Youtube Logo" class="img-100a">
+                {% endif %}
             </div>
-        </div>
-        {% else %}
-        <div class="account-member-wrapper container-col">
-            <div class="account-member-content-container container-col">
-                <div class="heading dark-text">Sign In / Sign Up</div>
-                <div class="dark-text">Sign up and become a member to join an amazing community where you can learn and grow. Already a member or have an account? Then sign in to join or renew your membership.</div>
-                <div class="btns-container container-row">
-                    <a href="{% url 'account_login' %}" class="btn">Log in</a>
-                    <a href="{% url 'account_signup' %}" class="btn">Register</a>
+            <div class="resources-resource-heading container-col">
+                <div class="resources-resource-name-heading">
+                    {{ resource.name }}:
                 </div>
+                <a class="resources-resource-link-heading" href="{{ resource.link}}" target="_blank">{{ resource.link }}</a>
+                <div class="hidden-resource-data resource-embed-link-data">{{ resource.embed_link }}</div>
+                <div class="hidden-resource-data resource-link-type-data">{{ resource.link_type.link_type }}</div>
+            </div>
+            <div class="resources-resource-open-btn container-col">
+                <i class="fa-solid fa-ellipsis-vertical"></i>
+            </div>
+            <div class="resources-resource-open-container container-col">
+                <div class="dark-text resources-resource-open-text resource-open-here-btn">Open here</div>
+                <a href="{{ resource.link}}" target="_blank" class="dark-text resources-resource-open-text">Open in new tab</a>
             </div>
         </div>
+        {% endfor %}
+        {% else %}
+        <div class="dark-text">Event resources will go here</div>
         {% endif %}
     </div>
 </section>
+
+<section class="section cta-section">
+    <div class="section-container container-col cta-section-container">
+        <div class="cta-heading">Ready to elevate your real estate education journey?</div>
+        {% if user.is_authenticated %}
+        {% if user.is_member %}
+        <a href="https://next.waveapps.com/checkouts/7d1108f10cbe4cbaae8599386fe3ea17" target="_blank" class="btn cta-btn container-col">
+            <div class="cta-btn-arrow-container container-col">
+                <i class="fa-solid fa-arrow-right"></i>
+            </div>
+            <div class="cta-btn-text">Renew</div>
+        </a>
+        {% else %}
+        <a href="https://next.waveapps.com/checkouts/7d1108f10cbe4cbaae8599386fe3ea17" target="_blank" class="btn cta-btn container-col">
+            <div class="cta-btn-arrow-container container-col">
+                <i class="fa-solid fa-arrow-right"></i>
+            </div>
+            <div class="cta-btn-text">Join Now</div>
+        </a>
+        {% endif %}
+        {% else %}
+        <a href="{% url 'membership' %}" class="btn cta-btn container-col">
+            <div class="cta-btn-arrow-container container-col">
+                <i class="fa-solid fa-arrow-right"></i>
+            </div>
+            <div class="cta-btn-text">Join Now</div>
+        </a>
+        {% endif %}
+    </div>
+</section>
+
+<div class="resource-link-embed-section container-col">
+    <div class="iframe-video-container">
+        <iframe src="https://www.youtube.com/embed/7PIji8OubXU" width="100%" height="100%" title="Youtube Video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen class="youtube-iframe"></iframe>
+    </div>
+    <iframe src="https://drive.google.com/file/d/1aA76C_4a6cKyx2-61Fg1F3fimfAY9zJx/preview" width="100%" height="100%" frameborder="0" allow="autoplay" class="pdf-iframe"></iframe>
+    <div class="btn close-resource-link-embed-btn">Close &times;</div>
+</div>
+
 
 {% endblock %}
 
 {% block js %}
 
-<script src="{% static 'js/calendar.js' %}"></script>
+<script src="{% static 'js/cta-btn.js' %}"></script>
+<script src="{% static 'js/event-detail.js' %}"></script>
 
 {% endblock %}

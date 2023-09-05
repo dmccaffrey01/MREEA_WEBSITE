@@ -6,7 +6,7 @@ from django.http import JsonResponse
 from django.db.models import Q
 from .forms import CustomSignupForm
 from django.contrib.auth import login
-from .models import Event, MemberProfile, ResourceLinkType, ResourceCategory, Resource, ResourceSubCategory
+from .models import Event, MemberProfile, ResourceLinkType, ResourceCategory, Resource, ResourceSubCategory, ImageSelect, AspectRatio
 from .forms import EventForm, MemberProfileForm, ContactForm, MemberSearchForm, MemberProfilePictureForm, AddResourceForm
 from django.core.mail import send_mail
 from cloudinary.uploader import upload
@@ -17,6 +17,7 @@ from allauth.account.views import PasswordChangeView
 from django.template.response import TemplateResponse
 from django.conf import settings
 from django.utils import timezone
+from django.http import HttpResponseRedirect
 
 
 def index(request):
@@ -28,16 +29,8 @@ def index(request):
     else:
         member_profile = False
 
-    current_date = timezone.now()
-
-    upcoming_events = Event.objects.filter(end_date__gt=current_date).order_by('start_date')
-
-    upcoming_event = upcoming_events.first()
-
     context = {
         'member_profile': member_profile,
-        'upcoming_events': upcoming_events,
-        'upcoming_event': upcoming_event,
     }
 
     return render(request, 'index.html', context)
@@ -52,12 +45,23 @@ def membership(request):
     else:
         member_profile = False
 
+    if request.method == 'POST':
+        form = CustomSignupForm(request.POST)
+        if form.is_valid():
+            user = form.save(request)
+            login(request, user)
+            
+            return redirect('membership')
+    else:
+        form = CustomSignupForm()
+    
 
     logged_in = user.is_authenticated
 
     context = {
         'logged_in': logged_in,
         'member_profile': member_profile,
+        'form': form,
     }
 
     return render(request, 'membership.html', context)
@@ -72,7 +76,7 @@ def signup_view(request):
             user = form.save(request)
             login(request, user)
             
-            return redirect('home')
+            return redirect('membership')
     else:
         form = CustomSignupForm()
     
@@ -123,6 +127,10 @@ def edit_event(request, event_short_uuid):
 
     resources = Resource.objects.filter(category__category="Event Resource").exclude(pk__in=event_resources)
 
+    select_images = ImageSelect.objects.filter(Q(aspect_ratio__width=16) & Q(aspect_ratio__height=9))
+    for image in select_images:
+        print(image.name)
+
     if request.method == 'POST':
         if 'delete' in request.POST:
             event.delete()
@@ -144,6 +152,12 @@ def edit_event(request, event_short_uuid):
                 # Save the Cloudinary image URL in the profile_image field of the MemberProfile model
                 event.event_image = cloudinary_response['secure_url']
                 event.save()
+
+                aspect_ratio = AspectRatio.objects.get(width=16, height=9)
+
+                image_name = event.title + ' Event'
+                image_select = ImageSelect.objects.create(name=image_name, image=event.event_image, aspect_ratio=aspect_ratio)
+                image_select.save()
             
             selected_resource_data = request.POST.get('selectedResources')
             if selected_resource_data:
@@ -153,6 +167,12 @@ def edit_event(request, event_short_uuid):
                     resource = Resource.objects.get(link=link)
                     event.resources.add(resource)
                 
+                event.save()
+            
+            selected_image_data = request.POST.get('selectedImage')
+            if selected_image_data:
+                selected_image = ImageSelect.objects.get(image_uuid=selected_image_data)
+                event.event_image = selected_image.image
                 event.save()
 
             return redirect('announcements')
@@ -166,16 +186,20 @@ def edit_event(request, event_short_uuid):
         'resources': resources,
         'event_resources': event_resources,
         'number_of_event_resources': number_of_event_resources,
+        'select_images': select_images,
     }
     return render(request, 'create_event.html', context)
 
 def create_event(request):
     resources = Resource.objects.filter(category__category="Event Resource")
+
+    select_images = ImageSelect.objects.filter(Q(aspect_ratio__width=16) & Q(aspect_ratio__height=9))
     
     if request.method == 'POST':
         event_form = EventForm(request.POST)
         if event_form.is_valid():
             event = event_form.save()
+
             cropped_image_data = request.POST.get('croppedImageData')
             if cropped_image_data:
                 # Decode the Base64 image data
@@ -188,7 +212,14 @@ def create_event(request):
 
                 # Save the Cloudinary image URL in the profile_image field of the MemberProfile model
                 event.event_image = cloudinary_response['secure_url']
+
                 event.save()
+
+                aspect_ratio = AspectRatio.objects.get(width=16, height=9)
+
+                image_name = event.title + ' Event'
+                image_select = ImageSelect.objects.create(name=image_name, image=event.event_image, aspect_ratio=aspect_ratio)
+                image_select.save()
             
             selected_resource_data = request.POST.get('selectedResources')
             if selected_resource_data:
@@ -198,6 +229,12 @@ def create_event(request):
                     resource = Resource.objects.get(link=link)
                     event.resources.add(resource)
                 
+                event.save()
+            
+            selected_image_data = request.POST.get('selectedImage')
+            if selected_image_data:
+                selected_image = ImageSelect.objects.get(image_uuid=selected_image_data)
+                event.event_image = selected_image.image
                 event.save()
 
             return redirect('announcements')
@@ -210,15 +247,19 @@ def create_event(request):
         'resources': resources,
         'event_resources': False,
         'number_of_event_resources': 0,
+        'select_images': select_images,
     }
     return render(request, 'create_event.html', context)
 
 
 def event_detail(request, event_short_uuid):
     event = Event.objects.get(event_short_uuid=event_short_uuid)
+
+    event_resources = event.resources.all()
     
     context = {
-        'event': event
+        'event': event,
+        'event_resources': event_resources
     }
 
     return render(request, 'event_detail.html', context)

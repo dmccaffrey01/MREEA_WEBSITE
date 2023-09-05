@@ -1,107 +1,92 @@
 {% extends "base.html" %}
 {% load static %}
+{% load i18n %}
+{% load static %}
+{% block head_title %}{% trans "Signup" %}{% endblock %}
 
 {% block content %}
 
-<section class="section choose-section">
-    <div class="container-row announcements-hero-container choose-hero-container">
-        <div class="announcements-hero-img-container img-container container-col">
-            <div class="hero-overlay"></div>
-            <img src="https://res.cloudinary.com/dikcjjfpo/image/upload/v1692719680/mreea-meeting-3_leh5cl.png" alt="MREEA Meeting" class="hero-image">
+<section class="section membership-hero-section">
+    <div class="section-container membership-hero-section-container container-col">
+        {% if logged_in %}
+        {% if user.is_member %}
+        <div class="heading dark-text">Thank You for your membership!</div>
+        <div class="dark-text">
+            If you would like to renew your membership, please click the Renew button down below
         </div>
-        <div class="announcements-hero-heading-container container-col choose-hero-heading-container">
-            <div class="hero-text-container container-col">
-                <div class="hero-heading">Why Choose Us</div>
-                <div class="white-text">
-                    Maryland Real Estate Educators Association is an ideal group to join for individuals seeking to excel in the real estate education field. With a strong emphasis on networking, professional development, and advocacy, MREEA offers a comprehensive package of benefits. 
-                </div>
-                <div class="white-text">Members gain invaluable connections, access to top-notch educational resources, and a platform to influence positive change in the industry. By becoming a part of MREEA, individuals can position themselves as knowledgeable leaders in real estate education, enriching their careers and contributing to the continuous improvement of the profession</div>
-                <a href="https://next.waveapps.com/checkouts/7d1108f10cbe4cbaae8599386fe3ea17" target="_blank" class="btn yellow-btn">Join / Renew</a>
-            </div>
-        </div>
-    </div>
-</section>
-
-<section class="section benefits-section">
-    <div class="section-container container-col benefits-section-container">
-        <div class="heading dark-text">Benefits to Joining</div>
-        <div class="benefits-col-container container-row">
-            <div class="benefit-col container-col">
-                <div class="benefit-col-img-container img-container container-col">
-                    <img src="https://res.cloudinary.com/dikcjjfpo/image/upload/v1692718483/professional-development_jtvqdr.png" alt="Professional Development Icon" class="benefit-img img-100a">
-                </div>
-                <div class="sub-heading dark-text">Professional Development</div>
-                <div class="benefit-col-text-container container-col">
-                    <div class="white-text">
-                        Specialized training and resources for enhancing teaching skills, instructional techniques, and curriculum development
-                    </div>
-                    <div class="white-text">
-                        Stay updated on changes in real estate regulations, laws, and market dynamics
-                    </div>
-                    <div class="white-text">
-                        Access to a vast repository of educational materials, webinars, and conferences
-                    </div>
-                </div>
-            </div>
-            <div class="benefit-col container-col">
-                <div class="benefit-col-img-container img-container container-col second">
-                    <img src="https://res.cloudinary.com/dikcjjfpo/image/upload/v1692718483/networking_w8cfno.png" alt="Professional Development Icon" class="benefit-img img-100a">
-                </div>
-                <div class="sub-heading dark-text">Networking</div>
-                <div class="benefit-col-text-container container-col">
-                    <div class="white-text">
-                        Connects members with a diverse community of real estate professionals, educators, and industry leaders
-                    </div>
-                    <div class="white-text">
-                        Opens doors to potential partnerships, collaborations, and business opportunities
-                    </div>
-                    <div class="white-text">
-                        Access to networking events, workshops, and seminars
-                    </div>
-                </div>
-            </div>
-            <div class="benefit-col container-col">
-                <div class="benefit-col-img-container img-container container-col">
-                    <img src="https://res.cloudinary.com/dikcjjfpo/image/upload/v1692718483/career-impact_tfw5qv.png" alt="Professional Development Icon" class="benefit-img img-100a">
-                </div>
-                <div class="sub-heading dark-text">Career Impact</div>
-                <div class="benefit-col-text-container container-col">
-                    <div class="white-text">
-                        Elevates members' standing in the real estate education realm
-                    </div>
-                    <div class="white-text">
-                        Enhances professional growth and expertise through continuous learning opportunities
-                    </div>
-                    <div class="white-text">
-                        Contributes to the advancement and improvement of the entire real estate education industry
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<section class="section account-member-section">
-    <div class="section-container container-col account-member-section-container members-page-account-seciton-1">
-        {% if user.is_authenticated %}
-        <div class="account-member-wrapper container-col">
-            <div class="account-member-content-container container-col">
-                <div class="heading dark-text">Maryland Real Estate Educators Asscociation</div>
-                <div class="dark-text">Thank you for creating an account, if you haven't purchased a membership or your membership is expired or expiring, you can simply join or renew with a few clicks</div>
-                <a href="https://next.waveapps.com/checkouts/7d1108f10cbe4cbaae8599386fe3ea17" target="_blank" class="btn">Join / Renew</a>
-            </div>
-        </div>
+        <div class="dark-text">(Please use the same email as you logged in with)</div>
         {% else %}
-        <div class="account-member-wrapper container-col">
-            <div class="account-member-content-container container-col">
-                <div class="heading dark-text">Maryland Real Estate Educators Asscociation</div>
-                <div class="dark-text">Sign up and become a member to join an amazing community where you can learn and grow. Already a member or have an account? Then sign in to join or renew your membership.</div>
-                <div class="btns-container container-row">
-                    <a href="{% url 'account_login' %}" class="btn">Log in</a>
-                    <a href="{% url 'account_signup' %}" class="btn">Register</a>
-                </div>
+        <div class="heading dark-text">Thank You for your Creating an Account</div>
+        <div class="dark-text">
+            If you would like to purchase a membership, please click the Join button down below
+        </div>
+        <div class="dark-text">(Please use the same email as you logged in with)</div>
+        {% endif %}
+        {% else %}
+        <div class="heading dark-text">Please Register First To Access Membership</div>
+        <div class="container-col account-card">
+            <div class="account-card-section login-account-section-upper container-col">
+              <div class="account-card-wrapper container-col">
+                  <div class="heading white-text">Begin your Journey</div>
+                  {% if membership %}
+                  <div class="white-text">Please Sign Up or Sign In to access membership</div>
+                  {% else %}
+                  <div class="white-text">
+                      Already have an account? Then please <a class="unregistered-account-link" href="{% url 'account_login' %}">sign in</a>.
+                  </div>
+                  {% endif %}
+              </div>
+              <div class="account-card-img-overlay dark-overlay"></div>
+              <div class="account-card-bg-img-container">
+                  <img src="https://res.cloudinary.com/dikcjjfpo/image/upload/v1692718357/dmccaffrey01_beautiful_real_estate_in_scenic_area_dark_red_and__df3017ac-2bb6-4803-85c3-097194818d3e_uperzf.png" alt="Starry background image" class="img-100a account-card-bg-img">
+              </div>
+            </div>
+            <div class="account-card-section container-col login-accouint-section-lower">
+                <div class="sub-heading dark-blue-text sign-in-heading">User {% trans "Sign Up" %}</div>
+                <form class="account-form login-form container-col" id="signup_form" method="post" action="{% url 'account_signup' %}">
+                  {% csrf_token %}
+                  {{ form.as_p }}
+                  {% if redirect_field_value %}
+                  <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+                  {% endif %}
+                  <button class="dark-btn btn white-text account-btn" type="submit">{% trans "Sign Up" %}</button>
+                </form>
             </div>
         </div>
+        {% endif %}
+    </div>
+</section>
+
+<svg class="bigHalfCircle-red" xmlns="http://www.w3.org/2000/svg" version="1.1" width="100%" height="100" viewBox="0 0 100 100" preserveAspectRatio="none">
+    <path d="M0 100 C40 0 60 0 100 100 Z" />
+</svg>
+
+<section class="section cta-section">
+    <div class="section-container container-col cta-section-container">
+        <div class="cta-heading">Ready to elevate your real estate education journey?</div>
+        {% if user.is_authenticated %}
+        {% if user.is_member %}
+        <a href="https://next.waveapps.com/checkouts/7d1108f10cbe4cbaae8599386fe3ea17" target="_blank" class="btn cta-btn container-col">
+            <div class="cta-btn-arrow-container container-col">
+                <i class="fa-solid fa-arrow-right"></i>
+            </div>
+            <div class="cta-btn-text">Renew</div>
+        </a>
+        {% else %}
+        <a href="https://next.waveapps.com/checkouts/7d1108f10cbe4cbaae8599386fe3ea17" target="_blank" class="btn cta-btn container-col">
+            <div class="cta-btn-arrow-container container-col">
+                <i class="fa-solid fa-arrow-right"></i>
+            </div>
+            <div class="cta-btn-text">Join Now</div>
+        </a>
+        {% endif %}
+        {% else %}
+        <a href="https://next.waveapps.com/checkouts/7d1108f10cbe4cbaae8599386fe3ea17" class="btn cta-btn container-col">
+            <div class="cta-btn-arrow-container container-col">
+                <i class="fa-solid fa-arrow-right"></i>
+            </div>
+            <div class="cta-btn-text">Join Now</div>
+        </a>
         {% endif %}
     </div>
 </section>
@@ -109,5 +94,8 @@
 {% endblock %}
 
 {% block js %}
+
+<script src="{% static 'js/register.js' %}"></script>
+<script src="{% static 'js/cta-btn.js' %}"></script>
 
 {% endblock %}

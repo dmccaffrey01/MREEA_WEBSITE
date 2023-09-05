@@ -70,7 +70,7 @@ SITE_ID = 1
 
 POPUP_MESSAGE_TEMPLATE = 'popup_message.html'
 
-LOGIN_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = '/membership/' 
 LOGOUT_REDIRECT_URL = '/'
 
 MIDDLEWARE = [

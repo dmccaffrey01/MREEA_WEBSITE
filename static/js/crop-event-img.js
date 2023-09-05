@@ -1,6 +1,12 @@
 document.getElementById('imageInput').addEventListener('change', function() {
     const file = this.files[0];
+    const maxSizeInBytes = 1024 * 1024 * 10;
     if (file) {
+      if (file.size > maxSizeInBytes) {
+        alert('The selected image exceeds the maximum allowed size (10MB). Please choose a smaller image.');
+        return;
+      }
+      
       const reader = new FileReader();
       reader.onload = function(event) {
         const img = document.createElement('img');

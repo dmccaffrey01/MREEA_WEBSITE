@@ -3,54 +3,51 @@
 
 {% block content %}
 
-<section class="section account-member-section">
-    <div class="section-container container-col account-member-section-container members-page-account-seciton-1">
-        {% if user.is_authenticated %}
-        <div class="account-member-wrapper container-col">
-            <div class="account-member-content-container container-col">
-                <div class="heading dark-text">Maryland Real Estate Educators Asscociation</div>
-                <div class="dark-text">Thank you for creating an account, if you haven't purchased a membership or your membership is expired or expiring, you can simply join or renew with a few clicks</div>
-                <a href="https://next.waveapps.com/checkouts/7d1108f10cbe4cbaae8599386fe3ea17" target="_blank"  class="btn">Join / Renew</a>
+<section class="section members-heading-section">
+    <div class="container-col members-heading-section-container section-container">
+        <div class="sub-heading dark-text">Find a MREEA Member in your area</div>
+        <div class="sub-heading-2 dark-text">What can a MREEA Member do for you?</div>
+        <div class="container-col members-heading-reasons-container">
+            <div class="container-row members-heading-reason-item">
+                <div class="members-heading-reason-item-icon-container">
+                    <img src="https://res.cloudinary.com/dikcjjfpo/image/upload/v1693840784/learning-1_njnfag.png" alt="Learning Icon" class="img-100a">
+                </div>
+                <div class="dark-text mt">
+                    Develop diverse, personalized courses for adult learners to maximize engagement and learning
+                </div>
             </div>
-        </div>
-        {% else %}
-        <div class="account-member-wrapper container-col">
-            <div class="account-member-content-container container-col">
-                <div class="heading dark-text">Maryland Real Estate Educators Asscociation</div>
-                <div class="dark-text">To get access to finding and searching members, please sign in or sign up. Sign up and become a member to join an amazing community where you can learn and grow. Already a member or have an account? Then sign in to join or renew your membership.</div>
-                <div class="btns-container container-row">
-                    <a href="{% url 'account_login' %}" class="btn">Log in</a>
-                    <a href="{% url 'account_signup' %}" class="btn">Register</a>
+            <div class="container-row members-heading-reason-item">
+                <div class="members-heading-reason-item-icon-container">
+                    <img src="https://res.cloudinary.com/dikcjjfpo/image/upload/v1693840234/quality-1_hhfdwl.png" alt="Quality Icon" class="img-100a">
+                </div>
+                <div class="dark-text">
+                    Conduct regular evaluations of programs and instructors to enhance educational quality
+                </div>
+            </div>
+            <div class="container-row members-heading-reason-item">
+                <div class="members-heading-reason-item-icon-container">
+                    <img src="https://res.cloudinary.com/dikcjjfpo/image/upload/v1693840234/growth-1_tjeise.png" alt="Growth Icon" class="img-100a">
+                </div>
+                <div class="dark-text">
+                    Align educational offerings with evolving member needs for ongoing relevance and effectiveness
                 </div>
             </div>
         </div>
-        {% endif %}
     </div>
 </section>
 
-<section class="section members-search-form-section">
+<section class="section members-search-form-section container-row">
     <div class="members-search-img-container img-container">
-        <div class="dark-overlay"></div>
-        <div class="container-col members-search-form-card members-search-form-reasons">
-            <div class="sub-heading white-text">Find a MREEA Member in your area</div>
-            <div class="sub-heading-2 white-text">What can a MREEA Member do for you?</div>
-            <ul class="container-col members-search-reasons-container">
-                <li class="members-search-reason white-text">Deliver high-quality instruction for maximum member engagement and learning.</li>
-                <li class="members-search-reason white-text">Design a variety of courses that cater to the unique learning preferences and needs of adult learners, ensuring a more personalized and fulfilling educational experience.</li>
-                <li class="members-search-reason white-text">Conduct systematic evaluations of existing educational programs to identify areas for improvement and make necessary enhancements.</li>
-                <li class="members-search-reason white-text">Evaluate the performance and competence of current instructors to maintain the standard of instruction.</li>
-                <li class="members-search-reason white-text">Assess both present and future educational requirements to align with the changing needs of your members.</li>
-            </ul>
-        </div>
+        <img src="https://res.cloudinary.com/dikcjjfpo/image/upload/v1692718576/dmccaffrey01_black_business_woman_shaking_white_business_man_ha_89eb8833-1ac1-4591-aa8e-9b3221b50371-transformed_e3zjvu.png" alt="Business Woman and Man shaking hands" class="members-search-img">
+    </div>
+    <div class="members-search-form-content-container container-col">
         <div class="container-col members-search-form-card members-search-form-container">
-            <div class="sub-heading white-text">Search Member Directory</div>
             <form method="get" class="members-search-form">
                 {% csrf_token %}
                 {{ form.as_p }}
                 <input type="submit" value="Search" class="btn">
             </form>
         </div>
-        <img src="https://res.cloudinary.com/dikcjjfpo/image/upload/v1692718576/dmccaffrey01_black_business_woman_shaking_white_business_man_ha_89eb8833-1ac1-4591-aa8e-9b3221b50371-transformed_e3zjvu.png" alt="Business Woman and Man shaking hands" class="members-search-img">
     </div>
 </section>
 
@@ -161,13 +158,48 @@
     {% endfor %}
 </section>
 
-{% elif search_results %}
-    <section class="section members-search-form-no-results-section">
-        <div class="section-container container-col members-search-form-no-results-section-container">
-            <div class="dark-text sub-heading">No members found! Change your search query.</div>
-        </div>
-    </section>
+{% else %}
+<section class="section members-search-form-no-results-section">
+    <div class="section-container container-col members-search-form-no-results-section-container">
+        <div class="dark-text sub-heading">No members found! Change your search query.</div>
+    </div>
+</section>
+
 {% endif %}
+
+<svg class="bigHalfCircle-red" xmlns="http://www.w3.org/2000/svg" version="1.1" width="100%" height="100" viewBox="0 0 100 100" preserveAspectRatio="none">
+    <path d="M0 100 C40 0 60 0 100 100 Z" />
+</svg>
+
+<section class="section cta-section">
+    <div class="section-container container-col cta-section-container">
+        <div class="cta-heading">Ready to elevate your real estate education journey?</div>
+        {% if user.is_authenticated %}
+        {% if user.is_member %}
+        <a href="https://next.waveapps.com/checkouts/7d1108f10cbe4cbaae8599386fe3ea17" target="_blank" class="btn cta-btn container-col">
+            <div class="cta-btn-arrow-container container-col">
+                <i class="fa-solid fa-arrow-right"></i>
+            </div>
+            <div class="cta-btn-text">Renew</div>
+        </a>
+        {% else %}
+        <a href="https://next.waveapps.com/checkouts/7d1108f10cbe4cbaae8599386fe3ea17" target="_blank" class="btn cta-btn container-col">
+            <div class="cta-btn-arrow-container container-col">
+                <i class="fa-solid fa-arrow-right"></i>
+            </div>
+            <div class="cta-btn-text">Join Now</div>
+        </a>
+        {% endif %}
+        {% else %}
+        <a href="{% url 'membership' %}" class="btn cta-btn container-col">
+            <div class="cta-btn-arrow-container container-col">
+                <i class="fa-solid fa-arrow-right"></i>
+            </div>
+            <div class="cta-btn-text">Join Now</div>
+        </a>
+        {% endif %}
+    </div>
+</section>
 
 {% endblock %}
 

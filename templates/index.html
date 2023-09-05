@@ -121,9 +121,9 @@
 
 <section class="section home-solutions-section">
     <div class="section-container container-row home-solutions-section-container">
-        <div class="home-problems-img-section-container container-col">
-            <div class="home-problems-img-container img-container">
-                <img src="https://res.cloudinary.com/dikcjjfpo/image/upload/v1693405494/solutions_msmoax.png" alt="MREEA Logo" class="home-problems-img img-100a">
+        <div class="home-solutions-img-section-container container-col">
+            <div class="home-solutions-img-container img-container">
+                <img src="https://res.cloudinary.com/dikcjjfpo/image/upload/v1693405494/solutions_msmoax.png" alt="MREEA Logo" class="home-solutions-img img-100a">
             </div>
         </div>
 
@@ -171,12 +171,14 @@
         <div class="heading dark-text">Benefits to Joining</div>
         <div class="benefits-col-container container-row">
             <div class="benefit-col container-col">
-                <div class="benefit-col-img-container img-container container-col">
-                    <img src="https://res.cloudinary.com/dikcjjfpo/image/upload/v1693415548/communit-1_tmeve6.png" alt="Community Icon" class="benefit-img img-100a">
-                </div>
-                <div class="container-col benefit-heading-container">
-                    <div class="benefit-heading dark-text">Community</div>
-                    <div class="benefit-heading dark-text">Collaboration</div>
+                <div class="container-col benefit-col-img-heading-container">
+                    <div class="benefit-col-img-container img-container container-col">
+                        <img src="https://res.cloudinary.com/dikcjjfpo/image/upload/v1693415548/communit-1_tmeve6.png" alt="Community Icon" class="benefit-img img-100a">
+                    </div>
+                    <div class="container-col benefit-heading-container">
+                        <div class="benefit-heading dark-text">Community</div>
+                        <div class="benefit-heading dark-text">Collaboration</div>
+                    </div>
                 </div>
                 <div class="benefit-points-container container-col">
                     <div class="benefit-point-container container-row">
@@ -198,12 +200,14 @@
                 </div>
             </div>
             <div class="benefit-col container-col">
-                <div class="benefit-col-img-container img-container container-col">
-                    <img src="https://res.cloudinary.com/dikcjjfpo/image/upload/v1693415548/progress-1_knqvf5.png" alt="Progress Icon" class="benefit-img img-100a">
-                </div>
-                <div class="container-col benefit-heading-container">
-                    <div class="benefit-heading dark-text">Professional</div>
-                    <div class="benefit-heading dark-text">Advancement</div>
+                <div class="container-col benefit-col-img-heading-container">
+                    <div class="benefit-col-img-container img-container container-col">
+                        <img src="https://res.cloudinary.com/dikcjjfpo/image/upload/v1693415548/progress-1_knqvf5.png" alt="Progress Icon" class="benefit-img img-100a">
+                    </div>
+                    <div class="container-col benefit-heading-container">
+                        <div class="benefit-heading dark-text">Professional</div>
+                        <div class="benefit-heading dark-text">Advancement</div>
+                    </div>
                 </div>
                 <div class="benefit-points-container container-col">
                     <div class="benefit-point-container container-row">
@@ -225,12 +229,14 @@
                 </div>
             </div>
             <div class="benefit-col container-col">
-                <div class="benefit-col-img-container img-container container-col">
-                    <img src="https://res.cloudinary.com/dikcjjfpo/image/upload/v1693415548/resource-support-1_crw11r.png" alt="Support Icon" class="benefit-img img-100a">
-                </div>
-                <div class="container-col benefit-heading-container">
-                    <div class="benefit-heading dark-text">Resourceful</div>
-                    <div class="benefit-heading dark-text">Support</div>
+                <div class="container-col benefit-col-img-heading-container">
+                    <div class="benefit-col-img-container img-container container-col">
+                        <img src="https://res.cloudinary.com/dikcjjfpo/image/upload/v1693415548/resource-support-1_crw11r.png" alt="Support Icon" class="benefit-img img-100a">
+                    </div>
+                    <div class="container-col benefit-heading-container">
+                        <div class="benefit-heading dark-text">Resourceful</div>
+                        <div class="benefit-heading dark-text">Support</div>
+                    </div>
                 </div>
                 <div class="benefit-points-container container-col">
                     <div class="benefit-point-container container-row">
@@ -308,22 +314,36 @@
     </div>
 </section>
 
+<svg class="bigHalfCircle-red a" xmlns="http://www.w3.org/2000/svg" version="1.1" width="100%" height="100" viewBox="0 0 100 100" preserveAspectRatio="none">
+    <path d="M0 100 C40 0 60 0 100 100 Z" />
+</svg>
+
 <section class="section cta-section">
     <div class="section-container container-col cta-section-container">
         <div class="cta-heading">Ready to elevate your real estate education journey?</div>
         {% if user.is_authenticated %}
         {% if user.is_member %}
-        <a href="https://next.waveapps.com/checkouts/7d1108f10cbe4cbaae8599386fe3ea17" target="_blank" class="btn cta-btn">Renew</a>
+        <a href="https://next.waveapps.com/checkouts/7d1108f10cbe4cbaae8599386fe3ea17" target="_blank" class="btn cta-btn container-col">
+            <div class="cta-btn-arrow-container container-col">
+                <i class="fa-solid fa-arrow-right"></i>
+            </div>
+            <div class="cta-btn-text">Renew</div>
+        </a>
         {% else %}
-        <a href="https://next.waveapps.com/checkouts/7d1108f10cbe4cbaae8599386fe3ea17" target="_blank" class="btn cta-btn">Join Now</a>
-        {% endif %}
-        {% else %}
-        <div class="btn cta-btn container-col">
+        <a href="https://next.waveapps.com/checkouts/7d1108f10cbe4cbaae8599386fe3ea17" target="_blank" class="btn cta-btn container-col">
             <div class="cta-btn-arrow-container container-col">
                 <i class="fa-solid fa-arrow-right"></i>
             </div>
             <div class="cta-btn-text">Join Now</div>
-        </div>
+        </a>
+        {% endif %}
+        {% else %}
+        <a href="{% url 'membership' %}" class="btn cta-btn container-col">
+            <div class="cta-btn-arrow-container container-col">
+                <i class="fa-solid fa-arrow-right"></i>
+            </div>
+            <div class="cta-btn-text">Join Now</div>
+        </a>
         {% endif %}
     </div>
 </section>

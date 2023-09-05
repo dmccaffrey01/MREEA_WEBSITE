@@ -4,7 +4,7 @@
 {% block content %}
 
 <section class="section create-event-form-section">
-    <div class="container-col create-event-form-section-container">
+    <div class="container-col create-event-form-section-container section-container">
       {% if event.id %}
       <div class="heading dark-text">Edit Event</div>
       {% else %}
@@ -26,6 +26,7 @@
                   {% endif %}
                 </div>
               </div>
+
               <div class="event-image-upload container-col">
                 <div class="btn change-event-img-btn">Upload Image</div>
                 <div class="container-col event-image-change-container">
@@ -53,6 +54,27 @@
                 </div>
               </div>
 
+              <div class="btn event-form-select-image-btn">Select Image</div>
+              <div class="event-form-select-image-wrapper container-col">
+                <div class="event-form-select-image-container container-col">
+                  <div class="sub-heading dark-text">Choose Image</div>
+                  <div class="select-image-items-container container-row">
+                    <div class="select-image-close-btn">&times;</div>
+                    {% for image in select_images %}
+                    <div class="select-image-item">
+                      <img src="{{ image.image }}" alt="Event Image" class="img-100a">
+                      <div class="hidden-select-image-src-data">{{ image.image }}</div>
+                      <div class="hidden-select-image-uuid-data">{{ image.image_uuid }}</div>
+                    </div>
+                    {% endfor %}
+                  </div>
+                  <div class="select-image-confirm-btn btn">Select Image</div>
+                  <input type="hidden" name="selectedImage" id="selectedImage">
+                  
+                </div>
+              </div>
+                
+
               <div class="event-current-resources-container container-col">
                 {% if event_resources %}
                 {% for resource in event_resources %}
@@ -67,6 +89,7 @@
                 <div class="event-form-select-resources-container container-col">
                   <div class="sub-heading dark-text">Choose Resource(s)</div>
                   <div class="select-resource-items-container container-col">
+                    <div class="select-resource-close-btn">&times;</div>
                     {% if event_resources %}
                     {% for resource in event_resources %}
                     <div class="select-resource-item selected">{{ resource.name }} - {{ resource.link }}</div>
@@ -78,13 +101,18 @@
                   </div>
                   <div class="select-resource-confirm-btn btn">Select (<span class="select-resource-count">{{ number_of_event_resources }}</span>)</div>
                   <input type="hidden" name="selectedResources" id="selectedResources">
-                  <div class="select-resource-close-btn">&times;</div>
+                  
                 </div>
               </div>
 
               <div class="create-event-form-btns-container container-row">
                 {% if event.id %}
-                <input type="submit" name="delete" value="Delete" class="btn">
+                <div class="btn delete-event-btn">Delete</div>
+                <div class="confirm-delete-container container-col">
+                  <div class="dark-text">Are you sure you want to delete?</div>
+                  <div class="cancel-delete-btn btn">Cancel</div>
+                  <input type="submit" name="delete" value="Delete" class="btn confirm-delete-btn">
+                </div>
                 {% else %}
                 <a class="btn create-event-cancel-btn" href="{% url 'announcements' %}">Cancel</a>
                 {% endif %}
@@ -93,10 +121,13 @@
               </div>
             </form>
         </div>
+        <a class="btn" href="{% url 'announcements' %}">Cancel <i class="fa-solid fa-x"></i></a>
     </div>
+   
 </section>
 
-<div class="event-form-select-resources-overlay"></div>
+
+<div class="event-form-select-overlay"></div>
 
 {% endblock %}
 
