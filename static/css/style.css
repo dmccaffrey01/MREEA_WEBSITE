@@ -1894,6 +1894,54 @@ svg.bigTriangleColor.flip {
     gap: 10px;
 }
 
+@media (max-width: 768px) {
+    .account-card {
+        width: 350px;
+    }
+
+    .register-btn {
+        display: none;
+    }
+
+    .account-section {
+        padding: 0;
+    }
+
+    .login-account-section-upper {
+        height: 200px;
+        width: 350px;
+    }
+
+    .account-card-section {
+        min-width: 350px;
+        width: 350px;
+    }
+
+    .login-accouint-section-lower {
+        gap: 20px;
+    }
+
+    .account-form input[type="text"], .account-form input[type="password"], .account-form input[type="email"] {
+        padding: 10px 20px 10px 20px;
+    }
+
+    .account-input-icon-container {
+        right: 20px;
+        left: auto;
+        width: 20px;
+    }
+
+    .remember-checkbox-container {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 1450px) {
+    .login-btn {
+        font-size: 2rem;
+    }
+}
+
 /* Announcements Hero Section */
 
 .announcements-hero-container {
@@ -3232,6 +3280,43 @@ input:-webkit-autofill:active {
     display: flex;
 }
 
+@media (max-width: 1000px) {
+    .member-profile-section .member-profile-section-container {
+        flex-direction: column;
+    }
+
+    .member-profile-section .profile-right-side-container {
+        width: 650px;
+    }
+}
+
+@media (max-width: 768px) {
+
+    .member-profile-section .profile-right-side-container,
+    .member-profile-section .profile-left-side-container {
+        width: 350px;
+    }
+
+    .member-profile-section .profile-details-row-container,
+    .member-profile-section .profile-details-card-container,
+    .member-profile-section .profile-details-col-container {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .member-profile-section .profile-details-col-container .dark-text {
+        width: 100%;
+    }
+
+    .member-profile-section .profile-card {
+        height: fit-content;
+    }
+
+    .member-profile-section .profile-card .btn {
+        margin-top: 20px;
+    }
+}
+
 /* Members Searhc Results */
 
 .members-search-form-results-section .profile-left-side-container,
@@ -3536,6 +3621,40 @@ input:-webkit-autofill:active {
     max-width: 100%;
 }
 
+@media (max-width: 1000px) {
+    .edit-profile-card {
+        width: 700px;
+    }
+
+    .edit-profile-form-container {
+        padding: 20px;
+    }
+
+    .edit-profile-form .form-close-btn {
+        top: 0;
+        right: 0;
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .edit-profile-form-container {
+        padding: 10px;
+    }
+
+    .edit-profile-card {
+        width: 350px;
+    }
+
+    .edit-profile-form p,
+    .edit-profile-form-container p:has(label[for="id_email"]),
+    .edit-profile-form-container p:has(label[for="id_phone_number"]),
+    .edit-profile-form-container p:has(label[for="id_display_email"]),
+    .edit-profile-form-container p:has(label[for="id_display_number"]) {
+        flex-basis: 100%;
+    }
+}
+
 /* Learn Section */
 
 .learn-welcome-section-container {
@@ -3743,6 +3862,22 @@ input:-webkit-autofill:active {
 @media (max-width: 1450px) {
     .contact-section-container {
         flex-direction: column;
+        padding: 50px 0;
+        gap: 30px;
+    }
+
+    .contact-details-container {
+        text-align: center;
+    }
+
+    .contact-form-section {
+        padding: 50px 0;
+    }
+}
+
+@media (max-width: 768px) {
+    .contact-form-container {
+        width: 350px;
     }
 }
 
@@ -3974,6 +4109,7 @@ input:-webkit-autofill:active {
 .iframe-video-container {
     height: calc(100vh - 200px);
     aspect-ratio: 16/9;
+    display: none;
 }
 
 .youtube-iframe {
@@ -4037,4 +4173,11 @@ input:-webkit-autofill:active {
     .resources-page-dropdown {
         width: 350px;
     }
+}
+
+.tmp-img {
+    width: 500px;
+    height: 500px;
+    background-color: var(--RED-LOGO);
+    border-radius: 50%;
 }

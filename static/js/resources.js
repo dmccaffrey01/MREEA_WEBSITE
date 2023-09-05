@@ -6,6 +6,7 @@ const closeResourceLinkEmbedBtn = document.querySelector(".close-resource-link-e
 const resourceLinkEmbedSection = document.querySelector(".resource-link-embed-section");
 const youtubeIframe = document.querySelector(".youtube-iframe");
 const pdfIframe = document.querySelector(".pdf-iframe");
+const videoContainer = document.querySelector(".iframe-video-container");
 
 resourcesCategoryDropdownHeading.forEach((heading, index) => {
     heading.addEventListener("click", () => {
@@ -45,12 +46,14 @@ resourcesCategoryDropdownHeading.forEach((heading, index) => {
             openHereTabBtn.addEventListener("click", () => {
                 pdfIframe.style.display = "none";
                 youtubeIframe.style.display = "none";
+                videoContainer.style.display = "none";
                 if (linkTypeData == "PDF" && embedLinkData) {
                     pdfIframe.src = embedLinkData;
                     pdfIframe.style.display = "flex";
                     resourceLinkEmbedSection.style.display = "flex";
                 } else if (linkTypeData == "Youtube" && embedLinkData) {
                     youtubeIframe.src = embedLinkData;
+                    videoContainer.style.display = "flex";
                     youtubeIframe.style.display = "flex";
                     resourceLinkEmbedSection.style.display = "flex";
                 } else {
