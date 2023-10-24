@@ -20,10 +20,6 @@ body {
 
 a {
     text-decoration: none;
-
-    &:visited {
-        color: $gd-1;
-    }
 }
 
 .box-shadow {
@@ -104,16 +100,24 @@ a {
     font-size: $font-size;
     padding: 15px 30px;
     border-radius: 5px;
-    color: $white;
+    color: $gd-1;
     width: 240px;
     border: none;
     text-align: center;
     cursor: pointer;
     border: 3px solid $yellow-1;
+
+    &:visited {
+        color: $gd-1;
+    }
 }
 
 .btn-2 {
     background-color: $yellow-1;
+
+    &:visited {
+        color: $white;
+    }
 }
 
 .small-btn {

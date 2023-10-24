@@ -17,9 +17,6 @@ body {
 a {
   text-decoration: none;
 }
-a:visited {
-  color: #242424;
-}
 
 .box-shadow {
   box-shadow: 13px 13px 22px 3px rgba(0, 0, 0, 0.65);
@@ -95,16 +92,22 @@ a:visited {
   font-size: 1.4rem;
   padding: 15px 30px;
   border-radius: 5px;
-  color: #ffffff;
+  color: #242424;
   width: 240px;
   border: none;
   text-align: center;
   cursor: pointer;
   border: 3px solid #ffe457;
 }
+.btn:visited {
+  color: #242424;
+}
 
 .btn-2 {
   background-color: #ffe457;
+}
+.btn-2:visited {
+  color: #ffffff;
 }
 
 .small-btn {

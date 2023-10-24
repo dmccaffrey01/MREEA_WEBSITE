@@ -1,16 +1,13 @@
-document.addEventListener("DOMContentLoaded", () => {
-    const heroImg = document.querySelector(".hero-img-container");
+eventContainers = document.querySelectorAll(".event-container");
 
-    heroImg.classList.add("active");
-});
+eventContainers.forEach(event => {
+    event.addEventListener("click", () => {
+        let id = event.getAttribute("data-event-id");
 
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add("show");
-        }
+        let currentUrl = new URL(window.location);
+
+        currentUrl.pathname = `events/event/${id}`;
+
+        window.location.replace(currentUrl);
     });
 });
-
-const hiddenElements = document.querySelectorAll(".hidden");
-hiddenElements.forEach((el) => observer.observe(el));

@@ -19,7 +19,7 @@
                 <h2 class="heading white-text container-col">Upcoming Events</h2>
 
                 {% for event in upcoming_events %}
-                <div class="event-container container-row justify-start">
+                <div class="event-container container-row justify-start" data-event-id="{{ event.id }}">
                     <div class="date-container container-col">
                         <p class="date-text white-text container-col">{{ event.date|date:"d M" }}</p>
                         <p class="time-text dark-text container-col">{{ event.time|time:"H:i" }}</p>
@@ -33,7 +33,7 @@
                 <h2 class="heading white-text container-col">Past Events</h2>
 
                 {% for event in past_events %}
-                <div class="event-container container-row justify-start">
+                <div class="event-container container-row justify-start" data-event-id="{{ event.id }}">
                     <div class="date-container container-col">
                         <p class="date-text white-text container-col">{{ event.date|date:"d M" }}</p>
                         <p class="time-text dark-text container-col">{{ event.time|time:"H:i" }}</p>
