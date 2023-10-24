@@ -26,4 +26,29 @@
   gap: 5px;
 }
 
+/* Home about */
+.home-about-section .main-text-container {
+  width: 700px;
+  gap: 50px;
+}
+.home-about-section .heading {
+  position: relative;
+}
+.home-about-section .heading::after {
+  content: "";
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background-color: #ffe457;
+}
+.home-about-section .text-container {
+  gap: 30px;
+}
+.home-about-section .img-container {
+  width: 500px;
+  height: 500px;
+}
+
 /*# sourceMappingURL=home.css.map */
