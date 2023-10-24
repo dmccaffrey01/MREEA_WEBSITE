@@ -1,0 +1,39 @@
+@import '../../../static/css/variables';
+@import '../../../static/css/mixins';
+
+.home-hero-section {
+    height: calc(100vh - 100px);
+
+    .section-container {
+        width: 1600px;
+    }
+
+    .img-container {
+        width: 500px;
+        height: 500px;
+    }
+
+    .main-text-container {
+        width: 900px;
+        gap: 30px;
+    }
+
+    .heading-container {
+        gap: 5px;
+    }
+
+    .heading {
+        font-size: 5rem;
+        letter-spacing: 3px;
+    }
+
+    .subheading {
+        font-weight: 400;
+    }
+
+    .subheading-container {
+        gap: 5px;
+    }
+
+
+}

@@ -1,155 +1,76 @@
 {% load static %}
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <head>
+        {% block meta %}
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="description" content="">
+        <meta name="keywords" 
+            content="">
+        {% endblock %}
 
-    <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="{% static 'favicon.ico' %}">
+        {% block extra_meta %}
+        {% endblock %}
 
-    <!-- Cropper -->
-    {% if edit_image %}
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cropperjs@1.5.12/dist/cropper.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/cropperjs@1.5.12/dist/cropper.min.js"></script>
-    {% endif %}
+        {% block corecss %}
+        <link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}">
+        {% endblock %}
 
-    <!-- CSS -->
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    
+        {% block extra_css %}
+        {% endblock %}
 
-    <title>MREEA</title>
-</head>
-<body>
-    <!-- Header Logo, Nav Bar and Social Links -->
-    <header class="header-section">
-        <div class="header-container">
-            <!-- Logo -->
-            <div class="logo-container">
-                <a href="{% url 'home' %}" class="logo">
-                    
-                    <div class="logo-img-container">
-                        <img src="https://res.cloudinary.com/dikcjjfpo/image/upload/v1692718431/mreea-logo-1_lmfhvl.png" alt="MREEA Logo"
-                            class="logo-img">
+        {% block corejs %}
+        <!-- Font Awesome -->
+        <script src="https://kit.fontawesome.com/5821df7d40.js" crossorigin="anonymous"></script>
+        {% endblock %}
+
+        {% block extra_js %}
+        {% endblock %}
+
+        <!-- Favicon -->
+        <link rel="icon" type="image/x-icon" href="{% static 'favicon.ico' %}">
+
+        <title>MREEA {% block extra_title %}{% endblock %}</title>
+    </head>
+    <body>
+        <!-- Header Logo, Nav Bar and Social Links -->
+        <header class="container-col">
+            <div class="header-container container-row space-between">
+                <a href="{% url 'home' %}" class="logo-container container-row">
+                    <div class="logo-img-container img-container">
+                        <img src="{{ MEDIA_URL }}mreea-logo.png" alt="McAtee Logo" class="img-100a">
                     </div>
 
+                    <h1 class="logo-text dark-text">MREEA</h1>
                 </a>
-            </div>
-            <!-- Nav Bar -->
-            <nav class="nav-bar">
-                <ul class="nav-menu">
-                    <li class="nav-item">
-                        <a href="{% url 'announcements' %}" class="nav-link">Events</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="{% url 'members' %}" class="nav-link">Members</a>
-                    </li>
-                    <li class="nav-item-dropdown-btn container-col nav-item">
-                        <div class="nav-item-dropdown-heading">Learn <i class="fa-solid fa-caret-down nav-dropdown-icon"></i></div>
-                        <div class="nav-item-dropdown-container">
-                            <ul class="nav-item-dropdown">
-                                <li class="nav-item">
-                                    <a href="{% url 'learn' %}" class="nav-link">Learn</a>
-                                </li>
-                                <li class="nav-item">
-                                    {% if user.is_member %}
-                                    <a href="{% url 'resources' %}" class="nav-link">Resources</a>
-                                    {% else %}
-                                    <a href="{% url 'membership' %}" class="nav-link">Resources</a>
-                                    {% endif %}
-                                </li>
-                                
-                            </ul>
-                        </div>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link">Blog</a>
-                    </li>
-                    <li class="nav-item-dropdown-btn container-col nav-item">
-                        <div class="nav-item-dropdown-heading">More <i class="fa-solid fa-caret-down nav-dropdown-icon"></i></div>
-                        <div class="nav-item-dropdown-container">
-                            <ul class="nav-item-dropdown">
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link">About</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="{% url 'membership' %}" class="nav-link">Membership</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="{% url 'contact' %}" class="nav-link">Contact</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </li>
-                    <li class="nav-item logout-nav-item">
-                        <a href="{% url 'account_logout' %}" class="nav-link">Log Out</a>
-                    </li>
-                </ul>
-                <div class="hamburger">
-                    <span class="bar"></span>
-                    <span class="bar"></span>
-                    <span class="bar"></span>
+
+                <div class="nav-btn container-col">
+                    <div class="nav-btn-bar b1"></div>
+                    <div class="nav-btn-bar b2"></div>
+                    <div class="nav-btn-bar b3"></div>
                 </div>
-            </nav>
-            <!-- Account Buttons -->
-            <div class="account-login-container">
-                <div class="account-login-btns-container">
-                    {% if user.is_authenticated %}
-                    <div class="account-profile-container container-row">
-                        <a href="{% url 'member_profile' user.member_short_uuid %}" class="account-profile-img-container">
-                            {% if member_profile %}
-                            <img src="{{ member_profile.profile_image }}" alt="Profile Picture" class="account-profile-img img-100a">
-                            {% else %}
-                            <img src="https://res.cloudinary.com/dikcjjfpo/image/upload/v1692718355/default-profile-pic_nwq7pg.png" alt="Profile Picture" class="account-profile-img img-100a">
-                            {% endif %}
-                        </a>
-                        <a href="{% url 'account_logout' %}" class="dark-text logout-account-btn">
-                            Log Out
-                        </a>
-                    </div>
-                    {% else %}
-                    <div class="account-profile-container container-row">
-                        <a href="{% url 'account_login' %}" class="dark-text login-btn">
-                            Login
-                        </a>
-                        <a href="{% url 'account_signup' %}" class="btn register-btn">
-                            Register
-                        </a>
-                    </div>
-                    {% endif %}
-                </div>
+
+                <nav class="nav-menu container-row">
+                    <a href="#" class="nav-link">Events</a>
+                    <a href="#" class="nav-link">Members</a>
+                    <a href="#" class="nav-link">Learn</a>
+                    <a href="#" class="nav-link">Contact</a>
+                    <a href="#" class="btn-1 btn small-btn">Register</a>
+                </nav>
             </div>
-        </div>
-    </header>
-    {% block content %}
-    {% endblock %}
-    <!-- Footer -->
-    <footer>
-        <div class="footer-container">
-            <!-- Copyright -->
-            <div class="copyright">
-                © Copyrights 2023
-                MREEA (Maryland Real Estate Educators Association)
-            </div>
-            <!-- Footer Logo -->
-            <div class="footer-logo-img-container">
-                <img src="https://res.cloudinary.com/dikcjjfpo/image/upload/v1692718431/mreea-logo-1-gray_azwepf.png" alt="MREEA Logo"
-                    class="footer-logo">
-            </div>
-        </div>
-    </footer>
+        </header>
 
-    
+        {% block page_header %}
+        {% endblock %}
 
-    <!-- Font Awesome -->
-    <script src="https://kit.fontawesome.com/5821df7d40.js" crossorigin="anonymous"></script>
+        {% block content %}
+        {% endblock %}
 
-    <script src="{% static 'js/nav-menu.js' %}"></script>
-
-    {% block js %}
-    {% endblock %}
-    
-</body>
+        {% block postloadjs %}
+        <script src="{% static 'js/base.js' %}"></script>
+        {% endblock %}
+    </body>
 </html>

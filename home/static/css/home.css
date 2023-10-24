@@ -1,0 +1,29 @@
+.home-hero-section {
+  height: calc(100vh - 100px);
+}
+.home-hero-section .section-container {
+  width: 1600px;
+}
+.home-hero-section .img-container {
+  width: 500px;
+  height: 500px;
+}
+.home-hero-section .main-text-container {
+  width: 900px;
+  gap: 30px;
+}
+.home-hero-section .heading-container {
+  gap: 5px;
+}
+.home-hero-section .heading {
+  font-size: 5rem;
+  letter-spacing: 3px;
+}
+.home-hero-section .subheading {
+  font-weight: 400;
+}
+.home-hero-section .subheading-container {
+  gap: 5px;
+}
+
+/*# sourceMappingURL=home.css.map */
