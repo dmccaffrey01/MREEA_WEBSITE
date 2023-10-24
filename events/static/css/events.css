@@ -1,0 +1,71 @@
+.events-section {
+  padding-top: 50px;
+}
+.events-section .section-container {
+  gap: 50px;
+}
+.events-section .img-container {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  height: 300px;
+  border-radius: 20px;
+}
+.events-section .img-container .img-100a {
+  position: absolute;
+  left: 0;
+  top: -200px;
+}
+.events-section .events-container-row {
+  width: 100%;
+}
+.events-section .events-container {
+  width: 675px;
+  height: 700px;
+  background-color: #ececec;
+  border-radius: 15px;
+  overflow: hidden;
+}
+.events-section .events-container .heading {
+  width: 100%;
+  height: 100px;
+  margin-bottom: 50px;
+}
+.events-section .events-container.upcoming .heading {
+  background-color: #ffe457;
+}
+.events-section .events-container.past .heading {
+  background-color: #c64f4a;
+}
+.events-section .events-container .event-container {
+  background-color: #f7f7f7;
+  width: 575px;
+  height: 150px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  cursor: pointer;
+  padding: 25px;
+  gap: 70px;
+}
+.events-section .events-container .date-container {
+  justify-self: flex-start;
+  height: 100px;
+}
+.events-section .events-container .date-text, .events-section .events-container .time-text {
+  width: 120px;
+  padding: 10px 0;
+  border-radius: 5px;
+}
+.events-section .events-container.upcoming .date-text {
+  background-color: #ffe457;
+}
+.events-section .events-container.past .date-text {
+  background-color: #c64f4a;
+}
+.events-section .events-container .name-text {
+  width: calc(100% - 190px);
+  height: 100px;
+  padding: 10px 0;
+}
+
+/*# sourceMappingURL=events.css.map */

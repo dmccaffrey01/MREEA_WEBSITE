@@ -7,6 +7,42 @@
 .home-hero-section .img-container {
   width: 500px;
   height: 500px;
+  position: relative;
+}
+.home-hero-section .img-container .img-100a {
+  opacity: 0;
+  transition: all 1s ease;
+}
+.home-hero-section .svg-container {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+.home-hero-section .svg-container svg path {
+  stroke-dashoffset: 1560;
+  stroke-dasharray: 1560;
+  stroke: #c64f4a;
+  stroke-width: 2px;
+  fill: transparent;
+}
+.home-hero-section .img-container.active .svg-container svg path {
+  animation: animate-img 2s linear forwards;
+}
+@keyframes animate-img {
+  0% {
+    stroke-dashoffset: 1560;
+  }
+  50% {
+    stroke-dashoffset: 0;
+    fill: transparent;
+  }
+  100% {
+    fill: #c64f4a;
+  }
+}
+.home-hero-section .img-container.active .img-100a {
+  opacity: 1;
+  transition-delay: 1s;
 }
 .home-hero-section .main-text-container {
   width: 900px;
@@ -27,6 +63,9 @@
 }
 
 /* Home about */
+.home-about-section {
+  overflow: hidden;
+}
 .home-about-section .main-text-container {
   width: 700px;
   gap: 50px;
@@ -40,7 +79,7 @@
   bottom: -5px;
   left: 0;
   width: 100%;
-  height: 3px;
+  height: 4px;
   background-color: #ffe457;
 }
 .home-about-section .text-container {
@@ -49,6 +88,148 @@
 .home-about-section .img-container {
   width: 500px;
   height: 500px;
+  transition: all 1.5s ease;
+}
+.home-about-section .img-container.hidden {
+  transform: translateX(100%) rotate(180deg);
+  opacity: 0;
+}
+.home-about-section .img-container.show {
+  transform: translateX(0) rotate(0);
+  opacity: 1;
+}
+
+/* Home Benefits */
+.home-benefits-section {
+  overflow: hidden;
+}
+.home-benefits-section .section-container {
+  gap: 100px;
+}
+.home-benefits-section .heading {
+  position: relative;
+}
+.home-benefits-section .heading::after {
+  content: "";
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background-color: #c64f4a;
+}
+.home-benefits-section .card-container {
+  width: 100%;
+}
+.home-benefits-section .card {
+  position: relative;
+  width: 400px;
+  height: 350px;
+  padding: 75px 50px 20px 50px;
+  background-color: #ececec;
+  border-radius: 15px;
+  gap: 20px;
+  transition: all 0.9s ease;
+}
+.home-benefits-section .card.hidden {
+  transform: translateX(-100%);
+  opacity: 0;
+}
+.home-benefits-section .card.show {
+  transform: translateX(0);
+  opacity: 1;
+}
+.home-benefits-section .card:nth-of-type(2) {
+  transition-delay: 0.3s;
+}
+.home-benefits-section .card:nth-of-type(3) {
+  transition-delay: 0.6s;
+}
+.home-benefits-section .icon-container {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background-color: #c64f4a;
+  padding: 10px;
+  position: absolute;
+  left: 20px;
+  top: -50px;
+}
+
+.testimonial-section {
+  overflow: hidden;
+  padding-bottom: 200px;
+}
+.testimonial-section .section-container {
+  gap: 50px;
+}
+.testimonial-section .heading {
+  position: relative;
+}
+.testimonial-section .heading::after {
+  content: "";
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background-color: #ffe457;
+}
+.testimonial-section .card-container {
+  width: 100%;
+}
+.testimonial-section .card {
+  width: 400px;
+  height: 520px;
+  padding: 50px;
+  border-radius: 15px;
+  background-color: #ececec;
+  position: relative;
+  transition: all 0.9s ease;
+}
+.testimonial-section .card.hidden {
+  transform: translateX(100%);
+  opacity: 0;
+}
+.testimonial-section .card.show {
+  transform: translateX(0);
+  opacity: 1;
+}
+.testimonial-section .card:nth-of-type(2) {
+  transition-delay: 0.3s;
+}
+.testimonial-section .card:nth-of-type(3) {
+  transition-delay: 0.6s;
+}
+.testimonial-section .subheading {
+  height: 2rem;
+}
+.testimonial-section .message {
+  height: 216px;
+}
+.testimonial-section .rating-container {
+  gap: 5px;
+}
+.testimonial-section .star-icon i {
+  font-size: 1.4rem;
+  color: #ffe457;
+}
+.testimonial-section .profile-container {
+  gap: 10px;
+}
+.testimonial-section .profile-img-container {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+}
+.testimonial-section .name {
+  font-weight: 600;
+}
+
+/* Cta section */
+.cta-section {
+  gap: 30px;
+  background-color: #ececec;
 }
 
 /*# sourceMappingURL=home.css.map */

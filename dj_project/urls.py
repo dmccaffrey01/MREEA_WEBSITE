@@ -24,6 +24,7 @@ app_name = 'account'
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('home.urls')),
+    path('events/', include('events.urls')),
     path('accounts/', include('allauth.urls')),
 ]
 

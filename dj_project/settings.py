@@ -27,7 +27,7 @@ TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
 SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = 'DEVELOPMENT' in os.environ
 
 ALLOWED_HOSTS = ['mreea.org', 'http://www.mreea.org', '70.32.23.32', 'http://70.32.23.32/~mreeaor1/', 'localhost', '127.0.0.1']
 
@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     'django.contrib.staticfiles',
     'home',
+    'events',
 ]
 
 ACCOUNT_AUTHENTICATION_METHOD = 'email'
@@ -54,14 +55,19 @@ ACCOUNT_USER_MODEL_USERNAME_FIELD = None
 
 ACCOUNT_EMAIL_REQUIRED = True
 
+ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
+
+ACCOUNT_SIGNUP_EMAIL_ENTER_TWICE = True
+
 ACCOUNT_USERNAME_REQUIRED = False
 
 SITE_ID = 1
 
 POPUP_MESSAGE_TEMPLATE = 'popup_message.html'
 
-LOGIN_REDIRECT_URL = '/membership/' 
+LOGIN_REDIRECT_URL = '/' 
 LOGOUT_REDIRECT_URL = '/'
+LOGIN_URL = '/accounts/login/'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -98,23 +104,24 @@ WSGI_APPLICATION = 'dj_project.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.environ.get('DB_NAME'),
-        'USER': os.environ.get('DB_USER'),
-        'PASSWORD': os.environ.get('DB_PASSWORD'),
-        'HOST': os.environ.get('DB_HOST'),
-        'PORT': os.environ.get('DB_PORT'),
+if 'DEVELOPMENT' in os.environ:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
     }
-}
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': os.environ.get('DB_NAME'),
+            'USER': os.environ.get('DB_USER'),
+            'PASSWORD': os.environ.get('DB_PASSWORD'),
+            'HOST': os.environ.get('DB_HOST'),
+            'PORT': os.environ.get('DB_PORT'),
+        }
+    }   
 
 
 # Password validation

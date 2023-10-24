@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/events.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<section class="events-section section">
+    <div class="section-container container-col">
+        <div class="img-container">
+            <img src="{{ MEDIA_URL }}mreea-meeting-3.png" alt="MREEA Event" class="img-100a">
+        </div>
+
+        <div class="events-container-row container-row space-between">
+            <div class="events-container container-col justify-start upcoming">
+                <h2 class="heading white-text container-col">Upcoming Events</h2>
+
+                {% for event in upcoming_events %}
+                <div class="event-container container-row justify-start">
+                    <div class="date-container container-col">
+                        <p class="date-text white-text container-col">{{ event.date|date:"d M" }}</p>
+                        <p class="time-text dark-text container-col">{{ event.time|time:"H:i" }}</p>
+                    </div>
+                    <p class="name-text dark-text container-col subheading align-start">{{ event.name }}</p>
+                </div>
+                {% endfor %}
+            </div>
+
+            <div class="events-container container-col justify-start past">
+                <h2 class="heading white-text container-col">Past Events</h2>
+
+                {% for event in past_events %}
+                <div class="event-container container-row justify-start">
+                    <div class="date-container container-col">
+                        <p class="date-text white-text container-col">{{ event.date|date:"d M" }}</p>
+                        <p class="time-text dark-text container-col">{{ event.time|time:"H:i" }}</p>
+                    </div>
+                    <p class="name-text dark-text container-col subheading align-start">{{ event.name }}</p>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
+
+{% block postloadjs %}
+{{ block.super }}
+
+<script src="{% static 'js/events.js' %}"></script>
+
+{% endblock %}
