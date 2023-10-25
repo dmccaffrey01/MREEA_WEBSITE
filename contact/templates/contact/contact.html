@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/contact.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<section class="contact-section section">
+    <div class="section-container container-row space-between">
+        <div class="contact-form-container container-col align-start">
+            <h2 class="heading dark-text">Contact Us</h2>
+            <p class="dark-text">We'd love to hear from you</p>
+            <form action="{% url 'contact' %}" method="POST" class="contact-form container-col">
+                {% csrf_token %}
+                <div class="form-group container-row">
+                    <div class="input-group container-col align-start">
+                        {{ form.name.label_tag }}
+                        {{ form.name }}
+                    </div>
+                    <div class="input-group container-col align-start">
+                        {{ form.email.label_tag }}
+                        {{ form.email }}
+                    </div>
+                </div>
+                <div class="input-group container-col align-start">
+                    {{ form.message.label_tag }}
+                    {{ form.message }}
+                </div>
+                <button type="submit" class="btn btn-2">Send</button>
+            </form>
+        </div>
+
+        <div class="contact-info-container container-col">
+            <div class="info-container-col align-start container-col">
+                <div class="info-container container-row">
+                    <div class="icon-container img-container">
+                        <img src="{{ MEDIA_URL }}contact-icon-1.png" alt="Phone Icon" class="img-100a">
+                    </div>
+                    <p class="dark-text">(555) 555 5555</p>
+                </div>
+                <div class="info-container container-row">
+                    <div class="icon-container img-container">
+                        <img src="{{ MEDIA_URL }}contact-icon-2.png" alt="Email Icon" class="img-100a">
+                    </div>
+                    <p class="dark-text">example@email.com</p>
+                </div>
+            </div>
+            <div class="lines-img-container img-container">
+                <img src="{{ MEDIA_URL }}colored-lines.png" alt="Colored Lines" class="img-100a">
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
+
+{% block postloadjs %}
+{{ block.super }}
+
+<script src="{% static 'js/contact.js' %}"></script>
+
+{% endblock %}

@@ -47,6 +47,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'home',
     'events',
+    'members',
+    'contact',
 ]
 
 ACCOUNT_AUTHENTICATION_METHOD = 'email'

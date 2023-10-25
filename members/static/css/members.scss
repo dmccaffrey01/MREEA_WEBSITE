@@ -1,0 +1,28 @@
+@import '../../../static/css/variables';
+@import '../../../static/css/mixins';
+
+.members-benefits-section {
+    .section-container {
+        gap: 30px
+    }
+
+    .heading {
+        @include underline($red-1);
+    }
+
+    .main-text-container {
+        gap: 10px;
+    }
+
+    .text-container {
+        gap: 10px;
+    }
+    
+    .icon-container {
+        width: 60px;
+        height: 60px;
+        padding: 5px;
+        background: $red-1;
+        border-radius: 50%;
+    }
+}

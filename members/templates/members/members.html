@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/members.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<section class="members-benefits-section section">
+    <div class="section-container container-col align-start">
+        <h2 class="heading dark-text">What can a MREEA Member do for you?</h2>
+
+        <div class="main-text-container container-col align-start">
+            <div class="text-container container-row">
+                <div class="icon-container img-container">
+                    <img src="{{ MEDIA_URL }}members-icon-1.png" alt="Members Icon" class="img-100a">
+                </div>
+                <p class="dark-text">Customize your learning</p>
+            </div>
+            <div class="text-container container-row">
+                <div class="icon-container img-container">
+                    <img src="{{ MEDIA_URL }}members-icon-2.png" alt="Members Icon" class="img-100a">
+                </div>
+                <p class="dark-text">Maximise your potential</p>
+            </div>
+            <div class="text-container container-row">
+                <div class="icon-container img-container">
+                    <img src="{{ MEDIA_URL }}members-icon-3.png" alt="Members Icon" class="img-100a">
+                </div>
+                <p class="dark-text">Align education with your needs</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="member-search-section section">
+    <div class="section-container container-col">
+        <h2 class="heading dark-text">Find a MREEA Member in your area</h2>
+
+        <div class="img-container">
+            <img src="{{ MEDIA_URL }}members-image.png" alt="Members shaking hands" class="img-100a">
+
+            <form class="search-form-container container-row">
+                
+            </form>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
+
+{% block postloadjs %}
+{{ block.super }}
+
+<script src="{% static 'js/members.js' %}"></script>
+
+{% endblock %}
