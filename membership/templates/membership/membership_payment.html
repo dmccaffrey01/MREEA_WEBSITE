@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% load static %}
+{% block extra_title %}- Membership Payment{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/membership_payment.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<section class="membership-payment-section section h-100b">
+    <div class="section-container container-row">
+        <div class="form-container">
+            <form action="{% url 'membership_payment'%}" class="form" method="POST">
+                {% csrf_token %}
+                <input type="text" name="mock_message">
+                <button type="submit" class="btn btn-2">Pay</button>
+            </form>
+        </div>
+        
+    </div>
+</section>
+
+{% endblock %}
+
+{% block postloadjs %}
+{{ block.super }}
+
+<script src="{% static 'js/membership_payment.js' %}"></script>
+
+{% endblock %}

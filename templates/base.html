@@ -41,7 +41,7 @@
             <div class="header-container container-row space-between">
                 <a href="{% url 'home' %}" class="logo-container container-row">
                     <div class="logo-img-container img-container">
-                        <img src="{{ MEDIA_URL }}mreea-logo.png" alt="McAtee Logo" class="img-100a">
+                        <img src="{{ MEDIA_URL }}mreea-logo.webp" alt="MREEA Logo" class="img-100a">
                     </div>
 
                     <h1 class="logo-text dark-text">MREEA</h1>
@@ -58,8 +58,28 @@
                     <a href="{% url 'members' %}" class="nav-link">Members</a>
                     <a href="#" class="nav-link">Learn</a>
                     <a href="{% url 'contact' %}" class="nav-link">Contact</a>
-                    <a href="#" class="btn-1 btn small-btn">Register</a>
                 </nav>
+
+                {% if user.is_authenticated %}
+
+                <div class="profile-container container-col">
+                    <div class="profile-img-container img-container">
+                        {% if profile.image %}
+                        <img src="{{ profile.image.url }}" alt="{{ profile.first_name }}'s Profile Image" class="img-100a">
+                        {% else %}
+                        <img src="{{ MEDIA_URL }}default-profile.webp" alt="Default Profile Image" class="img-100a">
+                        {% endif %}
+                    </div>
+                </div>
+
+                {% else %}
+
+                <div class="account-btns-container container-row">
+                    <a href="{% url 'account_login' %}" class="nav-link">Login</a>
+                    <a href="{% url 'account_signup' %}" class="btn-2 btn small-btn">Join Now</a>
+                </div>
+
+                {% endif %}
             </div>
         </header>
 

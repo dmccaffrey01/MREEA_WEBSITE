@@ -17,6 +17,9 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf.urls.static import static
 from django.conf import settings
+from django.urls import path
+from allauth.account.views import SignupView
+from profiles.forms import CustomSignupForm
 
 
 app_name = 'account'
@@ -27,6 +30,9 @@ urlpatterns = [
     path('events/', include('events.urls')),
     path('members/', include('members.urls')),
     path('contact/', include('contact.urls')),
+    path('profile/', include('profiles.urls')),
+    path('membership/', include('membership.urls')),
+    path('accounts/signup/', SignupView.as_view(form_class=CustomSignupForm, success_url='/membership/payment'), name='account_signup'),
     path('accounts/', include('allauth.urls')),
 ]
 

@@ -1,0 +1,23 @@
+.account-section {
+    background-color: $gl-2;
+    height: 100vh;
+
+    .section-container {
+        gap: 100px;
+    }
+
+    .info-container {
+        gap: 30px;
+        text-align: center;
+        max-width: 600px;
+
+        .text-container {
+            gap: 10px;
+        }
+
+        .img-container {
+            width: 350px;
+            height: 84px;
+        }
+    }
+}

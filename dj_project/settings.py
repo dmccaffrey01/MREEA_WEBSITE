@@ -41,27 +41,38 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.sites',
+    'django.contrib.staticfiles',
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
-    'django.contrib.staticfiles',
     'home',
     'events',
     'members',
     'contact',
+    'profiles',
+    'membership',
 ]
 
 ACCOUNT_AUTHENTICATION_METHOD = 'email'
 
 ACCOUNT_USER_MODEL_USERNAME_FIELD = None
 
+ACCOUNT_USERNAME_REQUIRED = False
+
 ACCOUNT_EMAIL_REQUIRED = True
 
-ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
+ACCOUNT_EMAIL_VERIFICATION = 'optional'
 
-ACCOUNT_SIGNUP_EMAIL_ENTER_TWICE = True
+ACCOUNT_EMAIL_CONFIRMATION_ANONYMOUS_REDIRECT_URL = '/membership/payment'
 
 ACCOUNT_USERNAME_REQUIRED = False
+
+MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'
+
+AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
+)
 
 SITE_ID = 1
 
@@ -94,7 +105,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                'home.context_processors.media_url',
+                'django.template.context_processors.media',
+                'profiles.contexts.profile',
             ],
         },
     },
@@ -180,3 +192,6 @@ EMAIL_USE_TLS = True  # Add this line to enable TLS
 EMAIL_HOST_USER = os.environ.get('HOST_EMAIL')
 DEFAULT_FROM_EMAIL = os.environ.get('HOST_EMAIL')
 EMAIL_HOST_PASSWORD = os.environ.get('HOST_EMAIL_PASSWORD')
+
+STRIPE_TEST_SECRET_KEY = os.environ.get('STRIPE_TEST_SECRET_KEY')
+STRIPE_TEST_PUBLIC_KEY = os.environ.get('STRIPE_TEST_PUBLIC_KEY')

@@ -1,0 +1,60 @@
+.account-section {
+  background-color: #ececec;
+  height: 100vh;
+}
+.account-section .section-container {
+  gap: 100px;
+}
+.account-section .info-container {
+  gap: 30px;
+}
+.account-section .info-container .text-container {
+  gap: 10px;
+}
+.account-section .info-container .img-container {
+  width: 350px;
+  height: 84px;
+}
+
+.login-section .remember-forget-container {
+  width: 100%;
+  justify-content: space-between;
+}
+.login-section .remember-forget-container .input-group {
+  width: fit-content;
+  gap: 10px;
+}
+.login-section .remember-forget-container .remember-label {
+  cursor: pointer;
+}
+.login-section .remember-forget-container #id_remember {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  width: 1.1rem;
+  height: 1.1rem;
+  border: 2px solid var(--GRAY-DARK-2);
+  border-radius: 3px;
+  outline: none;
+  position: relative;
+  cursor: pointer;
+  padding: 0;
+}
+.login-section .remember-forget-container #id_remember::before {
+  content: "";
+  position: absolute;
+  top: 45%;
+  left: 25%;
+  width: 30%;
+  height: 70%;
+  border: solid #c64f4a;
+  border-width: 0 3px 3px 0;
+  transform: translateY(-50%) rotate(45deg);
+  opacity: 0;
+  transition: opacity 0.2s ease-in-out;
+}
+.login-section .remember-forget-container #id_remember:checked::before {
+  opacity: 1;
+}
+
+/*# sourceMappingURL=login.css.map */

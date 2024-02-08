@@ -1,46 +1,80 @@
 {% extends "base.html" %}
 
 {% load i18n %}
+{% load account socialaccount %}
 {% load static %}
-{% block head_title %}{% trans "Signup" %}{% endblock %}
+{% block extra_title %}- Sign Up{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" type="text/css" href="{% static 'account/css/signup.css' %}">
+{% endblock %}
 
 {% block content %}
-<section class="account-section login-account-section section">
-    <div class="container-col account-card">
-        <div class="account-card-section login-account-section-upper container-col">
-          <div class="account-card-wrapper container-col">
-              <div class="heading white-text">Begin your Journey</div>
-              {% if membership %}
-              <div class="white-text">Please Sign Up or Sign In to access membership</div>
-              {% else %}
-              <div class="white-text">
-                  Already have an account? Then please <a class="unregistered-account-link" href="{% url 'account_login' %}">sign in</a>.
-              </div>
-              {% endif %}
-          </div>
-          <div class="account-card-img-overlay dark-overlay"></div>
-          <div class="account-card-bg-img-container">
-              <img src="https://res.cloudinary.com/dikcjjfpo/image/upload/v1692718357/dmccaffrey01_beautiful_real_estate_in_scenic_area_dark_red_and__df3017ac-2bb6-4803-85c3-097194818d3e_uperzf.png" alt="Starry background image" class="img-100a account-card-bg-img">
-          </div>
+<section class="signup-section account-section section h-100b">
+    <div class="section-container container-row">
+
+        <div class="info-container container-col">
+            <div class="text-container container-col">
+                <h2 class="dark-text heading">Start Your Journey</h2>
+                <p class="dark-text">Already a Member? <a href="{% url 'account_login' %}" class="red-text dark-text">Login Here</a></p>
+                <p class="dark-text small-text">Please fill in this info to create an account</p>
+                <p class="dark-text small-text">After you will be taken to a payment portal</p>
+            </div>
+            <div class="img-container">
+                <img src="{{ MEDIA_URL }}mreea-colored-lines.webp" alt="MREEA Colors" class="img-100a">
+            </div>
         </div>
-        <div class="account-card-section container-col login-accouint-section-lower">
-            <div class="sub-heading dark-blue-text sign-in-heading">User {% trans "Sign Up" %}</div>
-            <form class="account-form login-form container-col" id="signup_form" method="post" action="{% url 'account_signup' %}">
-              {% csrf_token %}
-              {{ form.as_p }}
-              {% if redirect_field_value %}
-              <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
-              {% endif %}
-              <button class="dark-btn btn white-text account-btn" type="submit">{% trans "Sign Up" %}</button>
-            </form>
+
+        <div class="form-container">
+            
+            <form class="form" method="POST" action="{% url 'account_signup' %}">
+                {% csrf_token %}
+                <div class="input-group col-2">
+                    <p class="input-label dark-text">Email</p>
+                    <label for="id_email" class="sr-only">email</label>
+                    {{ form.email }}
+                </div>
+
+                <div class="input-group-container">
+                    <div class="input-group">
+                        <p class="input-label dark-text">First Name</p>
+                        <label for="id_first_name" class="sr-only">first_name</label>
+                        {{ form.first_name }}
+                    </div>
+
+                    <div class="input-group">
+                        <p class="input-label dark-text">Last Name</p>
+                        <label for="id_last_name" class="sr-only">last_name</label>
+                        {{ form.last_name }}
+                    </div>
+                </div>
+
+                <div class="input-group-container">
+                    <div class="input-group">
+                        <p class="input-label dark-text">Password</p>
+                        <label for="id_password1" class="sr-only">password1</label>
+                        {{ form.password1 }}
+                    </div>
+
+                    <div class="input-group">
+                        <p class="input-label dark-text">Password (Confirmation)</p>
+                        <label for="id_password2" class="sr-only">password2</label>
+                        {{ form.password2 }}
+                    </div>
+                </div>
+                
+                {% if redirect_field_value %}
+                <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+                {% endif %}
+
+                <button class="btn btn-2" type="submit">{% trans "Sign Up" %}</button>
+              </form>
         </div>
     </div>
+
+    
 </section>
 
 {% endblock %}
 
-{% block js %}
 
-<script src="{% static 'js/register.js' %}"></script>
-
-{% endblock %}

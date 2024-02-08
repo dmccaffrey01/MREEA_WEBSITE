@@ -24,24 +24,83 @@ a {
   -moz-box-shadow: 13px 13px 22px 3px rgba(0, 0, 0, 0.65);
 }
 
-.container-row, .btn, .img-container, .container-col, .section {
+.container-row, .btn, .img-container, .form-container .input-group-container, .container-col, .form-container .input-group, .form-container .form, .form-container .heading-container, .form-container, .section {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.container-col, .section {
+.container-col, .form-container .input-group, .form-container .form, .form-container .heading-container, .form-container, .section {
   flex-direction: column;
 }
 
 .section {
   width: 100%;
   background: #f7f7f7;
+}
+.section.ptb-100 {
   padding: 100px 0;
+}
+.section.h-100a {
+  height: 100vh;
+}
+.section.h-100b {
+  height: calc(100vh - 100px);
 }
 
 .section-container {
-  width: 1400px;
+  width: 1140px;
+}
+
+.form-container {
+  padding: 40px;
+  background-color: #f7f7f7;
+  gap: 20px;
+  border-radius: 25px;
+  align-items: flex-start;
+}
+.form-container .heading-container {
+  align-items: flex-start;
+  width: 100%;
+}
+.form-container .form {
+  gap: 15px;
+  align-items: flex-start;
+}
+.form-container .form .btn {
+  align-self: center;
+  width: 100%;
+}
+.form-container .input-group {
+  align-items: flex-start;
+  width: 350px;
+  gap: 5px;
+}
+.form-container .input-group.row {
+  flex-direction: row;
+}
+.form-container .input-group.col-2 {
+  width: 600px;
+}
+.form-container .input-group input {
+  width: 100%;
+  font-size: 1.4rem;
+  padding: 10px 15px;
+  border: none;
+  outline: none;
+  color: #242424;
+  background-color: #ececec;
+  border-radius: 5px;
+}
+.form-container .input-group input:focus {
+  outline: none;
+  border: 2px solid #c64f4a;
+}
+.form-container .input-group-container {
+  gap: 20px;
+}
+.form-container .input-group-container .input-group {
+  width: 290px;
 }
 
 .img-container {
@@ -84,13 +143,17 @@ a {
   font-family: "Roboto", sans-serif;
 }
 
+.small-text {
+  font-size: 1.1rem;
+}
+
 .center-text {
   text-align: center;
 }
 
 .btn {
   font-size: 1.4rem;
-  padding: 15px 30px;
+  padding: 10px 15px;
   border-radius: 5px;
   color: #242424;
   width: 240px;
@@ -105,6 +168,7 @@ a {
 
 .btn-2 {
   background-color: #ffe457;
+  color: #ffffff;
 }
 .btn-2:visited {
   color: #ffffff;
@@ -152,6 +216,7 @@ header {
 
 .logo-container {
   gap: 10px;
+  width: 300px;
 }
 
 .logo-img-container {
@@ -163,8 +228,6 @@ h1.logo-text {
   font-size: 2.5rem;
   letter-spacing: 2px;
   position: relative;
-  align-self: flex-end;
-  margin-bottom: 10px;
 }
 h1.logo-text::after {
   content: "";
@@ -235,6 +298,11 @@ h1.logo-text::before {
 }
 .nav-link:hover::after {
   width: 100%;
+}
+
+.account-btns-container {
+  gap: 20px;
+  width: 300px;
 }
 
 /*# sourceMappingURL=base.css.map */

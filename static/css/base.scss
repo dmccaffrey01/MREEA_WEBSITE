@@ -43,11 +43,89 @@ a {
     width: 100%;
     @extend .container-col;
     background: $gl-1;
-    padding: 100px 0;
+    
+    &.ptb-100 {
+        padding: 100px 0;
+    }
+
+    &.h-100a {
+        height: 100vh;
+    }
+
+    &.h-100b {
+        height: calc(100vh - 100px);
+    }
 }
 
 .section-container {
-    width: 1400px;
+    width: 1140px;
+}
+
+.form-container {
+    padding: 40px;
+    background-color: $gl-1;
+    gap: 20px;
+    border-radius: $round-corner-5;
+    @extend .container-col;
+    align-items: flex-start;
+
+    .heading-container {
+        @extend .container-col;
+        align-items: flex-start;
+        width: 100%;
+    }
+
+    .form {
+        gap: 15px;
+        @extend .container-col;
+        align-items: flex-start;
+
+        .btn {
+            align-self: center;
+            width: 100%;
+        }
+    }
+
+    .input-group {
+        @extend .container-col;
+        align-items: flex-start;
+        width: 350px;
+        gap: 5px;
+
+        &.row {
+            flex-direction: row;
+        }
+
+        &.col-2 {
+            width: 600px;
+        }
+
+
+        input {
+            width: 100%;
+            font-size: $font-size;
+            padding: 10px 15px;
+            border: none;
+            outline: none;
+            color: $gd-1;
+            background-color: $gl-2;
+            border-radius: $round-corner-1;
+
+            &:focus {
+                outline: none;
+                border: 2px solid $red-1;
+            }
+        }
+    }
+
+    .input-group-container {
+        @extend .container-row;
+        gap: 20px;
+
+        .input-group {
+            width: 290px;
+        }
+    }
 }
 
 .img-container {
@@ -91,6 +169,10 @@ a {
     font-family: 'Roboto', sans-serif;
 }
 
+.small-text {
+    font-size: $small-font-size;
+}
+
 .center-text {
     text-align: center;
 }
@@ -98,8 +180,8 @@ a {
 .btn {
     @extend .container-row;
     font-size: $font-size;
-    padding: 15px 30px;
-    border-radius: 5px;
+    padding: 10px 15px;
+    border-radius: $round-corner-1;
     color: $gd-1;
     width: 240px;
     border: none;
@@ -114,6 +196,7 @@ a {
 
 .btn-2 {
     background-color: $yellow-1;
+    color: $white;
 
     &:visited {
         color: $white;
@@ -163,6 +246,7 @@ header {
 
 .logo-container {
     gap: 10px;
+    width: 300px;
 }
 
 .logo-img-container {
@@ -174,8 +258,6 @@ h1.logo-text {
     font-size: 2.5rem;
     letter-spacing: 2px;
     position: relative;
-    align-self: flex-end;
-    margin-bottom: 10px;
 
     &::after {
         content: "";
@@ -265,4 +347,9 @@ h1.logo-text {
             width: 100%;
         }   
     }
+}
+
+.account-btns-container {
+    gap: 20px;
+    width: 300px;
 }

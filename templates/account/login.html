@@ -3,43 +3,71 @@
 {% load i18n %}
 {% load account socialaccount %}
 {% load static %}
-{% block head_title %}{% trans "Sign In" %}{% endblock %}
+{% block extra_title %}- Login{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" type="text/css" href="{% static 'account/css/login.css' %}">
+{% endblock %}
 
 {% block content %}
-<section class="account-section login-account-section section">
-    <div class="container-col account-card">
-        <div class="account-card-section login-account-section-upper container-col">
-          <div class="account-card-wrapper container-col">
-              <div class="heading white-text">Welcome back</div>
-              <div class="white-text">
-                  {% blocktrans %}If you have not created an account yet, then please
-                  <a class="unregistered-account-link" href="{{ signup_url }}">sign up</a> first.{% endblocktrans %}
-              </div>
-          </div>
-          <div class="account-card-img-overlay dark-overlay"></div>
-          <div class="account-card-bg-img-container">
-              <img src="https://res.cloudinary.com/dikcjjfpo/image/upload/v1692718358/dmccaffrey01_beautiful_real_estate_in_scenic_area_dark_red_and__7465bd5d-a861-466a-921c-255c352d8e6b_fjqijq.png" alt="Starry background image" class="img-100a account-card-bg-img">
-          </div>
+<section class="login-section account-section section h-100b">
+    <div class="section-container container-row">
+
+        <div class="info-container container-col">
+            <div class="text-container container-col">
+                <h2 class="dark-text heading">Welcome Back!</h2>
+                <p class="dark-text">Not a Member? <a href="{% url 'account_signup' %}" class="red-text dark-text">Join Today!</a></p>
+                <p class="dark-text small-text">Please Login to Continue</p>
+            </div>
+            <div class="img-container">
+                <img src="{{ MEDIA_URL }}mreea-colored-lines.webp" alt="MREEA Colors" class="img-100a">
+            </div>
         </div>
-        <div class="account-card-section container-col login-accouint-section-lower">
-            <div class="sub-heading red-text sign-in-heading">User {% trans "Sign In" %}</div>
-            <form class="account-form login-form container-col" method="POST" action="{% url 'account_login' %}">
-              {% csrf_token %}
-              {{ form.as_p }}
-              {% if redirect_field_value %}
-              <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
-              {% endif %}
-              <a class="forgot-password red-text" href="{% url 'account_reset_password' %}">{% trans "Forgot Password?" %}</a>
-              <button class="dark-btn btn white-text account-btn" type="submit">{% trans "Sign In" %}</button>
-            </form>
+
+        <div class="form-container">
+            
+            <form class="form" method="POST" action="{% url 'account_login' %}">
+                {% csrf_token %}
+                <div class="input-group">
+                    <p class="input-label dark-text">Email</p>
+                    <label for="id_login" class="sr-only">email login</label>
+                    {{ form.login }}
+                </div>
+
+                <div class="input-group">
+                    <p class="input-label dark-text">Password</p>
+                    <label for="id_password" class="sr-only">password</label>
+                    {{ form.password }}
+                </div>
+                
+                {% if redirect_field_value %}
+                <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+                {% endif %}
+
+                <div class="remember-forget-container container-row">
+                    <div class="input-group row">
+                        <p class="input-label dark-text small-text remember-label">Remember Me</p>
+                        <label for="id_remember" class="sr-only">remember</label>
+                        {{ form.remember }}
+                    </div>
+                    <a class="dark-text small-text" href="{% url 'account_reset_password' %}">{% trans "Forgot Password?" %}</a>
+                </div>
+                
+                <button class="btn btn-2" type="submit">{% trans "Sign In" %}</button>
+              </form>
         </div>
     </div>
+
+    
 </section>
 
 {% endblock %}
 
-{% block js %}
+{% block postloadjs %}
+{{ block.super }}
 
-<script src="{% static 'js/login.js' %}"></script>
+<script src="{% static 'account/js/login.js' %}"></script>
 
 {% endblock %}
+
+
