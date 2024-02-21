@@ -54,29 +54,64 @@
                 </div>
 
                 <nav class="nav-menu container-row">
+                    {% if is_membership_valid %}
                     <a href="{% url 'events' %}" class="nav-link">Events</a>
+                    <a href="#" class="nav-link">Resources</a>
                     <a href="{% url 'members' %}" class="nav-link">Members</a>
-                    <a href="#" class="nav-link">Learn</a>
                     <a href="{% url 'contact' %}" class="nav-link">Contact</a>
+
+                    {% else %}
+                    <a href="#" class="nav-link">About</a>
+                    <a href="#" class="nav-link">Learn</a>
+                    <a href="{% url 'members' %}" class="nav-link">Members</a>
+                    <a href="{% url 'events' %}" class="nav-link">Events</a>
+                    <a href="{% url 'contact' %}" class="nav-link">Contact</a>
+                    {% endif %}
                 </nav>
 
                 {% if user.is_authenticated %}
 
                 <div class="profile-container container-col">
-                    <div class="profile-img-container img-container">
-                        {% if profile.image %}
-                        <img src="{{ profile.image.url }}" alt="{{ profile.first_name }}'s Profile Image" class="img-100a">
-                        {% else %}
-                        <img src="{{ MEDIA_URL }}default-profile.webp" alt="Default Profile Image" class="img-100a">
-                        {% endif %}
+                    <div class="profile-btn-container container-row">
+                        <div class="profile-img-container img-container">
+                            {% if profile.image %}
+                            <img src="{{ profile.image.url }}" alt="{{ profile.first_name }}'s Profile Image" class="img-100a">
+                            {% else %}
+                            <img src="{{ MEDIA_URL }}default-profile-picture.webp" alt="Default Profile Image" class="img-100a">
+                            {% endif %}
+                        </div>
+                        <div class="profile-btn-icon container-col">
+                            <span class="fa-icon dark-text small-text"><i class="fa-solid fa-chevron-down dark-text small-text"></i></span>
+                        </div>
+                    </div>
+
+                    <div class="profile-menu-container container-col box-shadow align-start">
+                        <a href="{% url 'profile' %}" class="profile-menu-btn container-row">
+                            <div class="icon-container">
+                                <img src="{{ MEDIA_URL }}profile-person-icon.webp" alt="Profile Person Icon" class="img-100a">
+                            </div>
+                            <p class="dark-text">Profile</p>
+                        </a>
+                        <a href="{% url 'membership_status' %}" class="profile-menu-btn container-row">
+                            <div class="icon-container">
+                                <img src="{{ MEDIA_URL }}membership-crown-icon.webp" alt="Membership Crown Icon" class="img-100a">
+                            </div>
+                            <p class="dark-text">Membeship</p>
+                        </a>
+                        <a href="{% url 'account_logout' %}" class="profile-menu-btn container-row">
+                            <div class="icon-container">
+                                <img src="{{ MEDIA_URL }}logout-icon.webp" alt="Logout Icon" class="img-100a">
+                            </div>
+                            <p class="dark-text">Log Out</p>
+                        </a>
                     </div>
                 </div>
 
                 {% else %}
 
                 <div class="account-btns-container container-row">
-                    <a href="{% url 'account_login' %}" class="nav-link">Login</a>
-                    <a href="{% url 'account_signup' %}" class="btn-2 btn small-btn">Join Now</a>
+                    <a href="{% url 'account_login' %}" class="red-text dark-text"><span class="fa-icon-left"><i class="fa-regular fa-user red-text"></i></span>Login</a>
+                    <a href="{% url 'account_signup' %}" class="btn-2 btn small-btn">Join Now<span class="fa-icon-right"><i class="fa-solid fa-right-to-bracket red-text"></i></span></a>
                 </div>
 
                 {% endif %}

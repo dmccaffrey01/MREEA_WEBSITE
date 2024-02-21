@@ -1,0 +1,32 @@
+.account-section {
+  background-color: #ececec;
+  height: 100vh;
+}
+.account-section .section-container {
+  gap: 100px;
+}
+.account-section .info-container {
+  gap: 30px;
+  text-align: center;
+  max-width: 600px;
+}
+.account-section .info-container .text-container {
+  gap: 10px;
+}
+.account-section .info-container .img-container {
+  width: 350px;
+  height: 84px;
+}
+
+.package-info-container {
+  width: 350px;
+  gap: 20px;
+}
+.package-info-container .info-group {
+  width: 100%;
+}
+.package-info-container .package-description-text {
+  text-align: center;
+}
+
+/*# sourceMappingURL=membership_redirect.css.map */

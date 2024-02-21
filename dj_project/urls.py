@@ -32,7 +32,7 @@ urlpatterns = [
     path('contact/', include('contact.urls')),
     path('profile/', include('profiles.urls')),
     path('membership/', include('membership.urls')),
-    path('accounts/signup/', SignupView.as_view(form_class=CustomSignupForm, success_url='/membership/payment'), name='account_signup'),
+    path('accounts/signup/', SignupView.as_view(form_class=CustomSignupForm, success_url='/membership/redirect'), name='account_signup'),
     path('accounts/', include('allauth.urls')),
 ]
 

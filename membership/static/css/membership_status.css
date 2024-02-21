@@ -1,0 +1,77 @@
+.account-section {
+  background-color: #ececec;
+  height: 100vh;
+}
+.account-section .section-container {
+  gap: 100px;
+}
+.account-section .info-container {
+  gap: 30px;
+  text-align: center;
+  max-width: 600px;
+}
+.account-section .info-container .text-container {
+  gap: 10px;
+}
+.account-section .info-container .img-container {
+  width: 350px;
+  height: 84px;
+}
+
+.membership-status-container {
+  width: 400px;
+  gap: 10px;
+  background-color: #ececec;
+  border-radius: 15px;
+  padding: 20px;
+}
+.membership-status-container .info-group {
+  width: 100%;
+}
+.membership-status-container .active-text {
+  color: #399c3e;
+}
+.membership-status-container .expired-text,
+.membership-status-container .not_valid-text,
+.membership-status-container .active_renewal_unsuccessful-text,
+.membership-status-container .payment_unsuccessful-text {
+  color: #c53d52;
+}
+.membership-status-container .pending-text,
+.membership-status-container .active_renewal_pending-text {
+  color: #ff5100;
+}
+
+.form-container .btn {
+  width: 400px;
+}
+
+.checkout-overlay {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(36, 36, 36, 0.7);
+  left: 0;
+  top: 0;
+}
+.checkout-overlay .checkout-popup {
+  width: 600px;
+  padding: 30px;
+  border-radius: 15px;
+  background-color: #f7f7f7;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  translate: -50% -50%;
+  gap: 20px;
+  text-align: center;
+  display: none;
+}
+.checkout-overlay .checkout-popup.show {
+  display: flex;
+}
+.checkout-overlay .checkout-popup .btns-container {
+  gap: 20px;
+}
+
+/*# sourceMappingURL=membership_status.css.map */

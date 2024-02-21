@@ -1,0 +1,120 @@
+{% extends "base.html" %}
+
+{% load static %}
+{% block extra_title %}- Membership Status{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/membership_status.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<section class="membership-status-section account-section section h-100b">
+    <div class="section-container container-row">
+        <div class="info-container container-col">
+            <div class="text-container container-col">
+                {% if checkout_url %}
+                <h2 class="dark-text heading">Thank You for purchasing your membership!</h2>
+                <p class="dark-text">Your membership status will update shortly</p>
+                <p class="dark-text small-text">If your having any trouble, please get in <a href="{% url 'contact' %}" class="red-text dark-text small-text">contact</a> with us</p>
+                {% else %}
+                <h2 class="dark-text heading">Membership Status</h2>
+                <p class="dark-text">Here you can check your membership status and renew your membership</p>
+                <p class="dark-text small-text">If your having any trouble, please get in <a href="{% url 'contact' %}" class="red-text dark-text small-text">contact</a> with us</p>
+                {% endif %}
+            </div>
+            <div class="img-container">
+                <img src="{{ MEDIA_URL }}mreea-colored-lines.webp" alt="MREEA Colors" class="img-100a">
+            </div>
+        </div>
+
+        <div class="form-container">
+            <div class="membership-status-container container-col">
+                <div class="info-group container-row space-between">
+                    <p class="dark-text info-left">Package:</p>
+                    <p class="end-date-text dark-text info-right">{{ membership.package.friendly_name }}</p>
+                </div>
+                {% if renewal_status %}
+                <div class="info-group container-row space-between">
+                    <p class="dark-text info-left">Status:</p>
+                    <p class="active-text status-text dark-text info-right">{{ active_status }}</p>
+                </div>
+                <div class="info-group container-row space-between">
+                    <p class="dark-text info-left">Renewal Status:</p>
+                    <p class="{{ membership.status.name }}-text status-text dark-text info-right">{{ renewal_status }}</p>
+                </div>
+                {% else %}
+                <div class="info-group container-row space-between">
+                    <p class="dark-text info-left">Status:</p>
+                    <p class="{{ membership.status.name}}-text status-text dark-text info-right">{{ membership.status.friendly_name }}</p>
+                </div>
+                {% endif %}
+                <div class="info-group container-row space-between">
+                    <p class="dark-text info-left">Expiry Date:</p>
+                    {% if membership.end_date %}
+                    <p class="end-date-text dark-text info-right">{{ membership.end_date|date:"m/d/Y" }}</p>
+                    {% else %}
+                    <p class="end-date-text dark-text info-right">--/--/----</p>
+                    {% endif %}
+                </div>
+                <div class="info-group container-row space-between">
+                    
+                    <p class="dark-text info-left">Purchase Date:</p>
+                    {% if membership.purchase_date %}
+                    <p class="purchase-date-text dark-text info-right">{{ membership.purchase_date|date:"m/d/Y" }}</p>
+                    {% else %}
+                    <p class="purchase-date-text dark-text info-right">--/--/----</p>
+                    {% endif %}
+                </div>
+                <div class="info-group container-row space-between">
+                    <p class="dark-text info-left">Start Date:</p>
+                    {% if membership.start_date %}
+                    <p class="start-date-text dark-text info-right">{{ membership.start_date|date:"m/d/Y" }}</p>
+                    {% else %}
+                    <p class="start-date-text dark-text info-right">--/--/----</p>
+                    {% endif %}
+                </div>
+                <p class="description-text dark-text small-text">
+                    {{ membership.status.description }}
+                </p>
+            </div>
+            {% if renewal_button %}
+            <p class="dark-text small-text center-text">If you would like to {{ renewal_button|lower }} your membership, please click the button below</p>
+            <a href="{% url 'membership_redirect' %}" class="btn btn-2">{{ renewal_button }}<span class="fa-icon-right"><i class="fa-solid fa-rotate"></i></span></a>
+            {% endif %}
+        </div>
+    </div>
+    
+</section>
+
+{% if checkout_url %}
+    <div class="checkout-overlay dark-overlay" data-url="{{ checkout_url }}">
+        <div class="checkout-popup container-col show">
+            <p class="dark-text">The checkout page should have opened in a new tab, if it didn't please <a href="{{ checkout_url }}" target="_blank" class="dark-text red-text">click here</a></p>
+            <p class="dark-text small-text">Once you complete the checkout, you can come back here and click completed</p>
+            <div class="btns-container container-row">
+                <div class="btn cancel-btn"><span class="fa-icon-left"><i class="fa-regular fa-circle-xmark"></i></span>Cancel</div>
+                <div class="btn btn-2 complete-btn"><span class="fa-icon-left"><i class="fa-regular fa-circle-check"></i></span>Completed</div>
+            </div>
+        </div>
+        <div class="checkout-popup container-col">
+            <p class="dark-text">Are you sure you want to cancel your membership?</p>
+            <div class="btns-container container-row">
+                <div class="btn return-btn btn-2"><span class="fa-icon-left"><i class="fa-solid fa-rotate-left"></i></span>Return</div>
+                <form method="post" action="{% url 'membership_cancel' %}">
+                    {% csrf_token %}
+                    <button class="btn btn-neg confirm-cancel-btn" type="submit" name="cancel_membership"><span class="fa-icon-left"><i class="fa-solid fa-ban white-text"></i></span>Confirm</button>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endif %}
+
+{% endblock %}
+
+{% block postloadjs %}
+{{ block.super }}
+
+<script src="{% static 'js/membership_status.js' %}"></script>
+
+{% endblock %}

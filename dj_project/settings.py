@@ -62,7 +62,7 @@ ACCOUNT_USERNAME_REQUIRED = False
 
 ACCOUNT_EMAIL_REQUIRED = True
 
-ACCOUNT_EMAIL_VERIFICATION = 'optional'
+ACCOUNT_EMAIL_VERIFICATION = 'none'
 
 ACCOUNT_EMAIL_CONFIRMATION_ANONYMOUS_REDIRECT_URL = '/membership/payment'
 
@@ -76,6 +76,7 @@ AUTHENTICATION_BACKENDS = (
 )
 
 SITE_ID = 1
+SITE_DOMAIN = 'mreea.org'
 
 POPUP_MESSAGE_TEMPLATE = 'popup_message.html'
 
@@ -109,6 +110,7 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
                 'django.template.context_processors.media',
                 'profiles.contexts.profile',
+                'membership.contexts.membership_context',
             ],
         },
     },
@@ -164,7 +166,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'America/New_York'
 
 USE_I18N = True
 
@@ -209,3 +211,4 @@ EMAIL_HOST_PASSWORD = os.environ.get('HOST_EMAIL_PASSWORD')
 
 STRIPE_TEST_SECRET_KEY = os.environ.get('STRIPE_TEST_SECRET_KEY')
 STRIPE_TEST_PUBLIC_KEY = os.environ.get('STRIPE_TEST_PUBLIC_KEY')
+STRIPE_WH_SECRET = os.environ.get('STRIPE_WH_SECRET')

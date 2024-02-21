@@ -1,0 +1,10 @@
+@import '../../css/variables';
+@import '../../css/mixins';
+@import 'account';
+
+.logout-section {
+    .form {
+        width: 300px;
+    }
+}
+

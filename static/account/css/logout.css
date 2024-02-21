@@ -1,0 +1,25 @@
+.account-section {
+  background-color: #ececec;
+  height: 100vh;
+}
+.account-section .section-container {
+  gap: 100px;
+}
+.account-section .info-container {
+  gap: 30px;
+  text-align: center;
+  max-width: 600px;
+}
+.account-section .info-container .text-container {
+  gap: 10px;
+}
+.account-section .info-container .img-container {
+  width: 350px;
+  height: 84px;
+}
+
+.logout-section .form {
+  width: 300px;
+}
+
+/*# sourceMappingURL=logout.css.map */

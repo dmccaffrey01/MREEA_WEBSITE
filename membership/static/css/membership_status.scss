@@ -1,0 +1,68 @@
+@import '../../../static/css/variables';
+@import '../../../static/css/mixins';
+@import '../../../static/account/css/account';
+
+.membership-status-container {
+    width: 400px;
+    gap: 10px;
+    background-color: $gl-2;
+    border-radius: $round-corner-3;
+    padding: 20px;
+
+    .info-group {
+        width: 100%;
+    }
+
+    .active-text {
+        color: $success;
+    }
+
+    .expired-text,
+    .not_valid-text,
+    .active_renewal_unsuccessful-text,
+    .payment_unsuccessful-text {
+        color: $error;
+    }
+
+    .pending-text, 
+    .active_renewal_pending-text {
+        color: $warning;
+    }
+}
+
+.form-container {
+    .btn {
+        width: 400px;
+    }
+}
+
+.checkout-overlay {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    background-color: $dark-overlay;
+    left: 0;
+    top: 0;
+
+    .checkout-popup {
+        width: 600px;
+        padding: 30px;
+        border-radius: $round-corner-3;
+        background-color: $gl-1;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        translate: -50% -50%;
+        gap: 20px;
+        text-align: center;
+        display: none;
+
+        &.show {
+            display: flex;
+        }
+
+        .btns-container {
+            gap: 20px;
+        }
+    }
+}

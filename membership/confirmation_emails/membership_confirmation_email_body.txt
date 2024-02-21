@@ -1,0 +1,22 @@
+Hello {{ user.first_name }}!
+
+This is a confirmation of your membership at MREEA. Your membership information is below:
+
+Username: {{ user.username }}
+Member First Name: {{ user.first_name }}
+Member Last Name: {{ user.last_name }}
+Member Email Address: {{ user.email }}
+
+Membership Purchase Date: {{ membership.purchase_date }}
+Membership Start Date: {{ membership.start_date }}
+Membership End Date: {{ membership.end_date }}
+
+Order Total: ${{ membership.cost }}
+
+If you have any questions, feel free to contact us at {{ contact_email }}.
+
+Thank you for your order!
+
+Sincerely,
+
+MREEA (Maryland Real Estate Education Association)

@@ -23,9 +23,9 @@ a {
 }
 
 .box-shadow {
-    box-shadow: 13px 13px 22px 3px rgba(0,0,0,0.65);
-    -webkit-box-shadow: 13px 13px 22px 3px rgba(0,0,0,0.65);
-    -moz-box-shadow: 13px 13px 22px 3px rgba(0,0,0,0.65);
+    box-shadow: 3px 3px 8px 2px rgba(0,0,0,0.30);
+    -webkit-box-shadow: 3px 3px 8px 2px rgba(0,0,0,0.30);
+    -moz-box-shadow: 3px 3px 8px 2px rgba(0,0,0,0.30);
 }
 
 .container-row {
@@ -86,6 +86,10 @@ a {
         }
     }
 
+    .hidden-input-container {
+        display: none;
+    }
+
     .input-group {
         @extend .container-col;
         align-items: flex-start;
@@ -126,12 +130,78 @@ a {
             width: 290px;
         }
     }
+
+    .select-container {
+        width: 350px;
+        position: relative;
+        height: 48px;
+
+        .select-container-items {
+            @extend .container-col;
+            width: 100%;
+            background-color: $gl-2;
+            border-radius: $round-corner-1;
+            justify-content: flex-start;
+            height: 0px;
+            overflow: hidden;
+            gap: 5px;
+            position: absolute;
+            left: 0;
+            top: 48px;
+    
+            &.open {
+                height: 224px;
+                overflow-y: scroll;
+                padding: 5px;
+    
+                &::-webkit-scrollbar {
+                    width: 4px;
+                }
+    
+                &::-webkit-scrollbar-thumb  {
+                    background-color: $red-1;
+                    border: none;
+                }
+            }
+        }
+
+        .select-item {
+            @extend .container-row;
+            width: 100%;
+            padding: 10px 15px;
+            height: 48px;
+            background-color: $gl-1;
+            border-radius: $round-corner-1;
+            justify-content: space-between;
+            cursor: pointer;
+
+            &:hover {
+                background-color: $gl-2;
+            }
+
+            &.default-select-item {
+                background-color: $gl-2;
+                
+                &.open {
+                    border-radius: $round-corner-1 $round-corner-1 0 0;
+                }
+
+                &:hover {
+                    background-color: $gl-2;
+                }
+            }
+        }
+    }
 }
 
 .img-container {
     @extend .container-row;
     overflow: hidden;
     position: relative;
+}
+
+.icon-container {
+    @extend .img-container;
 }
 
 .img-100a {
@@ -141,6 +211,11 @@ a {
 
 .dark-text {
     color: $gd-1;
+    font-size: $font-size;
+}
+
+.dark-text-2 {
+    color: $gd-2;
     font-size: $font-size;
 }
 
@@ -177,35 +252,63 @@ a {
     text-align: center;
 }
 
+.fa-icon-left {
+    margin-right: 5px;
+}
+
+.fa-icon-right {
+    margin-left: 5px;
+}
+
 .btn {
     @extend .container-row;
     font-size: $font-size;
     padding: 10px 15px;
     border-radius: $round-corner-1;
-    color: $gd-1;
+    color: $white;
     width: 240px;
     border: none;
     text-align: center;
     cursor: pointer;
-    border: 3px solid $yellow-1;
-
-    &:visited {
-        color: $gd-1;
-    }
-}
-
-.btn-2 {
-    background-color: $yellow-1;
-    color: $white;
+    background-color: $red-1;
 
     &:visited {
         color: $white;
     }
+
+    &.btn-2 {
+        background-color: transparent;
+        color: $red-1;
+        outline: 3px solid $red-1;
+        outline-offset: -3px;
+    
+        &:visited {
+            color: $red-1;
+        }
+
+        .fa-icon-left {
+            color: $red-1;
+        }
+
+        .fa-icon-right {
+            color: $red-1;
+        }
+    }
+    
+    &.btn-neg {
+        background-color: $error;
+    }
+    
+    &.btn-pos {
+        background-color: $success;
+    }
+    
+    &.small-btn {
+        width: 200px;
+    }
 }
 
-.small-btn {
-    width: 200px;
-}
+
 
 .sr-only {
     display: none !important;
@@ -250,12 +353,12 @@ header {
 }
 
 .logo-img-container {
-    width: 90px;
-    height: 90px;
+    width: 80px;
+    height: 80px;
 }
 
 h1.logo-text {
-    font-size: 2.5rem;
+    font-size: 2rem;
     letter-spacing: 2px;
     position: relative;
 
@@ -337,7 +440,7 @@ h1.logo-text {
         left: 0;
         height: 3px;
         width: 0;
-        background-color: $yellow-1;
+        background-color: $red-1;
         transition: all 0.3s ease;
         content: "";
     }
@@ -352,4 +455,83 @@ h1.logo-text {
 .account-btns-container {
     gap: 20px;
     width: 300px;
+}
+
+.profile-container {
+    width: 300px;
+    gap: 10px;
+    position: relative;
+
+    .profile-menu-container {
+        position: absolute;
+        top: calc(100% + 10px);
+        right: calc(50% - 35px);
+        width: 300px;
+        padding: 20px;
+        border-radius: $round-corner-3;
+        background-color: $gl-1;
+        gap: 15px;
+        display: none;
+
+        &.show {
+            display: flex;
+        }
+
+        .profile-menu-btn {
+            width: 100%;
+            gap: 10px;
+            justify-content: flex-start;
+            border-radius: $round-corner-2;
+
+            &:hover {
+                background-color: $gl-2;
+            }
+
+            .dark-text {
+                font-weight: 600;
+            }
+        }
+
+        .icon-container {
+            background-color: $gl-2;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            padding: 10px;
+        }
+    }
+
+    .profile-btn-container {
+        cursor: pointer;
+        position: relative;
+        width: 60px;
+        height: 60px;
+
+        .profile-btn-icon {
+            position: absolute;
+            right: 0px;
+            bottom: 0px;
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            background-color: $gl-2;
+            outline: 4px solid $gl-1;
+            outline-offset: -1px;
+            transition: all 0.3s ease;
+
+            &.rotate {
+                rotate: -180deg;
+            }
+
+            .dark-text {
+                font-size: 0.7rem;
+            }
+        }
+
+        .img-container {
+            width: 70px;
+            height: 70px;
+        }
+    }
+
 }
