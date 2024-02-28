@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     'contact',
     'profiles',
     'membership',
+    'resources',
     'storages',
 ]
 

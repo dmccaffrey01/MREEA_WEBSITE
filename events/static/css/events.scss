@@ -2,23 +2,32 @@
 @import '../../../static/css/mixins';
 
 .events-section {
-    padding-top: 50px;
+    padding: 20px 0;
 
     .section-container {
-        gap: 50px;
+        gap: 20px;
     }
 
     .img-container {
-        position: relative;
-        overflow: hidden;
         width: 100%;
-        height: 300px;
-        border-radius: 20px;
+        height: 150px;
+        position: relative;
+        border-radius: $round-corner-3;
+
+        .heading {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            translate: 0 -50%;
+            width: 100%;
+            text-align: center;
+            z-index: 3;
+        }
 
         .img-100a {
             position: absolute;
-            left: 0;
-            top: -200px;
+            top: 0;
+            z-index: 2;
         }
     }
 
@@ -27,60 +36,87 @@
     }
 
     .events-container {
-        width: 675px;
-        height: 700px;
+        width: calc(50% - 10px);
+        height: 404px;
         background-color: $gl-2;
-        border-radius: 15px;
+        border-radius: $round-corner-3;
+        gap: 12px;
         overflow: hidden;
 
-        .heading {
+        .event-items-container {
             width: 100%;
-            height: 100px;
-            margin-bottom: 50px;
+            gap: 12px;
+            max-height: 320px;
+            overflow-y: scroll;
+
+            &::-webkit-scrollbar {
+                width: 4px;
+            }
+
+            &::-webkit-scrollbar-thumb  {
+                background-color: $red-1;
+                border: none;
+                border-radius: $round-corner-1;
+            }
         }
 
-        &.upcoming .heading {
-            background-color: $yellow-1;
+        .subheading {
+            width: 100%;
+            padding: 12px 0;
         }
 
-        &.past .heading {
-            background-color: $red-1;
+        &.upcoming .subheading {
+            background-color: $gd-1;
+        }
+
+        &.past .subheading {
+            background-color: $gd-1;
         }
 
         .event-container {
             background-color: $gl-1;
-            width: 575px;
-            height: 150px;
+            width: calc(100% - 24px);
             border-radius: 10px;
-            margin-bottom: 20px;
             cursor: pointer;
-            padding: 25px;
-            gap: 70px;
+            padding: 12px;
+            position: relative;
+            overflow: hidden;
         }
 
-        .date-container {
-            justify-self: flex-start;
-            height: 100px;
+        .info-container {
+            gap: 4px;
+            width: calc(100% - 56px);
         }
 
-        .date-text, .time-text {
-            width: 120px;
-            padding: 10px 0;
+        .date-text {
+            padding: 8px 0;
             border-radius: 5px;
+            width: 240px;
         }
 
         &.upcoming .date-text {
-            background-color: $yellow-1;
+            background-color: $gd-1;
         }
 
         &.past .date-text {
-            background-color: $red-1;
+            background-color: $gd-1;
         }
 
         .name-text {
-            width: calc(100% - 190px);
-            height: 100px;
-            padding: 10px 0;
+            width: 100%;
+        }
+
+        .view-btn {
+            position: absolute;
+            width: 44px;
+            height: 100%;
+            right: 0;
+            top: 0;
+            background-color: $gd-1;
+
+            .white-text {
+                font-size: 2rem;
+            }
         }
     }
 }

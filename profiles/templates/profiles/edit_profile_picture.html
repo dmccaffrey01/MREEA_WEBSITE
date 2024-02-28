@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block extra_title %}- Edit {{ profile }}{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/edit_profile_picture.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<section class="profile-section section h-100b" data-username="{{ user.username }}">
+    <form action="{% url 'edit_profile_picture' user.username %}" method="POST" class="section-container container-col align-start justify-start form">
+        {% csrf_token %}
+        <div class="grid-group-container container-row space-between">
+            <div class="grid-group-col-container container-col">
+                <div class="grid-container w-100 container-row space-between">
+                    <div class="personal-container container-row justify-start">
+                        <div class="preview-img-container profile-img-container img-container">
+                            {% if profile.image %}
+                            <img src="{{ profile.image.url }}" alt="{{ profile.first_name }}'s Profile Image" class="img-100a">
+                            {% else %}
+                            <img src="{{ MEDIA_URL }}default-profile-picture.webp" alt="Default Profile Picture" class="img-100a">
+                            {% endif %}
+                        </div>
+                        <div class="personal-info-container container-row align-start">
+                            <div class="name-title-container container-col profile-small-container align-start">
+                                <p class="profile-name dark-text">{{ profile.first_name }} {{ profile.last_name }}</p>
+                                <p class="profile-title dark-text">{{ profile.title }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="upload-grid-container grid-container w-100 container-col align-start justify-start">
+                    <label for="image_file" class="drop-zone container-col">
+                        <div class="upload-icon container-col">
+                            <i class="fa-solid fa-cloud-arrow-up"></i>
+                        </div>
+                        <input type="file" accept="image/*" name="image_file" id="image_file" hidden>
+                        <p class="drop-zone-text dark-text">Drag & drop or click to upload an image</p>
+                    </label>
+                </div>
+            </div>
+
+            <div class="crop-container grid-container w-50 container-col">
+                <div class="crop-img-container">
+                    {% if profile.image %}
+                    <img src="{{ profile.image.url }}" alt="{{ profile.first_name }}'s Profile Image" class="crop-img img-100a">
+                    {% else %}
+                    <img src="{{ MEDIA_URL }}default-profile-picture.webp" alt="Default Profile Picture" class="crop-img img-100a">
+                    {% endif %}
+                    <div class="display-circle"></div>
+                </div>
+                <div class="btns-container container-row">
+                    <div class="preview-btn btn btn-2">
+                        <span class="fa-icon-left"><i class="fa-solid fa-eye"></i></span>Preview
+                    </div>
+                    <label for="profile_picture" class="sr-only">Profile Picture</label>
+                    <input type="file" name="profile_picture" accept="image/*" id="profile_picture" class="profile_picture" hidden>
+                    <button type="submit" class="save-btn btn btn-2">
+                        <span class="fa-icon-left"><i class="fa-solid fa-cloud-arrow-down"></i></span>Save
+                    </button>
+                </div>
+            </div>
+        </div>
+
+    </form>
+</section>
+
+{% endblock %}
+
+{% block postloadjs %}
+{{ block.super }}
+
+<script src="{% static 'js/edit_profile_picture.js' %}"></script>
+
+{% endblock %}

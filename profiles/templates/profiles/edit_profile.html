@@ -1,0 +1,137 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block extra_title %}- Edit {{ profile }}{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/edit_profile.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<section class="edit-profile-section section h-100b">
+    <form class="section-container container-col align-start justify-start form" method="POST" action="{% url 'edit_profile' user.username %}">
+        {% csrf_token %}
+        <div class="grid-group-container container-row space-between">
+            <div class="grid-group-col-container container-col">
+                <div class="grid-container w-100 container-row space-between">
+                    <div class="personal-container container-row justify-start">
+                        <div class="personal-info-container container-row align-start">
+                            <div class="name-title-container container-col profile-small-container align-start">
+                                
+                                <div class="input-group-container container-row">
+                                    <div class="input-group container-col align-start">
+                                        <label for="id_first_name" class="input-label dark-text">First Name</label>
+                                        {{ form.first_name }}
+                                    </div>
+                                    <div class="input-group container-col align-start">
+                                        <label for="id_last_name" class="input-label dark-text">Last Name</label>
+                                        {{ form.last_name }}
+                                    </div>
+                                </div>
+                                
+                                <div class="input-group container-col align-start">
+                                    <label for="id_title" class="input-label dark-text">Title</label>
+                                    {{ form.title }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="grid-container w-100 container-col align-start">
+                    <p class="grid-title dark-text">Contact</p>
+                    <div class="contact-container container-col align-start">
+                        <div class="contact-btn container-row align-end" data-action-name="facebook-link" {% if profile.facebook_link %} data-action-info="{{ profile.facebook_link }}" {% endif %} >
+                            <p class="dark-text red-text container-col"><span class="sr-only">Facebook Icon</span><i class="fa-brands fa-facebook-f"></i></p>
+                            <div class="input-group container-col align-start">
+                                <label for="id_facebook_link" class="input-label dark-text">Facebook Profile Link</label>
+                                {{ form.facebook_link }}
+                            </div>
+                        </div>
+                        <div class="contact-btn container-row align-end" data-action-name="email" {% if profile.email %} data-action-info="{{ profile.email }}" {% endif %} >
+                            <p class="dark-text red-text container-col"><span class="sr-only">Email Icon</span><i class="fa-solid fa-envelope"></i></p>
+                            <div class="input-group container-col align-start">
+                                <label for="id_email" class="input-label dark-text">Display Email Address</label>
+                                {{ form.email }}
+                            </div>
+                        </div>
+                        <div class="contact-btn container-row align-end" data-action-name="phone_number" {% if profile.phone_number %} data-action-info="{{ profile.phone_number }}" {% endif %} >
+                            <p class="dark-text red-text container-col"><span class="sr-only">Phone Icon</span><i class="fa-solid fa-phone-flip"></i></p>
+                            <div class="input-group container-col align-start">
+                                <label for="id_phone_number" class="input-label dark-text">Display Phone Number</label>
+                                {{ form.phone_number }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bio-container grid-container w-50 container-col align-start justify-start">
+                <p class="dark-text grid-title">Bio</p>
+                <div class="bio-input-container input-group container-col align-start grid-text">
+                    <label for="id_bio" class="input-label dark-text sr-only">Bio</label>
+                    {{ form.bio }}
+                </div>
+                <p class="bio-count-text dark-text small-text"><span class="bio-count">{{ bio_count }}</span>/3000</p>
+            </div>
+        </div>
+        
+
+        <div class="grid-group-container container-row space-between">
+            <div class="select-container category-select-container grid-container w-40 container-col align-start" data-name="category_field">
+                <p class="dark-text grid-title">Category</p>
+                <div class="category-name-hidden-input hidden-input-container" data-current-profile="{{ profile.category_field.name }}">
+                    <label for="id_category_name" class="input-label dark-text sr-only">Category Name</label>
+                    {{ form.category_name }}
+                </div>
+                <div class="selected-container container-row space-between">
+                    <p class="dark-text grid-text select-name">{{ profile.category_field.friendly_name }}</p>
+                    <span class="dark-text grid-text"><i class="fa-solid fa-expand"></i></span>
+                </div>
+                <div class="select-options-container container-col align-start justify-start">
+                    {% for c in all_categories %}
+                    <div class="select-item container-col align-start" data-name="{{ c.name }}" data-friendly-name="{{ c.friendly_name }}">
+                        <p class="dark-text grid-text">{{ c.friendly_name }}</p>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="select-container class-select-container grid-container w-40 container-col align-start" data-name="class_field">
+                <p class="dark-text grid-title">Class</p>
+                <div class="class-name-hidden-input hidden-input-container" data-current-profile="{{ profile.class_field.name }}">
+                    <label for="id_class_name" class="input-label dark-text sr-only">Class Name</label>
+                    {{ form.class_name }}
+                </div>
+                <div class="selected-container container-row space-between">
+                    <p class="dark-text grid-text select-name">{{ profile.class_field.friendly_name }}</p>
+                    <span class="dark-text grid-text"><i class="fa-solid fa-expand"></i></span>
+                </div>
+                <div class="select-options-container container-col justify-start align-start">
+                    {% for c in all_classes %}
+                    <div class="select-item container-col align-start" data-name="{{ c.name }}" data-friendly-name="{{ c.friendly_name }}">
+                        <p class="dark-text grid-text">{{ c.friendly_name }}</p>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="save-container grid-container w-20 container-col">
+                {% if profile_saveable %}
+                <button type="submit" class="save-btn btn btn-2 small-btn">
+                    <span class="fa-icon-left"><i class="fa-solid fa-floppy-disk"></i></span> Save
+                </button>
+                {% endif %}
+            </div>
+        </div>
+
+    </form>
+</section>
+
+{% endblock %}
+
+{% block postloadjs %}
+{{ block.super }}
+
+<script src="{% static 'js/edit_profile.js' %}"></script>
+
+{% endblock %}

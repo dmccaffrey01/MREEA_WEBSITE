@@ -1,0 +1,99 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block extra_title %}- {{ profile }}{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/profile.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<section class="profile-section section h-100b">
+    <div class="section-container container-col align-start justify-start">
+        
+        <div class="grid-group-container container-row space-between">
+            <div class="grid-group-col-container container-col">
+                <div class="grid-container w-100 container-row space-between">
+                    <div class="personal-container container-row justify-start">
+                        <div class="profile-img-container img-container">
+                            {% if user_profile.image %}
+                            <img src="{{ user_profile.image.url }}" alt="{{ user_profile.first_name }}'s Profile Image" class="img-100a">
+                            {% else %}
+                            <img src="{{ MEDIA_URL }}default-profile-picture.webp" alt="Default Profile Picture" class="img-100a">
+                            {% endif %}
+                            <div class="edit-profile-picture-overlay container-col"></div>
+                            <a href="{% url 'edit_profile_picture' user.username %}" class="edit-profile-picture-icon container-col">
+                                <i class="fa-solid fa-pen-to-square"></i>
+                            </a>
+                        </div>
+                        <div class="personal-info-container container-row align-start">
+                            <div class="name-title-container container-col profile-small-container align-start">
+                                <p class="profile-name dark-text">{{ user_profile.first_name }} {{ user_profile.last_name }}</p>
+                                <p class="profile-title dark-text">{{ user_profile.title }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="grid-container w-100 container-col align-start">
+                    <p class="grid-title dark-text">Contact</p>
+                    <div class="contact-container container-col align-start">
+                        <div class="contact-btn container-row" data-action-name="facebook-link" {% if user_profile.facebook_link %} data-action-info="{{ user_profile.facebook_link }}" {% endif %} >
+                            <p class="dark-text red-text container-col"><span class="sr-only">Facebook Icon</span><i class="fa-brands fa-facebook-f"></i></p>
+                            <p class="dark-text">{% if user_profile.facebook_link %}Profile Linked{% else %}Not Displaying Facebook{% endif %}</p>
+                        </div>
+                        <div class="contact-btn container-row" data-action-name="email" {% if user_profile.email %} data-action-info="{{ user_profile.email }}" {% endif %} >
+                            <p class="dark-text red-text container-col"><span class="sr-only">Email Icon</span><i class="fa-solid fa-envelope"></i></p>
+                            <p class="dark-text">{% if user_profile.email %}{{ user_profile.email }}{% else %}Not Displaying Email{% endif %}</p>
+                        </div>
+                        <div class="contact-btn container-row" data-action-name="phone_number" {% if user_profile.phone_number %} data-action-info="{{ user_profile.phone_number }}" {% endif %} >
+                            <p class="dark-text red-text container-col"><span class="sr-only">Phone Icon</span><i class="fa-solid fa-phone-flip"></i></p>
+                            <p class="dark-text">{% if user_profile.phone_number %}{{ user_profile.phone_number }}{% else %}Not Displaying Number{% endif %}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bio-container grid-container w-50 container-col align-start justify-start">
+                <p class="dark-text grid-title">Bio</p>
+                <div class="bio-text dark-text grid-text container-col align-start justify-start">
+                    {% if user_profile.bio %}
+                    {{ user_profile.bio|linebreaks }}
+                    {% else %}
+                    No Bio Displayed
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        
+
+        <div class="grid-group-container container-row space-between">
+            <div class="grid-container {% if profile_editable %}w-40{% else %}w-50{% endif %} container-col align-start">
+                <p class="dark-text grid-title">Category</p>
+                <p class="dark-text grid-text">{% if user_profile.category_field %}{{ user_profile.category_field.friendly_name }}{% else %}Not Displaying Category{% endif %}</p>
+            </div>
+            <div class="grid-container {% if profile_editable %}w-40{% else %}w-50{% endif %} container-col align-start">
+                <p class="dark-text grid-title">Class</p>
+                <p class="dark-text grid-text">{% if user_profile.class_field %}{{ user_profile.class_field.friendly_name }}{% else %}Not Displaying Class{% endif %}</p>
+            </div>
+            {% if profile_editable %}
+            <div class="edit-container grid-container w-20 container-col">
+                <a href="{% url 'edit_profile' user.username %}" class="btn btn-2 small-btn">
+                    <span class="fa-icon-left"><i class="fa-solid fa-pen-to-square"></i></span> Edit
+                </a>
+            </div>
+            {% endif %}
+        </div>
+
+    </div>
+</section>
+
+{% endblock %}
+
+{% block postloadjs %}
+{{ block.super }}
+
+<script src="{% static 'js/profile.js' %}"></script>
+
+{% endblock %}

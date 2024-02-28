@@ -8,46 +8,68 @@
 
 {% block content %}
 
-<section class="members-benefits-section section">
-    <div class="section-container container-col align-start">
-        <h2 class="heading dark-text">What can a MREEA Member do for you?</h2>
+<section class="member-search-section section {% if search_query %}search{% endif %}">
+    <div class="section-container container-col img-container">
+        <img src="{{ MEDIA_URL }}members-search-img.png" alt="Members shaking hands" class="img-100a">
 
-        <div class="main-text-container container-col align-start">
-            <div class="text-container container-row">
-                <div class="icon-container img-container">
-                    <img src="{{ MEDIA_URL }}members-icon-1.png" alt="Members Icon" class="img-100a">
-                </div>
-                <p class="dark-text">Customize your learning</p>
-            </div>
-            <div class="text-container container-row">
-                <div class="icon-container img-container">
-                    <img src="{{ MEDIA_URL }}members-icon-2.png" alt="Members Icon" class="img-100a">
-                </div>
-                <p class="dark-text">Maximise your potential</p>
-            </div>
-            <div class="text-container container-row">
-                <div class="icon-container img-container">
-                    <img src="{{ MEDIA_URL }}members-icon-3.png" alt="Members Icon" class="img-100a">
-                </div>
-                <p class="dark-text">Align education with your needs</p>
+        <div class="text-container container-col">
+            <h2 class="subheading white-text">Find a MREEA Member in your area</h2>
+            <div class="form-container">
+                <form action="{% url 'members' %}" method="POST" class="form container-row">
+                    {% csrf_token %}
+                    <div class="input-group">
+                        <label for="id_first_name" class="dark-text">First Name</label>
+                        {{ form.first_name }}
+                    </div>
+                    <div class="input-group">
+                        <label for="id_last_name" class="dark-text">Last Name</label>
+                        {{ form.last_name }}
+                    </div>
+                    <div class="input-group">
+                        <label for="id_category_name" class="dark-text">Category Name</label>
+                        {{ form.category_name }}
+                    </div>
+                    <div class="input-group">
+                        <label for="id_class_name" class="dark-text">Class Name</label>
+                        {{ form.class_name }}
+                    </div>
+                    <button class="btn" type="submit">
+                        <span class="fa-icon-left"><i class="fa-solid fa-magnifying-glass"></i></span>Search
+                    </button>
+                </form>
             </div>
         </div>
     </div>
 </section>
 
-<section class="member-search-section section">
+{% if search_query %}
+
+<section class="search-results-section section">
     <div class="section-container container-col">
-        <h2 class="heading dark-text">Find a MREEA Member in your area</h2>
-
-        <div class="img-container">
-            <img src="{{ MEDIA_URL }}members-image.png" alt="Members shaking hands" class="img-100a">
-
-            <form class="search-form-container container-row">
-                
-            </form>
-        </div>
-    </div>
+        {% for p in query_profiles %}
+        <a href="{% url 'profile' p.user.username %}" class="overview-container container-row space-between">
+            <div class="profile-container container-row justify-start">
+                <div class="img-container">
+                    {% if p.image %}
+                    <img src="{{ p.image.url }}" alt="{{ p.first_name }}'s Profile Image" class="img-100a">
+                    {% else %}
+                    <img src="{{ MEDIA_URL }}default-profile-picture.webp" alt="Default Profile Image" class="img-100a">
+                    {% endif %}
+                </div>
+                <div class="text-container container-col align-start">
+                    <p class="name-text dark-text">{{ p.first_name }} {{ p.last_name }}</p>
+                    <p class="title-text dark-text">
+                        {% if p.title %}{{ p.title }}{% else %}No Title{% endif %} <i class="fa-solid fa-circle"></i> {% if p.category_field %}{{ p.category_field.friendly_name }}{% else %}None{% endif %} <i class="fa-solid fa-circle"></i> {% if p.class_field %}{{ p.class_field.friendly_name }}{% else %}None{% endif %}
+                    </p>
+                </div>
+            </div>
+            <div class="btn btn-2 small-btn"><span class="fa-icon-left"><i class="fa-regular fa-eye"></i></span>View Profile</div>
+        </a>
+        {% endfor %}
+    </div>   
 </section>
+
+{% endif %}
 
 {% endblock %}
 

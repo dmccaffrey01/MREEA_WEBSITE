@@ -2,6 +2,8 @@
 
 {% load static %}
 
+{% block extra_title %}- Events{% endblock %}
+
 {% block extra_css %}
 <link rel="stylesheet" type="text/css" href="{% static 'css/events.css' %}">
 {% endblock %}
@@ -11,36 +13,44 @@
 <section class="events-section section">
     <div class="section-container container-col">
         <div class="img-container">
-            <img src="{{ MEDIA_URL }}mreea-meeting-3.png" alt="MREEA Event" class="img-100a">
+            <img src="{{ MEDIA_URL }}events-home.png" alt="MREEA Event" class="img-100a">
+            <h2 class="heading white-text">Meetings and Events</h2>
         </div>
 
         <div class="events-container-row container-row space-between">
             <div class="events-container container-col justify-start upcoming">
-                <h2 class="heading white-text container-col">Upcoming Events</h2>
-
-                {% for event in upcoming_events %}
-                <div class="event-container container-row justify-start" data-event-id="{{ event.id }}">
-                    <div class="date-container container-col">
-                        <p class="date-text white-text container-col">{{ event.date|date:"d M" }}</p>
-                        <p class="time-text dark-text container-col">{{ event.time|time:"H:i" }}</p>
+                <h3 class="subheading white-text container-col">Upcoming</h3>
+                <div class="event-items-container container-col justify-start">
+                    {% for event in upcoming_events %}
+                    <div class="event-container container-row space-between" data-event-id="{{ event.id }}">
+                        <div class="info-container container-col align-start">
+                            <p class="date-text white-text container-col">{{ event.date|date:"d M Y" }} - {{ event.time|time:"H:i" }}</p>
+                            <p class="name-text dark-text container-col align-start">{{ event.name }}</p>
+                        </div>
+                        <div class="view-btn container-col">
+                            <p class="white-text"><span class="sr-only">View Icon</span><i class="fa-solid fa-chevron-right"></i></p>
+                        </div>
                     </div>
-                    <p class="name-text dark-text container-col subheading align-start">{{ event.name }}</p>
+                    {% endfor %}
                 </div>
-                {% endfor %}
             </div>
 
             <div class="events-container container-col justify-start past">
-                <h2 class="heading white-text container-col">Past Events</h2>
-
-                {% for event in past_events %}
-                <div class="event-container container-row justify-start" data-event-id="{{ event.id }}">
-                    <div class="date-container container-col">
-                        <p class="date-text white-text container-col">{{ event.date|date:"d M" }}</p>
-                        <p class="time-text dark-text container-col">{{ event.time|time:"H:i" }}</p>
+                <h3 class="subheading white-text container-col">Past</h3>
+                <div class="event-items-container container-col justify-start">
+                    {% for event in past_events %}
+                    <div class="event-container container-row justify-start" data-event-id="{{ event.id }}">
+                        <div class="info-container container-col align-start">
+                            <p class="date-text white-text container-col">{{ event.date|date:"d M Y" }} - {{ event.time|time:"H:i" }}</p>
+                            <p class="name-text dark-text container-col align-start">{{ event.name }}</p>
+                        </div>
+                        
+                        <div class="view-btn container-col">
+                            <p class="white-text"><span class="sr-only">View Icon</span><i class="fa-solid fa-chevron-right"></i></p>
+                        </div>
                     </div>
-                    <p class="name-text dark-text container-col subheading align-start">{{ event.name }}</p>
+                    {% endfor %}
                 </div>
-                {% endfor %}
             </div>
         </div>
     </div>

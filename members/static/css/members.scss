@@ -1,28 +1,106 @@
 @import '../../../static/css/variables';
 @import '../../../static/css/mixins';
 
-.members-benefits-section {
+.member-search-section {
+    height: calc(100vh - 100px);
+
     .section-container {
-        gap: 30px
+        height: calc(100vh - 160px);
+        border-radius: $round-corner-5;
     }
-
-    .heading {
-        @include underline($red-1);
-    }
-
-    .main-text-container {
-        gap: 10px;
+    
+    .img-100a {
+        position: absolute;
+        left: 0;
+        top: 0;
     }
 
     .text-container {
-        gap: 10px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        translate: -50% -50%;
+        width: 100%;
+        gap: 12px;
     }
-    
-    .icon-container {
-        width: 60px;
-        height: 60px;
-        padding: 5px;
-        background: $red-1;
+
+    .form-container {
+        width: calc(100% - 40px);
+        background-color: $gl-1;
+        border-radius: $round-corner-3;
+        padding: 16px;
+
+        .form {
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+        }
+
+        .input-group {
+            width: 200px;
+        }
+
+        .btn {
+            width: 200px;
+            align-self: flex-end;
+        }
+    }
+
+    &.search {
+        justify-content: flex-start;
+        height: fit-content;
+
+        .section-container {
+            height: 300px;
+        }
+
+        .text-container {
+            top: auto;
+            bottom: 20px;
+            translate: -50% 0;
+        }
+    }
+}
+
+.search-results-section {
+    padding: 20px 0;
+
+    .section-container {
+        background-color: $gl-2;
+        border-radius: $round-corner-3;
+        padding: 16px;
+        gap: 16px;
+    }
+
+    .overview-container {
+        width: 100%;
+        padding: 12px;
+        border-radius: $round-corner-2;
+        background-color: $gl-1;
+    }
+
+    .profile-container {
+        width: calc(100% - 200px);
+        gap: 24px;
+    }
+
+    .img-container {
+        width: 100px;
+        height: 100px;
         border-radius: 50%;
+    }
+
+    .name-text {
+        font-size: 1.8rem;
+    }
+
+    .title-text {
+        i {
+            font-size: 0.6rem;
+            position: relative;
+            bottom: 0.3rem;
+            margin: 0 4px;
+        }
     }
 }

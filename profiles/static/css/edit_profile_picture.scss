@@ -1,0 +1,210 @@
+@import '../../../static/css/variables';
+@import '../../../static/css/mixins';
+
+.profile-section {
+    .section-container {
+        background-color: $gl-2;
+        border-radius: $round-corner-3;
+        padding: 16px;
+        gap: 12px;
+        justify-self: center;
+    }
+
+    .grid-group-container {
+        width: 100%;
+    }
+
+    .grid-group-col-container {
+        width: calc(50% - 6px);
+        gap: 12px;
+    }
+
+    .grid-container {
+        background-color: $gl-1;
+        padding: 16px;
+        border-radius: $round-corner-2;
+        gap: 8px;
+
+        &.w-100 {
+            width: 100%;
+        }
+
+        &.w-50 {
+            width: calc(50% - 6px);
+        }
+
+        &.w-40 {
+            width: calc(40% - 8px);
+            gap: 4px;
+        }
+
+        &.w-20 {
+            width: calc(20% - 8px);
+        }
+
+        .grid-title {
+            font-weight: 600;
+        }
+
+        .grid-text {
+            font-size: 1.2rem;
+        }
+    }
+
+    .personal-container {
+        gap: 24px;
+        width: 100%;
+    }
+
+    .profile-img-container {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        position: relative;
+
+        .edit-profile-picture-overlay {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background-color: rgba(0,0,0, 0.9);
+            filter: blur(10px);
+            display: none;
+        }
+
+        .edit-profile-picture-icon {
+            font-size: 2rem;
+            color: $white;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            cursor: pointer;
+            display: none;
+        }
+
+        &:hover {
+            .edit-profile-picture-icon,
+            .edit-profile-picture-overlay {
+                display: flex;
+            }
+        }
+    }
+
+    .personal-info-container {
+
+        .btn {
+            width: 100px;
+            padding: 4px 4px;
+            font-size: 1.1rem;
+            margin-bottom: 4px;
+        }
+
+        .profile-name {
+            font-size: 1.8rem;
+            font-weight: 600;
+        }
+
+        .profile-title {
+            font-size: 1.4rem;
+        }
+    }
+
+    .upload-grid-container {
+        height: 316px;
+
+        .drop-zone {
+            width: 100%;
+            height: 100%;
+            border-radius: $round-corner-2;
+            border: 2px dashed $red-1;
+            cursor: pointer;
+            gap: 8px;
+            background-color: $gl-1;
+
+            .drop-zone-text {
+                font-size: 1.1rem;
+            }
+
+            .upload-icon {
+                i {
+                    color: $red-1;
+                    font-size: 3rem;
+                }
+            }
+
+            &:hover,
+            &.dragover {
+                background-color: $gl-2;
+            }
+
+        }
+    }
+
+    .contact-container {
+        gap: 8px;
+    }
+
+    .contact-btn {
+        gap: 8px;
+
+        .red-text {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            border: 3px solid $red-1;
+        }
+    }
+
+    .crop-container {
+        height: 460px;
+        gap: 12px;
+
+        .btns-container {
+            gap: 8px;
+
+            .btn {
+                width: calc(175px - 4px);
+            }
+        }
+
+        .crop-img-container {
+            width: 350px;
+            height: 350px;
+            border-radius: $round-corner-1;
+            align-self: center;
+            position: relative;
+            overflow: hidden;
+            cursor: grab;
+
+            .crop-img {
+                position: absolute;
+                left: 50%;
+                top: 50%;
+                translate: -50% -50%;
+                z-index: 2;
+                -moz-user-select: none;
+                -webkit-user-select: none;
+                user-select: none;
+            }
+
+            .display-circle {
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                border-radius: 50%;
+                box-shadow: 0 0 0 9999px rgba(247, 247, 247, 0.5);
+                z-index: 3;
+            }
+
+        }
+    }
+
+    .edit-container {
+        .btn {
+            width: 100%;
+            height: 54px;
+        }
+    }
+
+}

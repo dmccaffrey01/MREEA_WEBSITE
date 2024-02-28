@@ -86,7 +86,7 @@
                     </div>
 
                     <div class="profile-menu-container container-col box-shadow align-start">
-                        <a href="{% url 'profile' %}" class="profile-menu-btn container-row">
+                        <a href="{% url 'profile' user.username %}" class="profile-menu-btn container-row">
                             <div class="icon-container">
                                 <img src="{{ MEDIA_URL }}profile-person-icon.webp" alt="Profile Person Icon" class="img-100a">
                             </div>
@@ -124,8 +124,49 @@
         {% block content %}
         {% endblock %}
 
+        <footer class="container-col">
+            <div class="footer-container container-col">
+                <div class="footer-top container-row space-between align-end">
+                    <h2 class="dark-text heading">MREEA</h2>
+                    <div class="footer-nav container-row">
+                        <a href="" class="dark-text">About</a>
+                        <div class="divider"></div>
+                        <a href="" class="dark-text">Privacy</a>
+                        <div class="divider"></div>
+                        <a href="{% url 'contact' %}" class="dark-text">Contact</a>
+                        <div class="divider"></div>
+                        {% if user.is_authenicated %}
+                        <a href="{% url 'membership_status' %}" class="dark-text">Join</a>
+                        {% else %}
+                        <a href="{% url 'account_signup' %}" class="dark-text">Join</a>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="footer-bottom container-row space-between">
+                    <div class="text-container container-col align-start">
+                        <p class="dark-text">MARYLAND REAL ESTATE</p>
+                        <p class="dark-text">EDUCATORS ASSOCIATION</p>
+                    </div>
+                    <div class="footer-contact-container container-row">
+                        <div class="text-container container-col align-start">
+                            <p class="bold dark-text">EMAIL US</p>
+                            <p class="dark-text">info@mreea.com</p>
+                        </div>
+                        <div class="text-container container-col align-start">
+                            <p class="bold dark-text">CALL US</p>
+                            <p class="dark-text">(555) 555 5555</p>
+                        </div>
+                        <div class="img-container">
+                            <img src="{{ MEDIA_URL }}mreea-logo-1-gray.png" alt="Gray Mreea Logo" class="img-100a">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
         {% block postloadjs %}
         <script src="{% static 'js/base.js' %}"></script>
         {% endblock %}
     </body>
 </html>
+

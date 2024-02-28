@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import UserProfile
+from .models import UserProfile, Category, Class
 
 
 class UserProfileAdmin(admin.ModelAdmin):
@@ -9,7 +9,7 @@ class UserProfileAdmin(admin.ModelAdmin):
     list_display = (
         'first_name',
         'last_name',
-        'email',
+        'get_email',
         'id',
         'username', 
     )
@@ -18,7 +18,7 @@ class UserProfileAdmin(admin.ModelAdmin):
     def username(self, obj):
         return obj.user.username
     
-    def email(self, obj):
+    def get_email(self, obj):
         return obj.user.email
     
     def first_name(self, obj):
@@ -33,4 +33,21 @@ class UserProfileAdmin(admin.ModelAdmin):
     last_name.short_description = 'Last Name'
     last_name.short_description = 'Email'
 
+
+class CategoryAdmin(admin.ModelAdmin):
+    class Meta:
+        verbose_name_plural = 'Categories'
+
+    list_display = ('friendly_name', 'name',)
+
+
+class ClassAdmin(admin.ModelAdmin):
+    class Meta:
+        verbose_name_plural = 'Classes'
+
+    list_display = ('friendly_name', 'name',)
+
+
 admin.site.register(UserProfile, UserProfileAdmin)
+admin.site.register(Category, CategoryAdmin)
+admin.site.register(Class, ClassAdmin)

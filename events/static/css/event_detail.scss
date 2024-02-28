@@ -2,104 +2,90 @@
 @import '../../../static/css/mixins';
 
 .event-detail-section {
-    padding-top: 50px;
+    padding: 20px 0;
 
     .section-container {
-        gap: 50px;
+        gap: 16px;
+        padding: 16px;
+        background-color: $gl-2;
+        border-radius: $round-corner-5;
     }
 
     .event-detail-container {
         width: 100%;
+        gap: 16px;
     }
 
     .img-container {
-        width: 550px;
+        width: 250px;
+        height: 250px;
         border-radius: 15px;
     }
 
     .event-container {
-        width: calc(100% - 600px);
-        height: 550px;
+        width: calc(100% - 266px);
+        height: 250px;
         border-radius: 15px;
-        background-color: $gl-2;
+        background-color: $gl-1;
         overflow: hidden;
 
         .heading {
             width: 100%;
-            height: 100px;
+            font-size: $subheading-size;
+            padding: 12px 0;
         }
 
         &.red .heading {
-            background-color: $red-1;
+            background-color: $gd-1;
         }
     }
 
     .detail-container {
         width: 100%;
-        padding: 50px;
-        height: 200px;
+        padding: 12px;
         gap: 50px;
     }
 
-    .date-container {
-        width: 150px;
-        height: 100%;
+    .info-container {
+        gap: 8px;
+        width: 252px;
     }
 
-    .date-text, .time-text {
-        width: 100%;
-        padding: 10px 0;
+    .date-text {
+        width: 240px;
+        padding: 8px;
         border-radius: 5px;
     }
 
     .date-text {
-        background-color: $red-1;
-    }
-
-    .extra-detail-container-col {
-        padding: 10px 0;
-        height: 100%;
+        background-color: $gd-1;
     }
 
     .extra-detail-container {
-        gap: 20px;
+        gap: 8px;
     }
 
     .extra-detail-title {
         font-weight: 600;
     }
 
+    .description-container {
+        width: calc(100% - 252px);
+        height: 214px;
+        overflow-y: scroll;
+
+        &::-webkit-scrollbar {
+            width: 4px;
+        }
+
+        &::-webkit-scrollbar-thumb  {
+            background-color: $red-1;
+            border: none;
+            border-radius: $round-corner-1;
+        }
+    }
+
     .description-text {
         width: 100%;
-        padding: 0 50px;
     }
-
-    .resources-container-col {
-        width: 100%;
-        border-radius: 15px;
-        height: 250px;
-        background-color: $gl-2;
-        overflow: hidden;
-
-        .heading {
-            width: 100%;
-            height: 100px;
-            background-color: $yellow-1;
-        }
-
-        .resources-container-row {
-            padding: 50px;
-            width: 100%;
-        }
-
-        .resource-container {
-            width: 625px;
-            cursor: pointer;
-            background-color: $gl-1;
-            border-radius: 10px;
-            height: 100px;
-        }
-    }
-
-    
 }

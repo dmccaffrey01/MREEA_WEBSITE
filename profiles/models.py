@@ -5,7 +5,7 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 
 class Class(models.Model):
-    name = models.CharField(max_length=254)
+    name = models.CharField(max_length=254, unique=True)
     friendly_name = models.CharField(max_length=254)
 
     def __str__(self):
@@ -15,7 +15,7 @@ class Class(models.Model):
         return self.friendly_name
 
 class Category(models.Model):
-    name = models.CharField(max_length=254)
+    name = models.CharField(max_length=254, unique=True)
     friendly_name = models.CharField(max_length=254)
 
     def __str__(self):
@@ -52,6 +52,13 @@ class UserProfile(models.Model):
             self.last_name = self.user.last_name
         if self.first_name and self.last_name:
             self.full_name = self.get_full_name()
+
+        if not self.pk:
+            class_field = Class.objects.get(name="none")
+            category_field = Category.objects.get(name="none")
+
+            self.class_field = class_field
+            self.category_field = category_field
         super().save(*args, **kwargs)
 
 

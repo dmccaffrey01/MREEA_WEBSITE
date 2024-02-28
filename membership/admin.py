@@ -32,7 +32,9 @@ class MembershipStatusAdmin(admin.ModelAdmin):
 
 
 class MembershipUpdateStatusAdmin(admin.ModelAdmin):
-    verbose_name_plural = 'Membership Updates'
+    class Meta:
+        verbose_name_plural = 'Membership Updates'
+    
     list_display = ('friendly_name', 'name', 'last_updated_date',)
     readonly_fields = ('name', 'friendly_name', 'last_updated_date')
                        

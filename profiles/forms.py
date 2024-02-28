@@ -1,7 +1,7 @@
 from django import forms
 from allauth.account.forms import SignupForm
 from django.contrib.auth.models import User
-from .models import UserProfile
+from .models import UserProfile, Category, Class
 
 
 class CustomSignupForm(SignupForm):
@@ -31,3 +31,25 @@ class CustomSignupForm(SignupForm):
         profile.save()
 
         return user
+    
+
+class EditProfileForm(forms.ModelForm):
+    """ User profile form """
+
+    category_name = forms.CharField(label="Category Name", max_length=100)
+    class_name = forms.CharField(label="Class Name", max_length=100)
+
+    class Meta:
+        model = UserProfile
+        exclude = ('user', 'image', 'image_url', 'category_field', 'class_field', 'full_name')
+
+    def clean(self):
+        cleaned_data = super().clean()
+        category_name = cleaned_data.get("category_name")
+        class_name = cleaned_data.get("class_name")
+
+        if not Category.objects.filter(name=category_name).exists() and category_name != "none":
+            raise forms.ValidationError("Invalid category selection. Please choose a valid category.")
+        
+        if not Class.objects.filter(name=class_name).exists() and class_name != "none":
+            raise forms.ValidationError("Invalid class selection. Please choose a valid class.")

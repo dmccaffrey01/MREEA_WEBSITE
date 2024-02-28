@@ -2,6 +2,8 @@
 
 {% load static %}
 
+{% block extra_title %}- {{ event.name }}{% endblock %}
+
 {% block extra_css %}
 <link rel="stylesheet" type="text/css" href="{% static 'css/event_detail.css' %}">
 {% endblock %}
@@ -10,45 +12,46 @@
 
 <section class="event-detail-section section">
     <div class="section-container container-col">
-        <div class="event-detail-container container-row space-between">
+        <div class="event-detail-container container-row">
+
+            <div class="event-container container-col justify-start red">
+                <h2 class="heading white-text container-col">{{ event.name }}</h2>
+
+                <div class="detail-container container-row align-start space-between">
+                    <div class="info-container container-col align-start">
+                        <p class="date-text white-text container-col">{{ event.date|date:"d M" }} - {{ event.time|time:"H:i" }}</p>
+                        <div class="extra-detail-container container-row">
+                            <p class="extra-detail-title dark-text">Location:</p>
+                            <p class="extra-deatil-text dark-text">{{ event.location }}</p>
+                        </div>
+                        <div class="extra-detail-container container-row">
+                            <p class="extra-detail-title dark-text">Duration:</p>
+                            <p class="extra-deatil-text dark-text">{{ event.duration }} minutes</p>
+                        </div>
+                    </div>
+                    
+
+                    <div class="description-container container-col align-start justify-start">
+                        <p class="description-text dark-text">{{ event.description }}</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="img-container">
+                <img src="{{ MEDIA_URL }}event-detail-2.png" alt="MREEA Event" class="img-100a">
+            </div>
+        </div>
+        <div class="event-detail-container container-row">
             <div class="img-container">
                 <img src="{{ MEDIA_URL }}event-detail.png" alt="MREEA Event" class="img-100a">
             </div>
 
             <div class="event-container container-col justify-start red">
-                <h2 class="heading white-text container-col">{{ event.name }}</h2>
+                <h2 class="heading white-text container-col">Resources</h2>
 
-                <div class="detail-container container-row justify-start">
-                    <div class="date-container container-col space-between">
-                        <p class="date-text white-text container-col">{{ event.date|date:"d M" }}</p>
-                        <p class="time-text dark-text container-col">{{ event.time|time:"H:i" }}</p>
-                    </div>
-                    <div class="extra-detail-container-col container-col align-start space-between">
-                        <div class="extra-detail-container container-row">
-                            <p class="extra-detail-title dark-text">Location</p>
-                            <p class="extra-deatil-text dark-text">{{ event.location }}</p>
-                        </div>
-                        <div class="extra-detail-container container-row">
-                            <p class="extra-detail-title dark-text">Duration</p>
-                            <p class="extra-deatil-text dark-text">{{ event.duration }} minutes</p>
-                        </div>
-                    </div>
+                <div class="detail-container container-col">
+                    
                 </div>
-
-                <p class="description-text dark-text">{{ event.description }}</p>
-            </div>
-        </div>
-        <div class="resources-container-col container-col justify-start">
-            <h2 class="heading white-text container-col">Event Resources</h2>
-    
-            
-            <div class="resources-container-row container-row space-between">
-                <p class="resource-container container-col dark-text">
-                    Video Recording
-                </p>
-                <p class="resource-container container-col dark-text">
-                    Event Notes
-                </p>
             </div>
         </div>
     </div>

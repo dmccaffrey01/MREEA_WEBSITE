@@ -1,0 +1,165 @@
+@import '../../../static/css/variables';
+@import '../../../static/css/mixins';
+
+.resources-section {
+    background-color: $gl-2;
+    padding: 20px 0;
+    min-height: calc(100vh - 100px);
+    justify-content: flex-start;
+
+    .section-container {
+        background-color: $gl-1;
+        border-radius: $round-corner-3;
+        padding: 20px;
+        gap: 16px;
+    }
+
+    .folder-container {
+        width: 100%;
+        gap: 8px;
+
+        .folder-name-text {
+            font-size: 1.8rem;
+            font-weight: 600;
+        }
+    }
+
+    .search-container {
+        width: 100%;
+        gap: 16px;
+
+        .return-btn {
+            padding: 12px;
+            border-radius: $round-corner-1;
+            background-color: $gl-2;
+            color: $gd-1;
+
+            gap: 8px;
+        }
+
+        .search-input-group {
+            width: calc(100% - 111px);
+            position: relative;
+
+            .search-icon {
+                position: absolute;
+                left: 12px;
+                top: 50%;
+                translate: 0 -50%;
+            }
+
+            input {
+                width: 100%;
+                font-size: $font-size;
+                padding: 12px;
+                padding-left: 42px;
+                border: none;
+                outline: none;
+                color: $gd-1;
+                background-color: $gl-2;
+                border-radius: $round-corner-1;
+
+                &:focus {
+                    outline: 2px solid $red-1;
+                }
+            }
+        }
+    }
+
+    .sort-container {
+        width: 100%;
+        gap: 16px;
+
+        .sort-btn {
+            padding: 12px;
+            border-radius: $round-corner-1;
+            background-color: $gl-2;
+            color: $gd-1;
+            gap: 8px;
+            cursor: pointer;
+
+            &.w-50 {
+                width: calc(50% - 10.6px);
+            }
+
+            &.w-25 {
+                width: calc(25% - 10.6px);
+            }
+
+            .icon-container {
+                width: 1.4rem;
+                height: 1.4rem;
+            }
+        }
+        
+    }
+
+    .items-container {
+        width: 100%;
+        gap: 12px;
+    }
+
+    .item-container {
+        width: 100%;
+        gap: 16px;
+        border-radius: $round-corner-1;
+        background-color: $gl-2;
+        position: relative;
+        cursor: pointer;
+
+        .info-container {
+            padding: 8px 12px;
+            gap: calc(8px + 0.2rem);
+        }
+
+        .w-50 {
+            width: calc(50% - 10.6px);
+        }
+
+        .w-25 {
+            width: calc(25% - 10.6px);
+            padding-left: calc(20px + 1.4rem);
+        }
+
+        .icon-container {
+            width: 1.2rem;
+            height: 1.2rem;
+        }
+
+        .dark-text {
+            font-size: 1.2rem;
+        }
+
+        .open-container {
+            position: absolute;
+            display: none;
+            top: calc(100% + 12px);
+            right: 0;
+            padding: 12px 12px;
+            border-radius: $round-corner-1;
+            background-color: $gl-2;
+            gap: 8px;
+            cursor: default;
+
+            .info-container {
+                background-color: $gl-1;
+                width: 100%;
+                border-radius: $round-corner-1;
+                padding: 12px;
+                cursor: pointer;
+            }
+        }
+
+        .open-menu-btn {
+            cursor: pointer;
+        }
+
+        &.open {
+            margin-bottom: 138px;
+
+            .open-container {
+                display: flex;
+            }
+        }
+    }
+}

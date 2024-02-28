@@ -1,30 +1,87 @@
-.members-benefits-section .section-container {
-  gap: 30px;
+.member-search-section {
+  height: calc(100vh - 100px);
 }
-.members-benefits-section .heading {
-  position: relative;
+.member-search-section .section-container {
+  height: calc(100vh - 160px);
+  border-radius: 25px;
 }
-.members-benefits-section .heading::after {
-  content: "";
+.member-search-section .img-100a {
   position: absolute;
-  bottom: -5px;
   left: 0;
+  top: 0;
+}
+.member-search-section .text-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
   width: 100%;
-  height: 4px;
-  background-color: #c64f4a;
+  gap: 12px;
 }
-.members-benefits-section .main-text-container {
-  gap: 10px;
+.member-search-section .form-container {
+  width: calc(100% - 40px);
+  background-color: #f7f7f7;
+  border-radius: 15px;
+  padding: 16px;
 }
-.members-benefits-section .text-container {
-  gap: 10px;
+.member-search-section .form-container .form {
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
 }
-.members-benefits-section .icon-container {
-  width: 60px;
-  height: 60px;
-  padding: 5px;
-  background: #c64f4a;
+.member-search-section .form-container .input-group {
+  width: 200px;
+}
+.member-search-section .form-container .btn {
+  width: 200px;
+  align-self: flex-end;
+}
+.member-search-section.search {
+  justify-content: flex-start;
+  height: fit-content;
+}
+.member-search-section.search .section-container {
+  height: 300px;
+}
+.member-search-section.search .text-container {
+  top: auto;
+  bottom: 20px;
+  translate: -50% 0;
+}
+
+.search-results-section {
+  padding: 20px 0;
+}
+.search-results-section .section-container {
+  background-color: #ececec;
+  border-radius: 15px;
+  padding: 16px;
+  gap: 16px;
+}
+.search-results-section .overview-container {
+  width: 100%;
+  padding: 12px;
+  border-radius: 10px;
+  background-color: #f7f7f7;
+}
+.search-results-section .profile-container {
+  width: calc(100% - 200px);
+  gap: 24px;
+}
+.search-results-section .img-container {
+  width: 100px;
+  height: 100px;
   border-radius: 50%;
+}
+.search-results-section .name-text {
+  font-size: 1.8rem;
+}
+.search-results-section .title-text i {
+  font-size: 0.6rem;
+  position: relative;
+  bottom: 0.3rem;
+  margin: 0 4px;
 }
 
 /*# sourceMappingURL=members.css.map */

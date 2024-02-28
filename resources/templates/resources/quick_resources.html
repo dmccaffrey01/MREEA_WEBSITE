@@ -2,19 +2,20 @@
 
 {% load static %}
 
+{% block extra_title %}- Quick Resources{% endblock %}
+
 {% block extra_css %}
-<link rel="stylesheet" type="text/css" href="{% static 'css/profile.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'css/quick_resoucres.css' %}">
 {% endblock %}
 
 {% block content %}
 
-<p class="dark-text">Profile</p>
 
 {% endblock %}
 
 {% block postloadjs %}
 {{ block.super }}
 
-<script src="{% static 'js/profile.js' %}"></script>
+
 
 {% endblock %}
