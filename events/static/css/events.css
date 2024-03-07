@@ -38,14 +38,15 @@
 .events-section .events-container .event-items-container {
   width: 100%;
   gap: 12px;
-  max-height: 320px;
+  height: 320px;
   overflow-y: scroll;
+  padding-right: 4px;
 }
 .events-section .events-container .event-items-container::-webkit-scrollbar {
   width: 4px;
 }
 .events-section .events-container .event-items-container::-webkit-scrollbar-thumb {
-  background-color: #c64f4a;
+  background-color: #242424;
   border: none;
   border-radius: 5px;
 }
@@ -66,7 +67,7 @@
   cursor: pointer;
   padding: 12px;
   position: relative;
-  overflow: hidden;
+  height: 98px;
 }
 .events-section .events-container .info-container {
   gap: 4px;
@@ -93,6 +94,7 @@
   right: 0;
   top: 0;
   background-color: #242424;
+  border-radius: 0 5px 5px 0;
 }
 .events-section .events-container .view-btn .white-text {
   font-size: 2rem;

@@ -46,15 +46,16 @@
         .event-items-container {
             width: 100%;
             gap: 12px;
-            max-height: 320px;
+            height: 320px;
             overflow-y: scroll;
+            padding-right: 4px;
 
             &::-webkit-scrollbar {
                 width: 4px;
             }
 
             &::-webkit-scrollbar-thumb  {
-                background-color: $red-1;
+                background-color: $gd-1;
                 border: none;
                 border-radius: $round-corner-1;
             }
@@ -80,7 +81,7 @@
             cursor: pointer;
             padding: 12px;
             position: relative;
-            overflow: hidden;
+            height: 98px;
         }
 
         .info-container {
@@ -113,6 +114,7 @@
             right: 0;
             top: 0;
             background-color: $gd-1;
+            border-radius: 0 $round-corner-1 $round-corner-1 0;
 
             .white-text {
                 font-size: 2rem;

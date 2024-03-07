@@ -1,0 +1,53 @@
+@import '../../../static/css/variables';
+@import '../../../static/css/mixins';
+
+.quick-resources-section {
+    min-height: calc(100vh - 100px);
+    justify-content: flex-start;
+    padding: 60px 0;
+    background-color: $gl-2;
+
+    .section-container {
+        gap: 20px;
+    }
+
+    .quick-resources-container {
+        width: 100%;
+        border-radius: $round-corner-3;
+        background-color: $gl-1;
+        padding: 20px;
+        flex-wrap: wrap;
+        gap: 20px;
+        justify-content: flex-start;
+    }
+
+    .folder-container {
+        width: calc(50% - 10px);
+        padding: 16px;
+        border-radius: $round-corner-1;
+        background-color: $gl-2;
+        
+
+        &.w-100 {
+            width: 100%;
+        }
+
+        .icon-container {
+            width: 1.5rem;
+            height: 1.5rem;
+        }
+
+        .icon-name-container {
+            gap: 12px;
+            .icon-container {
+                width: 50px;
+                height: 50px;
+                border-radius: 50%;
+                padding: 10px;
+                background-color: $gl-1;
+            }
+        }
+
+
+    }
+}

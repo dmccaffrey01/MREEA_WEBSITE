@@ -8,49 +8,52 @@
 
 {% block content %}
 
-<section class="contact-section section">
-    <div class="section-container container-row space-between">
-        <div class="contact-form-container container-col align-start">
-            <h2 class="heading dark-text">Contact Us</h2>
-            <p class="dark-text">We'd love to hear from you</p>
-            <form action="{% url 'contact' %}" method="POST" class="contact-form container-col">
-                {% csrf_token %}
-                <div class="form-group container-row">
-                    <div class="input-group container-col align-start">
-                        {{ form.name.label_tag }}
-                        {{ form.name }}
+<section class="contact-section account-section section h-100b">
+    <div class="section-container container-row">
+
+        <div class="info-container container-col">
+            <div class="text-container container-col">
+                <h2 class="dark-text heading">Contact Us!</h2>
+                <div class="contact-btns-container container-col align-start">
+                    <div class="contact-btn container-row" data-action-name="email" data-action-info="example@mreea.com">
+                        <p class="dark-text red-text container-col"><span class="sr-only">Email Icon</span><i class="fa-solid fa-envelope"></i></p>
+                        <p class="dark-text">example@mreea.com</p>
                     </div>
-                    <div class="input-group container-col align-start">
-                        {{ form.email.label_tag }}
-                        {{ form.email }}
+                    <div class="contact-btn container-row" data-action-name="phone_number" data-action-info="(555) 555 5555" >
+                        <p class="dark-text red-text container-col"><span class="sr-only">Phone Icon</span><i class="fa-solid fa-phone-flip"></i></p>
+                        <p class="dark-text">(555) 555 5555</p>
                     </div>
                 </div>
-                <div class="input-group container-col align-start">
-                    {{ form.message.label_tag }}
-                    {{ form.message }}
-                </div>
-                <button type="submit" class="btn btn-2">Send</button>
-            </form>
+            </div>
+            <div class="img-container">
+                <img src="{{ MEDIA_URL }}mreea-colored-lines.webp" alt="MREEA Colors" class="img-100a">
+            </div>
         </div>
 
-        <div class="contact-info-container container-col">
-            <div class="info-container-col align-start container-col">
-                <div class="info-container container-row">
-                    <div class="icon-container img-container">
-                        <img src="{{ MEDIA_URL }}contact-icon-1.png" alt="Phone Icon" class="img-100a">
-                    </div>
-                    <p class="dark-text">(555) 555 5555</p>
+        <div class="form-container">
+            
+            <form class="form" method="POST" action="{% url 'account_login' %}">
+                {% csrf_token %}
+                <div class="input-group">
+                    <p class="input-label dark-text">Name</p>
+                    <label for="id_name" class="sr-only">contact name</label>
+                    {{ form.name }}
                 </div>
-                <div class="info-container container-row">
-                    <div class="icon-container img-container">
-                        <img src="{{ MEDIA_URL }}contact-icon-2.png" alt="Email Icon" class="img-100a">
-                    </div>
-                    <p class="dark-text">example@email.com</p>
+
+                <div class="input-group">
+                    <p class="input-label dark-text">Email</p>
+                    <label for="id_email" class="sr-only">email</label>
+                    {{ form.email }}
                 </div>
-            </div>
-            <div class="lines-img-container img-container">
-                <img src="{{ MEDIA_URL }}colored-lines.png" alt="Colored Lines" class="img-100a">
-            </div>
+
+                <div class="input-group">
+                    <p class="input-label dark-text">Message</p>
+                    <label for="id_message" class="sr-only">message</label>
+                    {{ form.message }}
+                </div>
+                
+                <button class="btn btn-2" type="submit">Send<span class="fa-icon-right"><i class="fa-solid fa-right-to-bracket"></i></span></button>
+              </form>
         </div>
     </div>
 </section>

@@ -16,9 +16,16 @@ def profile(request, username):
 
     user_profile = UserProfile.objects.filter(user__username=username).first()
 
+    all_categories = Category.objects.all()
+
+    for category in all_categories:
+        user_classes = user_profile.classes.filter(category=category)
+        category.user_classes = user_classes
+
     context = {
         'profile_editable': profile_editable,
         'user_profile': user_profile,
+        'categories': all_categories,
     }
 
     return render(request, 'profiles/profile.html', context)

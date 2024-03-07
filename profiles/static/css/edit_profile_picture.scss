@@ -179,9 +179,8 @@
 
             .crop-img {
                 position: absolute;
-                left: 50%;
-                top: 50%;
-                translate: -50% -50%;
+                left: 0;
+                top: 0;
                 z-index: 2;
                 -moz-user-select: none;
                 -webkit-user-select: none;

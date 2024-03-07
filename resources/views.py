@@ -17,16 +17,10 @@ def quick_resources(request):
     else:
         return redirect(reverse('membership'))
     
-    folder = Folder.objects.get(name='all_resources')
-
-    sub_folders = Folder.objects.filter(parent_folder=folder)
-
-    resources = Resource.objects.filter(folder=folder)
+    folders = Folder.objects.filter(quick_resources=True)
 
     context = {
-        'folder': folder,
-        'sub_folders': sub_folders,
-        'resources': resources,
+        'folders': folders,
     }
 
     return render(request, 'resources/quick_resources.html', context)

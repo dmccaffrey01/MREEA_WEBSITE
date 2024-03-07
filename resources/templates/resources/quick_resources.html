@@ -5,11 +5,43 @@
 {% block extra_title %}- Quick Resources{% endblock %}
 
 {% block extra_css %}
-<link rel="stylesheet" type="text/css" href="{% static 'css/quick_resoucres.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'css/quick_resources.css' %}">
 {% endblock %}
 
 {% block content %}
 
+<section class="quick-resources-section section">
+    <div class="section-container container-col align-start">
+        <h2 class="heading dark-text">Quick Resources</h2>
+
+        <div class="quick-resources-container container-row">
+            {% for f in folders %}
+            <a href="{% url 'folder' f.name %}" class="folder-container container-row space-between {% if f.name == 'all_resources' %}w-100{% endif %}">
+                <div class="icon-name-container container-row">
+                    <div class="icon-container">
+                        <img src="{{ f.icon.url }}" alt="{{ f.friendly_name }} icon" class="img-100a">
+                    </div>
+                    <div class="dark-text">{{ f.friendly_name }}</div>
+                </div>
+                <div class="icon-container open-menu-btn">
+                    <img src="{{ MEDIA_URL }}internal-open-icon.png" alt="Internal Open Icon" class="img-100a">
+                </div>
+            </a>
+            {% endfor %}
+            <a href="https://www.facebook.com/groups/715064345509383" class="folder-container container-row space-between">
+                <div class="icon-name-container container-row">
+                    <div class="icon-container">
+                        <img src="{{ MEDIA_URL }}facebook-icon.png" alt="Facebook icon" class="img-100a">
+                    </div>
+                    <div class="dark-text">Facebook Group</div>
+                </div>
+                <div class="icon-container open-menu-btn">
+                    <img src="{{ MEDIA_URL }}external-open-icon.png" alt="External Open Icon" class="img-100a">
+                </div>
+            </a>
+        </div>
+    </div>
+</section>
 
 {% endblock %}
 

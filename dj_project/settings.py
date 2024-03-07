@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     'profiles',
     'membership',
     'resources',
+    'custom_admin',
     'storages',
 ]
 

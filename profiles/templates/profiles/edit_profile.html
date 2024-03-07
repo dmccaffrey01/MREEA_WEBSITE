@@ -6,14 +6,122 @@
 
 {% block extra_css %}
 <link rel="stylesheet" type="text/css" href="{% static 'css/edit_profile.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'css/profile.css' %}">
 {% endblock %}
 
 {% block content %}
 
+<section class="profile-section section">
+    <div class="section-container container-col align-start justify-start">
+        
+        <div class="grid-group-container container-row">
+            <div class="personal-container grid-container {% if profile_editable %}w-75{% else %}w-100{% endif %} container-row justify-start">
+                <div class="profile-img-container img-container">
+                    {% if user_profile.image %}
+                    <img src="{{ user_profile.image.url }}" alt="{{ user_profile.first_name }}'s Profile Image" class="img-100a">
+                    {% else %}
+                    <img src="{{ MEDIA_URL }}default-profile-picture.webp" alt="Default Profile Picture" class="img-100a">
+                    {% endif %}
+                    <div class="edit-profile-picture-overlay container-col"></div>
+                    <a href="{% url 'edit_profile_picture' user.username %}" class="edit-profile-picture-icon container-col">
+                        <i class="fa-solid fa-pen-to-square"></i>
+                    </a>
+                </div>
+                <div class="personal-info-container container-row align-start">
+                    <div class="name-title-container container-col profile-small-container align-start">
+                        <p class="profile-name dark-text">{{ user_profile.first_name }} {{ user_profile.last_name }}</p>
+                        <p class="profile-title dark-text">{{ user_profile.title }}</p>
+                    </div>
+                </div>
+            </div>
+
+            {% if profile_editable %}
+            <div class="edit-container grid-container w-25 container-col">
+                <a href="{% url 'edit_profile' user.username %}" class="btn btn-2 small-btn">
+                    <span class="fa-icon-left"><i class="fa-solid fa-pen-to-square"></i></span> Edit
+                </a>
+            </div>
+            
+            {% endif %}
+
+        </div>
+        <div class="second-row-grid-group grid-group-container container-row">
+            <div class="bio-container grid-container w-50 container-col align-start justify-start">
+                <p class="dark-text grid-title">Bio</p>
+                <div class="bio-text dark-text grid-text container-col align-start justify-start">
+                    {% if user_profile.bio %}
+                    {{ user_profile.bio|linebreaks }}
+                    {% else %}
+                    Member Not Displaying Bio
+                    {% endif %}
+                </div>
+            </div>
+            <div class="grid-group-col-container container-col align-start justify-start">
+                <div class="contact-container grid-container w-100 container-col align-start justify-start">
+                    <p class="grid-title dark-text">Contact</p>
+                    <div class="contact-text-container container-col align-start">
+                        {% if user_profile.email %}
+                        <div class="contact-btn container-row">
+                            <p class="dark-text red-text container-col"><span class="sr-only">Email Icon</span><i class="fa-solid fa-envelope"></i></p>
+                            <p class="dark-text">{{ user_profile.email }} <span class="copy-btn red-text" data-copy="{{ user_profile.email }}"><i class="fa-solid fa-clone"></i></span></p>
+                        </div>
+                        {% else %}
+                        <div class="contact-btn container-row">
+                            <p class="dark-text red-text container-col"><span class="sr-only">Email Icon</span><i class="fa-solid fa-envelope"></i></p>
+                            <p class="dark-text">Member Not Displaying Email</p>
+                        </div>
+                        {% endif %}
+                        {% if user_profile.phone_number %}
+                        <div class="contact-btn container-row">
+                            <p class="dark-text red-text container-col"><span class="sr-only">Phone_number Icon</span><i class="fa-solid fa-phone"></i></p>
+                            <p class="dark-text">{{ user_profile.phone_number }} <span class="copy-btn red-text" data-copy="{{ user_profile.phone_number }}"><i class="fa-solid fa-clone"></i></span></p>
+                        </div>
+                        {% else %}
+                        <div class="contact-btn container-row">
+                            <p class="dark-text red-text container-col"><span class="sr-only">Phone_number Icon</span><i class="fa-solid fa-phone"></i></p>
+                            <p class="dark-text">Member Not Displaying Number</p>
+                        </div>
+                        {% endif %}
+                        {% for l in user_profile.links.all %}
+                        <a href="{{ l.link }}" target="_blank" class="contact-btn container-row">
+                            <p class="dark-text red-text container-col"><span class="sr-only">Link Icon</span><i class="fa-solid fa-link"></i></p>
+                            <p class="dark-text">{{ l.link }} <span class="copy-btn red-text"><i class="fa-solid fa-up-right-from-square"></i></span></p>
+                        </a>
+                        {% endfor %}
+                    </div>
+                </div>
+
+                <div class="class-container grid-container container-col w-100 align-start justify-start">
+                    <div class="dark-text grid-title">Classes / Certifications</div>
+                </div>
+
+                {% for category in categories %}
+                <div class="class-container grid-container container-col w-100 align-start justify-start">
+                    <p class="grid-title dark-text">{{ category.friendly_name }}</p>
+                    {% if category.user_classes %}
+                    {% for c in category.user_classes %}
+                    <div class="contact-btn container-row">
+                        <p class="dark-text red-text container-col"><span class="sr-only">Check Icon</span><i class="fa-regular fa-circle-check"></i></p>
+                        <p class="dark-text">{{ c.friendly_name }}</p>
+                    </div>
+                    {% endfor %}
+                    {% else %}
+                    <div class="contact-btn container-row">
+                        <p class="dark-text red-text container-col"><span class="sr-only">Xmark Icon</span><i class="fa-regular fa-circle-xmark"></i></p>
+                        <p class="dark-text">Member Not Displaying {{ category.friendly_name }}</p>
+                    </div>
+                    {% endif %}
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</section>
+
 <section class="edit-profile-section section h-100b">
     <form class="section-container container-col align-start justify-start form" method="POST" action="{% url 'edit_profile' user.username %}">
         {% csrf_token %}
-        <div class="grid-group-container container-row space-between">
+        <div class="grid-group-container container-row">
             <div class="grid-group-col-container container-col">
                 <div class="grid-container w-100 container-row space-between">
                     <div class="personal-container container-row justify-start">

@@ -22,15 +22,15 @@
                 <h3 class="subheading white-text container-col">Upcoming</h3>
                 <div class="event-items-container container-col justify-start">
                     {% for event in upcoming_events %}
-                    <div class="event-container container-row space-between" data-event-id="{{ event.id }}">
+                    <a href="{% url 'event_detail' event.name %}" class="event-container container-row space-between">
                         <div class="info-container container-col align-start">
-                            <p class="date-text white-text container-col">{{ event.date|date:"d M Y" }} - {{ event.time|time:"H:i" }}</p>
-                            <p class="name-text dark-text container-col align-start">{{ event.name }}</p>
+                            <p class="date-text white-text container-col">{{ event.date|date:"d M Y" }}</p>
+                            <p class="name-text dark-text container-col align-start">{{ event.friendly_name }}</p>
                         </div>
                         <div class="view-btn container-col">
                             <p class="white-text"><span class="sr-only">View Icon</span><i class="fa-solid fa-chevron-right"></i></p>
                         </div>
-                    </div>
+                    </a>
                     {% endfor %}
                 </div>
             </div>
@@ -39,16 +39,16 @@
                 <h3 class="subheading white-text container-col">Past</h3>
                 <div class="event-items-container container-col justify-start">
                     {% for event in past_events %}
-                    <div class="event-container container-row justify-start" data-event-id="{{ event.id }}">
+                    <a href="{% url 'event_detail' event.name %}" class="event-container container-row justify-start">
                         <div class="info-container container-col align-start">
-                            <p class="date-text white-text container-col">{{ event.date|date:"d M Y" }} - {{ event.time|time:"H:i" }}</p>
-                            <p class="name-text dark-text container-col align-start">{{ event.name }}</p>
+                            <p class="date-text white-text container-col">{{ event.date|date:"d M Y" }}</p>
+                            <p class="name-text dark-text container-col align-start">{{ event.friendly_name }}</p>
                         </div>
                         
                         <div class="view-btn container-col">
                             <p class="white-text"><span class="sr-only">View Icon</span><i class="fa-solid fa-chevron-right"></i></p>
                         </div>
-                    </div>
+                    </a>
                     {% endfor %}
                 </div>
             </div>

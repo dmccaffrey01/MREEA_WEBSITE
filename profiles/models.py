@@ -3,55 +3,88 @@ from django.contrib.auth.models import User
 from django.db import models
 from django.db.models.signals import post_save
 from django.dispatch import receiver
+import string
+import random
 
-class Class(models.Model):
-    name = models.CharField(max_length=254, unique=True)
-    friendly_name = models.CharField(max_length=254)
-
-    def __str__(self):
-        return self.name
-
-    def get_friendly_name(self):
-        return self.friendly_name
 
 class Category(models.Model):
-    name = models.CharField(max_length=254, unique=True)
-    friendly_name = models.CharField(max_length=254)
+    name = models.CharField(max_length=254, unique=True, null=False, blank=False)
+    friendly_name = models.CharField(max_length=254, null=True, blank=True)
+
+    def __str__(self):
+        return self.friendly_name
+    
+    def save(self, *args, **kwargs):
+        if not self.name:  # If name is not provided
+            self.name = self.generate_unique_name()
+        super().save(*args, **kwargs)
+
+    def generate_unique_name(self):
+        prefix = 'CAT'
+        suffix = ''.join(random.choices(string.ascii_lowercase + string.digits, k=10))
+        return prefix + suffix
+
+
+class Class(models.Model):
+    name = models.CharField(max_length=254, unique=True, null=False, blank=False)
+    friendly_name = models.CharField(max_length=254, null=True, blank=True)
+    category = models.ForeignKey(Category, null=False, blank=False, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.friendly_name
+    
+    def save(self, *args, **kwargs):
+        if not self.name:  # If name is not provided
+            self.name = self.generate_unique_name()
+        super().save(*args, **kwargs)
+
+    def generate_unique_name(self):
+        prefix = 'CLASS'
+        suffix = ''.join(random.choices(string.ascii_lowercase + string.digits, k=10))
+        return prefix + suffix
+
+    
+
+class ProfileLink(models.Model):
+    name = models.CharField(max_length=254, unique=True, null=False, blank=False)
+    link = models.URLField(max_length=1024, null=True, blank=True)
 
     def __str__(self):
         return self.name
+    
+    def save(self, *args, **kwargs):
+        if not self.name:  # If name is not provided
+            self.name = self.generate_unique_name()
+        super().save(*args, **kwargs)
 
-    def get_friendly_name(self):
-        return self.friendly_name
+    def generate_unique_name(self):
+        prefix = 'PL'
+        suffix = ''.join(random.choices(string.ascii_lowercase + string.digits, k=10))
+        return prefix + suffix
+
+
 
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     image_url = models.URLField(max_length=1024, null=True, blank=True)
     image = models.ImageField(null=True, blank=True)
-    first_name = models.CharField(max_length=254, blank=False)
-    last_name = models.CharField(max_length=254, blank=False)
-    full_name = models.CharField(max_length=254, blank=False)
-    title = models.CharField(max_length=254, blank=True)
-    bio = models.TextField(max_length=3000, blank=True)
-    facebook_link = models.URLField(max_length=254, blank=True)
-    email = models.EmailField(max_length=254, blank=True)
-    phone_number = models.CharField(max_length=254, blank=True)
-    class_field = models.ForeignKey('Class', null=True, blank=True, on_delete=models.SET_NULL)
-    category_field = models.ForeignKey('Category', null=True, blank=True, on_delete=models.SET_NULL)
+    first_name = models.CharField(max_length=254, blank=False, null=False)
+    last_name = models.CharField(max_length=254, blank=False, null=False)
+    title = models.CharField(max_length=254, blank=True, null=True)
+    bio = models.TextField(max_length=3000, blank=True, null=True)
+    email = models.EmailField(max_length=254, blank=True, null=True)
+    phone_number = models.CharField(max_length=254, blank=True, null=True)
+    links = models.ManyToManyField(ProfileLink, blank=True)
+    classes = models.ManyToManyField('Class', blank=True)
     
     def __str__(self):
         return f'{self.first_name}\'s Profile'
-
-    def get_full_name(self):
-        return f'{self.first_name} {self.last_name}'
 
     def save(self, *args, **kwargs):
         if not self.first_name and self.user.first_name:
             self.first_name = self.user.first_name
         if not self.last_name and self.user.last_name:
             self.last_name = self.user.last_name
-        if self.first_name and self.last_name:
-            self.full_name = self.get_full_name()
 
         if not self.pk:
             class_field = Class.objects.get(name="none")

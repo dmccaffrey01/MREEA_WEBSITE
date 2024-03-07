@@ -88,4 +88,46 @@
     .description-text {
         width: 100%;
     }
+
+    .items-container {
+        width: 100%;
+        gap: 12px;
+    }
+
+    .item-container {
+        width: 100%;
+        gap: 16px;
+        border-radius: $round-corner-1;
+        background-color: $gl-2;
+        position: relative;
+        cursor: pointer;
+
+        .info-container {
+            padding: 8px 12px;
+            gap: calc(8px + 0.2rem);
+        }
+
+        .w-50 {
+            width: calc(50% - 10.6px);
+        }
+
+        .w-25 {
+            width: calc(25% - 10.6px);
+            padding-left: calc(20px + 1.4rem);
+        }
+
+        .icon-container {
+            width: 1.2rem;
+            height: 1.2rem;
+        }
+
+        .dark-text {
+            font-size: 1.2rem;
+        }
+
+    }
+
+    .resources-container {
+        padding: 16px;
+    }
 }

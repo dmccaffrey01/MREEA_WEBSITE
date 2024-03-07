@@ -11,7 +11,7 @@
 {% block content %}
 
 <section class="profile-section section h-100b" data-username="{{ user.username }}">
-    <form action="{% url 'edit_profile_picture' user.username %}" method="POST" class="section-container container-col align-start justify-start form">
+    <form action="{% url 'edit_profile_picture' user.username %}" enctype="multipart/form-data" method="POST" class="section-container container-col align-start justify-start form">
         {% csrf_token %}
         <div class="grid-group-container container-row space-between">
             <div class="grid-group-col-container container-col">

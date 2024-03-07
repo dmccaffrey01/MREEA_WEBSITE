@@ -16,3 +16,5 @@ class ContactForm(forms.ModelForm):
         self.fields['name'].widget.attrs['autofocus'] = True
         for field in self.fields:
             self.fields[field].widget.attrs['class'] = 'form-input'
+        
+        self.fields['message'].widget.attrs['rows'] = "3"

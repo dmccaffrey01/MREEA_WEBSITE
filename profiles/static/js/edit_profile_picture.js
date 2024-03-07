@@ -1,31 +1,7 @@
-let urlToFile = (url) => {
-
-    let arr = url.split(",")
-    let mime = arr[0].match(/:(.*?);/)[1]
-    let data = arr[1]
-
-    let dataStr = atob(data)
-    let n = dataStr.length
-    let dataArr = new Uint8Array(n)
-
-    while(n--)
-    {
-        dataArr[n] = dataStr.charCodeAt(n)
-    }
-
-    let section = document.querySelector(".profile-section");
-
-    let username = section.getAttribute("data-username");
-
-    let file  = new File([dataArr], `${username}_profile_picture.jpg`, {type: mime})
-
-    return file
-}
-
-let imageNotMoved = true;
-let imageNotScaled = true;
-
 document.addEventListener("DOMContentLoaded", () => {
+    let imageNotMoved = true;
+    let imageNotScaled = true;
+    
     let dropZone = document.querySelector(".drop-zone");
     let dropZoneText = document.querySelector(".drop-zone-text");
     let imageInput = document.querySelector("#image_file");
@@ -33,7 +9,49 @@ document.addEventListener("DOMContentLoaded", () => {
     let cropImgContainer = document.querySelector(".crop-img-container");
     let containerRect = cropImgContainer.getBoundingClientRect();
 
-    let profileImageUrl;
+    let urlToFile = (url) => {
+
+        let arr = url.split(",")
+        let mime = arr[0].match(/:(.*?);/)[1]
+        let data = arr[1]
+    
+        let dataStr = atob(data)
+        let n = dataStr.length
+        let dataArr = new Uint8Array(n)
+    
+        while(n--)
+        {
+            dataArr[n] = dataStr.charCodeAt(n)
+        }
+    
+        let section = document.querySelector(".profile-section");
+    
+        let username = section.getAttribute("data-username");
+    
+        let file  = new File([dataArr], `${username}_profile_picture.jpg`, {type: mime})
+    
+        return file
+    }
+    
+    let getCropUrl = (img) => {
+        let imgRect = img.getBoundingClientRect();
+
+        let x = imgRect.left - containerRect.left;
+        let y = imgRect.top - containerRect.top;
+        let width = containerRect.width;
+        let height = containerRect.height;
+
+        let canvas = document.createElement('canvas');
+        canvas.width = width;
+        canvas.height = height;
+
+        let ctx = canvas.getContext('2d');
+        ctx.drawImage(img, x, y, imgRect.width, imgRect.height);
+
+        let croppedImageUrl = canvas.toDataURL();
+
+        return croppedImageUrl;
+    }
 
     imageInput.addEventListener("change", (e) => {
         imageNotMoved = true;
@@ -73,8 +91,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 let newImageUrl = context.canvas.toDataURL("image/jpeg", 90);
 
-                profileImageUrl = newImageUrl;
-
                 let newImage = document.createElement("img");
                 newImage.src = newImageUrl;
                 newImage.classList.add("crop-img");
@@ -108,17 +124,16 @@ document.addEventListener("DOMContentLoaded", () => {
         let newImage = document.createElement("img");
         newImage.classList.add("img-100a");
 
-        if (profileImageUrl) {
-            newImage.src = profileImageUrl;
+        let cropImg = document.querySelector(".crop-img");
 
-            newImage.onload = () => {
-                profileContainer.removeChild(profileImg);
-                profileContainer.appendChild(newImage);
-            };
-        } else {
-            return;
-        }
+        let profileImageUrl = getCropUrl(cropImg);
 
+        newImage.src = profileImageUrl;
+
+        newImage.onload = () => {
+            profileContainer.removeChild(profileImg);
+            profileContainer.appendChild(newImage);
+        };
     });
 
     let saveBtn = document.querySelector(".save-btn");
@@ -128,34 +143,33 @@ document.addEventListener("DOMContentLoaded", () => {
 
         let profileInput = document.querySelector(".profile_picture");
 
-        if (profileImageUrl) {
-            let file = urlToFile(profileImageUrl);
+        let cropImg = document.querySelector(".crop-img");
 
-            profileInput.value = file;
-        }
+        let profileImageUrl = getCropUrl(cropImg);
+        let file = urlToFile(profileImageUrl);
+
+        let fileList = new DataTransfer();
+        fileList.items.add(file);
+
+        profileInput.files = fileList.files;
 
         let form = document.querySelector(".form");
 
         form.submit();
     });
 
-});
-
-document.addEventListener("DOMContentLoaded", () => {
-    let cropImgContainer = document.querySelector(".crop-img-container");
-    let containerRect = cropImgContainer.getBoundingClientRect();
-
     let isDragging = false;
     let startX = 0;
     let startY = 0;
-    let newTranslateX = 0;
-    let newTranslateY = 0;
-    let translateX = 0;
-    let translateY = 0;
-    let minTranslateX = 0;
-    let maxTranslateX = 0;
-    let minTranslateY = 0;
-    let maxTranslateY = 0;
+    let imgX = 0;
+    let imgY = 0;
+    let minMoveX = 0;
+    let minMoveY = 0;
+    let maxMoveX = 0;
+    let maxMoveY = 0;
+    let newImgX = 0;
+    let newImgY = 0;
+
     let scale = 1;
     let newScale;
     let minScale = 1;
@@ -171,8 +185,8 @@ document.addEventListener("DOMContentLoaded", () => {
     document.addEventListener("mouseup", (e) => {
         e.preventDefault();
         isDragging = false;
-        translateX = newTranslateX;
-        translateY = newTranslateY;
+        imgX = newImgX;
+        imgY = newImgY;
     });
 
     document.addEventListener("mousemove", (e) => {
@@ -182,42 +196,45 @@ document.addEventListener("DOMContentLoaded", () => {
             let imgRect = img.getBoundingClientRect();
 
             if (imageNotMoved) {
-                translateX = (-imgRect.width / 2);
-                translateY = (-imgRect.height / 2);
-                minTranslateX = (-containerRect.width / 2);
-                maxTranslateX = (-imgRect.width - minTranslateX);
-                minTranslateY = (-containerRect.height / 2);
-                maxTranslateY = (-imgRect.height - minTranslateY);
+                imgX = 0;
+                imgY = 0;
                 imageNotMoved = false;
             }
+
+            minMoveX = 0;
+            maxMoveX = -(imgRect.width - containerRect.width);
+            minMoveY = 0;
+            maxMoveY = -(imgRect.height - containerRect.height);
 
             let offsetX = e.clientX - startX;
             let offsetY = e.clientY - startY;
 
-            newTranslateX = translateX + offsetX;
-            newTranslateY = translateY + offsetY;
+            newImgX = imgX + offsetX;
+            newImgY = imgY + offsetY;
 
-            if (newTranslateX > minTranslateX) {
-                newTranslateX = minTranslateX;
+            if (newImgX > minMoveX) {
+                newImgX = minMoveX;
             }
 
-            if (newTranslateY > minTranslateY) {
-                newTranslateY = minTranslateY;
+            if (newImgY > minMoveY) {
+                newImgY = minMoveY;
             }
 
-            if (newTranslateX < maxTranslateX) {
-                newTranslateX = maxTranslateX;
+            if (newImgX < maxMoveX) {
+                newImgX = maxMoveX;
             }
 
-            if (newTranslateY < maxTranslateY) {
-                newTranslateY = maxTranslateY;
+            if (newImgY < maxMoveY) {
+                newImgY = maxMoveY;
             }
 
-            img.style.translate = `${newTranslateX}px ${newTranslateY}px`;
+            img.style.left = `${newImgX}px`;
+            img.style.top = `${newImgY}px`;
         }
     });
 
     cropImgContainer.addEventListener("wheel", (e) => {
+        e.preventDefault();
         let img = cropImgContainer.querySelector(".crop-img");
         let imgRect = img.getBoundingClientRect();
 
@@ -232,13 +249,13 @@ document.addEventListener("DOMContentLoaded", () => {
         let delta = e.deltaY;
 
         if (delta < 0) {
-            newScale = scale + 0.05;
+            newScale = scale + 0.1;
             if (newScale > maxScale) {
                 newScale = maxScale;
             }
             scale = newScale;
         } else {
-            newScale = scale - 0.05;
+            newScale = scale - 0.1;
             if (newScale < minScale) {
                 newScale = minScale;
             }
@@ -249,5 +266,4 @@ document.addEventListener("DOMContentLoaded", () => {
         img.style.height = `${imgHeight * scale}px`;
 
     });
-
 });

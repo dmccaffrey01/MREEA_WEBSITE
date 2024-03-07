@@ -56,7 +56,7 @@
                 <nav class="nav-menu container-row">
                     {% if is_membership_valid %}
                     <a href="{% url 'events' %}" class="nav-link">Events</a>
-                    <a href="#" class="nav-link">Resources</a>
+                    <a href="{% url 'quick_resources' %}" class="nav-link">Resources</a>
                     <a href="{% url 'members' %}" class="nav-link">Members</a>
                     <a href="{% url 'contact' %}" class="nav-link">Contact</a>
 

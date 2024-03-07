@@ -2,21 +2,26 @@
 @import '../../../static/css/mixins';
 
 .profile-section {
+    justify-content: flex-start;
+    padding: 30px 0;
+    
     .section-container {
         background-color: $gl-2;
         border-radius: $round-corner-3;
         padding: 16px;
-        gap: 12px;
-        justify-self: center;
+        gap: 16px;
     }
 
     .grid-group-container {
         width: 100%;
+        gap: 16px;
+        justify-content: flex-start;
+        align-items: flex-start;
     }
 
     .grid-group-col-container {
-        width: calc(50% - 6px);
-        gap: 12px;
+        width: calc(50% - 8px);
+        gap: 16px;
     }
 
     .grid-container {
@@ -30,17 +35,16 @@
         }
 
         &.w-50 {
-            width: calc(50% - 6px);
+            width: calc(50% - 8px);
             gap: 4px;
         }
 
-        &.w-40 {
-            width: calc(40% - 8px);
-            gap: 4px;
+        &.w-75 {
+            width: calc(75% - 8px);
         }
 
-        &.w-20 {
-            width: calc(20% - 8px);
+        &.w-25 {
+            width: calc(25% - 8px);
         }
 
         .grid-title {
@@ -111,30 +115,34 @@
         }
     }
 
-    .contact-container {
+    .grid-group-col-container {
+        
+    }
+
+    .contact-text-container {
         gap: 8px;
     }
 
     .contact-btn {
         gap: 8px;
 
-        .red-text {
-            width: 45px;
-            height: 45px;
-            border-radius: 50%;
-            border: 3px solid $red-1;
+        .dark-text {
+            font-size: 1.2rem;
         }
+
     }
 
+
     .bio-container {
-        height: calc(460px - 96px);
+        min-height: calc(100vh - 340px);
         overflow: hidden;
+        align-self: stretch;
 
         .grid-text {
             max-height: calc(100% - 56px);
             overflow-y: scroll;
             width: 100%;
-            padding-right: 20px;
+            padding-right: 10px;
 
             &::-webkit-scrollbar {
                 width: 4px;
@@ -160,8 +168,12 @@
     .edit-container {
         .btn {
             width: 100%;
-            height: 54px;
+            height: 100%;
+            font-size: 2rem;
         }
+
+        align-self: stretch;
+        padding: 24px;
     }
 
 }
