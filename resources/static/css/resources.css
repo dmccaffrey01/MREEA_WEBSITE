@@ -79,6 +79,12 @@
   width: 100%;
   gap: 12px;
 }
+.resources-section .no-search-results {
+  display: flex;
+}
+.resources-section .no-search-results.hide {
+  display: none;
+}
 .resources-section .item-container {
   width: 100%;
   gap: 16px;
@@ -86,6 +92,9 @@
   background-color: #ececec;
   position: relative;
   cursor: pointer;
+}
+.resources-section .item-container.hide {
+  display: none;
 }
 .resources-section .item-container .info-container {
   padding: 8px 12px;

@@ -99,6 +99,14 @@
         gap: 12px;
     }
 
+    .no-search-results {
+        display: flex;
+
+        &.hide {
+            display: none;
+        }
+    }
+
     .item-container {
         width: 100%;
         gap: 16px;
@@ -106,6 +114,10 @@
         background-color: $gl-2;
         position: relative;
         cursor: pointer;
+
+        &.hide {
+            display: none;
+        }
 
         .info-container {
             padding: 8px 12px;

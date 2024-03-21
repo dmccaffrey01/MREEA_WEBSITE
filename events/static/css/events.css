@@ -29,7 +29,7 @@
 }
 .events-section .events-container {
   width: calc(50% - 10px);
-  height: 404px;
+  height: 358px;
   background-color: #ececec;
   border-radius: 15px;
   gap: 12px;
@@ -38,9 +38,9 @@
 .events-section .events-container .event-items-container {
   width: 100%;
   gap: 12px;
-  height: 320px;
+  height: 284px;
   overflow-y: scroll;
-  padding-right: 4px;
+  padding-bottom: 12px;
 }
 .events-section .events-container .event-items-container::-webkit-scrollbar {
   width: 4px;
@@ -67,25 +67,14 @@
   cursor: pointer;
   padding: 12px;
   position: relative;
-  height: 98px;
 }
 .events-section .events-container .info-container {
   gap: 4px;
   width: calc(100% - 56px);
 }
-.events-section .events-container .date-text {
-  padding: 8px 0;
-  border-radius: 5px;
-  width: 240px;
-}
-.events-section .events-container.upcoming .date-text {
-  background-color: #242424;
-}
-.events-section .events-container.past .date-text {
-  background-color: #242424;
-}
 .events-section .events-container .name-text {
   width: 100%;
+  font-weight: 600;
 }
 .events-section .events-container .view-btn {
   position: absolute;
@@ -93,7 +82,7 @@
   height: 100%;
   right: 0;
   top: 0;
-  background-color: #242424;
+  background-color: #c64f4a;
   border-radius: 0 5px 5px 0;
 }
 .events-section .events-container .view-btn .white-text {

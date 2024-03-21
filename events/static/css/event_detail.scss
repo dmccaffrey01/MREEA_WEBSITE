@@ -51,18 +51,22 @@
         width: 252px;
     }
 
-    .date-text {
-        width: 240px;
-        padding: 8px;
-        border-radius: 5px;
-    }
+    // .date-text {
+    //     width: 240px;
+    //     padding: 8px;
+    //     border-radius: 5px;
+    // }
 
-    .date-text {
-        background-color: $gd-1;
-    }
+    // .date-text {
+    //     background-color: $gd-1;
+    // }
 
     .extra-detail-container {
         gap: 8px;
+
+        .dark-text {
+            font-size: 1.2rem;
+        }
     }
 
     .extra-detail-title {
@@ -87,6 +91,7 @@
 
     .description-text {
         width: 100%;
+        font-size: 1.2rem;
     }
 
     .items-container {

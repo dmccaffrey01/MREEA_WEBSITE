@@ -40,16 +40,11 @@
   gap: 8px;
   width: 252px;
 }
-.event-detail-section .date-text {
-  width: 240px;
-  padding: 8px;
-  border-radius: 5px;
-}
-.event-detail-section .date-text {
-  background-color: #242424;
-}
 .event-detail-section .extra-detail-container {
   gap: 8px;
+}
+.event-detail-section .extra-detail-container .dark-text {
+  font-size: 1.2rem;
 }
 .event-detail-section .extra-detail-title {
   font-weight: 600;
@@ -69,6 +64,7 @@
 }
 .event-detail-section .description-text {
   width: 100%;
+  font-size: 1.2rem;
 }
 .event-detail-section .items-container {
   width: 100%;

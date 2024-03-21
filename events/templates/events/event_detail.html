@@ -19,17 +19,28 @@
 
                 <div class="detail-container container-row align-start space-between">
                     <div class="info-container container-col align-start">
-                        <p class="date-text white-text container-col">{{ event.date|date:"d M" }} - {{ event.time|time:"H:i" }}</p>
+                        {% if event.date %}
+                        <div class="extra-detail-container container-row">
+                            <p class="extra-detail-title dark-text">Date:</p>
+                            <p class="extra-detail-text dark-text">{{ event.date|date:"M d Y" }}</p>
+                        </div>
+                        {% endif %}
+                        {% if event.date %}
+                        <div class="extra-detail-container container-row">
+                            <p class="extra-detail-title dark-text">Time:</p>
+                            <p class="extra-detail-text dark-text">{{ event.time|time:"H:i A" }}</p>
+                        </div>
+                        {% endif %}
                         {% if event.location %}
                         <div class="extra-detail-container container-row">
                             <p class="extra-detail-title dark-text">Location:</p>
-                            <p class="extra-deatil-text dark-text">{{ event.location }}</p>
+                            <p class="extra-detail-text dark-text">{{ event.location }}</p>
                         </div>
                         {% endif %}
                         {% if event.duration %}
                         <div class="extra-detail-container container-row">
                             <p class="extra-detail-title dark-text">Duration:</p>
-                            <p class="extra-deatil-text dark-text">{{ event.duration }} minutes</p>
+                            <p class="extra-detail-text dark-text">{{ event.duration }} minutes</p>
                         </div>
                         {% endif %}
                     </div>

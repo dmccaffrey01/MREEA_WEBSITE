@@ -37,7 +37,7 @@
 
     .events-container {
         width: calc(50% - 10px);
-        height: 404px;
+        height: 358px;
         background-color: $gl-2;
         border-radius: $round-corner-3;
         gap: 12px;
@@ -46,9 +46,9 @@
         .event-items-container {
             width: 100%;
             gap: 12px;
-            height: 320px;
+            height: 284px;
             overflow-y: scroll;
-            padding-right: 4px;
+            padding-bottom: 12px;
 
             &::-webkit-scrollbar {
                 width: 4px;
@@ -81,7 +81,6 @@
             cursor: pointer;
             padding: 12px;
             position: relative;
-            height: 98px;
         }
 
         .info-container {
@@ -89,22 +88,23 @@
             width: calc(100% - 56px);
         }
 
-        .date-text {
-            padding: 8px 0;
-            border-radius: 5px;
-            width: 240px;
-        }
+        // .date-text {
+        //     padding: 8px 0;
+        //     border-radius: 5px;
+        //     width: 240px;
+        // }
 
-        &.upcoming .date-text {
-            background-color: $gd-1;
-        }
+        // &.upcoming .date-text {
+        //     background-color: $gd-1;
+        // }
 
-        &.past .date-text {
-            background-color: $gd-1;
-        }
+        // &.past .date-text {
+        //     background-color: $gd-1;
+        // }
 
         .name-text {
             width: 100%;
+            font-weight: 600;
         }
 
         .view-btn {
@@ -113,7 +113,7 @@
             height: 100%;
             right: 0;
             top: 0;
-            background-color: $gd-1;
+            background-color: $red-1;
             border-radius: 0 $round-corner-1 $round-corner-1 0;
 
             .white-text {

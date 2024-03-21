@@ -31,31 +31,31 @@
         </div>
 
         <div class="sort-container container-row">
-            <div class="sort-btn w-50 container-row justify-start">
+            <div class="sort-btn w-50 container-row justify-start" data-sort="name" data-direction="default">
                 <div class="icon-container">
                     <img src="{{ MEDIA_URL }}sort-icon.png" alt="Sort Icon" class="img-100a">
                 </div>
                 <p class="dark-text">Name</p>
             </div>
-            <div class="sort-btn w-25 container-row justify-start">
+            <div class="sort-btn w-25 container-row justify-start" data-sort="type" data-direction="default">
                 <div class="icon-container">
                     <img src="{{ MEDIA_URL }}sort-icon.png" alt="Sort Icon" class="img-100a">
                 </div>
                 <p class="dark-text">Type</p>
             </div>
-            <div class="sort-btn w-25 container-row justify-start">
+            <div class="sort-btn w-25 container-row justify-start" data-sort="date" data-direction="default">
                 <div class="icon-container">
                     <img src="{{ MEDIA_URL }}sort-icon.png" alt="Sort Icon" class="img-100a">
                 </div>
                 <p class="dark-text">Date</p>
             </div>
         </div>
-
+        
         <div class="items-container container-col">
 
             {% for f in sub_folders %}
 
-            <div class="item-container container-row" data-url="{% url 'folder' f.name %}">
+            <div class="item-container container-row" data-url="{% url 'folder' f.name %}" data-name="{{ f.friendly_name }}" data-type="Folder" data-date="{{ f.date | date:'m/d/Y' }}">
                 <div class="info-container w-50 container-row justify-start">
                     <div class="icon-container circle">
                         <img src="{{ MEDIA_URL }}default-folder-icon.png" alt="Folder Icon" class="img-100a">
@@ -77,7 +77,7 @@
 
             {% for r in resources %}
 
-            <div class="item-container container-row" data-url="{{ r.link }}" data-new-tab="true">
+            <div class="item-container container-row" data-url="{{ r.link }}" data-new-tab="true" data-name="{{ r.friendly_name }}" data-type="{{ r.resource_type.friendly_name }}" data-date="{{ r.date | date:'m/d/Y' }}">
                 <div class="info-container w-50 container-row justify-start">
                     <div class="icon-container">
                         <img src="{{ r.resource_type.icon.url }}" alt="Folder Icon" class="img-100a">
@@ -96,6 +96,7 @@
             </div>
 
             {% endfor %}
+            <p class="no-search-results dark-text small-text hide"></p>
         </div>
     </div>
 </section>
