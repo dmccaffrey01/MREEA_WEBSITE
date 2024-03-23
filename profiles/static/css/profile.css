@@ -98,16 +98,22 @@
 .profile-section .contact-btn .dark-text {
   font-size: 1.2rem;
 }
+.profile-section .contact-btn .copy-btn {
+  cursor: pointer;
+}
+.profile-section .second-row-grid-group {
+  width: 100%;
+}
+.profile-section .second-row-grid-group .second-row-child {
+  flex-shrink: 1;
+}
 .profile-section .bio-container {
-  min-height: calc(100vh - 340px);
   overflow: hidden;
-  align-self: stretch;
 }
 .profile-section .bio-container .grid-text {
   max-height: calc(100% - 56px);
   overflow-y: scroll;
   width: 100%;
-  padding-right: 12px;
 }
 .profile-section .bio-container .grid-text::-webkit-scrollbar {
   width: 4px;

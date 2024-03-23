@@ -16,16 +16,19 @@ def profile(request, username):
 
     user_profile = UserProfile.objects.filter(user__username=username).first()
 
-    all_categories = Category.objects.all()
-
-    for category in all_categories:
-        user_classes = user_profile.classes.filter(category=category)
-        category.user_classes = user_classes
+    categories = Category.objects.all()
+    user_classes = user_profile.classes.all()
+    category_and_classes = []
+    for category in categories:
+        category_and_classes.append({
+            'category': category,
+            'user_classes': user_classes.filter(category=category),
+        })
 
     context = {
         'profile_editable': profile_editable,
         'user_profile': user_profile,
-        'categories': all_categories,
+        'category_and_classes': category_and_classes,
     }
 
     return render(request, 'profiles/profile.html', context)
@@ -83,6 +86,7 @@ def edit_profile(request, username):
         'all_categories': all_categories,
         'all_classes': all_classes,
         'bio_count': bio_count,
+        'user_profile': user_profile,
     }
 
     return render(request, 'profiles/edit_profile.html', context)

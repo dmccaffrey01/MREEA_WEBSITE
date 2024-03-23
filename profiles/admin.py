@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import UserProfile, Category, Class
+from .models import UserProfile, Category, Class, ProfileLink
 
 
 class UserProfileAdmin(admin.ModelAdmin):
@@ -31,7 +31,7 @@ class UserProfileAdmin(admin.ModelAdmin):
     username.short_description = 'Username'
     first_name.short_description = 'First Name'
     last_name.short_description = 'Last Name'
-    last_name.short_description = 'Email'
+    get_email.short_description = 'Email'
 
 
 class CategoryAdmin(admin.ModelAdmin):
@@ -48,6 +48,22 @@ class ClassAdmin(admin.ModelAdmin):
     list_display = ('friendly_name', 'name',)
 
 
+class ProfileLinkAdmin(admin.ModelAdmin):
+
+    list_display = ('first_name', 'last_name', 'friendly_name', 'link',)
+    
+    def first_name(self, obj):
+        return obj.user.first_name
+    
+    def last_name(self, obj):
+        return obj.user.last_name
+
+    # Set the column name in the admin interface
+    first_name.short_description = 'First Name'
+    last_name.short_description = 'Last Name'
+
+
 admin.site.register(UserProfile, UserProfileAdmin)
 admin.site.register(Category, CategoryAdmin)
 admin.site.register(Class, ClassAdmin)
+admin.site.register(ProfileLink, ProfileLinkAdmin)

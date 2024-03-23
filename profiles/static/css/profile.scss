@@ -115,9 +115,6 @@
         }
     }
 
-    .grid-group-col-container {
-        
-    }
 
     .contact-text-container {
         gap: 8px;
@@ -130,19 +127,27 @@
             font-size: 1.2rem;
         }
 
+        .copy-btn {
+            cursor: pointer;
+        }
+
     }
 
+    .second-row-grid-group {
+        width: 100%;
+
+        .second-row-child {
+            flex-shrink: 1;
+        }
+    }
 
     .bio-container {
-        min-height: calc(100vh - 340px);
         overflow: hidden;
-        align-self: stretch;
 
         .grid-text {
             max-height: calc(100% - 56px);
             overflow-y: scroll;
             width: 100%;
-            padding-right: 12px;
 
             &::-webkit-scrollbar {
                 width: 4px;

@@ -8,32 +8,63 @@
 
 {% block content %}
 
-<section class="member-search-section section {% if search_query %}search{% endif %}">
+<section class="member-search-section section">
     <div class="section-container container-col img-container">
         <img src="{{ MEDIA_URL }}members-search-img.png" alt="Members shaking hands" class="img-100a">
 
         <div class="text-container container-col">
-            <h2 class="subheading white-text">Find a MREEA Member in your area</h2>
+            <h2 class="subheading white-text">Find a MREEA Member</h2>
             <div class="form-container">
                 <form action="{% url 'members' %}" method="POST" class="form container-row">
                     {% csrf_token %}
                     <div class="input-group">
                         <label for="id_first_name" class="dark-text">First Name</label>
-                        {{ form.first_name }}
+                        <input type="text" name="id_first_name" id="id_first_name">
                     </div>
                     <div class="input-group">
                         <label for="id_last_name" class="dark-text">Last Name</label>
-                        {{ form.last_name }}
+                        <input type="text" name="id_last_name" id="id_last_name">
                     </div>
-                    <div class="input-group">
-                        <label for="id_category_name" class="dark-text">Category Name</label>
-                        {{ form.category_name }}
+                    <div class="custom-select-input-group container-col align-start">
+                        <div class="hidden-input-container">
+                            <div class="input-group">
+                                <label for="id_classes" class="dark-text">Classes</label>
+                                <input type="text" name="id_classes" id="id_classes">
+                            </div>
+                        </div>
+                        <div class="dark-text">Class Select</div>
+                        <div class="custom-select-container container-row space-between">
+                            <p class="default-text dark-text">(<span class="number-selected">0</span>) Selected</p>
+                            <p class="dark-text"><span class="sr-only">select icon</span><i class="fa-solid fa-expand"></i></p>
+                        </div>
+                        <div class="custom-select-options-container container-col align-start box-shadow space-between">
+                            <div class="options-container container-col align-start justify-start">
+                                <div class="input-group row">
+                                    <input type="checkbox" name="id_all_categories" id="id_all_categories" data-category-name="all_categories" class="checkbox-input select-all-checkbox select-all-checkbox-mega">
+                                    <label for="id_all_categories" class="dark-text small-text checkbox-label">All Classes</label>
+                                </div>
+                                {% for category in category_and_classes %}
+                                <div class="category-options-container container-col align-start">
+                                    <p class="category-heading dark-text small-text">{{ category.category.friendly_name }}</p>
+                                    <div class="input-group row">
+                                        <input type="checkbox" name="id_all_{{ category.category.name }}" id="id_all_{{ category.category.name }}" data-category-name="{{ category.category.name }}" class="checkbox-input select-all-checkbox">
+                                        <label for="id_all_{{ category.category.name }}" class="dark-text small-text checkbox-label">All {{ category.category.friendly_name }}</label>
+                                    </div>
+                                    {% for item in category.classes %}
+                                    <div class="input-group row">
+                                        <input type="checkbox" name="id_class_{{ item.name }}" id="id_class_{{ item.name }}" data-class-name="{{ item.name }}" class="checkbox-input {{ category.category.name }}-class class-checkbox-input">
+                                        <label for="id_class_{{ item.name }}" class="dark-text small-text checkbox-label">{{ item.friendly_name }}</label>
+                                    </div>
+                                    {% endfor %}
+                                </div>
+                                {% endfor %}
+                            </div>
+                            <div class="close-select-btn btn">
+                                <span class="fa-icon-left"><i class="fa-solid fa-xmark"></i></span>Close
+                            </div>
+                        </div>
                     </div>
-                    <div class="input-group">
-                        <label for="id_class_name" class="dark-text">Class Name</label>
-                        {{ form.class_name }}
-                    </div>
-                    <button class="btn" type="submit">
+                    <button class="search-btn btn" type="submit">
                         <span class="fa-icon-left"><i class="fa-solid fa-magnifying-glass"></i></span>Search
                     </button>
                 </form>

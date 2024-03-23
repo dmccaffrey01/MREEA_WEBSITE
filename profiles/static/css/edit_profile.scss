@@ -1,10 +1,10 @@
 @import '../../../static/css/variables';
 @import '../../../static/css/mixins';
 
-.edit-profile-section {
+.profile-section {
     justify-content: flex-start;
     padding: 30px 0;
-
+    
     .section-container {
         background-color: $gl-2;
         border-radius: $round-corner-3;
@@ -13,11 +13,17 @@
     }
 
     .form {
+        .input-group-container {
+            width: 100%;
+            gap: 16px;
+        }
+
         .input-group {
+            width: 100%;
             input,
             textarea {
                 width: 100%;
-                font-size: 1.2rem;
+                font-size: 1.1rem;
                 padding: 4px 8px;
                 border: 2px solid $gd-1;
                 outline: none;
@@ -34,7 +40,27 @@
             .input-label {
                 font-size: 0.7rem;
             }
+
+            textarea {
+                resize: none;
+
+                &::-webkit-scrollbar {
+                    width: 4px;
+                }
+    
+                &::-webkit-scrollbar-thumb  {
+                    background-color: $red-1;
+                    border: none;
+                    border-radius: $round-corner-1;
+                }
+            }
         }
+
+    }
+
+    .name-title-container {
+        gap: 4px;
+        width: 100%;
     }
 
     .grid-group-container {
@@ -81,6 +107,11 @@
         }
     }
 
+    .personal-container {
+        gap: 24px;
+        width: 100%;
+    }
+
     .profile-img-container {
         width: 100px;
         height: 100px;
@@ -117,109 +148,47 @@
     }
 
     .personal-info-container {
+        width: calc(100% - 124px);
+    }
 
-        .btn {
-            width: 100px;
-            padding: 4px 4px;
-            font-size: 1.1rem;
-            margin-bottom: 4px;
-        }
 
-        .name-title-container {
-            width: 100%;
-            gap: 4px;
-            height: 100px;
-        }
-
-        .profile-name {
-            font-size: 1.8rem;
-            font-weight: 600;
-        }
-
-        .profile-title {
-            font-size: 1.4rem;
-        }
-
-        .input-group {
-            width: 100%;
-        }
-
-        .input-group-container {
-            width: 100%;
-            gap: 8px;
-
-            .input-group {
-                width: calc(50% - 4px);
-            }
-        }
+    .contact-text-container {
+        gap: 8px;
+        width: 100%;
     }
 
     .contact-btn {
-        gap: 8px;
+        gap: 12px;
+        width: 100%;
+        align-items: flex-end;
 
         .dark-text {
             font-size: 1.2rem;
         }
+
+        .red-text {
+            margin-bottom: 4px;
+            font-size: 1.4rem;
+        }
+
+
+    }
+
+    .second-row-grid-group {
+        width: 100%;
+
+        .second-row-child {
+            flex-shrink: 1;
+        }
     }
 
     .bio-container {
-        min-height: calc(100vh - 340px);
         overflow: hidden;
-        align-self: stretch;
 
         .grid-text {
-            height: calc(100% - 56px);
-            width: 100%;
-
-            textarea {
-                height: 100%;
-                overflow-y: scroll;
-                width: 100%;
-                resize: none;
-                padding-right: 12px;
-
-                &::-webkit-scrollbar {
-                    width: 4px;
-                }
-
-                &::-webkit-scrollbar-thumb  {
-                    background-color: $red-1;
-                    border: none;
-                    border-radius: $round-corner-1;
-                }
-            }   
-        }
-    }
-
-    .select-container {
-        position: relative;
-
-        .selected-container {
-            width: 100%;
-            padding: 4px 8px;
-            border: 2px solid $gd-1;
-            background-color: $white;
-            border-radius: $round-corner-1;
-            cursor: pointer;
-
-            &.open {
-                border: 2px solid $red-1;
-            }
-        }
-
-        .select-options-container {
-            position: absolute;
-            bottom: 86px;
-            width: calc(100% - 32px);
-            background-color: $white;
-            border: 2px solid $red-1;
-            border-radius: $round-corner-1;
-            left: 16px;
-            padding: 12px;
-            gap: 4px;
-            max-height: 148px;
+            max-height: calc(100% - 56px);
             overflow-y: scroll;
-            display: none;
+            width: 100%;
 
             &::-webkit-scrollbar {
                 width: 4px;
@@ -230,29 +199,19 @@
                 border: none;
                 border-radius: $round-corner-1;
             }
+        }
 
-            &.open {
-                display: flex;
-            }
+        .bio-text {
+            gap: 8px;
 
-            .select-item {
-                cursor: pointer;
-                padding: 8px 16px;
-                border-radius: $round-corner-1;
-                width: 100%;
-
-                &:hover {
-                    background-color: $gl-2;
-                }
+            p {
+                font-size: 1.2rem;
+                color: $gd-1;
             }
         }
     }
 
-    .hidden-input-container {
-        display: none;
-    }
-
-    .save-container {
+    .edit-container {
         .btn {
             width: 100%;
             height: 100%;

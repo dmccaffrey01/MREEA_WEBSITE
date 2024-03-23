@@ -21,29 +21,150 @@
         left: 50%;
         translate: -50% -50%;
         width: 100%;
-        gap: 12px;
+        gap: 8px;
+        padding: 0 40px;
+
+        // .subheading {
+        //     align-self: flex-start;
+        // }
     }
 
     .form-container {
-        width: calc(100% - 40px);
         background-color: $gl-1;
         border-radius: $round-corner-3;
         padding: 16px;
+        position: relative;
 
         .form {
-            flex-direction: row;
-            align-items: center;
-            justify-content: space-between;
+            gap: 8px;
             width: 100%;
         }
 
         .input-group {
-            width: 200px;
+            width: 300px;
+        }
+
+        .custom-select-input-group {
+            width: 300px;
+            gap: 4px;
+
+            .custom-select-container {
+                width: 100%;
+                font-size: $font-size;
+                padding: 10px 15px;
+                border: none;
+                outline: none;
+                color: $gd-1;
+                background-color: $gl-2;
+                border-radius: $round-corner-1;
+                cursor: pointer;
+
+                &.focus {
+                    outline: 2px solid $red-1;
+                }
+            }
+
+            .custom-select-options-container {
+                display: none;
+                width: 100%;
+                height: 100%;
+                background-color: $gl-1;
+                border-radius: $round-corner-3;
+                position: absolute;
+                top: 0;
+                left: 0;
+                padding: 16px;
+
+                &.show {
+                    display: flex;
+                }
+
+                .close-select-btn {
+                    width: 100%;
+                }
+
+                .options-container {
+                    height: calc(100% - 64px);
+                    width: 100%;
+                    overflow-y: scroll;
+                    overflow-x: hidden;
+                    gap: 12px;
+
+                    &::-webkit-scrollbar {
+                        width: 4px;
+                    }
+        
+                    &::-webkit-scrollbar-thumb  {
+                        background-color: $red-1;
+                        border: none;
+                        border-radius: $round-corner-1;
+                    }
+
+                    .small-text {
+                        white-space: nowrap;
+                        overflow: hidden;
+                    }
+
+                    .category-options-container {
+                        gap: 4px;
+                    }
+
+                    .category-heading {
+                        font-weight: 600;
+                        margin-bottom: 4px;
+                    }
+
+                    .input-group {
+                        align-items: center;
+                        justify-content: flex-start;
+                    }
+                }
+
+                .checkbox-label {
+                    cursor: pointer;
+                }
+
+                .checkbox-input {
+                    appearance: none;
+                    -webkit-appearance: none;
+                    -moz-appearance: none;
+                    width: 1.1rem;
+                    height: 1.1rem;
+                    border: 2px solid $gd-1;
+                    border-radius: 3px;
+                    outline: none;
+                    position: relative;
+                    cursor: pointer;
+                    padding: 0;
+
+                    &::before {
+                        content: "";
+                        position: absolute;
+                        top: 45%;
+                        left: 25%;
+                        width: 30%;
+                        height: 70%;
+                        border: solid $red-1;
+                        border-width: 0 3px 3px 0;
+                        transform: translateY(-50%) rotate(45deg);
+                        opacity: 0;
+                        transition: opacity 0.2s ease-in-out;
+                    }
+                    
+                    &:checked::before {
+                        opacity: 1;
+                    }
+                }
+            }
+        }
+
+        .select-container {
+            background-color: $gl-2;
         }
 
         .btn {
-            width: 200px;
-            align-self: flex-end;
+            width: 100%;
+        
         }
     }
 
