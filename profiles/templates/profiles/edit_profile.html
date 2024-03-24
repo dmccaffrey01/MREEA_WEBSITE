@@ -12,7 +12,7 @@
 
 <section class="profile-section section">
     <form class="section-container container-col align-start justify-start form" action="{% url 'edit_profile' user.username %}" method="POST">
-        
+        {% csrf_token %}
         <div class="grid-group-container container-row">
             <div class="personal-container grid-container {% if profile_editable %}w-75{% else %}w-100{% endif %} container-row justify-start">
                 <div class="profile-img-container img-container">
@@ -46,27 +46,8 @@
                     </div>
                 </div>
             </div>
-
-            {% if profile_saveable %}
-            <div class="edit-container grid-container w-25 container-col">
-                <button type="submit" class="save-btn btn btn-2 small-btn">
-                    <span class="fa-icon-left"><i class="fa-regular fa-floppy-disk"></i></span> Save
-                </button>
-            </div>
-            
-            {% endif %}
-
         </div>
         <div class="second-row-grid-group grid-group-container container-row align-start">
-            <div class="second-row-child bio-container grid-container w-50 container-col align-start justify-start">
-                <p class="dark-text grid-title">Bio</p>
-                <div class="bio-text dark-text grid-text container-col align-start justify-start">
-                    <div class="input-group container-col align-start">
-                        <label for="id_bio" class="input-label dark-text sr-only">Bio</label>
-                        {{ form.bio }}
-                    </div>
-                </div>
-            </div>
             <div class="second-row-child grid-group-col-container container-col align-start justify-start">
                 <div class="contact-container grid-container w-100 container-col align-start justify-start">
                     <p class="grid-title dark-text">Contact</p>
@@ -74,32 +55,53 @@
                         <div class="contact-btn container-row">
                             <p class="dark-text red-text container-col"><span class="sr-only">Email Icon</span><i class="fa-solid fa-envelope"></i></p>
                             <div class="input-group container-col align-start">
-                                <label for="id_email" class="input-label dark-text">Display Email Address</label>
+                                <label for="id_email" class="input-label dark-text">Email Address</label>
                                 {{ form.email }}
                             </div>
                         </div>
                         <div class="contact-btn container-row">
                             <p class="dark-text red-text container-col"><span class="sr-only">Phone_number Icon</span><i class="fa-solid fa-phone"></i></p>
                             <div class="input-group container-col align-start">
-                                <label for="id_phone_number" class="input-label dark-text">Display Phone Number</label>
+                                <label for="id_phone_number" class="input-label dark-text">Phone Number</label>
                                 {{ form.phone_number }}
                             </div>
                         </div>
                         {% for l in user_profile.links.all %}
-                        <div class="contact-btn container-row">
+                        <div class="contact-btn container-row profile-link-container">
                             <p class="dark-text red-text container-col"><span class="sr-only">Link Icon</span><i class="fa-solid fa-link"></i></p>
                             <div class="input-group-container container-row justify-start">
                                 <div class="input-group container-col align-start">
-                                    <label for="id_pl_link_{{ i }}" class="input-label dark-text">Display Link {{ i }}</label>
-                                    <input type="text" name="id_pl_link_{{ i }}" id="id_pl_link_{{ i }}" value="{{ l.link }}">
+                                    <label for="id_pl_link_{{ forloop.counter }}" class="input-label dark-text">Link {{ forloop.counter }}</label>
+                                    <input type="text" name="id_pl_link_{{ forloop.counter }}" id="id_pl_link_{{ forloop.counter }}" class="link-input" value="{{ l.link }}">
                                 </div>
                                 <div class="input-group container-col align-start">
-                                    <label for="id_pl_name_{{ i }}" class="input-label dark-text">Display Link Name {{ i }}</label>
-                                    <input type="text" name="id_pl_name_{{ i }}" id="id_pl_name_{{ i }}" value="{{ l.friendly_name }}">
+                                    <label for="id_pl_friendly_name_{{ forloop.counter }}" class="input-label dark-text">Link Name {{ forloop.counter }}</label>
+                                    <input type="text" name="id_pl_friendly_name_{{ forloop.counter }}" id="id_pl_friendly_name_{{ forloop.counter }}" value="{{ l.friendly_name }}">
+                                </div>
+                                <div class="sr-only input-group container-col align-start">
+                                    <label for="id_pl_name_{{ forloop.counter }}" class="input-label dark-text">Link Name {{ forloop.counter }}</label>
+                                    <input type="text" name="id_pl_name_{{ forloop.counter }}" id="id_pl_name_{{ forloop.counter }}" value="{{ l.name }}">
                                 </div>
                             </div>
                         </div>
                         {% endfor %}
+                        <div class="new-links-container container-col align-start">
+                            <div class="sr-only">
+                                <div class="input-group container-col align-start">
+                                    <label for="id_num_of_links" class="input-label dark-text">Num of New Links</label>
+                                    <input type="text" name="id_num_of_links" id="id_num_of_links">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="contact-btn container-row">
+                            <p class="dark-text red-text container-col"><span class="sr-only">New Link Icon</span><i class="fa-solid fa-plus"></i></p>
+                            <div class="input-group container-col align-start">
+                                <p class="dark-text input-label">Insert New Link</p>
+                                <div class="new-link-btn btn btn-2">
+                                    Add New Link<span class="fa-icon-right"><i class="fa-solid fa-link"></i></span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
@@ -110,23 +112,31 @@
                 {% for category in category_and_classes %}
                 <div class="class-container grid-container container-col w-100 align-start justify-start">
                     <p class="grid-title dark-text">{{ category.category.friendly_name }}</p>
-                    {% if category.user_classes %}
-                    {% for class in category.user_classes %}
+                    {% for class in category.classes %}
                     <div class="contact-btn container-row">
-                        <p class="dark-text red-text container-col"><span class="sr-only">Check Icon</span><i class="fa-regular fa-circle-check"></i></p>
-                        <p class="dark-text">{{ class.friendly_name }}</p>
+                        <input class="checkbox-input" type="checkbox" name="id_class_{{ class.item.name }}" id="id_class_{{ class.item.name }}" {% if class.user_selected %}checked{% endif %}>
+                        <label class="dark-text checkbox-label" for="id_class_{{ class.item.name }}">{{ class.item.friendly_name }}</label>
                     </div>
                     {% endfor %}
-                    {% else %}
-                    <div class="contact-btn container-row">
-                        <p class="dark-text red-text container-col"><span class="sr-only">Xmark Icon</span><i class="fa-regular fa-circle-xmark"></i></p>
-                        <p class="dark-text">No {{ category.friendly_name }} Classes Displayed</p>
-                    </div>
-                    {% endif %}
                 </div>
                 {% endfor %}
             </div>
+            <div class="second-row-child bio-container grid-container w-50 container-col align-start justify-start">
+                <p class="dark-text grid-title">Bio</p>
+                <div class="bio-text dark-text grid-text container-col align-start justify-start">
+                    <div class="input-group container-col align-start">
+                        <label for="id_bio" class="input-label dark-text sr-only">Bio</label>
+                        {{ form.bio }}
+                    </div>
+                    <p class="bio-count-text dark-text small-text"><span class="bio-count">{{ bio_count }}</span>/3000 characters</p>
+                </div>
+            </div>
         </div>
+        {% if profile_saveable %}
+        <button type="submit" class="save-btn btn btn-2 small-btn">
+            <span class="fa-icon-left"><i class="fa-regular fa-floppy-disk"></i></span> Save
+        </button>
+        {% endif %}
     </form>
 </section>
 

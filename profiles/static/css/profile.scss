@@ -10,6 +10,7 @@
         border-radius: $round-corner-3;
         padding: 16px;
         gap: 16px;
+        position: relative;
     }
 
     .grid-group-container {
@@ -127,7 +128,7 @@
             font-size: 1.2rem;
         }
 
-        .copy-btn {
+        .cursor-btn {
             cursor: pointer;
         }
 
@@ -135,10 +136,6 @@
 
     .second-row-grid-group {
         width: 100%;
-
-        .second-row-child {
-            flex-shrink: 1;
-        }
     }
 
     .bio-container {
@@ -170,15 +167,11 @@
         }
     }
 
-    .edit-container {
-        .btn {
-            width: 100%;
-            height: 100%;
-            font-size: 2rem;
-        }
-
-        align-self: stretch;
-        padding: 24px;
+    .edit-btn {
+        position: absolute;
+        top: calc(100% + 16px);
+        left: 50%;
+        translate: -50% 0;
     }
 
 }

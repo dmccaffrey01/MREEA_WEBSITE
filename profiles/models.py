@@ -46,7 +46,7 @@ class Class(models.Model):
     
 
 class ProfileLink(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=254, unique=True, null=True, blank=True)
     friendly_name = models.CharField(max_length=254, null=True, blank=True)
     link = models.URLField(max_length=1024, null=True, blank=True)

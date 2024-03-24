@@ -7,6 +7,7 @@
   border-radius: 15px;
   padding: 16px;
   gap: 16px;
+  position: relative;
 }
 .profile-section .grid-group-container {
   width: 100%;
@@ -98,14 +99,11 @@
 .profile-section .contact-btn .dark-text {
   font-size: 1.2rem;
 }
-.profile-section .contact-btn .copy-btn {
+.profile-section .contact-btn .cursor-btn {
   cursor: pointer;
 }
 .profile-section .second-row-grid-group {
   width: 100%;
-}
-.profile-section .second-row-grid-group .second-row-child {
-  flex-shrink: 1;
 }
 .profile-section .bio-container {
   overflow: hidden;
@@ -130,14 +128,11 @@
   font-size: 1.2rem;
   color: #242424;
 }
-.profile-section .edit-container {
-  align-self: stretch;
-  padding: 24px;
-}
-.profile-section .edit-container .btn {
-  width: 100%;
-  height: 100%;
-  font-size: 2rem;
+.profile-section .edit-btn {
+  position: absolute;
+  top: calc(100% + 16px);
+  left: 50%;
+  translate: -50% 0;
 }
 
 /*# sourceMappingURL=profile.css.map */

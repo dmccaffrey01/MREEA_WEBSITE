@@ -14,7 +14,7 @@
     <div class="section-container container-col align-start justify-start">
         
         <div class="grid-group-container container-row">
-            <div class="personal-container grid-container {% if profile_editable %}w-75{% else %}w-100{% endif %} container-row justify-start">
+            <div class="personal-container grid-container w-100 container-row justify-start">
                 <div class="profile-img-container img-container">
                     {% if user_profile.image %}
                     <img src="{{ user_profile.image.url }}" alt="{{ user_profile.first_name }}'s Profile Image" class="img-100a">
@@ -33,28 +33,8 @@
                     </div>
                 </div>
             </div>
-
-            {% if profile_editable %}
-            <div class="edit-container grid-container w-25 container-col">
-                <a href="{% url 'edit_profile' user.username %}" class="btn btn-2 small-btn">
-                    <span class="fa-icon-left"><i class="fa-solid fa-pen-to-square"></i></span> Edit
-                </a>
-            </div>
-            
-            {% endif %}
-
         </div>
         <div class="second-row-grid-group grid-group-container container-row align-start">
-            <div class="second-row-child bio-container grid-container w-50 container-col align-start justify-start">
-                <p class="dark-text grid-title">Bio</p>
-                <div class="bio-text dark-text grid-text container-col align-start justify-start">
-                    {% if user_profile.bio %}
-                    {{ user_profile.bio|linebreaks }}
-                    {% else %}
-                    No Bio Displayed
-                    {% endif %}
-                </div>
-            </div>
             <div class="second-row-child grid-group-col-container container-col align-start justify-start">
                 <div class="contact-container grid-container w-100 container-col align-start justify-start">
                     <p class="grid-title dark-text">Contact</p>
@@ -62,29 +42,29 @@
                         {% if user_profile.email %}
                         <div class="contact-btn container-row">
                             <p class="dark-text red-text container-col"><span class="sr-only">Email Icon</span><i class="fa-solid fa-envelope"></i></p>
-                            <p class="dark-text">{{ user_profile.email }} <span class="copy-btn red-text" title="Copy Email" data-copy="{{ user_profile.email }}"><i class="fa-solid fa-clone"></i></span></p>
+                            <p class="dark-text">{{ user_profile.email }} <span class="copy-btn cursor-btn red-text fa-icon-right" title="Copy Email" data-copy="{{ user_profile.email }}"><i class="fa-solid fa-clone"></i></span></p>
                         </div>
                         {% else %}
                         <div class="contact-btn container-row">
                             <p class="dark-text red-text container-col"><span class="sr-only">Email Icon</span><i class="fa-solid fa-envelope"></i></p>
-                            <p class="dark-text">Member Not Displaying Email</p>
+                            <p class="dark-text">No Email Displayed</p>
                         </div>
                         {% endif %}
                         {% if user_profile.phone_number %}
                         <div class="contact-btn container-row">
                             <p class="dark-text red-text container-col"><span class="sr-only">Phone_number Icon</span><i class="fa-solid fa-phone"></i></p>
-                            <p class="dark-text">{{ user_profile.phone_number }} <span class="copy-btn red-text fa-icon-right" title="Copy Number" data-copy="{{ user_profile.phone_number }}"><i class="fa-solid fa-clone"></i></span></p>
+                            <p class="dark-text">{{ user_profile.phone_number }} <span class="copy-btn cursor-btn red-text fa-icon-right" title="Copy Number" data-copy="{{ user_profile.phone_number }}"><i class="fa-solid fa-clone"></i></span></p>
                         </div>
                         {% else %}
                         <div class="contact-btn container-row">
                             <p class="dark-text red-text container-col"><span class="sr-only">Phone_number Icon</span><i class="fa-solid fa-phone"></i></p>
-                            <p class="dark-text">Member Not Displaying Number</p>
+                            <p class="dark-text">No Phone Number Displayed</p>
                         </div>
                         {% endif %}
                         {% for l in user_profile.links.all %}
                         <a href="{{ l.link }}" target="_blank" class="contact-btn container-row">
                             <p class="dark-text red-text container-col"><span class="sr-only">Link Icon</span><i class="fa-solid fa-link"></i></p>
-                            <p class="dark-text">{{ l.friendly_name }} <span class="copy-btn red-text fa-icon-right"><i class="fa-solid fa-up-right-from-square"></i></span></p>
+                            <p class="dark-text">{{ l.friendly_name }} <span class="cursor-btn red-text fa-icon-right"><i class="fa-solid fa-up-right-from-square"></i></span></p>
                         </a>
                         {% endfor %}
                     </div>
@@ -113,7 +93,22 @@
                 </div>
                 {% endfor %}
             </div>
+            <div class="second-row-child bio-container grid-container w-50 container-col align-start justify-start">
+                <p class="dark-text grid-title">Bio</p>
+                <div class="bio-text dark-text grid-text container-col align-start justify-start">
+                    {% if user_profile.bio %}
+                    {{ user_profile.bio|linebreaks }}
+                    {% else %}
+                    No Bio Displayed
+                    {% endif %}
+                </div>
+            </div>
         </div>
+        {% if profile_editable %}
+        <a href="{% url 'edit_profile' user.username %}" class="edit-btn btn btn-2 small-btn">
+            <span class="fa-icon-left"><i class="fa-solid fa-pen-to-square"></i></span> Edit
+        </a>
+        {% endif %}
     </div>
 </section>
 

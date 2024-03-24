@@ -8,6 +8,9 @@
   padding: 16px;
   gap: 16px;
 }
+.profile-section .form {
+  position: relative;
+}
 .profile-section .form .input-group-container {
   width: 100%;
   gap: 16px;
@@ -124,10 +127,19 @@
   gap: 8px;
   width: 100%;
 }
+.profile-section .new-links-container {
+  width: 100%;
+  display: none;
+  gap: 8px;
+}
+.profile-section .new-links-container.show {
+  display: flex;
+}
 .profile-section .contact-btn {
   gap: 12px;
   width: 100%;
   align-items: flex-end;
+  justify-content: flex-start;
 }
 .profile-section .contact-btn .dark-text {
   font-size: 1.2rem;
@@ -135,44 +147,83 @@
 .profile-section .contact-btn .red-text {
   margin-bottom: 4px;
   font-size: 1.4rem;
+  width: 28px;
+}
+.profile-section .contact-btn .new-link-btn {
+  font-size: 1.1rem;
+  width: 100%;
+  padding: 4px 8px;
 }
 .profile-section .second-row-grid-group {
   width: 100%;
 }
-.profile-section .second-row-grid-group .second-row-child {
-  flex-shrink: 1;
-}
 .profile-section .bio-container {
   overflow: hidden;
+  height: 1000px;
 }
 .profile-section .bio-container .grid-text {
-  max-height: calc(100% - 56px);
-  overflow-y: scroll;
   width: 100%;
-}
-.profile-section .bio-container .grid-text::-webkit-scrollbar {
-  width: 4px;
-}
-.profile-section .bio-container .grid-text::-webkit-scrollbar-thumb {
-  background-color: #c64f4a;
-  border: none;
-  border-radius: 5px;
 }
 .profile-section .bio-container .bio-text {
   gap: 8px;
+  position: relative;
 }
 .profile-section .bio-container .bio-text p {
   font-size: 1.2rem;
   color: #242424;
 }
-.profile-section .edit-container {
-  align-self: stretch;
-  padding: 24px;
+.profile-section .bio-container .bio-text .bio-count-text {
+  position: absolute;
+  right: 0;
+  bottom: calc(100% + 4px);
 }
-.profile-section .edit-container .btn {
-  width: 100%;
+.profile-section .bio-container .bio-text, .profile-section .bio-container .input-group, .profile-section .bio-container textarea {
   height: 100%;
-  font-size: 2rem;
+}
+.profile-section .save-btn {
+  position: absolute;
+  top: calc(100% + 16px);
+  left: 50%;
+  translate: -50% 0;
+}
+.profile-section .class-container .contact-btn {
+  align-items: center;
+  gap: 8px;
+}
+.profile-section .class-container .red-text {
+  margin-bottom: 0px;
+}
+.profile-section .class-container .checkbox-label {
+  cursor: pointer;
+}
+.profile-section .class-container .checkbox-input {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  width: 1.1rem;
+  height: 1.1rem;
+  border: 2px solid #242424;
+  border-radius: 3px;
+  outline: none;
+  position: relative;
+  cursor: pointer;
+  padding: 0;
+}
+.profile-section .class-container .checkbox-input::before {
+  content: "";
+  position: absolute;
+  top: 45%;
+  left: 25%;
+  width: 30%;
+  height: 70%;
+  border: solid #c64f4a;
+  border-width: 0 3px 3px 0;
+  transform: translateY(-50%) rotate(45deg);
+  opacity: 0;
+  transition: opacity 0.2s ease-in-out;
+}
+.profile-section .class-container .checkbox-input:checked::before {
+  opacity: 1;
 }
 
 /*# sourceMappingURL=edit_profile.css.map */
