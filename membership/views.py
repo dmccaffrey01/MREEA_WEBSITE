@@ -105,6 +105,9 @@ def membership_status(request):
 
     membership = Membership.objects.filter(user=user).first()
 
+    if not membership:
+        return redirect(reverse('membership_redirect')) 
+
     if membership.status.name == 'active_renewal_unsuccessful' or membership.status.name == 'active_renewal_pending':
         split_status_friendly_name = membership.status.friendly_name.split(' - ')
         active_status = split_status_friendly_name[0]

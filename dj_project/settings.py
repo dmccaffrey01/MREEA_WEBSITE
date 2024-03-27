@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     'profiles',
     'membership',
     'resources',
+    'notifications',
     'custom_admin',
     'storages',
 ]
@@ -113,6 +114,7 @@ TEMPLATES = [
                 'django.template.context_processors.media',
                 'profiles.contexts.profile',
                 'membership.contexts.membership_context',
+                'notifications.contexts.notifications',
             ],
         },
     },

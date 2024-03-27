@@ -53,6 +53,12 @@
                     <div class="nav-btn-bar b3"></div>
                 </div>
 
+                {% if user.is_superuser %}
+
+                <a href="{% url 'admin' %}" class="dark-text"><span class="fa-icon-left"><i class="fa-solid fa-gear"></i></span>Admin</a>
+
+                {% else %}
+
                 <nav class="nav-menu container-row">
                     {% if is_membership_valid %}
                     <a href="{% url 'events' %}" class="nav-link">Events</a>
@@ -69,9 +75,70 @@
                     {% endif %}
                 </nav>
 
+                {% endif %}
+
                 {% if user.is_authenticated %}
 
-                <div class="profile-container container-col">
+                <div class="profile-container container-row justify-end">
+                    <div class="notification-btn-container container-col">
+                        <div class="notification-icon-container icon-container">
+                            <img src="{{ MEDIA_URL }}notification-icon.png" alt="Notification Icon" class="img-100a">
+                        </div>
+                        <div class="notification-btn-icon profile-btn-icon container-col">
+                            <p class="notification-number white-text">9</p>
+                        </div>
+                    </div>
+
+                    <div class="notification-menu-container container-col align-start box-shadow">
+                        <div class="heading-container container-row space-between">
+                            <h3 class="dark-text subheading">Notifications</h3>
+                            <div class="mark-all-btn-container container-col label-container">
+                                <div class="mark-all-btn icon-container">
+                                    <img src="{{ MEDIA_URL }}notification-check-icon.png" alt="Notification Icon" class="img-100a">
+                                </div>
+                                <p class="label dark-text small-text box-shadow">Mark All As Read</p>
+                            </div>
+                        </div>
+
+                        <div class="notification-display-container container-col align-start">
+                            <div class="type-headings-container container-row space-between">
+                                <div class="type-heading-container label-container container-col left selected">
+                                    <div class="icon-container">
+                                        <img src="{{ MEDIA_URL }}important-icon.png" alt="Important Icon" class="img-100a">
+                                    </div>
+                                    <p class="dark-text small-text label box-shadow">Important</p>
+                                </div>
+                                <div class="type-heading-container label-container container-col right">
+                                    <div class="icon-container">
+                                        <img src="{{ MEDIA_URL }}unimportant-icon.png" alt="Unimportant Icon" class="img-100a">
+                                    </div>
+                                    <p class="dark-text small-text label box-shadow">Unimportant</p>
+                                </div>
+                            </div>
+
+                            <div class="status-headings-container container-row space-between">
+                                <div class="status-heading-btn btn btn-2 container-row selected">
+                                    <span class="icon-container fa-icon-left">
+                                        <img src="{{ MEDIA_URL }}notification-all-red-icon.png" alt="Notification All Red Icon" class="img-100a red">
+                                        <img src="{{ MEDIA_URL }}notification-all-icon.png" alt="Notification All Icon" class="img-100a">
+                                    </span>
+                                    All
+                                </div>
+                                <div class="status-heading-btn btn btn-2 container-row">
+                                    <span class="icon-container fa-icon-left">
+                                        <img src="{{ MEDIA_URL }}notification-unread-red-icon.png" alt="Notification Unread Red Icon" class="img-100a red">
+                                        <img src="{{ MEDIA_URL }}notification-unread-icon.png" alt="Notification Unread Icon" class="img-100a">
+                                    </span>
+                                    Unread
+                                </div>
+                            </div>
+
+                            <div class="notification-items-container selected left">
+
+                            </div>
+                        </div>
+                    </div>
+
                     <div class="profile-btn-container container-row">
                         <div class="profile-img-container img-container">
                             {% if profile.image %}
@@ -81,7 +148,7 @@
                             {% endif %}
                         </div>
                         <div class="profile-btn-icon container-col">
-                            <span class="fa-icon dark-text small-text"><i class="fa-solid fa-chevron-down dark-text small-text"></i></span>
+                            <span class="sr-only">Chevron Icon</span><span class="fa-icon dark-text small-text"><i class="fa-solid fa-chevron-down dark-text small-text"></i></span>
                         </div>
                     </div>
 

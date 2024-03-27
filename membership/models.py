@@ -29,6 +29,7 @@ class MembershipStatus(models.Model):
     name = models.CharField(max_length=254, unique=True)
     friendly_name = models.CharField(max_length=254)
     description = models.TextField(max_length=3000, blank=True)
+    color = models.CharField(max_length=254, blank=True, null=True, default="success")
     valid = models.BooleanField(default=False, verbose_name='Validity')
 
     def __str__(self):

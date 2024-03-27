@@ -1,0 +1,191 @@
+@import '../../../static/css/variables';
+@import '../../../static/css/mixins';
+
+.user-admin-section {
+    background-color: $gl-2;
+    padding: 40px 0;
+    min-height: calc(100vh - 100px);
+    justify-content: flex-start;
+    gap: 16px;
+
+    .section-container {
+        background-color: $gl-1;
+        border-radius: $round-corner-3;
+        padding: 20px;
+        gap: 16px;
+
+        .gap {
+            width: 40px;
+            margin-right: 12px;
+        }
+    }
+
+    .filter-search-container {
+        width: 100%;
+        gap: 12px;
+        padding: 0 8px;
+
+        .filter-btn {
+            width: calc((100% - (40px + 12px + (12px * 7))) / 6);
+            background-color: $gl-2;
+            border-radius: $round-corner-1;
+            padding: 12px 0;
+            cursor: pointer;
+        }
+
+        .search-input-group {
+            width: calc(100% - (40px + 12px + (12px * 2) + ((100% - (40px + 12px + (12px * 7))) / 6)));
+            position: relative;
+
+            .search-icon {
+                position: absolute;
+                left: 12px;
+                top: 50%;
+                translate: 0 -50%;
+            }
+
+            input {
+                width: 100%;
+                font-size: 1.2rem;
+                padding: 12px;
+                padding-left: 42px;
+                border: none;
+                outline: none;
+                color: $gd-1;
+                background-color: $gl-2;
+                border-radius: $round-corner-1;
+
+                &:focus {
+                    outline: 2px solid $red-1;
+                }
+            }
+        }
+    }
+
+    .items-container {
+        width: 100%;
+        gap: 12px;
+    }
+
+    .item-container {
+        width: 100%;
+        gap: 12px;
+        border-radius: $round-corner-1;
+        padding: 8px;
+        position: relative;
+
+        &:hover {
+            background-color: $gl-2;
+        }
+
+        &.selected {
+            margin-bottom: calc(1.2rem + 16px + 16px + 8px + 8px);
+        }
+
+        &.hide {
+            display: none;
+        }
+
+        .img-container {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-right: 12px;
+        }
+
+        .item-col {
+            &.w-125 {
+                width: calc((100% - (40px + 12px + (12px * 7))) / 6);
+            }
+
+            .dark-text {
+                width: 100%;
+                overflow: hidden;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+                padding-left: calc(8px + 18px + 8px);
+                padding-right: 8px;
+            }
+
+            .null {
+                width: calc(100% - 24px);
+                height: 2px;
+                background-color: $gd-1;
+            }
+
+            .fa-icon-left {
+                margin-right: 4px;
+            }
+        }
+    }
+
+    .sort-btns-container {
+        width: 100%;
+        gap: 12px;
+        padding: 0 8px;
+
+        .sort-btn {
+            background-color: $gl-2;
+            padding: 8px;
+            border-radius: $round-corner-1;
+            cursor: pointer;
+
+            &.w-125 {
+                width: calc((100% - (40px + 12px + (12px * 7))) / 6);
+            }
+
+            .icon-container {
+                width: 1.2rem;
+                height: 1.2rem;
+            }
+
+            .dark-text {
+                width: calc(100% - (1.2rem + 8px));
+                overflow: hidden;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+            }
+
+            .fa-icon-left {
+                margin-right: 8px;
+                width: 18px;
+            }
+        }
+    }
+
+    .quick-actions-container {
+        width: 100%;
+        gap: 12px;
+        border-radius: $round-corner-1;
+        padding: 8px;
+        background-color: $gl-2;
+        position: absolute;
+        top: calc(100% + 12px);
+        left: 0;
+        display: none;
+
+        &.show {
+            display: flex;
+        }
+
+        .divider {
+            width: 2px;
+            height: 1.2rem;
+            background-color: $gd-2;
+        }
+
+        .quick-action-btn {
+            width: calc(1.2rem + 16px);
+            height: calc(1.2rem + 16px);
+            border-radius: 50%;
+            background-color: $gl-1;
+            cursor: pointer;
+
+            .icon-container {
+                width: 100%;
+                height: 100%;
+                padding: 4px;
+            }
+        }
+    }
+}

@@ -1,9 +1,3 @@
-document.addEventListener("DOMContentLoaded", () => {
-    const heroImg = document.querySelector(".hero-img-container");
-
-    heroImg.classList.add("active");
-});
-
 const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
         if (entry.isIntersecting) {

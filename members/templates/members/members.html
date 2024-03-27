@@ -19,11 +19,11 @@
                     {% csrf_token %}
                     <div class="input-group">
                         <label for="id_first_name" class="dark-text">First Name</label>
-                        <input type="text" name="id_first_name" id="id_first_name">
+                        <input type="text" name="id_first_name" id="id_first_name" {% if first_name %}value="{{ first_name }}"{% endif %}>
                     </div>
                     <div class="input-group">
                         <label for="id_last_name" class="dark-text">Last Name</label>
-                        <input type="text" name="id_last_name" id="id_last_name">
+                        <input type="text" name="id_last_name" id="id_last_name" {% if last_name %}value="{{ last_name }}"{% endif %}>
                     </div>
                     <div class="custom-select-input-group container-col align-start">
                         <div class="hidden-input-container">
@@ -52,7 +52,7 @@
                                     </div>
                                     {% for item in category.classes %}
                                     <div class="input-group row">
-                                        <input type="checkbox" name="id_class_{{ item.name }}" id="id_class_{{ item.name }}" data-class-name="{{ item.name }}" class="checkbox-input {{ category.category.name }}-class class-checkbox-input">
+                                        <input type="checkbox" name="id_class_{{ item.name }}" id="id_class_{{ item.name }}" data-class-name="{{ item.name }}" class="checkbox-input {{ category.category.name }}-class class-checkbox-input" {% if item.selected %}checked {% endif %}>
                                         <label for="id_class_{{ item.name }}" class="dark-text small-text checkbox-label">{{ item.friendly_name }}</label>
                                     </div>
                                     {% endfor %}
@@ -78,7 +78,7 @@
 <section class="search-results-section section">
     <div class="section-container container-col">
         {% for p in query_profiles %}
-        <a href="{% url 'profile' p.user.username %}" class="overview-container container-row space-between">
+        <div class="overview-container container-row space-between">
             <div class="profile-container container-row justify-start">
                 <div class="img-container">
                     {% if p.image %}
@@ -89,13 +89,21 @@
                 </div>
                 <div class="text-container container-col align-start">
                     <p class="name-text dark-text">{{ p.first_name }} {{ p.last_name }}</p>
-                    <p class="title-text dark-text">
-                        {% if p.title %}{{ p.title }}{% else %}No Title{% endif %} <i class="fa-solid fa-circle"></i> {% if p.category_field %}{{ p.category_field.friendly_name }}{% else %}None{% endif %} <i class="fa-solid fa-circle"></i> {% if p.class_field %}{{ p.class_field.friendly_name }}{% else %}None{% endif %}
+                    {% if p.title or p.classes.all %}
+                    <p class="title-class-text dark-text">
+                        {{ p.title|default:"" }} {% if p.title and p.classes.all %} - {% endif %}
+                        {% if p.classes.all %}
+                            <span class="classes-text red-text" data-username="{{ p.user.username }}">{{ p.classes.all|length }} Classes / Certifications <i class="fa-solid fa-caret-down"></i></span>
+                        {% endif %}
                     </p>
+                    <div class="classes-hover-container container-col align-start box-shadow" id="id_{{ p.user.username }}_classes_hover">
+
+                    </div>
+                    {% endif %}
                 </div>
             </div>
-            <div class="btn btn-2 small-btn"><span class="fa-icon-left"><i class="fa-regular fa-eye"></i></span>View Profile</div>
-        </a>
+            <a href="{% url 'profile' p.user.username %}" class="btn btn-2 small-btn"><span class="fa-icon-left"><i class="fa-regular fa-eye"></i></span>View Profile</a>
+        </div>
         {% endfor %}
     </div>   
 </section>

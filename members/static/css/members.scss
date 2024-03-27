@@ -212,16 +212,51 @@
         border-radius: 50%;
     }
 
+    .text-container {
+        gap: 4px;
+        position: relative;
+    }
+
     .name-text {
         font-size: 1.8rem;
     }
 
-    .title-text {
-        i {
-            font-size: 0.6rem;
-            position: relative;
-            bottom: 0.3rem;
-            margin: 0 4px;
-        }
+    .title-class-text {
+        font-size: 1.1rem;
     }
+
+    .classes-text {
+        cursor: pointer;
+    }
+
+    .classes-hover-container {
+        position: absolute;
+        right: 0;
+        top: calc(100% + 4px);
+        border-radius: $round-corner-1;
+        background-color: $gl-1;
+        padding: 16px;
+        gap: 12px;
+        display: none;
+        z-index: 3;
+
+        &.show {
+            display: flex;
+        }
+
+        .category-container {
+            gap: 4px;
+        }
+
+        .category-hover-text {
+            font-weight: 600;
+        }
+
+        .fa-icon-left {
+            margin-right: 4px;
+        }
+
+    }
+
 }
+

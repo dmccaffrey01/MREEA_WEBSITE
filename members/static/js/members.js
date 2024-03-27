@@ -8,6 +8,18 @@ document.addEventListener("DOMContentLoaded", () => {
     let allCheckboxes = document.querySelectorAll(".checkbox-input");
     let selectAllCheckbox = document.querySelector(".select-all-checkbox-mega");
 
+    let updateSelectedNumber = () => {
+        let numChecked = 0;
+        classCheckboxes.forEach(checkbox => {
+            if (checkbox.checked) {
+                numChecked += 1;
+            }
+        });
+        numSelected.innerHTML = numChecked;
+    }
+
+    updateSelectedNumber();
+
     selectContainer.addEventListener("click", () => {
         selectOptions.classList.add("show");
     });
@@ -53,13 +65,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     closeSelectBtn.addEventListener("click", () => {
-        let numChecked = 0;
-        classCheckboxes.forEach(checkbox => {
-            if (checkbox.checked) {
-                numChecked += 1;
-            }
-        });
-        numSelected.innerHTML = numChecked;
+        updateSelectedNumber();
         selectOptions.classList.remove("show");
     });
 
@@ -86,4 +92,84 @@ document.addEventListener("DOMContentLoaded", () => {
 
         form.submit();
     });
+});
+
+const getClassesData = async (username) => {
+    try {
+        const response = await fetch(`get_member_classes/${username}/`);
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        console.error('Error fetching member classes:', error);
+        return null;
+    }
+};
+
+document.addEventListener("DOMContentLoaded", async () => {
+    let searchResultsSection = document.querySelector(".search-results-section");
+
+    if (searchResultsSection) {
+        let classesTexts = document.querySelectorAll(".classes-text");
+
+        for (const text of classesTexts) {
+            let username = text.getAttribute("data-username");
+
+            let classesData = await getClassesData(username);
+
+            if (classesData) {
+                let hoverContainer = document.querySelector(`#id_${username}_classes_hover`);
+
+                let categoryAndClasses = classesData.category_and_classes;
+
+                for (const category of categoryAndClasses) {
+                    let categoryContainerDiv = document.createElement("div");
+                    categoryContainerDiv.classList.add("category-container");
+                    categoryContainerDiv.classList.add("container-col");
+                    categoryContainerDiv.classList.add("align-start");
+                    categoryContainerDiv.classList.add("justify-start");
+
+                    categoryContainerDiv.innerHTML = `
+                        <p class="category-hover-text dark-text small-text">${category.category_name}</p>
+                    `;
+
+                    let classContainerDiv = document.createElement("div");
+                    classContainerDiv.classList.add("class-container");
+                    classContainerDiv.classList.add("container-col");
+                    classContainerDiv.classList.add("align-start");
+                    classContainerDiv.classList.add("justify-start");
+
+                    for (const cls of category.classes) {
+
+                        let classTextP = document.createElement("p");
+                        classTextP.classList.add("class-hover-text");
+                        classTextP.classList.add("dark-text");
+                        classTextP.classList.add("small-text");
+                        classTextP.innerHTML = `
+                            <span class="fa-icon-left red-text"><i class="fa-regular fa-circle-check"></i></span> ${cls}
+                        `;
+                        classContainerDiv.appendChild(classTextP);
+                    }
+
+                    categoryContainerDiv.appendChild(classContainerDiv);
+
+                    hoverContainer.appendChild(categoryContainerDiv);
+                }
+
+                text.addEventListener("mouseenter", () => {
+                    hoverContainer.classList.add("show");
+                });
+
+                text.addEventListener("mouseleave", () => {
+                    hoverContainer.classList.remove("show");
+                });
+
+                text.addEventListener("click", () => {
+                    hoverContainer.classList.toggle("show");
+                });
+            }
+        }
+    }
 });

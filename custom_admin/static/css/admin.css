@@ -1,0 +1,12 @@
+.admin-section .section-container {
+  gap: 16px;
+}
+.admin-section .admin-container {
+  gap: 8px;
+}
+.admin-section .admin-container .subheading {
+  text-decoration: underline;
+  font-size: 1.6rem;
+}
+
+/*# sourceMappingURL=admin.css.map */

@@ -20,6 +20,12 @@ body {
 
 a {
     text-decoration: none;
+
+    .dark-text {
+        &:visited {
+            color: $gd-1;
+        }
+    }
 }
 
 .box-shadow {
@@ -317,7 +323,32 @@ a {
     }
 }
 
+.label-container {
+    position: relative;
 
+    .label {
+        position: absolute;
+        top: calc(100% + 4px);
+        left: 50%;
+        translate: -50% 0;
+        border-radius: $round-corner-1;
+        background-color: $gl-1;
+        padding: 4px 0px;
+        display: none;
+        width: 100px;
+        text-align: center;
+        font-size: 0.9rem;
+        justify-content: center;
+        align-items: center;
+        z-index: 999;
+    }
+
+    &:hover {
+        .label {
+            display: flex;
+        }
+    }
+}
 
 .sr-only {
     display: none !important;
@@ -343,6 +374,22 @@ a {
     justify-content: flex-end;
 }
 
+.color-success {
+    color: $success;
+}
+
+.color-info {
+    color: $info;
+}
+
+.color-warning {
+    color: $warning;
+}
+
+.color-danger {
+    color: $error;
+}
+
 /* Header */
 
 header {
@@ -352,13 +399,14 @@ header {
 }
 
 .header-container {
-    width: calc(100% - 100px);
+    width: calc(100% - 120px);
     height: 100%;
 }
 
 .logo-container {
     gap: 10px;
     width: 300px;
+    justify-content: flex-start;
 }
 
 .logo-img-container {
@@ -462,24 +510,30 @@ h1.logo-text {
 }
 
 .account-btns-container {
-    gap: 20px;
+    gap: 16px;
     width: 300px;
+    justify-content: flex-end;
+
+    .btn {
+        width: 60%;
+    }
 }
+
 
 .profile-container {
     width: 300px;
-    gap: 10px;
+    gap: 16px;
     position: relative;
 
     .profile-menu-container {
         position: absolute;
         top: calc(100% + 10px);
-        right: calc(50% - 35px);
+        right: 0;
         width: 300px;
-        padding: 20px;
-        border-radius: $round-corner-3;
+        padding: 12px;
+        border-radius: $round-corner-2;
         background-color: $gl-1;
-        gap: 15px;
+        gap: 12px;
         display: none;
         z-index: 999;
 
@@ -543,6 +597,178 @@ h1.logo-text {
             height: 100%;
             border-radius: 50%;
         }
+    }
+
+    .notification-btn-container {
+        cursor: pointer;
+        position: relative;
+        width: 60px;
+        height: 60px;
+
+        .notification-icon-container {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background-color: $gl-2;
+            padding: 12px;
+        }
+
+        .notification-btn-icon {
+            background-color: $red-1;
+            position: absolute;
+            right: 0px;
+            bottom: 0px;
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            outline: 4px solid $gl-1;
+            outline-offset: -1px;
+
+            .white-text {
+                font-size: 0.65rem;
+            }
+        }
+    }
+
+    .notification-menu-container {
+        position: absolute;
+        top: calc(100% + 10px);
+        right: 0;
+        width: 300px;
+        padding: 12px;
+        border-radius: $round-corner-2;
+        background-color: $gl-1;
+        gap: 12px;
+        display: none;
+        z-index: 998;
+
+        &.show {
+            display: flex;
+        }
+
+        .heading-container {
+            width: 100%;
+            gap: 4px;
+
+            .subheading {
+                font-size: 1.4rem;
+            }
+
+            .mark-all-btn-container {
+                position: relative;
+                width: 40px;
+                height: 40px;
+
+                .label {
+                    position: absolute;
+                    top: calc(100% + 4px);
+                    left: 50%;
+                    translate: -50% 0;
+                    border-radius: $round-corner-1;
+                    background-color: $gl-1;
+                    padding: 4px 8px;
+                    display: none;
+                    width: 90px;
+                    text-align: center;
+                    font-size: 0.9rem;
+                }
+
+                &:hover {
+                    .label {
+                        display: flex;
+                    }
+                }
+            }
+
+            .mark-all-btn {
+                width: 100%;
+                height: 100%;
+                border-radius: 50%;
+                background-color: $gl-2;
+                padding: 8px;
+                cursor: pointer;
+            }
+        }
+
+        .notification-display-container {
+            width: 100%;
+        }
+
+        .type-headings-container {
+            width: 100%;
+
+            .type-heading-container {
+                width: 50%;
+                background-color: $gl-1;
+                padding: 8px 0;
+                cursor: pointer;
+                transition: all 0.3s ease;
+
+                &.selected {
+                    border-top: 2px solid $red-1;
+                    background: $gl-2;
+
+                }
+
+                &.left {
+                    border-radius: $round-corner-1 0 0 0;
+                }
+
+                &.right {
+                    border-radius: 0 $round-corner-1 0 0;
+                }
+
+                .icon-container {
+                    width: 1.2rem;
+                    height: 1.2rem;
+                }
+            }
+        }
+
+        .status-headings-container {
+            width: 100%;
+            background-color: $gl-2;
+            padding: 12px 12px;
+
+            .status-heading-btn {
+                outline-color: $gd-1;
+                color: $gd-1;
+                font-size: 1.2rem;
+                padding: 4px 4px;
+                width: calc(50% - 6px);
+
+                .fa-icon-left {
+                    margin-right: 4px;
+                }
+
+                .img-100a {
+                    display: block;
+                }
+
+                .red {
+                    display: none;
+                }
+
+                &.selected {
+                    outline-color: $red-1;
+                    color: $red-1;
+
+                    .img-100a {
+                        display: none;
+                    }
+
+                    .red {
+                        display: block;
+                    }
+                }
+
+                .icon-container {
+                    width: 1.2rem;
+                    height: 1.2rem;
+                }
+            }
+        }
+        
     }
 
 }

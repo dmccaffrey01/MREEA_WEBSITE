@@ -25,14 +25,14 @@ from profiles.forms import CustomSignupForm
 app_name = 'account'
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path('default_admin/', admin.site.urls),
     path('', include('home.urls')),
     path('events/', include('events.urls')),
     path('resources/', include('resources.urls')),
     path('members/', include('members.urls')),
     path('contact/', include('contact.urls')),
     path('profile/', include('profiles.urls')),
-    path('management/', include('custom_admin.urls')),
+    path('admin/', include('custom_admin.urls')),
     path('membership/', include('membership.urls')),
     path('accounts/signup/', SignupView.as_view(form_class=CustomSignupForm, success_url='/membership/redirect'), name='account_signup'),
     path('accounts/', include('allauth.urls')),

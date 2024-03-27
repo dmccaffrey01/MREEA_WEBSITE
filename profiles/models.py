@@ -115,6 +115,4 @@ def create_or_update_user_profile(sender, instance, created, **kwargs):
         profile.first_name = instance.first_name
     if not profile.last_name and instance.last_name:
         profile.last_name = instance.last_name
-    if profile.first_name and profile.last_name:
-        profile.full_name = f'{profile.first_name} {profile.last_name}'
     profile.save()

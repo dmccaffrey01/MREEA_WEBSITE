@@ -1,0 +1,149 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/user_admin.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<section class="user-admin-section section">
+    <h2 class="subheading dark-text">User Management</h2>
+    <div class="section-container container-col">
+        <div class="filter-search-container container-row justify-start">
+            <div class="gap"></div>
+
+            <div class="filter-btn container-row">
+                <p class="dark-text small-text"><span class="fa-icon-left"><i class="fa-solid fa-filter"></i></span>Filter</p>
+            </div>
+
+            <div class="search-input-group container-row">
+                <p class="dark-text small-text search-icon"><span class="sr-only">Search Icon</span><i class="fa-solid fa-magnifying-glass"></i></p>
+                <input type="text" placeholder="Search for First Name, Last Name, Email, Status, Purchase or End Date" class="search-input">
+            </div>
+        </div>
+
+        <div class="sort-btns-container container-row justify-start">
+            <div class="gap"></div>
+            <div class="first-name-container sort-btn container-row justify-start w-125" data-direction="default" data-sort="first-name">
+                <p class="dark-text small-text"><span class="fa-icon-left"><i class="fa-solid fa-sort"></i></span>First Name</p>
+            </div>
+            <div class="last-name-container sort-btn container-row justify-start w-125" data-direction="default" data-sort="last-name">
+                <p class="dark-text small-text"><span class="fa-icon-left"><i class="fa-solid fa-sort"></i></span>Last Name</p>
+            </div>
+            <div class="email-container sort-btn container-row justify-start w-125" data-direction="default" data-sort="email">
+                <p class="dark-text small-text"><span class="fa-icon-left"><i class="fa-solid fa-sort"></i></span>Email</p>
+            </div>
+            <div class="purchase-date-container sort-btn container-row justify-start w-125" data-direction="desc" data-sort="purchase-date">
+                <p class="dark-text small-text"><span class="fa-icon-left"><i class="fa-solid fa-sort-down red-text"></i></span>Purchased</p>
+            </div>
+            <div class="status-container status-sort-btn sort-btn container-row justify-start w-125" data-direction="default" data-sort="status" data-status-colors="{{ all_status_colors }}">
+                <p class="dark-text small-text"><span class="fa-icon-left"><i class="fa-solid fa-sort"></i></span>Status</p>
+            </div>
+            <div class="end-date-container sort-btn container-row justify-start w-125" data-direction="default" data-sort="end-date">
+                <p class="dark-text small-text"><span class="fa-icon-left"><i class="fa-solid fa-sort"></i></span>Ending</p>
+            </div>
+        </div>
+
+        <div class="items-container container-col">
+            {% for item in all_users_profiles_and_memberships %}
+            <div class="item-container container-row justify-start" data-first-name="{{ item.profile.first_name }}" data-last-name="{{ item.profile.last_name }}" data-email="{{ item.user.email }}" data-status="{{ item.membership.status.friendly_name }}" data-end-date="{{ item.membership.end_date|date:'m/d/Y' }}" data-purchase-date="{{ item.membership.purchase_date|date:'m/d/Y' }}" data-color="{{ item.membership.status.color }}">
+                <div class="img-container">
+                    {% if item.profile.image %}
+                    <img src="{{ item.profile.image.url }}" alt="{{ item.profile.first_name }}'s Profile Picture" class="img-100a">
+                    {% else %}
+                    <img src="{{ MEDIA_URL }}default-profile-picture.webp" alt="Default Profile Picture" class="img-100a">
+                    {% endif %}
+                </div>
+                <div class="first-name-container item-col container-col align-start w-125">
+                    {% if item.profile.first_name %}
+                        <p class="first-name-text dark-text small-text">{{ item.profile.first_name }}</p>
+                    {% else %}
+                        <div class="first-name-text dark-text small-text null"></div>
+                    {% endif %}
+                </div>
+                
+                <div class="last-name-container item-col container-col align-start w-125">
+                    {% if item.profile.last_name %}
+                        <p class="last-name-text dark-text small-text">{{ item.profile.last_name }}</p>
+                    {% else %}
+                        <div class="last-name-text dark-text small-text null"></div>
+                    {% endif %}
+                </div>
+                
+                <div class="email-container item-col container-col align-start w-125">
+                    {% if item.user.email %}
+                        <p class="email-text dark-text small-text">{{ item.user.email }}</p>
+                    {% else %}
+                        <div class="email-text dark-text small-text null"></div>
+                    {% endif %}
+                </div>
+
+                <div class="purchase-date-container item-col container-col align-start w-125">
+                    {% if item.membership.purchase_date %}
+                        <p class="purchase-date-text dark-text small-text">{{ item.membership.purchase_date|date:"m/d/Y" }}</p>
+                    {% else %}
+                        <div class="purchase-date-text dark-text small-text null"></div>
+                    {% endif %}
+                </div>
+                
+                <div class="status-container item-col container-col align-start w-125">
+                    {% if item.membership.status.friendly_name %}
+                        <p class="status-text dark-text small-text color-{{ item.membership.status.color }}">
+                            {% if item.membership.status.color == 'success' %}
+                            <span class="fa-icon-left"><i class="fa-solid fa-circle-check"></i></span>
+                            {% elif item.membership.status.color == 'info' %}
+                            <span class="fa-icon-left"><i class="fa-solid fa-circle-question"></i></span>
+                            {% elif item.membership.status.color == 'warning' %}
+                            <span class="fa-icon-left"><i class="fa-solid fa-circle-exclamation"></i></span>
+                            {% elif item.membership.status.color == 'danger' %}
+                            <span class="fa-icon-left"><i class="fa-solid fa-circle-xmark"></i></span>
+                            {% endif %}
+                            {{ item.membership.status.friendly_name }}
+                        </p>
+                    {% else %}
+                        <div class="status-text dark-text small-text null"></div>
+                    {% endif %}
+                </div>
+
+                <div class="end-date-container item-col container-col align-start w-125">
+                    {% if item.membership.end_date %}
+                        <p class="end-date-text dark-text small-text">{{ item.membership.end_date|date:"m/d/Y" }}</p>
+                    {% else %}
+                        <div class="end-date-text dark-text small-text null"></div>
+                    {% endif %}
+                </div>
+
+                <div class="quick-actions-container container-row">
+                    <a href="{% url 'profile' item.user.username %}" class="quick-action-btn container-col">
+                        <p class="dark-text small-text"><span class="sr-only">View Icon</span><i class="fa-solid fa-eye"></i></p>
+                    </a>
+    
+                    <a href="{% url 'edit_profile' item.user.username %}" class="quick-action-btn container-col">
+                        <p class="dark-text small-text"><span class="sr-only">Edit Icon</span><i class="fa-solid fa-pen"></i></p>
+                    </a>
+    
+                    <div class="divider"></div>
+    
+                    <a href="" class="quick-action-btn container-col">
+                        <div class="icon-container">
+                            <p class="dark-text small-text"><span class="sr-only">Edit Icon</span><i class="fa-solid fa-crown"></i></p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+{% endblock %}
+
+{% block postloadjs %}
+{{ block.super }}
+
+<script src="{% static 'js/user_admin.js' %}"></script>
+
+{% endblock %}
