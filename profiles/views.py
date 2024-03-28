@@ -3,13 +3,14 @@ from django.contrib.auth.decorators import login_required
 from .forms import EditProfileForm
 from .models import UserProfile, Category, Class, ProfileLink
 import unicodedata
+from django.contrib.auth.models import User
 
 
 def profile(request, username):
 
     user = request.user
 
-    if user.username == username:
+    if user.username == username or user.is_superuser:
         profile_editable = True
     else:
         profile_editable = False
@@ -39,13 +40,15 @@ def edit_profile(request, username):
 
     user = request.user
 
-    if user.username == username:
+    if user.username == username or user.is_superuser:
         profile_saveable = True
     else:
         profile_saveable = False
-        return redirect(reverse('profile', args=(user.username)))
+        return redirect(reverse('profile', args=(user.username,)))
     
-    user_profile = get_object_or_404(UserProfile, user=user)
+    selected_user = get_object_or_404(User, username=username)
+    
+    user_profile = get_object_or_404(UserProfile, user=selected_user)
     
     if request.method == 'POST':
         form = EditProfileForm(request.POST, instance=user_profile)
@@ -149,11 +152,11 @@ def edit_profile_picture(request, username):
 
     user = request.user
 
-    if user.username == username:
+    if user.username == username or user.is_superuser:
         profile_saveable = True
     else:
         profile_saveable = False
-        return redirect(reverse('profile', args=(user.username)))
+        return redirect(reverse('profile', args=(user.username,)))
     
     user_profile = get_object_or_404(UserProfile, user=user)
     
@@ -171,6 +174,7 @@ def edit_profile_picture(request, username):
 
     context = {
         'profile_saveable': profile_saveable,
+        'user_profile': user_profile,
     }
 
     return render(request, 'profiles/edit_profile_picture.html', context)

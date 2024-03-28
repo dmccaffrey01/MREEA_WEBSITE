@@ -1,8 +1,9 @@
 .profile-section {
   justify-content: flex-start;
   padding: 30px 0;
+  gap: 20px;
 }
-.profile-section .section-container {
+.profile-section .profile-section-container {
   background-color: #ececec;
   border-radius: 15px;
   padding: 16px;

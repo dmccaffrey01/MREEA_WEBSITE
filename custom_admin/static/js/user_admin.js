@@ -225,3 +225,25 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 });
+
+document.addEventListener("DOMContentLoaded", () => {
+    let itemContainers = document.querySelectorAll(".item-container");
+
+    itemContainers.forEach((item, i) => {
+        item.addEventListener("click", () => {
+            let actionContainer = item.querySelector(".quick-actions-container");
+
+            item.classList.toggle("selected")
+            actionContainer.classList.toggle("show");
+
+            itemContainers.forEach((otherItem, k) => {
+                if (otherItem.classList.contains("selected") && k != i) {
+                    let otherActionContainer = otherItem.querySelector(".quick-actions-container");
+
+                    otherItem.classList.remove("selected")
+                    otherActionContainer.classList.remove("show");
+                }
+            });
+        });
+    });
+});

@@ -80,6 +80,7 @@
 
         &.selected {
             margin-bottom: calc(1.2rem + 16px + 16px + 8px + 8px);
+            background-color: $gl-2;
         }
 
         &.hide {
@@ -149,42 +150,6 @@
             .fa-icon-left {
                 margin-right: 8px;
                 width: 18px;
-            }
-        }
-    }
-
-    .quick-actions-container {
-        width: 100%;
-        gap: 12px;
-        border-radius: $round-corner-1;
-        padding: 8px;
-        background-color: $gl-2;
-        position: absolute;
-        top: calc(100% + 12px);
-        left: 0;
-        display: none;
-
-        &.show {
-            display: flex;
-        }
-
-        .divider {
-            width: 2px;
-            height: 1.2rem;
-            background-color: $gd-2;
-        }
-
-        .quick-action-btn {
-            width: calc(1.2rem + 16px);
-            height: calc(1.2rem + 16px);
-            border-radius: 50%;
-            background-color: $gl-1;
-            cursor: pointer;
-
-            .icon-container {
-                width: 100%;
-                height: 100%;
-                padding: 4px;
             }
         }
     }

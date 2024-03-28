@@ -26,23 +26,29 @@
 
         <div class="sort-btns-container container-row justify-start">
             <div class="gap"></div>
-            <div class="first-name-container sort-btn container-row justify-start w-125" data-direction="default" data-sort="first-name">
+            <div class="first-name-container sort-btn container-row justify-start w-125 label-container" data-direction="default" data-sort="first-name">
                 <p class="dark-text small-text"><span class="fa-icon-left"><i class="fa-solid fa-sort"></i></span>First Name</p>
+                <p class="label">Sort First Name</p>
             </div>
-            <div class="last-name-container sort-btn container-row justify-start w-125" data-direction="default" data-sort="last-name">
+            <div class="last-name-container sort-btn container-row justify-start w-125 label-container" data-direction="default" data-sort="last-name">
                 <p class="dark-text small-text"><span class="fa-icon-left"><i class="fa-solid fa-sort"></i></span>Last Name</p>
+                <p class="label">Sort Last Name</p>
             </div>
-            <div class="email-container sort-btn container-row justify-start w-125" data-direction="default" data-sort="email">
+            <div class="email-container sort-btn container-row justify-start w-125 label-container" data-direction="default" data-sort="email">
                 <p class="dark-text small-text"><span class="fa-icon-left"><i class="fa-solid fa-sort"></i></span>Email</p>
+                <p class="label">Sort Email</p>
             </div>
-            <div class="purchase-date-container sort-btn container-row justify-start w-125" data-direction="desc" data-sort="purchase-date">
+            <div class="purchase-date-container sort-btn container-row justify-start w-125 label-container" data-direction="desc" data-sort="purchase-date">
                 <p class="dark-text small-text"><span class="fa-icon-left"><i class="fa-solid fa-sort-down red-text"></i></span>Purchased</p>
+                <p class="label">Sort Purchase Date</p>
             </div>
-            <div class="status-container status-sort-btn sort-btn container-row justify-start w-125" data-direction="default" data-sort="status" data-status-colors="{{ all_status_colors }}">
+            <div class="status-container status-sort-btn sort-btn container-row justify-start w-125 label-container" data-direction="default" data-sort="status" data-status-colors="{{ all_status_colors }}">
                 <p class="dark-text small-text"><span class="fa-icon-left"><i class="fa-solid fa-sort"></i></span>Status</p>
+                <p class="label">Sort Status</p>
             </div>
-            <div class="end-date-container sort-btn container-row justify-start w-125" data-direction="default" data-sort="end-date">
+            <div class="end-date-container sort-btn container-row justify-start w-125 label-container" data-direction="default" data-sort="end-date">
                 <p class="dark-text small-text"><span class="fa-icon-left"><i class="fa-solid fa-sort"></i></span>Ending</p>
+                <p class="label">Sort End Date</p>
             </div>
         </div>
 
@@ -115,21 +121,29 @@
                     {% endif %}
                 </div>
 
-                <div class="quick-actions-container container-row">
-                    <a href="{% url 'profile' item.user.username %}" class="quick-action-btn container-col">
+                <div class="quick-actions-container container-row absolute">
+                    <a href="{% url 'profile' item.user.username %}" target="_blank" class="quick-action-btn container-col label-container">
                         <p class="dark-text small-text"><span class="sr-only">View Icon</span><i class="fa-solid fa-eye"></i></p>
+                        <p class="label">View Profile</p>
                     </a>
     
-                    <a href="{% url 'edit_profile' item.user.username %}" class="quick-action-btn container-col">
+                    <a href="{% url 'edit_profile' item.user.username %}" target="_blank" class="quick-action-btn container-col label-container">
                         <p class="dark-text small-text"><span class="sr-only">Edit Icon</span><i class="fa-solid fa-pen"></i></p>
+                        <p class="label">Edit Profile</p>
+                    </a>
+
+                    <a href="{% url 'edit_profile_picture' item.user.username %}" class="quick-action-btn container-col label-container">
+                        <p class="dark-text small-text"><span class="sr-only">Profile Picture Icon</span><i class="fa-solid fa-user-pen"></i></p>
+                        <p class="label">Edit Profile Picture</p>
                     </a>
     
                     <div class="divider"></div>
     
-                    <a href="" class="quick-action-btn container-col">
+                    <a href="" target="_blank" class="quick-action-btn container-col label-container">
                         <div class="icon-container">
                             <p class="dark-text small-text"><span class="sr-only">Edit Icon</span><i class="fa-solid fa-crown"></i></p>
                         </div>
+                        <p class="label">Edit Membership</p>
                     </a>
                 </div>
             </div>

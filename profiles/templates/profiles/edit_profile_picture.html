@@ -53,14 +53,25 @@
                     <div class="display-circle"></div>
                 </div>
                 <div class="btns-container container-row">
-                    <div class="preview-btn btn btn-2">
-                        <span class="fa-icon-left"><i class="fa-solid fa-eye"></i></span>Preview
-                    </div>
-                    <label for="profile_picture" class="sr-only">Profile Picture</label>
+                    <div class="quick-actions-container container-row show">
+                        <div class="quick-action-btn preview-btn container-col label-container">
+                            <p class="dark-text small-text"><span class="sr-only">Preview Icon</span><i class="fa-solid fa-eye"></i></p>
+                            <p class="label">Preview Profile Picture</p>
+                        </div>
+
+                        <button type="submit" class="quick-action-btn save-btn container-col label-container">
+                            <p class="dark-text small-text"><span class="sr-only">Save Icon</span><i class="fa-solid fa-cloud-arrow-down"></i></p>
+                            <p class="label">Save Profile Picture</p>
+                        </button>
+
+                        <label for="profile_picture" class="sr-only">Profile Picture</label>
                     <input type="file" name="profile_picture" accept="image/*" id="profile_picture" class="profile_picture" hidden>
-                    <button type="submit" class="save-btn btn btn-2">
-                        <span class="fa-icon-left"><i class="fa-solid fa-cloud-arrow-down"></i></span>Save
-                    </button>
+            
+                        <a href="{% url 'profile' user_profile.user.username %}" class="quick-action-btn container-col label-container">
+                            <p class="dark-text small-text"><span class="sr-only">Cancel Icon</span><i class="fa-solid fa-xmark"></i></p>
+                            <p class="label">Cancel Edit</p>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>

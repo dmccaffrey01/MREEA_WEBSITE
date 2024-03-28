@@ -67,6 +67,7 @@
 }
 .user-admin-section .item-container.selected {
   margin-bottom: calc(1.2rem + 16px + 16px + 8px + 8px);
+  background-color: #ececec;
 }
 .user-admin-section .item-container.hide {
   display: none;
@@ -123,37 +124,6 @@
 .user-admin-section .sort-btns-container .sort-btn .fa-icon-left {
   margin-right: 8px;
   width: 18px;
-}
-.user-admin-section .quick-actions-container {
-  width: 100%;
-  gap: 12px;
-  border-radius: 5px;
-  padding: 8px;
-  background-color: #ececec;
-  position: absolute;
-  top: calc(100% + 12px);
-  left: 0;
-  display: none;
-}
-.user-admin-section .quick-actions-container.show {
-  display: flex;
-}
-.user-admin-section .quick-actions-container .divider {
-  width: 2px;
-  height: 1.2rem;
-  background-color: #494949;
-}
-.user-admin-section .quick-actions-container .quick-action-btn {
-  width: calc(1.2rem + 16px);
-  height: calc(1.2rem + 16px);
-  border-radius: 50%;
-  background-color: #f7f7f7;
-  cursor: pointer;
-}
-.user-admin-section .quick-actions-container .quick-action-btn .icon-container {
-  width: 100%;
-  height: 100%;
-  padding: 4px;
 }
 
 /*# sourceMappingURL=user_admin.css.map */

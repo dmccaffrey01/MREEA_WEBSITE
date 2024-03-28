@@ -11,8 +11,22 @@
 {% block content %}
 
 <section class="profile-section section">
-    <div class="section-container container-col align-start justify-start">
-        
+
+    <div class="profile-section-container section-container container-col align-start justify-start">
+        {% if profile_editable %}
+        <div class="quick-actions-container container-row justify-start show">
+            <p class="dark-text subheading">Edit:</p>
+            <a href="{% url 'edit_profile' user_profile.user.username %}" class="quick-action-btn container-col label-container">
+                <p class="dark-text small-text"><span class="sr-only">Edit Icon</span><i class="fa-solid fa-pen"></i></p>
+                <p class="label">Edit Profile</p>
+            </a>
+
+            <a href="{% url 'edit_profile_picture' user_profile.user.username %}" class="quick-action-btn container-col label-container">
+                <p class="dark-text small-text"><span class="sr-only">Profile Picture Icon</span><i class="fa-solid fa-user-pen"></i></p>
+                <p class="label">Edit Profile Picture</p>
+            </a>
+        </div>
+        {% endif %}
         <div class="grid-group-container container-row">
             <div class="personal-container grid-container w-100 container-row justify-start">
                 <div class="profile-img-container img-container">
@@ -21,10 +35,12 @@
                     {% else %}
                     <img src="{{ MEDIA_URL }}default-profile-picture.webp" alt="Default Profile Picture" class="img-100a">
                     {% endif %}
+                    {% if profile_editable %}
                     <div class="edit-profile-picture-overlay container-col"></div>
                     <a href="{% url 'edit_profile_picture' user.username %}" class="edit-profile-picture-icon container-col">
                         <i class="fa-solid fa-pen-to-square"></i>
                     </a>
+                    {% endif %}
                 </div>
                 <div class="personal-info-container container-row align-start">
                     <div class="name-title-container container-col profile-small-container align-start">
@@ -104,11 +120,6 @@
                 </div>
             </div>
         </div>
-        {% if profile_editable %}
-        <a href="{% url 'edit_profile' user.username %}" class="edit-btn btn btn-2 small-btn">
-            <span class="fa-icon-left"><i class="fa-solid fa-pen-to-square"></i></span> Edit
-        </a>
-        {% endif %}
     </div>
 </section>
 

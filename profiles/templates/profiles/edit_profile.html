@@ -12,6 +12,20 @@
 
 <section class="profile-section section">
     <form class="section-container container-col align-start justify-start form" action="{% url 'edit_profile' user.username %}" method="POST">
+        {% if profile_saveable %}
+        <div class="quick-actions-container container-row justify-start show">
+            <p class="dark-text subheading">Save / Cancel:</p>
+            <button type="submit" class="quick-action-btn save-btn container-col label-container">
+                <p class="dark-text small-text"><span class="sr-only">Save Icon</span><i class="fa-solid fa-cloud-arrow-down"></i></p>
+                <p class="label">Save Profile</p>
+            </button>
+
+            <a href="{% url 'profile' user_profile.user.username %}" class="quick-action-btn container-col label-container">
+                <p class="dark-text small-text"><span class="sr-only">Cancel Icon</span><i class="fa-solid fa-xmark"></i></p>
+                <p class="label">Cancel Edit</p>
+            </a>
+        </div>
+        {% endif %}
         {% csrf_token %}
         <div class="grid-group-container container-row">
             <div class="personal-container grid-container {% if profile_editable %}w-75{% else %}w-100{% endif %} container-row justify-start">
@@ -21,10 +35,6 @@
                     {% else %}
                     <img src="{{ MEDIA_URL }}default-profile-picture.webp" alt="Default Profile Picture" class="img-100a">
                     {% endif %}
-                    <div class="edit-profile-picture-overlay container-col"></div>
-                    <a href="{% url 'edit_profile_picture' user.username %}" class="edit-profile-picture-icon container-col">
-                        <i class="fa-solid fa-pen-to-square"></i>
-                    </a>
                 </div>
                 <div class="personal-info-container container-row align-start justify-start">
                     <div class="name-title-container container-col profile-small-container align-start">
@@ -132,11 +142,6 @@
                 </div>
             </div>
         </div>
-        {% if profile_saveable %}
-        <button type="submit" class="save-btn btn btn-2 small-btn">
-            <span class="fa-icon-left"><i class="fa-regular fa-floppy-disk"></i></span> Save
-        </button>
-        {% endif %}
     </form>
 </section>
 
