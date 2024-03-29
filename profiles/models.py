@@ -88,12 +88,6 @@ class UserProfile(models.Model):
         if not self.last_name and self.user.last_name:
             self.last_name = self.user.last_name
 
-        if not self.pk:
-            class_field = Class.objects.get(name="none")
-            category_field = Category.objects.get(name="none")
-
-            self.class_field = class_field
-            self.category_field = category_field
         super().save(*args, **kwargs)
 
 

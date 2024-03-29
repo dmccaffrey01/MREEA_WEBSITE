@@ -1,0 +1,43 @@
+.announcements-section {
+  min-height: calc(100vh - 100px);
+  justify-content: flex-start;
+  padding: 60px 0;
+  background-color: #ececec;
+}
+.announcements-section .section-container {
+  gap: 20px;
+}
+.announcements-section .announcements-container {
+  width: 100%;
+  border-radius: 15px;
+  background-color: #f7f7f7;
+  padding: 20px;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: flex-start;
+}
+.announcements-section .announcement-container {
+  width: calc(50% - 10px);
+  padding: 16px;
+  border-radius: 5px;
+  background-color: #ececec;
+}
+.announcements-section .announcement-container.w-100 {
+  width: 100%;
+}
+.announcements-section .announcement-container .icon-container {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+.announcements-section .announcement-container .icon-name-container {
+  gap: 12px;
+}
+.announcements-section .announcement-container .icon-name-container .icon-container {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  padding: 10px;
+  background-color: #f7f7f7;
+}
+
+/*# sourceMappingURL=announcements.css.map */

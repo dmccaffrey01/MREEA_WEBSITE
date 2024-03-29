@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block extra_title %}- Announcements{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/announements.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<section class="announcements-section section">
+    <div class="section-container container-col align-start">
+        <h2 class="heading dark-text">Announcements</h2>
+
+        <div class="announcements-container container-row">
+            <a href="https://www.facebook.com/groups/715064345509383" class="announcement-container container-row space-between">
+                <div class="icon-name-container container-row">
+                    <div class="icon-container">
+                        <img src="{{ MEDIA_URL }}facebook-icon.png" alt="Facebook icon" class="img-100a">
+                    </div>
+                    <div class="dark-text">Facebook Group</div>
+                </div>
+                <div class="icon-container open-menu-btn">
+                    <img src="{{ MEDIA_URL }}external-open-icon.png" alt="External Open Icon" class="img-100a">
+                </div>
+            </a>
+            {% for a in announcements %}
+            <a href="{% url 'announcement_detail' a.name %}" class="announcement-container container-row space-between {% if f.name == 'all_resources' %}w-100{% endif %}">
+                <div class="icon-name-container container-row">
+                    <div class="icon-container">
+                        <img src="{{ f.icon.url }}" alt="{{ f.friendly_name }} icon" class="img-100a">
+                    </div>
+                    <div class="dark-text">{{ f.friendly_name }}</div>
+                </div>
+                <div class="icon-container open-menu-btn">
+                    <img src="{{ MEDIA_URL }}internal-open-icon.png" alt="Internal Open Icon" class="img-100a">
+                </div>
+            </a>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+{% endblock %}
+
+{% block postloadjs %}
+{{ block.super }}
+
+
+
+{% endblock %}

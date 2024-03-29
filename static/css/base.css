@@ -156,6 +156,9 @@ a .dark-text:visited, a .nav-link:visited {
 .form-container .select-container .select-item:hover {
   background-color: #ececec;
 }
+.form-container .select-container .select-item.single {
+  background-color: #ececec;
+}
 .form-container .select-container .select-item.default-select-item {
   background-color: #ececec;
 }
@@ -241,6 +244,13 @@ a .dark-text:visited, a .nav-link:visited {
 .btn:visited {
   color: #ffffff;
 }
+.btn.yellow-btn {
+  background-color: #ffe457;
+  color: #242424;
+}
+.btn.yellow-btn:visited {
+  color: #242424;
+}
 .btn.btn-2 {
   background-color: transparent;
   color: #c64f4a;
@@ -250,11 +260,12 @@ a .dark-text:visited, a .nav-link:visited {
 .btn.btn-2:visited {
   color: #c64f4a;
 }
-.btn.btn-2 .fa-icon-left {
-  color: #c64f4a;
+.btn.btn-2.yellow-btn {
+  outline: 3px solid #ffe457;
+  color: #ffe457;
 }
-.btn.btn-2 .fa-icon-right {
-  color: #c64f4a;
+.btn.btn-2.yellow-btn:visited {
+  color: #ffe457;
 }
 .btn.btn-neg {
   background-color: #c53d52;
@@ -356,11 +367,11 @@ a .dark-text:visited, a .nav-link:visited {
 }
 
 .color-info {
-  color: #fffb00;
+  color: #0026ff;
 }
 
 .color-warning {
-  color: #ff5100;
+  color: #ff3c00;
 }
 
 .color-danger {
@@ -464,6 +475,34 @@ h1.logo-text::before {
 }
 .nav-link:hover::after {
   width: 100%;
+}
+
+.side-nav {
+  position: fixed;
+  padding: 16px;
+  top: 50%;
+  left: 0;
+  translate: 0 -50%;
+  background-color: #ececec;
+  transition: all 0.3s ease;
+  z-index: 999;
+  border-radius: 0 5px 5px 0;
+}
+.side-nav .side-nav-container {
+  gap: 20px;
+}
+.side-nav .side-nav-btn {
+  gap: 8px;
+}
+.side-nav .side-nav-btn .icon-btn {
+  width: calc(1.4rem + 16px);
+  height: calc(1.4rem + 16px);
+  border-radius: 50%;
+  background-color: #f7f7f7;
+}
+.side-nav .btn-text {
+  left: 0;
+  translate: 0 0;
 }
 
 .account-btns-container {
@@ -687,7 +726,7 @@ h1.logo-text::before {
 footer {
   width: 100%;
   background-color: #f7f7f7;
-  padding: 80px 0 40px 0;
+  padding: 40px 0 20px 0;
 }
 footer .footer-container {
   width: calc(100% - 100px);

@@ -54,6 +54,7 @@ INSTALLED_APPS = [
     'resources',
     'notifications',
     'custom_admin',
+    'announcements',
     'storages',
 ]
 

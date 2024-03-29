@@ -26,7 +26,7 @@
         padding: 0 8px;
 
         .filter-btn {
-            width: calc((100% - (40px + 12px + (12px * 7))) / 6);
+            width: calc((100% - (40px + (12px * 7))) / 6);;
             background-color: $gl-2;
             border-radius: $round-corner-1;
             padding: 12px 0;
@@ -34,7 +34,7 @@
         }
 
         .search-input-group {
-            width: calc(100% - (40px + 12px + (12px * 2) + ((100% - (40px + 12px + (12px * 7))) / 6)));
+            width: calc(100% - (40px + 12px + (12px * 2) + ((100% - (40px + (12px * 7))) / 6)));
             position: relative;
 
             .search-icon {
@@ -99,17 +99,17 @@
                 width: calc((100% - (40px + 12px + (12px * 7))) / 6);
             }
 
+            padding-left: calc(8px + 18px + 8px);
+            padding-right: 8px;
+
             .dark-text {
                 width: 100%;
                 overflow: hidden;
                 white-space: nowrap;
                 text-overflow: ellipsis;
-                padding-left: calc(8px + 18px + 8px);
-                padding-right: 8px;
             }
 
             .null {
-                width: calc(100% - 24px);
                 height: 2px;
                 background-color: $gd-1;
             }
@@ -132,7 +132,7 @@
             cursor: pointer;
 
             &.w-125 {
-                width: calc((100% - (40px + 12px + (12px * 7))) / 6);
+                width: calc((100% - (40px + (12px * 7))) / 6);
             }
 
             .icon-container {

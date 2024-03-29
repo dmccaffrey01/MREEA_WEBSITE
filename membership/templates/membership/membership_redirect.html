@@ -35,7 +35,7 @@
 
                 <div class="packages-select-container select-container">
                     {% if single_membership_package %}
-                        <div class="single-package-select-item select-item selected" data-name="{{ single_membership_package.name }}" data-description="{{ single_membership_package.description }}" data-duration="{{ single_membership_package.duration }}" data-checkout_url="{{ single_membership_package.checkout_url }}">
+                        <div class="single-package-select-item select-item selected single" data-name="{{ single_membership_package.name }}" data-description="{{ single_membership_package.description }}" data-duration="{{ single_membership_package.duration }}" data-checkout_url="{{ single_membership_package.checkout_url }}">
                             <p class="dark-text">{{ single_membership_package.friendly_name }}</p>
                             <p class="dark-text">${{ single_membership_package.price }}</p>
                         </div>

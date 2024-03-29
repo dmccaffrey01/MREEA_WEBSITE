@@ -54,7 +54,7 @@
 
         <div class="items-container container-col">
             {% for item in all_users_profiles_and_memberships %}
-            <div class="item-container container-row justify-start" data-first-name="{{ item.profile.first_name }}" data-last-name="{{ item.profile.last_name }}" data-email="{{ item.user.email }}" data-status="{{ item.membership.status.friendly_name }}" data-end-date="{{ item.membership.end_date|date:'m/d/Y' }}" data-purchase-date="{{ item.membership.purchase_date|date:'m/d/Y' }}" data-color="{{ item.membership.status.color }}">
+            <div class="item-container container-row justify-start" data-username="{{ item.user.username }}" data-first-name="{{ item.profile.first_name }}" data-last-name="{{ item.profile.last_name }}" data-email="{{ item.user.email }}" data-status="{{ item.membership.status.friendly_name }}" data-end-date="{{ item.membership.end_date|date:'m/d/Y' }}" data-purchase-date="{{ item.membership.purchase_date|date:'m/d/Y' }}" data-color="{{ item.membership.status.color }}">
                 <div class="img-container">
                     {% if item.profile.image %}
                     <img src="{{ item.profile.image.url }}" alt="{{ item.profile.first_name }}'s Profile Picture" class="img-100a">
@@ -106,7 +106,7 @@
                             {% elif item.membership.status.color == 'danger' %}
                             <span class="fa-icon-left"><i class="fa-solid fa-circle-xmark"></i></span>
                             {% endif %}
-                            {{ item.membership.status.friendly_name }}
+                            <span class="status-text-name">{{ item.membership.status.friendly_name }}</span>
                         </p>
                     {% else %}
                         <div class="status-text dark-text small-text null"></div>
@@ -140,11 +140,23 @@
                     <div class="divider"></div>
     
                     <a href="" target="_blank" class="quick-action-btn container-col label-container">
-                        <div class="icon-container">
-                            <p class="dark-text small-text"><span class="sr-only">Edit Icon</span><i class="fa-solid fa-crown"></i></p>
-                        </div>
+                        <p class="dark-text small-text"><span class="sr-only">Edit Icon</span><i class="fa-solid fa-crown"></i></p>
                         <p class="label">Edit Membership</p>
                     </a>
+
+                    {% if item.membership.status.color == 'info' %}
+
+                    <div class="membership-btn quick-action-btn container-col label-container" data-approve="True">
+                        <p class="dark-text small-text"><span class="sr-only">Check Icon</span><i class="fa-solid fa-user-check"></i></p>
+                        <p class="label">Approve Membership Payment</p>
+                    </div>
+
+                    <div class="membership-btn quick-action-btn container-col label-container" data-approve="False">
+                        <p class="dark-text small-text"><span class="sr-only">Xmark Icon</span><i class="fa-solid fa-user-xmark"></i></p>
+                        <p class="label">Deny Membership Payment</p>
+                    </div>
+
+                    {% endif %}
                 </div>
             </div>
             

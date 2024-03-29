@@ -18,7 +18,7 @@
                 {% if user.is_authenicated %}
                 <a href="{% url 'membership_status'%}" class="btn small-btn">Renew<span class="fa-icon-right"><i class="fa-solid fa-right-to-bracket"></i></span></a>
                 {% else %}
-                <a href="{% url 'account_signup' %}" class="btn small-btn">Join Now<span class="fa-icon-right"><i class="fa-solid fa-right-to-bracket"></i></span></a>
+                <a href="{% url 'account_signup' %}" class="btn small-btn yellow-btn">Join Now<span class="fa-icon-right"><i class="fa-solid fa-right-to-bracket"></i></span></a>
                 {% endif %}
                 
             </div>
@@ -226,9 +226,9 @@
                 <h2 class="subheading dark-text">Ready to elevate you <br>real estate career?</h2>
                 <p class="dark-text">Join MREEA to redefine your real estate journey with community, mentorship, and a direct path to career success</p>
                 {% if user.is_authenicated %}
-                <a href="{% url 'membership_status'%}" class="btn small-btn">Renew<span class="fa-icon-right"><i class="fa-solid fa-right-to-bracket"></i></span></a>
+                <a href="{% url 'membership_status'%}" class="btn yellow-btn small-btn">Renew<span class="fa-icon-right"><i class="fa-solid fa-right-to-bracket"></i></span></a>
                 {% else %}
-                <a href="{% url 'account_signup' %}" class="btn small-btn">Join Now<span class="fa-icon-right"><i class="fa-solid fa-right-to-bracket"></i></span></a>
+                <a href="{% url 'account_signup' %}" class="btn yellow-btn small-btn">Join Now<span class="fa-icon-right"><i class="fa-solid fa-right-to-bracket"></i></span></a>
                 {% endif %}
             </div>
             <div class="img-container">

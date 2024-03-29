@@ -233,8 +233,8 @@ document.addEventListener("DOMContentLoaded", () => {
         item.addEventListener("click", () => {
             let actionContainer = item.querySelector(".quick-actions-container");
 
-            item.classList.toggle("selected")
-            actionContainer.classList.toggle("show");
+            item.classList.add("selected")
+            actionContainer.classList.add("show");
 
             itemContainers.forEach((otherItem, k) => {
                 if (otherItem.classList.contains("selected") && k != i) {
@@ -245,5 +245,95 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
             });
         });
+
+        let membershipBtns = item.querySelectorAll(".membership-btn");
+
+        if (membershipBtns.length > 0) {
+
+            membershipBtns.forEach((btn) => {
+                btn.addEventListener("click", async () => {
+                    let approve = btn.getAttribute("data-approve");
+
+                    let username = item.getAttribute("data-username");
+
+                    let url = `change_membership_status/${username}/${approve}/`;
+
+                    try {
+                        let response = await fetch(url);
+                        if (response.ok) {
+                            let data = await response.json(); // Parse response as JSON
+                            
+                            let name = data["membership_status"];
+                            let color = data["membership_status_color"];
+                            let endDate = data["membership_end_date"];
+
+                            let statusText = document.querySelector(".status-text");
+
+                            let icon = statusText.querySelector(".fa-solid");
+
+                            if (icon.classList.contains("fa-sort")) {
+                                icon.classList.remove("fa-sort")
+                            }
+                            if (icon.classList.contains("fa-circle-exclamation")) {
+                                icon.classList.remove("fa-circle-exclamation")
+                            }
+                            if (icon.classList.contains("fa-circle-check")) {
+                                icon.classList.remove("fa-circle-check")
+                            }
+                            if (icon.classList.contains("fa-circle-xmark")) {
+                                icon.classList.remove("fa-circle-xmark")
+                            }
+                            if (icon.classList.contains("fa-circle-question")) {
+                                icon.classList.remove("fa-circle-question")
+                            }
+
+                            if (color == "warning") {
+                                icon.classList.add("fa-circle-exclamation")
+                            }
+                            if (color == "success") {
+                                icon.classList.add("fa-circle-check")
+                            }
+                            if (color == "danger") {
+                                icon.classList.add("fa-circle-xmark")
+                            }
+                            if (color == "info") {
+                                icon.classList.add("fa-circle-question")
+                            }
+
+                            if (statusText.classList.contains("color-success")) {
+                                statusText.classList.remove("color-success")
+                            }
+                            if (statusText.classList.contains("color-warning")) {
+                                statusText.classList.remove("color-warning")
+                            }
+                            if (statusText.classList.contains("color-danger")) {
+                                statusText.classList.remove("color-danger")
+                            }
+                            if (statusText.classList.contains("color-info")) {
+                                statusText.classList.remove("color-info")
+                            }
+
+                            statusText.classList.add(`color-${color}`);
+
+                            let statusName = statusText.querySelector(".status-text-name");
+
+                            statusName.innerHTML = name;
+
+                            let endDateText = document.querySelector(".end-date-text");
+
+                            if (endDateText.classList.contains("null") && endDate) {
+                                endDateText.classList.remove("null");
+                            }
+
+                            if (endDate) {
+                                endDateText.innerHTML = endDate;
+                            }
+                        } 
+                    } catch (error) {
+                        
+                    }
+                });
+            });
+        }
     });
 });

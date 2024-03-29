@@ -37,16 +37,16 @@
                 {% if renewal_status %}
                 <div class="info-group container-row space-between">
                     <p class="dark-text info-left">Status:</p>
-                    <p class="active-text status-text dark-text info-right">{{ active_status }}</p>
+                    <p class="color-success status-text dark-text info-right">{{ active_status }}</p>
                 </div>
                 <div class="info-group container-row space-between">
                     <p class="dark-text info-left">Renewal Status:</p>
-                    <p class="{{ membership.status.name }}-text status-text dark-text info-right">{{ renewal_status }}</p>
+                    <p class="color-{{ membership.status.color }} status-text dark-text info-right">{{ renewal_status }}</p>
                 </div>
                 {% else %}
                 <div class="info-group container-row space-between">
                     <p class="dark-text info-left">Status:</p>
-                    <p class="{{ membership.status.name}}-text status-text dark-text info-right">{{ membership.status.friendly_name }}</p>
+                    <p class="color-{{ membership.status.color }} status-text dark-text info-right">{{ membership.status.friendly_name }}</p>
                 </div>
                 {% endif %}
                 <div class="info-group container-row space-between">

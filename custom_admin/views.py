@@ -3,6 +3,8 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from profiles.models import UserProfile
 from membership.models import Membership, MembershipStatus
+from django.http import JsonResponse
+from datetime import datetime
 
 
 @login_required
@@ -12,12 +14,13 @@ def admin(request):
 
     if not user.is_superuser:
         return redirect(reverse('home'))
-
+    
     context = {
 
     }
 
     return render(request, 'admin/admin.html', context)
+
 
 
 @login_required
@@ -67,3 +70,57 @@ def user_admin(request):
     }
 
     return render(request, 'admin/user_admin.html', context)
+
+@login_required
+def change_membership_status(request, username, is_active):
+
+    user = request.user
+
+    if not user.is_superuser:
+        return redirect(reverse('home'))
+    
+    try:
+        selected_user = User.objects.filter(username=username).first()
+
+        if not selected_user:
+            raise ValueError('Invalid User')
+        
+        membership = Membership.objects.filter(user=selected_user).first()
+
+        if not membership:
+            raise ValueError('Invalid Membership')
+        
+        current_membership_status = membership.status
+        
+        if is_active == 'True':
+            membership_status_name = 'active'
+        else:
+            if current_membership_status.name == 'active_renewal_pending':
+                membership_status_name = 'active_renewal_unsuccessful'
+            elif current_membership_status.name == 'pending':
+                membership_status_name = 'payment_unsuccessful'
+            else:
+                raise ValueError('Invalid Status')
+        
+        new_memebership_status = MembershipStatus.objects.filter(name=membership_status_name).first()
+
+        membership.status = new_memebership_status
+        membership.save()
+
+        if is_active == 'True':
+            end_date = membership.end_date.strftime("%m/%d/%Y")
+        else:
+            end_date = False
+
+        response = {
+            'success': True,
+            'membership_status': new_memebership_status.friendly_name,
+            'membership_status_color': new_memebership_status.color,
+            'membership_end_date': end_date,
+        }
+
+        return JsonResponse(response, status=200)
+    
+    except ValueError as e:
+        return JsonResponse({'success': False, 'error': e}, status=400)
+    

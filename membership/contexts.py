@@ -14,6 +14,9 @@ def membership_context(request):
     else:
         membership = None
 
+    if user.is_superuser:
+        is_membership_valid = True
+
     context = {
         'membership': membership,
         'is_membership_valid': is_membership_valid,

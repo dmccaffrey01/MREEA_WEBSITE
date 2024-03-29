@@ -13,21 +13,6 @@
         width: 100%;
     }
 
-    .active-text {
-        color: $success;
-    }
-
-    .expired-text,
-    .not_valid-text,
-    .active_renewal_unsuccessful-text,
-    .payment_unsuccessful-text {
-        color: $error;
-    }
-
-    .pending-text, 
-    .active_renewal_pending-text {
-        color: $warning;
-    }
 }
 
 .form-container {

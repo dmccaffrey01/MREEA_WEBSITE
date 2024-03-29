@@ -194,6 +194,10 @@ a {
                 background-color: $gl-2;
             }
 
+            &.single {
+                background-color: $gl-2;
+            }
+
             &.default-select-item {
                 background-color: $gl-2;
                 
@@ -291,23 +295,34 @@ a {
         color: $white;
     }
 
+    &.yellow-btn {
+        background-color: $yellow-1;
+        color: $gd-1;
+
+        &:visited {
+            color: $gd-1;
+        }
+    }
+
     &.btn-2 {
         background-color: transparent;
         color: $red-1;
         outline: 3px solid $red-1;
         outline-offset: -3px;
-    
+
         &:visited {
             color: $red-1;
         }
 
-        .fa-icon-left {
-            color: $red-1;
-        }
+        &.yellow-btn {
+            outline: 3px solid $yellow-1;
+            color: $yellow-1;
 
-        .fa-icon-right {
-            color: $red-1;
+            &:visited {
+                color: $yellow-1;
+            }
         }
+    
     }
     
     &.btn-neg {
@@ -549,6 +564,39 @@ h1.logo-text {
         &::after {
             width: 100%;
         }   
+    }
+}
+
+.side-nav {
+    position: fixed;
+    padding: 16px;
+    top: 50%;
+    left: 0;
+    translate: 0 -50%;
+    background-color: $gl-2;
+    transition: all 0.3s ease;
+    z-index: 999;
+    border-radius: 0 $round-corner-1 $round-corner-1 0;
+
+    .side-nav-container {
+        gap: 20px;
+    }
+
+    .side-nav-btn {
+        gap: 8px;
+
+        .icon-btn {
+            width: calc(1.4rem + 16px);
+            height: calc(1.4rem + 16px);
+            border-radius: 50%;
+            background-color: $gl-1;
+        }
+
+    }
+
+    .btn-text {
+        left: 0;
+        translate: 0 0;
     }
 }
 
@@ -819,7 +867,7 @@ h1.logo-text {
 footer {
     width: 100%;
     background-color: $gl-1;
-    padding: 80px 0 40px 0;
+    padding: 40px 0 20px 0;
  
     .footer-container {
         width: calc(100% - 100px);
