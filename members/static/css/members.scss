@@ -18,7 +18,8 @@
     .img-100a {
         position: absolute;
         left: 0;
-        bottom: 0;
+        top: 50%;
+        translate: 0 -50%;
     }
 
     .text-container {
