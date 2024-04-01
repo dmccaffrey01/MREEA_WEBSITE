@@ -13,7 +13,7 @@
 .member-search-section .img-100a {
   position: absolute;
   left: 0;
-  top: 0;
+  bottom: 0;
 }
 .member-search-section .text-container {
   position: absolute;

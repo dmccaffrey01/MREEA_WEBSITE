@@ -31,8 +31,6 @@ def user_admin(request):
     if not user.is_superuser:
         return redirect(reverse('home'))
     
-    update_classes()
-    
     all_users = User.objects.all()
 
     all_users_profiles_and_memberships = []
@@ -74,15 +72,15 @@ def user_admin(request):
     return render(request, 'admin/user_admin.html', context)
 
 
-def update_classes():
-    user_profiles = UserProfile.objects.all()
-    all_classes = list(Class.objects.all())  # Convert QuerySet to list to use random.sample
+# def update_classes():
+#     user_profiles = UserProfile.objects.all()
+#     all_classes = list(Class.objects.all())  # Convert QuerySet to list to use random.sample
 
-    for profile in user_profiles:
-        num_classes = random.randint(1, len(all_classes))  # Randomly select a number of classes
-        random_classes = random.sample(all_classes, num_classes)  # Randomly select classes from all_classes
-        profile.classes.set(random_classes)  # Assign the random classes to the profile's classes field
-        profile.save()
+#     for profile in user_profiles:
+#         num_classes = random.randint(1, len(all_classes))  # Randomly select a number of classes
+#         random_classes = random.sample(all_classes, num_classes)  # Randomly select classes from all_classes
+#         profile.classes.set(random_classes)  # Assign the random classes to the profile's classes field
+#         profile.save()
 
 @login_required
 def change_membership_status(request, username, is_active):
