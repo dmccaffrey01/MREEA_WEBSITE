@@ -392,13 +392,17 @@ a {
     }
 
     .quick-action-btn {
-        width: calc(1.2rem + 16px);
-        height: calc(1.2rem + 16px);
+        width: calc(1.4rem + 24px);
+        height: calc(1.4rem + 24px);
         border-radius: 50%;
         background-color: $gl-1;
         cursor: pointer;
         border: none;
         outline: none;
+
+        .dark-text {
+            font-size: 1.4rem;
+        }
 
         .icon-container {
             width: 100%;
@@ -586,8 +590,8 @@ h1.logo-text {
         gap: 8px;
 
         .icon-btn {
-            width: calc(1.4rem + 16px);
-            height: calc(1.4rem + 16px);
+            width: calc(1.4rem + 24px);
+            height: calc(1.4rem + 24px);
             border-radius: 50%;
             background-color: $gl-1;
         }
@@ -749,26 +753,6 @@ h1.logo-text {
                 position: relative;
                 width: 40px;
                 height: 40px;
-
-                .label {
-                    position: absolute;
-                    top: calc(100% + 4px);
-                    left: 50%;
-                    translate: -50% 0;
-                    border-radius: $round-corner-1;
-                    background-color: $gl-1;
-                    padding: 4px 8px;
-                    display: none;
-                    width: 90px;
-                    text-align: center;
-                    font-size: 0.9rem;
-                }
-
-                &:hover {
-                    .label {
-                        display: flex;
-                    }
-                }
             }
 
             .mark-all-btn {

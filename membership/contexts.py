@@ -8,7 +8,7 @@ def membership_context(request):
         # Retrieve the user's membership model if it exists
         try:
             membership = Membership.objects.get(user=user)
-            is_membership_valid = membership.is_valid
+            is_membership_valid = membership.status.valid
         except Membership.DoesNotExist:
             membership = None
     else:

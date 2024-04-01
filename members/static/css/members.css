@@ -1,8 +1,13 @@
 .member-search-section {
-  height: calc(100vh - 100px);
+  padding: 20px 0;
+  min-height: calc(100vh - 100px);
+  justify-content: flex-start;
+}
+.member-search-section.search-results {
+  min-height: fit-content;
 }
 .member-search-section .section-container {
-  height: calc(100vh - 160px);
+  height: calc(100vh - 240px);
   border-radius: 25px;
 }
 .member-search-section .img-100a {
@@ -149,7 +154,7 @@
 }
 
 .search-results-section {
-  padding: 20px 0;
+  padding: 0px 0 20px 0;
 }
 .search-results-section .section-container {
   background-color: #ececec;

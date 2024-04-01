@@ -180,12 +180,6 @@
 .profile-section .bio-container .bio-text, .profile-section .bio-container .input-group, .profile-section .bio-container textarea {
   height: 100%;
 }
-.profile-section .save-btn {
-  position: absolute;
-  top: calc(100% + 16px);
-  left: 50%;
-  translate: -50% 0;
-}
 .profile-section .class-container .contact-btn {
   align-items: center;
   gap: 8px;

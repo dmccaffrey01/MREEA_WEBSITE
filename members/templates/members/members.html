@@ -8,7 +8,7 @@
 
 {% block content %}
 
-<section class="member-search-section section">
+<section class="member-search-section section {% if search_query %}search-results{% endif %}">
     <div class="section-container container-col img-container">
         <img src="{{ MEDIA_URL }}members-search-img.png" alt="Members shaking hands" class="img-100a">
 
@@ -76,7 +76,8 @@
 {% if search_query %}
 
 <section class="search-results-section section">
-    <div class="section-container container-col">
+    <div class="section-container container-col align-start">
+        <p class="dark-text">({{ num_of_profiles }}) members found for search query</p>
         {% for p in query_profiles %}
         <div class="overview-container container-row space-between">
             <div class="profile-container container-row justify-start">

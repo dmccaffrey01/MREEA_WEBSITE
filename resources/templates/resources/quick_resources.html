@@ -19,7 +19,11 @@
             <a href="{% url 'folder' f.name %}" class="folder-container container-row space-between {% if f.name == 'all_resources' %}w-100{% endif %}">
                 <div class="icon-name-container container-row">
                     <div class="icon-container">
+                        {% if f.icon %}
                         <img src="{{ f.icon.url }}" alt="{{ f.friendly_name }} icon" class="img-100a">
+                        {% else %}
+                        <img src="{{ MEDIA_URL }}basil_stack-solid_1.png" alt="{{ f.friendly_name }} icon" class="img-100a">
+                        {% endif %}
                     </div>
                     <div class="dark-text">{{ f.friendly_name }}</div>
                 </div>

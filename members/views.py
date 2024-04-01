@@ -39,9 +39,12 @@ def members(request):
             for class_obj in category_classes['classes']:
                 class_obj.selected = class_obj.name in classes
 
+        profiles = profiles.order_by('?')
+
         context = {
             'search_query': True,
             'query_profiles': profiles,
+            'num_of_profiles': len(profiles),
             'category_and_classes': category_and_classes,
             'first_name': first_name,
             'last_name': last_name,

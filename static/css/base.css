@@ -324,13 +324,16 @@ a .dark-text:visited, a .nav-link:visited {
   background-color: #494949;
 }
 .quick-actions-container .quick-action-btn {
-  width: calc(1.2rem + 16px);
-  height: calc(1.2rem + 16px);
+  width: calc(1.4rem + 24px);
+  height: calc(1.4rem + 24px);
   border-radius: 50%;
   background-color: #f7f7f7;
   cursor: pointer;
   border: none;
   outline: none;
+}
+.quick-actions-container .quick-action-btn .dark-text, .quick-actions-container .quick-action-btn .nav-link {
+  font-size: 1.4rem;
 }
 .quick-actions-container .quick-action-btn .icon-container {
   width: 100%;
@@ -495,8 +498,8 @@ h1.logo-text::before {
   gap: 8px;
 }
 .side-nav .side-nav-btn .icon-btn {
-  width: calc(1.4rem + 16px);
-  height: calc(1.4rem + 16px);
+  width: calc(1.4rem + 24px);
+  height: calc(1.4rem + 24px);
   border-radius: 50%;
   background-color: #f7f7f7;
 }
@@ -635,22 +638,6 @@ h1.logo-text::before {
   position: relative;
   width: 40px;
   height: 40px;
-}
-.profile-container .notification-menu-container .heading-container .mark-all-btn-container .label {
-  position: absolute;
-  top: calc(100% + 4px);
-  left: 50%;
-  translate: -50% 0;
-  border-radius: 5px;
-  background-color: #f7f7f7;
-  padding: 4px 8px;
-  display: none;
-  width: 90px;
-  text-align: center;
-  font-size: 0.9rem;
-}
-.profile-container .notification-menu-container .heading-container .mark-all-btn-container:hover .label {
-  display: flex;
 }
 .profile-container .notification-menu-container .heading-container .mark-all-btn {
   width: 100%;

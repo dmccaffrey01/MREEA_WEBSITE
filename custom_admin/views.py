@@ -1,10 +1,10 @@
 from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
-from profiles.models import UserProfile
-from membership.models import Membership, MembershipStatus
+from profiles.models import UserProfile, Class
+from membership.models import Membership, MembershipStatus, MembershipPackage
 from django.http import JsonResponse
-from datetime import datetime
+import random
 
 
 @login_required
@@ -31,6 +31,8 @@ def user_admin(request):
     if not user.is_superuser:
         return redirect(reverse('home'))
     
+    update_classes()
+    
     all_users = User.objects.all()
 
     all_users_profiles_and_memberships = []
@@ -47,11 +49,11 @@ def user_admin(request):
 
         all_users_profiles_and_memberships.append(item)
 
-    all_users_profiles_and_memberships = sorted(
-        all_users_profiles_and_memberships,
-        key=lambda x: getattr(x['membership'], 'purchase_date', None),
-        reverse=True
-    )
+    # all_users_profiles_and_memberships = sorted(
+    #     all_users_profiles_and_memberships,
+    #     key=lambda x: getattr(x['membership'], 'purchase_date', None),
+    #     reverse=True
+    # )
 
     all_status_colors = set()
 
@@ -70,6 +72,17 @@ def user_admin(request):
     }
 
     return render(request, 'admin/user_admin.html', context)
+
+
+def update_classes():
+    user_profiles = UserProfile.objects.all()
+    all_classes = list(Class.objects.all())  # Convert QuerySet to list to use random.sample
+
+    for profile in user_profiles:
+        num_classes = random.randint(1, len(all_classes))  # Randomly select a number of classes
+        random_classes = random.sample(all_classes, num_classes)  # Randomly select classes from all_classes
+        profile.classes.set(random_classes)  # Assign the random classes to the profile's classes field
+        profile.save()
 
 @login_required
 def change_membership_status(request, username, is_active):

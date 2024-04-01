@@ -28,6 +28,7 @@ def membership_redirect(request):
                     membership_status = MembershipStatus.objects.get(name="pending")
                 membership.package = membership_package
                 membership.status = membership_status
+                membership.make_pending()
                 membership.save()
 
             request.session['membership_redirect_success'] = True
@@ -36,7 +37,7 @@ def membership_redirect(request):
     else:
         form = MembershipPackageForm()
 
-    all_membership_packages = MembershipPackage.objects.all()
+    all_membership_packages = MembershipPackage.objects.all().exclude(name="admin_membership").exclude(name="hidden_admin_membership")
 
     if all_membership_packages.count() == 1:
         single_membership_package = all_membership_packages.first()
@@ -68,8 +69,8 @@ def membership_redirect(request):
 @login_required
 def membership_redirect_success(request):
 
-    # if not request.session.get('membership_redirect_success'):
-    #     return redirect(reverse('membership_status'))
+    if not request.session.get('membership_redirect_success'):
+        return redirect(reverse('membership_status'))
     
     user = request.user
 
@@ -93,7 +94,7 @@ def membership_redirect_success(request):
         'renewal_status': renewal_status,
     }
 
-    # del request.session['membership_redirect_success']
+    del request.session['membership_redirect_success']
 
     return render(request, 'membership/membership_status.html', context)
 
@@ -154,6 +155,7 @@ def membership_cancel(request):
                 # Update membership status to canceled
                 cancel_status = MembershipStatus.objects.get(name="canceled")
                 membership.status = cancel_status
+                membership.make_cancelled()
                 membership.save()
                 return redirect(reverse("membership_redirect"))
     

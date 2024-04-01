@@ -58,7 +58,7 @@
                         {% if user_profile.email %}
                         <div class="contact-btn container-row">
                             <p class="dark-text red-text container-col"><span class="sr-only">Email Icon</span><i class="fa-solid fa-envelope"></i></p>
-                            <p class="dark-text">{{ user_profile.email }} <span class="copy-btn cursor-btn red-text fa-icon-right" title="Copy Email" data-copy="{{ user_profile.email }}"><i class="fa-solid fa-clone"></i></span></p>
+                            <p class="dark-text">{{ user_profile.email }} <span class="copy-btn cursor-btn red-text fa-icon-right label-container" data-copy="{{ user_profile.email }}"><span class="label">Copy Email</span><i class="fa-solid fa-clone"></i></span></p>
                         </div>
                         {% else %}
                         <div class="contact-btn container-row">
@@ -69,7 +69,7 @@
                         {% if user_profile.phone_number %}
                         <div class="contact-btn container-row">
                             <p class="dark-text red-text container-col"><span class="sr-only">Phone_number Icon</span><i class="fa-solid fa-phone"></i></p>
-                            <p class="dark-text">{{ user_profile.phone_number }} <span class="copy-btn cursor-btn red-text fa-icon-right" title="Copy Number" data-copy="{{ user_profile.phone_number }}"><i class="fa-solid fa-clone"></i></span></p>
+                            <p class="dark-text">{{ user_profile.phone_number }} <span class="copy-btn cursor-btn red-text fa-icon-right label-container" data-copy="{{ user_profile.phone_number }}"><span class="label">Copy Number</span><i class="fa-solid fa-clone"></i></span></p>
                         </div>
                         {% else %}
                         <div class="contact-btn container-row">

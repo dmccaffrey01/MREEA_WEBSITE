@@ -73,7 +73,7 @@ class UserProfile(models.Model):
     first_name = models.CharField(max_length=254, blank=False, null=False)
     last_name = models.CharField(max_length=254, blank=False, null=False)
     title = models.CharField(max_length=254, blank=True, null=True)
-    bio = models.TextField(max_length=3000, blank=True, null=True)
+    bio = models.TextField(max_length=3000, blank=True, null=True, default="")
     email = models.EmailField(max_length=254, blank=True, null=True)
     phone_number = models.CharField(max_length=254, blank=True, null=True)
     links = models.ManyToManyField(ProfileLink, blank=True)

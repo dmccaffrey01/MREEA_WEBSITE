@@ -1,3 +1,6 @@
+.admin-section {
+  min-height: calc(100vh - 100px);
+}
 .admin-section .section-container {
   gap: 16px;
 }

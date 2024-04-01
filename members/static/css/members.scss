@@ -2,10 +2,16 @@
 @import '../../../static/css/mixins';
 
 .member-search-section {
-    height: calc(100vh - 100px);
+    padding: 20px 0;
+    min-height: calc(100vh - 100px);
+    justify-content: flex-start;
+
+    &.search-results {
+        min-height: fit-content;
+    }
 
     .section-container {
-        height: calc(100vh - 160px);
+        height: calc(100vh - 240px);
         border-radius: $round-corner-5;
     }
     
@@ -185,7 +191,7 @@
 }
 
 .search-results-section {
-    padding: 20px 0;
+    padding: 0px 0 20px 0;
 
     .section-container {
         background-color: $gl-2;

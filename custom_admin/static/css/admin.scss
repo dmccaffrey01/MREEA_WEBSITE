@@ -2,6 +2,7 @@
 @import '../../../static/css/mixins';
 
 .admin-section {
+    min-height: calc(100vh - 100px);
 
     .section-container {
         gap: 16px;
