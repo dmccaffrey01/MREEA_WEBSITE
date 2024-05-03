@@ -64,10 +64,18 @@ class Membership(models.Model):
         self.status_name = self.status.name
 
     def make_unsuccessful(self):
-        self.purchase_date = None
         self.status_name = self.status.name
 
     def make_cancelled(self):
         self.purchase_date = None
         self.end_date = None
         self.status_name = self.status.name
+
+    def is_valid(self):
+        if not self.status:
+            return False
+        
+        if self.status.valid:
+            return True
+        else:
+            return False

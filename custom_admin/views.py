@@ -89,7 +89,6 @@ def change_membership_status(request, username, is_active):
 
     if not user.is_superuser:
         return redirect(reverse('home'))
-    
     try:
         selected_user = User.objects.filter(username=username).first()
 
@@ -101,21 +100,18 @@ def change_membership_status(request, username, is_active):
         if not membership:
             raise ValueError('Invalid Membership')
         
-        current_membership_status = membership.status
-        
         if is_active == 'True':
-            membership_status_name = 'active'
+            membership_status = MembershipStatus.objects.filter(name='active').first()
+            membership.status = membership_status
+            membership.make_active()
         else:
-            if current_membership_status.name == 'active_renewal_pending':
-                membership_status_name = 'active_renewal_unsuccessful'
-            elif current_membership_status.name == 'pending':
-                membership_status_name = 'payment_unsuccessful'
+            if membership.status.name == 'pending':
+                membership_status = MembershipStatus.objects.filter(name='payment_unsuccessful').first()
             else:
-                raise ValueError('Invalid Status')
+                membership_status = MembershipStatus.objects.filter(name='active_renewal_unsuccessful').first()
+            membership.status = membership_status
+            membership.make_unsuccessful()
         
-        new_memebership_status = MembershipStatus.objects.filter(name=membership_status_name).first()
-
-        membership.status = new_memebership_status
         membership.save()
 
         if is_active == 'True':
@@ -125,8 +121,8 @@ def change_membership_status(request, username, is_active):
 
         response = {
             'success': True,
-            'membership_status': new_memebership_status.friendly_name,
-            'membership_status_color': new_memebership_status.color,
+            'membership_status': membership.status.friendly_name,
+            'membership_status_color': membership.status.color,
             'membership_end_date': end_date,
         }
 

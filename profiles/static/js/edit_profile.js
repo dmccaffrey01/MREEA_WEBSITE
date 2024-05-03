@@ -59,12 +59,12 @@ document.addEventListener("DOMContentLoaded", () => {
                             <p class="dark-text red-text container-col"><span class="sr-only">Link Icon</span><i class="fa-solid fa-link"></i></p>
                             <div class="input-group-container container-row justify-start">
                                 <div class="input-group container-col align-start">
-                                    <label for="id_pl_link_${numProfileLinks + 1}" class="input-label dark-text">Link ${numProfileLinks + 1}</label>
-                                    <input type="text" name="id_pl_link_${numProfileLinks + 1}" id="id_pl_link_${numProfileLinks + 1}" class="link-input" required>
-                                </div>
-                                <div class="input-group container-col align-start">
                                     <label for="id_pl_friendly_name_${numProfileLinks + 1}" class="input-label dark-text">Link Name ${numProfileLinks + 1}</label>
                                     <input type="text" name="id_pl_friendly_name_${numProfileLinks + 1}" id="id_pl_friendly_name_${numProfileLinks + 1}" required>
+                                </div>
+                                <div class="input-group container-col align-start">
+                                    <label for="id_pl_link_${numProfileLinks + 1}" class="input-label dark-text">Link URL ${numProfileLinks + 1}</label>
+                                    <input type="text" name="id_pl_link_${numProfileLinks + 1}" id="id_pl_link_${numProfileLinks + 1}" class="link-input" required>
                                 </div>
                                 <div class="sr-only input-group container-col align-start">
                                     <label for="id_pl_name_${numProfileLinks + 1}" class="input-label dark-text">Link Name</label>

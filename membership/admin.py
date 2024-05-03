@@ -41,7 +41,7 @@ class MembershipUpdateStatusAdmin(admin.ModelAdmin):
 
 class MembershipAdmin(admin.ModelAdmin):
     fields = ('user', 'package', 'status', 'purchase_date', 'start_date', 'end_date',)
-    list_display = ('get_user_first_name', 'get_user_last_name', 'get_user_email', 'purchase_date', 'end_date', 'get_status_friendly_name',)
+    list_display = ('get_user_first_name', 'get_user_last_name', 'get_user_email', 'purchase_date', 'end_date',)
     search_fields = ['user__first_name', 'user__last_name', 'user__email',]
 
     def get_user_first_name(self, obj):
@@ -55,10 +55,6 @@ class MembershipAdmin(admin.ModelAdmin):
     def get_user_email(self, obj):
         return obj.user.email
     get_user_email.short_description = 'Email'
-
-    def get_status_friendly_name(self, obj):
-        return obj.status.friendly_name
-    get_status_friendly_name.short_description = 'Status'
 
 admin.site.register(Membership, MembershipAdmin)
 admin.site.register(MembershipPackage, MembershipPackageAdmin)

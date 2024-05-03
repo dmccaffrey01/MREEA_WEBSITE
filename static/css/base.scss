@@ -221,6 +221,11 @@ a {
 
 .icon-container {
     @extend .img-container;
+
+    svg {
+        width: 100%;
+        height: 100%;
+    }
 }
 
 .img-100a {
@@ -231,6 +236,10 @@ a {
 .dark-text {
     color: $gd-1;
     font-size: $font-size;
+
+    path {
+        fill: $gd-1;
+    }
 }
 
 .dark-text-2 {
@@ -245,6 +254,10 @@ a {
 
 .red-text {
     color: $red-1;
+
+    path {
+        fill: $red-1;
+    }
 }
 
 .yellow-text {
@@ -448,7 +461,8 @@ a {
     color: $warning;
 }
 
-.color-danger {
+.color-danger,
+.color-error {
     color: $error;
 }
 
@@ -730,7 +744,7 @@ h1.logo-text {
         top: calc(100% + 10px);
         right: 0;
         width: 300px;
-        padding: 12px;
+        padding: 8px;
         border-radius: $round-corner-2;
         background-color: $gl-1;
         gap: 12px;
@@ -743,7 +757,6 @@ h1.logo-text {
 
         .heading-container {
             width: 100%;
-            gap: 4px;
 
             .subheading {
                 font-size: 1.4rem;
@@ -767,85 +780,162 @@ h1.logo-text {
 
         .notification-display-container {
             width: 100%;
+            gap: 12px;
         }
 
         .type-headings-container {
             width: 100%;
 
             .type-heading-container {
-                width: 50%;
-                background-color: $gl-1;
+                width: calc(50% - 6px);
                 padding: 8px 0;
                 cursor: pointer;
                 transition: all 0.3s ease;
+                border-radius: $round-corner-1;
 
                 &.selected {
                     border-top: 2px solid $red-1;
-                    background: $gl-2;
-
-                }
-
-                &.left {
-                    border-radius: $round-corner-1 0 0 0;
-                }
-
-                &.right {
-                    border-radius: 0 $round-corner-1 0 0;
+                    background-color: $gl-2;
                 }
 
                 .icon-container {
-                    width: 1.2rem;
-                    height: 1.2rem;
+                    width: 1.4rem;
+                    height: 1.4rem;
                 }
             }
         }
 
-        .status-headings-container {
+        .notification-items-container {
             width: 100%;
-            background-color: $gl-2;
-            padding: 12px 12px;
 
-            .status-heading-btn {
-                outline-color: $gd-1;
-                color: $gd-1;
-                font-size: 1.2rem;
-                padding: 4px 4px;
-                width: calc(50% - 6px);
+            .items-display-container {
+                width: 100%;
+                display: none;
 
-                .fa-icon-left {
-                    margin-right: 4px;
+                &.selected {
+                    display: flex;
                 }
+            }
 
-                .img-100a {
-                    display: block;
-                }
+            .item-wrapper {
+                width: 100%;
 
-                .red {
+                &.hide {
                     display: none;
                 }
 
-                &.selected {
-                    outline-color: $red-1;
-                    color: $red-1;
+                .clear-notification-btn {
+                    width: 40px;
+                    height: 56px;
+                    border-radius: $round-corner-1;
+                    background-color: $red-1;
+                    cursor: pointer;
+                    display: none;
 
-                    .img-100a {
-                        display: none;
-                    }
-
-                    .red {
-                        display: block;
+                    &.show {
+                        display: flex;
                     }
                 }
 
-                .icon-container {
-                    width: 1.2rem;
-                    height: 1.2rem;
+                .confirm-clear-container {
+                    width: 40px;
+                    height: 56px;
+                    gap: 4px;
+                    display: none;
+
+                    &.show {
+                        display: flex;
+                    }
+
+                    .clear-container-btn {
+                        width: 100%;
+                        height: calc(50% - 2px);
+                        border-radius: $round-corner-1;
+                        cursor: pointer;
+                    }
+
+                    .confirm-clear-btn {
+                        background-color: $success;
+                    }
+
+                    .cancel-clear-btn {
+                        background-color: $error;
+                    }
+                }
+            }
+
+            .item-container {
+                border-radius: $round-corner-1;
+                padding: 8px;
+                background-color: $gl-1;
+                width: calc(100% - 48px);
+
+                &.clickable:hover {
+                    background-color: $gl-2;
+                    cursor: pointer;
+                    width: calc(100% - 48px);
+                }
+
+                .item-icon {
+                    width: 40px;
+                    height: 40px;
+                    border-radius: 50%;
+                    background-color: $gl-2;
+                    padding: 4px;
+                }
+
+                .item-heading {
+                    width: calc(100% - 48px);
+                    font-size: 1rem;
                 }
             }
         }
         
     }
 
+    .messages-container {
+        position: absolute;
+        top: calc(100% + 10px);
+        right: 0;
+        width: 300px;
+        padding: 12px;
+        border-radius: $round-corner-2;
+        background-color: $gl-1;
+        gap: 12px;
+        display: none;
+        opacity: 0;
+        z-index: 998;
+        transition: all 0.8s ease;
+
+        &.show {
+            display: flex;
+        }
+
+        &.fade {
+            opacity: 1;
+        }
+
+        .subheading {
+            font-size: 1.4rem;
+        }
+        
+        .messages-display-container {
+            width: 100%;
+            gap: 4px;
+        }
+
+        .message-container {
+            gap: 8px;
+            width: 100%;
+
+            .message-text {
+                width: calc(100% - (1.4rem + 8px));
+                white-space: wrap;
+                
+            }
+
+        }
+    }
 }
 
 footer {

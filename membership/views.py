@@ -3,12 +3,16 @@ from .models import Membership, MembershipPackage, MembershipStatus
 from .forms import MembershipPackageForm
 from django.utils import timezone
 from django.contrib.auth.decorators import login_required
+from notifications.views import handle_notification
+from django.contrib import messages
 
 
 @login_required
 def membership_redirect(request):
     user = request.user
     membership = Membership.objects.filter(user=user).first()
+
+    request.session['membership_redirect_success'] = False
 
     if request.method == "POST":
         form = MembershipPackageForm(request.POST)
@@ -19,19 +23,20 @@ def membership_redirect(request):
             membership_package = MembershipPackage.objects.get(name=package_name)
 
             if not membership:
-                membership_status = MembershipStatus.objects.get(name="pending")
-                membership = Membership.objects.create(user=user, status=membership_status, package=membership_package)
+                membership = Membership.objects.create(user=user)
+            if membership.is_valid():
+                membership_status = MembershipStatus.objects.get(name="active_renewal_pending")
             else:
-                if membership.is_valid:
-                    membership_status = MembershipStatus.objects.get(name="active_renewal_pending")
-                else:
-                    membership_status = MembershipStatus.objects.get(name="pending")
-                membership.package = membership_package
-                membership.status = membership_status
-                membership.make_pending()
-                membership.save()
+                membership_status = MembershipStatus.objects.get(name="pending")
+            membership.package = membership_package
+            membership.status = membership_status
+            membership.make_pending()
+            membership.save()
 
             request.session['membership_redirect_success'] = True
+
+            message = 'Successfully Selected Package!'
+            messages.success(request, message)
 
             return redirect(reverse('membership_redirect_success'))  # Redirect to success page
     else:
@@ -53,9 +58,14 @@ def membership_redirect(request):
             duration_left_in_days = 0
 
         if (membership.status.name == "active" and duration_left_in_days > 60) or (membership.status.name == "pending") or (membership.status.name == "active_renewal_pending"):
+            message = 'Redirected to Membership Status'
+            messages.info(request, message)
             return redirect(reverse('membership_status'))
     else:
         heading_text = "Account Setup!"
+
+    message = 'Select Membership Package'
+    messages.info(request, message)
 
     context = {
             'form': form,
@@ -70,6 +80,8 @@ def membership_redirect(request):
 def membership_redirect_success(request):
 
     if not request.session.get('membership_redirect_success'):
+        message = 'Redirected to Membership Status'
+        messages.info(request, message)
         return redirect(reverse('membership_status'))
     
     user = request.user
@@ -85,6 +97,17 @@ def membership_redirect_success(request):
         renewal_status = False
 
     checkout_url = membership.package.checkout_url
+
+    message = 'Successfully Applied for Membership!'
+    messages.success(request, message)
+
+    notification_data = {
+        'category': 'membership',
+        'notification_type': 'pending',
+        'notify_admins': True,
+    }
+
+    handle_notification(request, notification_data)
 
     context = {
         'membership': membership,
@@ -157,7 +180,13 @@ def membership_cancel(request):
                 membership.status = cancel_status
                 membership.make_cancelled()
                 membership.save()
+
+                message = 'Successfully Cancelled Membership!'
+                messages.success(request, message)
+
                 return redirect(reverse("membership_redirect"))
     
+    message = "Sorry, your action has failed."
+    messages.success(request, message)
     # If the request is not a POST or the cancel button wasn't clicked, redirect to membership status
     return redirect(reverse('membership_status'))

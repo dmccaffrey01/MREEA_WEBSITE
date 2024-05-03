@@ -35,6 +35,7 @@ urlpatterns = [
     path('admin/', include('custom_admin.urls')),
     path('membership/', include('membership.urls')),
     path('announcements/', include('announcements.urls')),
+    path('notifications/', include('notifications.urls')),
     path('accounts/signup/', SignupView.as_view(form_class=CustomSignupForm, success_url='/membership/redirect'), name='account_signup'),
     path('accounts/', include('allauth.urls')),
 ]

@@ -8,11 +8,11 @@ class Notification(models.Model):
     sku = models.CharField(max_length=254, unique=True, null=True, blank=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=False)
     heading = models.CharField(max_length=254, null=True, blank=True)
-    message = models.TextField()
+    message = models.TextField(max_length=3000)
     date = models.DateTimeField(auto_now_add=True)
-    read_status = models.BooleanField(default=False)
     cleared_status = models.BooleanField(default=False)
-    important_status = models.BooleanField(default=False)
+    category = models.CharField(max_length=254, null=True, blank=True)
+    url = models.URLField(null=True, blank=True)
 
     def __str__(self):
         return self.sku

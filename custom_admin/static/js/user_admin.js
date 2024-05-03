@@ -258,6 +258,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
                     let url = `change_membership_status/${username}/${approve}/`;
 
+                    let itemContainer = btn.closest(".item-container");
+
                     try {
                         let response = await fetch(url);
                         if (response.ok) {
@@ -267,7 +269,7 @@ document.addEventListener("DOMContentLoaded", () => {
                             let color = data["membership_status_color"];
                             let endDate = data["membership_end_date"];
 
-                            let statusText = document.querySelector(".status-text");
+                            let statusText = itemContainer.querySelector(".status-text");
 
                             let icon = statusText.querySelector(".fa-solid");
 
@@ -319,7 +321,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
                             statusName.innerHTML = name;
 
-                            let endDateText = document.querySelector(".end-date-text");
+                            let endDateText = itemContainer.querySelector(".end-date-text");
 
                             if (endDateText.classList.contains("null") && endDate) {
                                 endDateText.classList.remove("null");

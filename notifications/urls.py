@@ -3,6 +3,6 @@ from django.urls import path
 
 
 urlpatterns = [
-    path('mark_notificaiton_as_read/<str:sku>/', views.mark_notification_as_read, name='mark_notification_as_read'),
-    
+    path('clear_notification/<str:sku>/', views.clear_notification, name='clear_notification'),
+    path('get_messages/', views.get_messages, name='get_messages'),
 ]

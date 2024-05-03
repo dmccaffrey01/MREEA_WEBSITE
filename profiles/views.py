@@ -4,6 +4,7 @@ from .forms import EditProfileForm
 from .models import UserProfile, Category, Class, ProfileLink
 import unicodedata
 from django.contrib.auth.models import User
+from django.contrib import messages
 
 
 def profile(request, username):
@@ -31,6 +32,12 @@ def profile(request, username):
         'user_profile': user_profile,
         'category_and_classes': category_and_classes,
     }
+
+    if user.username == username:
+        message = 'Viewing Your Profile'
+    else:
+        message = f"Viewing {username}'s Profile"
+    messages.info(request, message)
 
     return render(request, 'profiles/profile.html', context)
 
@@ -102,6 +109,12 @@ def edit_profile(request, username):
             user_profile.phone_number = form_data['phone_number']
 
             user_profile.save()
+
+            if user.username == username:
+                message = 'Saved Your Profile'
+            else:
+                message = f"Saved {username}'s Profile"
+            messages.success(request, message)
             
             return redirect(reverse('profile', args=(user.username,)))
         
@@ -135,6 +148,12 @@ def edit_profile(request, username):
 
     normalized_text = unicodedata.normalize('NFC', user_profile.bio)
     bio_count = len(normalized_text)
+
+    if user.username == username:
+        message = 'Editing Your Profile'
+    else:
+        message = f"Editing {username}'s Profile"
+    messages.info(request, message)
 
     context = {
         'profile_saveable': profile_saveable,
@@ -171,6 +190,11 @@ def edit_profile_picture(request, username):
 
         return redirect(reverse('profile', args=(user.username,)))
             
+    if user.username == username:
+        message = 'Editing Your Profile Picture'
+    else:
+        message = f"Editing {username}'s Profile Picture"
+    messages.info(request, message)
 
     context = {
         'profile_saveable': profile_saveable,

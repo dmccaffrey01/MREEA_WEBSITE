@@ -68,7 +68,7 @@
                     <div class="side-nav-container container-col align-start">
                         <a href="{% url 'events' %}" class="side-nav-btn dark-text container-row">
                             <span class="icon-btn label-container container-col">
-                                <i class="fa-solid fa-calendar-days"></i>
+                                <i class="fa-solid fa-calendar-day"></i>
                                 <span class="btn-text label">Events</span>
                             </span>
                             
@@ -116,7 +116,7 @@
                             <img src="{{ MEDIA_URL }}notification-icon.png" alt="Notification Icon" class="img-100a">
                         </div>
                         <div class="notification-btn-icon profile-btn-icon container-col">
-                            <p class="notification-number white-text">{{ num_of_unread }}</p>
+                            <p class="notification-number white-text">{{ num_of_notifications }}</p>
                         </div>
                     </div>
 
@@ -125,50 +125,103 @@
                             <h3 class="dark-text subheading">Notifications</h3>
                             <div class="mark-all-btn-container container-col label-container">
                                 <div class="mark-all-btn icon-container">
-                                    <img src="{{ MEDIA_URL }}notification-check-icon.png" alt="Notification Icon" class="img-100a">
+                                    <svg class="dark-text" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21.003 15.578a7.056 7.056 0 0 0-.87-1.57a4.09 4.09 0 0 1-.89-1.88c0-2.89 0-3.87-1.58-5.76a5.79 5.79 0 0 0-1.9-1.47l-.73-.35a.32.32 0 0 1-.1-.1a.23.23 0 0 1-.05-.1a2.77 2.77 0 0 0-2.93-2.34a2.77 2.77 0 0 0-2.84 2.29a.31.31 0 0 1-.06.13a.41.41 0 0 1-.1.09l-.78.38a5.63 5.63 0 0 0-1.91 1.48c-1.57 1.88-1.57 2.86-1.57 5.75a3.84 3.84 0 0 1-.82 1.77a6.568 6.568 0 0 0-.88 1.62a2.79 2.79 0 0 0 .26 2.37a2.24 2.24 0 0 0 1.94.85h2.82c.043.268.117.53.22.78a4 4 0 0 0 .87 1.32c.375.378.825.675 1.32.87c.46.188.953.287 1.45.29h.08a3.92 3.92 0 0 0 1.55-.29a3.75 3.75 0 0 0 1.32-.87a3.8 3.8 0 0 0 .87-1.32c.101-.252.178-.513.23-.78h2.94a2.33 2.33 0 0 0 1-.23a2.4 2.4 0 0 0 .88-.76a2.26 2.26 0 0 0 .4-1.09a2.2 2.2 0 0 0-.14-1.08m-6.5-3.33h-5a.75.75 0 1 1 0-1.5h5a.75.75 0 0 1 0 1.5"></path></svg>
                                 </div>
-                                <p class="label dark-text small-text box-shadow">Mark All As Read</p>
+                                <p class="label dark-text small-text box-shadow">Clear All Notifications</p>
                             </div>
                         </div>
 
                         <div class="notification-display-container container-col align-start">
                             <div class="type-headings-container container-row space-between">
-                                <div class="type-heading-container label-container container-col left selected">
+                                <div class="type-heading-container label-container container-col selected">
                                     <div class="icon-container">
-                                        <img src="{{ MEDIA_URL }}important-icon.png" alt="Important Icon" class="img-100a">
+                                        <span class="sr-only">Notification Check Icon</span>
+                                        <svg class="red-text dark-text" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21.003 15.578a7.056 7.056 0 0 0-.87-1.57a4.09 4.09 0 0 1-.89-1.88c0-2.89 0-3.87-1.58-5.76a5.79 5.79 0 0 0-1.9-1.47l-.73-.35a.32.32 0 0 1-.1-.1a.23.23 0 0 1-.05-.1a2.77 2.77 0 0 0-2.93-2.34a2.77 2.77 0 0 0-2.84 2.29a.31.31 0 0 1-.07.14a.34.34 0 0 1-.09.08l-.78.38a5.63 5.63 0 0 0-1.91 1.48c-1.57 1.88-1.57 2.86-1.57 5.75a3.84 3.84 0 0 1-.82 1.77a6.568 6.568 0 0 0-.88 1.62a2.79 2.79 0 0 0 .26 2.37a2.24 2.24 0 0 0 1.94.85h2.82c.043.268.117.53.22.78c.198.497.498.947.88 1.32c.37.38.816.677 1.31.87c.46.188.953.287 1.45.29h.16a4 4 0 0 0 2.79-1.16a4 4 0 0 0 .87-1.31c.101-.255.178-.52.23-.79h2.94a2.372 2.372 0 0 0 1-.23a2.4 2.4 0 0 0 .88-.76c.226-.322.364-.698.4-1.09a2.2 2.2 0 0 0-.14-1.08m-6-5.28l-2.81 2.83c-.113.124-.253.22-.41.28a1.192 1.192 0 0 1-.49.1a1.26 1.26 0 0 1-.91-.38l-1.41-1.4a.75.75 0 0 1 0-1.06a.74.74 0 0 1 1.06 0l1.26 1.25l2.68-2.68a.75.75 0 1 1 1.06 1.06z"></path></svg>
                                     </div>
-                                    <p class="dark-text small-text label box-shadow">Important</p>
+                                    <p class="dark-text small-text label">New Notifications</p>
                                 </div>
-                                <div class="type-heading-container label-container container-col right">
+                                <div class="type-heading-container label-container container-col">
                                     <div class="icon-container">
-                                        <img src="{{ MEDIA_URL }}unimportant-icon.png" alt="Unimportant Icon" class="img-100a">
+                                        <span class="sr-only">Notification X Mark Icon</span>
+                                        <svg class="dark-text" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21.003 15.578a7.056 7.056 0 0 0-.87-1.57a4.09 4.09 0 0 1-.89-1.88c0-2.89 0-3.87-1.58-5.76a5.79 5.79 0 0 0-1.9-1.47l-.73-.35a.32.32 0 0 1-.1-.1a.23.23 0 0 1-.05-.1a2.77 2.77 0 0 0-2.93-2.34a2.77 2.77 0 0 0-2.84 2.29a.31.31 0 0 1-.07.14a.34.34 0 0 1-.09.08l-.78.38a5.63 5.63 0 0 0-1.91 1.48c-1.57 1.88-1.57 2.86-1.57 5.75a3.84 3.84 0 0 1-.82 1.77a6.569 6.569 0 0 0-.88 1.62a2.79 2.79 0 0 0 .26 2.37a2.24 2.24 0 0 0 1.94.85h2.82c.043.268.117.53.22.78c.198.497.498.947.88 1.32c.37.38.816.677 1.31.87c.46.188.953.287 1.45.29h.16a4 4 0 0 0 2.79-1.16a4 4 0 0 0 .87-1.31c.101-.255.178-.52.23-.79h2.94a2.372 2.372 0 0 0 1-.23a2.4 2.4 0 0 0 .88-.76a2.26 2.26 0 0 0 .4-1.09a2.2 2.2 0 0 0-.14-1.08m-6.72-3.1a.75.75 0 0 1-1.06 1.06l-1.23-1.22l-1.21 1.16a.75.75 0 0 1-1.06-1.06l1.21-1.21l-1.21-1.21a.77.77 0 0 1 0-1.07a.75.75 0 0 1 1.06 0l1.22 1.22l1.22-1.22a.74.74 0 0 1 1.06 0a.75.75 0 0 1 0 1.06l-1.22 1.22z"></path></svg>
                                     </div>
-                                    <p class="dark-text small-text label box-shadow">Unimportant</p>
+                                    <p class="dark-text small-text label">Cleared Notifications</p>
                                 </div>
                             </div>
 
-                            <div class="status-headings-container container-row space-between">
-                                <div class="status-heading-btn btn btn-2 container-row selected">
-                                    <span class="icon-container fa-icon-left">
-                                        <img src="{{ MEDIA_URL }}notification-all-red-icon.png" alt="Notification All Red Icon" class="img-100a red">
-                                        <img src="{{ MEDIA_URL }}notification-all-icon.png" alt="Notification All Icon" class="img-100a">
-                                    </span>
-                                    All
+                            <div class="notification-items-container container-col selected left">
+                                <div class="new-notifications-container items-display-container container-col selected">
+                                    {% if num_of_notifications == 0 %}
+                                    <div class="item-wrapper container-row space-between">
+                                        <div class="item-container container-row space-between">
+                                            <p class="item-icon container-col">
+                                                <i class="fa-solid fa-circle-check"></i>
+                                                <span class="sr-only">Check Circle Icon</span>
+                                            </p>    
+                                            <p class="item-heading dark-text small-text">No New Notifications</p>
+                                        </div>
+                                    </div>
+                                    {% else %}
+                                    {% for n in notifications %}
+                                    <div class="item-wrapper container-row space-between">
+                                        <div class="item-container container-row space-between clickable">
+                                            <p class="item-icon container-col">
+                                                <i class="{{ n.icon_class }}"></i>
+                                                <span class="sr-only">Notification Icon</span>
+                                            </p>    
+                                            <p class="item-heading dark-text small-text">{{ n.heading }}</p>
+                                        </div>
+                                        <div class="clear-notification-btn container-col label-container">
+                                            <i class="fa-solid fa-xmark white-text small-text"></i>
+                                            <span class="sr-only">X Mark Icon</span>
+                                            <p class="label">Clear Notification</p>
+                                        </div>
+                                        <div class="confirm-clear-container container-col">
+                                            <div class="confirm-clear-btn clear-container-btn container-col label-container" data-sku="{{ n.sku }}">
+                                                <i class="fa-solid fa-check white-text small-text"></i>
+                                                <span class="sr-only">Check Icon</span>
+                                                <p class="label">Confirm Clear</p>
+                                            </div>
+                                            <div class="cancel-clear-btn clear-container-btn container-col label-container">
+                                                <i class="fa-solid fa-xmark white-text small-text"></i>
+                                                <span class="sr-only">X Mark Icon</span>
+                                                <p class="label">Cancel Clear</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {% endfor %}
+                                    {% endif %}
                                 </div>
-                                <div class="status-heading-btn btn btn-2 container-row">
-                                    <span class="icon-container fa-icon-left">
-                                        <img src="{{ MEDIA_URL }}notification-unread-red-icon.png" alt="Notification Unread Red Icon" class="img-100a red">
-                                        <img src="{{ MEDIA_URL }}notification-unread-icon.png" alt="Notification Unread Icon" class="img-100a">
-                                    </span>
-                                    Unread
+                                <div class="cleared-notifications-container items-display-container container-col">
+                                    {% if num_of_cleared_notifications == 0 %}
+                                    <div class="item-wrapper container-row space-between">
+                                        <div class="item-container container-row space-between">
+                                            <p class="item-icon container-col">
+                                                <i class="fa-solid fa-circle-check"></i>
+                                                <span class="sr-only">Check Circle Icon</span>
+                                            </p>    
+                                            <p class="item-heading dark-text small-text">No Cleared Notifications</p>
+                                        </div>
+                                    </div>
+                                    {% else %}
+                                    {% for n in cleared_notifications %}
+                                    <div class="item-wrapper container-row space-between">
+                                        <div class="item-container container-row space-between">
+                                            <p class="item-icon container-col">
+                                                <i class="{{ n.icon_class }}"></i>
+                                                <span class="sr-only">Notification Icon</span>
+                                            </p>    
+                                            <p class="item-heading dark-text small-text">{{ n.heading }}</p>
+                                        </div>
+                                    </div>
+                                    {% endfor %}
+                                    {% endif %}
                                 </div>
-                            </div>
-
-                            <div class="notification-items-container selected left">
-
                             </div>
                         </div>
                     </div>
+
+                    <div class="messages-container container-col align-start box-shadow"></div>
 
                     <div class="profile-btn-container container-row">
                         <div class="profile-img-container img-container">

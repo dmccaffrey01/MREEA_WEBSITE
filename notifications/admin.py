@@ -6,7 +6,6 @@ class NotificationAdmin(admin.ModelAdmin):
     list_display = (
         'first_name',
         'last_name',
-        'status',
         'date', 
     )
 
@@ -17,15 +16,9 @@ class NotificationAdmin(admin.ModelAdmin):
     def last_name(self, obj):
         return obj.user.last_name
     
-    def status(self, obj):
-        return obj.read_status
-
-
     # Set the column name in the admin interface
     first_name.short_description = 'First Name'
     last_name.short_description = 'Last Name'
-    status.short_description = 'Last Name'
-
 
 
 admin.site.register(Notification, NotificationAdmin)
