@@ -36,27 +36,27 @@ let displayMessages = async () => {
             messagesContainer.classList.remove("fade");
             window.setTimeout(() => {
                 messagesContainer.classList.remove("show");
-            }, 800);
-        }, 4800);
+            }, 600);
+        }, 4400);
     }
 }
 
-let updateNewNotifications = () => {
-    let newNotificationsContainer = document.querySelector(".new-notifications-container");
+let updateoriginalContainer = (originalContainer, originalContainerName) => {
 
-    let items = newNotificationsContainer.querySelectorAll(".item-wrapper");
+    let items = originalContainer.querySelectorAll(".item-wrapper");
 
     let amountOfItems = items.length
 
     if (!amountOfItems > 0) {
-        newNotificationsContainer.innerHTML = `
-        <div class="item-wrapper container-row space-between">
+        originalContainer.innerHTML = `
+        <div class="no-item-wrapper item-wrapper container-row space-between">
             <div class="item-container container-row space-between">
                 <p class="item-icon container-col">
                     <i class="fa-solid fa-circle-check"></i>
                     <span class="sr-only">Check Circle Icon</span>
                 </p>    
-                <p class="item-heading dark-text small-text">No New Notifications</p>
+                <p class="item-heading dark-text small-text">No ${originalContainerName.charAt(0).toUpperCase() + originalContainerName.slice(1)} Notifications</p>
+                <div class="item-gap"></div>
             </div>
         </div>
         `;
@@ -64,6 +64,27 @@ let updateNewNotifications = () => {
 
     let notificationNumber = document.querySelector('.notification-number');
     notificationNumber.innerHTML = amountOfItems;
+}
+
+let moveNotification = (item, originalContainerName, targetContainerName) => {
+    console.log(originalContainerName, targetContainerName);
+    let originalContainer = document.querySelector(`.${originalContainerName}-notifications-container`);
+    let targetContainer = document.querySelector(`.${targetContainerName}-notifications-container`);
+
+    console.log(originalContainer, targetContainer)
+   
+    let targetContainerNoItemWrapper = targetContainer.querySelector(".no-item-wrapper");
+
+    if (targetContainerName) {
+        targetContainer.insertBefore(item, targetContainerNoItemWrapper);
+        updateoriginalContainer(originalContainer, originalContainerName);
+    } else {
+        item.remove()
+    }
+
+    if (targetContainerNoItemWrapper) {
+        targetContainerNoItemWrapper.remove()
+    }
 }
 
 let clearNotification = async (sku, item) => {        
@@ -77,11 +98,7 @@ let clearNotification = async (sku, item) => {
             let success = data["success"]
 
             if (success) {
-                // Remove the item from the DOM
-                item.remove();
-
-                // Check if there are no more items
-                updateNewNotifications();
+                moveNotification(item, "new", "cleared")
             }
         } 
     } catch (error) {
@@ -90,6 +107,58 @@ let clearNotification = async (sku, item) => {
 
     displayMessages();
 }
+
+let deleteNotification = async (sku, item) => {        
+    let url = `/notifications/delete_notification/${sku}`;
+
+    try {
+        let response = await fetch(url);
+        if (response.ok) {
+            let data = await response.json(); // Parse response as JSON
+            
+            let success = data["success"]
+
+            if (success) {
+                moveNotification(item, "cleared", "new")
+            }
+        } 
+    } catch (error) {
+        console.error('Error:', error);
+    }
+
+    displayMessages();
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    const actionMenuBtns = document.querySelectorAll(".action-menu-btn");
+    let actionClick = false;
+
+    actionMenuBtns.forEach(btn => {
+        let actionMenu = btn.querySelector(".action-menu-container");
+
+        btn.addEventListener("click", () => {
+            window.setTimeout(() => {
+                if (!actionClick) {
+                    actionMenu.classList.toggle("show");
+                }
+            }, 100);
+        });
+
+        let confirmActionBtns = document.querySelectorAll(".confirm-action-btn");
+
+        confirmActionBtns.forEach(aBtn => {
+            let confirmContainer = aBtn.querySelector(".confirm-action-container");
+
+            aBtn.addEventListener("click", () => {
+                actionClick = true;
+                confirmContainer.classList.toggle("show");
+                window.setTimeout(() => {
+                    actionClick = false;
+                }, 150);
+            });
+        });
+    });
+});
 
 document.addEventListener("DOMContentLoaded", () => {
     const profileContainer = document.querySelector(".profile-container");
@@ -146,36 +215,35 @@ document.addEventListener("DOMContentLoaded", () => {
         let itemWrappers = profileContainer.querySelectorAll(".item-wrapper");
 
         itemWrappers.forEach((item) => {
-            let clearBtn = item.querySelector(".clear-notification-btn");
-            let confirmClearContainer = item.querySelector(".confirm-clear-container");
+            let actionMenuBtn = item.querySelector(".notification-action-menu-btn");
+            let actionMenu = item.querySelector(".action-menu-container");
 
-            if (clearBtn) {
+            if (actionMenuBtn) {
                 item.addEventListener("mouseenter", () => {
-                    clearBtn.classList.add("show");
+                    actionMenuBtn.classList.add("show");
                 });
 
                 item.addEventListener("mouseleave", () => {
-                    clearBtn.classList.remove("show");
-                    confirmClearContainer.classList.remove("show");
+                    actionMenuBtn.classList.remove("show");
+                    actionMenu.classList.remove("show");
                 });
 
-                clearBtn.addEventListener("click", () => {
-                    clearBtn.classList.remove("show");
-                    confirmClearContainer.classList.add("show");
-
-                    let confirmBtn = confirmClearContainer.querySelector(".confirm-clear-btn");
-                    let cancelBtn = confirmClearContainer.querySelector(".cancel-clear-btn");
-                    confirmBtn.addEventListener("click", () => {
-                        let sku = confirmBtn.getAttribute("data-sku");
-                        console.log(sku);
+                let clearBtn = actionMenu.querySelector(".clear-notification-btn");
+                if (clearBtn) {
+                    clearBtn.addEventListener("click", () => {
+                        let sku = clearBtn.getAttribute("data-sku");
+                        console.log(item);
                         clearNotification(sku, item);
                     });
+                }
 
-                    cancelBtn.addEventListener("click", () => {
-                        confirmClearContainer.classList.remove("show");
-                        clearBtn.classList.add("show");
+                let deleteBtn = actionMenu.querySelector(".delete-notification-btn");
+                if (deleteBtn) {
+                    deleteBtn.addEventListener("click", () => {
+                        let sku = deleteBtn.getAttribute("data-sku");
+                        deleteNotification(sku, item);
                     });
-                });
+                }
             }
         });
     }

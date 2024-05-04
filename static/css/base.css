@@ -21,19 +21,19 @@ a .dark-text:visited, a .nav-link:visited {
   color: #242424;
 }
 
-.box-shadow {
+.box-shadow, .action-menu-btn .action-menu-container {
   box-shadow: 3px 3px 8px 2px rgba(0, 0, 0, 0.3);
   -webkit-box-shadow: 3px 3px 8px 2px rgba(0, 0, 0, 0.3);
   -moz-box-shadow: 3px 3px 8px 2px rgba(0, 0, 0, 0.3);
 }
 
-.container-row, .btn, .img-container, .icon-container, .form-container .select-container .select-item, .form-container .input-group-container, .container-col, .form-container .select-container .select-container-items, .form-container .input-group, .form-container .form, .form-container .heading-container, .form-container, .section {
+.container-row, .action-menu-btn .action-menu-container .action-item .confirm-action-container .confirm-options, .action-menu-btn .action-menu-container .action-item .confirm-action-container, .action-menu-btn .action-menu-container .action-item, .btn, .img-container, .icon-container, .form-container .select-container .select-item, .form-container .input-group-container, .container-col, .action-menu-btn .action-menu-container, .action-menu-btn, .form-container .select-container .select-container-items, .form-container .input-group, .form-container .form, .form-container .heading-container, .form-container, .section {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.container-col, .form-container .select-container .select-container-items, .form-container .input-group, .form-container .form, .form-container .heading-container, .form-container, .section {
+.container-col, .action-menu-btn .action-menu-container, .action-menu-btn, .form-container .select-container .select-container-items, .form-container .input-group, .form-container .form, .form-container .heading-container, .form-container, .section {
   flex-direction: column;
 }
 
@@ -53,6 +53,14 @@ a .dark-text:visited, a .nav-link:visited {
 
 .section-container {
   width: 1140px;
+}
+
+.absolute-pos {
+  position: absolute;
+}
+
+.relative-pos {
+  position: relative;
 }
 
 .form-container {
@@ -313,6 +321,91 @@ a .dark-text:visited, a .nav-link:visited {
   display: flex;
 }
 
+.action-menu-btn {
+  cursor: pointer;
+}
+.action-menu-btn.hide {
+  display: none;
+}
+.action-menu-btn.show {
+  display: flex;
+}
+.action-menu-btn .btn-wrapper {
+  width: 40px;
+  height: 40px;
+}
+.action-menu-btn .icon-container {
+  width: 40px;
+  height: 40px;
+  padding: 8px;
+  border-radius: 50%;
+  background-color: #ececec;
+}
+.action-menu-btn .icon-container.gl-1 {
+  background-color: #f7f7f7;
+}
+.action-menu-btn .icon-container.gl-1:hover {
+  background-color: #ececec;
+}
+.action-menu-btn .icon-container.gl-2 {
+  background-color: #ececec;
+}
+.action-menu-btn .icon-container.gl-2:hover {
+  background-color: #f7f7f7;
+}
+.action-menu-btn .icon-container.success:hover {
+  background-color: #399c3e;
+  color: #ffffff;
+}
+.action-menu-btn .icon-container.error:hover {
+  background-color: #c53d52;
+  color: #ffffff;
+}
+.action-menu-btn .action-menu-container {
+  width: 280px;
+  border-radius: 5px;
+  display: none;
+  padding: 12px;
+  background-color: #f7f7f7;
+  right: 0;
+  top: calc(100% + 4px);
+}
+.action-menu-btn .action-menu-container.show {
+  display: flex;
+}
+.action-menu-btn .action-menu-container .action-item {
+  width: 100%;
+  padding: 8px;
+  border-radius: 5px;
+  background-color: #f7f7f7;
+}
+.action-menu-btn .action-menu-container .action-item:hover {
+  background-color: #ececec;
+}
+.action-menu-btn .action-menu-container .action-item .item-text {
+  width: calc(100% - 44px);
+}
+.action-menu-btn .action-menu-container .action-item .confirm-action-container {
+  gap: 8px;
+  width: 100%;
+  background-color: #ececec;
+  border-radius: 5px;
+  padding: 8px;
+  left: 0;
+  top: 0;
+  display: none;
+  cursor: default;
+}
+.action-menu-btn .action-menu-container .action-item .confirm-action-container.show {
+  display: flex;
+}
+.action-menu-btn .action-menu-container .action-item .confirm-action-container .confirm-options {
+  gap: 8px;
+}
+.action-menu-btn .action-menu-container .action-item .confirm-action-container .confirm-options .icon-container {
+  cursor: pointer;
+}
+
 .quick-actions-container {
   width: 100%;
   gap: 12px;
@@ -333,10 +426,11 @@ a .dark-text:visited, a .nav-link:visited {
   width: 2px;
   height: 1.2rem;
   background-color: #494949;
+  border-radius: 5px;
 }
 .quick-actions-container .quick-action-btn {
-  width: calc(1.4rem + 24px);
-  height: calc(1.4rem + 24px);
+  width: calc(1.2rem + 24px);
+  height: calc(1.2rem + 24px);
   border-radius: 50%;
   background-color: #f7f7f7;
   cursor: pointer;
@@ -344,7 +438,7 @@ a .dark-text:visited, a .nav-link:visited {
   outline: none;
 }
 .quick-actions-container .quick-action-btn .dark-text, .quick-actions-container .quick-action-btn .nav-link {
-  font-size: 1.4rem;
+  font-size: 1.2rem;
 }
 .quick-actions-container .quick-action-btn .icon-container {
   width: 100%;
@@ -356,11 +450,11 @@ a .dark-text:visited, a .nav-link:visited {
   display: none !important;
 }
 
-.space-between {
+.space-between, .action-menu-btn .action-menu-container .action-item, .action-menu-btn .action-menu-container .action-item .confirm-action-container {
   justify-content: space-between;
 }
 
-.align-start {
+.align-start, .action-menu-btn .action-menu-container {
   align-items: flex-start;
 }
 
@@ -673,7 +767,7 @@ h1.logo-text::before {
   border-radius: 5px;
 }
 .profile-container .notification-menu-container .type-headings-container .type-heading-container.selected {
-  border-top: 2px solid #c64f4a;
+  box-shadow: inset 0 2px 0 0 #c64f4a;
   background-color: #ececec;
 }
 .profile-container .notification-menu-container .type-headings-container .type-heading-container .icon-container {
@@ -696,59 +790,38 @@ h1.logo-text::before {
 .profile-container .notification-menu-container .notification-items-container .item-wrapper.hide {
   display: none;
 }
-.profile-container .notification-menu-container .notification-items-container .item-wrapper .clear-notification-btn {
-  width: 40px;
-  height: 56px;
-  border-radius: 5px;
-  background-color: #c64f4a;
-  cursor: pointer;
-  display: none;
-}
-.profile-container .notification-menu-container .notification-items-container .item-wrapper .clear-notification-btn.show {
-  display: flex;
-}
-.profile-container .notification-menu-container .notification-items-container .item-wrapper .confirm-clear-container {
-  width: 40px;
-  height: 56px;
-  gap: 4px;
-  display: none;
-}
-.profile-container .notification-menu-container .notification-items-container .item-wrapper .confirm-clear-container.show {
-  display: flex;
-}
-.profile-container .notification-menu-container .notification-items-container .item-wrapper .confirm-clear-container .clear-container-btn {
-  width: 100%;
-  height: calc(50% - 2px);
-  border-radius: 5px;
-  cursor: pointer;
-}
-.profile-container .notification-menu-container .notification-items-container .item-wrapper .confirm-clear-container .confirm-clear-btn {
-  background-color: #399c3e;
-}
-.profile-container .notification-menu-container .notification-items-container .item-wrapper .confirm-clear-container .cancel-clear-btn {
-  background-color: #c53d52;
+.profile-container .notification-menu-container .notification-items-container .item-wrapper .notification-action-menu-btn {
+  right: 8px;
+  top: 50%;
+  translate: 0 -50%;
 }
 .profile-container .notification-menu-container .notification-items-container .item-container {
   border-radius: 5px;
   padding: 8px;
   background-color: #f7f7f7;
-  width: calc(100% - 48px);
+  width: 100%;
+  gap: 8px;
 }
 .profile-container .notification-menu-container .notification-items-container .item-container.clickable:hover {
   background-color: #ececec;
   cursor: pointer;
-  width: calc(100% - 48px);
 }
 .profile-container .notification-menu-container .notification-items-container .item-container .item-icon {
   width: 40px;
   height: 40px;
   border-radius: 50%;
   background-color: #ececec;
-  padding: 4px;
+  padding: 8px;
+  font-size: 21px;
 }
 .profile-container .notification-menu-container .notification-items-container .item-container .item-heading {
-  width: calc(100% - 48px);
+  width: calc(100% - 96px);
   font-size: 1rem;
+}
+.profile-container .notification-menu-container .notification-items-container .item-container .item-age,
+.profile-container .notification-menu-container .notification-items-container .item-container .item-gap {
+  width: 40px;
+  color: #494949;
 }
 .profile-container .messages-container {
   position: absolute;
@@ -762,7 +835,7 @@ h1.logo-text::before {
   display: none;
   opacity: 0;
   z-index: 998;
-  transition: all 0.8s ease;
+  transition: all 0.6s ease;
 }
 .profile-container .messages-container.show {
   display: flex;

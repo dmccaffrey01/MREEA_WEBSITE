@@ -6,6 +6,16 @@ from django.views.decorators.http import require_POST
 from membership.models import Membership
 from django.contrib.auth.models import User
 from django.contrib import messages
+from django.shortcuts import get_object_or_404
+
+
+def notifications(request):
+
+    context = {
+
+    }
+
+    return render(request, 'notifications/notifications.html', context)
 
 
 def get_messages(request):
@@ -72,33 +82,63 @@ def handle_membership_notification(request, category, notification_type, notify_
 
 @login_required
 def clear_notification(request, sku):
-    user = request.user
-
-    notification = Notification.objects.filter(sku=sku).first()
-
     try:
-        if not notification:
-            raise ValueError("Invalid Notification")
+        notification = get_object_or_404(Notification, sku=sku)
 
-        if not (notification.user == user or user.is_superuser):
-            raise ValueError('You must be logged in to clear the notification')
-        
+        if notification.user != request.user:
+            raise ValueError('You must be the owner of the notification to clear it.')
+
         notification.cleared_status = True
-
         notification.save()
-
-        response = {
-            'success': True,
-        }
 
         message = 'Successfully cleared the notification!'
         messages.success(request, message)
 
-        return JsonResponse(response, status=200)
-    
+        return JsonResponse({'success': True, 'message': message})
+
+    except Notification.DoesNotExist:
+        message = 'Invalid Notification'
+        messages.error(request, message)
+        return JsonResponse({'success': False, 'message': message})
+
     except ValueError as e:
         message = f'Unsuccessfully cleared the notification! - {e}'
         messages.error(request, message)
-        return JsonResponse({'success': False})
+        return JsonResponse({'success': False, 'message': message})
+
+    except Exception as e:
+        message = f'An error occurred: {e}'
+        messages.error(request, message)
+        return JsonResponse({'success': False, 'message': message})
         
 
+@login_required
+def delete_notification(request, sku):
+    try:
+        notification = get_object_or_404(Notification, sku=sku)
+
+        if notification.user != request.user:
+            raise ValueError('You must be the owner of the notification to delete it.')
+
+        notification.delete()
+
+        message = 'Successfully deleted the notification!'
+        messages.success(request, message)
+
+        return JsonResponse({'success': True, 'message': message})
+
+    except Notification.DoesNotExist:
+        message = 'Invalid Notification'
+        messages.error(request, message)
+        return JsonResponse({'success': False, 'message': message})
+
+    except ValueError as e:
+        message = f'Unsuccessfully deleted the notification! - {e}'
+        messages.error(request, message)
+        return JsonResponse({'success': False, 'message': message})
+
+    except Exception as e:
+        message = f'An error occurred: {e}'
+        messages.error(request, message)
+        return JsonResponse({'success': False, 'message': message})
+        

@@ -1,5 +1,7 @@
 from .models import Notification
 from django.shortcuts import reverse
+from datetime import datetime, timedelta
+from django.utils import timezone
 
 
 def notifications(request):
@@ -11,17 +13,32 @@ def notifications(request):
     user = request.user
 
     if user.is_authenticated:
-        notifications = Notification.objects.filter(user=user, cleared_status=False).order_by('-date')
+        current_time = timezone.now()
+
+        # Filter notifications with date in the past or today and cleared status as False
+        notifications = Notification.objects.filter(
+            user=user, 
+            cleared_status=False, 
+            date__lte=current_time
+        ).order_by('-date')
         num_of_notifications = notifications.count()
 
-        cleared_notifications = Notification.objects.filter(cleared_status=True).order_by('-date')
+        # Filter cleared notifications with date in the past or today
+        cleared_notifications = Notification.objects.filter(
+            cleared_status=True,
+            date__lte=current_time
+        ).order_by('-date')
         num_of_cleared_notifications = cleared_notifications.count()
 
+        # Assign icon class and age for notifications
         for n in notifications:
             n.icon_class = get_icon_class_for_category(n.category)
+            n.age = get_age_string(n.date)
 
+        # Assign icon class and age for cleared notifications
         for n in cleared_notifications:
             n.icon_class = get_icon_class_for_category(n.category)
+            n.age = get_age_string(n.date)
             
     context = {
         'notifications': notifications,
@@ -50,3 +67,11 @@ def get_icon_class_for_category(category):
         return 'fa-solid fa-envelope'
     else:
         return 'fa-solid fa-circle-info'
+    
+
+def get_age_string(date):
+    today = timezone.now().date()  # Get the current date
+    date = date.date()  # Extract the date part from the datetime object
+
+    days_diff = (today - date).days
+    return f"{days_diff}d"
