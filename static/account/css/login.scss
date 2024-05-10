@@ -4,12 +4,11 @@
 
 .login-section {
     .remember-forget-container {
-        width: 100%;
+        width: calc(50% - 4px);
         justify-content: space-between;
 
-        .input-group {
+        .input-container {
             width: fit-content;
-            gap: 10px;
         }
 
         .remember-label {

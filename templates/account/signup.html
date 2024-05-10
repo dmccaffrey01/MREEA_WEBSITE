@@ -12,63 +12,69 @@
 {% block content %}
 <section class="signup-section account-section section h-100b">
     <div class="section-container container-row">
-
-        <div class="info-container container-col">
-            <div class="text-container container-col">
-                <h2 class="dark-text heading">Start Your Journey</h2>
-                <p class="dark-text">Already a Member? <a href="{% url 'account_login' %}" class="red-text dark-text">Login Here</a></p>
-                <p class="dark-text small-text">Please fill in this info to create an account</p>
-                <p class="dark-text small-text">After you will be taken to a payment portal</p>
+        <div class="account-container container-col align-start box-shadow">
+            <div class="info-container container-col align-start">
+                <h2 class="dark-text subheading">Start Your Journey</h2>
+                <p class="dark-text small-text visit-link">
+                    Already a Member? 
+                    <a href="{% url 'account_login' %}" class="visit-link">
+                        <span class="red-text small-text">Login</span>
+                        <span class="btn-icon icon-container">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="red-text small-text" viewBox="0 0 24 24">
+                                <path fill-rule="evenodd" d="M9 3a1 1 0 0 0 0 2h9v13a1 1 0 0 1-1 1H9a1 1 0 0 0 0 2h8a3 3 0 0 0 3-3V4a1 1 0 0 0-1-1zm3.707 5.293A1 1 0 0 0 11 9v2H5a1 1 0 0 0 0 2h6v2a1 1 0 0 0 1.707.707l3-3a1 1 0 0 0 0-1.414z" clip-rule="evenodd" />
+                            </svg>
+                        </span>
+                    </a>
+                </p>
+                <p class="dark-text small-text">Please fill out this form to create an account.</p>
             </div>
-            <div class="img-container">
-                <img src="{{ MEDIA_URL }}mreea-colored-lines.webp" alt="MREEA Colors" class="img-100a">
+    
+            <div class="form-container">
+                <form class="form" method="POST" action="{% url 'account_signup' %}">
+                    {% csrf_token %}
+                    <div class="input-container col-2">
+                        <label for="id_email" class="sr-only">email</label>
+                        {{ form.email }}
+                    </div>
+    
+                    <div class="input-group-container">
+                        <div class="input-container">
+                            <label for="id_first_name" class="sr-only">first_name</label>
+                            {{ form.first_name }}
+                        </div>
+    
+                        <div class="input-container">
+                            <label for="id_last_name" class="sr-only">last_name</label>
+                            {{ form.last_name }}
+                        </div>
+                    </div>
+    
+                    <div class="input-group-container">
+                        <div class="input-container">
+                            <label for="id_password1" class="sr-only">password1</label>
+                            {{ form.password1 }}
+                        </div>
+    
+                        <div class="input-container">
+                            <label for="id_password2" class="sr-only">password2</label>
+                            {{ form.password2 }}
+                        </div>
+                    </div>
+                    
+                    {% if redirect_field_value %}
+                    <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+                    {% endif %}
+    
+                    <button class="btn" type="submit">
+                        <span class="white-text">{% trans "Sign Up" %}</span>
+                        <span class="btn-icon btn-icon-right icon-container">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="white-text" viewBox="0 0 24 24">
+                                <path fill-rule="evenodd" d="M9 3a1 1 0 0 0 0 2h9v13a1 1 0 0 1-1 1H9a1 1 0 0 0 0 2h8a3 3 0 0 0 3-3V4a1 1 0 0 0-1-1zm3.707 5.293A1 1 0 0 0 11 9v2H5a1 1 0 0 0 0 2h6v2a1 1 0 0 0 1.707.707l3-3a1 1 0 0 0 0-1.414z" clip-rule="evenodd" />
+                            </svg>
+                        </span>
+                    </button>
+                  </form>
             </div>
-        </div>
-
-        <div class="form-container">
-            
-            <form class="form" method="POST" action="{% url 'account_signup' %}">
-                {% csrf_token %}
-                <div class="input-group col-2">
-                    <p class="input-label dark-text">Email</p>
-                    <label for="id_email" class="sr-only">email</label>
-                    {{ form.email }}
-                </div>
-
-                <div class="input-group-container">
-                    <div class="input-group">
-                        <p class="input-label dark-text">First Name</p>
-                        <label for="id_first_name" class="sr-only">first_name</label>
-                        {{ form.first_name }}
-                    </div>
-
-                    <div class="input-group">
-                        <p class="input-label dark-text">Last Name</p>
-                        <label for="id_last_name" class="sr-only">last_name</label>
-                        {{ form.last_name }}
-                    </div>
-                </div>
-
-                <div class="input-group-container">
-                    <div class="input-group">
-                        <p class="input-label dark-text">Password</p>
-                        <label for="id_password1" class="sr-only">password1</label>
-                        {{ form.password1 }}
-                    </div>
-
-                    <div class="input-group">
-                        <p class="input-label dark-text">Password (Confirmation)</p>
-                        <label for="id_password2" class="sr-only">password2</label>
-                        {{ form.password2 }}
-                    </div>
-                </div>
-                
-                {% if redirect_field_value %}
-                <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
-                {% endif %}
-
-                <button class="btn btn-2" type="submit">{% trans "Sign Up" %}<span class="fa-icon-right"><i class="fa-solid fa-right-to-bracket"></i></span></button>
-              </form>
         </div>
     </div>
 

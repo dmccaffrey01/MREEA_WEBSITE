@@ -23,8 +23,6 @@
         {% endblock %}
 
         {% block corejs %}
-        <!-- Font Awesome -->
-        <script src="https://kit.fontawesome.com/5821df7d40.js" crossorigin="anonymous"></script>
         {% endblock %}
 
         {% block extra_js %}
@@ -39,20 +37,23 @@
         <!-- Header Logo, Nav Bar and Social Links -->
         <header class="container-col">
             <div class="header-container container-row space-between">
-                <a href="{% url 'home' %}" class="logo-container container-row">
-                    <div class="logo-img-container img-container">
+                <!-- Logo -->
+                <div class="logo-container container-row">
+                    <a href="{% url 'home' %}" class="logo-img-container img-container">
                         <img src="{{ MEDIA_URL }}mreea-logo.webp" alt="MREEA Logo" class="img-100a">
-                    </div>
+                    </a>
 
-                    <h1 class="logo-text dark-text">MREEA</h1>
-                </a>
+                    <h1 class="logo-text dark-text sr-only">MREEA (Maryland Real Estate Educators Association)</h1>
+                </div>
 
+                <!-- Nav Btn -->
                 <div class="nav-btn container-col">
                     <div class="nav-btn-bar b1"></div>
                     <div class="nav-btn-bar b2"></div>
                     <div class="nav-btn-bar b3"></div>
                 </div>
 
+                <!-- Nav Menu -->
                 <nav class="nav-menu container-row">
                     <a href="#" class="nav-link">About</a>
                     <a href="#" class="nav-link">Learn</a>
@@ -62,8 +63,8 @@
                     <a href="{% url 'contact' %}" class="nav-link">Contact</a>
                 </nav>
 
+                <!-- Sidenav -->
                 {% if is_membership_valid %}
-
                 <div class="side-nav container-col box-shadow">
                     <div class="side-nav-container container-col align-start">
                         <a href="{% url 'events' %}" class="side-nav-btn dark-text container-row">
@@ -105,211 +106,344 @@
                         {% endif %}
                     </div>
                 </div>
-                    
                 {% endif %}
 
+                <!-- Notifications and Profile -->
                 {% if user.is_authenticated %}
-
                 <div class="profile-container container-row justify-end">
-                    <div class="notification-btn-container container-col">
-                        <div class="notification-icon-container icon-container">
-                            <img src="{{ MEDIA_URL }}notification-icon.png" alt="Notification Icon" class="img-100a">
-                        </div>
-                        <div class="notification-btn-icon profile-btn-icon container-col">
-                            <p class="notification-number white-text">{{ num_of_notifications }}</p>
-                        </div>
-                    </div>
-
-                    <div class="notification-menu-container container-col align-start box-shadow">
-                        <div class="heading-container container-row space-between">
-                            <h3 class="dark-text subheading">Notifications</h3>
-                            <div class="mark-all-btn-container container-col label-container">
-                                <div class="mark-all-btn icon-container">
-                                    <svg class="dark-text" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21.003 15.578a7.056 7.056 0 0 0-.87-1.57a4.09 4.09 0 0 1-.89-1.88c0-2.89 0-3.87-1.58-5.76a5.79 5.79 0 0 0-1.9-1.47l-.73-.35a.32.32 0 0 1-.1-.1a.23.23 0 0 1-.05-.1a2.77 2.77 0 0 0-2.93-2.34a2.77 2.77 0 0 0-2.84 2.29a.31.31 0 0 1-.06.13a.41.41 0 0 1-.1.09l-.78.38a5.63 5.63 0 0 0-1.91 1.48c-1.57 1.88-1.57 2.86-1.57 5.75a3.84 3.84 0 0 1-.82 1.77a6.568 6.568 0 0 0-.88 1.62a2.79 2.79 0 0 0 .26 2.37a2.24 2.24 0 0 0 1.94.85h2.82c.043.268.117.53.22.78a4 4 0 0 0 .87 1.32c.375.378.825.675 1.32.87c.46.188.953.287 1.45.29h.08a3.92 3.92 0 0 0 1.55-.29a3.75 3.75 0 0 0 1.32-.87a3.8 3.8 0 0 0 .87-1.32c.101-.252.178-.513.23-.78h2.94a2.33 2.33 0 0 0 1-.23a2.4 2.4 0 0 0 .88-.76a2.26 2.26 0 0 0 .4-1.09a2.2 2.2 0 0 0-.14-1.08m-6.5-3.33h-5a.75.75 0 1 1 0-1.5h5a.75.75 0 0 1 0 1.5"></path></svg>
-                                </div>
-                                <p class="label dark-text small-text box-shadow">Clear All Notifications</p>
+                    <div class="notification-wrapper wrapper-menu show-new">
+                        <div class="notification-btn-container wrapper-btn container-col">
+                            <div class="notification-icon-container icon-container dark-text">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                    <path d="M12 2a7 7 0 0 0-7 7v3.528a1 1 0 0 1-.105.447l-1.717 3.433A1.1 1.1 0 0 0 4.162 18h15.676a1.1 1.1 0 0 0 .984-1.592l-1.716-3.433a1 1 0 0 1-.106-.447V9a7 7 0 0 0-7-7m0 19a3.001 3.001 0 0 1-2.83-2h5.66A3.001 3.001 0 0 1 12 21" />
+                                </svg>
+                            </div>
+                            <div class="notification-btn-icon profile-btn-icon container-col">
+                                <p class="notification-number white-text">{{ num_of_new_notifications }}</p>
                             </div>
                         </div>
-
-                        <div class="notification-display-container container-col align-start">
-                            <div class="type-headings-container container-row space-between">
-                                <div class="type-heading-container label-container container-col selected">
-                                    <div class="icon-container">
-                                        <span class="sr-only">Notification Check Icon</span>
-                                        <svg class="red-text dark-text" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21.003 15.578a7.056 7.056 0 0 0-.87-1.57a4.09 4.09 0 0 1-.89-1.88c0-2.89 0-3.87-1.58-5.76a5.79 5.79 0 0 0-1.9-1.47l-.73-.35a.32.32 0 0 1-.1-.1a.23.23 0 0 1-.05-.1a2.77 2.77 0 0 0-2.93-2.34a2.77 2.77 0 0 0-2.84 2.29a.31.31 0 0 1-.07.14a.34.34 0 0 1-.09.08l-.78.38a5.63 5.63 0 0 0-1.91 1.48c-1.57 1.88-1.57 2.86-1.57 5.75a3.84 3.84 0 0 1-.82 1.77a6.568 6.568 0 0 0-.88 1.62a2.79 2.79 0 0 0 .26 2.37a2.24 2.24 0 0 0 1.94.85h2.82c.043.268.117.53.22.78c.198.497.498.947.88 1.32c.37.38.816.677 1.31.87c.46.188.953.287 1.45.29h.16a4 4 0 0 0 2.79-1.16a4 4 0 0 0 .87-1.31c.101-.255.178-.52.23-.79h2.94a2.372 2.372 0 0 0 1-.23a2.4 2.4 0 0 0 .88-.76c.226-.322.364-.698.4-1.09a2.2 2.2 0 0 0-.14-1.08m-6-5.28l-2.81 2.83c-.113.124-.253.22-.41.28a1.192 1.192 0 0 1-.49.1a1.26 1.26 0 0 1-.91-.38l-1.41-1.4a.75.75 0 0 1 0-1.06a.74.74 0 0 1 1.06 0l1.26 1.25l2.68-2.68a.75.75 0 1 1 1.06 1.06z"></path></svg>
-                                    </div>
-                                    <p class="dark-text small-text label">New Notifications</p>
-                                </div>
-                                <div class="type-heading-container label-container container-col">
-                                    <div class="icon-container">
-                                        <span class="sr-only">Notification X Mark Icon</span>
-                                        <svg class="dark-text" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21.003 15.578a7.056 7.056 0 0 0-.87-1.57a4.09 4.09 0 0 1-.89-1.88c0-2.89 0-3.87-1.58-5.76a5.79 5.79 0 0 0-1.9-1.47l-.73-.35a.32.32 0 0 1-.1-.1a.23.23 0 0 1-.05-.1a2.77 2.77 0 0 0-2.93-2.34a2.77 2.77 0 0 0-2.84 2.29a.31.31 0 0 1-.07.14a.34.34 0 0 1-.09.08l-.78.38a5.63 5.63 0 0 0-1.91 1.48c-1.57 1.88-1.57 2.86-1.57 5.75a3.84 3.84 0 0 1-.82 1.77a6.569 6.569 0 0 0-.88 1.62a2.79 2.79 0 0 0 .26 2.37a2.24 2.24 0 0 0 1.94.85h2.82c.043.268.117.53.22.78c.198.497.498.947.88 1.32c.37.38.816.677 1.31.87c.46.188.953.287 1.45.29h.16a4 4 0 0 0 2.79-1.16a4 4 0 0 0 .87-1.31c.101-.255.178-.52.23-.79h2.94a2.372 2.372 0 0 0 1-.23a2.4 2.4 0 0 0 .88-.76a2.26 2.26 0 0 0 .4-1.09a2.2 2.2 0 0 0-.14-1.08m-6.72-3.1a.75.75 0 0 1-1.06 1.06l-1.23-1.22l-1.21 1.16a.75.75 0 0 1-1.06-1.06l1.21-1.21l-1.21-1.21a.77.77 0 0 1 0-1.07a.75.75 0 0 1 1.06 0l1.22 1.22l1.22-1.22a.74.74 0 0 1 1.06 0a.75.75 0 0 1 0 1.06l-1.22 1.22z"></path></svg>
-                                    </div>
-                                    <p class="dark-text small-text label">Cleared Notifications</p>
-                                </div>
-                            </div>
-
-                            <div class="notification-items-container container-col selected left">
-                                <div class="new-notifications-container items-display-container container-col selected">
-                                    {% if num_of_notifications == 0 %}
-                                    <div class="no-item-wrapper item-wrapper container-row space-between">
-                                        <div class="item-container container-row space-between">
-                                            <p class="item-icon dark-text container-col">
-                                                <i class="fa-solid fa-circle-check"></i>
-                                                <span class="sr-only">Check Circle Icon</span>
-                                            </p>    
-                                            <p class="item-heading dark-text small-text">No New Notifications</p>
-                                            <div class="item-gap"></div>
-                                        </div>
-                                    </div>
-                                    {% else %}
-                                    {% for n in notifications %}
-                                    <div class="item-wrapper container-row space-between relative-pos">
-                                        <div class="item-container container-row clickable">
-                                            <p class="item-icon dark-text container-col">
-                                                <i class="{{ n.icon_class }}"></i>
-                                                <span class="sr-only">Notification Icon</span>
-                                            </p>    
-                                            <p class="item-heading dark-text small-text">{{ n.heading }}</p>
-                                        </div>
-                                        <div class="notification-action-menu-btn action-menu-btn absolute-pos hide">
-                                            <div class="btn-wrapper relative-pos">
-                                                <p class="icon-container dark-text gl-1">
-                                                    <i class="fa-solid fa-ellipsis"></i>
-                                                    <span class="sr-only">Ellipisis Icon</span>
-                                                </p>
-                                                <div class="action-menu-container absolute-pos">
-                                                    <div class="action-item">
-                                                        <p class="icon-container dark-text">
-                                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21.003 15.578a7.056 7.056 0 0 0-.87-1.57a4.09 4.09 0 0 1-.89-1.88c0-2.89 0-3.87-1.58-5.76a5.79 5.79 0 0 0-1.9-1.47l-.73-.35a.32.32 0 0 1-.1-.1a.23.23 0 0 1-.05-.1a2.77 2.77 0 0 0-2.93-2.34a2.77 2.77 0 0 0-2.84 2.29a.31.31 0 0 1-.07.14a.34.34 0 0 1-.09.08l-.78.38a5.63 5.63 0 0 0-1.91 1.48c-1.57 1.88-1.57 2.86-1.57 5.75a3.84 3.84 0 0 1-.82 1.77a6.568 6.568 0 0 0-.88 1.62a2.79 2.79 0 0 0 .26 2.37a2.24 2.24 0 0 0 1.94.85h2.82c.043.268.117.53.22.78c.198.497.498.947.88 1.32c.37.38.816.677 1.31.87c.46.188.953.287 1.45.29h.16a4 4 0 0 0 2.79-1.16a4 4 0 0 0 .87-1.31c.101-.255.178-.52.23-.79h2.94a2.372 2.372 0 0 0 1-.23a2.4 2.4 0 0 0 .88-.76a2.26 2.26 0 0 0 .4-1.09a2.2 2.2 0 0 0-.14-1.08m-6.18-4.1a.75.75 0 0 1-.53.22a.79.79 0 0 1-.53-.22l-1-1v3.38a.75.75 0 0 1-1.5 0v-3.38l-1 1a.75.75 0 0 1-1.06 0a.74.74 0 0 1 0-1.06l2-2a1.31 1.31 0 0 1 .4-.26a1 1 0 0 1 .44-.1a1.2 1.2 0 0 1 .45.09c.147.07.282.16.4.27l2 2a.74.74 0 0 1-.07 1.06"></path></svg>
-                                                            <span class="sr-only">View Notification Icon</span>
-                                                        </p>
-                                                        <p class="item-text dark-text small-text">View Notification</p>
-                                                    </div>
-                                                    <div class="clear-notification-btn action-item" data-sku="{{ n.sku }}">
-                                                        <p class="icon-container dark-text">
-                                                            <svg class="dark-text" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21.003 15.578a7.056 7.056 0 0 0-.87-1.57a4.09 4.09 0 0 1-.89-1.88c0-2.89 0-3.87-1.58-5.76a5.79 5.79 0 0 0-1.9-1.47l-.73-.35a.32.32 0 0 1-.1-.1a.23.23 0 0 1-.05-.1a2.77 2.77 0 0 0-2.93-2.34a2.77 2.77 0 0 0-2.84 2.29a.31.31 0 0 1-.06.13a.41.41 0 0 1-.1.09l-.78.38a5.63 5.63 0 0 0-1.91 1.48c-1.57 1.88-1.57 2.86-1.57 5.75a3.84 3.84 0 0 1-.82 1.77a6.568 6.568 0 0 0-.88 1.62a2.79 2.79 0 0 0 .26 2.37a2.24 2.24 0 0 0 1.94.85h2.82c.043.268.117.53.22.78a4 4 0 0 0 .87 1.32c.375.378.825.675 1.32.87c.46.188.953.287 1.45.29h.08a3.92 3.92 0 0 0 1.55-.29a3.75 3.75 0 0 0 1.32-.87a3.8 3.8 0 0 0 .87-1.32c.101-.252.178-.513.23-.78h2.94a2.33 2.33 0 0 0 1-.23a2.4 2.4 0 0 0 .88-.76a2.26 2.26 0 0 0 .4-1.09a2.2 2.2 0 0 0-.14-1.08m-6.5-3.33h-5a.75.75 0 1 1 0-1.5h5a.75.75 0 0 1 0 1.5"></path></svg>
-                                                            <span class="sr-only">Clear Notification Icon</span>
-                                                        </p>
-                                                        <p class="item-text dark-text small-text">Clear Notification</p>
-                                                    </div>
+                        <div class="notification-menu-container container-col align-start box-shadow">
+                            <div class="heading-container container-row space-between">
+                                <h3 class="dark-text subheading">Notifications</h3>
+                                <div class="notification-action-menu-btn action-menu-btn wrapper-menu">
+                                    <div class="btn-wrapper relative-pos">
+                                        <p class="icon-container dark-text">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="dark-text" viewBox="0 0 16 16">
+                                                <path d="M4 8a2 2 0 1 1-3.999.001A2 2 0 0 1 4 8m6 0a2 2 0 1 1-3.999.001A2 2 0 0 1 10 8m6 0a2 2 0 1 1-3.999.001A2 2 0 0 1 16 8" />
+                                            </svg>
+                                            <span class="sr-only">Ellipisis Icon</span>
+                                        </p>
+                                        <div class="notification-heading-action-menu action-menu-container absolute-pos wrapper-menu">
+                                            <div class="new-notifications-heading-action-container action-item-container">
+                                                <div class="clear-all-notification-btn action-item" data-username="{{ user.username }}">
+                                                    <p class="icon-container dark-text">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" class="dark-text" viewBox="0 0 24 24">
+                                                            <path d="M12 22q-2.075 0-3.9-.788t-3.175-2.137T2.788 15.9T2 12t.788-3.9t2.137-3.175T8.1 2.788T12 2t3.9.788t3.175 2.137T21.213 8.1T22 12t-.788 3.9t-2.137 3.175t-3.175 2.138T12 22m0-2q1.35 0 2.6-.437t2.3-1.263L5.7 7.1q-.825 1.05-1.263 2.3T4 12q0 3.35 2.325 5.675T12 20m6.3-3.1q.825-1.05 1.263-2.3T20 12q0-3.35-2.325-5.675T12 4q-1.35 0-2.6.437T7.1 5.7z" />
+                                                        </svg>
+                                                        <span class="sr-only">Clear Notification Icon</span>
+                                                    </p>
+                                                    <p class="item-text dark-text small-text">Clear All Notifications</p>
+                                                </div>
+                                            </div>
+                                            <div class="cleared-notifications-heading-action-container action-item-container">
+                                                <div class="unclear-all-notification-btn action-item" data-username="{{ user.username }}">
+                                                    <p class="icon-container dark-text">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" class="dark-text" viewBox="0 0 16 16">
+                                                            <path d="M1.22 6.28a.75.75 0 0 1 0-1.06l3.5-3.5a.749.749 0 1 1 1.06 1.06L3.561 5h7.188l.001.007L10.749 5q.088 0 .171.019A4.501 4.501 0 0 1 10.5 14H8.796a.75.75 0 0 1 0-1.5H10.5a3 3 0 1 0 0-6H3.561L5.78 8.72a.749.749 0 1 1-1.06 1.06z" />
+                                                        </svg>
+                                                        <span class="sr-only">Unclear Notification Icon</span>
+                                                    </p>
+                                                    <p class="item-text dark-text small-text">Unclear All Notifications</p>
+                                                </div>
+                                                <div class="delete-all-notification-btn action-item" data-username="{{ user.username }}">
+                                                    <p class="icon-container dark-text">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" class="dark-text" viewBox="0 0 24 24">
+                                                            <path fill-rule="evenodd" d="M8.106 2.553A1 1 0 0 1 9 2h6a1 1 0 0 1 .894.553L17.618 6H20a1 1 0 1 1 0 2h-1v11a3 3 0 0 1-3 3H8a3 3 0 0 1-3-3V8H4a1 1 0 0 1 0-2h2.382zM14.382 4l1 2H8.618l1-2zM11 11a1 1 0 1 0-2 0v6a1 1 0 1 0 2 0zm4 0a1 1 0 1 0-2 0v6a1 1 0 1 0 2 0z" clip-rule="evenodd" />
+                                                        </svg>
+                                                        <span class="sr-only">Delete Notification Icon</span>
+                                                    </p>
+                                                    <p class="item-text dark-text small-text">Delete All Notifications</p>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                    {% endfor %}
-                                    {% endif %}
                                 </div>
-                                <div class="cleared-notifications-container items-display-container container-col">
-                                    {% if num_of_cleared_notifications == 0 %}
-                                    <div class="no-item-wrapper item-wrapper container-row space-between">
-                                        <div class="item-container container-row space-between">
-                                            <p class="item-icon dark-text container-col">
-                                                <i class="fa-solid fa-circle-check"></i>
-                                                <span class="sr-only">Check Circle Icon</span>
-                                            </p>    
-                                            <p class="item-heading dark-text small-text">No Cleared Notifications</p>
-                                            <div class="item-gap"></div>
+                            </div>
+                            <div class="notification-display-container container-col align-start">
+                                <div class="type-headings-container container-row space-between">
+                                    <div class="new-type-heading-container type-heading-container label-container container-col" data-class="new">
+                                        <div class="icon-container">
+                                            <span class="sr-only">New Notification Icon</span>
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="dark-text" viewBox="0 0 24 24">
+                                                <g fill="none">
+                                                    <path d="M12 2a6.99 6.99 0 0 1 2.263.374a4.5 4.5 0 0 0 4.5 7.447L19 9.743v2.784a1 1 0 0 0 .06.34l.046.107l1.716 3.433a1.1 1.1 0 0 1-.869 1.586l-.115.006H4.162a1.1 1.1 0 0 1-1.03-1.487l.046-.105l1.717-3.433a1 1 0 0 0 .098-.331L5 12.528V9a7 7 0 0 1 7-7m5.5 1a2.5 2.5 0 1 1 0 5a2.5 2.5 0 0 1 0-5M12 21a3.001 3.001 0 0 1-2.83-2h5.66A3.001 3.001 0 0 1 12 21" />
+                                                </g>
+                                            </svg>
                                         </div>
+                                        <p class="dark-text small-text label">New Notifications</p>
                                     </div>
-                                    {% else %}
-                                    {% for n in cleared_notifications %}
-                                    <div class="item-wrapper container-row space-between relative-pos">
-                                        <div class="item-container container-row clickable">
-                                            <p class="item-icon dark-text container-col">
-                                                <i class="{{ n.icon_class }}"></i>
-                                                <span class="sr-only">Notification Icon</span>
-                                            </p>    
-                                            <p class="item-heading dark-text small-text">{{ n.heading }}</p>
-                                            <p class="item-age dark-text small-text">{{ n.age }}</p>
+                                    <div class="cleared-type-heading-container type-heading-container label-container container-col" data-class="cleared">
+                                        <div class="icon-container">
+                                            <span class="sr-only">Cleared Notification Icon</span>
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="dark-text" viewBox="0 0 24 24">
+                                                <g fill="none">
+                                                    <path d="M14.83 19a3.001 3.001 0 0 1-5.66 0zM12 2a7 7 0 0 1 7 7v3.528a1 1 0 0 0 .106.447l1.716 3.433A1.1 1.1 0 0 1 19.838 18h-.424l1.071 1.071a1 1 0 0 1-1.414 1.414L3.515 4.93a1 1 0 1 1 1.414-1.414l1.392 1.392A6.99 6.99 0 0 1 12.001 2M5.023 8.427L14.596 18H4.162a1.1 1.1 0 0 1-.984-1.592l1.717-3.433A1 1 0 0 0 5 12.528V9c0-.193.008-.384.023-.573" />
+                                                </g>
+                                            </svg>
                                         </div>
-                                        <div class="notification-action-menu-btn action-menu-btn absolute-pos hide">
-                                            <div class="btn-wrapper relative-pos">
-                                                <p class="icon-container dark-text gl-1">
-                                                    <i class="fa-solid fa-ellipsis"></i>
-                                                    <span class="sr-only">Ellipisis Icon</span>
+                                        <p class="dark-text small-text label">Cleared Notifications</p>
+                                    </div>
+                                </div>
+                                <div class="notification-items-container container-col">
+                                    <div class="new-notifications-container items-display-container container-col">
+                                        {% if num_of_new_notifications == 0 %}
+                                        <div class="no-item-wrapper item-wrapper container-row space-between">
+                                            <div class="item-container container-row space-between">
+                                                <p class="item-icon dark-text container-col">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" class="dark-text" viewBox="0 0 24 24">
+                                                        <g fill="none" fill-rule="evenodd">
+                                                            <path d="M21.546 5.111a1.5 1.5 0 0 1 0 2.121L10.303 18.475a1.6 1.6 0 0 1-2.263 0L2.454 12.89a1.5 1.5 0 1 1 2.121-2.121l4.596 4.596L19.424 5.111a1.5 1.5 0 0 1 2.122 0" />
+                                                        </g>
+                                                    </svg>
+                                                    <span class="sr-only">Check Circle Icon</span>
                                                 </p>
-                                                <div class="action-menu-container absolute-pos">
-                                                    <div class="action-item">
-                                                        <p class="icon-container dark-text">
-                                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21.003 15.578a7.056 7.056 0 0 0-.87-1.57a4.09 4.09 0 0 1-.89-1.88c0-2.89 0-3.87-1.58-5.76a5.79 5.79 0 0 0-1.9-1.47l-.73-.35a.32.32 0 0 1-.1-.1a.23.23 0 0 1-.05-.1a2.77 2.77 0 0 0-2.93-2.34a2.77 2.77 0 0 0-2.84 2.29a.31.31 0 0 1-.07.14a.34.34 0 0 1-.09.08l-.78.38a5.63 5.63 0 0 0-1.91 1.48c-1.57 1.88-1.57 2.86-1.57 5.75a3.84 3.84 0 0 1-.82 1.77a6.568 6.568 0 0 0-.88 1.62a2.79 2.79 0 0 0 .26 2.37a2.24 2.24 0 0 0 1.94.85h2.82c.043.268.117.53.22.78c.198.497.498.947.88 1.32c.37.38.816.677 1.31.87c.46.188.953.287 1.45.29h.16a4 4 0 0 0 2.79-1.16a4 4 0 0 0 .87-1.31c.101-.255.178-.52.23-.79h2.94a2.372 2.372 0 0 0 1-.23a2.4 2.4 0 0 0 .88-.76a2.26 2.26 0 0 0 .4-1.09a2.2 2.2 0 0 0-.14-1.08m-6.18-4.1a.75.75 0 0 1-.53.22a.79.79 0 0 1-.53-.22l-1-1v3.38a.75.75 0 0 1-1.5 0v-3.38l-1 1a.75.75 0 0 1-1.06 0a.74.74 0 0 1 0-1.06l2-2a1.31 1.31 0 0 1 .4-.26a1 1 0 0 1 .44-.1a1.2 1.2 0 0 1 .45.09c.147.07.282.16.4.27l2 2a.74.74 0 0 1-.07 1.06"></path></svg>
-                                                            <span class="sr-only">View Notification Icon</span>
-                                                        </p>
-                                                        <p class="item-text dark-text small-text">View Notification</p>
+                                                <p class="item-heading dark-text small-text gap">No New Notifications</p>
+                                            </div>
+                                        </div>
+                                        {% else %}
+                                        {% for n in new_notifications %}
+                                        <div class="item-wrapper container-row space-between relative-pos" data-sku="{{ n.sku }}" data-container="new" data-url-name="{{ n.url_name }}">
+                                            <div class="item-container container-row clickable">
+                                                <p class="item-icon dark-text container-col">
+                                                    {{ n.icon|safe }}
+                                                    <span class="sr-only">Notification Icon</span>
+                                                </p>
+                                                <p class="item-heading dark-text small-text">{{ n.heading }}</p>
+                                                <p class="item-age dark-text small-text">{{ n.age }}</p>
+                                            </div>
+                                            <div class="notification-action-menu-btn action-menu-btn wrapper-menu absolute-pos hide">
+                                                <div class="btn-wrapper relative-pos">
+                                                    <p class="icon-container dark-text gl-1">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" class="dark-text" viewBox="0 0 16 16">
+                                                            <path d="M4 8a2 2 0 1 1-3.999.001A2 2 0 0 1 4 8m6 0a2 2 0 1 1-3.999.001A2 2 0 0 1 10 8m6 0a2 2 0 1 1-3.999.001A2 2 0 0 1 16 8" />
+                                                        </svg>
+                                                        <span class="sr-only">Ellipisis Icon</span>
+                                                    </p>
+                                                    <div class="action-menu-container absolute-pos wrapper-menu">
+                                                        <div class="visit-url-notification-btn action-item" data-sku="{{ n.sku }}">
+                                                            <p class="icon-container dark-text">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" class="dark-text" viewBox="0 0 24 24">
+                                                                    <path fill-rule="evenodd" d="M9 3a1 1 0 0 0 0 2h9v13a1 1 0 0 1-1 1H9a1 1 0 0 0 0 2h8a3 3 0 0 0 3-3V4a1 1 0 0 0-1-1zm3.707 5.293A1 1 0 0 0 11 9v2H5a1 1 0 0 0 0 2h6v2a1 1 0 0 0 1.707.707l3-3a1 1 0 0 0 0-1.414z" clip-rule="evenodd" />
+                                                                </svg>
+                                                                <span class="sr-only">Visit Link Icon</span>
+                                                            </p>
+                                                            <p class="item-text dark-text small-text">Visit {{ n.url_name }}</p>
+                                                        </div>
+                                                        <div class="view-notification-btn action-item" data-sku="{{ n.sku }}">
+                                                            <p class="icon-container dark-text">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" class="dark-text" viewBox="0 0 32 32">
+                                                                    <circle cx="16" cy="16" r="4" />
+                                                                    <path d="M30.94 15.66A16.69 16.69 0 0 0 16 5A16.69 16.69 0 0 0 1.06 15.66a1 1 0 0 0 0 .68A16.69 16.69 0 0 0 16 27a16.69 16.69 0 0 0 14.94-10.66a1 1 0 0 0 0-.68M16 22.5a6.5 6.5 0 1 1 6.5-6.5a6.51 6.51 0 0 1-6.5 6.5" />
+                                                                </svg>
+                                                                <span class="sr-only">View Notification Icon</span>
+                                                            </p>
+                                                            <p class="item-text dark-text small-text">View Notification</p>
+                                                        </div>
+                                                        <div class="clear-notification-btn action-item" data-sku="{{ n.sku }}">
+                                                            <p class="icon-container dark-text">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" class="dark-text" viewBox="0 0 24 24">
+                                                                    <path d="M12 22q-2.075 0-3.9-.788t-3.175-2.137T2.788 15.9T2 12t.788-3.9t2.137-3.175T8.1 2.788T12 2t3.9.788t3.175 2.137T21.213 8.1T22 12t-.788 3.9t-2.137 3.175t-3.175 2.138T12 22m0-2q1.35 0 2.6-.437t2.3-1.263L5.7 7.1q-.825 1.05-1.263 2.3T4 12q0 3.35 2.325 5.675T12 20m6.3-3.1q.825-1.05 1.263-2.3T20 12q0-3.35-2.325-5.675T12 4q-1.35 0-2.6.437T7.1 5.7z" />
+                                                                </svg>
+                                                                <span class="sr-only">Clear Notification Icon</span>
+                                                            </p>
+                                                            <p class="item-text dark-text small-text">Clear Notification</p>
+                                                        </div>
                                                     </div>
-                                                    <div class="delete-notification-btn action-item confirm-action-btn relative-pos" data-sku="{{ n.sku }}">
-                                                        <p class="icon-container dark-text">
-                                                            <svg class="dark-text" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21.003 15.578a7.056 7.056 0 0 0-.87-1.57a4.09 4.09 0 0 1-.89-1.88c0-2.89 0-3.87-1.58-5.76a5.79 5.79 0 0 0-1.9-1.47l-.73-.35a.32.32 0 0 1-.1-.1a.23.23 0 0 1-.05-.1a2.77 2.77 0 0 0-2.93-2.34a2.77 2.77 0 0 0-2.84 2.29a.31.31 0 0 1-.07.14a.34.34 0 0 1-.09.08l-.78.38a5.63 5.63 0 0 0-1.91 1.48c-1.57 1.88-1.57 2.86-1.57 5.75a3.84 3.84 0 0 1-.82 1.77a6.569 6.569 0 0 0-.88 1.62a2.79 2.79 0 0 0 .26 2.37a2.24 2.24 0 0 0 1.94.85h2.82c.043.268.117.53.22.78c.198.497.498.947.88 1.32c.37.38.816.677 1.31.87c.46.188.953.287 1.45.29h.16a4 4 0 0 0 2.79-1.16a4 4 0 0 0 .87-1.31c.101-.255.178-.52.23-.79h2.94a2.372 2.372 0 0 0 1-.23a2.4 2.4 0 0 0 .88-.76a2.26 2.26 0 0 0 .4-1.09a2.2 2.2 0 0 0-.14-1.08m-6.72-3.1a.75.75 0 0 1-1.06 1.06l-1.23-1.22l-1.21 1.16a.75.75 0 0 1-1.06-1.06l1.21-1.21l-1.21-1.21a.77.77 0 0 1 0-1.07a.75.75 0 0 1 1.06 0l1.22 1.22l1.22-1.22a.74.74 0 0 1 1.06 0a.75.75 0 0 1 0 1.06l-1.22 1.22z"></path></svg>
-                                                            <span class="sr-only">Delete Notification Icon</span>
-                                                        </p>
-                                                        <p class="item-text dark-text small-text">Delete Notification</p>
-                                                        <div class="confirm-action-container absolute-pos">
-                                                            <p class="dark-text small-text">Confirm Delete</p>
-                                                            <div class="confirm-options">
-                                                                <p class="delete-notification-btn icon-container dark-text gl-1 success" data-sku="{{ n.sku }}">
-                                                                    <i class="fa-solid fa-check"></i>
-                                                                    <span class="sr-only">Check Icon</span>
-                                                                </p>
-                                                                <p class="icon-container dark-text gl-1 error">
-                                                                    <i class="fa-solid fa-xmark"></i>
-                                                                    <span class="sr-only">Xmark Icon</span>
-                                                                </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        {% endfor %}
+                                        {% endif %}
+                                    </div>
+                                    <div class="cleared-notifications-container items-display-container container-col">
+                                        {% if num_of_cleared_notifications == 0 %}
+                                        <div class="no-item-wrapper item-wrapper container-row space-between">
+                                            <div class="item-container container-row space-between">
+                                                <p class="item-icon dark-text container-col">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" class="dark-text" viewBox="0 0 24 24">
+                                                        <g fill="none" fill-rule="evenodd">
+                                                            <path d="M21.546 5.111a1.5 1.5 0 0 1 0 2.121L10.303 18.475a1.6 1.6 0 0 1-2.263 0L2.454 12.89a1.5 1.5 0 1 1 2.121-2.121l4.596 4.596L19.424 5.111a1.5 1.5 0 0 1 2.122 0" />
+                                                        </g>
+                                                    </svg>
+                                                    <span class="sr-only">Check Circle Icon</span>
+                                                </p>
+                                                <p class="item-heading dark-text small-text gap">No Cleared Notifications</p>
+                                            </div>
+                                        </div>
+                                        {% else %}
+                                        {% for n in cleared_notifications %}
+                                        <div class="item-wrapper container-row space-between relative-pos" data-sku="{{ n.sku }}" data-container="cleared" data-url-name="{{ n.url_name }}">
+                                            <div class="item-container container-row clickable">
+                                                <p class="item-icon dark-text container-col">
+                                                    {{ n.icon|safe }}
+                                                    <span class="sr-only">Notification Icon</span>
+                                                </p>
+                                                <p class="item-heading dark-text small-text">{{ n.heading }}</p>
+                                                <p class="item-age dark-text small-text">{{ n.age }}</p>
+                                            </div>
+                                            <div class="notification-action-menu-btn action-menu-btn wrapper-menu absolute-pos hide">
+                                                <div class="btn-wrapper relative-pos">
+                                                    <p class="icon-container dark-text gl-1">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" class="dark-text" viewBox="0 0 16 16">
+                                                            <path d="M4 8a2 2 0 1 1-3.999.001A2 2 0 0 1 4 8m6 0a2 2 0 1 1-3.999.001A2 2 0 0 1 10 8m6 0a2 2 0 1 1-3.999.001A2 2 0 0 1 16 8" />
+                                                        </svg>
+                                                        <span class="sr-only">Ellipisis Icon</span>
+                                                    </p>
+                                                    <div class="action-menu-container absolute-pos wrapper-menu">
+                                                        <div class="visit-url-notification-btn action-item" data-sku="{{ n.sku }}">
+                                                            <p class="icon-container dark-text">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" class="dark-text" viewBox="0 0 24 24">
+                                                                    <path fill-rule="evenodd" d="M9 3a1 1 0 0 0 0 2h9v13a1 1 0 0 1-1 1H9a1 1 0 0 0 0 2h8a3 3 0 0 0 3-3V4a1 1 0 0 0-1-1zm3.707 5.293A1 1 0 0 0 11 9v2H5a1 1 0 0 0 0 2h6v2a1 1 0 0 0 1.707.707l3-3a1 1 0 0 0 0-1.414z" clip-rule="evenodd" />
+                                                                </svg>
+                                                                <span class="sr-only">Visit Link Icon</span>
+                                                            </p>
+                                                            <p class="item-text dark-text small-text">Visit {{ n.url_name }}</p>
+                                                        </div>
+                                                        <div class="view-notification-btn action-item">
+                                                            <p class="icon-container dark-text">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" class="dark-text" viewBox="0 0 32 32">
+                                                                    <circle cx="16" cy="16" r="4" />
+                                                                    <path d="M30.94 15.66A16.69 16.69 0 0 0 16 5A16.69 16.69 0 0 0 1.06 15.66a1 1 0 0 0 0 .68A16.69 16.69 0 0 0 16 27a16.69 16.69 0 0 0 14.94-10.66a1 1 0 0 0 0-.68M16 22.5a6.5 6.5 0 1 1 6.5-6.5a6.51 6.51 0 0 1-6.5 6.5" />
+                                                                </svg>
+                                                                <span class="sr-only">View Notification Icon</span>
+                                                            </p>
+                                                            <p class="item-text dark-text small-text">View Notification</p>
+                                                        </div>
+                                                        <div class="unclear-notification-btn action-item" data-sku="{{ n.sku }}">
+                                                            <p class="icon-container dark-text">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" class="dark-text" viewBox="0 0 16 16">
+                                                                    <path d="M1.22 6.28a.75.75 0 0 1 0-1.06l3.5-3.5a.749.749 0 1 1 1.06 1.06L3.561 5h7.188l.001.007L10.749 5q.088 0 .171.019A4.501 4.501 0 0 1 10.5 14H8.796a.75.75 0 0 1 0-1.5H10.5a3 3 0 1 0 0-6H3.561L5.78 8.72a.749.749 0 1 1-1.06 1.06z" />
+                                                                </svg>
+                                                                <span class="sr-only">Unclear Notification Icon</span>
+                                                            </p>
+                                                            <p class="item-text dark-text small-text">Unclear Notification</p>
+                                                        </div>
+                                                        <div class="delete-notification-btn action-item confirm-action-btn relative-pos" data-sku="{{ n.sku }}">
+                                                            <p class="icon-container dark-text">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" class="dark-text" viewBox="0 0 24 24">
+                                                                    <path fill-rule="evenodd" d="M8.106 2.553A1 1 0 0 1 9 2h6a1 1 0 0 1 .894.553L17.618 6H20a1 1 0 1 1 0 2h-1v11a3 3 0 0 1-3 3H8a3 3 0 0 1-3-3V8H4a1 1 0 0 1 0-2h2.382zM14.382 4l1 2H8.618l1-2zM11 11a1 1 0 1 0-2 0v6a1 1 0 1 0 2 0zm4 0a1 1 0 1 0-2 0v6a1 1 0 1 0 2 0z" clip-rule="evenodd" />
+                                                                </svg>
+                                                                <span class="sr-only">Delete Notification Icon</span>
+                                                            </p>
+                                                            <p class="item-text dark-text small-text">Delete Notification</p>
+                                                            <div class="confirm-action-container absolute-pos wrapper-menu">
+                                                                <p class="dark-text small-text">Confirm Delete</p>
+                                                                <div class="confirm-options">
+                                                                    <p class="confirm-delete-notification-btn icon-container dark-text gl-1 success" data-sku="{{ n.sku }}">
+                                                                        <svg xmlns="http://www.w3.org/2000/svg" class="dark-text" viewBox="0 0 24 24">
+                                                                            <g fill-rule="evenodd">
+                                                                                <path fill="black" d="M21.546 5.111a1.5 1.5 0 0 1 0 2.121L10.303 18.475a1.6 1.6 0 0 1-2.263 0L2.454 12.89a1.5 1.5 0 1 1 2.121-2.121l4.596 4.596L19.424 5.111a1.5 1.5 0 0 1 2.122 0" />
+                                                                            </g>
+                                                                        </svg>
+                                                                        <span class="sr-only">Check Icon</span>
+                                                                    </p>
+                                                                    <p class="deny-action-btn icon-container dark-text gl-1 error">
+                                                                        <svg xmlns="http://www.w3.org/2000/svg" class="dark-text" viewBox="0 0 15 15">
+                                                                            <path d="M3.64 2.27L7.5 6.13l3.84-3.84A.92.92 0 0 1 12 2a1 1 0 0 1 1 1a.9.9 0 0 1-.27.66L8.84 7.5l3.89 3.89A.9.9 0 0 1 13 12a1 1 0 0 1-1 1a.92.92 0 0 1-.69-.27L7.5 8.87l-3.85 3.85A.92.92 0 0 1 3 13a1 1 0 0 1-1-1a.9.9 0 0 1 .27-.66L6.16 7.5L2.27 3.61A.9.9 0 0 1 2 3a1 1 0 0 1 1-1c.24.003.47.1.64.27" />
+                                                                        </svg>
+                                                                        <span class="sr-only">Xmark Icon</span>
+                                                                    </p>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
+                                        {% endfor %}
+                                        {% endif %}
                                     </div>
-                                    {% endfor %}
-                                    {% endif %}
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <div class="messages-container container-col align-start box-shadow"></div>
-
-                    <div class="profile-btn-container container-row">
-                        <div class="profile-img-container img-container">
-                            {% if profile.image %}
-                            <img src="{{ profile.image.url }}" alt="{{ profile.first_name }}'s Profile Image" class="img-100a">
-                            {% else %}
-                            <img src="{{ MEDIA_URL }}default-profile-picture.webp" alt="Default Profile Image" class="img-100a">
-                            {% endif %}
+                    <div class="messages-container box-shadow">
+                        <div class="messages-heading-container">
+                            <p class="dark-text subheading">Messages</p>
+                            <div class="messages-close-btn-wrapper label-container">
+                                <p class="messages-close-btn icon-container dark-text gl-2 error pointer">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="dark-text" viewBox="0 0 15 15">
+                                        <path d="M3.64 2.27L7.5 6.13l3.84-3.84A.92.92 0 0 1 12 2a1 1 0 0 1 1 1a.9.9 0 0 1-.27.66L8.84 7.5l3.89 3.89A.9.9 0 0 1 13 12a1 1 0 0 1-1 1a.92.92 0 0 1-.69-.27L7.5 8.87l-3.85 3.85A.92.92 0 0 1 3 13a1 1 0 0 1-1-1a.9.9 0 0 1 .27-.66L6.16 7.5L2.27 3.61A.9.9 0 0 1 2 3a1 1 0 0 1 1-1c.24.003.47.1.64.27" />
+                                    </svg>
+                                    <span class="sr-only">Xmark Icon</span>
+                                </p>
+                                <span class="label dark-text small-text">Close Messages</span>
+                            </div>
                         </div>
-                        <div class="profile-btn-icon container-col">
-                            <span class="sr-only">Chevron Icon</span><span class="fa-icon dark-text small-text"><i class="fa-solid fa-chevron-down dark-text small-text"></i></span>
-                        </div>
+                        <div class="messages-display-container"></div>
                     </div>
 
-                    <div class="profile-menu-container container-col box-shadow align-start">
-                        <a href="{% url 'profile' user.username %}" class="profile-menu-btn container-row">
-                            <div class="icon-container">
-                                <img src="{{ MEDIA_URL }}profile-person-icon.webp" alt="Profile Person Icon" class="img-100a">
+                    <div class="profile-wrapper wrapper-menu">
+                        <div class="profile-btn-container wrapper-btn container-row">
+                            <div class="profile-img-container img-container">
+                                {% if profile.image %}
+                                <img src="{{ profile.image.url }}" alt="{{ profile.first_name }}'s Profile Image" class="img-100a">
+                                {% else %}
+                                <img src="{{ MEDIA_URL }}default-profile-picture.webp" alt="Default Profile Image" class="img-100a">
+                                {% endif %}
                             </div>
-                            <p class="dark-text">Profile</p>
-                        </a>
-                        <a href="{% url 'membership_status' %}" class="profile-menu-btn container-row">
-                            <div class="icon-container">
-                                <img src="{{ MEDIA_URL }}membership-crown-icon.webp" alt="Membership Crown Icon" class="img-100a">
+                            <div class="profile-btn-down-icon profile-btn-icon container-col">
+                                <p class="dark-text small-icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 0 1 1.414 0L10 10.586l3.293-3.293a1 1 0 1 1 1.414 1.414l-4 4a1 1 0 0 1-1.414 0l-4-4a1 1 0 0 1 0-1.414" clip-rule="evenodd" />
+                                    </svg>
+                                    <span class="sr-only">Chevron Down Icon</span>
+                                </p>
                             </div>
-                            <p class="dark-text">Membeship</p>
-                        </a>
-                        <a href="{% url 'account_logout' %}" class="profile-menu-btn container-row">
-                            <div class="icon-container">
-                                <img src="{{ MEDIA_URL }}logout-icon.webp" alt="Logout Icon" class="img-100a">
-                            </div>
-                            <p class="dark-text">Log Out</p>
-                        </a>
+                        </div>
+                        <div class="profile-menu-container container-col box-shadow align-start">
+                            <a href="{% url 'profile' user.username %}" class="profile-menu-btn container-row">
+                                <div class="icon-container">
+                                    <img src="{{ MEDIA_URL }}profile-person-icon.webp" alt="Profile Person Icon" class="img-100a">
+                                </div>
+                                <p class="dark-text">Profile</p>
+                            </a>
+                            <a href="{% url 'membership_status' %}" class="profile-menu-btn container-row">
+                                <div class="icon-container">
+                                    <img src="{{ MEDIA_URL }}membership-crown-icon.webp" alt="Membership Crown Icon" class="img-100a">
+                                </div>
+                                <p class="dark-text">Membeship</p>
+                            </a>
+                            <a href="{% url 'account_logout' %}" class="profile-menu-btn container-row">
+                                <div class="icon-container">
+                                    <img src="{{ MEDIA_URL }}logout-icon.webp" alt="Logout Icon" class="img-100a">
+                                </div>
+                                <p class="dark-text">Log Out</p>
+                            </a>
+                        </div>
                     </div>
                 </div>
 
                 {% else %}
 
                 <div class="account-btns-container container-row">
-                    <a href="{% url 'account_login' %}" class="dark-text"><span class="fa-icon-left"><i class="fa-regular fa-user"></i></span>Login</a>
-                    <a href="{% url 'account_signup' %}" class="btn small-btn yellow-btn">Join Now<span class="fa-icon-right"><i class="fa-solid fa-right-to-bracket"></i></span></a>
+                    <a href="{% url 'account_login' %}" class="visit-link">
+                        <span class="btn-icon icon-container">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="dark-text" viewBox="0 0 24 24">
+                                <path d="M12 2a5 5 0 1 0 5 5a5 5 0 0 0-5-5m0 8a3 3 0 1 1 3-3a3 3 0 0 1-3 3m9 11v-1a7 7 0 0 0-7-7h-4a7 7 0 0 0-7 7v1h2v-1a5 5 0 0 1 5-5h4a5 5 0 0 1 5 5v1z" />
+                            </svg>
+                        </span>
+                        <p class="dark-text-2">Login</p>
+                    </a>
+                    <a href="{% url 'account_signup' %}" class="btn small-btn yellow-btn">
+                        <p class="dark-text-2">Join Now</p>
+                        <span class="btn-icon btn-icon-right icon-container">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="dark-text-2" viewBox="0 0 24 24">
+                                <path fill-rule="evenodd" d="M9 3a1 1 0 0 0 0 2h9v13a1 1 0 0 1-1 1H9a1 1 0 0 0 0 2h8a3 3 0 0 0 3-3V4a1 1 0 0 0-1-1zm3.707 5.293A1 1 0 0 0 11 9v2H5a1 1 0 0 0 0 2h6v2a1 1 0 0 0 1.707.707l3-3a1 1 0 0 0 0-1.414z" clip-rule="evenodd" />
+                            </svg>
+                        </span>
+                    </a>
                 </div>
 
                 {% endif %}

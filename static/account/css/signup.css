@@ -1,21 +1,19 @@
 .account-section {
   background-color: #ececec;
-  height: 100vh;
 }
-.account-section .section-container {
-  gap: 100px;
+.account-section .account-container {
+  width: 640px;
+  padding: 20px;
+  gap: 12px;
+  background-color: #f7f7f7;
+  border-radius: 15px;
 }
 .account-section .info-container {
-  gap: 30px;
-  text-align: center;
-  max-width: 600px;
+  gap: 4px;
+  width: 100%;
 }
-.account-section .info-container .text-container {
-  gap: 10px;
-}
-.account-section .info-container .img-container {
-  width: 350px;
-  height: 84px;
+.account-section .form-container {
+  width: 100%;
 }
 
 /*# sourceMappingURL=signup.css.map */

@@ -12,7 +12,7 @@ class Notification(models.Model):
     date = models.DateTimeField(auto_now_add=True)
     cleared_status = models.BooleanField(default=False)
     category = models.CharField(max_length=254, null=True, blank=True)
-    url = models.URLField(null=True, blank=True)
+    url = models.CharField(max_length=254, null=True, blank=True)
 
     def __str__(self):
         return self.sku

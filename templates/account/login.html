@@ -12,53 +12,62 @@
 {% block content %}
 <section class="login-section account-section section h-100b">
     <div class="section-container container-row">
-
-        <div class="info-container container-col">
-            <div class="text-container container-col">
-                <h2 class="dark-text heading">Welcome Back!</h2>
-                <p class="dark-text">Not a Member? <a href="{% url 'account_signup' %}" class="red-text dark-text">Join Today!</a></p>
-                <p class="dark-text small-text">Please Login to Continue</p>
+        <div class="account-container container-col align-start box-shadow">
+            <div class="info-container container-col align-start">
+                <h2 class="dark-text subheading">Welcome Back!</h2>
+                <p class="dark-text small-text visit-link">
+                    Not a Member? 
+                    <a href="{% url 'account_signup' %}" class="visit-link">
+                        <span class="red-text small-text">Login</span>
+                        <span class="btn-icon icon-container">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="red-text small-text" viewBox="0 0 24 24">
+                                <path fill-rule="evenodd" d="M9 3a1 1 0 0 0 0 2h9v13a1 1 0 0 1-1 1H9a1 1 0 0 0 0 2h8a3 3 0 0 0 3-3V4a1 1 0 0 0-1-1zm3.707 5.293A1 1 0 0 0 11 9v2H5a1 1 0 0 0 0 2h6v2a1 1 0 0 0 1.707.707l3-3a1 1 0 0 0 0-1.414z" clip-rule="evenodd" />
+                            </svg>
+                        </span>
+                    </a>
+                </p>
+                <p class="dark-text small-text">Please Login to Continue.</p>
             </div>
-            <div class="img-container">
-                <img src="{{ MEDIA_URL }}mreea-colored-lines.webp" alt="MREEA Colors" class="img-100a">
-            </div>
-        </div>
-
-        <div class="form-container">
-            
-            <form class="form" method="POST" action="{% url 'account_login' %}">
-                {% csrf_token %}
-                <div class="input-group">
-                    <p class="input-label dark-text">Email</p>
-                    <label for="id_login" class="sr-only">email login</label>
-                    {{ form.login }}
-                </div>
-
-                <div class="input-group">
-                    <p class="input-label dark-text">Password</p>
-                    <label for="id_password" class="sr-only">password</label>
-                    {{ form.password }}
-                </div>
-                
-                {% if redirect_field_value %}
-                <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
-                {% endif %}
-
-                <div class="remember-forget-container container-row">
-                    <div class="input-group row">
-                        <p class="input-label dark-text small-text remember-label">Remember Me</p>
-                        <label for="id_remember" class="sr-only">remember</label>
-                        {{ form.remember }}
+    
+            <div class="form-container">
+                <form class="form" method="POST" action="{% url 'account_login' %}">
+                    {% csrf_token %}
+                    <div class="input-container col-2">
+                        <label for="id_login" class="sr-only">email login</label>
+                        {{ form.login }}
                     </div>
-                    <a class="dark-text small-text" href="{% url 'account_reset_password' %}">{% trans "Forgot Password?" %}</a>
-                </div>
-                
-                <button class="btn btn-2" type="submit">{% trans "Sign In" %}<span class="fa-icon-right"><i class="fa-solid fa-right-to-bracket"></i></span></button>
-              </form>
+    
+                    <div class="input-container col-2">
+                        <label for="id_password" class="sr-only">password</label>
+                        {{ form.password }}
+                    </div>
+                    
+                    {% if redirect_field_value %}
+                    <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+                    {% endif %}
+
+                    <div class="input-group-container">
+                        <button class="btn" type="submit">
+                            <span class="white-text">{% trans "Sign In" %}</span>
+                            <span class="btn-icon btn-icon-right icon-container">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="white-text" viewBox="0 0 24 24">
+                                    <path fill-rule="evenodd" d="M9 3a1 1 0 0 0 0 2h9v13a1 1 0 0 1-1 1H9a1 1 0 0 0 0 2h8a3 3 0 0 0 3-3V4a1 1 0 0 0-1-1zm3.707 5.293A1 1 0 0 0 11 9v2H5a1 1 0 0 0 0 2h6v2a1 1 0 0 0 1.707.707l3-3a1 1 0 0 0 0-1.414z" clip-rule="evenodd" />
+                                </svg>
+                            </span>
+                        </button>
+                        <div class="remember-forget-container container-row">
+                            <div class="input-container">
+                                <p class="input-label dark-text small-text remember-label">Remember Me</p>
+                                <label for="id_remember" class="sr-only">remember</label>
+                                {{ form.remember }}
+                            </div>
+                            <a class="dark-text small-text" href="{% url 'account_reset_password' %}">{% trans "Forgot Password?" %}</a>
+                        </div>
+                    </div>
+                  </form>
+            </div>
         </div>
     </div>
-
-    
 </section>
 
 {% endblock %}
