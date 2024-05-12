@@ -1,5 +1,5 @@
 from django import forms
-from allauth.account.forms import SignupForm
+from allauth.account.forms import SignupForm, LoginForm
 from django.contrib.auth.models import User
 from .models import UserProfile, Category, Class
 
@@ -9,10 +9,6 @@ class CustomSignupForm(SignupForm):
                                   widget=forms.TextInput(attrs={'placeholder': 'First Name'}))
     last_name = forms.CharField(max_length=30, label='Last Name', required=True,
                                  widget=forms.TextInput(attrs={'placeholder': 'Last Name'}))
-
-    def __init__(self, *args, **kwargs):
-        super(CustomSignupForm, self).__init__(*args, **kwargs)
-        self.fields['password2'].widget.attrs['placeholder'] = 'Password (confirmation)'
 
     def save(self, request):
         # Validate form data

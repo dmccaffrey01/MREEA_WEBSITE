@@ -78,12 +78,14 @@ a {
 
 .form {
     width: 100%;
-    gap: 8px;
+    gap: 16px;
     @extend .container-col;
     align-items: flex-start;
 
     .btn {
-        width: calc(50% - 4px);
+        width: 100%;
+        border-radius: $round-corner-2;
+        margin-top: 4px;
     }
 
     .hidden-input-container {
@@ -98,26 +100,41 @@ a {
 
     .input-container {
         @extend .container-row;
-        width: calc(50% - 4px);
+        position: relative;
+        width: calc(50% - 8px);
         gap: 4px;
     
         &.col-2 {
             width: 100%
+        }
+
+        .icon-container {
+            position: absolute;
+            left: 16px;
+            top: 50%;
+            translate: 0 -50%;
         }
     
     
         input, select, textarea {
             width: 100%;
             font-size: $font-size;
-            padding: 8px 12px;
+            padding: 12px 16px;
+            padding-left: calc(16px + $font-size + 8px);
             border: none;
             outline: none;
             color: $gd-1;
             background-color: $gl-2;
-            border-radius: $round-corner-1;
+            border-radius: $round-corner-2;
     
             &:focus {
                 outline: 2px solid $red-1;
+            }
+
+            &:focus + .icon-container {
+                path {
+                    fill: $red-1;
+                }
             }
         }
     
@@ -349,7 +366,7 @@ a {
 .btn {
     @extend .container-row;
     font-size: $font-size;
-    padding: 8px 12px;
+    padding: 12px 16px;
     border-radius: $round-corner-1;
     color: $white;
     min-width: 200px;
@@ -640,6 +657,18 @@ a {
     backdrop-filter: blur(3px);
 }
 
+.fill-yellow {
+    fill: $yellow-1;
+}
+
+.fill-red {
+    fill: $red-1;
+}
+
+.fill-gray {
+    fill: $gd-1;
+}
+
 /* Header */
 
 header {
@@ -660,8 +689,8 @@ header {
 }
 
 .logo-img-container {
-    width: 80px;
-    height: 80px;
+    width: 100px;
+    height: 100px;
 }
 
 h1.logo-text {
@@ -1166,24 +1195,22 @@ h1.logo-text {
 
 footer {
     width: 100%;
-    background-color: $gl-1;
-    padding: 40px 0 20px 0;
- 
+    background-color: $gl-2;
+    padding: 20px 0 20px 0;
+
     .footer-container {
-        width: calc(100% - 100px);
+        width: calc(100% - 120px);
     }
 
-    .footer-top, .footer-bottom {
-        width: 100%;
-    }
+    .footer-logo-container {
+        gap: 16px;
+        width: 320px;
+        justify-content: flex-start;
 
-    .footer-top {
-        padding-bottom: 20px;
-        border-bottom: 2px solid $gd-1;
-    }
-
-    .footer-bottom {
-        padding-top: 20px;
+        .img-container {
+            width: 64px;
+            height: 64px;
+        }
     }
 
     .footer-nav {
@@ -1193,19 +1220,10 @@ footer {
     .divider {
         width: 2px;
         height: 1.2rem;
-        background-color: $gd-1;
+        background-color: $gd-2;
     }
 
     .footer-contact-container {
-        gap: 20px;
-    }
-
-    .bold {
-        font-weight: 600;
-    }
-
-    .img-container {
-        width: 65px;
-        height: 65px;
+        width: 320px;
     }
 }

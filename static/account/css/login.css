@@ -1,16 +1,17 @@
 .account-section {
-  background-color: #ececec;
+  background-color: #f7f7f7;
+  position: relative;
+  overflow: hidden;
+}
+.account-section .section-container {
+  gap: 16px;
 }
 .account-section .account-container {
-  width: 640px;
-  padding: 20px;
-  gap: 12px;
+  width: 600px;
+  padding: 32px;
+  gap: 24px;
   background-color: #f7f7f7;
-  border-radius: 15px;
-}
-.account-section .info-container {
-  gap: 4px;
-  width: 100%;
+  border-radius: 16px;
 }
 .account-section .form-container {
   width: 100%;

@@ -40,7 +40,7 @@
                 <!-- Logo -->
                 <div class="logo-container container-row">
                     <a href="{% url 'home' %}" class="logo-img-container img-container">
-                        <img src="{{ MEDIA_URL }}mreea-logo.webp" alt="MREEA Logo" class="img-100a">
+                        <img src="{{ MEDIA_URL }}mreea-logo.png" alt="MREEA Logo" class="img-100a">
                     </a>
 
                     <h1 class="logo-text dark-text sr-only">MREEA (Maryland Real Estate Educators Association)</h1>
@@ -430,19 +430,14 @@
                 <div class="account-btns-container container-row">
                     <a href="{% url 'account_login' %}" class="visit-link">
                         <span class="btn-icon icon-container">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="dark-text" viewBox="0 0 24 24">
-                                <path d="M12 2a5 5 0 1 0 5 5a5 5 0 0 0-5-5m0 8a3 3 0 1 1 3-3a3 3 0 0 1-3 3m9 11v-1a7 7 0 0 0-7-7h-4a7 7 0 0 0-7 7v1h2v-1a5 5 0 0 1 5-5h4a5 5 0 0 1 5 5v1z" />
+                            <svg xmlns="http://www.w3.org/2000/svg" class="dark-text" viewBox="0 0 256 256">
+                                <path d="M234.38 210a123.36 123.36 0 0 0-60.78-53.23a76 76 0 1 0-91.2 0A123.36 123.36 0 0 0 21.62 210a12 12 0 1 0 20.77 12c18.12-31.32 50.12-50 85.61-50s67.49 18.69 85.61 50a12 12 0 0 0 20.77-12M76 96a52 52 0 1 1 52 52a52.06 52.06 0 0 1-52-52" />
                             </svg>
                         </span>
                         <p class="dark-text-2">Login</p>
                     </a>
                     <a href="{% url 'account_signup' %}" class="btn small-btn yellow-btn">
                         <p class="dark-text-2">Join Now</p>
-                        <span class="btn-icon btn-icon-right icon-container">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="dark-text-2" viewBox="0 0 24 24">
-                                <path fill-rule="evenodd" d="M9 3a1 1 0 0 0 0 2h9v13a1 1 0 0 1-1 1H9a1 1 0 0 0 0 2h8a3 3 0 0 0 3-3V4a1 1 0 0 0-1-1zm3.707 5.293A1 1 0 0 0 11 9v2H5a1 1 0 0 0 0 2h6v2a1 1 0 0 0 1.707.707l3-3a1 1 0 0 0 0-1.414z" clip-rule="evenodd" />
-                            </svg>
-                        </span>
                     </a>
                 </div>
 
@@ -457,40 +452,47 @@
         {% endblock %}
 
         <footer class="container-col">
-            <div class="footer-container container-col">
-                <div class="footer-top container-row space-between align-end">
-                    <h2 class="dark-text heading">MREEA</h2>
-                    <div class="footer-nav container-row">
-                        <a href="" class="dark-text">About</a>
-                        <div class="divider"></div>
-                        <a href="" class="dark-text">Privacy</a>
-                        <div class="divider"></div>
-                        <a href="{% url 'contact' %}" class="dark-text">Contact</a>
-                        <div class="divider"></div>
-                        {% if user.is_authenicated %}
-                        <a href="{% url 'membership_status' %}" class="dark-text">Join</a>
-                        {% else %}
-                        <a href="{% url 'account_signup' %}" class="dark-text">Join</a>
-                        {% endif %}
+            <div class="footer-container container-row space-between">
+                <div class="footer-logo-container container-row">
+                    <div class="img-container">
+                        <img src="{{ MEDIA_URL }}mreea-logo-gray.png" alt="Gray Mreea Logo" class="img-100a">
+                    </div>
+                    <div class="text-container">
+                        <p class="dark-text-2">Maryland Real Estate</p>
+                        <p class="dark-text-2">Educators Association</p>
                     </div>
                 </div>
-                <div class="footer-bottom container-row space-between">
+                <div class="footer-nav container-row">
+                    <a href="" class="dark-text-2">About</a>
+                    <div class="divider"></div>
+                    <a href="" class="dark-text-2">Privacy</a>
+                    <div class="divider"></div>
+                    <a href="{% url 'contact' %}" class="dark-text-2">Contact</a>
+                    <div class="divider"></div>
+                    {% if user.is_authenicated %}
+                    <a href="{% url 'membership_status' %}" class="dark-text-2">Membership</a>
+                    {% else %}
+                    <a href="{% url 'account_signup' %}" class="dark-text-2">Join</a>
+                    {% endif %}
+                </div>
+                <div class="footer-contact-container container-col align-end">
                     <div class="text-container container-col align-start">
-                        <p class="dark-text">MARYLAND REAL ESTATE</p>
-                        <p class="dark-text">EDUCATORS ASSOCIATION</p>
-                    </div>
-                    <div class="footer-contact-container container-row">
-                        <div class="text-container container-col align-start">
-                            <p class="bold dark-text">EMAIL US</p>
-                            <p class="dark-text">info@mreea.com</p>
-                        </div>
-                        <div class="text-container container-col align-start">
-                            <p class="bold dark-text">CALL US</p>
-                            <p class="dark-text">(555) 555 5555</p>
-                        </div>
-                        <div class="img-container">
-                            <img src="{{ MEDIA_URL }}mreea-logo-1-gray.png" alt="Gray Mreea Logo" class="img-100a">
-                        </div>
+                        <p class="visit-link">
+                            <span class="icon-container btn-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="dark-text-2" viewBox="0 0 24 24">
+                                    <path d="M22 6c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2zm-2 0l-8 5l-8-5zm0 12H4V8l8 5l8-5z" />
+                                </svg>
+                            </span>
+                            <span class="dark-text-2">info@mreea.com</span>
+                        </p>
+                        <p class="visit-link">
+                            <span class="icon-container btn-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="dark-text-2" viewBox="0 0 256 256">
+                                    <path d="m224 154.8l-47.09-21.11l-.18-.08a19.94 19.94 0 0 0-19 1.75a13 13 0 0 0-1.12.84l-22.31 19c-13-7.05-26.43-20.37-33.49-33.21l19.06-22.66a12 12 0 0 0 .85-1.15a20 20 0 0 0 1.66-18.83a1.4 1.4 0 0 1-.08-.18L101.2 32a20.06 20.06 0 0 0-20.78-11.85A60.27 60.27 0 0 0 28 80c0 81.61 66.39 148 148 148a60.27 60.27 0 0 0 59.85-52.42A20.06 20.06 0 0 0 224 154.8M176 204A124.15 124.15 0 0 1 52 80a36.29 36.29 0 0 1 28.48-35.54l18.82 42l-19.16 22.82a12 12 0 0 0-.86 1.16A20 20 0 0 0 78 130.08c9.42 19.28 28.83 38.56 48.31 48a20 20 0 0 0 19.69-1.45a12 12 0 0 0 1.11-.85l22.43-19.07l42 18.81A36.29 36.29 0 0 1 176 204" />
+                                </svg>
+                            </span>
+                            <span class="dark-text-2">(555) 5555 555</span>
+                        </p>
                     </div>
                 </div>
             </div>

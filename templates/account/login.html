@@ -11,62 +11,47 @@
 
 {% block content %}
 <section class="login-section account-section section h-100b">
-    <div class="section-container container-row">
+    <div class="section-container container-col">
         <div class="account-container container-col align-start box-shadow">
-            <div class="info-container container-col align-start">
-                <h2 class="dark-text subheading">Welcome Back!</h2>
-                <p class="dark-text small-text visit-link">
-                    Not a Member? 
-                    <a href="{% url 'account_signup' %}" class="visit-link">
-                        <span class="red-text small-text">Login</span>
-                        <span class="btn-icon icon-container">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="red-text small-text" viewBox="0 0 24 24">
-                                <path fill-rule="evenodd" d="M9 3a1 1 0 0 0 0 2h9v13a1 1 0 0 1-1 1H9a1 1 0 0 0 0 2h8a3 3 0 0 0 3-3V4a1 1 0 0 0-1-1zm3.707 5.293A1 1 0 0 0 11 9v2H5a1 1 0 0 0 0 2h6v2a1 1 0 0 0 1.707.707l3-3a1 1 0 0 0 0-1.414z" clip-rule="evenodd" />
-                            </svg>
-                        </span>
-                    </a>
-                </p>
-                <p class="dark-text small-text">Please Login to Continue.</p>
-            </div>
-    
+            <h2 class="dark-text subheading">Welcome Back!</h2>
             <div class="form-container">
                 <form class="form" method="POST" action="{% url 'account_login' %}">
                     {% csrf_token %}
                     <div class="input-container col-2">
                         <label for="id_login" class="sr-only">email login</label>
                         {{ form.login }}
+                        <div class="icon-container btn-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="dark-text-2" viewBox="0 0 24 24">
+                                <path d="M22 6c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2zm-2 0l-8 5l-8-5zm0 12H4V8l8 5l8-5z" />
+                            </svg>
+                        </div>
                     </div>
     
                     <div class="input-container col-2">
                         <label for="id_password" class="sr-only">password</label>
                         {{ form.password }}
+                        <div class="icon-container btn-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="dark-text-2" viewBox="0 0 24 24">
+                                <path d="M6 22q-.825 0-1.412-.587T4 20V10q0-.825.588-1.412T6 8h1V6q0-2.075 1.463-3.537T12 1t3.538 1.463T17 6v2h1q.825 0 1.413.588T20 10v10q0 .825-.587 1.413T18 22zm0-2h12V10H6zm6-3q.825 0 1.413-.587T14 15t-.587-1.412T12 13t-1.412.588T10 15t.588 1.413T12 17M9 8h6V6q0-1.25-.875-2.125T12 3t-2.125.875T9 6zM6 20V10z" />
+                            </svg>
+                        </div>
                     </div>
                     
                     {% if redirect_field_value %}
                     <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
                     {% endif %}
 
-                    <div class="input-group-container">
-                        <button class="btn" type="submit">
-                            <span class="white-text">{% trans "Sign In" %}</span>
-                            <span class="btn-icon btn-icon-right icon-container">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="white-text" viewBox="0 0 24 24">
-                                    <path fill-rule="evenodd" d="M9 3a1 1 0 0 0 0 2h9v13a1 1 0 0 1-1 1H9a1 1 0 0 0 0 2h8a3 3 0 0 0 3-3V4a1 1 0 0 0-1-1zm3.707 5.293A1 1 0 0 0 11 9v2H5a1 1 0 0 0 0 2h6v2a1 1 0 0 0 1.707.707l3-3a1 1 0 0 0 0-1.414z" clip-rule="evenodd" />
-                                </svg>
-                            </span>
-                        </button>
-                        <div class="remember-forget-container container-row">
-                            <div class="input-container">
-                                <p class="input-label dark-text small-text remember-label">Remember Me</p>
-                                <label for="id_remember" class="sr-only">remember</label>
-                                {{ form.remember }}
-                            </div>
-                            <a class="dark-text small-text" href="{% url 'account_reset_password' %}">{% trans "Forgot Password?" %}</a>
-                        </div>
-                    </div>
+                    <button class="btn" type="submit">
+                        <span class="white-text">Login</span>
+                    </button>
+
+                    <a class="dark-text small-text" href="{% url 'account_reset_password' %}">Forgot Password?</a>
                   </form>
             </div>
         </div>
+        <p class="dark-text small-text visit-link">
+            Not a Member? <a href="{% url 'account_signup' %}" class="red-text small-text">Create Account</a>
+        </p>
     </div>
 </section>
 
@@ -75,7 +60,6 @@
 {% block postloadjs %}
 {{ block.super }}
 
-<script src="{% static 'account/js/login.js' %}"></script>
 
 {% endblock %}
 
