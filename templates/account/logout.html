@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "../base.html" %}
 
 {% load i18n %}
 {% load account socialaccount %}
@@ -11,29 +11,23 @@
 
 {% block content %}
 <section class="logout-section account-section section h-100b">
-    <div class="section-container container-row">
-
-        <div class="form-container">
+    <div class="section-container container-col">
+        <div class="account-container container-col box-shadow">
             <div class="info-container container-col">
-                <div class="text-container container-col">
-                    <h2 class="dark-text heading">Goodbye</h2>
-                    <p class="dark-text">Are you sure you want to log out? <a href="{% url 'home' %}" class="red-text dark-text">Return Home</a></p>
-                    <p class="dark-text small-text">Please click sign out to continue</p>
-                </div>
-                <form class="form" method="POST" action="{% url 'account_logout' %}">
-                  {% csrf_token %}
-                  
-                  {% if redirect_field_value %}
-                  <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
-                  {% endif %}
-                  
-                  <button class="btn btn-2" type="submit">{% trans "Sign Out" %}<span class="fa-icon-right"><i class="fa-solid fa-right-to-bracket"></i></span></button>
-                </form>
-                <div class="img-container">
-                    <img src="{{ MEDIA_URL }}mreea-colored-lines.webp" alt="MREEA Colors" class="img-100a">
-                </div>
+                <h2 class="dark-text subheading center-text">Goodbye</h2>
+                <p class="dark-text small-text center-text">Are you sure you want to log out? <a href="{% url 'home' %}" class="red-text small-text-text">Return Home</a></p>
             </div>
+            <form class="form" method="POST" action="{% url 'account_logout' %}">
+              {% csrf_token %}
+              
+              {% if redirect_field_value %}
+              <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+              {% endif %}
+              
+              <button class="btn" type="submit">Log Out</button>
+            </form>
         </div>
+        <a href="{% url 'contact' %}" class="dark-text small-text">Having a Problem?</a>
     </div>
 </section>
 

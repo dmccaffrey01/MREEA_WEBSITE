@@ -68,13 +68,16 @@ ACCOUNT_EMAIL_REQUIRED = True
 
 ACCOUNT_EMAIL_VERIFICATION = 'none'
 
-ACCOUNT_EMAIL_CONFIRMATION_ANONYMOUS_REDIRECT_URL = '/membership/payment'
-
 ACCOUNT_USERNAME_REQUIRED = False
 
 ACCOUNT_SESSION_REMEMBER = False
 
 ACCOUNT_SIGNUP_PASSWORD_ENTER_TWICE = False
+
+ACCOUNT_FORMS = {
+    'signup': 'profiles.forms.CustomSignupForm',
+    'change_password': 'profiles.forms.CustomPasswordChangeForm',
+}
 
 MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'
 
@@ -88,9 +91,10 @@ SITE_DOMAIN = 'mreea.org'
 
 POPUP_MESSAGE_TEMPLATE = 'popup_message.html'
 
-LOGIN_REDIRECT_URL = '/' 
+LOGIN_REDIRECT_URL = '/profile/login_redirect/' 
 LOGOUT_REDIRECT_URL = '/'
 LOGIN_URL = '/accounts/login/'
+ACCOUNT_SIGNUP_REDIRECT_URL = '/membership/redirect'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

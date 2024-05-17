@@ -21,19 +21,19 @@ a .dark-text:visited, a .nav-link:visited {
   color: #242424;
 }
 
-.box-shadow, .action-menu-btn .action-menu-container {
+.box-shadow, .action-menu-btn .action-menu-container, .form .select-container .select-container-items {
   box-shadow: 3px 3px 8px 2px rgba(0, 0, 0, 0.3);
   -webkit-box-shadow: 3px 3px 8px 2px rgba(0, 0, 0, 0.3);
   -moz-box-shadow: 3px 3px 8px 2px rgba(0, 0, 0, 0.3);
 }
 
-.container-row, .profile-container .messages-container .message-container, .profile-container .messages-container .messages-heading-container, .action-menu-btn .action-menu-container .action-item .confirm-action-container .confirm-options, .action-menu-btn .action-menu-container .action-item .confirm-action-container, .action-menu-btn .action-menu-container .action-item, .visit-link, .btn, .icon-container, .img-container, .form .select-container .select-item, .form .input-container, .form .input-group-container, .container-col, .profile-container .messages-container .messages-display-container, .profile-container .messages-container, .action-menu-btn .action-menu-container .action-item-container, .action-menu-btn .action-menu-container, .action-menu-btn, .form .select-container .select-container-items, .form, .section {
+.container-row, .messages-container .message-container, .messages-container .messages-heading-container, .action-menu-btn .action-menu-container .action-item .confirm-action-container .confirm-options, .action-menu-btn .action-menu-container .action-item .confirm-action-container, .action-menu-btn .action-menu-container .action-item, .visit-link, .btn, .icon-container, .img-container, .form .select-container .select-item, .form .input-container, .form .input-group-container, .container-col, .messages-container .messages-display-container, .messages-container, .action-menu-btn .action-menu-container .action-item-container, .action-menu-btn .action-menu-container, .action-menu-btn, .form .select-container .select-container-items, .form, .section {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.container-col, .profile-container .messages-container .messages-display-container, .profile-container .messages-container, .action-menu-btn .action-menu-container .action-item-container, .action-menu-btn .action-menu-container, .action-menu-btn, .form .select-container .select-container-items, .form, .section {
+.container-col, .messages-container .messages-display-container, .messages-container, .action-menu-btn .action-menu-container .action-item-container, .action-menu-btn .action-menu-container, .action-menu-btn, .form .select-container .select-container-items, .form, .section {
   flex-direction: column;
 }
 
@@ -72,13 +72,15 @@ a .dark-text:visited, a .nav-link:visited {
 .form .btn {
   width: 100%;
   border-radius: 12px;
-  margin-top: 4px;
 }
 .form .hidden-input-container {
   display: none;
 }
 .form .input-group-container {
   width: 100%;
+}
+.form .input-group-container.col {
+  flex-direction: column;
 }
 .form .input-container {
   position: relative;
@@ -96,9 +98,9 @@ a .dark-text:visited, a .nav-link:visited {
 }
 .form .input-container input, .form .input-container select, .form .input-container textarea {
   width: 100%;
-  font-size: 1.4rem;
+  font-size: 1.3rem;
   padding: 12px 16px;
-  padding-left: calc(16px + 1.4rem + 8px);
+  padding-left: calc(16px + 1.3rem + 8px);
   border: none;
   outline: none;
   color: #242424;
@@ -111,6 +113,9 @@ a .dark-text:visited, a .nav-link:visited {
 .form .input-container input:focus + .icon-container path, .form .input-container select:focus + .icon-container path, .form .input-container textarea:focus + .icon-container path {
   fill: #c64f4a;
 }
+.form .input-container input.error-message, .form .input-container select.error-message, .form .input-container textarea.error-message {
+  outline: 2px solid #c53d52;
+}
 .form .input-container textarea {
   resize: none;
 }
@@ -118,41 +123,42 @@ a .dark-text:visited, a .nav-link:visited {
   cursor: pointer;
 }
 .form .select-container {
-  width: 350px;
+  width: 100%;
   position: relative;
-  height: 48px;
+  height: calc(24px + 1.3rem);
 }
 .form .select-container .select-container-items {
   width: 100%;
-  background-color: #ececec;
-  border-radius: 8px;
+  background-color: #f7f7f7;
+  border-radius: 12px;
   justify-content: flex-start;
-  height: 0px;
-  overflow: hidden;
-  gap: 5px;
+  gap: 4px;
   position: absolute;
   left: 0;
-  top: 48px;
-}
-.form .select-container .select-container-items.open {
-  height: 224px;
+  top: calc(100% + 12px);
+  height: fit-content;
+  max-height: 224px;
   overflow-y: scroll;
-  padding: 5px;
+  padding: 8px;
+  display: none;
 }
-.form .select-container .select-container-items.open::-webkit-scrollbar {
+.form .select-container .select-container-items::-webkit-scrollbar {
   width: 4px;
 }
-.form .select-container .select-container-items.open::-webkit-scrollbar-thumb {
+.form .select-container .select-container-items::-webkit-scrollbar-thumb {
   background-color: #c64f4a;
   border: none;
   border-radius: 8px;
 }
+.form .select-container .select-container-items.open {
+  display: flex;
+}
 .form .select-container .select-item {
   width: 100%;
-  padding: 10px 15px;
+  padding: 8px 12px;
   height: 48px;
   background-color: #f7f7f7;
-  border-radius: 8px;
+  border-radius: 12px;
   justify-content: space-between;
   cursor: pointer;
 }
@@ -161,15 +167,43 @@ a .dark-text:visited, a .nav-link:visited {
 }
 .form .select-container .select-item.single {
   background-color: #ececec;
+  cursor: default;
 }
 .form .select-container .select-item.default-select-item {
   background-color: #ececec;
 }
-.form .select-container .select-item.default-select-item.open {
-  border-radius: 8px 8px 0 0;
+.form .checkbox-label {
+  cursor: pointer;
+  font-size: 1.1rem;
 }
-.form .select-container .select-item.default-select-item:hover {
-  background-color: #ececec;
+.form .checkbox-input {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  width: 1.1rem;
+  height: 1.1rem;
+  border: 2px solid #494949;
+  border-radius: 3px;
+  outline: none;
+  position: relative;
+  cursor: pointer;
+  padding: 0;
+}
+.form .checkbox-input::before {
+  content: "";
+  position: absolute;
+  top: 45%;
+  left: 25%;
+  width: 30%;
+  height: 70%;
+  border: solid #c64f4a;
+  border-width: 0 3px 3px 0;
+  transform: translateY(-50%) rotate(45deg);
+  opacity: 0;
+  transition: opacity 0.2s ease-in-out;
+}
+.form .checkbox-input:checked::before {
+  opacity: 1;
 }
 
 .img-container {
@@ -216,8 +250,8 @@ a .dark-text:visited, a .nav-link:visited {
 }
 .icon-container.btn-icon {
   background-color: transparent;
-  width: 1.4rem;
-  height: 1.4rem;
+  width: 1.3rem;
+  height: 1.3rem;
   padding: 0;
 }
 .icon-container svg {
@@ -232,7 +266,7 @@ a .dark-text:visited, a .nav-link:visited {
 
 .dark-text, .nav-link {
   color: #242424;
-  font-size: 1.4rem;
+  font-size: 1.3rem;
 }
 .dark-text path, .nav-link path,
 .dark-text circle,
@@ -242,7 +276,7 @@ a .dark-text:visited, a .nav-link:visited {
 
 .dark-text-2 {
   color: #494949;
-  font-size: 1.4rem;
+  font-size: 1.3rem;
 }
 .dark-text-2 path,
 .dark-text-2 circle {
@@ -251,7 +285,7 @@ a .dark-text:visited, a .nav-link:visited {
 
 .white-text {
   color: #ffffff;
-  font-size: 1.4rem;
+  font-size: 1.3rem;
 }
 .white-text path,
 .white-text circle {
@@ -299,7 +333,7 @@ a .dark-text:visited, a .nav-link:visited {
 }
 
 .btn {
-  font-size: 1.4rem;
+  font-size: 1.3rem;
   padding: 12px 16px;
   border-radius: 8px;
   color: #ffffff;
@@ -401,6 +435,11 @@ a .dark-text:visited, a .nav-link:visited {
 .action-menu-btn .action-menu-container.show {
   display: flex;
 }
+.action-menu-btn .action-menu-container.center {
+  right: auto;
+  left: 50%;
+  translate: -50% 0;
+}
 .action-menu-btn .action-menu-container .action-item-container {
   width: 100%;
 }
@@ -443,12 +482,14 @@ a .dark-text:visited, a .nav-link:visited {
   border-radius: 8px;
   padding: 8px;
   background-color: #ececec;
-  display: none;
 }
 .quick-actions-container.absolute {
   position: absolute;
   top: calc(100% + 12px);
   left: 0;
+}
+.quick-actions-container.hide {
+  display: none;
 }
 .quick-actions-container.show {
   display: flex;
@@ -481,11 +522,11 @@ a .dark-text:visited, a .nav-link:visited {
   display: none !important;
 }
 
-.space-between, .profile-container .messages-container .messages-heading-container, .form .input-group-container, .action-menu-btn .action-menu-container .action-item, .action-menu-btn .action-menu-container .action-item .confirm-action-container {
+.space-between, .messages-container .messages-heading-container, .form .input-group-container, .action-menu-btn .action-menu-container .action-item, .action-menu-btn .action-menu-container .action-item .confirm-action-container {
   justify-content: space-between;
 }
 
-.align-start, .profile-container .messages-container .messages-display-container, .action-menu-btn .action-menu-container, .action-menu-btn .action-menu-container .action-item-container {
+.align-start, .messages-container .messages-display-container, .action-menu-btn .action-menu-container, .action-menu-btn .action-menu-container .action-item-container {
   align-items: flex-start;
 }
 
@@ -493,7 +534,7 @@ a .dark-text:visited, a .nav-link:visited {
   align-items: flex-end;
 }
 
-.justify-start, .profile-container .messages-container .message-container {
+.justify-start, .messages-container .message-container {
   justify-content: flex-start;
 }
 
@@ -504,36 +545,31 @@ a .dark-text:visited, a .nav-link:visited {
 .color-success {
   color: #399c3e;
 }
-.color-success path,
-.color-success circle {
-  fill: #399c3e;
+.color-success.icon-container {
+  background-color: #399c3e;
 }
 
 .color-info {
   color: #0026ff;
 }
-.color-info path,
-.color-info circle {
-  fill: #0026ff;
+.color-info.icon-container {
+  background-color: #0026ff;
 }
 
 .color-warning {
   color: #ff3c00;
 }
-.color-warning path,
-.color-warning circle {
-  fill: #ff3c00;
+.color-warning.icon-container {
+  background-color: #ff3c00;
 }
 
 .color-danger,
 .color-error {
   color: #c53d52;
 }
-.color-danger path,
-.color-danger circle,
-.color-error path,
-.color-error circle {
-  fill: #c53d52;
+.color-danger.icon-container,
+.color-error.icon-container {
+  background-color: #c53d52;
 }
 
 .blur-overlay {
@@ -569,6 +605,7 @@ header {
 .header-container {
   width: calc(100% - 120px);
   height: 100%;
+  position: relative;
 }
 
 .logo-container {
@@ -664,22 +701,17 @@ h1.logo-text::before {
   top: 50%;
   left: 0;
   translate: 0 -50%;
-  background-color: #ececec;
+  background-color: #f7f7f7;
   transition: all 0.3s ease;
   z-index: 999;
   border-radius: 0 8px 8px 0;
 }
 .side-nav .side-nav-container {
-  gap: 20px;
+  gap: 16px;
 }
-.side-nav .side-nav-btn {
-  gap: 8px;
-}
-.side-nav .side-nav-btn .icon-btn {
-  width: calc(1.4rem + 24px);
-  height: calc(1.4rem + 24px);
-  border-radius: 50%;
-  background-color: #f7f7f7;
+.side-nav .side-nav-btn .icon-container {
+  width: calc(1.3rem + 24px);
+  height: calc(1.3rem + 24px);
 }
 .side-nav .btn-text {
   left: 0;
@@ -728,9 +760,6 @@ h1.logo-text::before {
 .profile-container .profile-wrapper .profile-menu-container .profile-menu-btn:hover {
   background-color: #ececec;
 }
-.profile-container .profile-wrapper .profile-menu-container .profile-menu-btn .dark-text, .profile-container .profile-wrapper .profile-menu-container .profile-menu-btn .nav-link {
-  font-weight: 600;
-}
 .profile-container .profile-wrapper .profile-menu-container .icon-container {
   background-color: #ececec;
   width: 48px;
@@ -748,21 +777,18 @@ h1.logo-text::before {
   position: absolute;
   right: 0px;
   bottom: 0px;
-  width: 22px;
-  height: 22px;
+  width: 18px;
+  height: 18px;
   border-radius: 50%;
   background-color: #ececec;
   outline: 4px solid #f7f7f7;
   outline-offset: -1px;
   transition: all 0.3s ease;
 }
-.profile-container .profile-wrapper .profile-btn-container .profile-btn-icon.rotate {
-  rotate: -180deg;
-}
 .profile-container .profile-wrapper .profile-btn-container .profile-btn-icon .dark-text, .profile-container .profile-wrapper .profile-btn-container .profile-btn-icon .nav-link {
-  font-size: 0.7rem;
+  font-size: 0.6rem;
 }
-.profile-container .profile-wrapper .profile-btn-container .img-container {
+.profile-container .profile-wrapper .profile-btn-container .profile-img-container {
   width: 100%;
   height: 100%;
   border-radius: 50%;
@@ -788,14 +814,17 @@ h1.logo-text::before {
   position: absolute;
   right: 0px;
   bottom: 0px;
-  width: 22px;
-  height: 22px;
+  width: 18px;
+  height: 18px;
   border-radius: 50%;
   outline: 4px solid #f7f7f7;
   outline-offset: -1px;
 }
 .profile-container .notification-wrapper .notification-btn-container .notification-btn-icon .white-text {
-  font-size: 0.65rem;
+  font-size: 0.6rem;
+}
+.profile-container .notification-wrapper .notification-btn-container .notification-btn-icon.hide {
+  display: none;
 }
 .profile-container .notification-wrapper .notification-menu-container {
   position: absolute;
@@ -816,7 +845,7 @@ h1.logo-text::before {
   width: 100%;
 }
 .profile-container .notification-wrapper .notification-menu-container .heading-container .subheading {
-  font-size: 1.4rem;
+  font-size: 1.3rem;
 }
 .profile-container .notification-wrapper .notification-menu-container .heading-container .mark-all-btn-container {
   position: relative;
@@ -933,9 +962,10 @@ h1.logo-text::before {
 .profile-container .notification-wrapper.show-cleared .new-notifications-heading-action-container {
   display: none;
 }
-.profile-container .messages-container {
+
+.messages-container {
   position: absolute;
-  top: calc(100% + 10px);
+  top: calc(100% + 8px);
   right: 0;
   width: 300px;
   padding: 12px;
@@ -947,27 +977,32 @@ h1.logo-text::before {
   z-index: 999;
   transition: all 0.6s ease;
 }
-.profile-container .messages-container.show {
+.messages-container.show {
   display: flex;
 }
-.profile-container .messages-container.fade {
+.messages-container.fade {
   opacity: 1;
 }
-.profile-container .messages-container .messages-heading-container {
+.messages-container .messages-heading-container {
   width: 100%;
 }
-.profile-container .messages-container .messages-heading-container .subheading {
-  font-size: 1.4rem;
+.messages-container .messages-heading-container .subheading {
+  font-size: 1.3rem;
 }
-.profile-container .messages-container .messages-display-container {
+.messages-container .messages-display-container {
   width: 100%;
   gap: 4px;
 }
-.profile-container .messages-container .message-container {
+.messages-container .message-container {
   gap: 8px;
   width: 100%;
 }
-.profile-container .messages-container .message-container .message-text {
+.messages-container .message-container .icon-container {
+  width: calc(1.3rem + 8px);
+  height: calc(1.3rem + 8px);
+  padding: 4px;
+}
+.messages-container .message-container .message-text {
   width: calc(100% - 48px);
   white-space: wrap;
 }

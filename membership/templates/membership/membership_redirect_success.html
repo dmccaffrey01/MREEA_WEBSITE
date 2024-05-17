@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% load static %}
+{% block extra_title %}- Membership Redirect{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/membership_redirect.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<section class="membership-redirect-success-section account-section section h-100b">
+    <div class="section-container container-col">
+        <div class="account-container container-col align-start box-shadow">
+            <div class="info-container container-col align-start">
+                <h2 class="dark-text subheading">Selected Package!</h2>
+                <p class="dark-text small-text">The checkout page should have opened in a new tab, if it didn't please <a href="{{ checkout_url }}" target="_blank" class="small-text red-text">click here</a></p>
+            </div>
+            <div class="form">
+                <a href="{% url 'membership_status' %}" class="btn">Continue to Status</a>
+            </div>
+        </div>
+        <a href="{% url 'contact' %}" class="dark-text small-text">Having a Problem?</a>
+    </div>
+</section>
+
+{% endblock %}
+
+{% block postloadjs %}
+{{ block.super }}
+
+{% endblock %}

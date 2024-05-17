@@ -18,8 +18,7 @@ from django.urls import path, include
 from django.conf.urls.static import static
 from django.conf import settings
 from django.urls import path
-from allauth.account.views import SignupView
-from profiles.forms import CustomSignupForm
+from profiles.views import CustomPasswordChangeView
 
 
 app_name = 'account'
@@ -36,7 +35,7 @@ urlpatterns = [
     path('membership/', include('membership.urls')),
     path('announcements/', include('announcements.urls')),
     path('notifications/', include('notifications.urls')),
-    path('accounts/signup/', SignupView.as_view(form_class=CustomSignupForm, success_url='/membership/redirect'), name='account_signup'),
+    path('accounts/password/change/', CustomPasswordChangeView.as_view(), name='account_change_password'),
     path('accounts/', include('allauth.urls')),
 ]
 

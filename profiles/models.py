@@ -25,6 +25,14 @@ class Category(models.Model):
         return prefix + suffix
 
 
+class TeachingState(models.Model):
+    code = models.CharField(max_length=254, unique=True, null=True, blank=True)
+    friendly_name = models.CharField(max_length=254, null=True, blank=True)
+
+    def __str__(self):
+        return self.friendly_name
+
+
 class Class(models.Model):
     name = models.CharField(max_length=254, unique=True, null=True, blank=True)
     friendly_name = models.CharField(max_length=254, null=True, blank=True)
@@ -49,7 +57,7 @@ class ProfileLink(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=254, unique=True, null=True, blank=True)
     friendly_name = models.CharField(max_length=254, null=True, blank=True)
-    link = models.URLField(max_length=1024, null=True, blank=True)
+    url = models.URLField(max_length=1024, null=True, blank=True)
 
     def __str__(self):
         return self.name
@@ -68,16 +76,16 @@ class ProfileLink(models.Model):
 
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    image_url = models.URLField(max_length=1024, null=True, blank=True)
     image = models.ImageField(null=True, blank=True)
     first_name = models.CharField(max_length=254, blank=False, null=False)
     last_name = models.CharField(max_length=254, blank=False, null=False)
-    title = models.CharField(max_length=254, blank=True, null=True)
-    bio = models.TextField(max_length=3000, blank=True, null=True, default="")
+    bio = models.TextField(max_length=501, blank=True, null=True, default="")
     email = models.EmailField(max_length=254, blank=True, null=True)
     phone_number = models.CharField(max_length=254, blank=True, null=True)
-    links = models.ManyToManyField(ProfileLink, blank=True)
+    links = models.ManyToManyField('ProfileLink', blank=True)
     classes = models.ManyToManyField('Class', blank=True)
+    teaching_states = models.ManyToManyField('TeachingState', blank=True)
+    is_password_changed = models.BooleanField(default=True)
     
     def __str__(self):
         return f'{self.first_name}\'s Profile'

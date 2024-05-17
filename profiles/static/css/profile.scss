@@ -3,108 +3,53 @@
 
 .profile-section {
     justify-content: flex-start;
-    padding: 30px 0;
-    gap: 20px;
+    padding: 40px 0;
     
-    .profile-section-container {
-        background-color: $gl-2;
-        border-radius: $round-corner-3;
-        padding: 16px;
-        gap: 16px;
-        position: relative;
+    .items-container {
+        width: 600px;
+        gap: 32px;
     }
 
-    .grid-group-container {
+    .item-container  {
         width: 100%;
-        gap: 16px;
-        justify-content: flex-start;
-        align-items: flex-start;
-    }
-
-    .grid-group-col-container {
-        width: calc(50% - 8px);
-        gap: 16px;
-    }
-
-    .grid-container {
+        padding: 24px;
+        gap: 12px;
         background-color: $gl-1;
-        padding: 16px;
-        border-radius: $round-corner-2;
-        gap: 8px;
+        border-radius: $round-corner-3;
 
-        &.w-100 {
-            width: 100%;
-        }
-
-        &.w-50 {
-            width: calc(50% - 8px);
-            gap: 4px;
-        }
-
-        &.w-75 {
-            width: calc(75% - 8px);
-        }
-
-        &.w-25 {
-            width: calc(25% - 8px);
-        }
-
-        .grid-title {
+        .item-heading {
             font-weight: 600;
         }
 
-        .grid-text {
-            font-size: 1.2rem;
-        }
-    }
-
-    .personal-container {
-        gap: 24px;
-        width: 100%;
-    }
-
-    .profile-img-container {
-        width: 100px;
-        height: 100px;
-        border-radius: 50%;
-        position: relative;
-
-        .edit-profile-picture-overlay {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            border-radius: 50%;
-            background-color: rgba(0,0,0, 0.9);
-            filter: blur(10px);
-            display: none;
+        .text-item {
+            padding-left: 48px;
         }
 
-        .edit-profile-picture-icon {
-            font-size: 2rem;
-            color: $white;
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            border-radius: 50%;
-            cursor: pointer;
-            display: none;
+        .item-text-container {
+            gap: 12px;
         }
 
-        &:hover {
-            .edit-profile-picture-icon,
-            .edit-profile-picture-overlay {
-                display: flex;
+        .bio-text {
+            gap: calc($small-font-size);
+
+            p {
+                font-size: $small-font-size;
+                color: $gd-1;
             }
         }
     }
 
-    .personal-info-container {
+    .personal-container {
+        position: relative;
 
-        .btn {
+        .img-name-container {
+            gap: 16px;
+        }
+
+        .personal-img-container {
             width: 100px;
-            padding: 4px 4px;
-            font-size: 1.1rem;
-            margin-bottom: 4px;
+            height: 100px;
+            border-radius: 50%;
         }
 
         .profile-name {
@@ -112,67 +57,12 @@
             font-weight: 600;
         }
 
-        .profile-title {
-            font-size: 1.4rem;
-        }
-    }
-
-
-    .contact-text-container {
-        gap: 8px;
-    }
-
-    .contact-btn {
-        gap: 8px;
-
-        .dark-text {
-            font-size: 1.2rem;
-        }
-
-        .cursor-btn {
-            cursor: pointer;
-        }
-
-    }
-
-    .second-row-grid-group {
-        width: 100%;
-    }
-
-    .bio-container {
-        overflow: hidden;
-
-        .grid-text {
-            max-height: calc(100% - 56px);
-            overflow-y: scroll;
-            width: 100%;
-
-            &::-webkit-scrollbar {
-                width: 4px;
-            }
-
-            &::-webkit-scrollbar-thumb  {
-                background-color: $red-1;
-                border: none;
-                border-radius: $round-corner-1;
-            }
-        }
-
-        .bio-text {
-            gap: 8px;
-
-            p {
-                font-size: 1.2rem;
-                color: $gd-1;
+        .profile-section-action-menu-btn {
+            .btn-text {
+                right: calc(100% + 8px);
+                top: 50%;
+                translate: 0 -50%;
             }
         }
     }
-
-    .edit-btn {
-        position: absolute;
-        top: calc(100% + 16px);
-        left: 50%;
-        translate: -50% 0;
-    }
-
 }

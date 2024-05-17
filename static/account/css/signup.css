@@ -8,10 +8,19 @@
 }
 .account-section .account-container {
   width: 600px;
-  padding: 32px;
-  gap: 24px;
+  padding: 36px;
+  gap: 28px;
   background-color: #f7f7f7;
   border-radius: 16px;
+  border-top: 2px solid #c64f4a;
+}
+.account-section .account-container.small-container {
+  width: 480px;
+  padding: 24px;
+  gap: 20px;
+}
+.account-section .info-container {
+  gap: 4px;
 }
 .account-section .form-container {
   width: 100%;

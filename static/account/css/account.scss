@@ -12,10 +12,21 @@
 
     .account-container {
         width: 600px;
-        padding: 32px;
-        gap: 24px;
+        padding: 36px;
+        gap: 28px;
         background-color: $gl-1;
         border-radius: $round-corner-3;
+        border-top: 2px solid $red-1;
+
+        &.small-container {
+            width: 480px;
+            padding: 24px;
+            gap: 20px;
+        }
+    }
+
+    .info-container {
+        gap: 4px;
     }
 
     .form-container {

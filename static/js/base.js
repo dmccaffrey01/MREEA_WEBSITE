@@ -179,11 +179,9 @@ let updateoriginalContainer = (originalContainer, originalContainerName) => {
         <div class="no-item-wrapper item-wrapper container-row space-between">
             <div class="item-container container-row space-between">
                 <p class="item-icon container-col">
-                <svg xmlns="http://www.w3.org/2000/svg" class="dark-text" viewBox="0 0 24 24">
-                    <g fill="none" fill-rule="evenodd">
-                        <path d="M21.546 5.111a1.5 1.5 0 0 1 0 2.121L10.303 18.475a1.6 1.6 0 0 1-2.263 0L2.454 12.89a1.5 1.5 0 1 1 2.121-2.121l4.596 4.596L19.424 5.111a1.5 1.5 0 0 1 2.122 0" />
-                    </g>
-                </svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="dark-text" viewBox="0 0 24 24">
+                        <path fill-rule="evenodd" d="M20.207 6.793a1 1 0 0 1 0 1.414l-9.5 9.5a1 1 0 0 1-1.414 0l-4.5-4.5a1 1 0 0 1 1.414-1.414L10 15.586l8.793-8.793a1 1 0 0 1 1.414 0" clip-rule="evenodd" />
+                    </svg>
                     <span class="sr-only">Check Circle Icon</span>
                 </p>    
                 <p class="item-heading dark-text small-text gap">No ${originalContainerName.charAt(0).toUpperCase() + originalContainerName.slice(1)} Notifications</p>
@@ -198,10 +196,18 @@ let updateoriginalContainer = (originalContainer, originalContainerName) => {
             amountOfNewItems = 0;
         }
     }
-    console.log(newNotificationsItems);
 
     let notificationNumber = document.querySelector('.notification-number');
     notificationNumber.innerHTML = amountOfNewItems;
+
+    let notificationBtnIcon = document.querySelector('.notification-btn-icon');
+    if (amountOfNewItems == 0) {
+        notificationBtnIcon.classList.add("hide");
+    } else {
+        if (notificationBtnIcon.classList.contains("hide")) {
+            notificationBtnIcon.classList.remove("hide");
+        }
+    }
 }
 
 let moveNotification = (sku, item, originalContainerName, targetContainerName) => {
@@ -224,18 +230,17 @@ let moveNotification = (sku, item, originalContainerName, targetContainerName) =
         actionMenuContainer.innerHTML = `
         <div class="visit-url-notification-btn action-item" data-sku="${sku}">
             <p class="icon-container dark-text">
-                <svg xmlns="http://www.w3.org/2000/svg" class="dark-text" viewBox="0 0 24 24">
-                    <path fill-rule="evenodd" d="M9 3a1 1 0 0 0 0 2h9v13a1 1 0 0 1-1 1H9a1 1 0 0 0 0 2h8a3 3 0 0 0 3-3V4a1 1 0 0 0-1-1zm3.707 5.293A1 1 0 0 0 11 9v2H5a1 1 0 0 0 0 2h6v2a1 1 0 0 0 1.707.707l3-3a1 1 0 0 0 0-1.414z" clip-rule="evenodd" />
+                <svg xmlns="http://www.w3.org/2000/svg" class="dark-text" viewBox="0 0 16 16">
+                    <path d="M6.5 2a.5.5 0 0 0 0 1h5A1.5 1.5 0 0 1 13 4.5v7a1.5 1.5 0 0 1-1.5 1.5h-5a.5.5 0 0 0 0 1h5a2.5 2.5 0 0 0 2.5-2.5v-7A2.5 2.5 0 0 0 11.5 2zm3.354 5.646l-3-3a.5.5 0 1 0-.708.708L8.293 7.5H1.5a.5.5 0 0 0 0 1h6.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708" />
                 </svg>
-                <span class="sr-only">Visit Linl Icon</span>
+                <span class="sr-only">Visit Link Icon</span>
             </p>
             <p class="item-text dark-text small-text">Visit ${urlName}</p>
         </div>
         <div class="view-notification-btn action-item" data-sku="${sku}">
             <p class="icon-container dark-text">
-                <svg xmlns="http://www.w3.org/2000/svg" class="dark-text" viewBox="0 0 32 32">
-                    <circle cx="16" cy="16" r="4" />
-                    <path d="M30.94 15.66A16.69 16.69 0 0 0 16 5A16.69 16.69 0 0 0 1.06 15.66a1 1 0 0 0 0 .68A16.69 16.69 0 0 0 16 27a16.69 16.69 0 0 0 14.94-10.66a1 1 0 0 0 0-.68M16 22.5a6.5 6.5 0 1 1 6.5-6.5a6.51 6.51 0 0 1-6.5 6.5" />
+                <svg xmlns="http://www.w3.org/2000/svg" class="dark-text" viewBox="0 0 16 16">
+                    <path d="M2.984 8.625v.003a.5.5 0 0 1-.612.355c-.431-.114-.355-.611-.355-.611l.018-.062s.026-.084.047-.145a6.7 6.7 0 0 1 1.117-1.982C4.096 5.089 5.605 4 8 4s3.904 1.089 4.802 2.183a6.7 6.7 0 0 1 1.117 1.982a4 4 0 0 1 .06.187l.003.013v.004l.001.002a.5.5 0 0 1-.966.258l-.001-.004l-.008-.025l-.035-.109a5.7 5.7 0 0 0-.945-1.674C11.286 5.912 10.045 5 8 5s-3.285.912-4.028 1.817a5.7 5.7 0 0 0-.945 1.674l-.035.109zM8 7a2.5 2.5 0 1 0 0 5a2.5 2.5 0 0 0 0-5M6.5 9.5a1.5 1.5 0 1 1 3 0a1.5 1.5 0 0 1-3 0" />
                 </svg>
                 <span class="sr-only">View Notification Icon</span>
             </p>
@@ -244,7 +249,7 @@ let moveNotification = (sku, item, originalContainerName, targetContainerName) =
         <div class="clear-notification-btn action-item" data-sku="${sku}">
             <p class="icon-container dark-text">
                 <svg xmlns="http://www.w3.org/2000/svg" class="dark-text" viewBox="0 0 24 24">
-                    <path d="M12 22q-2.075 0-3.9-.788t-3.175-2.137T2.788 15.9T2 12t.788-3.9t2.137-3.175T8.1 2.788T12 2t3.9.788t3.175 2.137T21.213 8.1T22 12t-.788 3.9t-2.137 3.175t-3.175 2.138T12 22m0-2q1.35 0 2.6-.437t2.3-1.263L5.7 7.1q-.825 1.05-1.263 2.3T4 12q0 3.35 2.325 5.675T12 20m6.3-3.1q.825-1.05 1.263-2.3T20 12q0-3.35-2.325-5.675T12 4q-1.35 0-2.6.437T7.1 5.7z" />
+                    <path d="M12.003 21q-1.866 0-3.51-.708q-1.643-.709-2.859-1.924t-1.925-2.856T3 12.003t.709-3.51Q4.417 6.85 5.63 5.634t2.857-1.925T11.997 3t3.51.709q1.643.708 2.859 1.922t1.925 2.857t.709 3.509t-.708 3.51t-1.924 2.859t-2.856 1.925t-3.509.709M12 20q1.465 0 2.82-.514q1.357-.515 2.465-1.494L6.008 6.716q-.96 1.107-1.484 2.463T4 12q0 3.35 2.325 5.675T12 20m5.992-2.716q.98-1.107 1.493-2.463Q20 13.465 20 12q0-3.35-2.325-5.675T12 4q-1.471 0-2.834.505q-1.362.504-2.45 1.503z" />
                 </svg>
                 <span class="sr-only">Clear Notification Icon</span>
             </p>
@@ -255,18 +260,17 @@ let moveNotification = (sku, item, originalContainerName, targetContainerName) =
         actionMenuContainer.innerHTML = `
         <div class="visit-url-notification-btn action-item" data-sku="${sku}">
             <p class="icon-container dark-text">
-                <svg xmlns="http://www.w3.org/2000/svg" class="dark-text" viewBox="0 0 24 24">
-                    <path fill-rule="evenodd" d="M9 3a1 1 0 0 0 0 2h9v13a1 1 0 0 1-1 1H9a1 1 0 0 0 0 2h8a3 3 0 0 0 3-3V4a1 1 0 0 0-1-1zm3.707 5.293A1 1 0 0 0 11 9v2H5a1 1 0 0 0 0 2h6v2a1 1 0 0 0 1.707.707l3-3a1 1 0 0 0 0-1.414z" clip-rule="evenodd" />
+                <svg xmlns="http://www.w3.org/2000/svg" class="dark-text" viewBox="0 0 16 16">
+                    <path d="M6.5 2a.5.5 0 0 0 0 1h5A1.5 1.5 0 0 1 13 4.5v7a1.5 1.5 0 0 1-1.5 1.5h-5a.5.5 0 0 0 0 1h5a2.5 2.5 0 0 0 2.5-2.5v-7A2.5 2.5 0 0 0 11.5 2zm3.354 5.646l-3-3a.5.5 0 1 0-.708.708L8.293 7.5H1.5a.5.5 0 0 0 0 1h6.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708" />
                 </svg>
-                <span class="sr-only">Visit Linl Icon</span>
+                <span class="sr-only">Visit Link Icon</span>
             </p>
             <p class="item-text dark-text small-text">Visit ${urlName}</p>
         </div>
         <div class="view-notification-btn action-item" data-sku="${sku}">
             <p class="icon-container dark-text">
-                <svg xmlns="http://www.w3.org/2000/svg" class="dark-text" viewBox="0 0 32 32">
-                    <circle cx="16" cy="16" r="4" />
-                    <path d="M30.94 15.66A16.69 16.69 0 0 0 16 5A16.69 16.69 0 0 0 1.06 15.66a1 1 0 0 0 0 .68A16.69 16.69 0 0 0 16 27a16.69 16.69 0 0 0 14.94-10.66a1 1 0 0 0 0-.68M16 22.5a6.5 6.5 0 1 1 6.5-6.5a6.51 6.51 0 0 1-6.5 6.5" />
+                <svg xmlns="http://www.w3.org/2000/svg" class="dark-text" viewBox="0 0 16 16">
+                    <path d="M2.984 8.625v.003a.5.5 0 0 1-.612.355c-.431-.114-.355-.611-.355-.611l.018-.062s.026-.084.047-.145a6.7 6.7 0 0 1 1.117-1.982C4.096 5.089 5.605 4 8 4s3.904 1.089 4.802 2.183a6.7 6.7 0 0 1 1.117 1.982a4 4 0 0 1 .06.187l.003.013v.004l.001.002a.5.5 0 0 1-.966.258l-.001-.004l-.008-.025l-.035-.109a5.7 5.7 0 0 0-.945-1.674C11.286 5.912 10.045 5 8 5s-3.285.912-4.028 1.817a5.7 5.7 0 0 0-.945 1.674l-.035.109zM8 7a2.5 2.5 0 1 0 0 5a2.5 2.5 0 0 0 0-5M6.5 9.5a1.5 1.5 0 1 1 3 0a1.5 1.5 0 0 1-3 0" />
                 </svg>
                 <span class="sr-only">View Notification Icon</span>
             </p>
@@ -274,8 +278,8 @@ let moveNotification = (sku, item, originalContainerName, targetContainerName) =
         </div>
         <div class="unclear-notification-btn action-item" data-sku="${sku}">
             <p class="icon-container dark-text">
-                <svg xmlns="http://www.w3.org/2000/svg" class="dark-text" viewBox="0 0 16 16">
-                    <path d="M1.22 6.28a.75.75 0 0 1 0-1.06l3.5-3.5a.749.749 0 1 1 1.06 1.06L3.561 5h7.188l.001.007L10.749 5q.088 0 .171.019A4.501 4.501 0 0 1 10.5 14H8.796a.75.75 0 0 1 0-1.5H10.5a3 3 0 1 0 0-6H3.561L5.78 8.72a.749.749 0 1 1-1.06 1.06z" />
+                <svg xmlns="http://www.w3.org/2000/svg" class="dark-text" viewBox="0 0 256 256">
+                    <path fill-rule="evenodd" d="M55.265 167.072c-.975-1.973-3.388-2.796-5.372-1.847L42 169s22.5 53.5 85.5 56c60-1.5 96.627-48.626 97-96.5c.373-47.874-37-95.5-95.5-96c-57.5-1-79.556 45.004-79.556 45.004c-1.073 1.93-1.944 1.698-1.944-.501V51.997a4 4 0 0 0-4-3.997H37c-2.209 0-4 1.8-4 4.008v48.984A3.998 3.998 0 0 0 36.998 105h50.504a3.995 3.995 0 0 0 3.998-3.993v-6.014c0-2.205-1.79-4.02-4.008-4.053l-25.484-.38c-2.214-.033-3.223-1.679-2.182-3.628C59.826 86.932 78 45 128.5 45.5c49 .5 82.751 41.929 82.5 83.242C208 184 166 211 127.5 210c-54.5 0-72.235-42.928-72.235-42.928" />
                 </svg>
                 <span class="sr-only">Unclear Notification Icon</span>
             </p>
@@ -284,7 +288,8 @@ let moveNotification = (sku, item, originalContainerName, targetContainerName) =
         <div class="delete-notification-btn action-item confirm-action-btn relative-pos" data-sku="${sku}">
             <p class="icon-container dark-text">
                 <svg xmlns="http://www.w3.org/2000/svg" class="dark-text" viewBox="0 0 24 24">
-                    <path fill-rule="evenodd" d="M8.106 2.553A1 1 0 0 1 9 2h6a1 1 0 0 1 .894.553L17.618 6H20a1 1 0 1 1 0 2h-1v11a3 3 0 0 1-3 3H8a3 3 0 0 1-3-3V8H4a1 1 0 0 1 0-2h2.382zM14.382 4l1 2H8.618l1-2zM11 11a1 1 0 1 0-2 0v6a1 1 0 1 0 2 0zm4 0a1 1 0 1 0-2 0v6a1 1 0 1 0 2 0z" clip-rule="evenodd" />
+                    <path d="M12 2.75a2.25 2.25 0 0 0-2.122 1.5a.75.75 0 0 1-1.414-.5a3.751 3.751 0 0 1 7.073 0a.75.75 0 0 1-1.415.5A2.251 2.251 0 0 0 12 2.75M2.75 6a.75.75 0 0 1 .75-.75h17a.75.75 0 0 1 0 1.5h-17A.75.75 0 0 1 2.75 6m3.165 2.45a.75.75 0 1 0-1.497.1l.464 6.952c.085 1.282.154 2.318.316 3.132c.169.845.455 1.551 1.047 2.104c.591.554 1.315.793 2.17.904c.822.108 1.86.108 3.146.108h.879c1.285 0 2.324 0 3.146-.108c.854-.111 1.578-.35 2.17-.904c.591-.553.877-1.26 1.046-2.104c.162-.814.23-1.85.316-3.132l.464-6.952a.75.75 0 0 0-1.497-.1l-.46 6.9c-.09 1.347-.154 2.285-.294 2.99c-.137.685-.327 1.047-.6 1.303c-.274.256-.648.422-1.34.512c-.713.093-1.653.095-3.004.095h-.774c-1.35 0-2.29-.002-3.004-.095c-.692-.09-1.066-.256-1.34-.512c-.273-.256-.463-.618-.6-1.303c-.14-.705-.204-1.643-.294-2.99z" />
+                    <path d="M9.425 10.254a.75.75 0 0 1 .821.671l.5 5a.75.75 0 0 1-1.492.15l-.5-5a.75.75 0 0 1 .671-.821m5.821.821a.75.75 0 0 0-1.492-.15l-.5 5a.75.75 0 0 0 1.492.15z" />
                 </svg>
                 <span class="sr-only">Delete Notification Icon</span>
             </p>
@@ -294,15 +299,13 @@ let moveNotification = (sku, item, originalContainerName, targetContainerName) =
                 <div class="confirm-options">
                     <p class="confirm-delete-notification-btn icon-container dark-text gl-1 success" data-sku="${sku}">
                         <svg xmlns="http://www.w3.org/2000/svg" class="dark-text" viewBox="0 0 24 24">
-                            <g fill-rule="evenodd">
-                                <path fill="black" d="M21.546 5.111a1.5 1.5 0 0 1 0 2.121L10.303 18.475a1.6 1.6 0 0 1-2.263 0L2.454 12.89a1.5 1.5 0 1 1 2.121-2.121l4.596 4.596L19.424 5.111a1.5 1.5 0 0 1 2.122 0" />
-                            </g>
+                            <path fill-rule="evenodd" d="M20.207 6.793a1 1 0 0 1 0 1.414l-9.5 9.5a1 1 0 0 1-1.414 0l-4.5-4.5a1 1 0 0 1 1.414-1.414L10 15.586l8.793-8.793a1 1 0 0 1 1.414 0" clip-rule="evenodd" />
                         </svg>
                         <span class="sr-only">Check Icon</span>
                     </p>
                     <p class="deny-action-btn icon-container dark-text gl-1 error">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="dark-text" viewBox="0 0 15 15">
-                            <path d="M3.64 2.27L7.5 6.13l3.84-3.84A.92.92 0 0 1 12 2a1 1 0 0 1 1 1a.9.9 0 0 1-.27.66L8.84 7.5l3.89 3.89A.9.9 0 0 1 13 12a1 1 0 0 1-1 1a.92.92 0 0 1-.69-.27L7.5 8.87l-3.85 3.85A.92.92 0 0 1 3 13a1 1 0 0 1-1-1a.9.9 0 0 1 .27-.66L6.16 7.5L2.27 3.61A.9.9 0 0 1 2 3a1 1 0 0 1 1-1c.24.003.47.1.64.27" />
+                        <svg xmlns="http://www.w3.org/2000/svg" class="dark-text" viewBox="0 0 24 24">
+                            <path fill-rule="evenodd" d="M17.707 7.707a1 1 0 0 0-1.414-1.414L12 10.586L7.707 6.293a1 1 0 0 0-1.414 1.414L10.586 12l-4.293 4.293a1 1 0 1 0 1.414 1.414L12 13.414l4.293 4.293a1 1 0 1 0 1.414-1.414L13.414 12z" clip-rule="evenodd" />
                         </svg>
                         <span class="sr-only">Xmark Icon</span>
                     </p>
@@ -624,6 +627,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 document.addEventListener("DOMContentLoaded", () => {
     displayMessages();
+    getFormErrors();
 
     let messagesCloseBtn = document.querySelector(".messages-close-btn");
 
@@ -681,7 +685,7 @@ let displayMessages = async () => {
     if (messagesContainer && messages.length > 0) {
         messagesContainer.innerHTML = messages.map(message => `
             <div class="message-container">
-                <div class="icon-container">
+                <div class="icon-container color-${message.tags}">
                     ${message.icon}
                     <span class="sr-only">${message.tags.charAt(0).toUpperCase() + message.tags.slice(1)} Icon</span>
                 </div>
@@ -700,4 +704,64 @@ let displayOverlay = () => {
     let body = document.querySelector("body");
 
     body.appendChild(overlay);
+}
+
+let displayErrorMessage = (message, element) => {
+    if (element) {
+        element.classList.add("error-message");
+    }
+
+    if (message) {
+        const messagesContainer = document.querySelector(".messages-display-container");
+    
+        messagesContainer.innerHTML = `
+        <div class="message-container">
+            <div class="icon-container color-error">
+                <svg xmlns="http://www.w3.org/2000/svg" class="white-text" viewBox="0 0 24 24">
+                    <path fill-rule="evenodd" d="M17.707 7.707a1 1 0 0 0-1.414-1.414L12 10.586L7.707 6.293a1 1 0 0 0-1.414 1.414L10.586 12l-4.293 4.293a1 1 0 1 0 1.414 1.414L12 13.414l4.293 4.293a1 1 0 1 0 1.414-1.414L13.414 12z" clip-rule="evenodd" />
+                </svg>
+                <span class="sr-only">Error Icon</span>
+            </div>
+            <p class="message-text dark-text small-text">${message}</p>
+        </div>
+        `;
+    
+        showMessages();
+    }
+}
+
+let getFormErrors = () => {
+    let fields = document.querySelectorAll(".data-field-id");
+
+    fields.forEach((field) => {
+        let id = field.getAttribute("data-field-id");
+
+        let element = document.getElementById(id);
+
+        element.classList.add("error-message");
+    });
+
+    const messagesContainer = document.querySelector(".messages-display-container");
+
+    let errors = document.querySelectorAll(".data-error-message");
+
+    errors.forEach(error => {
+        let message = error.getAttribute("data-error-message");
+        let messageContainer = document.createElement("div");
+        messageContainer.classList.add("message-container");
+        messageContainer.innerHTML = `
+        <div class="icon-container color-error">
+            <svg xmlns="http://www.w3.org/2000/svg" class="white-text" viewBox="0 0 24 24">
+                <path fill-rule="evenodd" d="M17.707 7.707a1 1 0 0 0-1.414-1.414L12 10.586L7.707 6.293a1 1 0 0 0-1.414 1.414L10.586 12l-4.293 4.293a1 1 0 1 0 1.414 1.414L12 13.414l4.293 4.293a1 1 0 1 0 1.414-1.414L13.414 12z" clip-rule="evenodd" />
+            </svg>
+            <span class="sr-only">Error Icon</span>
+        </div>
+        <p class="message-text dark-text small-text">${message}</p>
+        `;
+        messagesContainer.appendChild(messageContainer);
+    });
+
+    if (errors.length > 0) {
+        showMessages();
+    }
 }

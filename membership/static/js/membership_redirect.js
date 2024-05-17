@@ -1,3 +1,9 @@
+let noPackageSelectedError = () => {
+    const defaultSelectItem = document.querySelector(".default-select-item");
+
+    displayErrorMessage("Please select a package!", defaultSelectItem);
+}
+
 document.addEventListener("DOMContentLoaded", () => {
     const singlePackageInfo = document.querySelector(".single-package-info-container");
 
@@ -21,7 +27,6 @@ document.addEventListener("DOMContentLoaded", () => {
         const packagePriceText = document.querySelector(".package-price-text");
         const packageDurationText = document.querySelector(".package-duration-text");
         let defaultFriendlyNameText = defaultSelectItem.querySelector(".default-friendly-name-text");
-        let defaultPriceText = defaultSelectItem.querySelector(".default-price-text");
         let selectItems = selectContainerItems.querySelectorAll(".select-item");
 
         defaultSelectItem.addEventListener("click", () => {
@@ -36,7 +41,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 let priceText = selectItem.querySelector(".price-text");
 
                 defaultFriendlyNameText.innerText = friendlyNameText.innerText;
-                defaultPriceText.innerText = priceText.innerText;
 
                 selectContainerItems.classList.toggle("open");
                 defaultSelectItem.classList.toggle("open");
@@ -62,11 +66,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
         let checkoutUrl = submitBtn.getAttribute("data-checkout_url");
 
+        if (!checkoutUrl) {
+            noPackageSelectedError();
+            return;
+        }
+
         window.open(checkoutUrl, "_blank");
 
         let form = document.querySelector(".form");
-
         form.submit();
     });
 });
-

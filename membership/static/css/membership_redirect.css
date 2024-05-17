@@ -1,32 +1,40 @@
 .account-section {
-  background-color: #ececec;
-  height: 100vh;
+  background-color: #f7f7f7;
+  position: relative;
+  overflow: hidden;
 }
 .account-section .section-container {
-  gap: 100px;
+  gap: 16px;
 }
-.account-section .info-container {
-  gap: 30px;
-  text-align: center;
-  max-width: 600px;
+.account-section .account-container {
+  width: 600px;
+  padding: 36px;
+  gap: 28px;
+  background-color: #f7f7f7;
+  border-radius: 16px;
+  border-top: 2px solid #c64f4a;
 }
-.account-section .info-container .text-container {
-  gap: 10px;
-}
-.account-section .info-container .img-container {
-  width: 350px;
-  height: 84px;
-}
-
-.package-info-container {
-  width: 350px;
+.account-section .account-container.small-container {
+  width: 480px;
+  padding: 24px;
   gap: 20px;
 }
-.package-info-container .info-group {
+.account-section .info-container {
+  gap: 4px;
+}
+.account-section .form-container {
   width: 100%;
 }
-.package-info-container .package-description-text {
-  text-align: center;
+
+.membership-redirect-section .package-info-container {
+  width: 100%;
+  gap: 4px;
+}
+.membership-redirect-section .package-info-container .info-group {
+  width: 100%;
+}
+.membership-redirect-section .package-info-container .info-left {
+  font-weight: 600;
 }
 
 /*# sourceMappingURL=membership_redirect.css.map */

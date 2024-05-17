@@ -98,9 +98,6 @@ def membership_redirect_success(request):
 
     checkout_url = membership.package.checkout_url
 
-    message = 'Successfully Applied for Membership!'
-    messages.success(request, message)
-
     notification_data = {
         'category': 'membership',
         'notification_type': 'pending',
@@ -117,9 +114,7 @@ def membership_redirect_success(request):
         'renewal_status': renewal_status,
     }
 
-    del request.session['membership_redirect_success']
-
-    return render(request, 'membership/membership_status.html', context)
+    return render(request, 'membership/membership_redirect_success.html', context)
 
 
 @login_required
@@ -147,14 +142,18 @@ def membership_status(request):
     else:
         duration_left_in_days = 0
 
-    if membership.status.name == 'expired' or membership.status.name == 'canceled' or membership.status.name == 'payment_unsuccessful' or ((membership.status.name == 'active' or membership.status.name == 'active_renewal_unsuccessful') and duration_left_in_days < 60):
-        if membership.start_date:
-            renewal_button = "Renew"
-        else:
-            renewal_button = "Purchase"
-        
+    if membership.status.name == 'expired' or membership.status.name == 'active_renewal_unsuccessful' or (membership.status.name == 'active' and duration_left_in_days < 60):
+        renewal_button = "Renew"
+    elif membership.status.name == 'canceled' or membership.status.name == 'payment_unsuccessful':
+        renewal_button = "Purchase"
     else:
         renewal_button = False
+    
+    if request.session.get('membership_redirect_success'):
+        message = 'Successfully Applied for Membership!'
+        messages.success(request, message)
+        del request.session['membership_redirect_success']
+
 
     context = {
         'membership': membership,

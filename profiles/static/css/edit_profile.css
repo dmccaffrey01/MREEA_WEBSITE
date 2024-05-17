@@ -1,223 +1,78 @@
 .profile-section {
   justify-content: flex-start;
-  padding: 30px 0;
+  padding: 40px 0;
 }
-.profile-section .section-container {
-  background-color: #ececec;
-  border-radius: 15px;
-  padding: 16px;
-  gap: 16px;
+.profile-section .items-container {
+  width: 600px;
+  gap: 32px;
 }
-.profile-section .form {
-  position: relative;
-}
-.profile-section .form .input-group-container {
+.profile-section .item-container {
   width: 100%;
-  gap: 16px;
-}
-.profile-section .form .input-group {
-  width: 100%;
-}
-.profile-section .form .input-group input,
-.profile-section .form .input-group textarea {
-  width: 100%;
-  font-size: 1.1rem;
-  padding: 4px 8px;
-  border: 2px solid #242424;
-  outline: none;
-  color: #242424;
-  background-color: #ffffff;
-  border-radius: 5px;
-}
-.profile-section .form .input-group input:focus,
-.profile-section .form .input-group textarea:focus {
-  outline: none;
-  border: 2px solid #c64f4a;
-}
-.profile-section .form .input-group .input-label {
-  font-size: 0.7rem;
-}
-.profile-section .form .input-group textarea {
-  resize: none;
-}
-.profile-section .form .input-group textarea::-webkit-scrollbar {
-  width: 4px;
-}
-.profile-section .form .input-group textarea::-webkit-scrollbar-thumb {
-  background-color: #c64f4a;
-  border: none;
-  border-radius: 5px;
-}
-.profile-section .name-title-container {
-  gap: 4px;
-  width: 100%;
-}
-.profile-section .grid-group-container {
-  width: 100%;
-  gap: 16px;
-  justify-content: flex-start;
-  align-items: flex-start;
-}
-.profile-section .grid-group-col-container {
-  width: calc(50% - 8px);
-  gap: 16px;
-}
-.profile-section .grid-container {
+  padding: 24px;
+  gap: 12px;
   background-color: #f7f7f7;
-  padding: 16px;
-  border-radius: 10px;
-  gap: 8px;
+  border-radius: 16px;
 }
-.profile-section .grid-container.w-100 {
-  width: 100%;
-}
-.profile-section .grid-container.w-50 {
-  width: calc(50% - 8px);
-  gap: 4px;
-}
-.profile-section .grid-container.w-75 {
-  width: calc(75% - 8px);
-}
-.profile-section .grid-container.w-25 {
-  width: calc(25% - 8px);
-}
-.profile-section .grid-container .grid-title {
+.profile-section .item-container .item-heading {
   font-weight: 600;
 }
-.profile-section .grid-container .grid-text {
-  font-size: 1.2rem;
+.profile-section .item-container .text-item {
+  padding-left: 48px;
 }
-.profile-section .personal-container {
-  gap: 24px;
+.profile-section .item-container .item-text-container {
+  gap: 12px;
   width: 100%;
 }
-.profile-section .profile-img-container {
+.profile-section .input-group-container {
+  width: calc(100% - 108px - 48px);
+  justify-content: space-between;
+}
+.profile-section .input-container {
+  width: calc(50% - 4px);
+}
+.profile-section .input-container input,
+.profile-section .input-container select,
+.profile-section .input-container textarea {
+  padding: 8px 12px;
+  font-size: 1.1rem;
+  border-radius: 8px;
+}
+.profile-section .info-visit-link {
+  width: 100%;
+}
+.profile-section .info-visit-link .icon-container {
+  cursor: pointer;
+}
+.profile-section .info-visit-link .icon-container.hide {
+  display: none;
+}
+.profile-section .info-visit-link .input-container {
+  width: calc(100% - 48px);
+}
+.profile-section .personal-container {
+  position: relative;
+}
+.profile-section .personal-container .img-name-container {
+  gap: 8px;
+}
+.profile-section .personal-container .personal-img-container {
   width: 100px;
   height: 100px;
   border-radius: 50%;
-  position: relative;
 }
-.profile-section .profile-img-container .edit-profile-picture-overlay {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-  background-color: rgba(0, 0, 0, 0.9);
-  filter: blur(10px);
-  display: none;
-}
-.profile-section .profile-img-container .edit-profile-picture-icon {
-  font-size: 2rem;
-  color: #ffffff;
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-  cursor: pointer;
-  display: none;
-}
-.profile-section .profile-img-container:hover .edit-profile-picture-icon,
-.profile-section .profile-img-container:hover .edit-profile-picture-overlay {
-  display: flex;
-}
-.profile-section .personal-info-container {
-  width: calc(100% - 124px);
-}
-.profile-section .contact-text-container {
-  gap: 8px;
-  width: 100%;
-}
-.profile-section .new-links-container {
-  width: 100%;
-  display: none;
-  gap: 8px;
-}
-.profile-section .new-links-container.show {
-  display: flex;
-}
-.profile-section .contact-btn {
-  gap: 12px;
-  width: 100%;
-  align-items: flex-end;
-  justify-content: flex-start;
-}
-.profile-section .contact-btn .dark-text {
-  font-size: 1.2rem;
-}
-.profile-section .contact-btn .red-text {
-  margin-bottom: 4px;
-  font-size: 1.4rem;
-  width: 28px;
-}
-.profile-section .contact-btn .new-link-btn {
-  font-size: 1.1rem;
-  width: 100%;
-  padding: 4px 8px;
-}
-.profile-section .second-row-grid-group {
-  width: 100%;
+.profile-section .personal-container .profile-section-action-menu-btn .btn-text {
+  right: calc(100% + 8px);
+  top: 50%;
+  translate: 0 -50%;
 }
 .profile-section .bio-container {
-  overflow: hidden;
-  height: 1000px;
-}
-.profile-section .bio-container .grid-text {
-  width: 100%;
-}
-.profile-section .bio-container .bio-text {
-  gap: 8px;
   position: relative;
 }
-.profile-section .bio-container .bio-text p {
-  font-size: 1.2rem;
-  color: #242424;
-}
-.profile-section .bio-container .bio-text .bio-count-text {
+.profile-section .bio-container .bio-count-text {
   position: absolute;
-  right: 0;
-  bottom: calc(100% + 4px);
-}
-.profile-section .bio-container .bio-text, .profile-section .bio-container .input-group, .profile-section .bio-container textarea {
-  height: 100%;
-}
-.profile-section .class-container .contact-btn {
-  align-items: center;
-  gap: 8px;
-}
-.profile-section .class-container .red-text {
-  margin-bottom: 0px;
-}
-.profile-section .class-container .checkbox-label {
-  cursor: pointer;
-}
-.profile-section .class-container .checkbox-input {
-  appearance: none;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  width: 1.1rem;
-  height: 1.1rem;
-  border: 2px solid #242424;
-  border-radius: 3px;
-  outline: none;
-  position: relative;
-  cursor: pointer;
-  padding: 0;
-}
-.profile-section .class-container .checkbox-input::before {
-  content: "";
-  position: absolute;
-  top: 45%;
-  left: 25%;
-  width: 30%;
-  height: 70%;
-  border: solid #c64f4a;
-  border-width: 0 3px 3px 0;
-  transform: translateY(-50%) rotate(45deg);
-  opacity: 0;
-  transition: opacity 0.2s ease-in-out;
-}
-.profile-section .class-container .checkbox-input:checked::before {
-  opacity: 1;
+  right: 4px;
+  bottom: 4px;
+  font-size: 0.9rem;
 }
 
 /*# sourceMappingURL=edit_profile.css.map */
