@@ -1,8 +1,10 @@
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import render, redirect, get_object_or_404, reverse
 from .models import Event
 from django.utils import timezone
-from membership.models import Membership
-from resources.models import Resource, Folder
+from resources.models import Resource, Folder, ResourceType
+from django.contrib import messages
+from django.contrib.auth.decorators import login_required
+from .forms import EventForm
 
 
 def events(request):
@@ -22,27 +24,182 @@ def events(request):
     return render(request, 'events/events.html', context)
 
 
-def event_detail(request, event_name):
-    event = get_object_or_404(Event, name=event_name)
+@login_required
+def add_event(request):
 
     user = request.user
-    
-    membership = Membership.objects.get(user=user)
 
-    if membership.status.valid:
-        display_folder = True
-        folders = Folder.objects.filter(parent_folder=event.folder)
-        resources = Resource.objects.filter(folder=event.folder)
+    if not user.is_superuser:
+        messages.error(request, "You must be an admin to add an event!")
+        return redirect(reverse('events'))
+    
+    if request.method == 'POST':
+        form = EventForm(request.POST)
+
+        if form.is_valid():
+            form_data = form.cleaned_data
+            event_friendly_name = form_data['friendly_name']
+            event_description = form_data['description']
+            event_date = form_data['date']
+            event_time = form_data['time']
+            event_location = form_data['location']
+
+            events_parent_folder = Folder.objects.filter(name='events').first()
+            new_folder, created = Folder.objects.get_or_create(friendly_name=event_friendly_name, parent_folder=events_parent_folder)
+            new_folder.save()
+
+            register_url = request.POST.get("id_register_url", None)
+            google_drive_url = request.POST.get("id_google_drive_url", None)
+
+            if register_url:
+                register_friendly_name = 'Event Register Link'
+                register_resource_type = ResourceType.objects.filter(name="register").first()
+
+                new_register_resource = Resource.objects.create(
+                    friendly_name=register_friendly_name,
+                    folder=new_folder,
+                    url=register_url,
+                    resource_type=register_resource_type
+                )
+                new_register_resource.save()
+
+            if google_drive_url:
+                google_drive_friendly_name = 'Google Drive Folder'
+                google_drive_resource_type = ResourceType.objects.filter(name="google_drive").first()
+
+                new_google_drive_resource = Resource.objects.create(
+                    friendly_name=google_drive_friendly_name,
+                    folder=new_folder,
+                    url=google_drive_url,
+                    resource_type=google_drive_resource_type
+                )
+                new_google_drive_resource.save()
+            
+            new_event = Event.objects.create(
+                friendly_name=event_friendly_name,
+                description=event_description,
+                date=event_date,
+                time=event_time,
+                location=event_location,
+                register_link=new_register_resource,
+                google_drive_link=new_google_drive_resource,
+                folder=new_folder,
+            )
+            new_event.save()
+
+            messages.success(request, 'Successfully created event!')
+
+            return redirect(reverse('events'))
     else:
-        display_folder = False
-        folders = False
-        resources = False
+        form = EventForm()
+
+    action_url = reverse('add_event')
 
     context = {
-        'event': event,
-        'display_folder': display_folder,
-        'folders': folders,
-        'resources': resources,
+        'form': form,
+        'register_url': '',
+        'google_drive_url': '',
+        'action_url': action_url,
+        'page_heading': 'Add',
     }
 
-    return render(request, 'events/event_detail.html', context)
+    return render(request, 'events/event.html', context)
+
+
+@login_required
+def edit_event(request, event_name):
+
+    user = request.user
+
+    if not user.is_superuser:
+        messages.error(request, "You must be an admin to edit an event!")
+        return redirect(reverse('events'))
+    
+    selected_event = Event.objects.filter(name=event_name).first()
+
+    if not selected_event:
+        messages.error(request, "Invalid event!")
+        return redirect(reverse('events'))
+    
+    if request.method == 'POST':
+        form = EventForm(request.POST)
+
+        if form.is_valid():
+            form_data = form.cleaned_data
+            event_friendly_name = form_data['friendly_name']
+            event_description = form_data['description']
+            event_date = form_data['date']
+            event_time = form_data['time']
+            event_location = form_data['location']
+
+            register_url = request.POST.get("id_register_url", '')
+            register_name = request.POST.get("id_register_name", '')
+            google_drive_url = request.POST.get("id_google_drive_url", '')
+            google_drive_name = request.POST.get("id_google_drive_name", '')
+
+            register_friendly_name = 'Event Register Link'
+            register_resource_type = ResourceType.objects.filter(name="register").first()
+
+            if register_name:
+                new_register_resource = Resource.objects.filter(name=register_name).first()
+                new_register_resource.url = register_url
+            else:
+                new_register_resource = Resource.objects.create(
+                    friendly_name=register_friendly_name,
+                    folder=selected_event.folder,
+                    url=register_url,
+                    resource_type=register_resource_type
+                )
+            new_register_resource.save()
+
+            google_drive_friendly_name = 'Google Drive Folder'
+            google_drive_resource_type = ResourceType.objects.filter(name="google_drive").first()
+
+            if register_name:
+                new_google_drive_resource = Resource.objects.filter(name=google_drive_name).first()
+                new_google_drive_resource.url = google_drive_url
+            else:
+                new_google_drive_resource = Resource.objects.create(
+                    friendly_name=google_drive_friendly_name,
+                    folder=selected_event.folder,
+                    url=google_drive_url,
+                    resource_type=google_drive_resource_type
+                )
+            new_google_drive_resource.save()
+            
+            selected_event.friendly_name = event_friendly_name
+            selected_event.description = event_description
+            selected_event.date = event_date
+            selected_event.time = event_time
+            selected_event.location = event_location
+            selected_event.google_drive_link = new_google_drive_resource
+            selected_event.register_link = new_register_resource
+            selected_event.save()
+
+            messages.success(request, 'Successfully edited event!')
+
+            return redirect(reverse('events'))
+    else:
+        form = EventForm(instance=selected_event)
+    
+    register_url = selected_event.register_link.url
+    register_name = selected_event.register_link.name
+
+    google_drive_url = selected_event.google_drive_link.url
+    google_drive_name = selected_event.google_drive_link.name
+
+    action_url = reverse('edit_event', args=(selected_event.name,))
+
+    context = {
+        'form': form,
+        'selected_event': selected_event,
+        'register_url': register_url,
+        'register_name': register_name,
+        'google_drive_url': google_drive_url,
+        'google_drive_name': google_drive_name,
+        'action_url': action_url,
+        'page_heading': 'Edit',
+        'delete_btn': True,
+    }
+
+    return render(request, 'events/event.html', context)

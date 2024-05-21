@@ -10,48 +10,200 @@
 
 {% block content %}
 
-<section class="events-section section">
+<section class="events-section section h-100b">
     <div class="section-container container-col">
-        <div class="img-container">
+        <div class="img-container box-shadow">
             <img src="{{ MEDIA_URL }}events-home.png" alt="MREEA Event" class="img-100a">
-            <h2 class="heading white-text">Meetings and Events</h2>
         </div>
 
-        <div class="events-container-row container-row space-between">
-            <div class="events-container container-col justify-start upcoming">
-                <h3 class="subheading white-text container-col">Upcoming</h3>
-                <div class="event-items-container container-col justify-start">
+        <div class="events-wrapper container-row align-start">
+            {% if upcoming_events or user.is_superuser %}
+            <div class="upcoming-events-container container-col align-start justify-start">
+                <div class="heading-container visit-link">
+                    <div class="icon-container">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="dark-text" viewBox="0 0 16 16">
+                            <path d="M5.248 8.997a.748.748 0 1 0 0-1.497a.748.748 0 0 0 0 1.497m.749 1.752a.748.748 0 1 1-1.497 0a.748.748 0 0 1 1.497 0M8 8.997A.748.748 0 1 0 8 7.5a.748.748 0 0 0 0 1.497m.749 1.752a.748.748 0 1 1-1.497 0a.748.748 0 0 1 1.497 0m2-1.752a.748.748 0 1 0 0-1.497a.748.748 0 0 0 0 1.497M14 4.5A2.5 2.5 0 0 0 11.5 2h-7A2.5 2.5 0 0 0 2 4.5v7A2.5 2.5 0 0 0 4.5 14h7a2.5 2.5 0 0 0 2.5-2.5zM3 6h10v5.5a1.5 1.5 0 0 1-1.5 1.5h-7A1.5 1.5 0 0 1 3 11.5zm1.5-3h7A1.5 1.5 0 0 1 13 4.5V5H3v-.5A1.5 1.5 0 0 1 4.5 3" />
+                        </svg>
+                        <span class="sr-only">Events Icon</span>
+                    </div>
+                    <h2 class="subheading dark-text">Upcoming Events &amp; Meetings</h2>
+                </div>
+    
+                <div class="events-container container-col justify-start align-start">
+                    {% if user.is_superuser %}
+                    <a href="{% url 'add_event' %}" class="add-event-btn container-col box-shadow">
+                        <div class="visit-link">
+                            <div class="icon-container">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="dark-text" viewBox="0 0 16 16">
+                                    <path d="M8 2.5a.5.5 0 0 0-1 0V7H2.5a.5.5 0 0 0 0 1H7v4.5a.5.5 0 0 0 1 0V8h4.5a.5.5 0 0 0 0-1H8z" />
+                                </svg>
+                                <span class="sr-only">Events Icon</span>
+                            </div>
+                            <p class="dark-text">Add Event</p>
+                        </div>
+                    </a>
+                    {% endif %}
                     {% for event in upcoming_events %}
-                    <a href="{% url 'event_detail' event.name %}" class="event-container container-row justify-start">
-                        <div class="info-container container-col align-start">
-                            <p class="name-text dark-text container-col align-start">{{ event.friendly_name }}</p>
-                            <p class="date-text dark-text container-col">Date: {{ event.time|time:"H:i A" }} - {{ event.date|date:"M d Y" }}</p>
+                    <div class="event-container container-col align-start box-shadow">
+                        <div class="event-heading-container visit-link">
+                            <div class="icon-container">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="dark-text" viewBox="0 0 16 16">
+                                    <path d="M5.5 5a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1zm0 3a.5.5 0 0 0-.5.5v2a.5.5 0 0 0 .5.5h5a.5.5 0 0 0 .5-.5v-2a.5.5 0 0 0-.5-.5zm.5 2V9h4v1zm8-5.5A2.5 2.5 0 0 0 11.5 2h-7A2.5 2.5 0 0 0 2 4.5v7A2.5 2.5 0 0 0 4.5 14h7a2.5 2.5 0 0 0 2.5-2.5zm-11 7v-7A1.5 1.5 0 0 1 4.5 3h7A1.5 1.5 0 0 1 13 4.5v7a1.5 1.5 0 0 1-1.5 1.5h-7A1.5 1.5 0 0 1 3 11.5" />
+                                </svg>
+                                <span class="sr-only">Events Icon</span>
+                            </div>
+                            <h2 class="event-heading-text dark-text">{{ event.friendly_name }}</h2>
                         </div>
-                        <div class="view-btn container-col">
-                            <p class="white-text"><span class="sr-only">View Icon</span><i class="fa-solid fa-chevron-right"></i></p>
+                        {% if event.description %}
+                        <p class="description-text dark-text small-text">{{ event.description }}</p>
+                        {% endif %}
+                        {% if event.date %}
+                        <div class="date-container visit-link">
+                            <div class="icon-container">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="dark-text" viewBox="0 0 16 16">
+                                    <path d="M14 4.5A2.5 2.5 0 0 0 11.5 2h-7A2.5 2.5 0 0 0 2 4.5v7A2.5 2.5 0 0 0 4.5 14h2v-1h-2A1.5 1.5 0 0 1 3 11.5V6h10v5.5a1.5 1.5 0 0 1-1.5 1.5h-2v1h2a2.5 2.5 0 0 0 2.5-2.5zM4.5 3h7A1.5 1.5 0 0 1 13 4.5V5H3v-.5A1.5 1.5 0 0 1 4.5 3m3.781 11.914A.5.5 0 0 0 8.5 14.5v-3.432l.68.566a.5.5 0 0 0 .64-.768l-1.5-1.25a.5.5 0 0 0-.64 0l-1.5 1.25a.5.5 0 1 0 .64.768l.68-.566V14.5a.5.5 0 0 0 .496.5h.008a.5.5 0 0 0 .277-.086M8.75 7.75a.75.75 0 1 1-1.5 0a.75.75 0 0 1 1.5 0" />
+                                </svg>
+                                <span class="sr-only">Date Icon</span>
+                            </div>
+                            <p class="date-text dark-text small-text">{{ event.date }}</p>
                         </div>
-                    </a>
+                        {% endif %}
+                        {% if event.time %}
+                        <div class="time-container visit-link">
+                            <div class="icon-container">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="dark-text" viewBox="0 0 16 16">
+                                    <path d="M8 2a6 6 0 1 1 0 12A6 6 0 0 1 8 2m0 1a5 5 0 1 0 0 10A5 5 0 0 0 8 3m-.498 2a.5.5 0 0 1 .491.41l.009.09V8H9.5a.5.5 0 0 1 .09.992L9.5 9H7.502a.5.5 0 0 1-.492-.41l-.008-.09v-3a.5.5 0 0 1 .5-.5" />
+                                </svg>
+                                <span class="sr-only">Clock Icon</span>
+                            </div>
+                            <p class="time-text dark-text small-text">{{ event.time }}</p>
+                        </div>
+                        {% endif %}
+                        {% if event.location %}
+                        <div class="location-container visit-link">
+                            <div class="icon-container">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="dark-text" viewBox="0 0 16 16">
+                                    <path d="M9.5 7a1.5 1.5 0 1 0-3 0a1.5 1.5 0 0 0 3 0M14 7c0 2.874-3.097 6.016-4.841 7.558a1.74 1.74 0 0 1-2.318 0C5.097 13.016 2 9.874 2 7a6 6 0 1 1 12 0m-1 0A5 5 0 0 0 3 7c0 1.108.615 2.395 1.57 3.683c.934 1.258 2.087 2.377 2.933 3.126a.74.74 0 0 0 .994 0c.846-.749 2-1.867 2.933-3.126C12.385 9.395 13 8.108 13 7" />
+                                </svg>
+                                <span class="sr-only">Location Icon</span>
+                            </div>
+                            <p class="time-text dark-text small-text">{{ event.location }}</p>
+                        </div>
+                        {% endif %}
+                        {% if event.register_link and is_membership_valid %}
+                        <a target="_blank" href="{{ event.register_link.url }}" class="link-container visit-link">
+                            <div class="time-text dark-text red-text small-text">Register</div>
+                            <div class="icon-container">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="dark-text" viewBox="0 0 16 16">
+                                    <path d="M4.5 3A1.5 1.5 0 0 0 3 4.5v7A1.5 1.5 0 0 0 4.5 13h7a1.5 1.5 0 0 0 1.5-1.5V9.27a.5.5 0 0 1 1 0v2.23a2.5 2.5 0 0 1-2.5 2.5h-7A2.5 2.5 0 0 1 2 11.5v-7A2.5 2.5 0 0 1 4.5 2h2.23a.5.5 0 0 1 0 1zm4.27-.5a.5.5 0 0 1 .5-.5h4.23a.5.5 0 0 1 .5.5v4.23a.5.5 0 0 1-1 0V3.708L9.623 7.084a.5.5 0 1 1-.707-.707L12.293 3H9.269a.5.5 0 0 1-.5-.5" />
+                                </svg>
+                                <span class="sr-only">Open Icon</span>
+                            </div>
+                        </a>
+                        {% endif %}
+                        {% if user.is_superuser %}
+                        <a href="{% url 'edit_event' event.name %}" class="link-container visit-link">
+                            <p class="time-text dark-text small-text">Edit</p>
+                            <div class="icon-container">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="dark-text" viewBox="0 0 20 20">
+                                    <path d="M17.181 2.927a2.975 2.975 0 0 0-4.259-.054l-9.375 9.375a2.44 2.44 0 0 0-.656 1.194l-.877 3.95a.5.5 0 0 0 .596.597l3.927-.873a2.5 2.5 0 0 0 1.234-.678l9.358-9.358a2.975 2.975 0 0 0 .052-4.153m-3.552.653a1.975 1.975 0 1 1 2.793 2.793l-.671.671l-2.793-2.792zm-1.378 1.38l2.793 2.792l-7.98 7.98a1.5 1.5 0 0 1-.744.409l-3.16.702l.708-3.183c.059-.267.193-.511.386-.704z" />
+                                </svg>
+                                <span class="sr-only">Edit Icon</span>
+                            </div>
+                        </a>
+                        {% endif %}
+                    </div>
                     {% endfor %}
                 </div>
             </div>
-
-            <div class="events-container container-col justify-start past">
-                <h3 class="subheading white-text container-col">Past</h3>
-                <div class="event-items-container container-col justify-start">
+            {% endif %}
+            {% if past_events or user.is_superuser %}
+            <div class="past-events-container container-col align-start justify-start">
+                <div class="heading-container visit-link">
+                    <div class="icon-container">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="dark-text" viewBox="0 0 16 16">
+                            <path d="M5.248 8.997a.748.748 0 1 0 0-1.497a.748.748 0 0 0 0 1.497m.749 1.752a.748.748 0 1 1-1.497 0a.748.748 0 0 1 1.497 0M8 8.997A.748.748 0 1 0 8 7.5a.748.748 0 0 0 0 1.497m.749 1.752a.748.748 0 1 1-1.497 0a.748.748 0 0 1 1.497 0m2-1.752a.748.748 0 1 0 0-1.497a.748.748 0 0 0 0 1.497M14 4.5A2.5 2.5 0 0 0 11.5 2h-7A2.5 2.5 0 0 0 2 4.5v7A2.5 2.5 0 0 0 4.5 14h7a2.5 2.5 0 0 0 2.5-2.5zM3 6h10v5.5a1.5 1.5 0 0 1-1.5 1.5h-7A1.5 1.5 0 0 1 3 11.5zm1.5-3h7A1.5 1.5 0 0 1 13 4.5V5H3v-.5A1.5 1.5 0 0 1 4.5 3" />
+                        </svg>
+                        <span class="sr-only">Events Icon</span>
+                    </div>
+                    <h2 class="subheading dark-text">Past Events &amp; Meetings</h2>
+                </div>
+    
+                <div class="events-container container-col justify-start align-start">
                     {% for event in past_events %}
-                    <a href="{% url 'event_detail' event.name %}" class="event-container container-row justify-start">
-                        <div class="info-container container-col align-start">
-                            <p class="name-text dark-text container-col align-start">{{ event.friendly_name }}</p>
-                            <p class="date-text dark-text container-col">Date: {{ event.time|time:"H:i A" }} - {{ event.date|date:"M d Y" }}</p>
+                    <div class="event-container container-col align-start box-shadow">
+                        <div class="event-heading-container visit-link">
+                            <div class="icon-container">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="dark-text" viewBox="0 0 16 16">
+                                    <path d="M5.5 5a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1zm0 3a.5.5 0 0 0-.5.5v2a.5.5 0 0 0 .5.5h5a.5.5 0 0 0 .5-.5v-2a.5.5 0 0 0-.5-.5zm.5 2V9h4v1zm8-5.5A2.5 2.5 0 0 0 11.5 2h-7A2.5 2.5 0 0 0 2 4.5v7A2.5 2.5 0 0 0 4.5 14h7a2.5 2.5 0 0 0 2.5-2.5zm-11 7v-7A1.5 1.5 0 0 1 4.5 3h7A1.5 1.5 0 0 1 13 4.5v7a1.5 1.5 0 0 1-1.5 1.5h-7A1.5 1.5 0 0 1 3 11.5" />
+                                </svg>
+                                <span class="sr-only">Events Icon</span>
+                            </div>
+                            <h2 class="event-heading-text dark-text">{{ event.friendly_name }}</h2>
                         </div>
-                        
-                        <div class="view-btn container-col">
-                            <p class="white-text"><span class="sr-only">View Icon</span><i class="fa-solid fa-chevron-right"></i></p>
+                        {% if event.description %}
+                        <p class="description-text dark-text small-text">{{ event.description }}</p>
+                        {% endif %}
+                        {% if event.date %}
+                        <div class="date-container visit-link">
+                            <div class="icon-container">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="dark-text" viewBox="0 0 16 16">
+                                    <path d="M14 4.5A2.5 2.5 0 0 0 11.5 2h-7A2.5 2.5 0 0 0 2 4.5v7A2.5 2.5 0 0 0 4.5 14h2v-1h-2A1.5 1.5 0 0 1 3 11.5V6h10v5.5a1.5 1.5 0 0 1-1.5 1.5h-2v1h2a2.5 2.5 0 0 0 2.5-2.5zM4.5 3h7A1.5 1.5 0 0 1 13 4.5V5H3v-.5A1.5 1.5 0 0 1 4.5 3m3.781 11.914A.5.5 0 0 0 8.5 14.5v-3.432l.68.566a.5.5 0 0 0 .64-.768l-1.5-1.25a.5.5 0 0 0-.64 0l-1.5 1.25a.5.5 0 1 0 .64.768l.68-.566V14.5a.5.5 0 0 0 .496.5h.008a.5.5 0 0 0 .277-.086M8.75 7.75a.75.75 0 1 1-1.5 0a.75.75 0 0 1 1.5 0" />
+                                </svg>
+                                <span class="sr-only">Date Icon</span>
+                            </div>
+                            <p class="date-text dark-text small-text">{{ event.date }}</p>
                         </div>
-                    </a>
+                        {% endif %}
+                        {% if event.time %}
+                        <div class="time-container visit-link">
+                            <div class="icon-container">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="dark-text" viewBox="0 0 16 16">
+                                    <path d="M8 2a6 6 0 1 1 0 12A6 6 0 0 1 8 2m0 1a5 5 0 1 0 0 10A5 5 0 0 0 8 3m-.498 2a.5.5 0 0 1 .491.41l.009.09V8H9.5a.5.5 0 0 1 .09.992L9.5 9H7.502a.5.5 0 0 1-.492-.41l-.008-.09v-3a.5.5 0 0 1 .5-.5" />
+                                </svg>
+                                <span class="sr-only">Clock Icon</span>
+                            </div>
+                            <p class="time-text dark-text small-text">{{ event.time }}</p>
+                        </div>
+                        {% endif %}
+                        {% if event.duration %}
+                        <div class="duration-container visit-link">
+                            <div class="icon-container">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="dark-text" viewBox="0 0 16 16">
+                                    <path d="M5 1.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1h-4a.5.5 0 0 1-.5-.5M7.5 5a.5.5 0 0 0-.5.5v4a.5.5 0 0 0 1 0v-4a.5.5 0 0 0-.5-.5m6 4a6 6 0 1 1-12 0a6 6 0 0 1 12 0m-1 0a5 5 0 1 0-10 0a5 5 0 0 0 10 0m-.047-6.358a.5.5 0 1 0-.707.707l1.403 1.403a.5.5 0 1 0 .707-.707z" />
+                                </svg>
+                                <span class="sr-only">Time Icon</span>
+                            </div>
+                            <p class="duration-text dark-text small-text">{{ event.duration }}</p>
+                        </div>
+                        {% endif %}
+                        {% if event.location %}
+                        <div class="location-container visit-link">
+                            <div class="icon-container">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="dark-text" viewBox="0 0 16 16">
+                                    <path d="M9.5 7a1.5 1.5 0 1 0-3 0a1.5 1.5 0 0 0 3 0M14 7c0 2.874-3.097 6.016-4.841 7.558a1.74 1.74 0 0 1-2.318 0C5.097 13.016 2 9.874 2 7a6 6 0 1 1 12 0m-1 0A5 5 0 0 0 3 7c0 1.108.615 2.395 1.57 3.683c.934 1.258 2.087 2.377 2.933 3.126a.74.74 0 0 0 .994 0c.846-.749 2-1.867 2.933-3.126C12.385 9.395 13 8.108 13 7" />
+                                </svg>
+                                <span class="sr-only">Location Icon</span>
+                            </div>
+                            <p class="location-text dark-text small-text">{{ event.location }}</p>
+                        </div>
+                        {% endif %}
+                        {% if event.folder and is_membership_valid %}
+                        <a href="{% url 'folder' event.folder.name %}" class="link-container visit-link">
+                            <p class="link-text dark-text red-text small-text">Visit Resources</p>
+                            <div class="icon-container">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="dark-text" viewBox="0 0 16 16">
+                                    <path d="M2 4.5V6h3.586a.5.5 0 0 0 .353-.146L7.293 4.5L5.939 3.146A.5.5 0 0 0 5.586 3H3.5A1.5 1.5 0 0 0 2 4.5m-1 0A2.5 2.5 0 0 1 3.5 2h2.086a1.5 1.5 0 0 1 1.06.44L8.207 4H12.5A2.5 2.5 0 0 1 15 6.5v5a2.5 2.5 0 0 1-2.5 2.5h-9A2.5 2.5 0 0 1 1 11.5zM2 7v4.5A1.5 1.5 0 0 0 3.5 13h9a1.5 1.5 0 0 0 1.5-1.5v-5A1.5 1.5 0 0 0 12.5 5H8.207l-1.56 1.56A1.5 1.5 0 0 1 5.585 7z" />
+                                </svg>
+                                <span class="sr-only">Folder Icon</span>
+                            </div>
+                        </a>
+                        {% endif %}
+                    </div>
                     {% endfor %}
                 </div>
             </div>
+            {% endif %}
         </div>
     </div>
 </section>
@@ -60,7 +212,5 @@
 
 {% block postloadjs %}
 {{ block.super }}
-
-<script src="{% static 'js/events.js' %}"></script>
 
 {% endblock %}

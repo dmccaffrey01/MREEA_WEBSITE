@@ -11,92 +11,55 @@
 {% block content %}
 
 <section class="resources-section section">
-    <div class="section-container container-col align-start">
-        <div class="folder-container container-row justify-start">
-            {% if folder.parent_folder %}
-            <a href="{% url 'folder' folder.parent_folder.name %}" class="folder-name-text dark-text">{{ folder.parent_folder.friendly_name }}</a>
-            <p class="folder-name-text red-text"><span class="sr-only">Arrow Icon</span><i class="fa-solid fa-chevron-right"></i></p>
-            {% endif %}
-            <p class="folder-name-text dark-text">{{ folder.friendly_name }}</p>
+    <div class="section-container container-col align-start box-shadow">
+        <div class="parent-folder-container container-row justify-start">
+            
+            <p class="dark-text">
+                {% if parent_folders %}
+                {% for folder in parent_folders %}<a href="{% url 'folder' folder.name %}" class="dark-text">{{ folder.friendly_name }}</a> / {% endfor %}
+                {% else %}
+                {{ folder.friendly_name }}
+                {% endif %}
+            </p>
         </div>
 
         <div class="search-container container-row">
-            <a href="{{ return_url }}" class="return-btn dark-text container-row">
-                <span class="red-text"><i class="fa-solid fa-chevron-left"></i></span>Back
-            </a>
-            <div class="search-input-group container-row">
-                <p class="dark-text red-text search-icon"><span class="sr-only">Search Icon</span><i class="fa-solid fa-magnifying-glass"></i></p>
+            <div class="search-input-container container-row">
                 <input type="text" placeholder="Search in {{ folder.friendly_name }}" class="search-input">
-            </div>
-        </div>
-
-        <div class="sort-container container-row">
-            <div class="sort-btn w-50 container-row justify-start" data-sort="name" data-direction="default">
-                <div class="icon-container">
-                    <img src="{{ MEDIA_URL }}sort-icon.png" alt="Sort Icon" class="img-100a">
+                <div class="icon-container btn-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="dark-text" viewBox="0 0 24 24">
+                        <path d="M15.5 14h-.79l-.28-.27a6.5 6.5 0 0 0 1.48-5.34c-.47-2.78-2.79-5-5.59-5.34a6.505 6.505 0 0 0-7.27 7.27c.34 2.8 2.56 5.12 5.34 5.59a6.5 6.5 0 0 0 5.34-1.48l.27.28v.79l4.25 4.25c.41.41 1.08.41 1.49 0c.41-.41.41-1.08 0-1.49zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5S14 7.01 14 9.5S11.99 14 9.5 14" />
+                    </svg>
+                    <span class="sr-only">Search Icon</span>
                 </div>
-                <p class="dark-text">Name</p>
-            </div>
-            <div class="sort-btn w-25 container-row justify-start" data-sort="type" data-direction="default">
-                <div class="icon-container">
-                    <img src="{{ MEDIA_URL }}sort-icon.png" alt="Sort Icon" class="img-100a">
-                </div>
-                <p class="dark-text">Type</p>
-            </div>
-            <div class="sort-btn w-25 container-row justify-start" data-sort="date" data-direction="default">
-                <div class="icon-container">
-                    <img src="{{ MEDIA_URL }}sort-icon.png" alt="Sort Icon" class="img-100a">
-                </div>
-                <p class="dark-text">Date</p>
             </div>
         </div>
         
-        <div class="items-container container-col">
+        <div class="resources-container container-col align-start">
 
             {% for f in sub_folders %}
-
-            <div class="item-container container-row" data-url="{% url 'folder' f.name %}" data-name="{{ f.friendly_name }}" data-type="Folder" data-date="{{ f.date | date:'m/d/Y' }}">
-                <div class="info-container w-50 container-row justify-start">
-                    <div class="icon-container circle">
-                        <img src="{{ MEDIA_URL }}default-folder-icon.png" alt="Folder Icon" class="img-100a">
-                    </div>
-                    <p class="dark-text">{{ f.friendly_name }}</p>
+            <a href="{% url 'folder' f.name %}" class="resource-container container-row justify-start" data-name="{{ f.name }}">
+                <div class="icon-container">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="dark-text" viewBox="0 0 16 16">
+                        <path d="M2 4.5V6h3.586a.5.5 0 0 0 .353-.146L7.293 4.5L5.939 3.146A.5.5 0 0 0 5.586 3H3.5A1.5 1.5 0 0 0 2 4.5m-1 0A2.5 2.5 0 0 1 3.5 2h2.086a1.5 1.5 0 0 1 1.06.44L8.207 4H12.5A2.5 2.5 0 0 1 15 6.5v5a2.5 2.5 0 0 1-2.5 2.5h-9A2.5 2.5 0 0 1 1 11.5zM2 7v4.5A1.5 1.5 0 0 0 3.5 13h9a1.5 1.5 0 0 0 1.5-1.5v-5A1.5 1.5 0 0 0 12.5 5H8.207l-1.56 1.56A1.5 1.5 0 0 1 5.585 7z" />
+                    </svg>
+                    <span class="sr-only">Folder Icon</span>
                 </div>
-                <div class="info-container w-25 container-row justify-start">
-                    <p class="dark-text">Folder</p>
-                </div>
-                <div class="info-container w-25 container-row space-between">
-                    <p class="dark-text">{{ f.date | date:"m/d/Y" }}</p>
-                    <div class="icon-container open-menu-btn">
-                        <img src="{{ MEDIA_URL }}internal-open-icon.png" alt="Internal Open Icon" class="img-100a">
-                    </div>
-                </div>
-            </div>
-
+                <p class="dark-text">{{ f.friendly_name }}</p>
+            </a>
             {% endfor %}
 
             {% for r in resources %}
-
-            <div class="item-container container-row" data-url="{{ r.link }}" data-new-tab="true" data-name="{{ r.friendly_name }}" data-type="{{ r.resource_type.friendly_name }}" data-date="{{ r.date | date:'m/d/Y' }}">
-                <div class="info-container w-50 container-row justify-start">
-                    <div class="icon-container">
-                        <img src="{{ r.resource_type.icon.url }}" alt="Folder Icon" class="img-100a">
-                    </div>
-                    <p class="dark-text">{{ r.friendly_name }}</p>
+            <a href="{{ r.url }}" target="_blank" class="resource-container container-row justify-start" data-name="{{ r.name }}">
+                <div class="icon-container">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="dark-text" viewBox="0 0 16 16">
+                        <path d="M2 4.5V6h3.586a.5.5 0 0 0 .353-.146L7.293 4.5L5.939 3.146A.5.5 0 0 0 5.586 3H3.5A1.5 1.5 0 0 0 2 4.5m-1 0A2.5 2.5 0 0 1 3.5 2h2.086a1.5 1.5 0 0 1 1.06.44L8.207 4H12.5A2.5 2.5 0 0 1 15 6.5v5a2.5 2.5 0 0 1-2.5 2.5h-9A2.5 2.5 0 0 1 1 11.5zM2 7v4.5A1.5 1.5 0 0 0 3.5 13h9a1.5 1.5 0 0 0 1.5-1.5v-5A1.5 1.5 0 0 0 12.5 5H8.207l-1.56 1.56A1.5 1.5 0 0 1 5.585 7z" />
+                    </svg>
+                    <span class="sr-only">Folder Icon</span>
                 </div>
-                <div class="info-container w-25 container-row justify-start">
-                    <p class="dark-text">{{ r.resource_type.friendly_name }}</p>
-                </div>
-                <div class="info-container w-25 container-row space-between">
-                    <p class="dark-text">{{ r.date | date:"m/d/Y" }}</p>
-                    <div class="icon-container open-menu-btn">
-                        <img src="{{ MEDIA_URL }}external-open-icon.png" alt="External Open Icon" class="img-100a">
-                    </div>
-                </div>
-            </div>
-
+                <p class="dark-text">{{ r.friendly_name }}</p>
+            </a>
             {% endfor %}
-            <p class="no-search-results dark-text small-text hide"></p>
         </div>
     </div>
 </section>

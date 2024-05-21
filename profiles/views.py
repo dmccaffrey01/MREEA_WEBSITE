@@ -35,7 +35,7 @@ def profile(request, username):
                 'user_classes': user_classes.filter(category=category),
             })
     
-    teaching_states = user_profile.teaching_states
+    teaching_states = user_profile.teaching_states.all()
 
     if (not teaching_states) and (not category_and_classes):
         teaching_section = False
@@ -61,6 +61,7 @@ def profile(request, username):
         'teaching_section': teaching_section,
         'info_section': info_section,
         'user_profile_links': user_profile_links,
+        'teaching_states': teaching_states,
     }
 
     return render(request, 'profiles/profile.html', context)
@@ -296,6 +297,12 @@ def edit_profile_picture(request, username):
 
         user_profile.image = profile_picture
         user_profile.save()
+
+        if user.username == username:
+            message = 'Successfully Saved Your Profile Picture'
+        else:
+            message = f"Successfully Saved {username}'s Profile Picture"
+        messages.info(request, message)
 
         return redirect(reverse('profile', args=(user.username,)))
             

@@ -1,1 +1,1 @@
-{"version":3,"sourceRoot":"","sources":["admin.scss"],"names":[],"mappings":"AAGA;EACI;;AAEA;EACI;;AAGJ;EACI;;AAEA;EACI;EACA","file":"admin.css"}
+{"version":3,"sourceRoot":"","sources":["admin.scss","../../../static/css/variables.scss"],"names":[],"mappings":"AAGA;EACI;EACA;;AAEA;EACI;EACA,eCUS;EDTT,kBCTD;EDUC;;AAGJ;EACI;EACA;;AAGJ;EACI;EACA;;AAEA;EACI,WCXA;;ADcJ;EACI","file":"admin.css"}

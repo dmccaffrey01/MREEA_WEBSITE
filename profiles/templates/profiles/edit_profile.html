@@ -10,21 +10,6 @@
 
 {% block content %}
 
-<!-- {% if profile_saveable %}
-            <div class="quick-actions-container container-row justify-start show">
-                <p class="dark-text subheading">Save / Cancel:</p>
-                <button type="submit" class="quick-action-btn save-btn container-col label-container">
-                    <p class="dark-text small-text"><span class="sr-only">Save Icon</span><i class="fa-solid fa-cloud-arrow-down"></i></p>
-                    <p class="label">Save Profile</p>
-                </button>
-    
-                <a href="{% url 'profile' user_profile.user.username %}" class="quick-action-btn container-col label-container">
-                    <p class="dark-text small-text"><span class="sr-only">Cancel Icon</span><i class="fa-solid fa-xmark"></i></p>
-                    <p class="label">Cancel Edit</p>
-                </a>
-            </div>
-            {% endif %} -->
-
 <section class="profile-section section h-100b">
     <div class="profile-section-container section-container container-col">
         <form class="items-container container-col form" action="{% url 'edit_profile' user.username %}" method="POST">

@@ -1,0 +1,198 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block extra_title %}- Add Event{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/event.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<section class="event-section section h-100b">
+    <form class="section-container container-col" action="{{ action_url }}" method="POST">
+        {% csrf_token %}
+        <div class="heading-container visit-link">
+            <div class="icon-container">
+                <svg xmlns="http://www.w3.org/2000/svg" class="dark-text" viewBox="0 0 16 16">
+                    <path d="M5.248 8.997a.748.748 0 1 0 0-1.497a.748.748 0 0 0 0 1.497m.749 1.752a.748.748 0 1 1-1.497 0a.748.748 0 0 1 1.497 0M8 8.997A.748.748 0 1 0 8 7.5a.748.748 0 0 0 0 1.497m.749 1.752a.748.748 0 1 1-1.497 0a.748.748 0 0 1 1.497 0m2-1.752a.748.748 0 1 0 0-1.497a.748.748 0 0 0 0 1.497M14 4.5A2.5 2.5 0 0 0 11.5 2h-7A2.5 2.5 0 0 0 2 4.5v7A2.5 2.5 0 0 0 4.5 14h7a2.5 2.5 0 0 0 2.5-2.5zM3 6h10v5.5a1.5 1.5 0 0 1-1.5 1.5h-7A1.5 1.5 0 0 1 3 11.5zm1.5-3h7A1.5 1.5 0 0 1 13 4.5V5H3v-.5A1.5 1.5 0 0 1 4.5 3" />
+                </svg>
+                <span class="sr-only">Events Icon</span>
+            </div>
+            <h2 class="subheading dark-text">{{ page_heading }} Event</h2>
+        </div>
+        <div class="event-container container-col align-start box-shadow form">
+            <div class="input-wrapper container-col align-start">
+                <div class="visit-link">
+                    <div class="icon-container">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="dark-text" viewBox="0 0 16 16">
+                            <path d="M5.5 5a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1zm0 3a.5.5 0 0 0-.5.5v2a.5.5 0 0 0 .5.5h5a.5.5 0 0 0 .5-.5v-2a.5.5 0 0 0-.5-.5zm.5 2V9h4v1zm8-5.5A2.5 2.5 0 0 0 11.5 2h-7A2.5 2.5 0 0 0 2 4.5v7A2.5 2.5 0 0 0 4.5 14h7a2.5 2.5 0 0 0 2.5-2.5zm-11 7v-7A1.5 1.5 0 0 1 4.5 3h7A1.5 1.5 0 0 1 13 4.5v7a1.5 1.5 0 0 1-1.5 1.5h-7A1.5 1.5 0 0 1 3 11.5" />
+                        </svg>
+                        <span class="sr-only">Event Name Icon</span>
+                    </div>
+                    <label for="id_friendly_name" class="dark-text-2 small-text">Event Name</label>
+                </div>
+                <div class="input-container col-2">
+                    {{ form.friendly_name }}
+                </div>
+            </div>
+            <div class="input-wrapper container-col align-start">
+                <div class="visit-link">
+                    <div class="icon-container">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="dark-text" viewBox="0 0 16 16">
+                            <path d="M6 5.5a.5.5 0 0 0-1 0v5a.5.5 0 0 0 1 0zm2.5 0a.5.5 0 0 0-1 0v5a.5.5 0 0 0 1 0zm2.5 0a.5.5 0 0 0-1 0v5a.5.5 0 0 0 1 0zm3-1A2.5 2.5 0 0 0 11.5 2h-7A2.5 2.5 0 0 0 2 4.5v7A2.5 2.5 0 0 0 4.5 14h7a2.5 2.5 0 0 0 2.5-2.5zm-11 7v-7A1.5 1.5 0 0 1 4.5 3h7A1.5 1.5 0 0 1 13 4.5v7a1.5 1.5 0 0 1-1.5 1.5h-7A1.5 1.5 0 0 1 3 11.5" />
+                        </svg>
+                        <span class="sr-only">Event Description Icon</span>
+                    </div>
+                    <label for="id_description" class="dark-text-2 small-text">Event Description</label>
+                </div>
+                <div class="input-container col-2">
+                    {{ form.description }}
+                </div>
+            </div>
+            <div class="input-wrapper container-col align-start">
+                <div class="visit-link">
+                    <div class="icon-container">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="dark-text" viewBox="0 0 16 16">
+                            <path d="M14 4.5A2.5 2.5 0 0 0 11.5 2h-7A2.5 2.5 0 0 0 2 4.5v7A2.5 2.5 0 0 0 4.5 14h2v-1h-2A1.5 1.5 0 0 1 3 11.5V6h10v5.5a1.5 1.5 0 0 1-1.5 1.5h-2v1h2a2.5 2.5 0 0 0 2.5-2.5zM4.5 3h7A1.5 1.5 0 0 1 13 4.5V5H3v-.5A1.5 1.5 0 0 1 4.5 3m3.781 11.914A.5.5 0 0 0 8.5 14.5v-3.432l.68.566a.5.5 0 0 0 .64-.768l-1.5-1.25a.5.5 0 0 0-.64 0l-1.5 1.25a.5.5 0 1 0 .64.768l.68-.566V14.5a.5.5 0 0 0 .496.5h.008a.5.5 0 0 0 .277-.086M8.75 7.75a.75.75 0 1 1-1.5 0a.75.75 0 0 1 1.5 0" />
+                        </svg>
+                        <span class="sr-only">Event Date Icon</span>
+                    </div>
+                    <label for="id_date" class="dark-text-2 small-text">Event Date</label>
+                </div>
+                <div class="input-container col-2">
+                    {{ form.date }}
+                </div>
+            </div>
+            <div class="input-wrapper container-col align-start">
+                <div class="visit-link">
+                    <div class="icon-container">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="dark-text" viewBox="0 0 16 16">
+                            <path d="M8 2a6 6 0 1 1 0 12A6 6 0 0 1 8 2m0 1a5 5 0 1 0 0 10A5 5 0 0 0 8 3m-.498 2a.5.5 0 0 1 .491.41l.009.09V8H9.5a.5.5 0 0 1 .09.992L9.5 9H7.502a.5.5 0 0 1-.492-.41l-.008-.09v-3a.5.5 0 0 1 .5-.5" />
+                        </svg>
+                        <span class="sr-only">Clock Icon</span>
+                    </div>
+                    <label for="id_time" class="dark-text-2 small-text">Event Time</label>
+                </div>
+                <div class="input-container col-2">
+                    {{ form.time }}
+                </div>
+            </div>
+            <div class="input-wrapper container-col align-start">
+                <div class="visit-link">
+                    <div class="icon-container">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="dark-text" viewBox="0 0 16 16">
+                            <path d="M9.5 7a1.5 1.5 0 1 0-3 0a1.5 1.5 0 0 0 3 0M14 7c0 2.874-3.097 6.016-4.841 7.558a1.74 1.74 0 0 1-2.318 0C5.097 13.016 2 9.874 2 7a6 6 0 1 1 12 0m-1 0A5 5 0 0 0 3 7c0 1.108.615 2.395 1.57 3.683c.934 1.258 2.087 2.377 2.933 3.126a.74.74 0 0 0 .994 0c.846-.749 2-1.867 2.933-3.126C12.385 9.395 13 8.108 13 7" />
+                        </svg>
+                        <span class="sr-only">Location Icon</span>
+                    </div>
+                    <label for="id_location" class="dark-text-2 small-text">Event Location</label>
+                </div>
+                <div class="input-container col-2">
+                    {{ form.location }}
+                </div>
+            </div>
+            <div class="input-wrapper container-col align-start">
+                <div class="visit-link">
+                    <div class="icon-container">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="dark-text" viewBox="0 0 16 16">
+                            <path d="M9.5 4h1a3.5 3.5 0 0 1 .194 6.995l-.192.005l-1 .005a.5.5 0 0 1-.094-.992l.09-.008L10.5 10a2.5 2.5 0 0 0 .164-4.995L10.5 5h-1a.5.5 0 0 1-.09-.992zh1zm-4 0h1a.5.5 0 0 1 .09.992L6.5 5h-1a2.5 2.5 0 0 0-.164 4.995L5.5 10h1a.5.5 0 0 1 .09.992L6.5 11h-1a3.5 3.5 0 0 1-.192-6.995zh1zm0 3l5 .002a.5.5 0 0 1 .09.992l-.09.008L5.5 8a.5.5 0 0 1-.09-.992z" />
+                        </svg>
+                        <span class="sr-only">Link Icon</span>
+                    </div>
+                    <label for="id_register_url" class="dark-text-2 small-text">Event Register Link</label>
+                </div>
+                <div class="input-container col-2">
+                    <input type="text" name="id_register_url" id="id_register_url" placeholder="Enter Register URL" value="{{ register_url }}">
+                </div>
+                {% if register_name %}
+                <div class="input-container col-2 sr-only">
+                    <input type="text" name="id_register_name" id="id_register_name" value="{{ register_name }}" hidden>
+                </div>
+                {% endif %}
+            </div>
+            <div class="input-wrapper container-col align-start">
+                <div class="visit-link">
+                    <div class="icon-container">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="dark-text" viewBox="0 0 256 256">
+                            <path d="M235.9 144.82L167.43 32.58A13.91 13.91 0 0 0 155.56 26h-55.13a13.92 13.92 0 0 0-11.87 6.58v.05L20.13 144.76a14 14 0 0 0-.28 14.37L47.17 207a14 14 0 0 0 12.15 7h137.35a14 14 0 0 0 12.16-7l27.32-47.82a14 14 0 0 0-.25-14.36M222.56 146h-51.17L135 85.33l25.08-41.79Zm-124 0L128 97l29.4 49Zm66 12L191 202H65l26.4-44ZM128 73.67L106.6 38h42.8ZM95.93 43.54L121 85.33L84.6 146H33.43ZM33 158h44.4l-22.73 37.89Zm168.3 37.89L178.59 158H223Z" />
+                        </svg>
+                        <span class="sr-only">Google Drive Icon</span>
+                    </div>
+                    <label for="id_google_drive_url" class="dark-text-2 small-text">Google Drive Folder Link</label>
+                </div>
+                <div class="input-container col-2">
+                    <input type="text" name="id_google_drive_url" id="id_google_drive_url" placeholder="Enter Drive Folder URL" value="{{ google_drive_url }}">
+                </div>
+                {% if google_drive_name %}
+                <div class="input-container col-2 sr-only">
+                    <input type="text" name="id_google_drive_name" id="id_google_drive_name" value="{{ google_drive_name }}" hidden>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+        <div class="event-btns-container container-col align-start box-shadow">
+            <button type="submit" class="save-btn visit-link">
+                <span class="icon-container">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="dark-text" viewBox="0 0 16 16">
+                        <path d="M3.5 13h9a.5.5 0 0 1 .09.992L12.5 14h-9a.5.5 0 0 1-.09-.992zh9zM7.91 1.008L8 1a.5.5 0 0 1 .492.41l.008.09v8.792l2.682-2.681a.5.5 0 0 1 .638-.058l.07.058a.5.5 0 0 1 .057.638l-.058.069l-3.535 3.536a.5.5 0 0 1-.638.057l-.07-.057l-3.535-3.536a.5.5 0 0 1 .638-.765l.069.058L7.5 10.292V1.5a.5.5 0 0 1 .41-.492L8 1z" />
+                    </svg>
+                    <span class="sr-only">Save Icon</span>
+                </span>
+                <span class="dark-text small-text">Save</span>
+            </button>
+            <a href="{% url 'events' %}" class="visit-link">
+                <span class="icon-container">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="dark-text" viewBox="0 0 24 24">
+                        <path d="M12.003 21q-1.866 0-3.51-.708q-1.643-.709-2.859-1.924t-1.925-2.856T3 12.003t.709-3.51Q4.417 6.85 5.63 5.634t2.857-1.925T11.997 3t3.51.709q1.643.708 2.859 1.922t1.925 2.857t.709 3.509t-.708 3.51t-1.924 2.859t-2.856 1.925t-3.509.709M12 20q1.465 0 2.82-.514q1.357-.515 2.465-1.494L6.008 6.716q-.96 1.107-1.484 2.463T4 12q0 3.35 2.325 5.675T12 20m5.992-2.716q.98-1.107 1.493-2.463Q20 13.465 20 12q0-3.35-2.325-5.675T12 4q-1.471 0-2.834.505q-1.362.504-2.45 1.503z" />
+                    </svg>
+                    <span class="sr-only">Cancel Icon</span>
+                </span>
+                <span class="dark-text small-text">Cancel</span>
+            </a>
+            {% if delete_btn %}
+            <div class="delete-btn-wrapper action-menu-btn">
+                <div class="delete-btn visit-link relative-pos">
+                    <span class="icon-container">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="dark-text" viewBox="0 0 24 24">
+                            <path d="M12 2.75a2.25 2.25 0 0 0-2.122 1.5a.75.75 0 0 1-1.414-.5a3.751 3.751 0 0 1 7.073 0a.75.75 0 0 1-1.415.5A2.251 2.251 0 0 0 12 2.75M2.75 6a.75.75 0 0 1 .75-.75h17a.75.75 0 0 1 0 1.5h-17A.75.75 0 0 1 2.75 6m3.165 2.45a.75.75 0 1 0-1.497.1l.464 6.952c.085 1.282.154 2.318.316 3.132c.169.845.455 1.551 1.047 2.104c.591.554 1.315.793 2.17.904c.822.108 1.86.108 3.146.108h.879c1.285 0 2.324 0 3.146-.108c.854-.111 1.578-.35 2.17-.904c.591-.553.877-1.26 1.046-2.104c.162-.814.23-1.85.316-3.132l.464-6.952a.75.75 0 0 0-1.497-.1l-.46 6.9c-.09 1.347-.154 2.285-.294 2.99c-.137.685-.327 1.047-.6 1.303c-.274.256-.648.422-1.34.512c-.713.093-1.653.095-3.004.095h-.774c-1.35 0-2.29-.002-3.004-.095c-.692-.09-1.066-.256-1.34-.512c-.273-.256-.463-.618-.6-1.303c-.14-.705-.204-1.643-.294-2.99z" />
+                            <path d="M9.425 10.254a.75.75 0 0 1 .821.671l.5 5a.75.75 0 0 1-1.492.15l-.5-5a.75.75 0 0 1 .671-.821m5.821.821a.75.75 0 0 0-1.492-.15l-.5 5a.75.75 0 0 0 1.492.15z" />
+                        </svg>
+                        <span class="sr-only">Delete Icon</span>
+                    </span>
+                    <span class="delete-text dark-text small-text">Delete</span>
+                </div>
+                <div class="delete-btn-menu action-menu-container">
+                    <a href="" class="visit-link">
+                        <span class="icon-container">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="dark-text" viewBox="0 0 24 24">
+                                <path d="M12.003 21q-1.866 0-3.51-.708q-1.643-.709-2.859-1.924t-1.925-2.856T3 12.003t.709-3.51Q4.417 6.85 5.63 5.634t2.857-1.925T11.997 3t3.51.709q1.643.708 2.859 1.922t1.925 2.857t.709 3.509t-.708 3.51t-1.924 2.859t-2.856 1.925t-3.509.709M12 20q1.465 0 2.82-.514q1.357-.515 2.465-1.494L6.008 6.716q-.96 1.107-1.484 2.463T4 12q0 3.35 2.325 5.675T12 20m5.992-2.716q.98-1.107 1.493-2.463Q20 13.465 20 12q0-3.35-2.325-5.675T12 4q-1.471 0-2.834.505q-1.362.504-2.45 1.503z" />
+                            </svg>
+                            <span class="sr-only">Cancel Icon</span>
+                        </span>
+                        <span class="dark-text small-text">Cancel</span>
+                    </a>
+                    <div class="visit-link">
+                        <span class="icon-container">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="dark-text" viewBox="0 0 24 24">
+                                <path d="M12.003 21q-1.866 0-3.51-.708q-1.643-.709-2.859-1.924t-1.925-2.856T3 12.003t.709-3.51Q4.417 6.85 5.63 5.634t2.857-1.925T11.997 3t3.51.709q1.643.708 2.859 1.922t1.925 2.857t.709 3.509t-.708 3.51t-1.924 2.859t-2.856 1.925t-3.509.709M12 20q1.465 0 2.82-.514q1.357-.515 2.465-1.494L6.008 6.716q-.96 1.107-1.484 2.463T4 12q0 3.35 2.325 5.675T12 20m5.992-2.716q.98-1.107 1.493-2.463Q20 13.465 20 12q0-3.35-2.325-5.675T12 4q-1.471 0-2.834.505q-1.362.504-2.45 1.503z" />
+                            </svg>
+                            <span class="sr-only">Cancel Icon</span>
+                        </span>
+                        <span class="dark-text small-text">Cancel</span>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+        </div>
+    </form>
+</section>
+{% endblock %}
+
+{% block postloadjs %}
+{{ block.super }}
+
+<script src="{% static 'js/event.js' %}"></script>
+
+{% endblock %}

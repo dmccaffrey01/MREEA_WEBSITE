@@ -1,130 +1,115 @@
 .user-admin-section {
-  background-color: #ececec;
   padding: 40px 0;
   min-height: calc(100vh - 100px);
   justify-content: flex-start;
-  gap: 16px;
 }
 .user-admin-section .section-container {
   background-color: #f7f7f7;
-  border-radius: 15px;
-  padding: 20px;
-  gap: 16px;
+  border-radius: 16px;
+  padding: 32px;
+  gap: 20px;
 }
-.user-admin-section .section-container .gap {
-  width: 40px;
-  margin-right: 12px;
-}
-.user-admin-section .filter-search-container {
+.user-admin-section .search-container {
   width: 100%;
   gap: 12px;
-  padding: 0 8px;
 }
-.user-admin-section .filter-search-container .filter-btn {
-  width: calc((100% - 124px) / 6);
-  background-color: #ececec;
-  border-radius: 5px;
-  padding: 12px 0;
-  cursor: pointer;
-}
-.user-admin-section .filter-search-container .search-input-group {
-  width: calc(100% - (76px + (100% - 124px) / 6));
+.user-admin-section .search-container .search-input-container {
+  width: 100%;
   position: relative;
 }
-.user-admin-section .filter-search-container .search-input-group .search-icon {
+.user-admin-section .search-container .search-input-container .icon-container {
   position: absolute;
-  left: 12px;
+  left: 16px;
   top: 50%;
   translate: 0 -50%;
 }
-.user-admin-section .filter-search-container .search-input-group input {
+.user-admin-section .search-container .search-input-container input {
   width: 100%;
-  font-size: 1.2rem;
-  padding: 12px;
-  padding-left: 42px;
+  font-size: 1.1rem;
+  padding: 16px;
+  padding-left: calc(1.1rem + 16px + 16px);
   border: none;
   outline: none;
   color: #242424;
   background-color: #ececec;
-  border-radius: 5px;
+  border-radius: 12px;
 }
-.user-admin-section .filter-search-container .search-input-group input:focus {
+.user-admin-section .search-container .search-input-container input:focus {
   outline: 2px solid #c64f4a;
 }
-.user-admin-section .items-container {
-  width: 100%;
-  gap: 12px;
+.user-admin-section .search-container .search-input-container input:focus + .icon-container path {
+  fill: #c64f4a;
 }
-.user-admin-section .item-container {
+.user-admin-section .heading-container {
   width: 100%;
-  gap: 12px;
-  border-radius: 5px;
-  padding: 8px;
+  padding: 8px 16px;
+}
+.user-admin-section .heading-container .item-heading {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.user-admin-section .first-name-heading {
+  width: calc(12.5% + 60px);
+  padding-left: 72px;
+}
+.user-admin-section .first-name-text,
+.user-admin-section .last-name-text,
+.user-admin-section .last-name-heading {
+  width: calc(12.5% - 12px);
+}
+.user-admin-section .purchase-date-text,
+.user-admin-section .end-date-text,
+.user-admin-section .purchase-date-heading,
+.user-admin-section .end-date-heading {
+  width: calc(15% - 12px);
+}
+.user-admin-section .status-text,
+.user-admin-section .status-heading {
+  width: calc(25% - 12px);
+}
+.user-admin-section .email-text,
+.user-admin-section .email-heading {
+  width: calc(20% - 12px);
+}
+.user-admin-section .users-container {
+  width: 100%;
+  gap: 16px;
+}
+.user-admin-section .user-wrapper {
+  width: 100%;
+}
+.user-admin-section .user-container {
+  width: 100%;
+  border-radius: 8px;
+  padding: 16px;
   position: relative;
 }
-.user-admin-section .item-container:hover {
+.user-admin-section .user-container:hover {
   background-color: #ececec;
 }
-.user-admin-section .item-container.selected {
-  margin-bottom: calc(1.2rem + 16px + 16px + 8px + 8px);
+.user-admin-section .user-container.selected {
   background-color: #ececec;
 }
-.user-admin-section .item-container.hide {
+.user-admin-section .user-container.hide {
   display: none;
 }
-.user-admin-section .item-container .img-container {
-  width: 40px;
-  height: 40px;
+.user-admin-section .user-container .img-container {
+  width: 48px;
+  height: 48px;
   border-radius: 50%;
-  margin-right: 12px;
+  margin-right: 24px;
 }
-.user-admin-section .item-container .item-col {
-  padding-left: 34px;
-  padding-right: 8px;
-}
-.user-admin-section .item-container .item-col.w-125 {
-  width: calc((100% - 136px) / 6);
-}
-.user-admin-section .item-container .item-col .dark-text {
-  width: 100%;
-  overflow: hidden;
+.user-admin-section .user-container .small-text {
   white-space: nowrap;
-  text-overflow: ellipsis;
-}
-.user-admin-section .item-container .item-col .null {
-  height: 2px;
-  background-color: #242424;
-}
-.user-admin-section .item-container .item-col .fa-icon-left {
-  margin-right: 4px;
-}
-.user-admin-section .sort-btns-container {
-  width: 100%;
-  gap: 12px;
-  padding: 0 8px;
-}
-.user-admin-section .sort-btns-container .sort-btn {
-  background-color: #ececec;
-  padding: 8px;
-  border-radius: 5px;
-  cursor: pointer;
-}
-.user-admin-section .sort-btns-container .sort-btn.w-125 {
-  width: calc((100% - 124px) / 6);
-}
-.user-admin-section .sort-btns-container .sort-btn .icon-container {
-  width: 1.2rem;
-  height: 1.2rem;
-}
-.user-admin-section .sort-btns-container .sort-btn .dark-text {
-  width: calc(100% - (1.2rem + 8px));
   overflow: hidden;
-  white-space: nowrap;
   text-overflow: ellipsis;
+  padding-right: 24px;
 }
-.user-admin-section .sort-btns-container .sort-btn .fa-icon-left {
-  margin-right: 8px;
-  width: 18px;
+.user-admin-section .user-action-menu-btn {
+  right: 16px;
+  top: 50%;
+  translate: 0 -50%;
 }
 
 /*# sourceMappingURL=user_admin.css.map */

@@ -1,33 +1,11 @@
 from django.shortcuts import render, redirect, reverse
-from .models import Resource, ResourceType, Folder
+from .models import Resource, Folder
 from django.contrib.auth.decorators import login_required
 from membership.models import Membership
 
 
 @login_required
-def quick_resources(request):
-
-    user = request.user
-
-    membership = Membership.objects.get(user=user)
-
-    if membership:
-        if not membership.status.valid:
-            return redirect(reverse('membership'))
-    else:
-        return redirect(reverse('membership'))
-    
-    folders = Folder.objects.filter(quick_resources=True)
-
-    context = {
-        'folders': folders,
-    }
-
-    return render(request, 'resources/quick_resources.html', context)
-
-
-@login_required
-def all_resources(request):
+def resources(request):
 
     user = request.user
 
@@ -45,13 +23,10 @@ def all_resources(request):
 
     resources = Resource.objects.filter(folder=folder)
 
-    return_url = reverse('quick_resources')
-
     context = {
         'folder': folder,
         'sub_folders': sub_folders,
         'resources': resources,
-        'return_url': return_url,
     }
 
     return render(request, 'resources/resources.html', context)
@@ -75,16 +50,33 @@ def folder(request, folder_name):
 
     resources = Resource.objects.filter(folder=folder)
 
-    if folder_name == 'all_resources':
-        return_url = reverse('quick_resources')
-    else:
-        return_url = reverse('folder', args=(folder.parent_folder.name,))
+    parent_folders = get_parent_folders(folder)
+
+    parent_folders.reverse()
 
     context = {
         'folder': folder,
         'sub_folders': sub_folders,
         'resources': resources,
-        'return_url': return_url,
+        'parent_folders': parent_folders,
     }
 
     return render(request, 'resources/resources.html', context)
+
+
+def get_parent_folders(folder, arr=None):
+    if arr is None:
+        arr = []
+        
+    new_arr = list(arr)
+    
+    new_arr.append(folder)
+
+    if folder.name == 'all_resources':
+        return new_arr
+    else:
+        parent_folder = folder.parent_folder
+        if parent_folder:
+            return get_parent_folders(parent_folder, new_arr)
+        else:
+            return new_arr

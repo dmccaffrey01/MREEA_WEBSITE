@@ -129,6 +129,7 @@ a {
             color: $gd-1;
             background-color: $gl-2;
             border-radius: $round-corner-2;
+            font-family: "Roboto", sans-serif;
     
             &:focus {
                 outline: 2px solid $red-1;
@@ -142,6 +143,13 @@ a {
 
             &.error-message {
                 outline: 2px solid $error;
+            }
+
+            &::placeholder {
+                color: $gd-3;
+                font-style: normal;
+                opacity: 1;
+                font-family: "Roboto", sans-serif;
             }
         }
     

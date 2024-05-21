@@ -1,15 +1,26 @@
 .admin-section {
   min-height: calc(100vh - 100px);
+  padding: 40px 0;
 }
 .admin-section .section-container {
+  padding: 32px;
+  border-radius: 16px;
+  background-color: #f7f7f7;
   gap: 16px;
 }
+.admin-section .admin-group-container {
+  width: calc(50% - 8px);
+  gap: 20px;
+}
 .admin-section .admin-container {
+  width: 100%;
   gap: 8px;
 }
 .admin-section .admin-container .subheading {
-  text-decoration: underline;
-  font-size: 1.6rem;
+  font-size: 1.3rem;
+}
+.admin-section .admin-container .admin-items-container {
+  margin-left: 24px;
 }
 
 /*# sourceMappingURL=admin.css.map */

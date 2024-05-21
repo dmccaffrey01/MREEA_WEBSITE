@@ -54,6 +54,13 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     imageInput.addEventListener("change", (e) => {
+
+        let cropContainer = document.querySelector(".crop-container");
+
+        if (cropContainer.classList.contains("hide")) {
+            cropContainer.classList.remove("hide");
+        }
+
         imageNotMoved = true;
         imageNotScaled = true;
         
@@ -119,7 +126,7 @@ document.addEventListener("DOMContentLoaded", () => {
     let previewBtn = document.querySelector(".preview-btn");
 
     previewBtn.addEventListener("click", () => {
-        let profileContainer = document.querySelector(".preview-img-container");
+        let profileContainer = document.querySelector(".personal-img-container");
         let profileImg = profileContainer.querySelector("img");
         let newImage = document.createElement("img");
         newImage.classList.add("img-100a");
@@ -159,6 +166,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     let isDragging = false;
+    let isScrolling = false;
     let startX = 0;
     let startY = 0;
     let imgX = 0;
@@ -174,12 +182,16 @@ document.addEventListener("DOMContentLoaded", () => {
     let newScale;
     let minScale = 1;
     let maxScale = 2;
+    let imgWidth = 0;
+    let imgHeight = 0;
 
     cropImgContainer.addEventListener("mousedown", (e) => {
         e.preventDefault();
         isDragging = true;
         startX = e.clientX;
         startY = e.clientY;
+        imgX = newImgX;
+        imgY = newImgY;
     });
 
     document.addEventListener("mouseup", (e) => {
@@ -188,6 +200,41 @@ document.addEventListener("DOMContentLoaded", () => {
         imgX = newImgX;
         imgY = newImgY;
     });
+
+    let moveImg = (img, imgRect, newX, newY) => {
+        minMoveX = 0;
+        maxMoveX = -(imgRect.width - containerRect.width);
+        minMoveY = 0;
+        maxMoveY = -(imgRect.height - containerRect.height);
+
+        let offsetX = newX - startX;
+        let offsetY = newY - startY;
+
+        newImgX = imgX + offsetX;
+        newImgY = imgY + offsetY;
+        
+        if (newImgX > minMoveX) {
+            newImgX = minMoveX;
+        }
+
+        if (newImgY > minMoveY) {
+            newImgY = minMoveY;
+        }
+
+        if (newImgX < maxMoveX) {
+            newImgX = maxMoveX;
+        }
+
+        if (newImgY < maxMoveY) {
+            newImgY = maxMoveY;
+        }
+
+        newImgX = Math.round(newImgX)
+        newImgY = Math.round(newImgY)
+
+        img.style.left = `${newImgX}px`;
+        img.style.top = `${newImgY}px`;
+    }
 
     document.addEventListener("mousemove", (e) => {
 
@@ -201,69 +248,78 @@ document.addEventListener("DOMContentLoaded", () => {
                 imageNotMoved = false;
             }
 
-            minMoveX = 0;
-            maxMoveX = -(imgRect.width - containerRect.width);
-            minMoveY = 0;
-            maxMoveY = -(imgRect.height - containerRect.height);
+            let newX = e.clientX;
+            let newY = e.clientY;
 
-            let offsetX = e.clientX - startX;
-            let offsetY = e.clientY - startY;
-
-            newImgX = imgX + offsetX;
-            newImgY = imgY + offsetY;
-
-            if (newImgX > minMoveX) {
-                newImgX = minMoveX;
-            }
-
-            if (newImgY > minMoveY) {
-                newImgY = minMoveY;
-            }
-
-            if (newImgX < maxMoveX) {
-                newImgX = maxMoveX;
-            }
-
-            if (newImgY < maxMoveY) {
-                newImgY = maxMoveY;
-            }
-
-            img.style.left = `${newImgX}px`;
-            img.style.top = `${newImgY}px`;
+            moveImg(img, imgRect, newX, newY);
         }
     });
 
     cropImgContainer.addEventListener("wheel", (e) => {
         e.preventDefault();
-        let img = cropImgContainer.querySelector(".crop-img");
-        let imgRect = img.getBoundingClientRect();
+        if (!isScrolling) {
+            isScrolling = true;
 
-        if (imageNotScaled) {
-            scale = 1;
-            imageNotScaled = false;
+            let img = cropImgContainer.querySelector(".crop-img");
+            let imgRect = img.getBoundingClientRect();
+    
+            if (imageNotScaled) {
+                scale = 1;
+                imageNotScaled = false;
+                imageNotMoved = false;
+                
+                imgWidth = imgRect.width;
+                imgHeight = imgRect.height;
+            }
+    
+            let delta = e.deltaY;
             
-            imgWidth = imgRect.width;
-            imgHeight = imgRect.height;
-        }
-
-        let delta = e.deltaY;
-
-        if (delta < 0) {
-            newScale = scale + 0.1;
-            if (newScale > maxScale) {
-                newScale = maxScale;
+            let maxOrMinReached = false;
+    
+            if (delta < 0) {
+    
+                newScale = scale + 0.04;
+                if (newScale > maxScale) {
+                    newScale = maxScale;
+                    maxOrMinReached = true;
+                }
+            } else {
+                newScale = scale - 0.04;
+                if (newScale < minScale) {
+                    newScale = minScale;
+                    maxOrMinReached = true;
+                }
             }
+    
             scale = newScale;
-        } else {
-            newScale = scale - 0.1;
-            if (newScale < minScale) {
-                newScale = minScale;
+
+            let oldImgWidth = imgRect.width;
+            let oldImgHeight = imgRect.height;
+    
+            let newImgWidth = imgWidth * scale;
+            let newImgHeight = imgHeight * scale;
+    
+            img.style.width = `${newImgWidth}px`;
+            img.style.height = `${newImgHeight}px`;
+    
+            startX = 0;
+            startY = 0;
+    
+            let newX = -(newImgWidth - oldImgWidth) / 2;
+            let newY = -(newImgHeight - oldImgHeight) / 2;
+
+            let newImgRect = img.getBoundingClientRect();
+
+            if (maxOrMinReached) {
+                isScrolling = false;
+                return;
             }
-            scale = newScale;
+    
+            moveImg(img, newImgRect, newX, newY);
+
+            imgX = newImgX;
+            imgY = newImgY;
+            isScrolling = false;
         }
-
-        img.style.width = `${imgWidth * scale}px`;
-        img.style.height = `${imgHeight * scale}px`;
-
     });
 });

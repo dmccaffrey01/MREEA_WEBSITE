@@ -57,7 +57,7 @@ class ProfileLink(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=254, unique=True, null=True, blank=True)
     friendly_name = models.CharField(max_length=254, null=True, blank=True)
-    url = models.URLField(max_length=1024, null=True, blank=True)
+    url = models.CharField(max_length=1024, null=True, blank=True)
 
     def __str__(self):
         return self.name

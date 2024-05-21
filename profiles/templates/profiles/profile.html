@@ -145,7 +145,7 @@
                     {% endfor %}
                     {% endif %}
 
-                    {% if user_profile.teaching_states %}
+                    {% if teaching_states %}
                     <div class="text-cointainer container-col align-start">
                         <p class="text-heading visit-link">
                             <span class="icon-container btn-icon-left">
@@ -158,7 +158,7 @@
                                 States
                             </span>
                         </p>
-                        {% for state in user_profile.teaching_states.all %}
+                        {% for state in teaching_states %}
                         <p class="text-item dark-text small-text">{{ state.code }} - {{ state.friendly_name }}</p>
                         {% endfor %}
                     </div>

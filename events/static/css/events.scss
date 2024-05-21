@@ -2,27 +2,18 @@
 @import '../../../static/css/mixins';
 
 .events-section {
-    padding: 20px 0;
+    padding: 20px 0 40px 0;
+    justify-content: flex-start;
 
     .section-container {
-        gap: 20px;
+        gap: 32px;
     }
 
     .img-container {
         width: 100%;
-        height: 150px;
+        height: 160px;
         position: relative;
         border-radius: $round-corner-3;
-
-        .heading {
-            position: absolute;
-            top: 50%;
-            left: 0;
-            translate: 0 -50%;
-            width: 100%;
-            text-align: center;
-            z-index: 3;
-        }
 
         .img-100a {
             position: absolute;
@@ -31,94 +22,77 @@
         }
     }
 
-    .events-container-row {
+    .events-wrapper {
         width: 100%;
-    }
+        gap: 48px;
 
-    .events-container {
-        width: calc(50% - 10px);
-        height: 358px;
-        background-color: $gl-2;
-        border-radius: $round-corner-3;
-        gap: 12px;
-        overflow: hidden;
-
-        .event-items-container {
-            width: 100%;
-            gap: 12px;
-            height: 284px;
-            overflow-y: scroll;
-            padding-bottom: 12px;
-
-            &::-webkit-scrollbar {
-                width: 4px;
+        .upcoming-events-container,
+        .past-events-container {
+            width: calc(50% - 24px);
+            gap: 24px;
+    
+            .heading-container {
+                gap: 8px;
+    
+                .icon-container {
+                    width: calc($subheading-size + 24px);
+                    height: calc($subheading-size + 24px);
+                    padding: 12px;
+                }
             }
+    
+            .events-container {
+                width: 100%;
+                gap: 24px;
+    
+                .event-container {
+                    padding: 24px;
+                    border-radius: $round-corner-3;
+                    background-color: $gl-1;
+                    width: 100%;
+                    gap: 12px;
+                }
+    
+                .visit-link {
+                    gap: 8px;
 
-            &::-webkit-scrollbar-thumb  {
-                background-color: $gd-1;
-                border: none;
-                border-radius: $round-corner-1;
-            }
-        }
+                    .icon-container {
+                        width: calc($font-size + 12px);
+                        height: calc($font-size + 12px);
+                        padding: 6px;
+                    }
+                }
 
-        .subheading {
-            width: 100%;
-            padding: 12px 0;
-        }
+                .event-heading-container {
+                    margin-bottom: 8px;
+                    .icon-container {
+                        width: 40px;
+                        height: 40px;
+                        padding: 8px;
+                    }
+                }
 
-        &.upcoming .subheading {
-            background-color: $gd-1;
-        }
+                .link-container {
+                    align-self: flex-end;
+                }
 
-        &.past .subheading {
-            background-color: $gd-1;
-        }
+                .add-event-btn {
+                    width: 100%;
+                    border-radius: $round-corner-3;
+                    background-color: $gl-1;
+                    padding: 16px;
+                    cursor: pointer;
 
-        .event-container {
-            background-color: $gl-1;
-            width: calc(100% - 24px);
-            border-radius: 10px;
-            cursor: pointer;
-            padding: 12px;
-            position: relative;
-        }
+                    &:hover {
+                        background-color: $gl-2;
 
-        .info-container {
-            gap: 4px;
-            width: calc(100% - 56px);
-        }
-
-        // .date-text {
-        //     padding: 8px 0;
-        //     border-radius: 5px;
-        //     width: 240px;
-        // }
-
-        // &.upcoming .date-text {
-        //     background-color: $gd-1;
-        // }
-
-        // &.past .date-text {
-        //     background-color: $gd-1;
-        // }
-
-        .name-text {
-            width: 100%;
-            font-weight: 600;
-        }
-
-        .view-btn {
-            position: absolute;
-            width: 44px;
-            height: 100%;
-            right: 0;
-            top: 0;
-            background-color: $red-1;
-            border-radius: 0 $round-corner-1 $round-corner-1 0;
-
-            .white-text {
-                font-size: 2rem;
+                        .icon-container {
+                            background-color: $gl-1;
+                        }
+                    }
+                }
             }
         }
     }
+
 }

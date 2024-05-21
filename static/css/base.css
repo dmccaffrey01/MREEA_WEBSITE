@@ -106,6 +106,7 @@ a .dark-text:visited, a .nav-link:visited {
   color: #242424;
   background-color: #ececec;
   border-radius: 12px;
+  font-family: "Roboto", sans-serif;
 }
 .form .input-container input:focus, .form .input-container select:focus, .form .input-container textarea:focus {
   outline: 2px solid #c64f4a;
@@ -115,6 +116,12 @@ a .dark-text:visited, a .nav-link:visited {
 }
 .form .input-container input.error-message, .form .input-container select.error-message, .form .input-container textarea.error-message {
   outline: 2px solid #c53d52;
+}
+.form .input-container input::placeholder, .form .input-container select::placeholder, .form .input-container textarea::placeholder {
+  color: #616161;
+  font-style: normal;
+  opacity: 1;
+  font-family: "Roboto", sans-serif;
 }
 .form .input-container textarea {
   resize: none;

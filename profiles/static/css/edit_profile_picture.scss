@@ -2,102 +2,45 @@
 @import '../../../static/css/mixins';
 
 .profile-section {
-    .section-container {
-        background-color: $gl-2;
-        border-radius: $round-corner-3;
-        padding: 16px;
-        gap: 12px;
-        justify-self: center;
+    justify-content: flex-start;
+    padding: 40px 0;
+
+    .items-container {
+        width: 600px;
+        gap: 32px;
     }
 
-    .grid-group-container {
+    .item-container  {
         width: 100%;
-    }
-
-    .grid-group-col-container {
-        width: calc(50% - 6px);
+        padding: 24px;
         gap: 12px;
-    }
-
-    .grid-container {
         background-color: $gl-1;
-        padding: 16px;
-        border-radius: $round-corner-2;
-        gap: 8px;
+        border-radius: $round-corner-3;
 
-        &.w-100 {
-            width: 100%;
-        }
-
-        &.w-50 {
-            width: calc(50% - 6px);
-        }
-
-        &.w-40 {
-            width: calc(40% - 8px);
-            gap: 4px;
-        }
-
-        &.w-20 {
-            width: calc(20% - 8px);
-        }
-
-        .grid-title {
+        .item-heading {
             font-weight: 600;
         }
 
-        .grid-text {
-            font-size: 1.2rem;
+        .text-item {
+            padding-left: 48px;
+        }
+
+        .item-text-container {
+            gap: 12px;
         }
     }
 
     .personal-container {
-        gap: 24px;
-        width: 100%;
-    }
-
-    .profile-img-container {
-        width: 100px;
-        height: 100px;
-        border-radius: 50%;
         position: relative;
 
-        .edit-profile-picture-overlay {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            border-radius: 50%;
-            background-color: rgba(0,0,0, 0.9);
-            filter: blur(10px);
-            display: none;
+        .img-name-container {
+            gap: 16px;
         }
 
-        .edit-profile-picture-icon {
-            font-size: 2rem;
-            color: $white;
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            border-radius: 50%;
-            cursor: pointer;
-            display: none;
-        }
-
-        &:hover {
-            .edit-profile-picture-icon,
-            .edit-profile-picture-overlay {
-                display: flex;
-            }
-        }
-    }
-
-    .personal-info-container {
-
-        .btn {
+        .personal-img-container {
             width: 100px;
-            padding: 4px 4px;
-            font-size: 1.1rem;
-            margin-bottom: 4px;
+            height: 100px;
+            border-radius: 50%;
         }
 
         .profile-name {
@@ -105,13 +48,17 @@
             font-weight: 600;
         }
 
-        .profile-title {
-            font-size: 1.4rem;
+        .profile-section-action-menu-btn {
+            .btn-text {
+                right: calc(100% + 8px);
+                top: 50%;
+                translate: 0 -50%;
+            }
         }
     }
 
-    .upload-grid-container {
-        height: 316px;
+    .upload-container {
+        height: 200px;
 
         .drop-zone {
             width: 100%;
@@ -126,56 +73,31 @@
                 font-size: 1.1rem;
             }
 
-            .upload-icon {
-                i {
-                    color: $red-1;
-                    font-size: 3rem;
-                }
-            }
-
             &:hover,
             &.dragover {
                 background-color: $gl-2;
+
+                .icon-container {
+                    background: $gl-1;
+                }
             }
-
-        }
-    }
-
-    .contact-container {
-        gap: 8px;
-    }
-
-    .contact-btn {
-        gap: 8px;
-
-        .red-text {
-            width: 45px;
-            height: 45px;
-            border-radius: 50%;
-            border: 3px solid $red-1;
         }
     }
 
     .crop-container {
-        height: 460px;
-        gap: 12px;
 
-        .btns-container {
-            gap: 8px;
-
-            .btn {
-                width: calc(175px - 4px);
-            }
+        &.hide {
+            opacity: 0;
         }
 
         .crop-img-container {
-            width: 350px;
-            height: 350px;
-            border-radius: $round-corner-1;
+            width: 320px;
+            height: 320px;
+            border-radius: $round-corner-2;
             align-self: center;
             position: relative;
             overflow: hidden;
-            cursor: grab;
+            cursor: move;
 
             .crop-img {
                 position: absolute;
@@ -192,17 +114,10 @@
                 width: 100%;
                 height: 100%;
                 border-radius: 50%;
-                box-shadow: 0 0 0 9999px rgba(247, 247, 247, 0.5);
+                box-shadow: 0 0 0 320px rgba(255, 255, 255, 0.658);
                 z-index: 3;
             }
 
-        }
-    }
-
-    .edit-container {
-        .btn {
-            width: 100%;
-            height: 54px;
         }
     }
 

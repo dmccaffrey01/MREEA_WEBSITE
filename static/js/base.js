@@ -611,8 +611,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 });
 
                 item.addEventListener("mouseleave", () => {
-                    actionMenuBtn.classList.remove("show");
-                    actionMenu.classList.remove("show");
+                    toggleElementShow(item);
                 });
 
                 listenForBtnClicks(actionMenu, item);

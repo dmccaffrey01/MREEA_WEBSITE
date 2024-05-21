@@ -2,6 +2,8 @@
 
 {% load static %}
 
+{% block extra_title %}- Admin{% endblock %}
+
 {% block extra_css %}
 <link rel="stylesheet" type="text/css" href="{% static 'css/admin.css' %}">
 {% endblock %}
@@ -9,18 +11,43 @@
 {% block content %}
 
 <section class="admin-section section justify-start">
-    <div class="section-container container-col align-start">
-        <div class="admin-container container-col align-start">
-            <h2 class="subheading dark-text">User Management</h2>
-            <div class="admin-items-container container-col align-start">
-                <a href="{% url 'user_admin' %}" class="admin-item dark-text small-text"><span class="fa-icon-left"><i class="fa-solid fa-chevron-right"></i></span>Visit User Admin Page</a>
+    <div class="section-container container-row justify-start box-shadow">
+        <div class="admin-group-container container-col align-start">
+            <div class="admin-container container-col align-start">
+                <h2 class="subheading dark-text visit-link">
+                    <span class="icon-container btn-icon-left">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="dark-text" viewBox="0 0 256 256">
+                            <path d="M230.92 212c-15.23-26.33-38.7-45.21-66.09-54.16a72 72 0 1 0-73.66 0c-27.39 8.94-50.86 27.82-66.09 54.16a8 8 0 1 0 13.85 8c18.84-32.56 52.14-52 89.07-52s70.23 19.44 89.07 52a8 8 0 1 0 13.85-8M72 96a56 56 0 1 1 56 56a56.06 56.06 0 0 1-56-56" />
+                        </svg>
+                    </span>
+                    <span class="dark-text">User Management</span>
+                </h2>
+                <div class="admin-items-container container-col align-start">
+                    <a href="{% url 'user_admin' %}" class="admin-item visit-link dark-text small-text">
+                        <span class="icon-container btn-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="dark-text small-text" viewBox="0 0 16 16">
+                                <path d="M5.646 3.146a.5.5 0 0 0 0 .708L9.793 8l-4.147 4.146a.5.5 0 0 0 .708.708l4.5-4.5a.5.5 0 0 0 0-.708l-4.5-4.5a.5.5 0 0 0-.708 0" />
+                            </svg>
+                        </span>
+                        <span class="dark-text small-text">Manage Users</span>
+                    </a>
+                </div>
             </div>
         </div>
 
-        <div class="admin-container container-col align-start">
-            <h2 class="subheading dark-text">Home Page Management</h2>
-            <div class="admin-items-container container-col align-start">
-                <a href="{% url 'home' %}" class="admin-item dark-text small-text"><span class="fa-icon-left"><i class="fa-solid fa-chevron-right"></i></span>Visit Home Page</a>
+        <div class="admin-group-container container-col align-start">
+            <div class="admin-container container-col align-start">
+                <h2 class="subheading dark-text">Home Page Management</h2>
+                <div class="admin-items-container container-col align-start">
+                    <a href="{% url 'home' %}" class="admin-item visit-link dark-text small-text">
+                        <span class="icon-container btn-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="dark-text small-text" viewBox="0 0 16 16">
+                                <path d="M5.646 3.146a.5.5 0 0 0 0 .708L9.793 8l-4.147 4.146a.5.5 0 0 0 .708.708l4.5-4.5a.5.5 0 0 0 0-.708l-4.5-4.5a.5.5 0 0 0-.708 0" />
+                            </svg>
+                        </span>
+                        <span class="dark-text small-text">Visit Home Page</span>
+                    </a>
+                </div>
             </div>
         </div>
     </div>

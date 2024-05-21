@@ -3,17 +3,30 @@
 
 .admin-section {
     min-height: calc(100vh - 100px);
+    padding: 40px 0;
 
     .section-container {
+        padding: 32px;
+        border-radius: $round-corner-3;
+        background-color: $gl-1;
         gap: 16px;
     }
 
+    .admin-group-container {
+        width: calc(50% - 8px);
+        gap: 20px;
+    }
+
     .admin-container {
+        width: 100%;
         gap: 8px;
 
         .subheading {
-            text-decoration: underline;
-            font-size: 1.6rem;
+            font-size: $font-size;
+        }
+
+        .admin-items-container {
+            margin-left: 24px;
         }
     }
 }

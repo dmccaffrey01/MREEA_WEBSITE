@@ -1,0 +1,84 @@
+@import '../../../static/css/variables';
+@import '../../../static/css/mixins';
+
+.event-section {
+    padding: 40px 0 40px 0;
+    justify-content: flex-start;
+
+    .section-container {
+        gap: 24px;
+
+        .heading-container {
+            gap: 8px;
+
+            .icon-container {
+                width: calc($subheading-size + 24px);
+                height: calc($subheading-size + 24px);
+                padding: 12px;
+            }
+        }
+    }
+
+    .event-container {
+        width: calc(50% - 24px);
+        border-radius: $round-corner-3;
+        padding: 32px;
+        background-color: $gl-1;
+        gap: 24px;
+
+        .input-wrapper {
+            width: 100%;
+            gap: 8px;
+        }
+
+        .visit-link {
+            gap: 8px;
+        }
+
+        .input-container {
+            position: relative;
+
+            input, textarea {
+                font-size: $small-font-size;
+                padding-left: 16px;
+            }
+        }
+    }
+
+    .event-btns-container {
+        gap: 4px;
+        margin-top: 12px;
+        width: calc(50% - 24px);
+        padding: 16px;
+        border-radius: $round-corner-2;
+        background-color: $gl-1;
+
+        .save-btn {
+            padding: 0;
+            background-color: $gl-1;
+            border: none;
+        }
+
+        .visit-link {
+            justify-content: flex-start;
+            width: 100%;
+            border-radius: $round-corner-2;
+            background-color: $gl-1;
+            padding: 12px;
+            gap: 8px;
+            cursor: pointer;
+
+            &:hover {
+                background-color: $gl-2;
+
+                .icon-container {
+                    background-color: $gl-1;
+                }
+            }
+        }
+    }
+
+    .delete-btn-wrapper {
+        width: 100%;
+    }
+}
