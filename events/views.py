@@ -8,13 +8,11 @@ from .forms import EventForm
 
 
 def events(request):
-    events = Event.objects.all()
-
     current_datetime = timezone.now()
+    today_start = current_datetime.replace(hour=0, minute=0, second=0, microsecond=0)
 
-    upcoming_events = Event.objects.filter(date__gt=current_datetime).order_by('date')
-
-    past_events = Event.objects.filter(date__lt=current_datetime).order_by('-date')
+    upcoming_events = Event.objects.filter(date__gte=today_start).order_by('date')
+    past_events = Event.objects.filter(date__lt=today_start).order_by('-date')
 
     context = {
         'upcoming_events': upcoming_events,
@@ -181,12 +179,22 @@ def edit_event(request, event_name):
             return redirect(reverse('events'))
     else:
         form = EventForm(instance=selected_event)
-    
-    register_url = selected_event.register_link.url
-    register_name = selected_event.register_link.name
 
-    google_drive_url = selected_event.google_drive_link.url
-    google_drive_name = selected_event.google_drive_link.name
+    register_link = selected_event.register_link
+    if register_link:
+        register_url = selected_event.register_link.url
+        register_name = selected_event.register_link.name
+    else:
+        register_url = ''
+        register_name = ''
+    
+    google_drive_link = selected_event.google_drive_link
+    if google_drive_link:
+        google_drive_url = selected_event.google_drive_link.url
+        google_drive_name = selected_event.google_drive_link.name
+    else:
+        google_drive_url = ''
+        google_drive_name = ''
 
     action_url = reverse('edit_event', args=(selected_event.name,))
 
@@ -203,3 +211,26 @@ def edit_event(request, event_name):
     }
 
     return render(request, 'events/event.html', context)
+
+
+@login_required
+def delete_event(request, event_name):
+
+    user = request.user
+
+    if not user.is_superuser:
+        messages.error(request, "You must be an admin to edit an event!")
+        return redirect(reverse('events'))
+    
+    selected_event = Event.objects.filter(name=event_name).first()
+
+    if not selected_event:
+        messages.error(request, "Invalid event!")
+        return redirect(reverse('events'))
+    
+    selected_event.delete()
+
+    messages.success(request, "Successfully deleted event!")
+    return redirect(reverse('events'))
+
+
