@@ -1,7 +1,7 @@
 from django.contrib import admin
-from .models import Resource, Folder, ResourceType
+from .models import Resource, Folder, Icon
 
 
 admin.site.register(Resource)
-admin.site.register(ResourceType)
+admin.site.register(Icon)
 admin.site.register(Folder)

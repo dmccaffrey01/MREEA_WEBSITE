@@ -91,6 +91,16 @@
                         }
                     }
                 }
+
+                .description-text {
+                    gap: $small-font-size;
+                    margin-bottom: 8px;
+        
+                    p {
+                        font-size: $small-font-size;
+                        color: $gd-1;
+                    }
+                }
             }
         }
     }

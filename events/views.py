@@ -1,7 +1,8 @@
 from django.shortcuts import render, redirect, get_object_or_404, reverse
 from .models import Event
 from django.utils import timezone
-from resources.models import Resource, Folder, ResourceType
+from datetime import timedelta
+from resources.models import Resource, Folder, Icon
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from .forms import EventForm
@@ -9,10 +10,11 @@ from .forms import EventForm
 
 def events(request):
     current_datetime = timezone.now()
-    today_start = current_datetime.replace(hour=0, minute=0, second=0, microsecond=0)
+    tomorrow_start = current_datetime + timedelta(days=1)
+    tomorrow_start = tomorrow_start.replace(hour=0, minute=0, second=0, microsecond=0)
 
-    upcoming_events = Event.objects.filter(date__gte=today_start).order_by('date')
-    past_events = Event.objects.filter(date__lt=today_start).order_by('-date')
+    upcoming_events = Event.objects.filter(date__gte=tomorrow_start).order_by('date')
+    past_events = Event.objects.filter(date__lt=tomorrow_start).order_by('-date')
 
     context = {
         'upcoming_events': upcoming_events,
@@ -43,7 +45,12 @@ def add_event(request):
             event_location = form_data['location']
 
             events_parent_folder = Folder.objects.filter(name='events').first()
-            new_folder, created = Folder.objects.get_or_create(friendly_name=event_friendly_name, parent_folder=events_parent_folder)
+            folder_icon = Icon.objects.filter(name='folder').first()
+            new_folder, created = Folder.objects.get_or_create(
+                friendly_name=event_friendly_name,
+                parent_folder=events_parent_folder,
+                icon=folder_icon
+            )
             new_folder.save()
 
             register_url = request.POST.get("id_register_url", None)
@@ -51,25 +58,25 @@ def add_event(request):
 
             if register_url:
                 register_friendly_name = 'Event Register Link'
-                register_resource_type = ResourceType.objects.filter(name="register").first()
+                register_icon = Icon.objects.filter(name="register").first()
 
                 new_register_resource = Resource.objects.create(
                     friendly_name=register_friendly_name,
                     folder=new_folder,
                     url=register_url,
-                    resource_type=register_resource_type
+                    icon=register_icon
                 )
                 new_register_resource.save()
 
             if google_drive_url:
                 google_drive_friendly_name = 'Google Drive Folder'
-                google_drive_resource_type = ResourceType.objects.filter(name="google_drive").first()
+                google_drive_icon = Icon.objects.filter(name="google_drive").first()
 
                 new_google_drive_resource = Resource.objects.create(
                     friendly_name=google_drive_friendly_name,
                     folder=new_folder,
                     url=google_drive_url,
-                    resource_type=google_drive_resource_type
+                    icon=google_drive_icon
                 )
                 new_google_drive_resource.save()
             
@@ -136,7 +143,7 @@ def edit_event(request, event_name):
             google_drive_name = request.POST.get("id_google_drive_name", '')
 
             register_friendly_name = 'Event Register Link'
-            register_resource_type = ResourceType.objects.filter(name="register").first()
+            register_icon = Icon.objects.filter(name="register").first()
 
             if register_name:
                 new_register_resource = Resource.objects.filter(name=register_name).first()
@@ -146,12 +153,12 @@ def edit_event(request, event_name):
                     friendly_name=register_friendly_name,
                     folder=selected_event.folder,
                     url=register_url,
-                    resource_type=register_resource_type
+                    icon=register_icon
                 )
             new_register_resource.save()
 
             google_drive_friendly_name = 'Google Drive Folder'
-            google_drive_resource_type = ResourceType.objects.filter(name="google_drive").first()
+            google_drive_icon = Icon.objects.filter(name="google_drive").first()
 
             if register_name:
                 new_google_drive_resource = Resource.objects.filter(name=google_drive_name).first()
@@ -161,7 +168,7 @@ def edit_event(request, event_name):
                     friendly_name=google_drive_friendly_name,
                     folder=selected_event.folder,
                     url=google_drive_url,
-                    resource_type=google_drive_resource_type
+                    icon=google_drive_icon
                 )
             new_google_drive_resource.save()
             
@@ -219,7 +226,7 @@ def delete_event(request, event_name):
     user = request.user
 
     if not user.is_superuser:
-        messages.error(request, "You must be an admin to edit an event!")
+        messages.error(request, "You must be an admin to delete an event!")
         return redirect(reverse('events'))
     
     selected_event = Event.objects.filter(name=event_name).first()

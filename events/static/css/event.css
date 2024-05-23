@@ -36,6 +36,13 @@
   font-size: 1.1rem;
   padding-left: 16px;
 }
+.event-section .event-container .description-text {
+  gap: 1.1rem;
+}
+.event-section .event-container .description-text p {
+  font-size: 1.1rem;
+  color: #242424;
+}
 .event-section .event-btns-container {
   gap: 4px;
   margin-top: 12px;

@@ -129,7 +129,7 @@ def edit_profile(request, username):
 
             for id in link_ids:
                 url = request.POST.get(f'{id}')
-                friendly_name = get_link_friendly_name(url)
+                friendly_name = get_url_friendly_name(url)
                 id_split = id.split('_')
                 id_num = id_split[len(id_split) -1 ]
                 name = request.POST.get(f'id_pl_name_{id_num}')
@@ -262,7 +262,7 @@ def edit_profile(request, username):
     return render(request, 'profiles/edit_profile.html', context)
 
 
-def get_link_friendly_name(url):
+def get_url_friendly_name(url):
     # Parse the URL
     parsed_url = urlparse(url)
 

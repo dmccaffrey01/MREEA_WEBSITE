@@ -55,7 +55,9 @@
                             <h2 class="event-heading-text dark-text">{{ event.friendly_name }}</h2>
                         </div>
                         {% if event.description %}
-                        <p class="description-text dark-text small-text">{{ event.description }}</p>
+                        <div class="description-text container-col align-start">
+                            {{ event.description|linebreaks }}
+                        </div>
                         {% endif %}
                         {% if event.date %}
                         <div class="date-container visit-link">
@@ -130,6 +132,19 @@
                 </div>
     
                 <div class="events-container container-col justify-start align-start">
+                    {% if user.is_superuser %}
+                    <a href="{% url 'add_event' %}" class="add-event-btn container-col box-shadow">
+                        <div class="visit-link">
+                            <div class="icon-container">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="dark-text" viewBox="0 0 16 16">
+                                    <path d="M8 2.5a.5.5 0 0 0-1 0V7H2.5a.5.5 0 0 0 0 1H7v4.5a.5.5 0 0 0 1 0V8h4.5a.5.5 0 0 0 0-1H8z" />
+                                </svg>
+                                <span class="sr-only">Events Icon</span>
+                            </div>
+                            <p class="dark-text">Add Event</p>
+                        </div>
+                    </a>
+                    {% endif %}
                     {% for event in past_events %}
                     <div class="event-container container-col align-start box-shadow">
                         <div class="event-heading-container visit-link">
@@ -142,7 +157,9 @@
                             <h2 class="event-heading-text dark-text">{{ event.friendly_name }}</h2>
                         </div>
                         {% if event.description %}
-                        <p class="description-text dark-text small-text">{{ event.description }}</p>
+                        <div class="description-text container-col align-start">
+                            {{ event.description|linebreaks }}
+                        </div>
                         {% endif %}
                         {% if event.date %}
                         <div class="date-container visit-link">

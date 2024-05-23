@@ -88,5 +88,15 @@
 .events-section .events-wrapper .past-events-container .events-container .add-event-btn:hover .icon-container {
   background-color: #f7f7f7;
 }
+.events-section .events-wrapper .upcoming-events-container .events-container .description-text,
+.events-section .events-wrapper .past-events-container .events-container .description-text {
+  gap: 1.1rem;
+  margin-bottom: 8px;
+}
+.events-section .events-wrapper .upcoming-events-container .events-container .description-text p,
+.events-section .events-wrapper .past-events-container .events-container .description-text p {
+  font-size: 1.1rem;
+  color: #242424;
+}
 
 /*# sourceMappingURL=events.css.map */

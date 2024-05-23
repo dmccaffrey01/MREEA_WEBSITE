@@ -17,6 +17,23 @@
     .parent-folder-container {
         width: 100%;
         gap: 4px;
+
+        &.admin {
+            .parent-folder-text {
+                width: calc(100% - 120px);
+            }
+
+            .admin-resource-container {
+                gap: 12px;
+
+                .admin-btn {
+                    cursor: pointer;
+                    width: 48px;
+                    height: 48px;
+                    padding: 12px;
+                }
+            }
+        }
     }
 
     .search-container {
@@ -62,21 +79,44 @@
         gap: 12px;
     }
 
-    .resource-container {
+    .resource-wrapper {
         width: 100%;
-        gap: 16px;
-        border-radius: $round-corner-2;
-        background-color: $gl-1;
         position: relative;
-        cursor: pointer;
-        padding: 12px;
 
-        &:hover {
-            background-color: $gl-2;
+        .resource-container {
+            width: 100%;
+            gap: 16px;
+            border-radius: $round-corner-2;
+            background-color: $gl-1;
+            position: relative;
+            cursor: pointer;
+            padding: 12px;
+    
+            &:hover {
+                background-color: $gl-2;
+    
+                .icon-container {
+                    background-color: $gl-1;
+                }
+            }
+    
+            &.hide {
+                display: none;
+            }
         }
 
-        &.hide {
+        .edit-resource-btn {
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            translate: 0 -50%;
+            cursor: pointer;
             display: none;
+            z-index: 999;
+        }
+
+        &:hover .edit-resource-btn {
+            display: flex;
         }
     }
 }

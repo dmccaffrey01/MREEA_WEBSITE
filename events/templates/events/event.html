@@ -47,7 +47,7 @@
                     </div>
                     <label for="id_description" class="dark-text-2 small-text">Event Description</label>
                 </div>
-                <div class="input-container col-2">
+                <div class="input-container col-2 scroll">
                     {{ form.description }}
                 </div>
             </div>
@@ -132,7 +132,7 @@
                 {% endif %}
             </div>
         </div>
-        <div class="event-btns-container container-col align-start box-shadow">
+        <div class="management-btns-container container-col align-start box-shadow">
             <button type="submit" class="save-btn visit-link">
                 <span class="icon-container">
                     <svg xmlns="http://www.w3.org/2000/svg" class="dark-text" viewBox="0 0 16 16">
@@ -195,6 +195,6 @@
 {% block postloadjs %}
 {{ block.super }}
 
-<script src="{% static 'js/event.js' %}"></script>
+<script src="{% static 'js/management_btns.js' %}"></script>
 
 {% endblock %}

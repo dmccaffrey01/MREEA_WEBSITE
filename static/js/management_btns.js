@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-    let eventBtnsContainer = document.querySelector(".event-btns-container");
+    let eventBtnsContainer = document.querySelector(".management-btns-container");
     let deleteBtnWrapper = eventBtnsContainer.querySelector(".delete-btn-wrapper");
 
     if (deleteBtnWrapper) {

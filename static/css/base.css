@@ -126,6 +126,10 @@ a .dark-text:visited, a .nav-link:visited {
 .form .input-container textarea {
   resize: none;
 }
+.form .input-container textarea::-webkit-scrollbar {
+  width: 0px;
+  background: transparent;
+}
 .form .input-container select {
   cursor: pointer;
 }

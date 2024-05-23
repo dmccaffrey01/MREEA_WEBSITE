@@ -1,0 +1,213 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block extra_title %}- {{ management_name }}{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/resources.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'css/resources_management.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<section class="resources-section section">
+    <div class="management-overlay container-col">
+        <form action="{{ action_url }}" method="POST" class="management-container container-col form align-start">
+            {% csrf_token %}
+            <div class="inputs-container container-col align-start box-shadow">
+                <div class="heading-container visit-link">
+                    <div class="icon-container">
+                        {% if management_icon %}
+                        {{ management_icon.icon|safe }}
+                        <span class="sr-only">{{ management_icon.friendly_name }} Icon</span>
+                        {% else %}
+                        <svg xmlns="http://www.w3.org/2000/svg" class="dark-text" viewBox="0 0 16 16">
+                            <path d="M13 10.085a1.5 1.5 0 0 1 1 1.415v.5a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6.5a1.5 1.5 0 0 1 1-1.415V3.5A1.5 1.5 0 0 1 4.5 2h5A1.5 1.5 0 0 1 11 3.5V10h1V4.085A1.5 1.5 0 0 1 13 5.5zm-3-.792V3.5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0-.5.5V5h1.086a1.5 1.5 0 0 1 1.06.44zM3 6.5V12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1v-.5a.5.5 0 0 0-.5-.5h-1.586a1.5 1.5 0 0 1-1.06-.44L5.439 6.147A.5.5 0 0 0 5.086 6H3.5a.5.5 0 0 0-.5.5" />
+                        </svg>
+                        <span class="sr-only">Resources Icon</span>
+                        {% endif %}
+                    </div>
+                    <p class="subheading dark-text heading-text">{{ management_name }}</p>
+                </div>
+                <div class="input-wrapper container-col align-start">
+                    <div class="visit-link">
+                        <div class="icon-container">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="dark-text" viewBox="0 0 16 16">
+                                <path d="M9.5 4h1a3.5 3.5 0 0 1 .194 6.995l-.192.005l-1 .005a.5.5 0 0 1-.094-.992l.09-.008L10.5 10a2.5 2.5 0 0 0 .164-4.995L10.5 5h-1a.5.5 0 0 1-.09-.992zh1zm-4 0h1a.5.5 0 0 1 .09.992L6.5 5h-1a2.5 2.5 0 0 0-.164 4.995L5.5 10h1a.5.5 0 0 1 .09.992L6.5 11h-1a3.5 3.5 0 0 1-.192-6.995zh1zm0 3l5 .002a.5.5 0 0 1 .09.992l-.09.008L5.5 8a.5.5 0 0 1-.09-.992z" />
+                            </svg>
+                            <span class="sr-only">Link Icon</span>
+                        </div>
+                        <label for="id_url" class="dark-text-2 small-text">Resource Url</label>
+                    </div>
+                    <div class="input-container col-2">
+                        {{ form.url }}
+                    </div>
+                </div>
+
+                <div class="input-wrapper container-col align-start">
+                    <div class="visit-link">
+                        <div class="icon-container">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="dark-text" viewBox="0 0 16 16">
+                                <path d="M4.5 2A2.5 2.5 0 0 0 2 4.5v7A2.5 2.5 0 0 0 4.5 14h7a2.5 2.5 0 0 0 2.5-2.5v-7A2.5 2.5 0 0 0 11.5 2zM3 4.5A1.5 1.5 0 0 1 4.5 3h7A1.5 1.5 0 0 1 13 4.5v7a1.5 1.5 0 0 1-1.5 1.5h-7A1.5 1.5 0 0 1 3 11.5zm2.5.5a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1zm0 3a.5.5 0 0 0 0 1h3a.5.5 0 0 0 0-1z" />
+                            </svg>
+                            <span class="sr-only">Text Icon</span>
+                        </div>
+                        <label for="id_friendly_name" class="dark-text-2 small-text">Resource Name</label>
+                    </div>
+                    <div class="input-container col-2">
+                        {{ form.friendly_name }}
+                    </div>
+                </div>
+            </div>
+
+            <div class="management-btns-container container-col align-start box-shadow">
+                <button type="submit" class="save-btn visit-link">
+                    <span class="icon-container">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="dark-text" viewBox="0 0 16 16">
+                            <path d="M3.5 13h9a.5.5 0 0 1 .09.992L12.5 14h-9a.5.5 0 0 1-.09-.992zh9zM7.91 1.008L8 1a.5.5 0 0 1 .492.41l.008.09v8.792l2.682-2.681a.5.5 0 0 1 .638-.058l.07.058a.5.5 0 0 1 .057.638l-.058.069l-3.535 3.536a.5.5 0 0 1-.638.057l-.07-.057l-3.535-3.536a.5.5 0 0 1 .638-.765l.069.058L7.5 10.292V1.5a.5.5 0 0 1 .41-.492L8 1z" />
+                        </svg>
+                        <span class="sr-only">Save Icon</span>
+                    </span>
+                    <span class="dark-text small-text">Save</span>
+                </button>
+                <a href="{% url 'folder' folder.name %}" class="visit-link">
+                    <span class="icon-container">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="dark-text" viewBox="0 0 24 24">
+                            <path d="M12.003 21q-1.866 0-3.51-.708q-1.643-.709-2.859-1.924t-1.925-2.856T3 12.003t.709-3.51Q4.417 6.85 5.63 5.634t2.857-1.925T11.997 3t3.51.709q1.643.708 2.859 1.922t1.925 2.857t.709 3.509t-.708 3.51t-1.924 2.859t-2.856 1.925t-3.509.709M12 20q1.465 0 2.82-.514q1.357-.515 2.465-1.494L6.008 6.716q-.96 1.107-1.484 2.463T4 12q0 3.35 2.325 5.675T12 20m5.992-2.716q.98-1.107 1.493-2.463Q20 13.465 20 12q0-3.35-2.325-5.675T12 4q-1.471 0-2.834.505q-1.362.504-2.45 1.503z" />
+                        </svg>
+                        <span class="sr-only">Cancel Icon</span>
+                    </span>
+                    <span class="dark-text small-text">Cancel</span>
+                </a>
+                {% if delete_btn %}
+                <div class="delete-btn-wrapper container-col relative-pos">
+                    <div class="delete-btn visit-link">
+                        <span class="icon-container">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="dark-text" viewBox="0 0 24 24">
+                                <path d="M12 2.75a2.25 2.25 0 0 0-2.122 1.5a.75.75 0 0 1-1.414-.5a3.751 3.751 0 0 1 7.073 0a.75.75 0 0 1-1.415.5A2.251 2.251 0 0 0 12 2.75M2.75 6a.75.75 0 0 1 .75-.75h17a.75.75 0 0 1 0 1.5h-17A.75.75 0 0 1 2.75 6m3.165 2.45a.75.75 0 1 0-1.497.1l.464 6.952c.085 1.282.154 2.318.316 3.132c.169.845.455 1.551 1.047 2.104c.591.554 1.315.793 2.17.904c.822.108 1.86.108 3.146.108h.879c1.285 0 2.324 0 3.146-.108c.854-.111 1.578-.35 2.17-.904c.591-.553.877-1.26 1.046-2.104c.162-.814.23-1.85.316-3.132l.464-6.952a.75.75 0 0 0-1.497-.1l-.46 6.9c-.09 1.347-.154 2.285-.294 2.99c-.137.685-.327 1.047-.6 1.303c-.274.256-.648.422-1.34.512c-.713.093-1.653.095-3.004.095h-.774c-1.35 0-2.29-.002-3.004-.095c-.692-.09-1.066-.256-1.34-.512c-.273-.256-.463-.618-.6-1.303c-.14-.705-.204-1.643-.294-2.99z" />
+                                <path d="M9.425 10.254a.75.75 0 0 1 .821.671l.5 5a.75.75 0 0 1-1.492.15l-.5-5a.75.75 0 0 1 .671-.821m5.821.821a.75.75 0 0 0-1.492-.15l-.5 5a.75.75 0 0 0 1.492.15z" />
+                            </svg>
+                            <span class="sr-only">Delete Icon</span>
+                        </span>
+                        <span class="delete-text dark-text small-text">Delete</span>
+                    </div>
+                    <div class="confirm-delete-btn visit-link hide">
+                        <div class="icon-container gl-1">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="dark-text" viewBox="0 0 24 24">
+                                <path d="M12 2.75a2.25 2.25 0 0 0-2.122 1.5a.75.75 0 0 1-1.414-.5a3.751 3.751 0 0 1 7.073 0a.75.75 0 0 1-1.415.5A2.251 2.251 0 0 0 12 2.75M2.75 6a.75.75 0 0 1 .75-.75h17a.75.75 0 0 1 0 1.5h-17A.75.75 0 0 1 2.75 6m3.165 2.45a.75.75 0 1 0-1.497.1l.464 6.952c.085 1.282.154 2.318.316 3.132c.169.845.455 1.551 1.047 2.104c.591.554 1.315.793 2.17.904c.822.108 1.86.108 3.146.108h.879c1.285 0 2.324 0 3.146-.108c.854-.111 1.578-.35 2.17-.904c.591-.553.877-1.26 1.046-2.104c.162-.814.23-1.85.316-3.132l.464-6.952a.75.75 0 0 0-1.497-.1l-.46 6.9c-.09 1.347-.154 2.285-.294 2.99c-.137.685-.327 1.047-.6 1.303c-.274.256-.648.422-1.34.512c-.713.093-1.653.095-3.004.095h-.774c-1.35 0-2.29-.002-3.004-.095c-.692-.09-1.066-.256-1.34-.512c-.273-.256-.463-.618-.6-1.303c-.14-.705-.204-1.643-.294-2.99z" />
+                                <path d="M9.425 10.254a.75.75 0 0 1 .821.671l.5 5a.75.75 0 0 1-1.492.15l-.5-5a.75.75 0 0 1 .671-.821m5.821.821a.75.75 0 0 0-1.492-.15l-.5 5a.75.75 0 0 0 1.492.15z" />
+                            </svg>
+                            <span class="sr-only">Delete Icon</span>
+                        </div>
+                        <p class="delete-text dark-text small-text">Confirm Delete?</p>
+                        <a href="{% url 'delete_resource' folder.name resource.name %}" class="icon-container gl-1 success">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="dark-text" viewBox="0 0 24 24">
+                                <path fill-rule="evenodd" d="M20.207 6.793a1 1 0 0 1 0 1.414l-9.5 9.5a1 1 0 0 1-1.414 0l-4.5-4.5a1 1 0 0 1 1.414-1.414L10 15.586l8.793-8.793a1 1 0 0 1 1.414 0" clip-rule="evenodd" />
+                            </svg>
+                            <span class="sr-only">Check Icon</span>
+                        </a>
+                        <div class="deny-delete-btn icon-container gl-1 error">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="dark-text" viewBox="0 0 24 24">
+                                <path fill-rule="evenodd" d="M17.707 7.707a1 1 0 0 0-1.414-1.414L12 10.586L7.707 6.293a1 1 0 0 0-1.414 1.414L10.586 12l-4.293 4.293a1 1 0 1 0 1.414 1.414L12 13.414l4.293 4.293a1 1 0 1 0 1.414-1.414L13.414 12z" clip-rule="evenodd" />
+                            </svg>
+                            <span class="sr-only">X Mark Icon</span>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+        </form>
+    </div>
+
+    <div class="section-container container-col align-start box-shadow">
+        <div class="parent-folder-container container-row justify-start {% if user.is_superuser %}admin{% endif %}">
+            <p class="parent-folder-text dark-text">
+                {% if parent_folders %}
+                {% for folder in parent_folders %}<a href="{% url 'folder' folder.name %}" class="dark-text">{{ folder.friendly_name }}</a> / {% endfor %}
+                {% else %}
+                {{ folder.friendly_name }}
+                {% endif %}
+            </p>
+            {% if user.is_superuser %}
+            <div class="admin-resource-container container-row">
+                <div class="admin-btn icon-container label-container">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="dark-text" viewBox="0 0 16 16">
+                        <path d="M6 1a2 2 0 0 0-2 2v2.207a5.5 5.5 0 0 1 1-.185V3a1 1 0 0 1 1-1h3v2.5A1.5 1.5 0 0 0 10.5 6H13v7a1 1 0 0 1-1 1H9.743a5.5 5.5 0 0 1-1.08 1H12a2 2 0 0 0 2-2V5.414a1.5 1.5 0 0 0-.44-1.06l-2.914-2.915A1.5 1.5 0 0 0 9.586 1zm6.793 4H10.5a.5.5 0 0 1-.5-.5V2.207zM10 10.5a4.5 4.5 0 1 1-9 0a4.5 4.5 0 0 1 9 0m-4-2a.5.5 0 0 0-1 0V10H3.5a.5.5 0 0 0 0 1H5v1.5a.5.5 0 0 0 1 0V11h1.5a.5.5 0 0 0 0-1H6z" />
+                    </svg>
+                    <span class="label white-text small-text">Add Resource</span>
+                </div>
+                <div class="admin-btn icon-container label-container">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="dark-text" viewBox="0 0 16 16">
+                        <path d="M2 4.5V6h3.586a.5.5 0 0 0 .353-.146L7.293 4.5L5.939 3.146A.5.5 0 0 0 5.586 3H3.5A1.5 1.5 0 0 0 2 4.5m-1 0A2.5 2.5 0 0 1 3.5 2h2.086a1.5 1.5 0 0 1 1.06.44L8.207 4H12.5A2.5 2.5 0 0 1 15 6.5v.757a5.5 5.5 0 0 0-1-.657v-.1A1.5 1.5 0 0 0 12.5 5H8.207l-1.56 1.56A1.5 1.5 0 0 1 5.585 7H2v4.5A1.5 1.5 0 0 0 3.5 13h2.707q.149.524.393 1H3.5A2.5 2.5 0 0 1 1 11.5zm15 7a4.5 4.5 0 1 1-9 0a4.5 4.5 0 0 1 9 0m-4-2a.5.5 0 0 0-1 0V11H9.5a.5.5 0 0 0 0 1H11v1.5a.5.5 0 0 0 1 0V12h1.5a.5.5 0 0 0 0-1H12z" />
+                    </svg>
+                    <span class="label white-text small-text">Add Folder</span>
+                </div>
+            </div>
+            {% endif %}
+        </div>
+
+        <div class="search-container container-row">
+            <div class="search-input-container container-row">
+                <input type="text" placeholder="Search in {{ folder.friendly_name }}" class="search-input">
+                <div class="icon-container btn-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="dark-text" viewBox="0 0 24 24">
+                        <path d="M15.5 14h-.79l-.28-.27a6.5 6.5 0 0 0 1.48-5.34c-.47-2.78-2.79-5-5.59-5.34a6.505 6.505 0 0 0-7.27 7.27c.34 2.8 2.56 5.12 5.34 5.59a6.5 6.5 0 0 0 5.34-1.48l.27.28v.79l4.25 4.25c.41.41 1.08.41 1.49 0c.41-.41.41-1.08 0-1.49zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5S14 7.01 14 9.5S11.99 14 9.5 14" />
+                    </svg>
+                    <span class="sr-only">Search Icon</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="resources-container container-col align-start">
+
+            {% for f in sub_folders %}
+            <a href="{% url 'folder' f.name %}" class="resource-container container-row justify-start" data-name="{{ f.name }}">
+                <div class="icon-container">
+                    {% if f.icon %}
+                    {{ f.icon.icon|safe }}
+                    <span class="sr-only">{{ f.icon.friendly_name }} Icon</span>
+                    {% else %}
+                    <svg xmlns="http://www.w3.org/2000/svg" class="dark-text" viewBox="0 0 16 16">
+                        <path d="M2 4.5V6h3.586a.5.5 0 0 0 .353-.146L7.293 4.5L5.939 3.146A.5.5 0 0 0 5.586 3H3.5A1.5 1.5 0 0 0 2 4.5m-1 0A2.5 2.5 0 0 1 3.5 2h2.086a1.5 1.5 0 0 1 1.06.44L8.207 4H12.5A2.5 2.5 0 0 1 15 6.5v5a2.5 2.5 0 0 1-2.5 2.5h-9A2.5 2.5 0 0 1 1 11.5zM2 7v4.5A1.5 1.5 0 0 0 3.5 13h9a1.5 1.5 0 0 0 1.5-1.5v-5A1.5 1.5 0 0 0 12.5 5H8.207l-1.56 1.56A1.5 1.5 0 0 1 5.585 7z" />
+                    </svg>
+                    <span class="sr-only">Folder Icon</span>
+                    {% endif %}
+                </div>
+                <p class="dark-text">{{ f.friendly_name }}</p>
+            </a>
+            {% endfor %}
+
+            {% for r in resources %}
+            <a href="{{ r.url }}" target="_blank" class="resource-container container-row justify-start" data-name="{{ r.name }}">
+                <div class="icon-container">
+                    {% if r.icon %}
+                    {{ r.icon.icon|safe }}
+                    <span class="sr-only">{{ r.icon.friendly_name }} Icon</span>
+                    {% else %}
+                    <svg xmlns="http://www.w3.org/2000/svg" class="dark-text" viewBox="0 0 16 16">
+                        <path d="M5 1a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V5.414a1.5 1.5 0 0 0-.44-1.06L9.647 1.439A1.5 1.5 0 0 0 8.586 1zM4 3a1 1 0 0 1 1-1h3v2.5A1.5 1.5 0 0 0 9.5 6H12v7a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1zm7.793 2H9.5a.5.5 0 0 1-.5-.5V2.207z" />
+                    </svg>
+                    <span class="sr-only">Document Icon</span>
+                    {% endif %}
+                </div>
+                <p class="dark-text">{{ r.friendly_name }}</p>
+            </a>
+            {% endfor %}
+
+            {% if no_resources_or_folders %}
+            <p class="dark-text small-text">"{{ folder.friendly_name }}" is empty</p>
+            {% endif %}
+        </div>
+    </div>
+</section>
+
+{% endblock %}
+
+{% block postloadjs %}
+{{ block.super }}
+
+<script src="{% static 'js/resources.js' %}"></script>
+<script src="{% static 'js/management_btns.js' %}"></script>
+
+{% endblock %}
