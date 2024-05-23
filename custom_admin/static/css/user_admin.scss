@@ -118,11 +118,26 @@
             display: none;
         }
 
-        .img-container {
+        .img-wrapper {
+            position: relative;
             width: 48px;
             height: 48px;
-            border-radius: 50%;
             margin-right: 24px;
+
+            .img-container {
+                border-radius: 50%;
+            }
+
+            .admin-icon {
+                position: absolute;
+                right: -2px;
+                bottom: -2px;
+                width: 24px;
+                height: 24px;
+                padding: 2px;
+                background-color: $gl-2;
+                z-index: 3;
+            }
         }
 
         .small-text {
@@ -138,5 +153,17 @@
         right: 16px;
         top: 50%;
         translate: 0 -50%;
+
+        .confirm-options {
+            .icon-container:hover {
+                &.success {
+                    background-color: $success;
+                }
+
+                &.error {
+                    background-color: $error;
+                }
+            }
+        }
     }
 }

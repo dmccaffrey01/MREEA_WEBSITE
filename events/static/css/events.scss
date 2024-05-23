@@ -6,7 +6,7 @@
     justify-content: flex-start;
 
     .section-container {
-        gap: 32px;
+        gap: 24px;
     }
 
     .img-container {
@@ -24,25 +24,42 @@
 
     .events-wrapper {
         width: 100%;
-        gap: 48px;
+        gap: 24px;
+
+        .heading-container {
+            gap: 8px;
+            margin-top: 24px;
+
+            .icon-container {
+                width: calc($subheading-size + 24px);
+                height: calc($subheading-size + 24px);
+                padding: 12px;
+            }
+        }
+
+        .add-event-btn {
+            width: 100%;
+            border-radius: $round-corner-3;
+            background-color: $gl-1;
+            padding: 16px;
+            cursor: pointer;
+
+            &:hover {
+                background-color: $gl-2;
+
+                .icon-container {
+                    background-color: $gl-1;
+                }
+            }
+        }
 
         .upcoming-events-container,
         .past-events-container {
-            width: calc(50% - 24px);
+            width: 100%;
             gap: 24px;
     
-            .heading-container {
-                gap: 8px;
-    
-                .icon-container {
-                    width: calc($subheading-size + 24px);
-                    height: calc($subheading-size + 24px);
-                    padding: 12px;
-                }
-            }
-    
             .events-container {
-                width: 100%;
+                width: calc(50% - 12px);
                 gap: 24px;
     
                 .event-container {
@@ -74,22 +91,6 @@
 
                 .link-container {
                     align-self: flex-end;
-                }
-
-                .add-event-btn {
-                    width: 100%;
-                    border-radius: $round-corner-3;
-                    background-color: $gl-1;
-                    padding: 16px;
-                    cursor: pointer;
-
-                    &:hover {
-                        background-color: $gl-2;
-
-                        .icon-container {
-                            background-color: $gl-1;
-                        }
-                    }
                 }
 
                 .description-text {

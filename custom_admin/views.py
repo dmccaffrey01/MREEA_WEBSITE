@@ -61,6 +61,31 @@ def user_admin(request):
 
 
 @login_required
+def change_admin_status(request, username):
+
+    user = request.user
+
+    if not user.is_superuser:
+        messages.error(request, "You must be an admin to change admin status!")
+        return redirect(reverse('home'))
+    
+    selected_user = User.objects.filter(username=username).first()
+
+    if not selected_user:
+        messages.error(request, "Invalid User!")
+        return redirect(reverse('user_admin'))
+    
+    if selected_user.is_superuser:
+        selected_user.is_superuser = False
+    else:
+        selected_user.is_superuser = True
+
+    selected_user.save()
+
+    messages.success(request, 'Successfully updated admin status!')
+    return redirect(reverse('user_admin'))
+
+@login_required
 def change_membership_status(request, username, is_active):
 
     user = request.user
@@ -73,13 +98,13 @@ def change_membership_status(request, username, is_active):
 
     if not selected_user:
         messages.error(request, "Invalid User!")
-        return redirect(reverse('home'))
+        return redirect(reverse('user_admin'))
     
     membership = Membership.objects.filter(user=selected_user).first()
 
     if not membership:
         messages.error(request, "Invalid Membership!")
-        return redirect(reverse('home'))
+        return redirect(reverse('user_admin'))
     
     if is_active == 'True':
         membership_status = MembershipStatus.objects.filter(name='active').first()

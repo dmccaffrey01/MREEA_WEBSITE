@@ -56,6 +56,10 @@ def view_notification(request, sku):
 def get_messages(request):
     # Get messages from Django messages framework
     django_messages = messages.get_messages(request)
+
+    if not django_messages:
+        return JsonResponse({'messages': []})
+    
     messages_list = []
 
     for message in django_messages:

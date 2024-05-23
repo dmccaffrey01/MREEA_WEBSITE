@@ -36,14 +36,7 @@
   font-size: 1.1rem;
   padding-left: 16px;
 }
-.event-section .event-container .description-text {
-  gap: 1.1rem;
-}
-.event-section .event-container .description-text p {
-  font-size: 1.1rem;
-  color: #242424;
-}
-.event-section .event-btns-container {
+.event-section .management-btns-container {
   gap: 4px;
   margin-top: 12px;
   width: calc(50% - 24px);
@@ -51,12 +44,12 @@
   border-radius: 12px;
   background-color: #f7f7f7;
 }
-.event-section .event-btns-container .save-btn {
+.event-section .management-btns-container .save-btn {
   padding: 0;
   background-color: #f7f7f7;
   border: none;
 }
-.event-section .event-btns-container .visit-link {
+.event-section .management-btns-container .visit-link {
   justify-content: flex-start;
   width: 100%;
   border-radius: 12px;
@@ -65,31 +58,31 @@
   gap: 8px;
   cursor: pointer;
 }
-.event-section .event-btns-container .visit-link:hover {
+.event-section .management-btns-container .visit-link:hover {
   background-color: #ececec;
 }
-.event-section .event-btns-container .visit-link:hover .icon-container {
+.event-section .management-btns-container .visit-link:hover .icon-container {
   background-color: #f7f7f7;
 }
-.event-section .event-btns-container .visit-link:hover .icon-container.success:hover {
+.event-section .management-btns-container .visit-link:hover .icon-container.success:hover {
   background-color: #399c3e;
 }
-.event-section .event-btns-container .visit-link:hover .icon-container.error:hover {
+.event-section .management-btns-container .visit-link:hover .icon-container.error:hover {
   background-color: #c53d52;
 }
-.event-section .event-btns-container .delete-btn-wrapper {
+.event-section .management-btns-container .delete-btn-wrapper {
   width: 100%;
 }
-.event-section .event-btns-container .delete-btn-wrapper .confirm-delete-btn {
+.event-section .management-btns-container .delete-btn-wrapper .confirm-delete-btn {
   position: absolute;
   left: 0;
   top: 0;
   background-color: #ececec;
 }
-.event-section .event-btns-container .delete-btn-wrapper .confirm-delete-btn.hide {
+.event-section .management-btns-container .delete-btn-wrapper .confirm-delete-btn.hide {
   display: none;
 }
-.event-section .event-btns-container .delete-btn-wrapper .confirm-delete-btn .success {
+.event-section .management-btns-container .delete-btn-wrapper .confirm-delete-btn .success {
   margin-left: 16px;
 }
 

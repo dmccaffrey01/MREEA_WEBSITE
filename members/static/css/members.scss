@@ -2,268 +2,109 @@
 @import '../../../static/css/mixins';
 
 .member-search-section {
-    padding: 20px 0;
+    padding: 20px 0 40px 0;
     min-height: calc(100vh - 100px);
     justify-content: flex-start;
 
-    &.search-results {
-        min-height: fit-content;
-    }
-
     .section-container {
-        height: calc(100vh - 240px);
-        border-radius: $round-corner-5;
+        gap: 48px;
     }
     
-    .img-100a {
-        position: absolute;
-        left: 0;
-        top: 50%;
-        translate: 0 -50%;
-    }
-
-    .text-container {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        translate: -50% -50%;
-        width: 100%;
-        gap: 8px;
-        padding: 0 40px;
-
-        // .subheading {
-        //     align-self: flex-start;
-        // }
-    }
-
-    .form-container {
-        background-color: $gl-1;
-        border-radius: $round-corner-3;
-        padding: 16px;
-        position: relative;
-
-        .form {
-            gap: 8px;
-            width: 100%;
-        }
-
-        .input-group {
-            width: 300px;
-        }
-
-        .custom-select-input-group {
-            width: 300px;
-            gap: 4px;
-
-            .custom-select-container {
-                width: 100%;
-                font-size: $font-size;
-                padding: 10px 15px;
-                border: none;
-                outline: none;
-                color: $gd-1;
-                background-color: $gl-2;
-                border-radius: $round-corner-1;
-                cursor: pointer;
-
-                &.focus {
-                    outline: 2px solid $red-1;
-                }
-            }
-
-            .custom-select-options-container {
-                display: none;
-                width: 100%;
-                height: 100%;
-                background-color: $gl-1;
-                border-radius: $round-corner-3;
-                position: absolute;
-                top: 0;
-                left: 0;
-                padding: 16px;
-
-                &.show {
-                    display: flex;
-                }
-
-                .close-select-btn {
-                    width: 100%;
-                }
-
-                .options-container {
-                    height: calc(100% - 64px);
-                    width: 100%;
-                    overflow-y: scroll;
-                    overflow-x: hidden;
-                    gap: 12px;
-
-                    &::-webkit-scrollbar {
-                        width: 4px;
-                    }
-        
-                    &::-webkit-scrollbar-thumb  {
-                        background-color: $red-1;
-                        border: none;
-                        border-radius: $round-corner-1;
-                    }
-
-                    .small-text {
-                        white-space: nowrap;
-                        overflow: hidden;
-                    }
-
-                    .category-options-container {
-                        gap: 4px;
-                    }
-
-                    .category-heading {
-                        font-weight: 600;
-                        margin-bottom: 4px;
-                    }
-
-                    .input-group {
-                        align-items: center;
-                        justify-content: flex-start;
-                    }
-                }
-
-                .checkbox-label {
-                    cursor: pointer;
-                }
-
-                .checkbox-input {
-                    appearance: none;
-                    -webkit-appearance: none;
-                    -moz-appearance: none;
-                    width: 1.1rem;
-                    height: 1.1rem;
-                    border: 2px solid $gd-1;
-                    border-radius: 3px;
-                    outline: none;
-                    position: relative;
-                    cursor: pointer;
-                    padding: 0;
-
-                    &::before {
-                        content: "";
-                        position: absolute;
-                        top: 45%;
-                        left: 25%;
-                        width: 30%;
-                        height: 70%;
-                        border: solid $red-1;
-                        border-width: 0 3px 3px 0;
-                        transform: translateY(-50%) rotate(45deg);
-                        opacity: 0;
-                        transition: opacity 0.2s ease-in-out;
-                    }
-                    
-                    &:checked::before {
-                        opacity: 1;
-                    }
-                }
-            }
-        }
-
-        .select-container {
-            background-color: $gl-2;
-        }
-
-        .btn {
-            width: 100%;
-        
-        }
-    }
-
-    &.search {
-        justify-content: flex-start;
-        height: fit-content;
-
-        .section-container {
-            height: 300px;
-        }
-
-        .text-container {
-            top: auto;
-            bottom: 20px;
-            translate: -50% 0;
-        }
-    }
-}
-
-.search-results-section {
-    padding: 0px 0 20px 0;
-
-    .section-container {
-        background-color: $gl-2;
-        border-radius: $round-corner-3;
-        padding: 16px;
-        gap: 16px;
-    }
-
-    .overview-container {
-        width: 100%;
-        padding: 12px;
-        border-radius: $round-corner-2;
-        background-color: $gl-1;
-    }
-
-    .profile-container {
-        width: calc(100% - 200px);
-        gap: 24px;
-    }
-
     .img-container {
-        width: 100px;
-        height: 100px;
-        border-radius: 50%;
-    }
-
-    .text-container {
-        gap: 4px;
+        width: 100%;
+        height: 160px;
         position: relative;
+        border-radius: $round-corner-3;
+
+        .img-100a {
+            position: absolute;
+            top: 0;
+            z-index: 2;
+        }
     }
 
-    .name-text {
-        font-size: 1.8rem;
-    }
-
-    .title-class-text {
-        font-size: 1.1rem;
-    }
-
-    .classes-text {
-        cursor: pointer;
-    }
-
-    .classes-hover-container {
-        position: absolute;
-        right: 0;
-        top: calc(100% + 4px);
-        border-radius: $round-corner-1;
+    .member-search-container {
+        width: 100%;
+        padding: 32px;
+        border-radius: $round-corner-3;
         background-color: $gl-1;
-        padding: 16px;
-        gap: 12px;
-        display: none;
-        z-index: 3;
+        gap: 24px;
 
-        &.show {
-            display: flex;
+        .input-container-group {
+            width: 100%;
+            gap: 24px;
+
+            .input-wrapper {
+                width: calc(50% - 12px);
+            }
         }
 
-        .category-container {
-            gap: 4px;
+        input {
+            padding-left: 16px;
         }
-
-        .category-hover-text {
-            font-weight: 600;
-        }
-
-        .fa-icon-left {
-            margin-right: 4px;
-        }
-
     }
 
+    .category-heading {
+        font-weight: 600;
+        margin: 12px 0 4px 0;
+    }
+
+    .heading-container {
+        gap: 8px;
+        margin-bottom: 12px;
+
+        .icon-container {
+            width: calc($subheading-size + 24px);
+            height: calc($subheading-size + 24px);
+            padding: 12px;
+        }
+    }
+
+    .btn {
+        width: calc(50% - 12px);
+    }
+
+    .search-results-container {
+        width: 100%;
+        padding: 32px;
+        gap: 12px;
+        border-radius: $round-corner-3;
+        background-color: $gl-1;
+
+        .search-results-text {
+            margin-bottom: 16px;
+        }
+
+        .profile-container {
+            width: 100%;
+            padding: 16px;
+            border-radius: $round-corner-2;
+            background-color: $gl-1;
+
+            &:hover {
+                background-color: $gl-2;
+            }
+        }
+    
+        .img-container {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+        }
+    
+        .text-container {
+            gap: 4px;
+            position: relative;
+        }
+    
+        .name-text {
+            font-size: 1.8rem;
+        }
+    
+        .teaching-text {
+            cursor: pointer;
+        }
+    }
 }
+
 

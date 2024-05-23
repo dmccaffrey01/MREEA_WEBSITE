@@ -90,7 +90,7 @@
                                 </div>
                                 {% for class in item.classes %}
                                 <div class="checkbox-input-container">
-                                    <input type="checkbox" name="id_class_{{ class.name }}" id="id_class_{{ class.name }}" data-select-all="{{ item.category.name }}" class="checkbox-input {{ item.category.name }}-class class-checkbox-input">
+                                    <input type="checkbox" name="id_class_{{ class.name }}" id="id_class_{{ class.name }}" data-select-all-target="{{ item.category.name }}" class="checkbox-input {{ item.category.name }}-class class-checkbox-input">
                                     <label for="id_class_{{ class.name }}" class="checkbox-label dark-text-2">{{ class.friendly_name }}</label>
                                 </div>
                                 {% endfor %}
@@ -148,6 +148,27 @@
                 </span>
             </button>
         </form>
+
+        <div class="search-results-container container-col align-start box-shadow">
+            <p class="search-results-text dark-text">({{ num_of_profiles }}) members found for search query</p>
+            {% for p in query_profiles %}
+            <a href="{% url 'profile' p.user.username %}" class="profile-container container-row justify-start">
+                <div class="img-container">
+                    {% if p.image %}
+                    <img src="{{ p.image.url }}" alt="{{ p.first_name }}'s Profile Image" class="img-100a">
+                    {% else %}
+                    <img src="{{ MEDIA_URL }}default-profile-picture.png" alt="Default Profile Image" class="img-100a">
+                    {% endif %}
+                </div>
+                <div class="text-container container-col align-start">
+                    <p class="name-text dark-text">{{ p.first_name }} {{ p.last_name }}</p>
+                    <p class="teaching-text dark-text small-text">
+                        {{ p.classes.all|length }} Classes &amp; Certifications{% for s in p.teaching_states.all %}, {{ s.code }}{% endfor %}
+                    </p>
+                </div>
+            </a>
+            {% endfor %}
+        </div>
     </div>
 </section>
 

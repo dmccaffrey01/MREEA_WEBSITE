@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404, reverse
-from profiles.models import UserProfile, Category, Class
+from profiles.models import UserProfile, Category, Class, TeachingState
 from membership.models import Membership, MembershipStatus
 from django.http import JsonResponse
 
@@ -14,6 +14,8 @@ def members(request):
             'classes': Class.objects.filter(category=category)
         })
 
+    teaching_states = TeachingState.objects.all()
+
     if request.method == "POST":
 
         active_memberships = Membership.objects.filter(status__valid=True)
@@ -24,7 +26,12 @@ def members(request):
 
         first_name = request.POST.get('id_first_name')
         last_name = request.POST.get('id_last_name')
-        classes = request.POST.get('id_classes')
+
+        all_classes = Class.objects.all()
+
+
+        # for c in all_classes:
+
 
         if first_name:
             profiles = profiles.filter(first_name__icontains=first_name)
@@ -42,18 +49,19 @@ def members(request):
         profiles = profiles.order_by('?')
 
         context = {
-            'search_query': True,
             'query_profiles': profiles,
             'num_of_profiles': len(profiles),
             'category_and_classes': category_and_classes,
+            'teaching_states': teaching_states,
             'first_name': first_name,
             'last_name': last_name,
         }
 
-        return render(request, 'members/members.html', context)
+        return render(request, 'members/members_searched.html', context)
         
     context = {
-        'category_and_classes': category_and_classes,
+        'category_and_classes': category_and_classes,\
+        'teaching_states': teaching_states,
     }
 
     return render(request, 'members/members.html', context)

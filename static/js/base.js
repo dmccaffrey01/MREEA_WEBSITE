@@ -25,6 +25,7 @@ let clickOutsideElementListener = (e) => {
     let targetWrapper = target.closest(".wrapper-menu");
     let clickedElementWrapper;
     let closeMessagesBtn = target.closest(".messages-close-btn-wrapper");
+
     if (clickedElement) {
         clickedElementWrapper = clickedElement.closest(".wrapper-menu");
     }
