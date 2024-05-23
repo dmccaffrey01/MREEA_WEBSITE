@@ -36,14 +36,16 @@ document.addEventListener("DOMContentLoaded", () => {
         let numProfileLinks = links.length;
 
         let newLink = document.createElement("div");
-        newLink.classList.add("info-visit-link");
-        newLink.classList.add("visit-link");
+        newLink.classList.add("input-wrapper");
         newLink.innerHTML = `
-        <div class="icon-container btn-icon-left">
-            <svg xmlns="http://www.w3.org/2000/svg" class="dark-text" viewBox="0 0 256 256">
-                <path d="M128 24a104 104 0 1 0 104 104A104.12 104.12 0 0 0 128 24m87.62 96h-39.83c-1.79-36.51-15.85-62.33-27.38-77.6a88.19 88.19 0 0 1 67.22 77.6ZM96.23 136h63.54c-2.31 41.61-22.23 67.11-31.77 77c-9.55-9.9-29.46-35.4-31.77-77m0-16c2.31-41.61 22.23-67.11 31.77-77c9.55 9.93 29.46 35.43 31.77 77Zm11.36-77.6C96.06 57.67 82 83.49 80.21 120H40.37a88.19 88.19 0 0 1 67.22-77.6M40.37 136h39.84c1.82 36.51 15.85 62.33 27.38 77.6A88.19 88.19 0 0 1 40.37 136m108 77.6c11.53-15.27 25.56-41.09 27.38-77.6h39.84a88.19 88.19 0 0 1-67.18 77.6Z" />
-            </svg>
-            <span class="sr-only">Globe Icon</span>
+        <div class="info-visit-link visit-link">
+            <div class="icon-container btn-icon-left">
+                <svg xmlns="http://www.w3.org/2000/svg" class="dark-text" viewBox="0 0 256 256">
+                    <path d="M128 24a104 104 0 1 0 104 104A104.12 104.12 0 0 0 128 24m87.62 96h-39.83c-1.79-36.51-15.85-62.33-27.38-77.6a88.19 88.19 0 0 1 67.22 77.6ZM96.23 136h63.54c-2.31 41.61-22.23 67.11-31.77 77c-9.55-9.9-29.46-35.4-31.77-77m0-16c2.31-41.61 22.23-67.11 31.77-77c9.55 9.93 29.46 35.43 31.77 77Zm11.36-77.6C96.06 57.67 82 83.49 80.21 120H40.37a88.19 88.19 0 0 1 67.22-77.6M40.37 136h39.84c1.82 36.51 15.85 62.33 27.38 77.6A88.19 88.19 0 0 1 40.37 136m108 77.6c11.53-15.27 25.56-41.09 27.38-77.6h39.84a88.19 88.19 0 0 1-67.18 77.6Z" />
+                </svg>
+                <span class="sr-only">Globe Icon</span>
+            </div>
+            <p class="dark-text-2 small-text">Profile Link ${numProfileLinks + 1}</p>
         </div>
         <div class="input-container col-2">
             <label for="id_pl_url_${numProfileLinks + 1}" class="sr-only">Profile Link Url ${numProfileLinks + 1}</label>
@@ -57,21 +59,21 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 let handleDeleteLinkBtn = (infoLink) => {
-    let input = infoLink.querySelector("input");
+    let inputWrapper = infoLink.closest(".input-wrapper");
+    let input = inputWrapper.querySelector("input");
 
     let inputId = input.getAttribute("id");
 
     if (inputId == "id_email" || inputId == "id_phone_number") {
         input.value = "";
     } else {
-        infoLink.remove();
+        inputWrapper.remove();
     }
 }
 
 let listenForInfoLinkHover = (infoLink) => {
     let deleteBtn = document.createElement("div");
     deleteBtn.classList.add("icon-container");
-    deleteBtn.classList.add("btn-icon-left");
     deleteBtn.classList.add("color-error");
     deleteBtn.classList.add("hide");
     deleteBtn.innerHTML = `

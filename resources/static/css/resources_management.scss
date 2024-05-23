@@ -20,7 +20,7 @@
 
     .management-container {
         width: 600px;
-        gap: 24px;
+        gap: 32px;
 
         .inputs-container {
             width: 100%;
@@ -61,7 +61,6 @@
 
         .management-btns-container {
             gap: 4px;
-            margin-top: 12px;
             width: 100%;
             padding: 16px;
             border-radius: $round-corner-3;

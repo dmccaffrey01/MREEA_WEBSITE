@@ -57,3 +57,8 @@ class EditProfileForm(forms.ModelForm):
     class Meta:
         model = UserProfile
         exclude = ('user', 'image', 'classes', 'links', 'is_password_changed',)
+        widgets = {
+            'first_name': forms.TextInput(attrs={'placeholder': 'Enter First Name'}),
+            'last_name': forms.TextInput(attrs={'placeholder': 'Enter Last Name'}),
+            'bio': forms.Textarea(attrs={'placeholder': 'Enter Bio', 'rows': 5}),
+        }

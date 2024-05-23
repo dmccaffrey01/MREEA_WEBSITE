@@ -6,8 +6,8 @@ document.addEventListener("DOMContentLoaded", () => {
     let dropZoneText = document.querySelector(".drop-zone-text");
     let imageInput = document.querySelector("#image_file");
 
-    let cropImgContainer = document.querySelector(".crop-img-container");
-    let containerRect = cropImgContainer.getBoundingClientRect();
+    let cropContainer = document.querySelector(".crop-container");
+    let managementBtnsContainer = document.querySelector(".management-btns-container");
 
     let urlToFile = (url) => {
 
@@ -34,16 +34,20 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     
     let getCropUrl = (img) => {
+        let imgContainer = document.querySelector(".crop-img-container");
+        let imgContainerRect = imgContainer.getBoundingClientRect();
         let imgRect = img.getBoundingClientRect();
 
-        let x = imgRect.left - containerRect.left;
-        let y = imgRect.top - containerRect.top;
-        let width = containerRect.width;
-        let height = containerRect.height;
+        let x = imgRect.left - imgContainerRect.left;
+        let y = imgRect.top - imgContainerRect.top;
+        let width = imgContainerRect.width;
+        let height = imgContainerRect.height;
 
         let canvas = document.createElement('canvas');
         canvas.width = width;
         canvas.height = height;
+
+        console.log(x, y, width, height);
 
         let ctx = canvas.getContext('2d');
         ctx.drawImage(img, x, y, imgRect.width, imgRect.height);
@@ -55,11 +59,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
     imageInput.addEventListener("change", (e) => {
 
-        let cropContainer = document.querySelector(".crop-container");
-
         if (cropContainer.classList.contains("hide")) {
             cropContainer.classList.remove("hide");
+            managementBtnsContainer.classList.remove("hide");
         }
+
+        let imgContainer = document.querySelector(".crop-img-container");
+
+        let imgContainerRect = imgContainer.getBoundingClientRect();
 
         imageNotMoved = true;
         imageNotScaled = true;
@@ -84,11 +91,11 @@ document.addEventListener("DOMContentLoaded", () => {
                 let ratio;
 
                 if (imageWidth < imageHeight) {
-                    canvas.width = containerRect.width;
+                    canvas.width = imgContainerRect.width;
                     ratio = canvas.width / imageWidth;
                     canvas.height = imageHeight * ratio;
                 } else {
-                    canvas.height = containerRect.height;
+                    canvas.height = imgContainerRect.height;
                     ratio = canvas.height / imageHeight;
                     canvas.width = imageWidth * ratio;
                 }
@@ -102,10 +109,12 @@ document.addEventListener("DOMContentLoaded", () => {
                 newImage.src = newImageUrl;
                 newImage.classList.add("crop-img");
 
-                let oldImage = cropImgContainer.querySelector(".crop-img");
+                let oldImage = imgContainer.querySelector(".crop-img");
 
-                cropImgContainer.removeChild(oldImage);
-                cropImgContainer.appendChild(newImage);
+                if (oldImage) {
+                    imgContainer.removeChild(oldImage);
+                }
+                imgContainer.appendChild(newImage);
             }
         }
 
@@ -185,6 +194,8 @@ document.addEventListener("DOMContentLoaded", () => {
     let imgWidth = 0;
     let imgHeight = 0;
 
+    let cropImgContainer = document.querySelector(".crop-img-container");
+
     cropImgContainer.addEventListener("mousedown", (e) => {
         e.preventDefault();
         isDragging = true;
@@ -202,10 +213,13 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     let moveImg = (img, imgRect, newX, newY) => {
+        let imgContainer = document.querySelector(".crop-img-container");
+        let imgContainerRect = imgContainer.getBoundingClientRect();
+
         minMoveX = 0;
-        maxMoveX = -(imgRect.width - containerRect.width);
+        maxMoveX = -(imgRect.width - imgContainerRect.width);
         minMoveY = 0;
-        maxMoveY = -(imgRect.height - containerRect.height);
+        maxMoveY = -(imgRect.height - imgContainerRect.height);
 
         let offsetX = newX - startX;
         let offsetY = newY - startY;
@@ -239,7 +253,7 @@ document.addEventListener("DOMContentLoaded", () => {
     document.addEventListener("mousemove", (e) => {
 
         if (isDragging) {
-            let img = cropImgContainer.querySelector(".crop-img");
+            let img = document.querySelector(".crop-img");
             let imgRect = img.getBoundingClientRect();
 
             if (imageNotMoved) {
@@ -255,12 +269,12 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    cropImgContainer.addEventListener("wheel", (e) => {
+    cropContainer.addEventListener("wheel", (e) => {
         e.preventDefault();
         if (!isScrolling) {
             isScrolling = true;
 
-            let img = cropImgContainer.querySelector(".crop-img");
+            let img = cropContainer.querySelector(".crop-img");
             let imgRect = img.getBoundingClientRect();
     
             if (imageNotScaled) {

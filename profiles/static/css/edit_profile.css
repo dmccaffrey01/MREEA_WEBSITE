@@ -9,7 +9,7 @@
 .profile-section .item-container {
   width: 100%;
   padding: 24px;
-  gap: 12px;
+  gap: 16px;
   background-color: #f7f7f7;
   border-radius: 16px;
 }
@@ -20,12 +20,8 @@
   padding-left: 48px;
 }
 .profile-section .item-container .item-text-container {
-  gap: 12px;
+  gap: 16px;
   width: 100%;
-}
-.profile-section .input-group-container {
-  width: calc(100% - 108px - 48px);
-  justify-content: space-between;
 }
 .profile-section .input-container {
   width: calc(50% - 4px);
@@ -33,37 +29,15 @@
 .profile-section .input-container input,
 .profile-section .input-container select,
 .profile-section .input-container textarea {
-  padding: 8px 12px;
   font-size: 1.1rem;
   border-radius: 8px;
-}
-.profile-section .info-visit-link {
-  width: 100%;
+  padding-left: 16px;
 }
 .profile-section .info-visit-link .icon-container {
   cursor: pointer;
 }
 .profile-section .info-visit-link .icon-container.hide {
   display: none;
-}
-.profile-section .info-visit-link .input-container {
-  width: calc(100% - 48px);
-}
-.profile-section .personal-container {
-  position: relative;
-}
-.profile-section .personal-container .img-name-container {
-  gap: 8px;
-}
-.profile-section .personal-container .personal-img-container {
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
-}
-.profile-section .personal-container .profile-section-action-menu-btn .btn-text {
-  right: calc(100% + 8px);
-  top: 50%;
-  translate: 0 -50%;
 }
 .profile-section .bio-container {
   position: relative;
@@ -73,6 +47,34 @@
   right: 4px;
   bottom: 4px;
   font-size: 0.9rem;
+}
+.profile-section .management-btns-container {
+  gap: 4px;
+  width: 100%;
+  padding: 16px;
+  border-radius: 16px;
+  background-color: #f7f7f7;
+}
+.profile-section .management-btns-container .visit-link {
+  justify-content: flex-start;
+  width: 100%;
+  border-radius: 12px;
+  background-color: #f7f7f7;
+  padding: 12px;
+  gap: 8px;
+  cursor: pointer;
+}
+.profile-section .management-btns-container .visit-link:hover {
+  background-color: #ececec;
+}
+.profile-section .management-btns-container .visit-link:hover .icon-container {
+  background-color: #f7f7f7;
+}
+.profile-section .management-btns-container .visit-link:hover .icon-container.success:hover {
+  background-color: #399c3e;
+}
+.profile-section .management-btns-container .visit-link:hover .icon-container.error:hover {
+  background-color: #c53d52;
 }
 
 /*# sourceMappingURL=edit_profile.css.map */

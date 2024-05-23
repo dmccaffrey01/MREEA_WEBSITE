@@ -13,7 +13,7 @@
     .item-container  {
         width: 100%;
         padding: 24px;
-        gap: 12px;
+        gap: 16px;
         background-color: $gl-1;
         border-radius: $round-corner-3;
 
@@ -56,12 +56,44 @@
             font-size: 1.8rem;
             font-weight: 600;
         }
+    }
 
-        .profile-section-action-menu-btn {
-            .btn-text {
-                right: calc(100% + 8px);
-                top: 50%;
-                translate: 0 -50%;
+    .management-btns-container {
+        gap: 4px;
+        width: 100%;
+        padding: 16px;
+        border-radius: $round-corner-3;
+        background-color: $gl-1;
+
+        .save-btn {
+            padding: 0;
+            background-color: $gl-1;
+            border: none;
+        }
+
+        .visit-link {
+            justify-content: flex-start;
+            width: 100%;
+            border-radius: $round-corner-2;
+            background-color: $gl-1;
+            padding: 12px;
+            gap: 8px;
+            cursor: pointer;
+
+            &:hover {
+                background-color: $gl-2;
+
+                .icon-container {
+                    background-color: $gl-1;
+
+                    &.success:hover {
+                        background-color: $success;
+                    }
+
+                    &.error:hover {
+                        background-color: $error;
+                    }
+                }
             }
         }
     }

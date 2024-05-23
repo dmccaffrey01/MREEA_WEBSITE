@@ -302,7 +302,7 @@ def edit_profile_picture(request, username):
             message = 'Successfully Saved Your Profile Picture'
         else:
             message = f"Successfully Saved {username}'s Profile Picture"
-        messages.info(request, message)
+        messages.success(request, message)
 
         return redirect(reverse('profile', args=(user.username,)))
             

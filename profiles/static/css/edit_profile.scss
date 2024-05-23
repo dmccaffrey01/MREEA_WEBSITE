@@ -13,7 +13,7 @@
     .item-container  {
         width: 100%;
         padding: 24px;
-        gap: 12px;
+        gap: 16px;
         background-color: $gl-1;
         border-radius: $round-corner-3;
 
@@ -26,14 +26,9 @@
         }
 
         .item-text-container {
-            gap: 12px;
+            gap: 16px;
             width: 100%;
         }
-    }
-
-    .input-group-container {
-        width: calc(100% - 108px - 48px);
-        justify-content: space-between;
     }
 
     .input-container {
@@ -42,46 +37,18 @@
         input,
         select,
         textarea {
-            padding: 8px 12px;
             font-size: $small-font-size;
             border-radius: $round-corner-1;
+            padding-left: 16px;
         }
     }
 
     .info-visit-link {
-        width: 100%;
-
         .icon-container {
             cursor: pointer;
 
             &.hide {
                 display: none;
-            }
-        }
-
-        .input-container {
-            width: calc(100% - 48px);
-        }
-    }
-
-    .personal-container {
-        position: relative;
-
-        .img-name-container {
-            gap: 8px;
-        }
-
-        .personal-img-container {
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
-        }
-
-        .profile-section-action-menu-btn {
-            .btn-text {
-                right: calc(100% + 8px);
-                top: 50%;
-                translate: 0 -50%;
             }
         }
     }
@@ -94,6 +61,40 @@
             right: 4px;
             bottom: 4px;
             font-size: 0.9rem;
+        }
+    }
+
+    .management-btns-container {
+        gap: 4px;
+        width: 100%;
+        padding: 16px;
+        border-radius: $round-corner-3;
+        background-color: $gl-1;
+
+        .visit-link {
+            justify-content: flex-start;
+            width: 100%;
+            border-radius: $round-corner-2;
+            background-color: $gl-1;
+            padding: 12px;
+            gap: 8px;
+            cursor: pointer;
+
+            &:hover {
+                background-color: $gl-2;
+
+                .icon-container {
+                    background-color: $gl-1;
+
+                    &.success:hover {
+                        background-color: $success;
+                    }
+
+                    &.error:hover {
+                        background-color: $error;
+                    }
+                }
+            }
         }
     }
 }
