@@ -13,6 +13,29 @@
 <section class="profile-section section h-100b">
     <div class="profile-section-container section-container container-col">
         <div class="items-container container-col">
+            {% if profile_editable %}
+            <div class="management-btns-container container-col align-start box-shadow">
+                <a href="{% url 'edit_profile' user_profile.user.username %}" class="visit-link">
+                    <span class="icon-container dark-text">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="dark-text" viewBox="0 0 256 256">
+                            <path d="M152 80a8 8 0 0 1 8-8h88a8 8 0 0 1 0 16h-88a8 8 0 0 1-8-8m96 40h-88a8 8 0 0 0 0 16h88a8 8 0 0 0 0-16m0 48h-64a8 8 0 0 0 0 16h64a8 8 0 0 0 0-16m-96.25 22a8 8 0 0 1-5.76 9.74a7.6 7.6 0 0 1-2 .26a8 8 0 0 1-7.75-6c-6.16-23.94-30.34-42-56.25-42s-50.09 18.05-56.25 42a8 8 0 0 1-15.5-4c5.59-21.71 21.84-39.29 42.46-48a48 48 0 1 1 58.58 0c20.63 8.71 36.88 26.29 42.47 48M80 136a32 32 0 1 0-32-32a32 32 0 0 0 32 32" />
+                        </svg>
+                        <span class="sr-only">Edit Profile Icon</span>
+                    </span>
+                    <span class="item-text dark-text small-text">Edit Profile</span>
+                </a>
+                <a href="{% url 'edit_profile_picture' user_profile.user.username %}" class="visit-link">
+                    <span class="icon-container dark-text">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="dark-text" viewBox="0 0 256 256">
+                            <path d="M128 24a104 104 0 1 0 104 104A104.11 104.11 0 0 0 128 24M74.08 197.5a64 64 0 0 1 107.84 0a87.83 87.83 0 0 1-107.84 0M96 120a32 32 0 1 1 32 32a32 32 0 0 1-32-32m97.76 66.41a79.66 79.66 0 0 0-36.06-28.75a48 48 0 1 0-59.4 0a79.66 79.66 0 0 0-36.06 28.75a88 88 0 1 1 131.52 0" />
+                        </svg>
+                        <span class="sr-only">Profile Picture Icon</span>
+                    </span>
+                    <span class="item-text dark-text small-text">Edit Profile Picture</span>
+                </a>
+            </div>
+            {% endif %}
+
             <div class="personal-container item-container container-row space-between box-shadow">
                 <div class="img-name-container container-row">
                     <div class="personal-img-container img-container">
@@ -129,29 +152,6 @@
                     </div>
                     {% endif %}
                 </div>
-            </div>
-            {% endif %}
-
-            {% if profile_editable %}
-            <div class="management-btns-container container-col align-start box-shadow">
-                <a href="{% url 'edit_profile' user_profile.user.username %}" class="visit-link">
-                    <span class="icon-container dark-text">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="dark-text" viewBox="0 0 256 256">
-                            <path d="M152 80a8 8 0 0 1 8-8h88a8 8 0 0 1 0 16h-88a8 8 0 0 1-8-8m96 40h-88a8 8 0 0 0 0 16h88a8 8 0 0 0 0-16m0 48h-64a8 8 0 0 0 0 16h64a8 8 0 0 0 0-16m-96.25 22a8 8 0 0 1-5.76 9.74a7.6 7.6 0 0 1-2 .26a8 8 0 0 1-7.75-6c-6.16-23.94-30.34-42-56.25-42s-50.09 18.05-56.25 42a8 8 0 0 1-15.5-4c5.59-21.71 21.84-39.29 42.46-48a48 48 0 1 1 58.58 0c20.63 8.71 36.88 26.29 42.47 48M80 136a32 32 0 1 0-32-32a32 32 0 0 0 32 32" />
-                        </svg>
-                        <span class="sr-only">Edit Profile Icon</span>
-                    </span>
-                    <span class="item-text dark-text small-text">Edit Profile</span>
-                </a>
-                <a href="{% url 'edit_profile_picture' user_profile.user.username %}" class="visit-link">
-                    <span class="icon-container dark-text">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="dark-text" viewBox="0 0 256 256">
-                            <path d="M128 24a104 104 0 1 0 104 104A104.11 104.11 0 0 0 128 24M74.08 197.5a64 64 0 0 1 107.84 0a87.83 87.83 0 0 1-107.84 0M96 120a32 32 0 1 1 32 32a32 32 0 0 1-32-32m97.76 66.41a79.66 79.66 0 0 0-36.06-28.75a48 48 0 1 0-59.4 0a79.66 79.66 0 0 0-36.06 28.75a88 88 0 1 1 131.52 0" />
-                        </svg>
-                        <span class="sr-only">Profile Picture Icon</span>
-                    </span>
-                    <span class="item-text dark-text small-text">Edit Profile Picture</span>
-                </a>
             </div>
             {% endif %}
         </div>

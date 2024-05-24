@@ -26,11 +26,12 @@
 .profile-section .input-container {
   width: calc(50% - 4px);
 }
-.profile-section .input-container input,
+.profile-section .input-container input[type=text],
+.profile-section .input-container input[type=email],
 .profile-section .input-container select,
 .profile-section .input-container textarea {
-  font-size: 1.1rem;
-  border-radius: 8px;
+  font-size: 1.3rem;
+  border-radius: 12px;
   padding-left: 16px;
 }
 .profile-section .info-visit-link .icon-container {
@@ -38,6 +39,10 @@
 }
 .profile-section .info-visit-link .icon-container.hide {
   display: none;
+}
+.profile-section .category-heading {
+  font-weight: 600;
+  margin: 12px 0 4px 0;
 }
 .profile-section .bio-container {
   position: relative;

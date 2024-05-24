@@ -110,7 +110,7 @@ a .dark-text:visited, a .nav-link:visited {
   padding-left: calc(16px + 1.3rem + 8px);
   border: none;
   outline: none;
-  color: #242424;
+  color: #494949;
   background-color: #ececec;
   border-radius: 12px;
   font-family: "Roboto", sans-serif;
@@ -125,7 +125,7 @@ a .dark-text:visited, a .nav-link:visited {
   outline: 2px solid #c53d52;
 }
 .form .input-container input::placeholder, .form .input-container select::placeholder, .form .input-container textarea::placeholder {
-  color: #616161;
+  color: #777777;
   font-style: normal;
   opacity: 1;
   font-family: "Roboto", sans-serif;
@@ -181,7 +181,7 @@ a .dark-text:visited, a .nav-link:visited {
   background-color: #ececec;
 }
 .form .custom-checkbox-options-container .options-container .checkbox-input-container {
-  gap: 4px;
+  gap: 8px;
 }
 .form .custom-checkbox-options-input-container.show .custom-checkbox-options-container {
   display: flex;
@@ -372,7 +372,7 @@ a .dark-text:visited, a .nav-link:visited {
 }
 
 .heading {
-  font-size: 2.5rem;
+  font-size: 3.6rem;
   font-weight: 600;
   font-family: "Roboto", sans-serif;
 }
@@ -418,6 +418,13 @@ a .dark-text:visited, a .nav-link:visited {
   color: #494949;
 }
 .btn.yellow-btn:visited {
+  color: #494949;
+}
+.btn.white-btn {
+  background-color: #ffffff;
+  color: #494949;
+}
+.btn.white-btn:visited {
   color: #494949;
 }
 .btn.btn-2 {
@@ -631,13 +638,12 @@ header {
 }
 
 .header-container {
-  width: calc(100% - 120px);
+  width: calc(100% - 240px);
   height: 100%;
   position: relative;
 }
 
 .logo-container {
-  gap: 10px;
   width: 260px;
   justify-content: flex-start;
 }
@@ -697,7 +703,7 @@ h1.logo-text::before {
 }
 
 .nav-menu {
-  gap: 20px;
+  gap: 32px;
 }
 .nav-menu.active {
   transform: translateX(0);
@@ -747,12 +753,12 @@ h1.logo-text::before {
 }
 
 .account-btns-container {
-  gap: 12px;
-  width: 260px;
+  gap: 24px;
   justify-content: flex-end;
+  width: 260px;
 }
 .account-btns-container .btn {
-  width: 60%;
+  width: calc(100% - 100px);
 }
 
 .profile-container {
@@ -1044,7 +1050,7 @@ footer {
   padding: 20px 0 20px 0;
 }
 footer .footer-container {
-  width: calc(100% - 120px);
+  width: calc(100% - 240px);
 }
 footer .footer-logo-container {
   gap: 16px;

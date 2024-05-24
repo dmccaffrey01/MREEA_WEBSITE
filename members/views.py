@@ -8,11 +8,6 @@ def members(request):
 
     categories = Category.objects.all()
     category_and_classes = []
-    for category in categories:
-        category_and_classes.append({
-            'category': category,
-            'classes': Class.objects.filter(category=category)
-        })
 
     teaching_states = TeachingState.objects.all()
 
@@ -27,24 +22,35 @@ def members(request):
         first_name = request.POST.get('id_first_name')
         last_name = request.POST.get('id_last_name')
 
-        all_classes = Class.objects.all()
-
-
-        # for c in all_classes:
-
-
         if first_name:
             profiles = profiles.filter(first_name__icontains=first_name)
         if last_name:
             profiles = profiles.filter(last_name__icontains=last_name)
-        if classes:
-            classes = classes.split(', ')
-            for class_name in classes:
-                profiles = profiles.filter(classes__name=class_name)
 
-        for category_classes in category_and_classes:
-            for class_obj in category_classes['classes']:
-                class_obj.selected = class_obj.name in classes
+        for category in categories:
+            classes_in_category = Class.objects.filter(category=category)
+
+            for c in classes_in_category:
+                class_name = c.name
+                class_id = f'id_class_{class_name}'
+                is_class_checked = request.POST.get(class_id)
+                if is_class_checked:
+                    c.is_checked = True
+                    profiles = profiles.filter(classes__name=class_name)
+
+
+            category_and_classes.append({
+                'category': category,
+                'classes': classes_in_category,
+            })
+
+        for state in teaching_states:
+            state_code = state.code
+            state_id = f'id_state_{state_code}'
+            is_state_checked = request.POST.get(state_id)
+            if is_state_checked:
+                state.is_checked = True
+                profiles = profiles.filter(teaching_states__code=state_code)
 
         profiles = profiles.order_by('?')
 
@@ -58,9 +64,15 @@ def members(request):
         }
 
         return render(request, 'members/members_searched.html', context)
+    
+    for category in categories:
+        category_and_classes.append({
+            'category': category,
+            'classes': Class.objects.filter(category=category)
+        })
         
     context = {
-        'category_and_classes': category_and_classes,\
+        'category_and_classes': category_and_classes,
         'teaching_states': teaching_states,
     }
 

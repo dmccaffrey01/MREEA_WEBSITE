@@ -65,6 +65,7 @@
                             </svg>
                             <span class="sr-only">Class Icon</span>
                         </div>
+                        <p class="dark-text-2 small-text">Select Classes</p>
                     </div>
                     <div class="custom-checkbox-options-input-container input-container col-2 wrapper-menu">
                         <div class="custom-checkbox-options-btn wrapper-btn">
@@ -90,7 +91,7 @@
                                 </div>
                                 {% for class in item.classes %}
                                 <div class="checkbox-input-container">
-                                    <input type="checkbox" name="id_class_{{ class.name }}" id="id_class_{{ class.name }}" data-select-all="{{ item.category.name }}" class="checkbox-input {{ item.category.name }}-class class-checkbox-input">
+                                    <input type="checkbox" name="id_class_{{ class.name }}" id="id_class_{{ class.name }}" data-select-all-target="{{ item.category.name }}" class="checkbox-input {{ item.category.name }}-class class-checkbox-input">
                                     <label for="id_class_{{ class.name }}" class="checkbox-label dark-text-2">{{ class.friendly_name }}</label>
                                 </div>
                                 {% endfor %}
@@ -107,8 +108,7 @@
                             </svg>
                             <span class="sr-only">Location Icon</span>
                         </div>
-                        <label for="id_states" class="dark-text-2 small-text">Select States</label>
-                        <input type="text" name="id_states" id="id_states" hidden>
+                        <p class="dark-text-2 small-text">Select States</p>
                     </div>
                     <div class="custom-checkbox-options-input-container input-container col-2 wrapper-menu">
                         <div class="custom-checkbox-options-btn wrapper-btn">
@@ -128,8 +128,8 @@
                                 </div>
                                 {% for state in teaching_states %}
                                 <div class="checkbox-input-container">
-                                    <input type="checkbox" name="id_state_{{ state.name }}" id="id_state_{{ state.name }}" class="checkbox-input class-checkbox-input">
-                                    <label for="id_state_{{ state.name }}" class="checkbox-label dark-text-2">{{ state.friendly_name }}</label>
+                                    <input type="checkbox" name="id_state_{{ state.code }}" id="id_state_{{ state.code }}" class="checkbox-input class-checkbox-input">
+                                    <label for="id_state_{{ state.code }}" class="checkbox-label dark-text-2">{{ state.code }} - {{ state.friendly_name }}</label>
                                 </div>
                                 {% endfor %}
                             </div>

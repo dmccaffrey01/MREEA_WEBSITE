@@ -34,11 +34,12 @@
     .input-container {
         width: calc(50% - 4px);
 
-        input,
+        input[type="text"],
+        input[type="email"],
         select,
         textarea {
-            font-size: $small-font-size;
-            border-radius: $round-corner-1;
+            font-size: $font-size;
+            border-radius: $round-corner-2;
             padding-left: 16px;
         }
     }
@@ -51,6 +52,11 @@
                 display: none;
             }
         }
+    }
+
+    .category-heading {
+        font-weight: 600;
+        margin: 12px 0 4px 0;
     }
 
     .bio-container {

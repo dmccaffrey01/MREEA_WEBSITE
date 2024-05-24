@@ -115,6 +115,30 @@ def edit_profile(request, username):
     selected_user = get_object_or_404(User, username=username)
     
     user_profile = get_object_or_404(UserProfile, user=selected_user)
+
+    categories = Category.objects.all()
+    category_and_classes = []
+    for category in categories:
+        classes_in_category = Class.objects.filter(category=category)
+
+        for c in classes_in_category:
+            class_name = c.name
+            is_class_checked = user_profile.classes.filter(name=class_name).exists()
+            c.is_checked = is_class_checked
+                
+
+
+        category_and_classes.append({
+            'category': category,
+            'classes': classes_in_category,
+        })
+    
+    teaching_states = TeachingState.objects.all()
+
+    for state in teaching_states:
+        state_code = state.code
+        is_state_checked = user_profile.teaching_states.filter(code=state_code).exists()
+        state.is_checked = is_state_checked
     
     if request.method == 'POST':
         form = EditProfileForm(request.POST, instance=user_profile)
@@ -193,46 +217,6 @@ def edit_profile(request, username):
     else:
         form = EditProfileForm(instance=user_profile)
 
-    
-    categories = Category.objects.all()
-    user_classes = user_profile.classes.all()
-    classes_and_user_classes = []
-    classes = Class.objects.all()
-    for item in classes:
-        if item in user_classes:
-            classes_and_user_classes.append({
-                'item': item,
-                'user_selected': True,
-            })
-        else:
-            classes_and_user_classes.append({
-                'item': item,
-                'user_selected': False,
-            })
-
-    category_and_classes = []
-    for category in categories:
-        filtered_classes = [c for c in classes_and_user_classes if c['item'].category == category]
-        category_and_classes.append({
-            'category': category,
-            'classes': filtered_classes,
-        })
-
-    user_states = user_profile.teaching_states.all()
-    states_and_user_states = []
-    teaching_states = TeachingState.objects.all()
-    for state in teaching_states:
-        if state in user_states:
-            states_and_user_states.append({
-                'state': state,
-                'user_selected': True,
-            })
-        else:
-            states_and_user_states.append({
-                'state': state,
-                'user_selected': False,
-            })
-
     user_profile_links = user_profile.links.all()
 
     for link in user_profile_links:
@@ -256,7 +240,7 @@ def edit_profile(request, username):
         'user_profile': user_profile,
         'category_and_classes': category_and_classes,
         'user_profile_links': user_profile_links,
-        'states_and_user_states': states_and_user_states,
+        'teaching_states': teaching_states,
     }
 
     return render(request, 'profiles/edit_profile.html', context)

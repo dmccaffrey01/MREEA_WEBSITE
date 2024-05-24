@@ -50,7 +50,7 @@ def folder(request, folder_name):
 
     parent_folders.reverse()
 
-    if not (sub_folders and resources):
+    if not (sub_folders or resources):
         no_resources_or_folders = True
     else:
         no_resources_or_folders = False
@@ -155,7 +155,7 @@ def add_resource(request, folder_name):
 
     parent_folders.reverse()
 
-    if not (sub_folders and resources):
+    if not (sub_folders or resources):
         no_resources_or_folders = True
     else:
         no_resources_or_folders = False
@@ -234,7 +234,7 @@ def edit_resource(request, folder_name, resource_name):
 
     parent_folders.reverse()
 
-    if not (sub_folders and resources):
+    if not (sub_folders or resources):
         no_resources_or_folders = True
     else:
         no_resources_or_folders = False
@@ -336,7 +336,7 @@ def add_folder(request, folder_name):
 
     parent_folders.reverse()
 
-    if not (sub_folders and resources):
+    if not (sub_folders or resources):
         no_resources_or_folders = True
     else:
         no_resources_or_folders = False
@@ -408,7 +408,7 @@ def edit_folder(request, folder_name, selected_folder_name):
 
     parent_folders.reverse()
 
-    if not (sub_folders and resources):
+    if not (sub_folders or resources):
         no_resources_or_folders = True
     else:
         no_resources_or_folders = False

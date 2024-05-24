@@ -28,9 +28,6 @@ def view_notification(request, sku):
         notification.url_name = get_url_name(notification.category)
         notification.save()
 
-        message = f'Viewing Notification!'
-        messages.info(request, message)
-
         context = {
             'selected_notification': notification,
         }
@@ -44,6 +41,39 @@ def view_notification(request, sku):
 
     except ValueError as e:
         message = f'Unsuccessfully viewed the notification! - {e}'
+        messages.error(request, message)
+        return redirect(reverse('home'))
+
+    except Exception as e:
+        message = f'An error occurred: {e}'
+        messages.error(request, message)
+        return redirect(reverse('home'))
+
+
+
+@login_required
+def delete_notification_from_view(request, sku):
+    user = request.user
+    try:
+        notification = Notification.objects.filter(sku=sku).first()
+
+        if not notification:
+            raise ObjectDoesNotExist('Notification does not exist')
+
+        if (notification.user != user) and (not user.is_superuser):
+            raise ValueError('You must be the owner of the notification to delete it.')
+        
+        messages.success(request, "Successfully deleted the notification!")
+
+        return redirect(reverse('home'))
+
+    except ObjectDoesNotExist as e:
+        message = str(e)
+        messages.error(request, message)
+        return redirect(reverse('home'))
+
+    except ValueError as e:
+        message = f'Unsuccessfully deleted the notification! - {e}'
         messages.error(request, message)
         return redirect(reverse('home'))
 

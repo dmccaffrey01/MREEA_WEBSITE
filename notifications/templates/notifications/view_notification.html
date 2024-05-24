@@ -20,69 +20,57 @@
                 </p>
                 <h2 class="heading-text subheading dark-text">{{ selected_notification.heading }}</h2>
                 <p class="age-text dark-text small-text">{{ selected_notification.age }}</p>
-    
-                <div class="view-notification-action-menu-btn action-menu-btn wrapper-menu" data-sku="{{ selected_notification.sku }}">
-                    <div class="btn-wrapper relative-pos">
-                        <p class="icon-container dark-text">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="dark-text" viewBox="0 0 16 16">
-                                <path d="M4 8a2 2 0 1 1-3.999.001A2 2 0 0 1 4 8m6 0a2 2 0 1 1-3.999.001A2 2 0 0 1 10 8m6 0a2 2 0 1 1-3.999.001A2 2 0 0 1 16 8" />
-                            </svg>
-                            <span class="sr-only">Ellipisis Icon</span>
-                        </p>
-                        <div class="action-menu-container absolute-pos wrapper-menu">
-                            <div class="visit-url-notification-btn action-item" data-sku="{{ selected_notification.sku }}">
-                                <p class="icon-container dark-text">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="dark-text" viewBox="0 0 24 24">
-                                        <path fill-rule="evenodd" d="M9 3a1 1 0 0 0 0 2h9v13a1 1 0 0 1-1 1H9a1 1 0 0 0 0 2h8a3 3 0 0 0 3-3V4a1 1 0 0 0-1-1zm3.707 5.293A1 1 0 0 0 11 9v2H5a1 1 0 0 0 0 2h6v2a1 1 0 0 0 1.707.707l3-3a1 1 0 0 0 0-1.414z" clip-rule="evenodd" />
-                                    </svg>
-                                    <span class="sr-only">Visit Link Icon</span>
-                                </p>
-                                <p class="item-text dark-text small-text">Visit {{ selected_notification.url_name }}</p>
-                            </div>
-                            <div class="delete-notification-btn action-item confirm-action-btn relative-pos" data-sku="{{ selected_notification.sku }}">
-                                <p class="icon-container dark-text">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="dark-text" viewBox="0 0 24 24">
-                                        <path fill-rule="evenodd" d="M8.106 2.553A1 1 0 0 1 9 2h6a1 1 0 0 1 .894.553L17.618 6H20a1 1 0 1 1 0 2h-1v11a3 3 0 0 1-3 3H8a3 3 0 0 1-3-3V8H4a1 1 0 0 1 0-2h2.382zM14.382 4l1 2H8.618l1-2zM11 11a1 1 0 1 0-2 0v6a1 1 0 1 0 2 0zm4 0a1 1 0 1 0-2 0v6a1 1 0 1 0 2 0z" clip-rule="evenodd" />
-                                    </svg>
-                                    <span class="sr-only">Delete Notification Icon</span>
-                                </p>
-                                <p class="item-text dark-text small-text">Delete Notification</p>
-                                <div class="confirm-action-container absolute-pos wrapper-menu">
-                                    <p class="dark-text small-text">Confirm Delete</p>
-                                    <div class="confirm-options">
-                                        <p class="confirm-delete-notification-btn icon-container dark-text gl-1 success" data-sku="{{ selected_notification.sku }}" data-view-sku="{{ selected_notification.sku }}">
-                                            <svg xmlns="http://www.w3.org/2000/svg" class="dark-text" viewBox="0 0 24 24">
-                                                <g fill-rule="evenodd">
-                                                    <path fill="black" d="M21.546 5.111a1.5 1.5 0 0 1 0 2.121L10.303 18.475a1.6 1.6 0 0 1-2.263 0L2.454 12.89a1.5 1.5 0 1 1 2.121-2.121l4.596 4.596L19.424 5.111a1.5 1.5 0 0 1 2.122 0" />
-                                                </g>
-                                            </svg>
-                                            <span class="sr-only">Check Icon</span>
-                                        </p>
-                                        <p class="deny-action-btn icon-container dark-text gl-1 error">
-                                            <svg xmlns="http://www.w3.org/2000/svg" class="dark-text" viewBox="0 0 15 15">
-                                                <path d="M3.64 2.27L7.5 6.13l3.84-3.84A.92.92 0 0 1 12 2a1 1 0 0 1 1 1a.9.9 0 0 1-.27.66L8.84 7.5l3.89 3.89A.9.9 0 0 1 13 12a1 1 0 0 1-1 1a.92.92 0 0 1-.69-.27L7.5 8.87l-3.85 3.85A.92.92 0 0 1 3 13a1 1 0 0 1-1-1a.9.9 0 0 1 .27-.66L6.16 7.5L2.27 3.61A.9.9 0 0 1 2 3a1 1 0 0 1 1-1c.24.003.47.1.64.27" />
-                                            </svg>
-                                            <span class="sr-only">Xmark Icon</span>
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
             <div class="message-container container-col align-start">
                 <p class="message-text dark-text">
                     {{ selected_notification.message }}
                 </p>
-                <a href="{{ selected_notification.url }}" class="visit-link">
-                    <p class="dark-text-2 small-text">Visit {{ selected_notification.url_name }}</p>
+            </div>
+        </div>
+
+        <div class="management-btns-container container-col align-start box-shadow">
+            <a href="{{ selected_notification.url }}" class="visit-link">
+                <span class="icon-container">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="dark-text" viewBox="0 0 16 16">
+                        <path d="M6.5 2a.5.5 0 0 0 0 1h5A1.5 1.5 0 0 1 13 4.5v7a1.5 1.5 0 0 1-1.5 1.5h-5a.5.5 0 0 0 0 1h5a2.5 2.5 0 0 0 2.5-2.5v-7A2.5 2.5 0 0 0 11.5 2zm3.354 5.646l-3-3a.5.5 0 1 0-.708.708L8.293 7.5H1.5a.5.5 0 0 0 0 1h6.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708" />
+                    </svg>
+                    <span class="sr-only">Visit Icon</span>
+                </span>
+                <span class="dark-text small-text">Visit {{ selected_notification.url_name }}</span>
+            </a>
+            <div class="delete-btn-wrapper container-col relative-pos">
+                <div class="delete-btn visit-link">
                     <span class="icon-container">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="dark-text-2" viewBox="0 0 24 24">
-                            <path fill-rule="evenodd" d="M9 3a1 1 0 0 0 0 2h9v13a1 1 0 0 1-1 1H9a1 1 0 0 0 0 2h8a3 3 0 0 0 3-3V4a1 1 0 0 0-1-1zm3.707 5.293A1 1 0 0 0 11 9v2H5a1 1 0 0 0 0 2h6v2a1 1 0 0 0 1.707.707l3-3a1 1 0 0 0 0-1.414z" clip-rule="evenodd" />
+                        <svg xmlns="http://www.w3.org/2000/svg" class="dark-text" viewBox="0 0 24 24">
+                            <path d="M12 2.75a2.25 2.25 0 0 0-2.122 1.5a.75.75 0 0 1-1.414-.5a3.751 3.751 0 0 1 7.073 0a.75.75 0 0 1-1.415.5A2.251 2.251 0 0 0 12 2.75M2.75 6a.75.75 0 0 1 .75-.75h17a.75.75 0 0 1 0 1.5h-17A.75.75 0 0 1 2.75 6m3.165 2.45a.75.75 0 1 0-1.497.1l.464 6.952c.085 1.282.154 2.318.316 3.132c.169.845.455 1.551 1.047 2.104c.591.554 1.315.793 2.17.904c.822.108 1.86.108 3.146.108h.879c1.285 0 2.324 0 3.146-.108c.854-.111 1.578-.35 2.17-.904c.591-.553.877-1.26 1.046-2.104c.162-.814.23-1.85.316-3.132l.464-6.952a.75.75 0 0 0-1.497-.1l-.46 6.9c-.09 1.347-.154 2.285-.294 2.99c-.137.685-.327 1.047-.6 1.303c-.274.256-.648.422-1.34.512c-.713.093-1.653.095-3.004.095h-.774c-1.35 0-2.29-.002-3.004-.095c-.692-.09-1.066-.256-1.34-.512c-.273-.256-.463-.618-.6-1.303c-.14-.705-.204-1.643-.294-2.99z" />
+                            <path d="M9.425 10.254a.75.75 0 0 1 .821.671l.5 5a.75.75 0 0 1-1.492.15l-.5-5a.75.75 0 0 1 .671-.821m5.821.821a.75.75 0 0 0-1.492-.15l-.5 5a.75.75 0 0 0 1.492.15z" />
                         </svg>
+                        <span class="sr-only">Delete Icon</span>
                     </span>
-                </a>
+                    <span class="delete-text dark-text small-text">Delete</span>
+                </div>
+                <div class="confirm-delete-btn visit-link hide">
+                    <div class="icon-container gl-1">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="dark-text" viewBox="0 0 24 24">
+                            <path d="M12 2.75a2.25 2.25 0 0 0-2.122 1.5a.75.75 0 0 1-1.414-.5a3.751 3.751 0 0 1 7.073 0a.75.75 0 0 1-1.415.5A2.251 2.251 0 0 0 12 2.75M2.75 6a.75.75 0 0 1 .75-.75h17a.75.75 0 0 1 0 1.5h-17A.75.75 0 0 1 2.75 6m3.165 2.45a.75.75 0 1 0-1.497.1l.464 6.952c.085 1.282.154 2.318.316 3.132c.169.845.455 1.551 1.047 2.104c.591.554 1.315.793 2.17.904c.822.108 1.86.108 3.146.108h.879c1.285 0 2.324 0 3.146-.108c.854-.111 1.578-.35 2.17-.904c.591-.553.877-1.26 1.046-2.104c.162-.814.23-1.85.316-3.132l.464-6.952a.75.75 0 0 0-1.497-.1l-.46 6.9c-.09 1.347-.154 2.285-.294 2.99c-.137.685-.327 1.047-.6 1.303c-.274.256-.648.422-1.34.512c-.713.093-1.653.095-3.004.095h-.774c-1.35 0-2.29-.002-3.004-.095c-.692-.09-1.066-.256-1.34-.512c-.273-.256-.463-.618-.6-1.303c-.14-.705-.204-1.643-.294-2.99z" />
+                            <path d="M9.425 10.254a.75.75 0 0 1 .821.671l.5 5a.75.75 0 0 1-1.492.15l-.5-5a.75.75 0 0 1 .671-.821m5.821.821a.75.75 0 0 0-1.492-.15l-.5 5a.75.75 0 0 0 1.492.15z" />
+                        </svg>
+                        <span class="sr-only">Delete Icon</span>
+                    </div>
+                    <p class="delete-text dark-text small-text">Confirm Delete?</p>
+                    <a href="{% url 'delete_notification_from_view' selected_notification.sku %}" class="icon-container gl-1 success">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="dark-text" viewBox="0 0 24 24">
+                            <path fill-rule="evenodd" d="M20.207 6.793a1 1 0 0 1 0 1.414l-9.5 9.5a1 1 0 0 1-1.414 0l-4.5-4.5a1 1 0 0 1 1.414-1.414L10 15.586l8.793-8.793a1 1 0 0 1 1.414 0" clip-rule="evenodd" />
+                        </svg>
+                        <span class="sr-only">Check Icon</span>
+                    </a>
+                    <div class="deny-delete-btn icon-container gl-1 error">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="dark-text" viewBox="0 0 24 24">
+                            <path fill-rule="evenodd" d="M17.707 7.707a1 1 0 0 0-1.414-1.414L12 10.586L7.707 6.293a1 1 0 0 0-1.414 1.414L10.586 12l-4.293 4.293a1 1 0 1 0 1.414 1.414L12 13.414l4.293 4.293a1 1 0 1 0 1.414-1.414L13.414 12z" clip-rule="evenodd" />
+                        </svg>
+                        <span class="sr-only">X Mark Icon</span>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -94,5 +82,6 @@
 {{ block.super }}
 
 <script src="{% static 'js/view_notification.js' %}"></script>
+<script src="{% static 'js/management_btns.js' %}"></script>
 
 {% endblock %}

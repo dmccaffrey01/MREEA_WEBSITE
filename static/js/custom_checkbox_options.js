@@ -34,6 +34,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
         let checkboxes = inputContainer.querySelectorAll(".checkbox-input");
 
+        updateNumberSelected(checkboxes, numberSelected);
+
         checkboxes.forEach(checkbox => {
             checkbox.addEventListener("click", () => {
                 let selectAll = checkbox.getAttribute("data-select-all");

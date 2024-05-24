@@ -2,7 +2,7 @@
 @import '../../../static/css/mixins';
 
 .view-notification-section {
-    background-color: $gl-2;
+    background-color: $gl-1;
     padding: 40px 0;
     min-height: calc(100vh - 100px);
     justify-content: flex-start;
@@ -16,10 +16,10 @@
 
     .view-notification-container {
         border-radius: $round-corner-3;
-        width: 650px;
-        padding: 16px;
+        width: calc(50% - 24px);
+        padding: 32px;
         background-color: $gl-1;
-        gap: 16px;
+        gap: 24px;
 
         .notification-deleted-overlay {
             display: flex;
@@ -54,7 +54,7 @@
         }
 
         .heading-text {
-            width: calc(100% - 164px);
+            width: calc(100% - 112px);
         }
     }
 
@@ -64,6 +64,60 @@
 
         .message-text {
             width: 100%;
+        }
+    }
+
+    .management-btns-container {
+        gap: 4px;
+        margin-top: 12px;
+        width: calc(50% - 24px);
+        padding: 16px;
+        border-radius: $round-corner-2;
+        background-color: $gl-1;
+
+        .visit-link {
+            justify-content: flex-start;
+            width: 100%;
+            border-radius: $round-corner-2;
+            background-color: $gl-1;
+            padding: 12px;
+            gap: 8px;
+            cursor: pointer;
+
+            &:hover {
+                background-color: $gl-2;
+
+                .icon-container {
+                    background-color: $gl-1;
+
+                    &.success:hover {
+                        background-color: $success;
+                    }
+
+                    &.error:hover {
+                        background-color: $error;
+                    }
+                }
+            }
+        }
+
+        .delete-btn-wrapper {
+            width: 100%;
+
+            .confirm-delete-btn {
+                position: absolute;
+                left: 0;
+                top: 0;
+                background-color: $gl-2;
+
+                &.hide {
+                    display: none;
+                }
+
+                .success {
+                    margin-left: 16px;
+                }
+            }
         }
     }
 }
