@@ -143,12 +143,12 @@ a {
             font-family: "Roboto", sans-serif;
     
             &:focus {
-                outline: 2px solid $red-1;
+                outline: 2px solid $gd-1;
             }
 
             &:focus + .icon-container {
                 path {
-                    fill: $red-1;
+                    fill: $gd-1;
                 }
             }
 

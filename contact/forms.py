@@ -9,12 +9,13 @@ class ContactForm(forms.ModelForm):
     class Meta:
         model = ContactMessage
         fields = ['name', 'email', 'message']
+        widgets = {
+            'name': forms.TextInput(attrs={'placeholder': 'Enter Name'}),
+            'email': forms.TextInput(attrs={'placeholder': 'Enter Email'}),
+            'message': forms.Textarea(attrs={'placeholder': 'Enter Message', 'rows': 5}),
+        }
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
         self.fields['name'].widget.attrs['autofocus'] = True
-        for field in self.fields:
-            self.fields[field].widget.attrs['class'] = 'form-input'
-        
-        self.fields['message'].widget.attrs['rows'] = "3"

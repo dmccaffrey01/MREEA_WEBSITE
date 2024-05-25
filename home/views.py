@@ -1,6 +1,9 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from membership.models import Membership, MembershipStatus, MembershipUpdateStatus
 from django.utils import timezone
+from django.contrib.auth.decorators import login_required
+from .forms import TestimonialForm
+from .models import Testimonial
 
 
 def index(request):
@@ -21,3 +24,24 @@ def index(request):
         membership_update_status.save()
 
     return render(request, 'home/index.html')
+
+
+def faqs(request):
+
+    return render(request, 'faqs/faqs.html')
+
+
+@login_required
+def add_testimonial(request):
+
+    user = request.user
+
+    form = TestimonialForm()
+
+    context = {
+        'form': form,
+    }
+
+    return render(request, 'home/index.html', context)
+
+

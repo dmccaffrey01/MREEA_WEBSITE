@@ -1,34 +1,41 @@
 .account-section {
-  background-color: #ececec;
-  height: 100vh;
+  background-color: #f7f7f7;
+  position: relative;
+  overflow: hidden;
 }
 .account-section .section-container {
-  gap: 100px;
+  gap: 16px;
+}
+.account-section .account-container {
+  width: 600px;
+  padding: 36px;
+  gap: 28px;
+  background-color: #f7f7f7;
+  border-radius: 16px;
+  border-top: 2px solid #c64f4a;
+}
+.account-section .account-container.small-container {
+  width: 480px;
+  padding: 24px;
+  gap: 20px;
 }
 .account-section .info-container {
-  gap: 30px;
-  text-align: center;
-  max-width: 600px;
+  gap: 4px;
 }
-.account-section .info-container .text-container {
-  gap: 10px;
-}
-.account-section .info-container .img-container {
-  width: 350px;
-  height: 84px;
+.account-section .form-container {
+  width: 100%;
 }
 
-.contact-section .contact-btn {
-  gap: 8px;
-}
-.contact-section .contact-btn .red-text {
-  width: 45px;
-  height: 45px;
-  border-radius: 50%;
-  border: 3px solid #c64f4a;
-}
-.contact-section .contact-btns-container {
+.contact-section .contact-info-container {
   gap: 4px;
+}
+.contact-section .input-container input[type=text],
+.contact-section .input-container input[type=email],
+.contact-section .input-container select,
+.contact-section .input-container textarea {
+  font-size: 1.3rem;
+  border-radius: 12px;
+  padding-left: 16px;
 }
 
 /*# sourceMappingURL=contact.css.map */

@@ -116,10 +116,10 @@ a .dark-text:visited, a .nav-link:visited {
   font-family: "Roboto", sans-serif;
 }
 .form .input-container input:focus, .form .input-container select:focus, .form .input-container textarea:focus {
-  outline: 2px solid #c64f4a;
+  outline: 2px solid #242424;
 }
 .form .input-container input:focus + .icon-container path, .form .input-container select:focus + .icon-container path, .form .input-container textarea:focus + .icon-container path {
-  fill: #c64f4a;
+  fill: #242424;
 }
 .form .input-container input.error-message, .form .input-container select.error-message, .form .input-container textarea.error-message {
   outline: 2px solid #c53d52;

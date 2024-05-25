@@ -4,18 +4,20 @@
 
 
 .contact-section {
-    .contact-btn {
-        gap: 8px;
-
-        .red-text {
-            width: 45px;
-            height: 45px;
-            border-radius: 50%;
-            border: 3px solid $red-1;
-        }
-    }
-
-    .contact-btns-container {
+    .contact-info-container {
         gap: 4px;
     }
+
+    .input-container {
+        input[type="text"],
+        input[type="email"],
+        select,
+        textarea {
+            font-size: $font-size;
+            border-radius: $round-corner-2;
+            padding-left: 16px;
+        }
+
+    }
+
 }

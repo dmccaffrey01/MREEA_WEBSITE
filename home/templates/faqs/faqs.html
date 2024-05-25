@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/faqs.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<section class="faqs-hero-section section">
+    <div class="section-container container-row">
+        <div class="text-container container-col align-start">
+            <h2 class="subheading dark-text-2">What Is MREEA</h2>
+            <p class="dark-text-2 spacing">MREEA (Maryland Real Estate Educators Association) unites real estate educators, including instructors, school owners, regulators and more.</p>
+            <p class="dark-text-2 spacing">There are 60+ members in MREEA all with the shared goal of being professional real estate educators in Marland and surrounding areas.</p>
+        </div>
+
+        <div class="img-wrapper container-col align-start">
+            <div class="mreea-logo-container img-container">
+                <img src="{{ MEDIA_URL }}mreea-logo.png" alt="MREEA Logo" class="img-100a">
+            </div>
+            <div class="member-container img-container member-1">
+                <img src="{{ MEDIA_URL }}testimonial-1.png" alt="MREEA Logo" class="img-100a">
+            </div>
+            <div class="member-container img-container member-2">
+                <img src="{{ MEDIA_URL }}testimonial-2.png" alt="MREEA Logo" class="img-100a">
+            </div>
+            <div class="member-container img-container member-3">
+                <img src="{{ MEDIA_URL }}testimonial-3.png" alt="MREEA Logo" class="img-100a">
+            </div>
+            <div class="member-amount-container container-col">
+                <p class="member-amount-text subheading dark-text-2">60+</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="team-section section">
+    <div class="section-container container-col">
+        <h2 class="subheading dark-text-2">Meet The Team</h2>
+
+        <div class="team-container container-row justify-start">
+            <div class="team-card container-col">
+                <div class="img-container">
+                    <img src="{{ MEDIA_URL }}testimonial-1.png" alt="Team Profile Image" class="img-100a">
+                </div>
+                <p class="name-text subheading dark-text-2">Jane Doe</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="cta-section section">
+    <div class="section-container container-row space-between">
+        <div class="text-container container-col align-start">
+            <h2 class="message-heading-text white-text">Become A Member Today!</h2>
+            <p class="message-text white-text">Join our wonderfull community<br>and elevate you educating career.</p>
+            <a href="{% url 'membership_redirect' %}" class="btn yellow-btn">Join Now</a>
+            
+        </div>
+        <div class="btns-container container-col">
+            <p class="white-text">If you have any questions:</p>
+            <a href="" class="visit-link">
+                <div class="icon-container btn-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="white-text" viewBox="0 0 16 16">
+                        <path d="M7 8.88a.625.625 0 1 1 0 1.25a.625.625 0 0 1 0-1.25m0-4.877c1.031 0 1.853.846 1.853 1.95c0 .586-.214.908-.727 1.318l-.277.215c-.246.194-.329.3-.346.448l-.011.156A.5.5 0 0 1 6.5 8c0-.57.21-.884.716-1.288l.278-.215c.288-.23.36-.342.36-.544c0-.558-.382-.95-.854-.95c-.494 0-.859.366-.853.945a.5.5 0 0 1-1 .01C5.136 4.82 5.952 4.003 7 4.003M2 7a5 5 0 1 1 2.886 4.533l-2.288.457a.5.5 0 0 1-.588-.588l.457-2.289A5 5 0 0 1 2 7m5-4a4 4 0 0 0-3.564 5.818a.5.5 0 0 1 .045.326l-.344 1.719l1.719-.344a.5.5 0 0 1 .326.045A4 4 0 1 0 7 3m-1.14 9.892A4.98 4.98 0 0 0 9 14c.754 0 1.47-.167 2.113-.467l2.289.457a.5.5 0 0 0 .588-.588l-.457-2.288c.3-.643.467-1.36.467-2.114a4.98 4.98 0 0 0-1.108-3.139a6 6 0 0 1 .007 2.242a4 4 0 0 1-.335 2.715a.5.5 0 0 0-.045.326l.344 1.719l-1.72-.344a.5.5 0 0 0-.325.045a4 4 0 0 1-2.716.335a6 6 0 0 1-2.242-.007" />
+                    </svg>
+                    <span class="sr-only">Support Icon</span>
+                </div>
+                <p class="white-text">Visit FAQs</p>
+            </a>
+            <a href="{% url 'contact' %}" class="visit-link">
+                <div class="icon-container btn-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="white-text" viewBox="0 0 16 16">
+                        <path d="M2 6.038V11a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2zM4 4h8a1 1 0 0 1 1 1v.74L8 8.432L3 5.74V5a1 1 0 0 1 1-1M3 6.876L7.763 9.44a.5.5 0 0 0 .474 0L13 6.876V11a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1z" />
+                    </svg>
+                    <span class="sr-only">Email Icon</span>
+                </div>
+                <p class="white-text">Contact Us</p>
+            </a>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
+
+{% block postloadjs %}
+{{ block.super }}
+
+
+{% endblock %}
