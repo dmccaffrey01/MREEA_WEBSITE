@@ -1,3 +1,7 @@
+.section {
+  padding: 80px 0;
+}
+
 .section-container {
   width: 1280px;
 }
@@ -7,9 +11,11 @@
 .section-container .spacing {
   line-height: calc(1.3rem + 8px);
 }
+.section-container .subheading {
+  font-size: 2.5rem;
+}
 
 .faqs-hero-section {
-  padding: 80px 0;
   background-color: #ececec;
 }
 .faqs-hero-section .section-container {
@@ -64,13 +70,16 @@
   top: 320px;
   z-index: 5;
 }
+.faqs-hero-section .member-amount-container .member-amount-text {
+  font-size: 2rem;
+}
 
 .team-section {
   background-color: #f7f7f7;
-  padding: 80px 0;
 }
 .team-section .section-container {
   gap: 40px;
+  width: 1140px;
 }
 .team-section .team-container {
   width: 100%;
@@ -81,7 +90,7 @@
   width: calc(33.3333333333% - 53.3333333333px);
   padding: 40px;
   border-radius: 16px;
-  background-color: #ececec;
+  background-color: #f7f7f7;
   gap: 24px;
   cursor: pointer;
 }
@@ -90,29 +99,93 @@
   height: 100%;
   border-radius: 50%;
 }
+.team-section .team-card .name-text {
+  font-size: 2rem;
+}
+.team-section .team-card:hover {
+  background-color: #ececec;
+}
 
-.cta-section {
-  padding: 120px 0;
-  background: linear-gradient(90deg, rgb(73, 73, 73) 25%, rgb(119, 119, 119) 75%);
+.benefits-section {
+  background: #ececec;
 }
-.cta-section .text-container {
-  width: 600px;
+.benefits-section .section-container {
+  gap: 160px;
+}
+.benefits-section .text-container {
+  width: calc(50% - 80px);
+  gap: 24px;
+}
+.benefits-section .content-container {
   gap: 16px;
+  width: 100%;
 }
-.cta-section .text-container .message-text {
-  line-height: calc(1.3rem + 8px);
+.benefits-section .content-container .visit-link {
+  width: 100%;
+  gap: 12px;
 }
-.cta-section .text-container .message-heading-text {
-  font-weight: 400;
-  font-size: 2.5rem;
+.benefits-section .content-container .icon-container {
+  background-color: #f7f7f7;
+  width: 50px;
+  height: 50px;
+  padding: 10px;
 }
-.cta-section .btns-container {
+.benefits-section .content-container .content-heading {
+  font-weight: 600;
+}
+.benefits-section .content-container .content-text {
+  width: calc(100% - 50px - 12px);
+}
+
+.testimonial-section {
+  background-color: #f7f7f7;
+}
+.testimonial-section .section-container {
+  gap: 40px;
+}
+.testimonial-section .testimonials-container-row {
+  width: 100%;
+  gap: 40px;
+}
+.testimonial-section .testimonials-container-col {
+  width: calc(33% - 13.3333333333px);
+  gap: 40px;
+}
+.testimonial-section .testimonial-container {
+  width: 100%;
+  padding: 32px;
+  border-radius: 16px;
+  background-color: #ececec;
   gap: 16px;
-  height: 186px;
+  position: relative;
 }
-.cta-section .btns-container .icon-container {
+.testimonial-section .testimonial-container .testimonial-profile-container {
+  width: 100%;
+  gap: 12px;
+}
+.testimonial-section .testimonial-container .testimonial-profile-container .img-container {
+  width: 68px;
+  height: 68px;
+  border-radius: 50%;
+}
+.testimonial-section .testimonial-container .testimonial-profile-container .name-text {
+  font-size: 1.4rem;
+}
+.testimonial-section .testimonial-container .quote-icon {
   width: 40px;
   height: 40px;
+  position: absolute;
+  right: 24px;
+  top: 24px;
+}
+.testimonial-section .testimonial-container .testimonial-message-text {
+  font-size: 1rem;
+}
+.testimonial-section .half-container {
+  width: 100%;
+  height: 150px;
+  background-color: #ececec;
+  border-radius: 16px;
 }
 
 /*# sourceMappingURL=faqs.css.map */

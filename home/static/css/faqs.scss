@@ -1,9 +1,12 @@
 @import '../../../static/css/variables';
 @import '../../../static/css/mixins';
 
+.section {
+    padding: 80px 0;
+}
+
 .section-container {
     width: 1280px;
-
     .visit-link {
         gap: 8px;
     }
@@ -11,10 +14,13 @@
     .spacing {
         line-height: calc($font-size + 8px);
     }
+
+    .subheading {
+        font-size: 2.5rem;
+    }
 }
 
 .faqs-hero-section {
-    padding: 80px 0;
     background-color: $gl-2;
 
     $section-gap: 160px;
@@ -76,16 +82,20 @@
         left: 280px;
         top: 320px;
         z-index: 5;
+
+        .member-amount-text {
+            font-size: 2rem;
+        }
     }
 
 }
 
 .team-section {
     background-color: $gl-1;
-    padding: 80px 0;
 
     .section-container {
         gap: 40px;
+        width: 1140px;
     }
 
     .team-container {
@@ -98,7 +108,7 @@
         width: calc((100% / 3) - (160px / 3));
         padding: 40px;
         border-radius: $round-corner-3;
-        background-color: $gl-2;
+        background-color: $gl-1;
         gap: 24px;
         cursor: pointer;
 
@@ -108,34 +118,121 @@
             border-radius: 50%;
         }
 
+        .name-text {
+            font-size: 2rem;
+        }
+
+        &:hover {
+            background-color: $gl-2;
+        }
+
     }
 }
 
-.cta-section {
-    padding: 120px 0;
-    background: linear-gradient(90deg, rgba(73,73,73,1) 25%, rgba(119,119,119,1) 75%);
+.benefits-section {
+    background: $gl-2;
+
+    $section-gap: 160px;
+    $section-container-width: calc(50% - ($section-gap / 2));
+
+    .section-container {
+        gap: $section-gap;
+    }
 
     .text-container {
-        width: 600px;
-        gap: 16px;
-
-        .message-text {
-            line-height: calc($font-size + 8px);
-        }
-
-        .message-heading-text {
-            font-weight: 400;
-            font-size: 2.5rem;
-        }
+        width: $section-container-width;
+        gap: 24px;
     }
 
-    .btns-container {
-        gap: 16px;
-        height: 186px;
+    .content-container {
+        $content-container-gap: 16px;
+        $icon-container-width: 50px;
+        gap: $content-container-gap;
+        width: 100%;
+
+        .visit-link {
+            width: 100%;
+            gap: 12px;
+        }
 
         .icon-container {
-            width: 40px;
-            height: 40px;
+            background-color: $gl-1;
+            width: $icon-container-width;
+            height: $icon-container-width;
+            padding: 10px;
+        }
+
+        .content-heading {
+            font-weight: 600;
+        }
+
+        .content-text {
+            width: calc(100% - $icon-container-width - 12px);
         }
     }
 }
+
+.testimonial-section {
+    background-color: $gl-1;
+    $row-gap: 40px;
+
+    .section-container {
+        gap: 40px;
+    }
+
+    .testimonials-container-row {
+        width: 100%;
+        gap: $row-gap;
+    }
+
+    .testimonials-container-col {
+        width: calc(33% - ($row-gap / 3));
+        gap: $row-gap;
+    }
+
+    .testimonial-container {
+        width: 100%;
+        padding: 32px;
+        border-radius: $round-corner-3;
+        background-color: $gl-2;
+        gap: 16px;
+        position: relative;
+        $icon-width: 40px;
+        $img-width: 68px;
+
+        .testimonial-profile-container {
+            width: 100%;
+            gap: 12px;
+
+            .img-container {
+                width: $img-width;
+                height: $img-width;
+                border-radius: 50%;
+            }
+
+            .name-text {
+                font-size: 1.4rem;
+            }
+        }
+
+        .quote-icon {
+            width: $icon-width;
+            height: $icon-width;
+            position: absolute;
+            right: 24px;
+            top: 24px;
+        }
+
+        .testimonial-message-text {
+            font-size: 1rem;
+        }
+    }
+
+    .half-container {
+        width: 100%;
+        height: 150px;
+        background-color: $gl-2;
+        border-radius: $round-corner-3;
+    }
+}
+
