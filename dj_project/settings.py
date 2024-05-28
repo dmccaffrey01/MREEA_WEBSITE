@@ -30,7 +30,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = 'DEVELOPMENT' in os.environ
 
-ALLOWED_HOSTS = ['mreea.org', 'http://www.mreea.org', '70.32.23.32', 'http://70.32.23.32/~mreeaor1/', 'localhost', '127.0.0.1', 'https://mreea-test-568f4c6ab8fc.herokuapp.com/', 'mreea-test-568f4c6ab8fc.herokuapp.com']
+ALLOWED_HOSTS = ['mreea.org', 'http://www.mreea.org', '70.32.23.32', 'http://70.32.23.32/~mreeaor1/', 'localhost', '127.0.0.1', 'https://mreea-test-568f4c6ab8fc.herokuapp.com/', 'mreea-test-568f4c6ab8fc.herokuapp.com', 'https://test-mreea-website.onrender.com/', 'test-mreea-website.onrender.com']
 
 
 # Application definition
