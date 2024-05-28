@@ -7,7 +7,7 @@ from django.utils import timezone
 
 class MembershipUpdateStatus(models.Model):
     friendly_name = models.CharField(max_length=254)
-    name = models.CharField(max_length=254, unique=True, editable=False)
+    name = models.CharField(max_length=254, unique=True,)
     last_updated_date = models.DateField(default=None, null=True, blank=True)
 
     def __str__(self):
