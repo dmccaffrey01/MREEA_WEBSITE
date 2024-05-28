@@ -1,0 +1,31 @@
+@import '../../../static/css/variables';
+@import '../../../static/css/mixins';
+
+.cta-section {
+    padding: 120px 0;
+    background: linear-gradient(90deg, rgba(73,73,73,1) 25%, rgba(119,119,119,1) 75%);
+
+    .text-container {
+        width: 600px;
+        gap: 16px;
+
+        .message-text {
+            line-height: calc($font-size + 8px);
+        }
+
+        .message-heading-text {
+            font-weight: 400;
+            font-size: 2.5rem;
+        }
+    }
+
+    .btns-container {
+        gap: 16px;
+        height: 186px;
+
+        .icon-container {
+            width: 40px;
+            height: 40px;
+        }
+    }
+}

@@ -1,0 +1,25 @@
+.cta-section {
+  padding: 120px 0;
+  background: linear-gradient(90deg, rgb(73, 73, 73) 25%, rgb(119, 119, 119) 75%);
+}
+.cta-section .text-container {
+  width: 600px;
+  gap: 16px;
+}
+.cta-section .text-container .message-text {
+  line-height: calc(1.3rem + 8px);
+}
+.cta-section .text-container .message-heading-text {
+  font-weight: 400;
+  font-size: 2.5rem;
+}
+.cta-section .btns-container {
+  gap: 16px;
+  height: 186px;
+}
+.cta-section .btns-container .icon-container {
+  width: 40px;
+  height: 40px;
+}
+
+/*# sourceMappingURL=cta-section.css.map */

@@ -1,0 +1,103 @@
+{% extends "base.html" %}
+
+{% load static %}
+{% block extra_title %}- Membership Redirect{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/membership_redirect.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<section class="membership-redirect-section account-section section h-100b">
+    <div class="section-container container-col">
+        <div class="account-container container-col align-start box-shadow">
+            <div class="info-container container-col align-start">
+                <h2 class="dark-text subheading">{{ heading_text }}</h2>
+                <p class="dark-text small-text">Please select/confirm your membership</p>
+            </div>
+
+            <div class="form-container">
+                <form class="form" method="POST" action="{% url 'membership_redirect' %}">
+                    {% csrf_token %}
+                    <div class="hidden-input-container">
+                        <label for="id_package_name" class="sr-only">name</label>
+                        {{ form.package_name }}
+                        <label for="id_package_friendly_name" class="sr-only">friendly name</label>
+                        {{ form.package_friendly_name }}
+                    </div>
+                    
+                    <div class="packages-select-container select-container">
+                        {% if single_membership_package %}
+                            <div class="single-package-select-item select-item selected single" data-name="{{ single_membership_package.name }}" data-description="{{ single_membership_package.description }}" data-duration="{{ single_membership_package.duration }}" data-checkout_url="{{ single_membership_package.checkout_url }}">
+                                <p class="dark-text">{{ single_membership_package.friendly_name }}</p>
+                                <p class="dark-text">${{ single_membership_package.price }}</p>
+                            </div>
+                        {% else %}
+    
+                        <div class="default-select-item select-item selected">
+                            <p class="default-friendly-name-text dark-text">Select</p>
+                            <div class="btn-icon icon-container">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="dark-text" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 0 1 1.414 0L10 10.586l3.293-3.293a1 1 0 1 1 1.414 1.414l-4 4a1 1 0 0 1-1.414 0l-4-4a1 1 0 0 1 0-1.414" clip-rule="evenodd" />
+                                </svg>
+                                <span class="sr-only">Chevron Down Icon</span>
+                            </div>
+                        </div>
+    
+                        <div class="select-container-items">
+                            {% for package in membership_packages %}
+                            <div class="select-item" data-name="{{ package.name }}" data-description="{{ package.description }}" data-duration="{{ package.duration }}" data-checkout_url="{{ package.checkout_url }}">
+                                <p class="friendly-name-text dark-text">{{ package.friendly_name }}</p>
+                                <p class="price-text dark-text">${{ package.price }}</p>
+                            </div>
+                            {% endfor %}
+                        </div>
+                        
+                        {% endif %}
+                    </div>
+    
+                    {% if single_membership_package %}
+    
+                    <div class="single-package-info-container package-info-container container-col align-start">
+                        <div class="info-group container-row space-between">
+                            <p class="dark-text small-text info-left">Price</p>
+                            <p class="dark-text small-text info-right">{{ single_membership_package.price }} USD$</p>
+                        </div>
+                        <div class="info-group container-row space-between">
+                            <p class="dark-text small-text info-left">Duration</p>
+                            <p class="dark-text small-text info-right">{{ single_membership_package.duration }} Days</p>
+                        </div>
+                    </div>
+    
+                    {% else %}
+    
+                    <div class="multiple-package-info-container package-info-container container-col align-start">
+                        <div class="info-group container-row space-between">
+                            <p class="dark-text small-text info-left">Price</p>
+                            <p class="dark-text small-text info-right"><span class="package-price-text">--</span> USD$</p>
+                        </div>
+                        <div class="info-group container-row space-between">
+                            <p class="dark-text small-text info-left">Duration</p>
+                            <p class="dark-text small-text info-right"><span class="package-duration-text">--</span> Days</p>
+                        </div>
+                    </div>
+    
+                    {% endif %}
+                    
+                    <button class="btn submit-btn" type="submit" data-checkout_url="">Continue to Payment</button>
+                  </form>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+{% endblock %}
+
+{% block postloadjs %}
+{{ block.super }}
+
+<script src="{% static 'js/membership_redirect.js' %}"></script>
+
+{% endblock %}

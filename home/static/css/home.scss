@@ -1,0 +1,360 @@
+@import '../../../static/css/variables';
+@import '../../../static/css/mixins';
+
+.section-container {
+    width: 1280px;
+
+    .visit-link {
+        gap: 8px;
+    }
+}
+
+.home-hero-section {
+    min-height: calc(100vh - 100px);
+    position: relative;
+    background-color: $gl-2;
+
+    .bg-div {
+        position: absolute;
+        left: 0;
+        top: calc(50% - ((340px + 160px) / 2));
+        width: 50vw;
+        height: calc(340px + 160px);
+        background-color: $gl-1;
+        z-index: 1;
+        border-radius: 0 $round-corner-5 $round-corner-5 0;
+    }
+
+    .section-container {
+        gap: 240px;
+        z-index: 2;
+    }
+
+    .texts-container {
+        width: 580px;
+        height: 340px;
+        justify-content: space-between;
+
+        .hero-text {
+            line-height: calc($font-size + 8px);
+        }
+    }
+
+    .btns-container {
+        gap: 16px;
+    }
+
+    .card-group-container {
+        gap: 24px;
+
+        &.group-1 {
+            width: 460px;
+            height: 600px;
+        }
+
+        &.group-2 {
+            width: 100%;
+            height: calc(60% - 12px);
+        }
+
+        &.group-3 {
+            width: calc(50% - 12px);
+            height: 100%;
+        }
+
+        .card {
+            border-radius: $round-corner-3;
+            background-color: $gl-1;
+            width: 100%;
+        }
+
+        .card-1,
+        .card-2 {
+            height: calc(50% - 12px);
+            padding: 24px;
+            gap: 12px;
+
+            .subheading {
+                font-size: $font-size;
+                text-align: center;
+            }
+
+            .visit-link {
+                gap: 8px;
+            }
+        }
+
+        .card-2 {
+            position: relative;
+
+            .circle {
+                position: absolute;
+                width: 112px;
+                height: 112px;
+                border-radius: 50%;
+                background-color: $gl-2;
+                bottom: calc(50% + 25px);
+                left: calc((112px / 2) - 112px);
+                padding: 20px;
+
+                .icon-container {
+                    width: 100%;
+                    height: 100%;
+                    padding: 12px;
+                    background-color: $red-1;
+                }
+            }
+        }
+
+        .card-3 {
+            height: 100%;
+            width: calc(50% - 12px);
+        }
+
+        .card-4 {
+            height: calc(40% - 12px);
+        }
+    }
+}
+
+.intro-section {
+    background-color: $gl-1;
+    padding: 120px 0;
+
+    .section-container {
+        gap: 60px;
+        flex-wrap: wrap;
+    }
+
+    .text-container {
+        gap: 20px;
+        width: 610px;
+        height: 404px;
+        background-color: $gl-2;
+        padding: 40px;
+        border-radius: $round-corner-3;
+        
+        .intro-text {
+            line-height: calc($font-size + 8px);
+        }
+
+        .subheading {
+            font-size: 2.5rem;
+        }
+
+        .benefits-container {
+            width: 100%;
+            gap: 12px;
+
+            .benefit-heading {
+                font-weight: 600;
+            }
+
+            .visit-link {
+                width: 100%;
+            }
+
+            .benefit-text {
+                width: calc(100% - 62px);
+                line-height: calc($font-size + 8px);
+            }
+
+            .icon-container {
+               background-color: $gl-1;
+               width: 50px;
+               height: 50px;
+               padding: 10px;
+            }
+        }
+    }
+
+    .img-container {
+        width: 610px;
+        height: 404px;
+        border-radius: $round-corner-3;
+    }
+}
+
+.benefits-scroll-container {
+    width: 100%;
+    padding: 40px;
+    background-color: $gd-2;
+    gap: 40px;
+    position: relative;
+
+    .icon-container {
+        width: 60px;
+        height: 60px;
+    }
+
+    .icon-wrapper {
+        gap: 8px;
+    }
+
+    .scroller {
+        max-width: 800px;
+        overflow: hidden;
+
+        -webkit-mask: linear-gradient(
+            90deg,
+            transparent,
+            white 20%,
+            white 80%,
+            transparent
+        );
+        mask: linear-gradient(
+            90deg,
+            transparent,
+            white 20%,
+            white 80%,
+            transparent
+        );
+    }
+
+    .scroller-inner {
+        display: flex;
+        flex-wrap: nowrap;
+        gap: 80px;
+        animation: scroll 40s linear infinite;
+        width: max-content;
+    }
+
+    @keyframes scroll {
+        to {
+            transform: translate(calc(-50% - 40px));
+        }
+    }
+
+    .hover-overlay {
+        position: absolute;
+        display: none;
+        width: 100%;
+        height: 100%;
+        background-color: rgba($white, 0.2);
+        backdrop-filter: blur(4px);
+        z-index: 5;
+    }
+
+    &:hover {
+
+        .scroller-inner {
+            animation-play-state: paused;
+        }
+
+        .hover-overlay {
+            display: flex;
+        }
+    }
+}
+
+.testimonial-section {
+    padding: 120px 0 120px 0;
+    background: $gl-1;
+
+    .subheading {
+        font-size: 2.5rem;
+        margin-bottom: 40px;
+    }
+
+    .section-container {
+        width: 1140px;
+    }
+
+    .carousel-wrapper {
+        position: relative;
+        width: 100%;
+        height: 320px;
+        overflow: hidden;
+
+        -webkit-mask: linear-gradient(
+            90deg,
+            transparent,
+            white 70px,
+            white calc(100% - 70px),
+            transparent
+        );
+        mask: linear-gradient(
+            90deg,
+            transparent,
+            white 70px,
+            white calc(100% - 70px),
+            transparent
+        );
+    }
+
+    .carousel {
+        height: 100%;
+        position: absolute;
+        left: 70px;
+        top: 0;
+        gap: 80px;
+        width: max-content;
+    }
+
+    .testimonial-container {
+        gap: 80px;
+    }
+
+    .img-container {
+        width: 320px;
+        height: 320px;
+        border-radius: 50%;
+    }
+
+    .testimonial-text-container {
+        width: 600px;
+        border-radius: $round-corner-3;
+        background-color: $gl-2;
+        padding: 40px;
+        height: 320px;
+        position: relative;
+
+        .testimonial-text {
+            line-height: calc($font-size + 8px);
+            font-size: 1.5rem;
+        }
+
+        .quote-icon {
+            position: absolute;
+            left: 12px;
+            top: 12px;
+            width: 32px;
+            height: 32px;
+
+            path {
+                fill: $gd-3;
+            }
+        }
+
+        .author-text {
+            color: $gd-3;
+            position: absolute;
+            right: 40px;
+            bottom: 20px;
+        }
+    }
+
+    .carousel-btns-container {
+        width: 100%;
+        gap: 32px;
+        padding-left: calc(80px + 320px + 60px);
+        padding-right: calc(80px);
+        margin-top: 20px;
+
+        .carousel-direction-btn {
+            gap: 4px;
+            cursor: pointer;
+            width: 64px;
+
+            &.no-move {
+                .dark-text {
+                    color: $gd-3;
+
+                    path {
+                        fill: $gd-3;
+                    }
+                }
+            }
+        }
+    }
+}

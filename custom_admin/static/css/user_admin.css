@@ -1,0 +1,134 @@
+.user-admin-section {
+  padding: 40px 0;
+  min-height: calc(100vh - 100px);
+  justify-content: flex-start;
+}
+.user-admin-section .section-container {
+  background-color: #f7f7f7;
+  border-radius: 16px;
+  padding: 32px;
+  gap: 20px;
+}
+.user-admin-section .search-container {
+  width: 100%;
+  gap: 12px;
+}
+.user-admin-section .search-container .search-input-container {
+  width: 100%;
+  position: relative;
+}
+.user-admin-section .search-container .search-input-container .icon-container {
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  translate: 0 -50%;
+}
+.user-admin-section .search-container .search-input-container input {
+  width: 100%;
+  font-size: 1.1rem;
+  padding: 16px;
+  padding-left: calc(1.1rem + 16px + 16px);
+  border: none;
+  outline: none;
+  color: #242424;
+  background-color: #ececec;
+  border-radius: 12px;
+}
+.user-admin-section .search-container .search-input-container input:focus {
+  outline: 2px solid #c64f4a;
+}
+.user-admin-section .search-container .search-input-container input:focus + .icon-container path {
+  fill: #c64f4a;
+}
+.user-admin-section .heading-container {
+  width: 100%;
+  padding: 8px 16px;
+}
+.user-admin-section .heading-container .item-heading {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.user-admin-section .first-name-heading {
+  width: calc(12.5% + 60px);
+  padding-left: 72px;
+}
+.user-admin-section .first-name-text,
+.user-admin-section .last-name-text,
+.user-admin-section .last-name-heading {
+  width: calc(12.5% - 12px);
+}
+.user-admin-section .purchase-date-text,
+.user-admin-section .end-date-text,
+.user-admin-section .purchase-date-heading,
+.user-admin-section .end-date-heading {
+  width: calc(15% - 12px);
+}
+.user-admin-section .status-text,
+.user-admin-section .status-heading {
+  width: calc(25% - 12px);
+}
+.user-admin-section .email-text,
+.user-admin-section .email-heading {
+  width: calc(20% - 12px);
+}
+.user-admin-section .users-container {
+  width: 100%;
+  gap: 16px;
+}
+.user-admin-section .user-wrapper {
+  width: 100%;
+}
+.user-admin-section .user-container {
+  width: 100%;
+  border-radius: 8px;
+  padding: 16px;
+  position: relative;
+}
+.user-admin-section .user-container:hover {
+  background-color: #ececec;
+}
+.user-admin-section .user-container.selected {
+  background-color: #ececec;
+}
+.user-admin-section .user-container.hide {
+  display: none;
+}
+.user-admin-section .user-container .img-wrapper {
+  position: relative;
+  width: 48px;
+  height: 48px;
+  margin-right: 24px;
+}
+.user-admin-section .user-container .img-wrapper .img-container {
+  border-radius: 50%;
+}
+.user-admin-section .user-container .img-wrapper .admin-icon {
+  position: absolute;
+  right: -2px;
+  bottom: -2px;
+  width: 24px;
+  height: 24px;
+  padding: 2px;
+  background-color: #ececec;
+  z-index: 3;
+}
+.user-admin-section .user-container .small-text {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding-right: 24px;
+}
+.user-admin-section .user-action-menu-btn {
+  right: 16px;
+  top: 50%;
+  translate: 0 -50%;
+}
+.user-admin-section .user-action-menu-btn .confirm-options .icon-container:hover.success {
+  background-color: #399c3e;
+}
+.user-admin-section .user-action-menu-btn .confirm-options .icon-container:hover.error {
+  background-color: #c53d52;
+}
+
+/*# sourceMappingURL=user_admin.css.map */

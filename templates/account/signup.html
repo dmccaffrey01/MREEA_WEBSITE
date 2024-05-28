@@ -1,46 +1,91 @@
-{% extends "base.html" %}
+{% extends "../base.html" %}
 
 {% load i18n %}
+{% load account socialaccount %}
 {% load static %}
-{% block head_title %}{% trans "Signup" %}{% endblock %}
+{% block extra_title %}- Sign Up{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" type="text/css" href="{% static 'account/css/signup.css' %}">
+{% endblock %}
 
 {% block content %}
-<section class="account-section login-account-section section">
-    <div class="container-col account-card">
-        <div class="account-card-section login-account-section-upper container-col">
-          <div class="account-card-wrapper container-col">
-              <div class="heading white-text">Begin your Journey</div>
-              {% if membership %}
-              <div class="white-text">Please Sign Up or Sign In to access membership</div>
-              {% else %}
-              <div class="white-text">
-                  Already have an account? Then please <a class="unregistered-account-link" href="{% url 'account_login' %}">sign in</a>.
-              </div>
-              {% endif %}
-          </div>
-          <div class="account-card-img-overlay dark-overlay"></div>
-          <div class="account-card-bg-img-container">
-              <img src="https://res.cloudinary.com/dikcjjfpo/image/upload/v1692718357/dmccaffrey01_beautiful_real_estate_in_scenic_area_dark_red_and__df3017ac-2bb6-4803-85c3-097194818d3e_uperzf.png" alt="Starry background image" class="img-100a account-card-bg-img">
-          </div>
+<section class="signup-section account-section section h-100b">
+    <div class="section-container container-col">
+        <div class="account-container container-col align-start box-shadow">
+            <h2 class="dark-text subheading">Create Account</h2>
+            
+            <div class="form-container">
+                <form class="form" method="POST" action="{% url 'account_signup' %}">
+                    {% csrf_token %}
+                    <div class="input-group-container">
+                        <div class="input-container">
+                            <label for="id_first_name" class="sr-only">first_name</label>
+                            {{ form.first_name }}
+                            <div class="btn-icon icon-container">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="dark-text" viewBox="0 0 256 256">
+                                    <path d="M230.92 212c-15.23-26.33-38.7-45.21-66.09-54.16a72 72 0 1 0-73.66 0c-27.39 8.94-50.86 27.82-66.09 54.16a8 8 0 1 0 13.85 8c18.84-32.56 52.14-52 89.07-52s70.23 19.44 89.07 52a8 8 0 1 0 13.85-8M72 96a56 56 0 1 1 56 56a56.06 56.06 0 0 1-56-56" />
+                                </svg>
+                            </div>
+                        </div>
+                        
+                        <div class="input-container">
+                            <label for="id_last_name" class="sr-only">last_name</label>
+                            {{ form.last_name }}
+                            <div class="btn-icon icon-container">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="dark-text" viewBox="0 0 256 256">
+                                    <path d="M230.92 212c-15.23-26.33-38.7-45.21-66.09-54.16a72 72 0 1 0-73.66 0c-27.39 8.94-50.86 27.82-66.09 54.16a8 8 0 1 0 13.85 8c18.84-32.56 52.14-52 89.07-52s70.23 19.44 89.07 52a8 8 0 1 0 13.85-8M72 96a56 56 0 1 1 56 56a56.06 56.06 0 0 1-56-56" />
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="input-container col-2">
+                        <label for="id_email" class="sr-only">email</label>
+                        {{ form.email }}
+                        <div class="icon-container btn-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="dark-text" viewBox="0 0 16 16">
+                                <path d="M2 6.038V11a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2zM4 4h8a1 1 0 0 1 1 1v.74L8 8.432L3 5.74V5a1 1 0 0 1 1-1M3 6.876L7.763 9.44a.5.5 0 0 0 .474 0L13 6.876V11a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1z" />
+                            </svg>
+                        </div>
+                    </div>
+
+                    <div class="input-container col-2">
+                        <label for="id_phone_number" class="sr-only">phone_number</label>
+                        {{ form.phone_number }}
+                        <div class="icon-container btn-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="dark-text" viewBox="0 0 16 16">
+                                <path d="M3.714 5.258C3.523 4 4.41 2.87 5.765 2.456a.99.99 0 0 1 1.214.598l.435 1.16a1 1 0 0 1-.26 1.088L5.86 6.487a.5.5 0 0 0-.152.47l.012.052l.031.13a7.3 7.3 0 0 0 .729 1.805a7.3 7.3 0 0 0 1.296 1.627l.04.036a.5.5 0 0 0 .482.103l1.673-.527a1 1 0 0 1 1.072.319l.792.961c.33.4.29.988-.089 1.341c-1.037.967-2.463 1.165-3.455.368a12.7 12.7 0 0 1-3.024-3.529a12.4 12.4 0 0 1-1.554-4.385m3.043 1.765l1.072-.984a2 2 0 0 0 .521-2.176l-.434-1.16A1.99 1.99 0 0 0 5.473 1.5c-1.683.515-3.034 2.024-2.748 3.909c.2 1.316.661 2.99 1.678 4.738a13.7 13.7 0 0 0 3.262 3.805c1.488 1.195 3.474.787 4.764-.415a1.98 1.98 0 0 0 .179-2.708l-.792-.962a2 2 0 0 0-2.144-.636l-1.389.437a6.6 6.6 0 0 1-.936-1.223a6.3 6.3 0 0 1-.59-1.421" />
+                            </svg>
+                        </div>
+                    </div>
+                    
+                    <div class="input-container col-2">
+                        <label for="id_password1" class="sr-only">password1</label>
+                        {{ form.password1 }}
+                        <div class="icon-container btn-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="dark-text" viewBox="0 0 16 16">
+                                <path d="M9 9a1 1 0 1 1-2 0a1 1 0 0 1 2 0M5 4h-.5A2.5 2.5 0 0 0 2 6.5v5A2.5 2.5 0 0 0 4.5 14h7a2.5 2.5 0 0 0 2.5-2.5v-5A2.5 2.5 0 0 0 11.5 4H11v-.5a3 3 0 0 0-6 0zm1-.5a2 2 0 1 1 4 0V4H6zM11.5 5A1.5 1.5 0 0 1 13 6.5v5a1.5 1.5 0 0 1-1.5 1.5h-7A1.5 1.5 0 0 1 3 11.5v-5A1.5 1.5 0 0 1 4.5 5z" />
+                            </svg>
+                        </div>
+                    </div>
+
+                    {% if redirect_field_value %}
+                    <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+                    {% endif %}
+                    
+                    <button class="btn" type="submit">
+                        <span class="white-text">Create Account</span>
+                    </button>
+                </form>
+            </div>
         </div>
-        <div class="account-card-section container-col login-accouint-section-lower">
-            <div class="sub-heading dark-blue-text sign-in-heading">User {% trans "Sign Up" %}</div>
-            <form class="account-form login-form container-col" id="signup_form" method="post" action="{% url 'account_signup' %}">
-              {% csrf_token %}
-              {{ form.as_p }}
-              {% if redirect_field_value %}
-              <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
-              {% endif %}
-              <button class="dark-btn btn white-text account-btn" type="submit">{% trans "Sign Up" %}</button>
-            </form>
-        </div>
+        <p class="dark-text small-text visit-link">
+            Already a Member? <a href="{% url 'account_login' %}" class="red-text small-text">Log In</a>
+        </p>
     </div>
 </section>
 
 {% endblock %}
 
-{% block js %}
 
-<script src="{% static 'js/register.js' %}"></script>
-
-{% endblock %}

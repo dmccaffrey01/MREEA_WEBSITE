@@ -1,0 +1,55 @@
+@import '../../../static/css/variables';
+@import '../../../static/css/mixins';
+
+.admin-section {
+    min-height: calc(100vh - 100px);
+    padding: 40px 0;
+
+    .admin-containers {
+        width: 100%;
+        gap: 24px;
+        flex-wrap: wrap;
+    }
+
+    .admin-container {
+        width: calc(50% - 12px);
+        padding: 32px;
+        border-radius: $round-corner-3;
+        background-color: $gl-1;
+        gap: 16px;
+
+        .heading-container {
+            gap: 8px;
+
+            .icon-container {
+                width: calc($subheading-size + 24px);
+                height: calc($subheading-size + 24px);
+                padding: 12px;
+            }
+        }
+
+        .admin-items-container {
+            width: 100%;
+            gap: 12px;
+
+            .admin-item {
+                width: 100%;
+                padding: 12px;
+                border-radius: $round-corner-2;
+                background-color: $gl-1;
+
+                .visit-link {
+                    gap: 8px;
+                }
+                
+                &:hover {
+                    background-color: $gl-2;
+
+                    .icon-container {
+                        background-color: $gl-1;
+                    }
+                }
+            }
+        }
+    }
+}

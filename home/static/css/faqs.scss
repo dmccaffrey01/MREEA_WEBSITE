@@ -1,0 +1,238 @@
+@import '../../../static/css/variables';
+@import '../../../static/css/mixins';
+
+.section {
+    padding: 80px 0;
+}
+
+.section-container {
+    width: 1280px;
+    .visit-link {
+        gap: 8px;
+    }
+
+    .spacing {
+        line-height: calc($font-size + 8px);
+    }
+
+    .subheading {
+        font-size: 2.5rem;
+    }
+}
+
+.faqs-hero-section {
+    background-color: $gl-2;
+
+    $section-gap: 160px;
+    $section-container-width: calc(50% - ($section-gap / 2));
+
+    .section-container {
+        gap: $section-gap;
+    }
+
+    .text-container {
+        width: $section-container-width;
+        gap: 24px;
+    }
+
+    .mreea-logo-container {
+        width: 400px;
+        height: 400px;
+        border-radius: 50%;
+        background-color: $gl-1;
+        padding: 50px;
+    }
+
+    .img-wrapper {
+        position: relative;
+        width: $section-container-width;
+    }
+
+    .member-container,
+    .member-amount-container {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        overflow: hidden;
+        position: absolute;
+        outline: 4px solid $gl-2;
+        outline-offset: -2px;
+
+        &.member-1 {
+            left: 366px;
+            top: 224px;
+            z-index: 2;
+        }
+
+        &.member-2 {
+            left: 339px;
+            top: 256px;
+            z-index: 3;
+        }
+
+        &.member-3 {
+            left: 312px;
+            top: 288px;
+            z-index: 4;
+        }
+    }
+
+    .member-amount-container {
+        background-color: $gl-1;
+        left: 280px;
+        top: 320px;
+        z-index: 5;
+
+        .member-amount-text {
+            font-size: 2rem;
+        }
+    }
+
+}
+
+.team-section {
+    background-color: $gl-1;
+
+    .section-container {
+        gap: 40px;
+        width: 1140px;
+    }
+
+    .team-container {
+        width: 100%;
+        gap: 80px;
+        flex-wrap: wrap;
+    }
+
+    .team-card {
+        width: calc((100% / 3) - (160px / 3));
+        padding: 40px;
+        border-radius: $round-corner-3;
+        background-color: $gl-1;
+        gap: 24px;
+        cursor: pointer;
+
+        .img-container {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+        }
+
+        .name-text {
+            font-size: 2rem;
+        }
+
+        &:hover {
+            background-color: $gl-2;
+        }
+
+    }
+}
+
+.benefits-section {
+    background: $gl-2;
+
+    $section-gap: 160px;
+    $section-container-width: calc(50% - ($section-gap / 2));
+
+    .section-container {
+        gap: $section-gap;
+    }
+
+    .text-container {
+        width: $section-container-width;
+        gap: 24px;
+    }
+
+    .content-container {
+        $content-container-gap: 16px;
+        $icon-container-width: 50px;
+        gap: $content-container-gap;
+        width: 100%;
+
+        .visit-link {
+            width: 100%;
+            gap: 12px;
+        }
+
+        .icon-container {
+            background-color: $gl-1;
+            width: $icon-container-width;
+            height: $icon-container-width;
+            padding: 10px;
+        }
+
+        .content-heading {
+            font-weight: 600;
+        }
+
+        .content-text {
+            width: calc(100% - $icon-container-width - 12px);
+        }
+    }
+}
+
+.testimonial-section {
+    background-color: $gl-1;
+    $row-gap: 40px;
+
+    .section-container {
+        gap: 40px;
+    }
+
+    .testimonials-container-row {
+        width: 100%;
+        gap: $row-gap;
+    }
+
+    .testimonials-container-col {
+        width: calc(33% - ($row-gap / 3));
+        gap: $row-gap;
+    }
+
+    .testimonial-container {
+        width: 100%;
+        padding: 32px;
+        border-radius: $round-corner-3;
+        background-color: $gl-2;
+        gap: 16px;
+        position: relative;
+        $icon-width: 40px;
+        $img-width: 68px;
+
+        .testimonial-profile-container {
+            width: 100%;
+            gap: 12px;
+
+            .img-container {
+                width: $img-width;
+                height: $img-width;
+                border-radius: 50%;
+            }
+
+            .name-text {
+                font-size: 1.4rem;
+            }
+        }
+
+        .quote-icon {
+            width: $icon-width;
+            height: $icon-width;
+            position: absolute;
+            right: 24px;
+            top: 24px;
+        }
+
+        .testimonial-message-text {
+            font-size: 1rem;
+        }
+    }
+
+    .half-container {
+        width: 100%;
+        height: calc(150px - 20px);
+        background-color: $gl-2;
+        border-radius: $round-corner-3;
+    }
+}
+

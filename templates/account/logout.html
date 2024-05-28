@@ -1,38 +1,36 @@
-{% extends "base.html" %}
+{% extends "../base.html" %}
 
 {% load i18n %}
+{% load account socialaccount %}
 {% load static %}
-{% block head_title %}{% trans "Sign Out" %}{% endblock %}
+{% block extra_title %}- Logout{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" type="text/css" href="{% static 'account/css/logout.css' %}">
+{% endblock %}
 
 {% block content %}
-<section class="account-section login-account-section section">
-    <div class="container-col account-card">
-        <div class="account-card-section login-account-section-upper container-col">
-          <div class="account-card-wrapper account-card-wrapper-logout container-col">
-              <div class="goodbye-account-container container-col">
-                  <div class="heading white-text">Goodbye</div>
-                  <div class="white-text">
-                    {% trans 'Are you sure you want to sign out?' %}
-                  </div>
-                  <div class="white-text">Click <a href="{% url 'home' %}" class="account-return-home-link unregistered-account-link">here</a> to return home</div>
-              </div>
-
-              <form class="account-form login-form container-col" id="signup_form" method="post" action="{% url 'account_logout' %}">
-                {% csrf_token %}
-                {{ form.as_p }}
-                {% if redirect_field_value %}
-                <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
-                {% endif %}
-                <button class="dark-btn btn white-text account-btn" type="submit">{% trans 'Sign Out' %}</button>
-              </form>
-
-          </div>
-          <div class="account-card-img-overlay dark-overlay"></div>
-          <div class="account-card-bg-img-container">
-              <img src="https://res.cloudinary.com/dikcjjfpo/image/upload/v1692718358/dmccaffrey01_beautiful_real_estate_in_scenic_area_dark_red_and__2ee2c54b-0736-4c26-a318-9cc1990101e5_fbkxty.png" alt="Starry background image" class="img-100a account-card-bg-img">
-          </div>
+<section class="logout-section account-section section h-100b">
+    <div class="section-container container-col">
+        <div class="account-container container-col box-shadow">
+            <div class="info-container container-col">
+                <h2 class="dark-text subheading center-text">Goodbye</h2>
+                <p class="dark-text small-text center-text">Are you sure you want to log out? <a href="{% url 'home' %}" class="red-text small-text-text">Return Home</a></p>
+            </div>
+            <form class="form" method="POST" action="{% url 'account_logout' %}">
+              {% csrf_token %}
+              
+              {% if redirect_field_value %}
+              <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+              {% endif %}
+              
+              <button class="btn" type="submit">Log Out</button>
+            </form>
         </div>
+        <a href="{% url 'contact' %}" class="dark-text small-text">Having a Problem?</a>
     </div>
 </section>
 
 {% endblock %}
+
+

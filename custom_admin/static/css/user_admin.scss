@@ -1,0 +1,169 @@
+@import '../../../static/css/variables';
+@import '../../../static/css/mixins';
+
+.user-admin-section {
+    padding: 40px 0;
+    min-height: calc(100vh - 100px);
+    justify-content: flex-start;
+
+    .section-container {
+        background-color: $gl-1;
+        border-radius: $round-corner-3;
+        padding: 32px;
+        gap: 20px;
+    }
+
+    .search-container {
+        width: 100%;
+        gap: 12px;
+
+        .search-input-container {
+            width: 100%;
+            position: relative;
+
+            .icon-container {
+                position: absolute;
+                left: 16px;
+                top: 50%;
+                translate: 0 -50%;
+            }
+
+            input {
+                width: 100%;
+                font-size: $small-font-size;
+                padding: 16px;
+                padding-left: calc($small-font-size + 16px + 16px);
+                border: none;
+                outline: none;
+                color: $gd-1;
+                background-color: $gl-2;
+                border-radius: $round-corner-2;
+
+                &:focus {
+                    outline: 2px solid $red-1;
+                }
+
+                &:focus + .icon-container {
+                    path {
+                        fill: $red-1;
+                    }
+                }
+            }
+        }
+    }
+
+    .heading-container {
+        width: 100%;
+        padding: 8px 16px;
+
+        .item-heading {
+            white-space: nowrap;
+            overflow: hidden; 
+            text-overflow: ellipsis; 
+        }
+    }
+
+    .first-name-heading {
+        width: calc(12.5% + 60px);
+        padding-left: 72px;
+    }
+
+    .first-name-text,
+    .last-name-text,
+    .last-name-heading {
+        width: calc(12.5% - 12px);
+    }
+
+    .purchase-date-text,
+    .end-date-text,
+    .purchase-date-heading,
+    .end-date-heading {
+        width: calc(15% - 12px);
+    }
+
+    .status-text,
+    .status-heading {
+        width: calc(25% - 12px);
+    }
+
+    .email-text,
+    .email-heading {
+        width: calc(20% - 12px);
+    }
+
+    .users-container {
+        width: 100%;
+        gap: 16px;
+    }
+
+    .user-wrapper {
+        width: 100%;
+    }
+
+    .user-container {
+        width: 100%;
+        border-radius: $round-corner-1;
+        padding: 16px;
+        position: relative;
+
+        &:hover {
+            background-color: $gl-2;
+        }
+
+        &.selected {
+            background-color: $gl-2;
+        }
+
+        &.hide {
+            display: none;
+        }
+
+        .img-wrapper {
+            position: relative;
+            width: 48px;
+            height: 48px;
+            margin-right: 24px;
+
+            .img-container {
+                border-radius: 50%;
+            }
+
+            .admin-icon {
+                position: absolute;
+                right: -2px;
+                bottom: -2px;
+                width: 24px;
+                height: 24px;
+                padding: 2px;
+                background-color: $gl-2;
+                z-index: 3;
+            }
+        }
+
+        .small-text {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            padding-right: 24px;
+        }
+
+    }
+
+    .user-action-menu-btn {
+        right: 16px;
+        top: 50%;
+        translate: 0 -50%;
+
+        .confirm-options {
+            .icon-container:hover {
+                &.success {
+                    background-color: $success;
+                }
+
+                &.error {
+                    background-color: $error;
+                }
+            }
+        }
+    }
+}

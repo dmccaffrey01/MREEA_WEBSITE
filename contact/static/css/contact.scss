@@ -1,0 +1,23 @@
+@import '../../../static/css/variables';
+@import '../../../static/css/mixins';
+@import '../../../static/account/css/account';
+
+
+.contact-section {
+    .contact-info-container {
+        gap: 4px;
+    }
+
+    .input-container {
+        input[type="text"],
+        input[type="email"],
+        select,
+        textarea {
+            font-size: $font-size;
+            border-radius: $round-corner-2;
+            padding-left: 16px;
+        }
+
+    }
+
+}

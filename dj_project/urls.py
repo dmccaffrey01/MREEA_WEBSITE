@@ -15,12 +15,28 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.conf.urls.static import static
+from django.conf import settings
+from django.urls import path
+from profiles.views import CustomPasswordChangeView
 
 
 app_name = 'account'
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('', include('main_app.urls')),
+    path('default_admin/', admin.site.urls),
+    path('', include('home.urls')),
+    path('events/', include('events.urls')),
+    path('resources/', include('resources.urls')),
+    path('members/', include('members.urls')),
+    path('contact/', include('contact.urls')),
+    path('profile/', include('profiles.urls')),
+    path('admin/', include('custom_admin.urls')),
+    path('membership/', include('membership.urls')),
+    path('announcements/', include('announcements.urls')),
+    path('notifications/', include('notifications.urls')),
+    path('accounts/password/change/', CustomPasswordChangeView.as_view(), name='account_change_password'),
     path('accounts/', include('allauth.urls')),
 ]
+
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -1,0 +1,101 @@
+.view-notification-section {
+  background-color: #f7f7f7;
+  padding: 40px 0;
+  min-height: calc(100vh - 100px);
+  justify-content: flex-start;
+}
+.view-notification-section.deleted .heading-container,
+.view-notification-section.deleted .message-container {
+  pointer-events: none;
+}
+.view-notification-section .view-notification-container {
+  border-radius: 16px;
+  width: calc(50% - 24px);
+  padding: 32px;
+  background-color: #f7f7f7;
+  gap: 24px;
+}
+.view-notification-section .view-notification-container .notification-deleted-overlay {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 12px;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 16px;
+  background-color: rgba(255, 255, 255, 0.3);
+  z-index: 999;
+  left: 0;
+  top: 0;
+  backdrop-filter: blur(3px);
+}
+.view-notification-section .heading-container {
+  width: 100%;
+  gap: 12px;
+}
+.view-notification-section .heading-container .age-text {
+  width: 48px;
+  text-align: right;
+}
+.view-notification-section .heading-container .heading-icon-container {
+  width: calc(1.8rem + 16px);
+  height: calc(1.8rem + 16px);
+}
+.view-notification-section .heading-container .heading-text {
+  width: calc(100% - 112px);
+}
+.view-notification-section .message-container {
+  width: 100%;
+  gap: 12px;
+}
+.view-notification-section .message-container .message-text {
+  width: 100%;
+}
+.view-notification-section .management-btns-container {
+  gap: 4px;
+  margin-top: 12px;
+  width: calc(50% - 24px);
+  padding: 16px;
+  border-radius: 12px;
+  background-color: #f7f7f7;
+}
+.view-notification-section .management-btns-container .visit-link {
+  justify-content: flex-start;
+  width: 100%;
+  border-radius: 12px;
+  background-color: #f7f7f7;
+  padding: 12px;
+  gap: 8px;
+  cursor: pointer;
+}
+.view-notification-section .management-btns-container .visit-link:hover {
+  background-color: #ececec;
+}
+.view-notification-section .management-btns-container .visit-link:hover .icon-container {
+  background-color: #f7f7f7;
+}
+.view-notification-section .management-btns-container .visit-link:hover .icon-container.success:hover {
+  background-color: #399c3e;
+}
+.view-notification-section .management-btns-container .visit-link:hover .icon-container.error:hover {
+  background-color: #c53d52;
+}
+.view-notification-section .management-btns-container .delete-btn-wrapper {
+  width: 100%;
+}
+.view-notification-section .management-btns-container .delete-btn-wrapper .confirm-delete-btn {
+  position: absolute;
+  left: 0;
+  top: 0;
+  background-color: #ececec;
+}
+.view-notification-section .management-btns-container .delete-btn-wrapper .confirm-delete-btn.hide {
+  display: none;
+}
+.view-notification-section .management-btns-container .delete-btn-wrapper .confirm-delete-btn .success {
+  margin-left: 16px;
+}
+
+/*# sourceMappingURL=view_notification.css.map */

@@ -1,0 +1,135 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block extra_title %}- {{ folder.friendly_name }} Folder{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/resources.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<section class="resources-section section">
+    <div class="section-container container-col align-start box-shadow">
+        <div class="parent-folder-container container-row justify-start {% if user.is_superuser %}admin{% endif %}">
+            <p class="parent-folder-text dark-text">
+                {% if parent_folders %}
+                {% for folder in parent_folders %}<a href="{% url 'folder' folder.name %}" class="dark-text">{{ folder.friendly_name }}</a> / {% endfor %}
+                {% else %}
+                {{ folder.friendly_name }}
+                {% endif %}
+            </p>
+            {% if user.is_superuser %}
+            <div class="admin-resource-container container-row">
+                <a href="{% url 'add_resource' folder.name %}" class="admin-btn icon-container label-container">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="dark-text" viewBox="0 0 16 16">
+                        <path d="M6 1a2 2 0 0 0-2 2v2.207a5.5 5.5 0 0 1 1-.185V3a1 1 0 0 1 1-1h3v2.5A1.5 1.5 0 0 0 10.5 6H13v7a1 1 0 0 1-1 1H9.743a5.5 5.5 0 0 1-1.08 1H12a2 2 0 0 0 2-2V5.414a1.5 1.5 0 0 0-.44-1.06l-2.914-2.915A1.5 1.5 0 0 0 9.586 1zm6.793 4H10.5a.5.5 0 0 1-.5-.5V2.207zM10 10.5a4.5 4.5 0 1 1-9 0a4.5 4.5 0 0 1 9 0m-4-2a.5.5 0 0 0-1 0V10H3.5a.5.5 0 0 0 0 1H5v1.5a.5.5 0 0 0 1 0V11h1.5a.5.5 0 0 0 0-1H6z" />
+                    </svg>
+                    <span class="label white-text small-text">Add Resource</span>
+                </a>
+                <a href="{% url 'add_folder' folder.name %}" class="admin-btn icon-container label-container">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="dark-text" viewBox="0 0 16 16">
+                        <path d="M2 4.5V6h3.586a.5.5 0 0 0 .353-.146L7.293 4.5L5.939 3.146A.5.5 0 0 0 5.586 3H3.5A1.5 1.5 0 0 0 2 4.5m-1 0A2.5 2.5 0 0 1 3.5 2h2.086a1.5 1.5 0 0 1 1.06.44L8.207 4H12.5A2.5 2.5 0 0 1 15 6.5v.757a5.5 5.5 0 0 0-1-.657v-.1A1.5 1.5 0 0 0 12.5 5H8.207l-1.56 1.56A1.5 1.5 0 0 1 5.585 7H2v4.5A1.5 1.5 0 0 0 3.5 13h2.707q.149.524.393 1H3.5A2.5 2.5 0 0 1 1 11.5zm15 7a4.5 4.5 0 1 1-9 0a4.5 4.5 0 0 1 9 0m-4-2a.5.5 0 0 0-1 0V11H9.5a.5.5 0 0 0 0 1H11v1.5a.5.5 0 0 0 1 0V12h1.5a.5.5 0 0 0 0-1H12z" />
+                    </svg>
+                    <span class="label white-text small-text">Add Folder</span>
+                </a>
+            </div>
+            {% endif %}
+        </div>
+
+        <div class="search-container container-row">
+            <div class="search-input-container container-row">
+                <input type="text" placeholder="Search in {{ folder.friendly_name }}" class="search-input">
+                <div class="icon-container btn-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="dark-text" viewBox="0 0 24 24">
+                        <path d="M15.5 14h-.79l-.28-.27a6.5 6.5 0 0 0 1.48-5.34c-.47-2.78-2.79-5-5.59-5.34a6.505 6.505 0 0 0-7.27 7.27c.34 2.8 2.56 5.12 5.34 5.59a6.5 6.5 0 0 0 5.34-1.48l.27.28v.79l4.25 4.25c.41.41 1.08.41 1.49 0c.41-.41.41-1.08 0-1.49zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5S14 7.01 14 9.5S11.99 14 9.5 14" />
+                    </svg>
+                    <span class="sr-only">Search Icon</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="resources-container container-col align-start">
+
+            {% for f in sub_folders %}
+            <div class="resource-wrapper container-row">
+                <a href="{% url 'folder' f.name %}" class="resource-container container-row justify-start" data-name="{{ f.name }}">
+                    <div class="icon-container">
+                        {% if f.icon %}
+                        {{ f.icon.icon|safe }}
+                        <span class="sr-only">{{ f.icon.friendly_name }} Icon</span>
+                        {% else %}
+                        <svg xmlns="http://www.w3.org/2000/svg" class="dark-text" viewBox="0 0 16 16">
+                            <path d="M2 4.5V6h3.586a.5.5 0 0 0 .353-.146L7.293 4.5L5.939 3.146A.5.5 0 0 0 5.586 3H3.5A1.5 1.5 0 0 0 2 4.5m-1 0A2.5 2.5 0 0 1 3.5 2h2.086a1.5 1.5 0 0 1 1.06.44L8.207 4H12.5A2.5 2.5 0 0 1 15 6.5v5a2.5 2.5 0 0 1-2.5 2.5h-9A2.5 2.5 0 0 1 1 11.5zM2 7v4.5A1.5 1.5 0 0 0 3.5 13h9a1.5 1.5 0 0 0 1.5-1.5v-5A1.5 1.5 0 0 0 12.5 5H8.207l-1.56 1.56A1.5 1.5 0 0 1 5.585 7z" />
+                        </svg>
+                        <span class="sr-only">Folder Icon</span>
+                        {% endif %}
+                    </div>
+                    <p class="dark-text">{{ f.friendly_name }}</p>
+                </a>
+                {% if user.is_superuser %}
+                <a href="{% url 'edit_folder' folder.name f.name %}" class="edit-resource-btn container-col">
+                    <div class="icon-container label-container gl-1">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="dark-text" viewBox="0 0 20 20">
+                            <path d="M17.181 2.927a2.975 2.975 0 0 0-4.259-.054l-9.375 9.375a2.44 2.44 0 0 0-.656 1.194l-.877 3.95a.5.5 0 0 0 .596.597l3.927-.873a2.5 2.5 0 0 0 1.234-.678l9.358-9.358a2.975 2.975 0 0 0 .052-4.153m-3.552.653a1.975 1.975 0 1 1 2.793 2.793l-.671.671l-2.793-2.792zm-1.378 1.38l2.793 2.792l-7.98 7.98a1.5 1.5 0 0 1-.744.409l-3.16.702l.708-3.183c.059-.267.193-.511.386-.704z" />
+                        </svg>
+                        <span class="label white-text small-text">Edit Folder</span>
+                    </div>
+                </a>
+                {% endif %}
+            </div>
+            {% endfor %}
+
+            {% for r in resources %}
+            <div class="resource-wrapper container-row">
+                <a href="{{ r.url }}" target="_blank" class="resource-container container-row justify-start" data-name="{{ r.name }}">
+                    <div class="icon-container">
+                        {% if r.icon %}
+                        {{ r.icon.icon|safe }}
+                        <span class="sr-only">{{ r.icon.friendly_name }} Icon</span>
+                        {% else %}
+                        <svg xmlns="http://www.w3.org/2000/svg" class="dark-text" viewBox="0 0 16 16">
+                            <path d="M5 1a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V5.414a1.5 1.5 0 0 0-.44-1.06L9.647 1.439A1.5 1.5 0 0 0 8.586 1zM4 3a1 1 0 0 1 1-1h3v2.5A1.5 1.5 0 0 0 9.5 6H12v7a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1zm7.793 2H9.5a.5.5 0 0 1-.5-.5V2.207z" />
+                        </svg>
+                        <span class="sr-only">Document Icon</span>
+                        {% endif %}
+                    </div>
+                    <p class="dark-text">{{ r.friendly_name }}</p>
+                </a>
+                {% if user.is_superuser %}
+                <a href="{% url 'edit_resource' folder.name r.name %}" class="edit-resource-btn container-col">
+                    <div class="icon-container label-container gl-1">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="dark-text" viewBox="0 0 20 20">
+                            <path d="M17.181 2.927a2.975 2.975 0 0 0-4.259-.054l-9.375 9.375a2.44 2.44 0 0 0-.656 1.194l-.877 3.95a.5.5 0 0 0 .596.597l3.927-.873a2.5 2.5 0 0 0 1.234-.678l9.358-9.358a2.975 2.975 0 0 0 .052-4.153m-3.552.653a1.975 1.975 0 1 1 2.793 2.793l-.671.671l-2.793-2.792zm-1.378 1.38l2.793 2.792l-7.98 7.98a1.5 1.5 0 0 1-.744.409l-3.16.702l.708-3.183c.059-.267.193-.511.386-.704z" />
+                        </svg>
+                        <span class="label white-text small-text">Edit Resource</span>
+                    </div>
+                </a>
+                {% endif %}
+            </div>
+            {% endfor %}
+
+            {% if no_resources_or_folders %}
+            <div class="empty-folder-text visit-link">
+                <div class="icon-container">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="dark-text" viewBox="0 0 16 16">
+                        <path d="M2 4.5v4.6l.924-1.6A3 3 0 0 1 5.522 6h6.393A1.5 1.5 0 0 0 10.5 5H7a.5.5 0 0 1-.354-.146L4.94 3.146A.5.5 0 0 0 4.586 3H3.5A1.5 1.5 0 0 0 2 4.5m5.069 9.495L7 14H3.5A2.5 2.5 0 0 1 1 11.5v-7A2.5 2.5 0 0 1 3.5 2h1.086a1.5 1.5 0 0 1 1.06.44L7.207 4H10.5a2.5 2.5 0 0 1 2.458 2.041c1.647.3 2.586 2.18 1.704 3.709l-1.585 2.745a3 3 0 0 1-2.598 1.5zM5.522 7A2 2 0 0 0 3.79 8l-1.585 2.745a1.5 1.5 0 0 0 1.299 2.25h6.975a2 2 0 0 0 1.732-1l1.585-2.745a1.5 1.5 0 0 0-1.3-2.25z" />
+                    </svg>
+                    <span class="sr-only">Empty Folder Icon</span>
+                </div>
+                <p class="dark-text-2">Empty Folder</p>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</section>
+
+{% endblock %}
+
+{% block postloadjs %}
+{{ block.super }}
+
+<script src="{% static 'js/resources.js' %}"></script>
+
+{% endblock %}

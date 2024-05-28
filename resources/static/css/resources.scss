@@ -1,0 +1,127 @@
+@import '../../../static/css/variables';
+@import '../../../static/css/mixins';
+
+.resources-section {
+    background-color: $gl-1;
+    padding: 40px 0;
+    min-height: calc(100vh - 100px);
+    justify-content: flex-start;
+
+    .section-container {
+        background-color: $gl-1;
+        border-radius: $round-corner-3;
+        padding: 32px;
+        gap: 12px;
+    }
+
+    .parent-folder-container {
+        width: 100%;
+        gap: 4px;
+
+        &.admin {
+            .parent-folder-text {
+                width: calc(100% - 120px);
+            }
+
+            .admin-resource-container {
+                gap: 12px;
+
+                .admin-btn {
+                    cursor: pointer;
+                    width: 48px;
+                    height: 48px;
+                    padding: 12px;
+                }
+            }
+        }
+    }
+
+    .empty-folder-text {
+        gap: 8px;
+        margin-top: 4px;
+    }
+
+    .search-container {
+        width: 100%;
+        gap: 16px;
+        margin-bottom: 12px;
+
+        .search-input-container {
+            width: 100%;
+            position: relative;
+
+            .icon-container {
+                position: absolute;
+                left: 12px;
+                top: 50%;
+                translate: 0 -50%;
+            }
+
+            input {
+                width: 100%;
+                font-size: $small-font-size;
+                padding: 12px;
+                padding-left: 42px;
+                border: none;
+                outline: none;
+                color: $gd-1;
+                background-color: $gl-2;
+                border-radius: $round-corner-1;
+
+                &:focus {
+                    outline: 2px solid $red-1;
+                }
+
+                &:focus + .icon-container path{
+                    fill: $red-1;
+                }
+            }
+        }
+    }
+
+    .resources-container {
+        width: 100%;
+        gap: 12px;
+    }
+
+    .resource-wrapper {
+        width: 100%;
+        position: relative;
+
+        .resource-container {
+            width: 100%;
+            gap: 16px;
+            border-radius: $round-corner-2;
+            background-color: $gl-1;
+            position: relative;
+            cursor: pointer;
+            padding: 12px;
+    
+            &:hover {
+                background-color: $gl-2;
+    
+                .icon-container {
+                    background-color: $gl-1;
+                }
+            }
+    
+            &.hide {
+                display: none;
+            }
+        }
+
+        .edit-resource-btn {
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            translate: 0 -50%;
+            cursor: pointer;
+            display: none;
+            z-index: 999;
+        }
+
+        &:hover .edit-resource-btn {
+            display: flex;
+        }
+    }
+}

@@ -1,0 +1,167 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block extra_title %}- {{ profile }}{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/profile.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<section class="profile-section section h-100b">
+    <div class="profile-section-container section-container container-col">
+        <div class="items-container container-col">
+            {% if profile_editable %}
+            <div class="management-btns-container container-col align-start box-shadow">
+                <a href="{% url 'edit_profile' user_profile.user.username %}" class="visit-link">
+                    <span class="icon-container dark-text">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="dark-text" viewBox="0 0 256 256">
+                            <path d="M152 80a8 8 0 0 1 8-8h88a8 8 0 0 1 0 16h-88a8 8 0 0 1-8-8m96 40h-88a8 8 0 0 0 0 16h88a8 8 0 0 0 0-16m0 48h-64a8 8 0 0 0 0 16h64a8 8 0 0 0 0-16m-96.25 22a8 8 0 0 1-5.76 9.74a7.6 7.6 0 0 1-2 .26a8 8 0 0 1-7.75-6c-6.16-23.94-30.34-42-56.25-42s-50.09 18.05-56.25 42a8 8 0 0 1-15.5-4c5.59-21.71 21.84-39.29 42.46-48a48 48 0 1 1 58.58 0c20.63 8.71 36.88 26.29 42.47 48M80 136a32 32 0 1 0-32-32a32 32 0 0 0 32 32" />
+                        </svg>
+                        <span class="sr-only">Edit Profile Icon</span>
+                    </span>
+                    <span class="item-text dark-text small-text">Edit Profile</span>
+                </a>
+                <a href="{% url 'edit_profile_picture' user_profile.user.username %}" class="visit-link">
+                    <span class="icon-container dark-text">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="dark-text" viewBox="0 0 256 256">
+                            <path d="M128 24a104 104 0 1 0 104 104A104.11 104.11 0 0 0 128 24M74.08 197.5a64 64 0 0 1 107.84 0a87.83 87.83 0 0 1-107.84 0M96 120a32 32 0 1 1 32 32a32 32 0 0 1-32-32m97.76 66.41a79.66 79.66 0 0 0-36.06-28.75a48 48 0 1 0-59.4 0a79.66 79.66 0 0 0-36.06 28.75a88 88 0 1 1 131.52 0" />
+                        </svg>
+                        <span class="sr-only">Profile Picture Icon</span>
+                    </span>
+                    <span class="item-text dark-text small-text">Edit Profile Picture</span>
+                </a>
+            </div>
+            {% endif %}
+
+            <div class="personal-container item-container container-row space-between box-shadow">
+                <div class="img-name-container container-row">
+                    <div class="personal-img-container img-container">
+                        {% if user_profile.image %}
+                        <img src="{{ user_profile.image.url }}" alt="{{ user_profile.first_name }}'s Profile Image" class="img-100a">
+                        {% else %}
+                        <img src="{{ MEDIA_URL }}default-profile-picture.png" alt="Default Profile Picture" class="img-100a">
+                        {% endif %}
+                    </div>
+
+                    <h2 class="profile-name dark-text">{{ user_profile.first_name }} {{ user_profile.last_name }}</h2>
+                </div>
+            </div>
+
+            {% if user_profile.bio %}
+            <div class="about-container item-container container-col align-start box-shadow">
+                <h3 class="item-heading dark-text">About</h3>
+                <div class="item-text-container container-col align-start">
+                    <div class="bio-text container-col align-start">
+                        {{ user_profile.bio|linebreaks }}
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+
+            {% if info_section %}
+            <div class="info-container item-container container-col align-start box-shadow">
+                <h3 class="item-heading dark-text">Info</h3>
+                <div class="item-text-container container-col align-start">
+                    {% if user_profile.email %}
+                    <p class="visit-link">
+                        <span class="icon-container btn-icon-left">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="dark-text" viewBox="0 0 16 16">
+                                <path d="M2 6.038V11a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2zM4 4h8a1 1 0 0 1 1 1v.74L8 8.432L3 5.74V5a1 1 0 0 1 1-1M3 6.876L7.763 9.44a.5.5 0 0 0 .474 0L13 6.876V11a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1z" />
+                            </svg>
+                            <span class="sr-only">Email Icon</span>
+                        </span>
+                        <span class="dark-text small-text">
+                            {{ user_profile.email }}
+                        </span>
+                    </p>
+                    {% endif %}
+                    {% if user_profile.phone_number %}
+                    <p class="visit-link">
+                        <span class="icon-container btn-icon-left">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="dark-text" viewBox="0 0 16 16">
+                                <path d="M3.714 5.258C3.523 4 4.41 2.87 5.765 2.456a.99.99 0 0 1 1.214.598l.435 1.16a1 1 0 0 1-.26 1.088L5.86 6.487a.5.5 0 0 0-.152.47l.012.052l.031.13a7.3 7.3 0 0 0 .729 1.805a7.3 7.3 0 0 0 1.296 1.627l.04.036a.5.5 0 0 0 .482.103l1.673-.527a1 1 0 0 1 1.072.319l.792.961c.33.4.29.988-.089 1.341c-1.037.967-2.463 1.165-3.455.368a12.7 12.7 0 0 1-3.024-3.529a12.4 12.4 0 0 1-1.554-4.385m3.043 1.765l1.072-.984a2 2 0 0 0 .521-2.176l-.434-1.16A1.99 1.99 0 0 0 5.473 1.5c-1.683.515-3.034 2.024-2.748 3.909c.2 1.316.661 2.99 1.678 4.738a13.7 13.7 0 0 0 3.262 3.805c1.488 1.195 3.474.787 4.764-.415a1.98 1.98 0 0 0 .179-2.708l-.792-.962a2 2 0 0 0-2.144-.636l-1.389.437a6.6 6.6 0 0 1-.936-1.223a6.3 6.3 0 0 1-.59-1.421" />
+                            </svg>
+                            <span class="sr-only">Phone Icon</span>
+                        </span>
+                        <span class="dark-text small-text">
+                            {{ user_profile.phone_number }}
+                        </span>
+                    </p>
+                    {% endif %}
+                    {% for link in user_profile_links %}
+                    <p class="visit-link">
+                        <span class="icon-container btn-icon-left">
+                            {{ link.icon|safe }}
+                            <span class="sr-only">{{ link.icon_name }} Icon</span>
+                        </span>
+                        <a href="{{ link.url }}" class="red-text small-text">
+                            {{ link.friendly_name }}
+                        </a>
+                    </p>
+                    {% endfor %}
+                </div>
+            </div>
+            {% endif %}
+            
+            {% if teaching_section %}
+            <div class="teaching-container item-container container-col align-start box-shadow">
+                <h3 class="item-heading dark-text">Teaching</h3>
+                <div class="item-text-container container-col align-start">
+                    {% if category_and_classes %}
+                    {% for category in category_and_classes %}
+                    {% if category.user_classes %}
+                    <div class="text-container container-col align-start">
+                        <p class="text-heading visit-link">
+                            <span class="icon-container btn-icon-left">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="dark-text" viewBox="0 0 1024 1024">
+                                    <path d="M1021.06 839.968L833.798 493.664c19.104-43.36 29.792-91.28 29.792-141.696C863.59 157.664 706.07.16 511.782.16c-194.336 0-351.84 157.52-351.84 351.808c0 51.632 11.216 100.624 31.184 144.784L3.03 839.808c-6.065 11.024-5.057 24.624 2.527 34.688c7.6 10.033 20.432 14.752 32.687 11.873l160.624-36.848l54.976 153.12c4.288 11.904 15.152 20.16 27.744 21.088c.817.064 1.6.096 2.368.096a32.002 32.002 0 0 0 28.192-16.88L475.844 701.97a355.152 355.152 0 0 0 35.92 1.808c11.12 0 22.095-.576 32.943-1.6l167.248 305.008a31.984 31.984 0 0 0 30.56 16.527c12.56-1.008 23.376-9.248 27.631-21.088l54.976-153.12l160.624 36.848c12.32 2.975 25.024-1.809 32.624-11.809c7.632-9.984 8.656-23.52 2.688-34.576zm-731.282 73.376L249.52 801.183c-5.504-15.248-21.471-24.128-37.28-20.368l-118.8 27.248l135.41-246.976c44.592 60.24 107.952 105.68 181.44 127.793zm-65.553-561.377c0-158.544 129.009-287.536 287.568-287.536c158.544 0 287.536 128.992 287.536 287.536S670.337 639.535 511.793 639.535c-158.576 0-287.568-129.024-287.568-287.568m587.52 428.847c-15.872-3.744-31.776 5.12-37.28 20.367l-40.529 112.976l-123.152-224.56c75.44-22.096 140.337-68.735 185.505-130.735L931.137 808.19z" />
+                                </svg>
+                                <span class="sr-only">Badge Icon</span>
+                            </span>
+                            <span class="dark-text">
+                                {{ category.category.friendly_name }}
+                            </span>
+                        </p>
+                        {% for class in category.user_classes %}
+                        <p class="text-item dark-text small-text">{{ class.friendly_name }}</p>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                    {% endfor %}
+                    {% endif %}
+
+                    {% if teaching_states %}
+                    <div class="text-cointainer container-col align-start">
+                        <p class="text-heading visit-link">
+                            <span class="icon-container btn-icon-left">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="dark-text" viewBox="0 0 16 16">
+                                    <path d="M9.5 7a1.5 1.5 0 1 0-3 0a1.5 1.5 0 0 0 3 0M14 7c0 2.874-3.097 6.016-4.841 7.558a1.74 1.74 0 0 1-2.318 0C5.097 13.016 2 9.874 2 7a6 6 0 1 1 12 0m-1 0A5 5 0 0 0 3 7c0 1.108.615 2.395 1.57 3.683c.934 1.258 2.087 2.377 2.933 3.126a.74.74 0 0 0 .994 0c.846-.749 2-1.867 2.933-3.126C12.385 9.395 13 8.108 13 7" />
+                                </svg>
+                                <span class="sr-only">Location Icon</span>
+                            </span>
+                            <span class="dark-text">
+                                States
+                            </span>
+                        </p>
+                        {% for state in teaching_states %}
+                        <p class="text-item dark-text small-text">{{ state.code }} - {{ state.friendly_name }}</p>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</section>
+
+
+{% endblock %}
+
+{% block postloadjs %}
+{{ block.super }}
+
+{% endblock %}

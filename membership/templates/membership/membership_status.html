@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+
+{% load static %}
+{% block extra_title %}- Membership Status{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/membership_status.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<section class="membership-status-section account-section section h-100b">
+    <div class="section-container container-col">
+        <div class="account-container container-col align-start box-shadow">
+            <div class="info-container container-col align-start">
+                <h2 class="dark-text subheading">Membership Status</h2>
+                <p class="description-text dark-text small-text">
+                    {{ membership.status.description }}
+                </p>
+            </div>
+            <div class="form">
+                <div class="info-group container-row space-between">
+                    <p class="dark-text small-text info-left">Package:</p>
+                    <p class="end-date-text dark-text small-text info-right">{{ membership.package.friendly_name }}</p>
+                </div>
+                {% if renewal_status %}
+                <div class="info-group container-row space-between">
+                    <p class="dark-text small-text info-left">Status:</p>
+                    <p class="color-success status-text dark-text small-text info-right">{{ active_status }}</p>
+                </div>
+                <div class="info-group container-row space-between">
+                    <p class="dark-text small-text info-left">Renewal Status:</p>
+                    <p class="color-{{ membership.status.color }} status-text dark-text small-text info-right">{{ renewal_status }}</p>
+                </div>
+                {% else %}
+                <div class="info-group container-row space-between">
+                    <p class="dark-text small-text info-left">Status:</p>
+                    <p class="color-{{ membership.status.color }} status-text dark-text small-text info-right">{{ membership.status.friendly_name }}</p>
+                </div>
+                {% endif %}
+                <div class="info-group container-row space-between">
+                    <p class="dark-text small-text info-left">Expiry Date:</p>
+                    {% if membership.end_date %}
+                    <p class="end-date-text dark-text small-text info-right">{{ membership.end_date|date:"m/d/Y" }}</p>
+                    {% else %}
+                    <p class="end-date-text dark-text small-text info-right">--/--/----</p>
+                    {% endif %}
+                </div>
+                <div class="info-group container-row space-between">
+                    
+                    <p class="dark-text small-text info-left">Purchase Date:</p>
+                    {% if membership.purchase_date %}
+                    <p class="purchase-date-text dark-text small-text info-right">{{ membership.purchase_date|date:"m/d/Y" }}</p>
+                    {% else %}
+                    <p class="purchase-date-text dark-text small-text info-right">--/--/----</p>
+                    {% endif %}
+                </div>
+                <div class="info-group container-row space-between">
+                    <p class="dark-text small-text info-left">Start Date:</p>
+                    {% if membership.start_date %}
+                    <p class="start-date-text dark-text small-text info-right">{{ membership.start_date|date:"m/d/Y" }}</p>
+                    {% else %}
+                    <p class="start-date-text dark-text small-text info-right">--/--/----</p>
+                    {% endif %}
+                </div>
+                {% if renewal_button %}
+                <a href="{% url 'membership_redirect' %}" class="btn">{{ renewal_button }}</a>
+                {% endif %}
+            </div>
+        </div>
+        <a href="{% url 'contact' %}" class="dark-text small-text">Having a Problem?</a>
+    </div>
+</section>
+
+{% endblock %}
+
+{% block postloadjs %}
+{{ block.super }}
+
+<script src="{% static 'js/membership_status.js' %}"></script>
+
+{% endblock %}

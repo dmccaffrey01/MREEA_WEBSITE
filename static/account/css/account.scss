@@ -1,0 +1,35 @@
+@import '../../../static/css/variables';
+@import '../../../static/css/mixins';
+
+.account-section {
+    background-color: $gl-1;
+    position: relative;
+    overflow: hidden;
+
+    .section-container {
+        gap: 16px;
+    }
+
+    .account-container {
+        width: 600px;
+        padding: 36px;
+        gap: 28px;
+        background-color: $gl-1;
+        border-radius: $round-corner-3;
+        border-top: 2px solid $red-1;
+
+        &.small-container {
+            width: 480px;
+            padding: 24px;
+            gap: 20px;
+        }
+    }
+
+    .info-container {
+        gap: 4px;
+    }
+
+    .form-container {
+        width: 100%;
+    }
+}

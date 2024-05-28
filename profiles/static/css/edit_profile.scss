@@ -1,0 +1,106 @@
+@import '../../../static/css/variables';
+@import '../../../static/css/mixins';
+
+.profile-section {
+    justify-content: flex-start;
+    padding: 40px 0;
+    
+    .items-container {
+        width: 600px;
+        gap: 32px;
+    }
+
+    .item-container  {
+        width: 100%;
+        padding: 24px;
+        gap: 16px;
+        background-color: $gl-1;
+        border-radius: $round-corner-3;
+
+        .item-heading {
+            font-weight: 600;
+        }
+
+        .text-item {
+            padding-left: 48px;
+        }
+
+        .item-text-container {
+            gap: 16px;
+            width: 100%;
+        }
+    }
+
+    .input-container {
+        width: calc(50% - 4px);
+
+        input[type="text"],
+        input[type="email"],
+        select,
+        textarea {
+            font-size: $font-size;
+            border-radius: $round-corner-2;
+            padding-left: 16px;
+        }
+    }
+
+    .info-visit-link {
+        .icon-container {
+            cursor: pointer;
+
+            &.hide {
+                display: none;
+            }
+        }
+    }
+
+    .category-heading {
+        font-weight: 600;
+        margin: 12px 0 4px 0;
+    }
+
+    .bio-container {
+        position: relative;
+
+        .bio-count-text {
+            position: absolute;
+            right: 4px;
+            bottom: 4px;
+            font-size: 0.9rem;
+        }
+    }
+
+    .management-btns-container {
+        gap: 4px;
+        width: 100%;
+        padding: 16px;
+        border-radius: $round-corner-3;
+        background-color: $gl-1;
+
+        .visit-link {
+            justify-content: flex-start;
+            width: 100%;
+            border-radius: $round-corner-2;
+            background-color: $gl-1;
+            padding: 12px;
+            gap: 8px;
+            cursor: pointer;
+
+            &:hover {
+                background-color: $gl-2;
+
+                .icon-container {
+                    background-color: $gl-1;
+
+                    &.success:hover {
+                        background-color: $success;
+                    }
+
+                    &.error:hover {
+                        background-color: $error;
+                    }
+                }
+            }
+        }
+    }
+}

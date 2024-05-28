@@ -1,0 +1,18 @@
+@import '../../../static/css/variables';
+@import '../../../static/css/mixins';
+@import '../../../static/account/css/account';
+
+.membership-status-section {
+
+    .form {
+        gap: 12px;
+    }
+    
+    .info-group {
+        width: 100%;
+    }
+
+    .info-left {
+        font-weight: 600;
+    }
+}

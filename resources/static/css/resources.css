@@ -1,0 +1,104 @@
+.resources-section {
+  background-color: #f7f7f7;
+  padding: 40px 0;
+  min-height: calc(100vh - 100px);
+  justify-content: flex-start;
+}
+.resources-section .section-container {
+  background-color: #f7f7f7;
+  border-radius: 16px;
+  padding: 32px;
+  gap: 12px;
+}
+.resources-section .parent-folder-container {
+  width: 100%;
+  gap: 4px;
+}
+.resources-section .parent-folder-container.admin .parent-folder-text {
+  width: calc(100% - 120px);
+}
+.resources-section .parent-folder-container.admin .admin-resource-container {
+  gap: 12px;
+}
+.resources-section .parent-folder-container.admin .admin-resource-container .admin-btn {
+  cursor: pointer;
+  width: 48px;
+  height: 48px;
+  padding: 12px;
+}
+.resources-section .empty-folder-text {
+  gap: 8px;
+  margin-top: 4px;
+}
+.resources-section .search-container {
+  width: 100%;
+  gap: 16px;
+  margin-bottom: 12px;
+}
+.resources-section .search-container .search-input-container {
+  width: 100%;
+  position: relative;
+}
+.resources-section .search-container .search-input-container .icon-container {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  translate: 0 -50%;
+}
+.resources-section .search-container .search-input-container input {
+  width: 100%;
+  font-size: 1.1rem;
+  padding: 12px;
+  padding-left: 42px;
+  border: none;
+  outline: none;
+  color: #242424;
+  background-color: #ececec;
+  border-radius: 8px;
+}
+.resources-section .search-container .search-input-container input:focus {
+  outline: 2px solid #c64f4a;
+}
+.resources-section .search-container .search-input-container input:focus + .icon-container path {
+  fill: #c64f4a;
+}
+.resources-section .resources-container {
+  width: 100%;
+  gap: 12px;
+}
+.resources-section .resource-wrapper {
+  width: 100%;
+  position: relative;
+}
+.resources-section .resource-wrapper .resource-container {
+  width: 100%;
+  gap: 16px;
+  border-radius: 12px;
+  background-color: #f7f7f7;
+  position: relative;
+  cursor: pointer;
+  padding: 12px;
+}
+.resources-section .resource-wrapper .resource-container:hover {
+  background-color: #ececec;
+}
+.resources-section .resource-wrapper .resource-container:hover .icon-container {
+  background-color: #f7f7f7;
+}
+.resources-section .resource-wrapper .resource-container.hide {
+  display: none;
+}
+.resources-section .resource-wrapper .edit-resource-btn {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  translate: 0 -50%;
+  cursor: pointer;
+  display: none;
+  z-index: 999;
+}
+.resources-section .resource-wrapper:hover .edit-resource-btn {
+  display: flex;
+}
+
+/*# sourceMappingURL=resources.css.map */

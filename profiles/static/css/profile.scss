@@ -1,0 +1,100 @@
+@import '../../../static/css/variables';
+@import '../../../static/css/mixins';
+
+.profile-section {
+    justify-content: flex-start;
+    padding: 40px 0;
+    
+    .items-container {
+        width: 600px;
+        gap: 32px;
+    }
+
+    .item-container  {
+        width: 100%;
+        padding: 24px;
+        gap: 16px;
+        background-color: $gl-1;
+        border-radius: $round-corner-3;
+
+        .item-heading {
+            font-weight: 600;
+        }
+
+        .text-item {
+            padding-left: 48px;
+        }
+
+        .item-text-container {
+            gap: 12px;
+        }
+
+        .bio-text {
+            gap: calc($small-font-size);
+
+            p {
+                font-size: $small-font-size;
+                color: $gd-1;
+            }
+        }
+    }
+
+    .personal-container {
+        position: relative;
+
+        .img-name-container {
+            gap: 16px;
+        }
+
+        .personal-img-container {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+        }
+
+        .profile-name {
+            font-size: 1.8rem;
+            font-weight: 600;
+        }
+    }
+
+    .management-btns-container {
+        gap: 4px;
+        width: 100%;
+        padding: 16px;
+        border-radius: $round-corner-3;
+        background-color: $gl-1;
+
+        .save-btn {
+            padding: 0;
+            background-color: $gl-1;
+            border: none;
+        }
+
+        .visit-link {
+            justify-content: flex-start;
+            width: 100%;
+            border-radius: $round-corner-2;
+            background-color: $gl-1;
+            padding: 12px;
+            gap: 8px;
+            cursor: pointer;
+
+            &:hover {
+                background-color: $gl-2;
+
+                .icon-container {
+                    background-color: $gl-1;
+
+                    &.success:hover {
+                        background-color: $success;
+                    }
+
+                    &.error:hover {
+                        background-color: $error;
+                    }
+                }
+            }
+        }
+    }
+}
