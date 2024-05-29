@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from django.core.mail import send_mail
+from django.core.mail import EmailMessage
 import os
 from django.contrib import messages
 
@@ -30,9 +30,20 @@ def send_contact_email(data):
     """
     Send a contact email
     """
-    subject = 'New Contact Message'
-    message = f"Name: {data['name']}\nEmail: "\
-              f"{data['email']}\n\n{data['message']}"
-    from_email = os.environ.get('EMAIL_HOST_USER')
-    to_email = [os.environ.get('EMAIL_HOST_USER')]
-    send_mail(subject, message, from_email, to_email)
+    subject = 'New Contact Message From Website'
+    message = f"Name: {data['name']}\n"\
+              f"Email: {data['email']}\n\n"\
+              f"Message: {data['message']}"
+    from_email = os.environ.get('CONTACT_FROM_EMAIL')
+    to_email = [os.environ.get('CONTACT_TO_EMAIL')]
+    reply_to = [data['email']]
+    
+    email = EmailMessage(
+        subject,
+        message,
+        from_email,
+        to_email,
+        reply_to=reply_to,
+    )
+
+    email.send()

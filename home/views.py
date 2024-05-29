@@ -13,7 +13,7 @@ def index(request):
     today = timezone.now().date()
 
     if membership_update_status.last_updated_date < today:
-        expired_membership_status = MembershipStatus.objects.get(name="expired")
+        expired_membership_status = MembershipStatus.objects.filter(name="expired").first()
 
         expired_memberships = Membership.objects.filter(end_date__lt=today).exclude(status=expired_membership_status)
         for membership in expired_memberships:

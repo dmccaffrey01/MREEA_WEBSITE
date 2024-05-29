@@ -20,14 +20,14 @@ def membership_redirect(request):
         if form.is_valid():
             package_name = form.cleaned_data["package_name"]
             
-            membership_package = MembershipPackage.objects.get(name=package_name)
+            membership_package = MembershipPackage.objects.filter(name=package_name).first()
 
             if not membership:
                 membership = Membership.objects.create(user=user)
             if membership.is_valid():
-                membership_status = MembershipStatus.objects.get(name="active_renewal_pending")
+                membership_status = MembershipStatus.objects.filter(name="active_renewal_pending").first()
             else:
-                membership_status = MembershipStatus.objects.get(name="pending")
+                membership_status = MembershipStatus.objects.filter(name="pending").first()
             membership.package = membership_package
             membership.status = membership_status
             membership.make_pending()

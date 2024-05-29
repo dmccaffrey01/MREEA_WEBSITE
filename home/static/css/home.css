@@ -8,7 +8,10 @@
 .home-hero-section {
   min-height: calc(100vh - 100px);
   position: relative;
-  background-color: #ececec;
+  background: #f7f7f7;
+}
+.home-hero-section .visit-link .icon-container {
+  background-color: #f7f7f7;
 }
 .home-hero-section .bg-div {
   position: absolute;
@@ -16,7 +19,7 @@
   top: calc(50% - 250px);
   width: 50vw;
   height: 500px;
-  background-color: #f7f7f7;
+  background: #ececec;
   z-index: 1;
   border-radius: 0 24px 24px 0;
 }
@@ -52,7 +55,7 @@
 }
 .home-hero-section .card-group-container .card {
   border-radius: 16px;
-  background-color: #f7f7f7;
+  background: #ececec;
   width: 100%;
 }
 .home-hero-section .card-group-container .card-1,
@@ -78,7 +81,7 @@
   width: 112px;
   height: 112px;
   border-radius: 50%;
-  background-color: #ececec;
+  background-color: #f7f7f7;
   bottom: calc(50% + 25px);
   left: -56px;
   padding: 20px;
@@ -273,30 +276,6 @@
 }
 .testimonial-section .carousel-btns-container .carousel-direction-btn.no-move .dark-text path {
   fill: #777777;
-}
-
-.cta-section {
-  padding: 120px 0;
-  background: linear-gradient(90deg, rgb(73, 73, 73) 25%, rgb(119, 119, 119) 75%);
-}
-.cta-section .text-container {
-  width: 600px;
-  gap: 16px;
-}
-.cta-section .text-container .message-text {
-  line-height: calc(1.3rem + 8px);
-}
-.cta-section .text-container .message-heading-text {
-  font-weight: 400;
-  font-size: 2.5rem;
-}
-.cta-section .btns-container {
-  gap: 16px;
-  height: 186px;
-}
-.cta-section .btns-container .icon-container {
-  width: 40px;
-  height: 40px;
 }
 
 /*# sourceMappingURL=home.css.map */

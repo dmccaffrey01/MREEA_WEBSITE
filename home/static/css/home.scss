@@ -12,7 +12,13 @@
 .home-hero-section {
     min-height: calc(100vh - 100px);
     position: relative;
-    background-color: $gl-2;
+    background: $gl-1;
+
+    .visit-link {
+        .icon-container {
+            background-color: $gl-1;
+        }
+    }
 
     .bg-div {
         position: absolute;
@@ -20,7 +26,7 @@
         top: calc(50% - ((340px + 160px) / 2));
         width: 50vw;
         height: calc(340px + 160px);
-        background-color: $gl-1;
+        background: $gl-2;
         z-index: 1;
         border-radius: 0 $round-corner-5 $round-corner-5 0;
     }
@@ -64,7 +70,7 @@
 
         .card {
             border-radius: $round-corner-3;
-            background-color: $gl-1;
+            background: $gl-2;
             width: 100%;
         }
 
@@ -92,7 +98,7 @@
                 width: 112px;
                 height: 112px;
                 border-radius: 50%;
-                background-color: $gl-2;
+                background-color: $gl-1;
                 bottom: calc(50% + 25px);
                 left: calc((112px / 2) - 112px);
                 padding: 20px;
