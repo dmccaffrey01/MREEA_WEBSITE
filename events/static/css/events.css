@@ -1,6 +1,7 @@
 .events-section {
-  padding: 20px 0 40px 0;
+  padding: 40px 0 80px 0;
   justify-content: flex-start;
+  background: linear-gradient(0deg, rgb(247, 247, 247) 0%, rgb(238, 238, 238) 50%, rgb(247, 247, 247) 100%);
 }
 .events-section .section-container {
   gap: 24px;
@@ -37,7 +38,7 @@
   cursor: pointer;
 }
 .events-section .events-wrapper .add-event-btn:hover {
-  background-color: #ececec;
+  background-color: #ededed;
 }
 .events-section .events-wrapper .add-event-btn:hover .icon-container {
   background-color: #f7f7f7;

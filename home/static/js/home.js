@@ -1,13 +1,13 @@
 const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
         if (entry.isIntersecting) {
-            entry.target.classList.add("show");
+            entry.target.classList.add("observer-show");
         }
     });
-});
+}, { threshold: 0.5 });
 
-const hiddenElements = document.querySelectorAll(".hidden");
-hiddenElements.forEach((el) => observer.observe(el));
+const observerElements = document.querySelectorAll(".observer");
+observerElements.forEach((el) => observer.observe(el));
 
 document.addEventListener("DOMContentLoaded", () => {
     let scroller = document.querySelector(".scroller");
@@ -22,23 +22,11 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 });
 
-let moveCarousel = (num) => {
-    let carouselWrapper = document.querySelector(".carousel-wrapper");
-    let carouselDots = document.querySelectorAll(".carousel-dots-container");
-}
-
 document.addEventListener("DOMContentLoaded", () => {
-    let carouselDots = document.querySelectorAll(".carousel-dot");
+    let viewAllBtn = document.querySelector(".view-all-btn");
+    let benefitCardsWrapper = document.querySelector(".benefit-cards-wrapper");
 
-    carouselDots.forEach(dot => {
-        dot.addEventListener("click", () => {
-            let carouselNum = dot.getAttribute("data-num");
-
-            if (carouselPos != "current") {
-                moveCarousel(carouselNum);
-            } else {
-                return;
-            }
-        });
+    viewAllBtn.addEventListener("click", () => {
+        benefitCardsWrapper.classList.add("view-all");
     });
 });

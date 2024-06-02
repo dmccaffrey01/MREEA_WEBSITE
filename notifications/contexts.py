@@ -5,6 +5,54 @@ from django.utils import timezone
 from django.contrib import messages
 
 
+def custom_messages(request):
+    # Get messages from Django messages framework
+    django_messages = messages.get_messages(request)
+
+    if not django_messages:
+        return {}
+    
+    messages_list = []
+
+    for message in django_messages:
+        message_icon_html = get_message_icon_html(message.tags)
+        m = {
+            'message': message.message,
+            'tags': message.tags,
+            'icon': message_icon_html
+        }
+        messages_list.append(m)
+
+    return ({'custom_messages': messages_list})
+
+
+def get_message_icon_html(tags):
+    if tags == 'success':
+        html = """
+        <svg xmlns="http://www.w3.org/2000/svg" class="white-text" viewBox="0 0 24 24">
+            <path fill-rule="evenodd" d="M20.207 6.793a1 1 0 0 1 0 1.414l-9.5 9.5a1 1 0 0 1-1.414 0l-4.5-4.5a1 1 0 0 1 1.414-1.414L10 15.586l8.793-8.793a1 1 0 0 1 1.414 0" clip-rule="evenodd" />
+        </svg>
+        """
+    elif tags == 'error':
+        html = """
+        <svg xmlns="http://www.w3.org/2000/svg" class="white-text" viewBox="0 0 24 24">
+            <path fill-rule="evenodd" d="M17.707 7.707a1 1 0 0 0-1.414-1.414L12 10.586L7.707 6.293a1 1 0 0 0-1.414 1.414L10.586 12l-4.293 4.293a1 1 0 1 0 1.414 1.414L12 13.414l4.293 4.293a1 1 0 1 0 1.414-1.414L13.414 12z" clip-rule="evenodd" />
+        </svg>
+        """
+    elif tags == 'warning':
+        html = """
+        <svg xmlns="http://www.w3.org/2000/svg" class="white-text" viewBox="0 0 24 24">
+            <path fill-rule="evenodd" d="M11.001 15.046a1 1 0 0 0 1.998 0l.477-10.501a1.478 1.478 0 1 0-2.952 0zM12 18a1.5 1.5 0 0 0-1.5 1.5v.01a1.5 1.5 0 0 0 1.5 1.5h.01a1.5 1.5 0 0 0 1.5-1.5v-.01a1.5 1.5 0 0 0-1.5-1.5z" clip-rule="evenodd" />
+        </svg>
+        """
+    else:
+        html = """
+        <svg xmlns="http://www.w3.org/2000/svg" class="white-text" viewBox="0 0 56 56">
+            <path d="M24.332 13.246c0 1.875 1.5 3.375 3.375 3.375c1.898 0 3.375-1.5 3.352-3.375c0-1.898-1.454-3.398-3.352-3.398c-1.875 0-3.375 1.5-3.375 3.398M18.52 44.231c0 1.148.82 1.921 2.062 1.921h14.836c1.242 0 2.063-.773 2.063-1.922c0-1.124-.82-1.898-2.063-1.898h-4.711V24.449c0-1.265-.82-2.11-2.039-2.11h-7.43c-1.218 0-2.039.75-2.039 1.876c0 1.172.82 1.945 2.04 1.945h5.132v16.172h-5.789c-1.242 0-2.062.773-2.062 1.898" />
+        </svg>
+        """
+    return html
+
 def notifications(request):
     new_notifications = None
     cleared_notifications = None

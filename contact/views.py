@@ -1,9 +1,8 @@
 from django.shortcuts import render, redirect
-from django.core.mail import EmailMessage
 import os
 from django.contrib import messages
-
 from .forms import ContactForm
+from django.core.mail import EmailMessage, BadHeaderError
 
 
 def contact(request):
@@ -13,12 +12,12 @@ def contact(request):
         form = ContactForm(request.POST)
         if form.is_valid():
             form.save()
-            send_contact_email(form.cleaned_data)
-            messages.success(request, 'Your message has been sent, Thank you')
-            return redirect('home')
+            if send_contact_email(form.cleaned_data, request):  # Pass request to send_contact_email
+                messages.success(request, 'Your message has been sent. Thank you!')
+            return redirect('contact')
     else:
         form = ContactForm()
-
+    
     context = {
         'form': form,
     }
@@ -26,7 +25,7 @@ def contact(request):
     return render(request, 'contact/contact.html', context)
 
 
-def send_contact_email(data):
+def send_contact_email(data, request):
     """
     Send a contact email
     """
@@ -45,5 +44,13 @@ def send_contact_email(data):
         to_email,
         reply_to=reply_to,
     )
-
-    email.send()
+    
+    try:
+        email.send()
+        return True
+    except BadHeaderError:
+        messages.error(request, 'Invalid header found.')
+        return False
+    except Exception as e:
+        messages.error(request, 'There was an error sending your message. Please try again later.')
+        return False

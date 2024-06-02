@@ -2,8 +2,16 @@
 @import '../../../static/css/mixins';
 
 .cta-section {
-    padding: 120px 0;
-    background: linear-gradient(90deg, rgba(73,73,73,1) 25%, rgba(119,119,119,1) 75%);
+    padding: 80px 0;
+    background: linear-gradient(180deg, rgba(73,73,73,1) 25%, rgba(119,119,119,1) 75%);
+
+    .section-container {
+        gap: 40px;
+
+        .white-text {
+            text-align: center;
+        }
+    }
 
     .text-container {
         width: 600px;
@@ -20,8 +28,7 @@
     }
 
     .btns-container {
-        gap: 16px;
-        height: 186px;
+        gap: 12px;
 
         .icon-container {
             width: 40px;

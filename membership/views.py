@@ -3,7 +3,6 @@ from .models import Membership, MembershipPackage, MembershipStatus
 from .forms import MembershipPackageForm
 from django.utils import timezone
 from django.contrib.auth.decorators import login_required
-from notifications.views import handle_notification
 from django.contrib import messages
 
 
@@ -97,14 +96,6 @@ def membership_redirect_success(request):
         renewal_status = False
 
     checkout_url = membership.package.checkout_url
-
-    notification_data = {
-        'category': 'membership',
-        'notification_type': 'pending',
-        'notify_admins': True,
-    }
-
-    handle_notification(request, notification_data)
 
     context = {
         'membership': membership,

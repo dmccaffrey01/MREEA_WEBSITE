@@ -6,19 +6,28 @@ from resources.models import Resource, Folder, Icon
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from .forms import EventForm
+from .tasks import new_event_notifications
+import os
 
 
 def events(request):
+    all_events = Event.objects.all()
+
+    public_events = all_events.filter(is_public=True)
+
     current_datetime = timezone.now()
     tomorrow_start = current_datetime + timedelta(days=1)
     tomorrow_start = tomorrow_start.replace(hour=0, minute=0, second=0, microsecond=0)
 
-    upcoming_events = Event.objects.filter(date__gte=tomorrow_start).order_by('date')
-    past_events = Event.objects.filter(date__lt=tomorrow_start).order_by('-date')
+    upcoming_events = public_events.filter(date__gte=tomorrow_start).order_by('date')
+    past_events = public_events.filter(date__lt=tomorrow_start).order_by('-date')
+
+    draft_events = all_events.filter(is_public=False)
 
     context = {
         'upcoming_events': upcoming_events,
         'past_events': past_events,
+        'draft_events': draft_events,
     }
 
     return render(request, 'events/events.html', context)
@@ -43,6 +52,7 @@ def add_event(request):
             event_date = form_data['date']
             event_time = form_data['time']
             event_location = form_data['location']
+            event_is_public = form_data['is_public']
 
             events_parent_folder = Folder.objects.filter(name='events').first()
             folder_icon = Icon.objects.filter(name='folder').first()
@@ -89,8 +99,12 @@ def add_event(request):
                 register_link=new_register_resource,
                 google_drive_link=new_google_drive_resource,
                 folder=new_folder,
+                is_public=event_is_public,
             )
             new_event.save()
+
+            if event_is_public:
+                new_event_notifications.delay(new_event.name) # celery task
 
             messages.success(request, 'Successfully created event!')
 
@@ -136,6 +150,7 @@ def edit_event(request, event_name):
             event_date = form_data['date']
             event_time = form_data['time']
             event_location = form_data['location']
+            event_is_public = form_data['is_public']
 
             register_url = request.POST.get("id_register_url", '')
             register_name = request.POST.get("id_register_name", '')
@@ -171,6 +186,8 @@ def edit_event(request, event_name):
                     icon=google_drive_icon
                 )
             new_google_drive_resource.save()
+
+            previous_is_public = selected_event.is_public
             
             selected_event.friendly_name = event_friendly_name
             selected_event.description = event_description
@@ -179,7 +196,11 @@ def edit_event(request, event_name):
             selected_event.location = event_location
             selected_event.google_drive_link = new_google_drive_resource
             selected_event.register_link = new_register_resource
+            selected_event.is_public = event_is_public
             selected_event.save()
+
+            if (not previous_is_public) and event_is_public:
+                new_event_notifications.delay(selected_event.name) # celery task
 
             messages.success(request, 'Successfully edited event!')
 

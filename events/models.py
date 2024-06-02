@@ -16,6 +16,7 @@ class Event(models.Model):
     register_link = models.OneToOneField(Resource, null=True, blank=True, on_delete=models.SET_NULL, related_name='event_register_link')
     google_drive_link = models.OneToOneField(Resource, null=True, blank=True, on_delete=models.SET_NULL, related_name='event_google_drive_link')
     folder = models.ForeignKey(Folder, null=True, blank=True, on_delete=models.SET_NULL)
+    is_public = models.BooleanField(default=False)
 
     def __str__(self):
         return self.friendly_name

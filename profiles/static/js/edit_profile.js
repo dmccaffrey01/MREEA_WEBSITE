@@ -87,8 +87,6 @@ let listenForInfoLinkHover = (infoLink) => {
 
     let icon = infoLink.querySelector(".icon-container");
 
-    console.log(infoLink, icon);
-
     infoLink.insertBefore(deleteBtn, icon);
 
     icon.addEventListener("mouseenter", () => {

@@ -29,9 +29,9 @@ a {
 }
 
 .box-shadow {
-    box-shadow: 3px 3px 8px 2px rgba(0,0,0,0.30);
-    -webkit-box-shadow: 3px 3px 8px 2px rgba(0,0,0,0.30);
-    -moz-box-shadow: 3px 3px 8px 2px rgba(0,0,0,0.30);
+    box-shadow: 0px 4px 18px 2px rgba(#494949, 0.25);
+    -webkit-box-shadow: 0px 4px 18px 2px rgba(#494949, 0.25);
+    -moz-box-shadow: 0px 4px 18px 2px rgb(#494949,0.25);
 }
 
 .container-row {
@@ -544,7 +544,7 @@ a {
             color: $yellow-1;
 
             &:visited {
-                color: $yellow-1;
+                color: $gd-1;
             }
         }
 
@@ -722,7 +722,9 @@ a {
     color: $success;
     
     &.icon-container {
-        background-color: $success;
+        path {
+            fill: $success;
+        }
     }
 }
 
@@ -730,7 +732,9 @@ a {
     color: $info;
     
     &.icon-container {
-        background-color: $info;
+        path {
+            fill: $info;
+        }
     }
 }
 
@@ -738,7 +742,9 @@ a {
     color: $warning;
     
     &.icon-container {
-        background-color: $warning;
+        path {
+            fill: $warning;
+        }
     }
 }
 
@@ -747,7 +753,9 @@ a {
     color: $error;
     
     &.icon-container {
-        background-color: $error;
+        path {
+            fill: $error;
+        }
     }
 }
 
@@ -934,7 +942,7 @@ h1.logo-text {
 
 .profile-container {
     width: 300px;
-    gap: 16px;
+    gap: 24px;
     position: relative;
 
     .small-icon {
@@ -948,7 +956,7 @@ h1.logo-text {
 
         .profile-menu-container {
             position: absolute;
-            top: calc(100% + 10px);
+            top: calc(100% + 12px);
             right: 0;
             width: 300px;
             padding: 12px;
@@ -964,12 +972,17 @@ h1.logo-text {
     
             .profile-menu-btn {
                 width: 100%;
-                gap: 10px;
+                gap: 12px;
+                padding: 8px;
                 justify-content: flex-start;
-                border-radius: $round-corner-2;
+                border-radius: $round-corner-1;
     
                 &:hover {
                     background-color: $gl-2;
+
+                    .icon-container {
+                        background-color: $gl-1;
+                    }
                 }
     
             }
@@ -986,15 +999,15 @@ h1.logo-text {
         .profile-btn-container {
             cursor: pointer;
             position: relative;
-            width: 60px;
-            height: 60px;
+            width: 64px;
+            height: 64px;
     
             .profile-btn-icon {
                 position: absolute;
                 right: 0px;
                 bottom: 0px;
-                width: 18px;
-                height: 18px;
+                width: 24px;
+                height: 24px;
                 border-radius: 50%;
                 background-color: $gl-2;
                 outline: 4px solid $gl-1;
@@ -1002,7 +1015,7 @@ h1.logo-text {
                 transition: all 0.3s ease;
     
                 .dark-text {
-                    font-size: 0.6rem;
+                    font-size: 0.7rem;
                 }
             }
     
@@ -1024,12 +1037,12 @@ h1.logo-text {
         .notification-btn-container {
             cursor: pointer;
             position: relative;
-            width: 60px;
-            height: 60px;
+            width: 64px;
+            height: 64px;
     
             .notification-icon-container {
-                width: 60px;
-                height: 60px;
+                width: 64px;
+                height: 64px;
                 border-radius: 50%;
                 background-color: $gl-2;
                 padding: 12px;
@@ -1040,14 +1053,14 @@ h1.logo-text {
                 position: absolute;
                 right: 0px;
                 bottom: 0px;
-                width: 18px;
-                height: 18px;
+                width: 24px;
+                height: 24px;
                 border-radius: 50%;
                 outline: 4px solid $gl-1;
                 outline-offset: -1px;
     
                 .white-text {
-                    font-size: 0.6rem;
+                    font-size: 0.7rem;
                 }
 
                 &.hide {
@@ -1058,7 +1071,7 @@ h1.logo-text {
     
         .notification-menu-container {
             position: absolute;
-            top: calc(100% + 10px);
+            top: calc(100% + 12px);
             right: 0;
             width: 300px;
             padding: 12px;
@@ -1161,7 +1174,7 @@ h1.logo-text {
                     }
 
                     .item-heading {
-                        width: calc(100% - 96px);
+                        width: calc(100% - 80px);
                         font-size: 1rem;
     
                         &.gap {
@@ -1170,8 +1183,9 @@ h1.logo-text {
                     }
     
                     .item-age {
-                        width: 40px;
                         color: $gd-2;
+                        width: 24px;
+                        text-align: end;
                     }
                 }
             }
@@ -1186,16 +1200,23 @@ h1.logo-text {
         
         &.show-new {
             .new-type-heading-container {
-                box-shadow: inset 0 2px 0 0 $red-1;
                 background-color: $gl-2;
 
-                svg {
-                    fill: $red-1;
+                .icon-container {
+                    background-color: $gl-1;
+                    path {
+                        fill: $red-1;
+                    }
                 }
             }
 
             .new-notifications-container {
                 display: flex;
+
+                .delete-notification-btn,
+                .unclear-notification-btn {
+                    display: none;
+                }
             }
 
             .cleared-notifications-container {
@@ -1213,16 +1234,22 @@ h1.logo-text {
 
         &.show-cleared {
             .cleared-type-heading-container {
-                box-shadow: inset 0 2px 0 0 $red-1;
                 background-color: $gl-2;
 
-                svg {
-                    fill: $red-1;
+                .icon-container {
+                    background-color: $gl-1;
+                    path {
+                        fill: $red-1;
+                    }
                 }
             }
 
             .cleared-notifications-container {
                 display: flex;
+
+                .clear-notification-btn {
+                    display: none;
+                }
             }
 
             .new-notifications-container {

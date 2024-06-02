@@ -106,4 +106,50 @@
             }
         }
     }
+
+    .toggle-input-wrapper {
+        $toggle-height: 40px;
+        $toggle-padding: 4px;
+        $toggle-btn-height: calc($toggle-height - ($toggle-padding * 2));
+
+        .toggle-container {
+            overflow: hidden;
+            background-color: $gl-2;
+            width: calc($toggle-height * 2);
+            height: $toggle-height;
+            border-radius: $toggle-height;
+
+            input {
+                display: none;
+            }
+        }
+
+        .toggle {
+            width: 100%;
+            height: 100%;
+            cursor: pointer;
+            position: relative;
+            background-color: $error;
+
+            &::before {
+                position: absolute;
+                content: "";
+                background-color: $gl-1;
+                width: $toggle-btn-height;
+                height: $toggle-btn-height;
+                border-radius: 50%;
+                top: $toggle-padding;
+                left: $toggle-padding;
+                transition: all 0.3s ease;
+            }
+        }
+
+        input:checked + .toggle {
+            background-color: $success;
+
+            &::before {
+                translate: $toggle-height 0;
+            }
+        }
+    }
 }

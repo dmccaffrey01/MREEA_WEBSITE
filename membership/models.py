@@ -5,15 +5,6 @@ import datetime
 from django.utils import timezone
 
 
-class MembershipUpdateStatus(models.Model):
-    friendly_name = models.CharField(max_length=254)
-    name = models.CharField(max_length=254, unique=True,)
-    last_updated_date = models.DateField(default=None, null=True, blank=True)
-
-    def __str__(self):
-        return f'{self.last_updated_date.strftime("%m-%d-%Y")}'
-
-
 class MembershipPackage(models.Model):
     name = models.CharField(max_length=254, unique=True)
     friendly_name = models.CharField(max_length=254)

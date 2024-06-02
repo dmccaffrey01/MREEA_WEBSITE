@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Membership, MembershipPackage, MembershipStatus, MembershipUpdateStatus
+from .models import Membership, MembershipPackage, MembershipStatus
 from django import forms
 
 
@@ -31,13 +31,6 @@ class MembershipStatusAdmin(admin.ModelAdmin):
     ordering = ('friendly_name', 'name',)
 
 
-class MembershipUpdateStatusAdmin(admin.ModelAdmin):
-    class Meta:
-        verbose_name_plural = 'Membership Updates'
-    
-    list_display = ('friendly_name', 'name', 'last_updated_date',)
-                       
-
 class MembershipAdmin(admin.ModelAdmin):
     fields = ('user', 'package', 'status', 'purchase_date', 'start_date', 'end_date',)
     list_display = ('get_user_first_name', 'get_user_last_name', 'get_user_email', 'purchase_date', 'end_date',)
@@ -58,4 +51,3 @@ class MembershipAdmin(admin.ModelAdmin):
 admin.site.register(Membership, MembershipAdmin)
 admin.site.register(MembershipPackage, MembershipPackageAdmin)
 admin.site.register(MembershipStatus, MembershipStatusAdmin)
-admin.site.register(MembershipUpdateStatus, MembershipUpdateStatusAdmin)

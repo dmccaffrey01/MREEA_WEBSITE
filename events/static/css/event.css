@@ -85,5 +85,39 @@
 .event-section .management-btns-container .delete-btn-wrapper .confirm-delete-btn .success {
   margin-left: 16px;
 }
+.event-section .toggle-input-wrapper .toggle-container {
+  overflow: hidden;
+  background-color: #ececec;
+  width: 80px;
+  height: 40px;
+  border-radius: 40px;
+}
+.event-section .toggle-input-wrapper .toggle-container input {
+  display: none;
+}
+.event-section .toggle-input-wrapper .toggle {
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  position: relative;
+  background-color: #c53d52;
+}
+.event-section .toggle-input-wrapper .toggle::before {
+  position: absolute;
+  content: "";
+  background-color: #f7f7f7;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  top: 4px;
+  left: 4px;
+  transition: all 0.3s ease;
+}
+.event-section .toggle-input-wrapper input:checked + .toggle {
+  background-color: #399c3e;
+}
+.event-section .toggle-input-wrapper input:checked + .toggle::before {
+  translate: 40px 0;
+}
 
 /*# sourceMappingURL=event.css.map */

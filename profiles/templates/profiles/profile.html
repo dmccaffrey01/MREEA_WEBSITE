@@ -13,6 +13,21 @@
 <section class="profile-section section h-100b">
     <div class="profile-section-container section-container container-col">
         <div class="items-container container-col">
+
+            <div class="personal-container item-container container-row space-between box-shadow">
+                <div class="img-name-container container-row">
+                    <div class="personal-img-container img-container">
+                        {% if user_profile.image %}
+                        <img src="{{ user_profile.image.url }}" alt="{{ user_profile.first_name }}'s Profile Image" class="img-100a">
+                        {% else %}
+                        <img src="{{ MEDIA_URL }}default-profile-picture.png" alt="Default Profile Picture" class="img-100a">
+                        {% endif %}
+                    </div>
+
+                    <h2 class="profile-name dark-text">{{ user_profile.first_name }} {{ user_profile.last_name }}</h2>
+                </div>
+            </div>
+
             {% if profile_editable %}
             <div class="management-btns-container container-col align-start box-shadow">
                 <a href="{% url 'edit_profile' user_profile.user.username %}" class="visit-link">
@@ -35,20 +50,6 @@
                 </a>
             </div>
             {% endif %}
-
-            <div class="personal-container item-container container-row space-between box-shadow">
-                <div class="img-name-container container-row">
-                    <div class="personal-img-container img-container">
-                        {% if user_profile.image %}
-                        <img src="{{ user_profile.image.url }}" alt="{{ user_profile.first_name }}'s Profile Image" class="img-100a">
-                        {% else %}
-                        <img src="{{ MEDIA_URL }}default-profile-picture.png" alt="Default Profile Picture" class="img-100a">
-                        {% endif %}
-                    </div>
-
-                    <h2 class="profile-name dark-text">{{ user_profile.first_name }} {{ user_profile.last_name }}</h2>
-                </div>
-            </div>
 
             {% if user_profile.bio %}
             <div class="about-container item-container container-col align-start box-shadow">

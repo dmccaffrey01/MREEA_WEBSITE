@@ -17,6 +17,176 @@
         </div>
 
         <div class="events-wrapper container-col align-start">
+            {% if draft_events and user.is_superuser %}
+            <div class="heading-container visit-link">
+                <div class="icon-container">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="dark-text" viewBox="0 0 16 16">
+                        <path d="M5.248 8.997a.748.748 0 1 0 0-1.497a.748.748 0 0 0 0 1.497m.749 1.752a.748.748 0 1 1-1.497 0a.748.748 0 0 1 1.497 0M8 8.997A.748.748 0 1 0 8 7.5a.748.748 0 0 0 0 1.497m.749 1.752a.748.748 0 1 1-1.497 0a.748.748 0 0 1 1.497 0m2-1.752a.748.748 0 1 0 0-1.497a.748.748 0 0 0 0 1.497M14 4.5A2.5 2.5 0 0 0 11.5 2h-7A2.5 2.5 0 0 0 2 4.5v7A2.5 2.5 0 0 0 4.5 14h7a2.5 2.5 0 0 0 2.5-2.5zM3 6h10v5.5a1.5 1.5 0 0 1-1.5 1.5h-7A1.5 1.5 0 0 1 3 11.5zm1.5-3h7A1.5 1.5 0 0 1 13 4.5V5H3v-.5A1.5 1.5 0 0 1 4.5 3" />
+                    </svg>
+                    <span class="sr-only">Events Icon</span>
+                </div>
+                <h2 class="subheading dark-text">Draft Events &amp; Meetings</h2>
+            </div>
+
+            <div class="upcoming-events-container container-row align-start justify-start">
+
+                <div class="events-container container-col justify-start align-start">
+                    {% for event in draft_events %}
+                    {% if forloop.counter0|divisibleby:2 %}
+                    <div class="event-container container-col align-start box-shadow">
+                        <div class="event-heading-container visit-link">
+                            <div class="icon-container">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="dark-text" viewBox="0 0 16 16">
+                                    <path d="M5.5 5a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1zm0 3a.5.5 0 0 0-.5.5v2a.5.5 0 0 0 .5.5h5a.5.5 0 0 0 .5-.5v-2a.5.5 0 0 0-.5-.5zm.5 2V9h4v1zm8-5.5A2.5 2.5 0 0 0 11.5 2h-7A2.5 2.5 0 0 0 2 4.5v7A2.5 2.5 0 0 0 4.5 14h7a2.5 2.5 0 0 0 2.5-2.5zm-11 7v-7A1.5 1.5 0 0 1 4.5 3h7A1.5 1.5 0 0 1 13 4.5v7a1.5 1.5 0 0 1-1.5 1.5h-7A1.5 1.5 0 0 1 3 11.5" />
+                                </svg>
+                                <span class="sr-only">Events Icon</span>
+                            </div>
+                            <h2 class="event-heading-text dark-text">{{ event.friendly_name }}</h2>
+                        </div>
+                        {% if event.description %}
+                        <div class="description-text container-col align-start">
+                            {{ event.description|linebreaks }}
+                        </div>
+                        {% endif %}
+                        {% if event.date %}
+                        <div class="date-container visit-link">
+                            <div class="icon-container">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="dark-text" viewBox="0 0 16 16">
+                                    <path d="M14 4.5A2.5 2.5 0 0 0 11.5 2h-7A2.5 2.5 0 0 0 2 4.5v7A2.5 2.5 0 0 0 4.5 14h2v-1h-2A1.5 1.5 0 0 1 3 11.5V6h10v5.5a1.5 1.5 0 0 1-1.5 1.5h-2v1h2a2.5 2.5 0 0 0 2.5-2.5zM4.5 3h7A1.5 1.5 0 0 1 13 4.5V5H3v-.5A1.5 1.5 0 0 1 4.5 3m3.781 11.914A.5.5 0 0 0 8.5 14.5v-3.432l.68.566a.5.5 0 0 0 .64-.768l-1.5-1.25a.5.5 0 0 0-.64 0l-1.5 1.25a.5.5 0 1 0 .64.768l.68-.566V14.5a.5.5 0 0 0 .496.5h.008a.5.5 0 0 0 .277-.086M8.75 7.75a.75.75 0 1 1-1.5 0a.75.75 0 0 1 1.5 0" />
+                                </svg>
+                                <span class="sr-only">Date Icon</span>
+                            </div>
+                            <p class="date-text dark-text small-text">{{ event.date }}</p>
+                        </div>
+                        {% endif %}
+                        {% if event.time %}
+                        <div class="time-container visit-link">
+                            <div class="icon-container">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="dark-text" viewBox="0 0 16 16">
+                                    <path d="M8 2a6 6 0 1 1 0 12A6 6 0 0 1 8 2m0 1a5 5 0 1 0 0 10A5 5 0 0 0 8 3m-.498 2a.5.5 0 0 1 .491.41l.009.09V8H9.5a.5.5 0 0 1 .09.992L9.5 9H7.502a.5.5 0 0 1-.492-.41l-.008-.09v-3a.5.5 0 0 1 .5-.5" />
+                                </svg>
+                                <span class="sr-only">Clock Icon</span>
+                            </div>
+                            <p class="time-text dark-text small-text">{{ event.time }}</p>
+                        </div>
+                        {% endif %}
+                        {% if event.location %}
+                        <div class="location-container visit-link">
+                            <div class="icon-container">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="dark-text" viewBox="0 0 16 16">
+                                    <path d="M9.5 7a1.5 1.5 0 1 0-3 0a1.5 1.5 0 0 0 3 0M14 7c0 2.874-3.097 6.016-4.841 7.558a1.74 1.74 0 0 1-2.318 0C5.097 13.016 2 9.874 2 7a6 6 0 1 1 12 0m-1 0A5 5 0 0 0 3 7c0 1.108.615 2.395 1.57 3.683c.934 1.258 2.087 2.377 2.933 3.126a.74.74 0 0 0 .994 0c.846-.749 2-1.867 2.933-3.126C12.385 9.395 13 8.108 13 7" />
+                                </svg>
+                                <span class="sr-only">Location Icon</span>
+                            </div>
+                            <p class="time-text dark-text small-text">{{ event.location }}</p>
+                        </div>
+                        {% endif %}
+                        {% if event.register_link and is_membership_valid %}
+                        <a target="_blank" href="{{ event.register_link.url }}" class="visit-link">
+                            <div class="icon-container">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="dark-text" viewBox="0 0 16 16">
+                                    <path d="M9.5 4h1a3.5 3.5 0 0 1 .194 6.995l-.192.005l-1 .005a.5.5 0 0 1-.094-.992l.09-.008L10.5 10a2.5 2.5 0 0 0 .164-4.995L10.5 5h-1a.5.5 0 0 1-.09-.992zh1zm-4 0h1a.5.5 0 0 1 .09.992L6.5 5h-1a2.5 2.5 0 0 0-.164 4.995L5.5 10h1a.5.5 0 0 1 .09.992L6.5 11h-1a3.5 3.5 0 0 1-.192-6.995zh1zm0 3l5 .002a.5.5 0 0 1 .09.992l-.09.008L5.5 8a.5.5 0 0 1-.09-.992z" />
+                                </svg>
+                                <span class="sr-only">Link Icon</span>
+                            </div>
+                            <div class="time-text dark-text red-text small-text">Register</div>
+                        </a>
+                        {% endif %}
+                        {% if user.is_superuser %}
+                        <a href="{% url 'edit_event' event.name %}" class="link-container visit-link">
+                            <p class="time-text dark-text small-text">Edit</p>
+                            <div class="icon-container">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="dark-text" viewBox="0 0 20 20">
+                                    <path d="M17.181 2.927a2.975 2.975 0 0 0-4.259-.054l-9.375 9.375a2.44 2.44 0 0 0-.656 1.194l-.877 3.95a.5.5 0 0 0 .596.597l3.927-.873a2.5 2.5 0 0 0 1.234-.678l9.358-9.358a2.975 2.975 0 0 0 .052-4.153m-3.552.653a1.975 1.975 0 1 1 2.793 2.793l-.671.671l-2.793-2.792zm-1.378 1.38l2.793 2.792l-7.98 7.98a1.5 1.5 0 0 1-.744.409l-3.16.702l.708-3.183c.059-.267.193-.511.386-.704z" />
+                                </svg>
+                                <span class="sr-only">Edit Icon</span>
+                            </div>
+                        </a>
+                        {% endif %}
+                    </div>
+                    {% endif %}
+                    {% endfor %}
+                </div>
+    
+                <div class="events-container container-col justify-start align-start">
+                    {% for event in draft_events %}
+                    {% if not forloop.counter0|divisibleby:2 %}
+                    <div class="event-container container-col align-start box-shadow">
+                        <div class="event-heading-container visit-link">
+                            <div class="icon-container">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="dark-text" viewBox="0 0 16 16">
+                                    <path d="M5.5 5a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1zm0 3a.5.5 0 0 0-.5.5v2a.5.5 0 0 0 .5.5h5a.5.5 0 0 0 .5-.5v-2a.5.5 0 0 0-.5-.5zm.5 2V9h4v1zm8-5.5A2.5 2.5 0 0 0 11.5 2h-7A2.5 2.5 0 0 0 2 4.5v7A2.5 2.5 0 0 0 4.5 14h7a2.5 2.5 0 0 0 2.5-2.5zm-11 7v-7A1.5 1.5 0 0 1 4.5 3h7A1.5 1.5 0 0 1 13 4.5v7a1.5 1.5 0 0 1-1.5 1.5h-7A1.5 1.5 0 0 1 3 11.5" />
+                                </svg>
+                                <span class="sr-only">Events Icon</span>
+                            </div>
+                            <h2 class="event-heading-text dark-text">{{ event.friendly_name }}</h2>
+                        </div>
+                        {% if event.description %}
+                        <div class="description-text container-col align-start">
+                            {{ event.description|linebreaks }}
+                        </div>
+                        {% endif %}
+                        {% if event.date %}
+                        <div class="date-container visit-link">
+                            <div class="icon-container">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="dark-text" viewBox="0 0 16 16">
+                                    <path d="M14 4.5A2.5 2.5 0 0 0 11.5 2h-7A2.5 2.5 0 0 0 2 4.5v7A2.5 2.5 0 0 0 4.5 14h2v-1h-2A1.5 1.5 0 0 1 3 11.5V6h10v5.5a1.5 1.5 0 0 1-1.5 1.5h-2v1h2a2.5 2.5 0 0 0 2.5-2.5zM4.5 3h7A1.5 1.5 0 0 1 13 4.5V5H3v-.5A1.5 1.5 0 0 1 4.5 3m3.781 11.914A.5.5 0 0 0 8.5 14.5v-3.432l.68.566a.5.5 0 0 0 .64-.768l-1.5-1.25a.5.5 0 0 0-.64 0l-1.5 1.25a.5.5 0 1 0 .64.768l.68-.566V14.5a.5.5 0 0 0 .496.5h.008a.5.5 0 0 0 .277-.086M8.75 7.75a.75.75 0 1 1-1.5 0a.75.75 0 0 1 1.5 0" />
+                                </svg>
+                                <span class="sr-only">Date Icon</span>
+                            </div>
+                            <p class="date-text dark-text small-text">{{ event.date }}</p>
+                        </div>
+                        {% endif %}
+                        {% if event.time %}
+                        <div class="time-container visit-link">
+                            <div class="icon-container">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="dark-text" viewBox="0 0 16 16">
+                                    <path d="M8 2a6 6 0 1 1 0 12A6 6 0 0 1 8 2m0 1a5 5 0 1 0 0 10A5 5 0 0 0 8 3m-.498 2a.5.5 0 0 1 .491.41l.009.09V8H9.5a.5.5 0 0 1 .09.992L9.5 9H7.502a.5.5 0 0 1-.492-.41l-.008-.09v-3a.5.5 0 0 1 .5-.5" />
+                                </svg>
+                                <span class="sr-only">Clock Icon</span>
+                            </div>
+                            <p class="time-text dark-text small-text">{{ event.time }}</p>
+                        </div>
+                        {% endif %}
+                        {% if event.location %}
+                        <div class="location-container visit-link">
+                            <div class="icon-container">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="dark-text" viewBox="0 0 16 16">
+                                    <path d="M9.5 7a1.5 1.5 0 1 0-3 0a1.5 1.5 0 0 0 3 0M14 7c0 2.874-3.097 6.016-4.841 7.558a1.74 1.74 0 0 1-2.318 0C5.097 13.016 2 9.874 2 7a6 6 0 1 1 12 0m-1 0A5 5 0 0 0 3 7c0 1.108.615 2.395 1.57 3.683c.934 1.258 2.087 2.377 2.933 3.126a.74.74 0 0 0 .994 0c.846-.749 2-1.867 2.933-3.126C12.385 9.395 13 8.108 13 7" />
+                                </svg>
+                                <span class="sr-only">Location Icon</span>
+                            </div>
+                            <p class="time-text dark-text small-text">{{ event.location }}</p>
+                        </div>
+                        {% endif %}
+                        {% if event.register_link and is_membership_valid %}
+                        <a target="_blank" href="{{ event.register_link.url }}" class="visit-link">
+                            <div class="icon-container">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="dark-text" viewBox="0 0 16 16">
+                                    <path d="M9.5 4h1a3.5 3.5 0 0 1 .194 6.995l-.192.005l-1 .005a.5.5 0 0 1-.094-.992l.09-.008L10.5 10a2.5 2.5 0 0 0 .164-4.995L10.5 5h-1a.5.5 0 0 1-.09-.992zh1zm-4 0h1a.5.5 0 0 1 .09.992L6.5 5h-1a2.5 2.5 0 0 0-.164 4.995L5.5 10h1a.5.5 0 0 1 .09.992L6.5 11h-1a3.5 3.5 0 0 1-.192-6.995zh1zm0 3l5 .002a.5.5 0 0 1 .09.992l-.09.008L5.5 8a.5.5 0 0 1-.09-.992z" />
+                                </svg>
+                                <span class="sr-only">Link Icon</span>
+                            </div>
+                            <div class="time-text dark-text red-text small-text">Register</div>
+                        </a>
+                        {% endif %}
+                        {% if user.is_superuser %}
+                        <a href="{% url 'edit_event' event.name %}" class="link-container visit-link">
+                            <p class="time-text dark-text small-text">Edit</p>
+                            <div class="icon-container">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="dark-text" viewBox="0 0 20 20">
+                                    <path d="M17.181 2.927a2.975 2.975 0 0 0-4.259-.054l-9.375 9.375a2.44 2.44 0 0 0-.656 1.194l-.877 3.95a.5.5 0 0 0 .596.597l3.927-.873a2.5 2.5 0 0 0 1.234-.678l9.358-9.358a2.975 2.975 0 0 0 .052-4.153m-3.552.653a1.975 1.975 0 1 1 2.793 2.793l-.671.671l-2.793-2.792zm-1.378 1.38l2.793 2.792l-7.98 7.98a1.5 1.5 0 0 1-.744.409l-3.16.702l.708-3.183c.059-.267.193-.511.386-.704z" />
+                                </svg>
+                                <span class="sr-only">Edit Icon</span>
+                            </div>
+                        </a>
+                        {% endif %}
+                    </div>
+                    {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+            {% endif %}
             {% if upcoming_events or user.is_superuser %}
             <div class="heading-container visit-link">
                 <div class="icon-container">

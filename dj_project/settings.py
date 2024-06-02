@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 from pathlib import Path
 import os
 import dj_database_url
+from celery.schedules import crontab
 if os.path.isfile('env.py'):
     import env
 
@@ -57,6 +58,8 @@ INSTALLED_APPS = [
     'custom_admin',
     'announcements',
     'storages',
+    'django_celery_beat',
+    'django_celery_results',
 ]
 
 ACCOUNT_AUTHENTICATION_METHOD = 'email'
@@ -126,6 +129,7 @@ TEMPLATES = [
                 'profiles.contexts.profile',
                 'membership.contexts.membership_context',
                 'notifications.contexts.notifications',
+                'notifications.contexts.custom_messages',
             ],
         },
     },
@@ -216,3 +220,25 @@ EMAIL_USE_TLS = True  # Add this line to enable TLS
 EMAIL_HOST_USER = os.environ.get('HOST_USERNAME')
 DEFAULT_FROM_EMAIL = os.environ.get('HOST_EMAIL')
 EMAIL_HOST_PASSWORD = os.environ.get('HOST_EMAIL_PASSWORD')
+
+
+# REDIS Configuration
+
+CELERY_BROKER_URL = os.environ.get('CELERY_BROKER_URL')
+
+CELERY_ACCEPT_CONTENT = ['json']
+
+CELERY_TASK_SERIALIZER = 'json'
+
+CELERY_TIMEZONE = 'America/New_York'
+
+CELERY_RESULT_BACKEND = 'django-db'
+CELERY_RESULT_EXTENDED = True
+
+CELERY_BEAT_SCHEDULE = {
+    'check-membership-task': {
+        'task': 'membership.tasks.check_memberships',
+        'schedule': crontab(hour=6, minute=0),
+    },
+}
+
