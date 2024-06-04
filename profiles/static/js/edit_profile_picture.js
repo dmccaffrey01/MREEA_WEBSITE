@@ -1,3 +1,13 @@
+function generateRandomString(length) {
+    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    let result = '';
+    const charactersLength = characters.length;
+    for (let i = 0; i < length; i++) {
+        result += characters.charAt(Math.floor(Math.random() * charactersLength));
+    }
+    return result;
+}
+
 document.addEventListener("DOMContentLoaded", () => {
     let imageNotMoved = true;
     let imageNotScaled = true;
@@ -26,9 +36,11 @@ document.addEventListener("DOMContentLoaded", () => {
     
         let section = document.querySelector(".profile-section");
     
-        let username = section.getAttribute("data-username");
+        let name = section.getAttribute("data-name");
+
+        let randomStr = generateRandomString(8);
     
-        let file  = new File([dataArr], `${username}_profile_picture.jpg`, {type: mime})
+        let file  = new File([dataArr], `${name}_${randomStr}_profile_picture.jpg`, {type: mime})
     
         return file
     }

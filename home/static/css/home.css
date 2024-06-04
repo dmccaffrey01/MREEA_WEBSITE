@@ -502,19 +502,20 @@
 }
 .testimonial-section .carousel-wrapper {
   position: relative;
-  width: 740px;
+  width: 760px;
   height: 466px;
   overflow: hidden;
-  -webkit-mask: linear-gradient(90deg, transparent, white 70px, white calc(100% - 70px), transparent);
-  mask: linear-gradient(90deg, transparent, white 70px, white calc(100% - 70px), transparent);
+  -webkit-mask: linear-gradient(90deg, transparent, white 80px, white calc(100% - 80px), transparent);
+  mask: linear-gradient(90deg, transparent, white 80px, white calc(100% - 80px), transparent);
 }
 .testimonial-section .carousel-container {
   height: fit-content;
   position: absolute;
-  left: 70px;
+  left: 80px;
   top: 40px;
-  gap: 80px;
+  gap: 160px;
   width: max-content;
+  transition: all 0.5s ease;
 }
 .testimonial-section .testimonial-container {
   width: 600px;
@@ -526,9 +527,15 @@
   height: 386px;
 }
 .testimonial-section .testimonial-container .testimonial-text {
+  display: -webkit-box;
   line-height: calc(1.3rem + 8px);
   font-size: 1.5rem;
   color: #777777;
+  overflow: hidden;
+  min-height: 230px;
+  -webkit-line-clamp: 8;
+  -webkit-box-orient: vertical;
+  width: 100%;
 }
 .testimonial-section .testimonial-container .author-container {
   gap: 16px;

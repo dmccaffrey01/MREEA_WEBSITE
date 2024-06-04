@@ -10,9 +10,9 @@
 
 {% block content %}
 
-<section class="profile-section section h-100b" data-username="{{ user.username }}">
+<section class="profile-section section h-100b" data-name="{{ user_profile.first_name }}_{{ user_profile.last_name }}">
     <div class="profile-section-container section-container container-col">
-        <form action="{% url 'edit_profile_picture' user.username %}" enctype="multipart/form-data" method="POST" class="items-container container-col form">
+        <form action="{% url 'edit_profile_picture' user_profile.user.username %}" enctype="multipart/form-data" method="POST" class="items-container container-col form">
             {% csrf_token %}
             <div class="personal-container item-container container-row space-between box-shadow">
                 <div class="img-name-container container-row">

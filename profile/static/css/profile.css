@@ -1,6 +1,6 @@
 .profile-section {
   justify-content: flex-start;
-  padding: 40px 0;
+  padding: 40px 0 80px 0;
 }
 .profile-section .items-container {
   width: 600px;
@@ -20,39 +20,22 @@
   padding-left: 48px;
 }
 .profile-section .item-container .item-text-container {
-  gap: 16px;
-  width: 100%;
+  gap: 12px;
 }
-.profile-section .input-container {
-  width: calc(50% - 4px);
-}
-.profile-section .input-container input[type=text],
-.profile-section .input-container input[type=email],
-.profile-section .input-container select,
-.profile-section .input-container textarea {
-  font-size: 1.3rem;
-  border-radius: 12px;
-  padding-left: 16px;
-}
-.profile-section .info-visit-link .icon-container {
-  cursor: pointer;
-}
-.profile-section .info-visit-link .icon-container.hide {
-  display: none;
-}
-.profile-section .category-heading {
-  font-weight: 600;
-  margin: 12px 0 4px 0;
-}
-.profile-section .bio-container {
+.profile-section .personal-container {
   position: relative;
-  margin-bottom: 16px;
 }
-.profile-section .bio-container .bio-count-text {
-  position: absolute;
-  right: 4px;
-  top: calc(100% + 4px);
-  font-size: 0.9rem;
+.profile-section .personal-container .img-name-container {
+  gap: 16px;
+}
+.profile-section .personal-container .personal-img-container {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+}
+.profile-section .personal-container .profile-name {
+  font-size: 1.8rem;
+  font-weight: 600;
 }
 .profile-section .management-btns-container {
   gap: 4px;
@@ -60,6 +43,11 @@
   padding: 16px;
   border-radius: 16px;
   background-color: #f7f7f7;
+}
+.profile-section .management-btns-container .save-btn {
+  padding: 0;
+  background-color: #f7f7f7;
+  border: none;
 }
 .profile-section .management-btns-container .visit-link {
   justify-content: flex-start;
@@ -83,4 +71,4 @@
   background-color: #c53d52;
 }
 
-/*# sourceMappingURL=edit_profile.css.map */
+/*# sourceMappingURL=profile.css.map */

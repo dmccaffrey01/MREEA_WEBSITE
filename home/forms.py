@@ -10,7 +10,7 @@ class TestimonialForm(forms.ModelForm):
         model = Testimonial
         exclude = ('user',)
         widgets = {
-            'message': forms.Textarea(attrs={'placeholder': 'Enter Message', 'rows': 5}),
+            'message': forms.Textarea(attrs={'placeholder': 'Enter Message', 'rows': 8}),
         }
 
     def __init__(self, *args, **kwargs):

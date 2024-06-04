@@ -378,22 +378,28 @@
             <h2 class="section-heading dark-text-2 subheading">Hear From Our Members</h2>
         </div>
         <div class="carousel-wrapper">
-            <div class="carousel-container container-row" data-num="1">
+            <div class="carousel-container container-row justify-start" data-num="0">
+                {% for testimonial in random_testimonials %}
                 <div class="testimonial-container container-col align-start box-shadow carousel-item">
                     <p class="testimonial-text dark-text-2">
-                        Joining MREEA has been a game-changer for my career in real estate education. Their comprehensive training programs and supportive community have provided me with the skills and confidence I need to succeed. I highly recommend MREEA to anyone looking to advance their career and make a real impact in the industry.
+                        {{ testimonial.message|linebreaksbr }}
                     </p>
-                    <a href="{% url 'members' %}" class="author-container container-row">
+                    <a target="_blank" href="{% url 'profile' testimonial.user.username %}" class="author-container container-row">
                         <div class="author-img-container img-container">
-                            <img src="{{ MEDIA_URL }}testimonial-1.png" alt="Testimonial" class="img-100a">
+                            {% if testimonial.profile.image %}
+                                <img src="{{ testimonial.profile.image.url }}" alt="{{ testimonial.profile.first_name }}'s Profile Image" class="img-100a">
+                                {% else %}
+                                <img src="{{ MEDIA_URL }}default-profile-picture.png" alt="Default Profile Image" class="img-100a">
+                                {% endif %}
                         </div>
-                        <p class="author-text dark-text-2">Jane Doe</p>
+                        <p class="author-text dark-text-2">{{ testimonial.profile.first_name }} {{ testimonial.profile.last_name }}</p>
                     </a>
                 </div>
+                {% endfor %}
             </div>
         </div>
         <div class="carousel-btns-container container-row">
-            <div class="carousel-direction-btn visit-link no-move">
+            <div class="carousel-direction-btn visit-link no-move" data-increment="-1">
                 <div class="icon-container btn-icon justify-start">
                     <svg xmlns="http://www.w3.org/2000/svg" class="dark-text-2" viewBox="0 0 16 16">
                         <path d="M10.354 3.146a.5.5 0 0 1 0 .708L6.207 8l4.147 4.146a.5.5 0 0 1-.708.708l-4.5-4.5a.5.5 0 0 1 0-.708l4.5-4.5a.5.5 0 0 1 .708 0" />
@@ -403,9 +409,9 @@
                 <p class="dark-text-2">Prev</p>
             </div>
 
-            <a href="" class="read-more-btn dark-text-2">Read More</a>
+            <a href="{% url 'testimonials' %}" target="_blank" class="read-more-btn dark-text-2">Read More</a>
 
-            <div class="carousel-direction-btn visit-link justify-end">
+            <div class="carousel-direction-btn visit-link justify-end" data-increment="1">
                 <p class="dark-text-2">Next</p>
                 <div class="icon-container btn-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" class="dark-text-2" viewBox="0 0 16 16">

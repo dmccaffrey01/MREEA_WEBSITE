@@ -61,11 +61,12 @@
 
     .bio-container {
         position: relative;
+        margin-bottom: 16px;
 
         .bio-count-text {
             position: absolute;
             right: 4px;
-            bottom: 4px;
+            top: calc(100% + 4px);
             font-size: 0.9rem;
         }
     }

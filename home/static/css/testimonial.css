@@ -1,0 +1,114 @@
+.testimonial-section {
+  padding: 40px 0 80px 0;
+  background: #f7f7f7;
+  min-height: calc(100vh - 100px);
+}
+.testimonial-section .section-container {
+  gap: 32px;
+}
+.testimonial-section .section-heading-visit-link {
+  gap: 16px;
+}
+.testimonial-section .section-heading-visit-link .icon-container {
+  width: calc(2.5rem + 24px);
+  height: calc(2.5rem + 24px);
+  padding: 12px;
+}
+.testimonial-section .section-heading-visit-link .section-heading {
+  font-size: 2.5rem;
+}
+.testimonial-section .testimonial-input-container {
+  width: 600px;
+  padding: 24px;
+  border-radius: 16px;
+  background-color: #f7f7f7;
+}
+.testimonial-section .testimonial-input-container textarea {
+  width: 100%;
+  font-size: 1.5rem;
+  color: #777777;
+  line-height: calc(1.3rem + 8px);
+  resize: none;
+  padding: 16px;
+  border-radius: 12px;
+  border: none;
+  outline: none;
+  background-color: #ececec;
+  font-family: "Roboto", sans-serif;
+}
+.testimonial-section .testimonial-input-container textarea::placeholder {
+  color: #777777;
+  font-style: normal;
+  opacity: 1;
+  font-family: "Roboto", sans-serif;
+}
+.testimonial-section .testimonial-input-container textarea::-webkit-scrollbar {
+  width: 0px;
+  background: transparent;
+}
+.testimonial-section .testimonial-container {
+  width: 600px;
+  border-radius: 16px;
+  background-color: #f7f7f7;
+  padding: 40px;
+  position: relative;
+  gap: 16px;
+  height: 386px;
+}
+.testimonial-section .testimonial-container .preview-text {
+  display: -webkit-box;
+  line-height: calc(1.3rem + 8px);
+  font-size: 1.5rem;
+  color: #777777;
+  overflow: hidden;
+  min-height: 230px;
+  -webkit-line-clamp: 8;
+  -webkit-box-orient: vertical;
+  width: 100%;
+}
+.testimonial-section .testimonial-container .author-container {
+  gap: 16px;
+}
+.testimonial-section .testimonial-container .author-text {
+  font-size: 1.5rem;
+}
+.testimonial-section .testimonial-container .author-img-container {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+}
+.testimonial-section .management-btns-container {
+  gap: 4px;
+  width: 600px;
+  padding: 16px;
+  border-radius: 16px;
+  background-color: #f7f7f7;
+}
+.testimonial-section .management-btns-container .save-btn {
+  padding: 0;
+  background-color: #f7f7f7;
+  border: none;
+}
+.testimonial-section .management-btns-container .visit-link {
+  justify-content: flex-start;
+  width: 100%;
+  border-radius: 12px;
+  background-color: #f7f7f7;
+  padding: 12px;
+  gap: 8px;
+  cursor: pointer;
+}
+.testimonial-section .management-btns-container .visit-link:hover {
+  background-color: #ececec;
+}
+.testimonial-section .management-btns-container .visit-link:hover .icon-container {
+  background-color: #f7f7f7;
+}
+.testimonial-section .management-btns-container .visit-link:hover .icon-container.success:hover {
+  background-color: #399c3e;
+}
+.testimonial-section .management-btns-container .visit-link:hover .icon-container.error:hover {
+  background-color: #c53d52;
+}
+
+/*# sourceMappingURL=testimonial.css.map */

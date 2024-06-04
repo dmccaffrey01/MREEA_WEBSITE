@@ -30,3 +30,45 @@ document.addEventListener("DOMContentLoaded", () => {
         benefitCardsWrapper.classList.add("view-all");
     });
 });
+
+document.addEventListener("DOMContentLoaded", () => {
+    let carouselWrapper = document.querySelector(".carousel-wrapper");
+    let carouselContainer = document.querySelector(".carousel-container");
+    let carouselWrapperWidth = carouselWrapper.offsetWidth; 
+
+    let numberOfCarouselItems = carouselContainer.querySelectorAll(".carousel-item").length;
+    let maxCarouselNum = numberOfCarouselItems - 1;
+
+    let carouselDirectionBtns = document.querySelectorAll(".carousel-direction-btn");
+
+    carouselDirectionBtns.forEach(btn => {
+        btn.addEventListener("click", () => {
+            let carouselNum = Number(carouselContainer.getAttribute("data-num"));
+            let increment = Number(btn.getAttribute("data-increment"));
+
+            let newCarouselNum = carouselNum + increment;
+
+            if (newCarouselNum < 0 || newCarouselNum > maxCarouselNum) {
+                return;
+            } else {
+                carouselContainer.setAttribute("data-num", `${newCarouselNum}`)
+
+                carouselTranslate = carouselWrapperWidth * newCarouselNum * -1;
+
+                carouselContainer.style.translate = `${carouselTranslate}px`;
+
+                carouselDirectionBtns.forEach(cBtn => {
+                    if (cBtn.classList.contains("no-move")) {
+                        cBtn.classList.remove("no-move");
+                    }
+                });
+
+                if (newCarouselNum == 0 && increment < 0) {
+                    btn.classList.add("no-move");
+                } else if (newCarouselNum == maxCarouselNum &&  increment > 0) {
+                    btn.classList.add("no-move");
+                }
+            }
+        });
+    });
+});

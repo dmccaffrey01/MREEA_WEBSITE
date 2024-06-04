@@ -596,22 +596,22 @@ $section-container-gap: 160px;
 
     .carousel-wrapper {
         position: relative;
-        width: 740px;
+        width: 760px;
         height: calc(386px + 80px);
         overflow: hidden;
 
         -webkit-mask: linear-gradient(
             90deg,
             transparent,
-            white 70px,
-            white calc(100% - 70px),
+            white 80px,
+            white calc(100% - 80px),
             transparent
         );
         mask: linear-gradient(
             90deg,
             transparent,
-            white 70px,
-            white calc(100% - 70px),
+            white 80px,
+            white calc(100% - 80px),
             transparent
         );
     }
@@ -619,10 +619,11 @@ $section-container-gap: 160px;
     .carousel-container {
         height: fit-content;
         position: absolute;
-        left: 70px;
+        left: 80px;
         top: 40px;
-        gap: 80px;
+        gap: 160px;
         width: max-content;
+        transition: all 0.5s ease;
     }
 
     .testimonial-container {
@@ -635,9 +636,15 @@ $section-container-gap: 160px;
         height: 386px;
 
         .testimonial-text {
+            display: -webkit-box;
             line-height: calc($font-size + 8px);
             font-size: 1.5rem;
             color: $gd-3;
+            overflow: hidden;
+            min-height: 230px;
+            -webkit-line-clamp: 8;
+            -webkit-box-orient: vertical;
+            width: 100%;
         }
 
         .author-container {

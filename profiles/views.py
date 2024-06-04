@@ -10,6 +10,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from allauth.account.views import PasswordChangeView
 from django.urls import reverse_lazy
 import json
+from home.models import Testimonial
 
 
 def profile(request, username):
@@ -54,6 +55,8 @@ def profile(request, username):
     else:
         info_section = True
 
+    testimonial = Testimonial.objects.filter(user=selected_user).first()
+
     context = {
         'profile_editable': profile_editable,
         'user_profile': user_profile,
@@ -62,6 +65,7 @@ def profile(request, username):
         'info_section': info_section,
         'user_profile_links': user_profile_links,
         'teaching_states': teaching_states,
+        'testimonial': testimonial,
     }
 
     return render(request, 'profiles/profile.html', context)
@@ -110,6 +114,7 @@ def edit_profile(request, username):
         profile_saveable = True
     else:
         profile_saveable = False
+        messages.error(request, "You can only edit your own profile!")
         return redirect(reverse('profile', args=(user.username,)))
     
     selected_user = get_object_or_404(User, username=username)
@@ -209,10 +214,10 @@ def edit_profile(request, username):
             if user.username == username:
                 message = 'Successfully saved your profile!'
             else:
-                message = f"Successfully saved {username}'s profile!"
+                message = f"Successfully saved {user_profile.first_name}'s profile!"
             messages.success(request, message)
             
-            return redirect(reverse('profile', args=(user.username,)))
+            return redirect(reverse('profile', args=(user_profile.user.username,)))
         
     else:
         form = EditProfileForm(instance=user_profile)
@@ -230,7 +235,7 @@ def edit_profile(request, username):
     if user.username == username:
         message = 'Editing Your Profile'
     else:
-        message = f"Editing {username}'s Profile"
+        message = f"Editing {user_profile.first_name}'s Profile"
     messages.info(request, message)
 
     context = {
@@ -269,9 +274,12 @@ def edit_profile_picture(request, username):
         profile_saveable = True
     else:
         profile_saveable = False
+        messages.error(request, "You can only edit your own profile picture!")
         return redirect(reverse('profile', args=(user.username,)))
     
-    user_profile = get_object_or_404(UserProfile, user=user)
+    selected_user = get_object_or_404(User, username=username)
+    
+    user_profile = get_object_or_404(UserProfile, user=selected_user)
     
     if request.method == 'POST':
         if 'profile_picture' in request.FILES:
@@ -285,15 +293,15 @@ def edit_profile_picture(request, username):
         if user.username == username:
             message = 'Successfully Saved Your Profile Picture'
         else:
-            message = f"Successfully Saved {username}'s Profile Picture"
+            message = f"Successfully Saved {user_profile.first_name}'s Profile Picture"
         messages.success(request, message)
 
-        return redirect(reverse('profile', args=(user.username,)))
+        return redirect(reverse('profile', args=(user_profile.user.username,)))
             
     if user.username == username:
         message = 'Editing Your Profile Picture'
     else:
-        message = f"Editing {username}'s Profile Picture"
+        message = f"Editing {user_profile.first_name}'s Profile Picture"
     messages.info(request, message)
 
     context = {

@@ -61,6 +61,12 @@ document.addEventListener("DOMContentLoaded", () => {
             wrapper.addEventListener("mouseleave", () => {
                 toggleElementShow(wrapper);
             });
+
+            let menuContainer = actionMenuBtn.querySelector(".action-menu-container");
+
+            actionMenuBtn.addEventListener("click", () => {
+                toggleElementShow(menuContainer);
+            });
         }
     });
 });

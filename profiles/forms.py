@@ -60,5 +60,5 @@ class EditProfileForm(forms.ModelForm):
         widgets = {
             'first_name': forms.TextInput(attrs={'placeholder': 'Enter First Name'}),
             'last_name': forms.TextInput(attrs={'placeholder': 'Enter Last Name'}),
-            'bio': forms.Textarea(attrs={'placeholder': 'Enter Bio', 'rows': 5}),
+            'bio': forms.Textarea(attrs={'placeholder': 'Enter Bio', 'rows': 8}),
         }
