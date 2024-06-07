@@ -76,7 +76,7 @@ class ProfileLink(models.Model):
 
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    image = models.ImageField(null=True, blank=True)
+    image = models.ImageField(upload_to='profile_images/', null=True, blank=True)
     first_name = models.CharField(max_length=254, blank=False, null=False)
     last_name = models.CharField(max_length=254, blank=False, null=False)
     bio = models.TextField(max_length=501, blank=True, null=True, default="")
