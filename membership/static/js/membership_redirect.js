@@ -1,9 +1,3 @@
-let noPackageSelectedError = () => {
-    const defaultSelectItem = document.querySelector(".default-select-item");
-
-    displayErrorMessage("Please select a package!", defaultSelectItem);
-}
-
 document.addEventListener("DOMContentLoaded", () => {
     const singlePackageInfo = document.querySelector(".single-package-info-container");
 
@@ -67,7 +61,6 @@ document.addEventListener("DOMContentLoaded", () => {
         let checkoutUrl = submitBtn.getAttribute("data-checkout_url");
 
         if (!checkoutUrl) {
-            noPackageSelectedError();
             return;
         }
 

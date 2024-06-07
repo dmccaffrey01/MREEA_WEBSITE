@@ -10,20 +10,27 @@
 
 <section class="member-search-section section">
     <div class="section-container container-col">
-        <div class="img-container box-shadow">
-            <img src="{{ MEDIA_URL }}events-home.png" alt="MREEA Event" class="img-100a">
-        </div>
-
+        {% if user.is_superuser %}
+        <a href="{% url 'members_management' %}" class="members-management-btn visit-link">
+            <div class="icon-container">
+                <svg xmlns="http://www.w3.org/2000/svg" class="dark-text-2" viewBox="0 0 256 256">
+                    <path d="M128 80a48 48 0 1 0 48 48a48.05 48.05 0 0 0-48-48m0 80a32 32 0 1 1 32-32a32 32 0 0 1-32 32m88-29.84q.06-2.16 0-4.32l14.92-18.64a8 8 0 0 0 1.48-7.06a107.2 107.2 0 0 0-10.88-26.25a8 8 0 0 0-6-3.93l-23.72-2.64q-1.48-1.56-3-3L186 40.54a8 8 0 0 0-3.94-6a107.7 107.7 0 0 0-26.25-10.87a8 8 0 0 0-7.06 1.49L130.16 40h-4.32L107.2 25.11a8 8 0 0 0-7.06-1.48a107.6 107.6 0 0 0-26.25 10.88a8 8 0 0 0-3.93 6l-2.64 23.76q-1.56 1.49-3 3L40.54 70a8 8 0 0 0-6 3.94a107.7 107.7 0 0 0-10.87 26.25a8 8 0 0 0 1.49 7.06L40 125.84v4.32L25.11 148.8a8 8 0 0 0-1.48 7.06a107.2 107.2 0 0 0 10.88 26.25a8 8 0 0 0 6 3.93l23.72 2.64q1.49 1.56 3 3L70 215.46a8 8 0 0 0 3.94 6a107.7 107.7 0 0 0 26.25 10.87a8 8 0 0 0 7.06-1.49L125.84 216q2.16.06 4.32 0l18.64 14.92a8 8 0 0 0 7.06 1.48a107.2 107.2 0 0 0 26.25-10.88a8 8 0 0 0 3.93-6l2.64-23.72q1.56-1.48 3-3l23.78-2.8a8 8 0 0 0 6-3.94a107.7 107.7 0 0 0 10.87-26.25a8 8 0 0 0-1.49-7.06Zm-16.1-6.5a74 74 0 0 1 0 8.68a8 8 0 0 0 1.74 5.48l14.19 17.73a91.6 91.6 0 0 1-6.23 15l-22.6 2.56a8 8 0 0 0-5.1 2.64a74 74 0 0 1-6.14 6.14a8 8 0 0 0-2.64 5.1l-2.51 22.58a91.3 91.3 0 0 1-15 6.23l-17.74-14.19a8 8 0 0 0-5-1.75h-.48a74 74 0 0 1-8.68 0a8 8 0 0 0-5.48 1.74l-17.78 14.2a91.6 91.6 0 0 1-15-6.23L82.89 187a8 8 0 0 0-2.64-5.1a74 74 0 0 1-6.14-6.14a8 8 0 0 0-5.1-2.64l-22.58-2.52a91.3 91.3 0 0 1-6.23-15l14.19-17.74a8 8 0 0 0 1.74-5.48a74 74 0 0 1 0-8.68a8 8 0 0 0-1.74-5.48L40.2 100.45a91.6 91.6 0 0 1 6.23-15L69 82.89a8 8 0 0 0 5.1-2.64a74 74 0 0 1 6.14-6.14A8 8 0 0 0 82.89 69l2.51-22.57a91.3 91.3 0 0 1 15-6.23l17.74 14.19a8 8 0 0 0 5.48 1.74a74 74 0 0 1 8.68 0a8 8 0 0 0 5.48-1.74l17.77-14.19a91.6 91.6 0 0 1 15 6.23L173.11 69a8 8 0 0 0 2.64 5.1a74 74 0 0 1 6.14 6.14a8 8 0 0 0 5.1 2.64l22.58 2.51a91.3 91.3 0 0 1 6.23 15l-14.19 17.74a8 8 0 0 0-1.74 5.53Z" />
+                </svg>
+                <span class="sr-only">Gear Icon</span>
+            </div>
+            <h2 class="dark-text-2 subheading">Manage Members</h2>
+        </a>
+        {% endif %}
         <form action="{% url 'members' %}" method="POST" class="member-search-container container-col box-shadow form">
             {% csrf_token %}
             <div class="heading-container visit-link">
                 <div class="icon-container">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="dark-text" viewBox="0 0 256 256">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="dark-text-2" viewBox="0 0 256 256">
                         <path d="M117.25 157.92a60 60 0 1 0-66.5 0a95.83 95.83 0 0 0-47.22 37.71a8 8 0 1 0 13.4 8.74a80 80 0 0 1 134.14 0a8 8 0 0 0 13.4-8.74a95.83 95.83 0 0 0-47.22-37.71M40 108a44 44 0 1 1 44 44a44.05 44.05 0 0 1-44-44m210.14 98.7a8 8 0 0 1-11.07-2.33A79.83 79.83 0 0 0 172 168a8 8 0 0 1 0-16a44 44 0 1 0-16.34-84.87a8 8 0 1 1-5.94-14.85a60 60 0 0 1 55.53 105.64a95.83 95.83 0 0 1 47.22 37.71a8 8 0 0 1-2.33 11.07" />
                     </svg>
                     <span class="sr-only">Users Icon</span>
                 </div>
-                <h2 class="dark-text subheading">Search for MREEA Members</h2>
+                <h2 class="dark-text-2 subheading">Search for MREEA Members</h2>
             </div>
             <div class="input-container-group container-row">
                 <div class="input-wrapper">
@@ -65,7 +72,8 @@
                             </svg>
                             <span class="sr-only">Class Icon</span>
                         </div>
-                        <p class="dark-text-2 small-text">Select Classes</p>
+                        <label for="id_classes" class="dark-text-2 small-text">Select Classes</label>
+                        <input type="text" name="id_classes" id="id_classes" hidden>
                     </div>
                     <div class="custom-checkbox-options-input-container input-container col-2 wrapper-menu">
                         <div class="custom-checkbox-options-btn wrapper-btn">
@@ -91,7 +99,7 @@
                                 </div>
                                 {% for class in item.classes %}
                                 <div class="checkbox-input-container">
-                                    <input type="checkbox" name="id_class_{{ class.name }}" id="id_class_{{ class.name }}" data-select-all-target="{{ item.category.name }}" class="checkbox-input {{ item.category.name }}-class class-checkbox-input">
+                                    <input type="checkbox" name="id_class_{{ class.name }}" id="id_class_{{ class.name }}" data-select-all-target="{{ item.category.name }}" class="checkbox-input {{ item.category.name }}-class class-checkbox-input" {% if class.is_checked %}checked{% endif %}>
                                     <label for="id_class_{{ class.name }}" class="checkbox-label dark-text-2">{{ class.friendly_name }}</label>
                                 </div>
                                 {% endfor %}
@@ -108,7 +116,8 @@
                             </svg>
                             <span class="sr-only">Location Icon</span>
                         </div>
-                        <p class="dark-text-2 small-text">Select States</p>
+                        <label for="id_states" class="dark-text-2 small-text">Select States</label>
+                        <input type="text" name="id_states" id="id_states" hidden>
                     </div>
                     <div class="custom-checkbox-options-input-container input-container col-2 wrapper-menu">
                         <div class="custom-checkbox-options-btn wrapper-btn">
@@ -128,7 +137,7 @@
                                 </div>
                                 {% for state in teaching_states %}
                                 <div class="checkbox-input-container">
-                                    <input type="checkbox" name="id_state_{{ state.code }}" id="id_state_{{ state.code }}" class="checkbox-input class-checkbox-input">
+                                    <input type="checkbox" name="id_state_{{ state.code }}" id="id_state_{{ state.code }}" class="checkbox-input class-checkbox-input" {% if state.is_checked %}checked{% endif %}>
                                     <label for="id_state_{{ state.code }}" class="checkbox-label dark-text-2">{{ state.code }} - {{ state.friendly_name }}</label>
                                 </div>
                                 {% endfor %}
@@ -148,6 +157,27 @@
                 </span>
             </button>
         </form>
+
+        <div class="search-results-container container-col align-start box-shadow">
+            <p class="search-results-text dark-text-2">({{ num_of_profiles }}) members found for search query</p>
+            {% for p in query_profiles %}
+            <a href="{% url 'profile' p.user.username %}" class="profile-container container-row justify-start">
+                <div class="img-container">
+                    {% if p.image %}
+                    <img src="{{ p.image.url }}" alt="{{ p.first_name }}'s Profile Image" class="img-100a">
+                    {% else %}
+                    <img src="{{ MEDIA_URL }}default-profile-picture.png" alt="Default Profile Image" class="img-100a">
+                    {% endif %}
+                </div>
+                <div class="text-container container-col align-start">
+                    <p class="name-text dark-text-2">{{ p.first_name }} {{ p.last_name }}</p>
+                    <p class="teaching-text dark-text-2 small-text">
+                        {{ p.classes.all|length }} Classes &amp; Certifications{% for s in p.teaching_states.all %}, {{ s.code }}{% endfor %}
+                    </p>
+                </div>
+            </a>
+            {% endfor %}
+        </div>
     </div>
 </section>
 

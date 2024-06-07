@@ -1,0 +1,11 @@
+@import '../../../static/css/variables';
+@import '../../../static/css/mixins';
+
+.privacy-section {
+    padding: 80px 0;
+
+    .section-container {
+        gap: 40px;
+        flex-direction: column-reverse;
+    }
+}

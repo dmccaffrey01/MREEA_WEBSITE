@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block extra_title %}- Testimonials{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/testimonials.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'css/cta-section.css' %}">
+{% endblock %}
+
+{% block content %}
+
+
+<section class="testimonial-section section">
+    <div class="section-container container-col">
+        <h2 class="dark-text-2">{{ post.title }}</h2>
+
+        <p>{{ post.content|safe }}</p>
+
+        <a href="{% url 'blog_list' %}" class="red-text dark-text">Back to list</a>
+    </div>
+</section>
+
+{% endblock %}
+
+{% block postloadjs %}
+{{ block.super }}
+
+
+{% endblock %}

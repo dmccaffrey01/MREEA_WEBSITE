@@ -16,7 +16,7 @@
             <div class="bg-hover box-shadow"></div>
             <div class="texts-container container-col align-start box-shadow">
                 <h2 class="heading dark-text-2">Build Your Real Estate<br>Education Career</h2>
-                <p class="hero-text dark-text-2">At MREEA, we are here to support, advance, and guide<br>you to a path of success in your educating career.<br>Join our community to get ahead of the curve.</p>
+                <p class="hero-text dark-text-2">At MREEA, we are here to support, advance, and guide <br>you to a path of success in your educating career. <br>Join our community to get ahead of the curve.</p>
                 <div class="btns-container container-row">
                     <a href="{% url 'membership_redirect' %}" class="btn yellow-btn">
                         Join Now
@@ -49,7 +49,7 @@
                         </a>
                     </div>
                     <div class="card container-col card-2 box-shadow">
-                        <p class="subheading dark-text-2">View Our<br>Upcoming Events</p>
+                        <p class="subheading dark-text-2">View Our<br> Events</p>
                         <a href="{% url 'events' %}" class="visit-link">
                             <span class="dark-text-2">Visit</span>
                             <span class="icon-container">
@@ -166,17 +166,17 @@
             <div class="mreea-logo-container img-container box-shadow">
                 <img src="{{ MEDIA_URL }}mreea-logo.png" alt="MREEA Logo" class="img-100a">
             </div>
-            <div class="member-container img-container member-1 box-shadow">
-                <img src="{{ MEDIA_URL }}testimonial-1.png" alt="MREEA Logo" class="img-100a">
+            {% for item in intro_profiles %}
+            <div class="member-container img-container member-{{ forloop.counter }} box-shadow">
+                {% if item.profile.image %}
+                <img src="{{ item.profile.image.url }}" alt="{{ item.profile.first_name }}'s Profile Image" class="img-100a">
+                {% else %}
+                <img src="{{ MEDIA_URL }}default-profile-picture.png" alt="Default Profile Image" class="img-100a">
+                {% endif %}
             </div>
-            <div class="member-container img-container member-2 box-shadow">
-                <img src="{{ MEDIA_URL }}testimonial-2.png" alt="MREEA Logo" class="img-100a">
-            </div>
-            <div class="member-container img-container member-3 box-shadow">
-                <img src="{{ MEDIA_URL }}testimonial-3.png" alt="MREEA Logo" class="img-100a">
-            </div>
+            {% endfor %}
             <div class="member-amount-container container-col box-shadow">
-                <p class="member-amount-text subheading dark-text-2">60+</p>
+                <p class="member-amount-text subheading dark-text-2">{{ members_count }}+</p>
             </div>
         </div>
 

@@ -18,7 +18,7 @@ def new_event_notifications(event_name):
     event = Event.objects.filter(name=event_name).first()
 
     heading = 'New Upcoming Event'
-    message = f'{event.friendly_name} There was a new event posted on the events page. Check it out!'
+    message = f'{event.friendly_name}\n\n There was a new event posted on the events page. \nCheck it out!'
     category = 'events'
     url = reverse('events')
 

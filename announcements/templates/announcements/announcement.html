@@ -1,0 +1,135 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block extra_title %}- Add Announcement{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/announcement.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<section class="announcement-section section h-100b">
+    <form class="section-container container-col" action="{{ action_url }}" method="POST">
+        {% csrf_token %}
+        <div class="heading-container visit-link">
+            <div class="icon-container">
+                <svg xmlns="http://www.w3.org/2000/svg" class="dark-text-2" viewBox="0 0 24 24">
+                    <path fill-rule="evenodd" d="M20.085 16.932a62.152 62.152 0 0 0 0-12.864c-.159-1.525-1.917-2.298-3.148-1.383l-4.103 3.05a7.25 7.25 0 0 1-4.326 1.432H4.68c-.69 0-1.25.56-1.25 1.25v4.166c0 .69.56 1.25 1.25 1.25h.624l-.845 3.155a.75.75 0 0 0 .408.874l3.68 1.717a.75.75 0 0 0 1.042-.486l1.263-4.712a.78.78 0 0 0 .024-.15a7.25 7.25 0 0 1 1.959 1.034l4.103 3.05c1.23.915 2.99.142 3.148-1.383m-1.492-12.71a60.696 60.696 0 0 1 0 12.555a.478.478 0 0 1-.76.334l-4.105-3.05a8.75 8.75 0 0 0-5.22-1.728H4.93V8.667h3.58a8.75 8.75 0 0 0 5.22-1.728l4.103-3.05a.478.478 0 0 1 .76.334m-9.157 9.67a7.256 7.256 0 0 0-.928-.059H6.856L6.07 16.77l2.3 1.073l1.032-3.85a.759.759 0 0 1 .034-.1" clip-rule="evenodd" />
+                </svg>
+                <span class="sr-only">Announcements Icon</span>
+            </div>
+            <h2 class="subheading dark-text-2">{{ page_heading }} Announcement</h2>
+        </div>
+        <div class="announcement-container container-col align-start box-shadow form">
+            <div class="input-wrapper container-col align-start">
+                <div class="visit-link">
+                    <div class="icon-container">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="dark-text" viewBox="0 0 16 16">
+                            <path d="M5.5 5a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1zm0 3a.5.5 0 0 0-.5.5v2a.5.5 0 0 0 .5.5h5a.5.5 0 0 0 .5-.5v-2a.5.5 0 0 0-.5-.5zm.5 2V9h4v1zm8-5.5A2.5 2.5 0 0 0 11.5 2h-7A2.5 2.5 0 0 0 2 4.5v7A2.5 2.5 0 0 0 4.5 14h7a2.5 2.5 0 0 0 2.5-2.5zm-11 7v-7A1.5 1.5 0 0 1 4.5 3h7A1.5 1.5 0 0 1 13 4.5v7a1.5 1.5 0 0 1-1.5 1.5h-7A1.5 1.5 0 0 1 3 11.5" />
+                        </svg>
+                        <span class="sr-only">Announcement Name Icon</span>
+                    </div>
+                    <label for="id_friendly_name" class="dark-text-2 small-text">Announcement Name</label>
+                </div>
+                <div class="input-container col-2">
+                    {{ form.friendly_name }}
+                </div>
+            </div>
+            <div class="input-wrapper container-col align-start">
+                <div class="visit-link">
+                    <div class="icon-container">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="dark-text" viewBox="0 0 16 16">
+                            <path d="M6 5.5a.5.5 0 0 0-1 0v5a.5.5 0 0 0 1 0zm2.5 0a.5.5 0 0 0-1 0v5a.5.5 0 0 0 1 0zm2.5 0a.5.5 0 0 0-1 0v5a.5.5 0 0 0 1 0zm3-1A2.5 2.5 0 0 0 11.5 2h-7A2.5 2.5 0 0 0 2 4.5v7A2.5 2.5 0 0 0 4.5 14h7a2.5 2.5 0 0 0 2.5-2.5zm-11 7v-7A1.5 1.5 0 0 1 4.5 3h7A1.5 1.5 0 0 1 13 4.5v7a1.5 1.5 0 0 1-1.5 1.5h-7A1.5 1.5 0 0 1 3 11.5" />
+                        </svg>
+                        <span class="sr-only">Announcement Description Icon</span>
+                    </div>
+                    <label for="id_description" class="dark-text-2 small-text">Announcement Description</label>
+                </div>
+                <div class="input-container col-2 scroll">
+                    {{ form.description }}
+                </div>
+            </div>
+            <div class="toggle-input-wrapper input-wrapper container-col align-start">
+                <div class="visit-link">
+                    <div class="icon-container">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="dark-text-2" viewBox="0 0 16 16">
+                            <path fill="black" d="M10.307 2.105A.5.5 0 0 0 9.5 2.5v1.993l-.135.007a5.4 5.4 0 0 0-1.544.337a4.7 4.7 0 0 0-2.095 1.574c-.623.826-1.081 1.972-1.224 3.544a.5.5 0 0 0 .852.399c1.188-1.19 2.369-1.776 3.242-2.067c.36-.12.668-.19.904-.23V10a.5.5 0 0 0 .832.374l4.5-4a.5.5 0 0 0-.025-.769zm-.364 3.392h.003A.5.5 0 0 0 10.5 5V3.522l3.219 2.504l-3.219 2.86V7.5A.5.5 0 0 0 10 7h-.045l-.1.006a5 5 0 0 0-.355.038c-.3.043-.72.127-1.22.294a8.9 8.9 0 0 0-2.548 1.36c.194-.716.476-1.264.793-1.685a3.7 3.7 0 0 1 1.654-1.242A4.4 4.4 0 0 1 9.82 5.49q.068.002.1.005zM4.5 3A2.5 2.5 0 0 0 2 5.5v6A2.5 2.5 0 0 0 4.5 14h6a2.5 2.5 0 0 0 2.5-2.5v-1a.5.5 0 0 0-1 0v1a1.5 1.5 0 0 1-1.5 1.5h-6A1.5 1.5 0 0 1 3 11.5v-6A1.5 1.5 0 0 1 4.5 4h2a.5.5 0 0 0 0-1z" />
+                        </svg>
+                        <span class="sr-only">Share Icon</span>
+                    </div>
+                    <p class="dark-text-2 small-text">Make Public</p>
+                </div>
+                <div class="toggle-container container-col">
+                    {{ form.is_public }}
+                    <label for="id_is_public" class="toggle"><span class="sr-only">Is Public</span></label>
+                </div>
+            </div>
+        </div>
+        <div class="management-btns-container container-col align-start box-shadow">
+            <button type="submit" class="save-btn visit-link">
+                <span class="icon-container">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="dark-text" viewBox="0 0 16 16">
+                        <path d="M3.5 13h9a.5.5 0 0 1 .09.992L12.5 14h-9a.5.5 0 0 1-.09-.992zh9zM7.91 1.008L8 1a.5.5 0 0 1 .492.41l.008.09v8.792l2.682-2.681a.5.5 0 0 1 .638-.058l.07.058a.5.5 0 0 1 .057.638l-.058.069l-3.535 3.536a.5.5 0 0 1-.638.057l-.07-.057l-3.535-3.536a.5.5 0 0 1 .638-.765l.069.058L7.5 10.292V1.5a.5.5 0 0 1 .41-.492L8 1z" />
+                    </svg>
+                    <span class="sr-only">Save Icon</span>
+                </span>
+                <span class="dark-text small-text">Save</span>
+            </button>
+            <a href="{% url 'announcements' %}" class="visit-link">
+                <span class="icon-container">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="dark-text" viewBox="0 0 24 24">
+                        <path d="M12.003 21q-1.866 0-3.51-.708q-1.643-.709-2.859-1.924t-1.925-2.856T3 12.003t.709-3.51Q4.417 6.85 5.63 5.634t2.857-1.925T11.997 3t3.51.709q1.643.708 2.859 1.922t1.925 2.857t.709 3.509t-.708 3.51t-1.924 2.859t-2.856 1.925t-3.509.709M12 20q1.465 0 2.82-.514q1.357-.515 2.465-1.494L6.008 6.716q-.96 1.107-1.484 2.463T4 12q0 3.35 2.325 5.675T12 20m5.992-2.716q.98-1.107 1.493-2.463Q20 13.465 20 12q0-3.35-2.325-5.675T12 4q-1.471 0-2.834.505q-1.362.504-2.45 1.503z" />
+                    </svg>
+                    <span class="sr-only">Cancel Icon</span>
+                </span>
+                <span class="dark-text small-text">Cancel</span>
+            </a>
+            {% if delete_btn %}
+            <div class="delete-btn-wrapper container-col relative-pos">
+                <div class="delete-btn visit-link">
+                    <span class="icon-container">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="dark-text" viewBox="0 0 24 24">
+                            <path d="M12 2.75a2.25 2.25 0 0 0-2.122 1.5a.75.75 0 0 1-1.414-.5a3.751 3.751 0 0 1 7.073 0a.75.75 0 0 1-1.415.5A2.251 2.251 0 0 0 12 2.75M2.75 6a.75.75 0 0 1 .75-.75h17a.75.75 0 0 1 0 1.5h-17A.75.75 0 0 1 2.75 6m3.165 2.45a.75.75 0 1 0-1.497.1l.464 6.952c.085 1.282.154 2.318.316 3.132c.169.845.455 1.551 1.047 2.104c.591.554 1.315.793 2.17.904c.822.108 1.86.108 3.146.108h.879c1.285 0 2.324 0 3.146-.108c.854-.111 1.578-.35 2.17-.904c.591-.553.877-1.26 1.046-2.104c.162-.814.23-1.85.316-3.132l.464-6.952a.75.75 0 0 0-1.497-.1l-.46 6.9c-.09 1.347-.154 2.285-.294 2.99c-.137.685-.327 1.047-.6 1.303c-.274.256-.648.422-1.34.512c-.713.093-1.653.095-3.004.095h-.774c-1.35 0-2.29-.002-3.004-.095c-.692-.09-1.066-.256-1.34-.512c-.273-.256-.463-.618-.6-1.303c-.14-.705-.204-1.643-.294-2.99z" />
+                            <path d="M9.425 10.254a.75.75 0 0 1 .821.671l.5 5a.75.75 0 0 1-1.492.15l-.5-5a.75.75 0 0 1 .671-.821m5.821.821a.75.75 0 0 0-1.492-.15l-.5 5a.75.75 0 0 0 1.492.15z" />
+                        </svg>
+                        <span class="sr-only">Delete Icon</span>
+                    </span>
+                    <span class="delete-text dark-text small-text">Delete</span>
+                </div>
+                <div class="confirm-delete-btn visit-link hide">
+                    <div class="icon-container gl-1">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="dark-text" viewBox="0 0 24 24">
+                            <path d="M12 2.75a2.25 2.25 0 0 0-2.122 1.5a.75.75 0 0 1-1.414-.5a3.751 3.751 0 0 1 7.073 0a.75.75 0 0 1-1.415.5A2.251 2.251 0 0 0 12 2.75M2.75 6a.75.75 0 0 1 .75-.75h17a.75.75 0 0 1 0 1.5h-17A.75.75 0 0 1 2.75 6m3.165 2.45a.75.75 0 1 0-1.497.1l.464 6.952c.085 1.282.154 2.318.316 3.132c.169.845.455 1.551 1.047 2.104c.591.554 1.315.793 2.17.904c.822.108 1.86.108 3.146.108h.879c1.285 0 2.324 0 3.146-.108c.854-.111 1.578-.35 2.17-.904c.591-.553.877-1.26 1.046-2.104c.162-.814.23-1.85.316-3.132l.464-6.952a.75.75 0 0 0-1.497-.1l-.46 6.9c-.09 1.347-.154 2.285-.294 2.99c-.137.685-.327 1.047-.6 1.303c-.274.256-.648.422-1.34.512c-.713.093-1.653.095-3.004.095h-.774c-1.35 0-2.29-.002-3.004-.095c-.692-.09-1.066-.256-1.34-.512c-.273-.256-.463-.618-.6-1.303c-.14-.705-.204-1.643-.294-2.99z" />
+                            <path d="M9.425 10.254a.75.75 0 0 1 .821.671l.5 5a.75.75 0 0 1-1.492.15l-.5-5a.75.75 0 0 1 .671-.821m5.821.821a.75.75 0 0 0-1.492-.15l-.5 5a.75.75 0 0 0 1.492.15z" />
+                        </svg>
+                        <span class="sr-only">Delete Icon</span>
+                    </div>
+                    <p class="delete-text dark-text small-text">Confirm Delete?</p>
+                    <a href="{% url 'delete_announcement' selected_announcement.name %}" class="icon-container gl-1 success">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="dark-text" viewBox="0 0 24 24">
+                            <path fill-rule="evenodd" d="M20.207 6.793a1 1 0 0 1 0 1.414l-9.5 9.5a1 1 0 0 1-1.414 0l-4.5-4.5a1 1 0 0 1 1.414-1.414L10 15.586l8.793-8.793a1 1 0 0 1 1.414 0" clip-rule="evenodd" />
+                        </svg>
+                        <span class="sr-only">Check Icon</span>
+                    </a>
+                    <div class="deny-delete-btn icon-container gl-1 error">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="dark-text" viewBox="0 0 24 24">
+                            <path fill-rule="evenodd" d="M17.707 7.707a1 1 0 0 0-1.414-1.414L12 10.586L7.707 6.293a1 1 0 0 0-1.414 1.414L10.586 12l-4.293 4.293a1 1 0 1 0 1.414 1.414L12 13.414l4.293 4.293a1 1 0 1 0 1.414-1.414L13.414 12z" clip-rule="evenodd" />
+                        </svg>
+                        <span class="sr-only">X Mark Icon</span>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+        </div>
+    </form>
+</section>
+{% endblock %}
+
+{% block postloadjs %}
+{{ block.super }}
+
+<script src="{% static 'js/management_btns.js' %}"></script>
+
+{% endblock %}

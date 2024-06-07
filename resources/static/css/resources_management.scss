@@ -1,21 +1,23 @@
 @import '../../../static/css/variables';
 @import '../../../static/css/mixins';
 
-.resources-section {
+.management-section {
     position: relative;
+    background-color: $gl-1;
+    padding: 40px 0 80px 0;
 
-    .management-overlay {
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        left: 0;
-        top: 0;
-        background-color: rgba($gl-1, $alpha: 0.6);
-        z-index: 998;
-        backdrop-filter: blur(3px);
-        justify-content: flex-start;
-        padding: 80px 0;
-    
+    .section-container {
+        gap: 32px;
+    }
+
+    .heading-container {
+        gap: 12px;
+
+        .icon-container {
+            width: calc($subheading-size + 24px);
+            height: calc($subheading-size + 24px);
+            padding: 12px;
+        }
     }
 
     .management-container {
@@ -29,20 +31,24 @@
             padding: 32px;
             gap: 12px;
 
-            .heading-container {
-                gap: 8px;
-                margin-bottom: 12px;
-    
-                .icon-container {
-                    width: calc($subheading-size + 24px);
-                    height: calc($subheading-size + 24px);
-                    padding: 12px;
-                }
-            }
-
             .input-wrapper {
                 width: 100%;
                 gap: 8px;
+            }
+
+            .default-select-item {
+                .icon-container {
+                    width: $font-size;
+                    height: $font-size;
+                }
+            }
+            
+            .select-options .select-item {
+                justify-content: flex-start;
+
+                &:hover .icon-container {
+                    background-color: $gl-1;
+                }
             }
     
             .visit-link {
@@ -53,7 +59,6 @@
                 position: relative;
     
                 input, textarea {
-                    font-size: $small-font-size;
                     padding-left: 16px;
                 }
             }

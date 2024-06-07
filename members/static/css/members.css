@@ -4,7 +4,15 @@
   justify-content: flex-start;
 }
 .member-search-section .section-container {
-  gap: 48px;
+  gap: 40px;
+}
+.member-search-section .members-management-btn {
+  gap: 8px;
+}
+.member-search-section .members-management-btn .icon-container {
+  width: calc(1.8rem + 24px);
+  height: calc(1.8rem + 24px);
+  padding: 12px;
 }
 .member-search-section .img-container {
   width: 100%;
@@ -31,7 +39,7 @@
 .member-search-section .member-search-container .input-container-group .input-wrapper {
   width: calc(50% - 12px);
 }
-.member-search-section .member-search-container input {
+.member-search-section .member-search-container input[type=text] {
   padding-left: 16px;
 }
 .member-search-section .category-heading {
@@ -59,6 +67,7 @@
 }
 .member-search-section .search-results-container .search-results-text {
   margin-bottom: 16px;
+  color: #777777;
 }
 .member-search-section .search-results-container .profile-container {
   width: 100%;

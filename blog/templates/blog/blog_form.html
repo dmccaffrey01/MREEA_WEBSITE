@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block extra_title %}- Testimonials{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/testimonials.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'css/cta-section.css' %}">
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'ckeditor5/ckeditor.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+
+
+<section class="testimonial-section section">
+    <form method="POST" class="section-container container-col" enctype="multipart/form-data">
+        {% csrf_token %}
+        <h2 class="dark-text-2">New Blog Post</h2>
+
+        {{ form.as_p }}
+
+        <button type="submit" class="btn">Save</button>
+    </form>
+</section>
+
+{% endblock %}
+
+{% block postloadjs %}
+{{ block.super }}
+
+
+{% endblock %}

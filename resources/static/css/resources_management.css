@@ -1,65 +1,66 @@
-.resources-section {
+.management-section {
   position: relative;
+  background-color: #f7f7f7;
+  padding: 40px 0 80px 0;
 }
-.resources-section .management-overlay {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  left: 0;
-  top: 0;
-  background-color: rgba(247, 247, 247, 0.6);
-  z-index: 998;
-  backdrop-filter: blur(3px);
-  justify-content: flex-start;
-  padding: 80px 0;
+.management-section .section-container {
+  gap: 32px;
 }
-.resources-section .management-container {
+.management-section .heading-container {
+  gap: 12px;
+}
+.management-section .heading-container .icon-container {
+  width: calc(1.8rem + 24px);
+  height: calc(1.8rem + 24px);
+  padding: 12px;
+}
+.management-section .management-container {
   width: 600px;
   gap: 32px;
 }
-.resources-section .management-container .inputs-container {
+.management-section .management-container .inputs-container {
   width: 100%;
   background-color: #f7f7f7;
   border-radius: 16px;
   padding: 32px;
   gap: 12px;
 }
-.resources-section .management-container .inputs-container .heading-container {
-  gap: 8px;
-  margin-bottom: 12px;
-}
-.resources-section .management-container .inputs-container .heading-container .icon-container {
-  width: calc(1.8rem + 24px);
-  height: calc(1.8rem + 24px);
-  padding: 12px;
-}
-.resources-section .management-container .inputs-container .input-wrapper {
+.management-section .management-container .inputs-container .input-wrapper {
   width: 100%;
   gap: 8px;
 }
-.resources-section .management-container .inputs-container .visit-link {
+.management-section .management-container .inputs-container .default-select-item .icon-container {
+  width: 1.3rem;
+  height: 1.3rem;
+}
+.management-section .management-container .inputs-container .select-options .select-item {
+  justify-content: flex-start;
+}
+.management-section .management-container .inputs-container .select-options .select-item:hover .icon-container {
+  background-color: #f7f7f7;
+}
+.management-section .management-container .inputs-container .visit-link {
   gap: 8px;
 }
-.resources-section .management-container .inputs-container .input-container {
+.management-section .management-container .inputs-container .input-container {
   position: relative;
 }
-.resources-section .management-container .inputs-container .input-container input, .resources-section .management-container .inputs-container .input-container textarea {
-  font-size: 1.1rem;
+.management-section .management-container .inputs-container .input-container input, .management-section .management-container .inputs-container .input-container textarea {
   padding-left: 16px;
 }
-.resources-section .management-container .management-btns-container {
+.management-section .management-container .management-btns-container {
   gap: 4px;
   width: 100%;
   padding: 16px;
   border-radius: 16px;
   background-color: #f7f7f7;
 }
-.resources-section .management-container .management-btns-container .save-btn {
+.management-section .management-container .management-btns-container .save-btn {
   padding: 0;
   background-color: #f7f7f7;
   border: none;
 }
-.resources-section .management-container .management-btns-container .visit-link {
+.management-section .management-container .management-btns-container .visit-link {
   justify-content: flex-start;
   width: 100%;
   border-radius: 12px;
@@ -68,31 +69,31 @@
   gap: 8px;
   cursor: pointer;
 }
-.resources-section .management-container .management-btns-container .visit-link:hover {
+.management-section .management-container .management-btns-container .visit-link:hover {
   background-color: #ececec;
 }
-.resources-section .management-container .management-btns-container .visit-link:hover .icon-container {
+.management-section .management-container .management-btns-container .visit-link:hover .icon-container {
   background-color: #f7f7f7;
 }
-.resources-section .management-container .management-btns-container .visit-link:hover .icon-container.success:hover {
+.management-section .management-container .management-btns-container .visit-link:hover .icon-container.success:hover {
   background-color: #399c3e;
 }
-.resources-section .management-container .management-btns-container .visit-link:hover .icon-container.error:hover {
+.management-section .management-container .management-btns-container .visit-link:hover .icon-container.error:hover {
   background-color: #c53d52;
 }
-.resources-section .management-container .management-btns-container .delete-btn-wrapper {
+.management-section .management-container .management-btns-container .delete-btn-wrapper {
   width: 100%;
 }
-.resources-section .management-container .management-btns-container .delete-btn-wrapper .confirm-delete-btn {
+.management-section .management-container .management-btns-container .delete-btn-wrapper .confirm-delete-btn {
   position: absolute;
   left: 0;
   top: 0;
   background-color: #ececec;
 }
-.resources-section .management-container .management-btns-container .delete-btn-wrapper .confirm-delete-btn.hide {
+.management-section .management-container .management-btns-container .delete-btn-wrapper .confirm-delete-btn.hide {
   display: none;
 }
-.resources-section .management-container .management-btns-container .delete-btn-wrapper .confirm-delete-btn .success {
+.management-section .management-container .management-btns-container .delete-btn-wrapper .confirm-delete-btn .success {
   margin-left: 16px;
 }
 

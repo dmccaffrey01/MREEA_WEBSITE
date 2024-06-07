@@ -125,3 +125,13 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 });
+
+document.addEventListener("DOMContentLoaded", () => {
+    let navBtn = document.querySelector(".nav-btn");
+    let navMenu = document.querySelector(".nav-menu");
+
+    navBtn.addEventListener("click", () => {
+        navMenu.classList.toggle("active");
+        navBtn.classList.toggle("active");
+    });
+});

@@ -15,14 +15,29 @@ def events(request):
 
     public_events = all_events.filter(is_public=True)
 
-    current_datetime = timezone.now()
+    current_datetime = timezone.localtime(timezone.now())
     tomorrow_start = current_datetime + timedelta(days=1)
     tomorrow_start = tomorrow_start.replace(hour=0, minute=0, second=0, microsecond=0)
 
-    upcoming_events = public_events.filter(date__gte=tomorrow_start).order_by('date')
-    past_events = public_events.filter(date__lt=tomorrow_start).order_by('-date')
+    upcoming_events_query = public_events.filter(date__gte=tomorrow_start).order_by('date')
+    past_events_query = public_events.filter(date__lt=tomorrow_start).order_by('-date')
+
+    if request.method == 'POST':
+        viewAllValue = request.POST.get('id_view_all')
+
+        if viewAllValue == 'upcoming':
+            upcoming_slice = upcoming_events_query.count()
+            past_slice = 4
+        else:
+            past_slice = past_events_query.count()
+            upcoming_slice = 4
+    else:
+        upcoming_slice = 4
+        past_slice = 4
 
     draft_events = all_events.filter(is_public=False)
+    upcoming_events = upcoming_events_query[:upcoming_slice]
+    past_events = past_events_query[:past_slice]
 
     context = {
         'upcoming_events': upcoming_events,
@@ -77,6 +92,8 @@ def add_event(request):
                     icon=register_icon
                 )
                 new_register_resource.save()
+            else:
+                new_register_resource = False
 
             if google_drive_url:
                 google_drive_friendly_name = 'Google Drive Folder'
@@ -89,6 +106,8 @@ def add_event(request):
                     icon=google_drive_icon
                 )
                 new_google_drive_resource.save()
+            else:
+                new_google_drive_resource = False
             
             new_event = Event.objects.create(
                 friendly_name=event_friendly_name,
@@ -96,15 +115,19 @@ def add_event(request):
                 date=event_date,
                 time=event_time,
                 location=event_location,
-                register_link=new_register_resource,
-                google_drive_link=new_google_drive_resource,
                 folder=new_folder,
                 is_public=event_is_public,
             )
+
+            if new_register_resource:
+                new_event.register_link = new_register_resource
+            if new_google_drive_resource:
+                new_event.google_drive_link = new_google_drive_resource
+
             new_event.save()
 
-            if event_is_public:
-                new_event_notifications.delay(new_event.name) # celery task
+            # if event_is_public:
+            #     new_event_notifications.delay(new_event.name) # celery task
 
             messages.success(request, 'Successfully created event!')
 
@@ -199,8 +222,8 @@ def edit_event(request, event_name):
             selected_event.is_public = event_is_public
             selected_event.save()
 
-            if (not previous_is_public) and event_is_public:
-                new_event_notifications.delay(selected_event.name) # celery task
+            # if (not previous_is_public) and event_is_public:
+            #     new_event_notifications.delay(selected_event.name) # celery task
 
             messages.success(request, 'Successfully edited event!')
 

@@ -20,7 +20,7 @@ class EventForm(forms.ModelForm):
         exclude = ('name', 'register_link', 'google_drive_link', 'folder',)
         widgets = {
             'friendly_name': forms.TextInput(attrs={'placeholder': 'Enter Name'}),
-            'description': forms.Textarea(attrs={'placeholder': 'Enter Description', 'rows': 5}),
+            'description': forms.Textarea(attrs={'placeholder': 'Enter Description', 'rows': 8}),
             'location': forms.TextInput(attrs={'placeholder': 'Enter Location'}),
         }
 

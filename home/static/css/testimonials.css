@@ -71,6 +71,11 @@
   width: 100%;
   min-height: 154px;
 }
+.testimonial-section .testimonial-container .view-testimonial-btn {
+  position: absolute;
+  right: 26.6666666667px;
+  bottom: 26.6666666667px;
+}
 .testimonial-section .half-container {
   width: 100%;
   height: 110px;
@@ -82,6 +87,14 @@
   height: 260px;
   background-color: #f7f7f7;
   border-radius: 16px;
+}
+.testimonial-section .unapproved-testimonials-container {
+  width: 100%;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+.testimonial-section .unapproved-testimonials-container .testimonial-container {
+  width: calc(33% - 13.3333333333px);
 }
 
 /*# sourceMappingURL=testimonials.css.map */

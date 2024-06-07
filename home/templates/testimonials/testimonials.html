@@ -2,6 +2,8 @@
 
 {% load static %}
 
+{% block extra_title %}- Testimonials{% endblock %}
+
 {% block extra_css %}
 <link rel="stylesheet" type="text/css" href="{% static 'css/testimonials.css' %}">
 <link rel="stylesheet" type="text/css" href="{% static 'css/cta-section.css' %}">
@@ -12,6 +14,42 @@
 
 <section class="testimonial-section section">
     <div class="section-container container-col">
+        {% if user.is_superuser and awaiting_approval_testimonials %}
+        <div class="section-heading-visit-link visit-link">
+            <div class="icon-container">
+                <svg xmlns="http://www.w3.org/2000/svg" class="dark-text-2" viewBox="0 0 16 16">
+                    <path d="M11 4a1 1 0 1 1 0 2a1 1 0 0 1 0-2m.885 2.794c-.23 1.592-.852 2.966-2.239 4.352a.5.5 0 0 0 .708.708C12.473 9.734 13 7.592 13 5a2 2 0 1 0-1.115 1.794M5 4a1 1 0 1 1 0 2a1 1 0 0 1 0-2m.885 2.794c-.23 1.592-.852 2.966-2.239 4.352a.5.5 0 0 0 .708.708C6.473 9.734 7 7.592 7 5a2 2 0 1 0-1.115 1.794" />
+                </svg>
+                <span class="sr-only">Quote Icon</span>
+            </div>
+            <h2 class="section-heading dark-text-2 subheading">Testimonials awaiting approval</h2>
+        </div>
+        <div class="unapproved-testimonials-container container-row justify-start">
+            {% for testimonial in awaiting_approval_testimonials %}
+            <div class="testimonial-container container-col align-start box-shadow">
+                <p class="testimonial-text dark-text-2">
+                    {{ testimonial.message|linebreaksbr }}
+                </p>
+                <a target="_blank" href="{% url 'profile' testimonial.user.username %}" class="author-container container-row">
+                    <div class="author-img-container img-container">
+                        {% if testimonial.profile.image %}
+                        <img src="{{ testimonial.profile.image.url }}" alt="{{ testimonial.profile.first_name }}'s Profile Image" class="img-100a">
+                        {% else %}
+                        <img src="{{ MEDIA_URL }}default-profile-picture.png" alt="Default Profile Image" class="img-100a">
+                        {% endif %}
+                    </div>
+                    <p class="author-text dark-text-2">{{ testimonial.profile.first_name }} {{ testimonial.profile.last_name }}</p>
+                </a>
+                <a target="_blank" href="{% url 'edit_testimonial' testimonial.user.username %}" class="view-testimonial-btn icon-container label-container">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="dark-text-2" viewBox="0 0 16 16">
+                        <path d="M2.984 8.625v.003a.5.5 0 0 1-.612.355c-.431-.114-.355-.611-.355-.611l.018-.062s.026-.084.047-.145a6.7 6.7 0 0 1 1.117-1.982C4.096 5.089 5.605 4 8 4s3.904 1.089 4.802 2.183a6.7 6.7 0 0 1 1.117 1.982a4 4 0 0 1 .06.187l.003.013v.004l.001.002a.5.5 0 0 1-.966.258l-.001-.004l-.008-.025l-.035-.109a5.7 5.7 0 0 0-.945-1.674C11.286 5.912 10.045 5 8 5s-3.285.912-4.028 1.817a5.7 5.7 0 0 0-.945 1.674l-.035.109zM8 7a2.5 2.5 0 1 0 0 5a2.5 2.5 0 0 0 0-5M6.5 9.5a1.5 1.5 0 1 1 3 0a1.5 1.5 0 0 1-3 0" />
+                    </svg>
+                    <span class="label white-text">View Testimonial</span>
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
         <div class="section-heading-visit-link visit-link">
             <div class="icon-container">
                 <svg xmlns="http://www.w3.org/2000/svg" class="dark-text-2" viewBox="0 0 16 16">
@@ -36,7 +74,7 @@
                     <p class="testimonial-text dark-text-2">
                         {{ testimonial.message|linebreaksbr }}
                     </p>
-                    <a target="_blank" href="{% url 'profile' user.username %}" class="author-container container-row">
+                    <a target="_blank" href="{% url 'profile' testimonial.user.username %}" class="author-container container-row">
                         <div class="author-img-container img-container">
                             {% if testimonial.profile.image %}
                             <img src="{{ testimonial.profile.image.url }}" alt="{{ testimonial.profile.first_name }}'s Profile Image" class="img-100a">
@@ -46,6 +84,14 @@
                         </div>
                         <p class="author-text dark-text-2">{{ testimonial.profile.first_name }} {{ testimonial.profile.last_name }}</p>
                     </a>
+                    {% if user.is_superuser %}
+                    <a target="_blank" href="{% url 'edit_testimonial' testimonial.user.username %}" class="view-testimonial-btn icon-container label-container">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="dark-text-2" viewBox="0 0 16 16">
+                            <path d="M2.984 8.625v.003a.5.5 0 0 1-.612.355c-.431-.114-.355-.611-.355-.611l.018-.062s.026-.084.047-.145a6.7 6.7 0 0 1 1.117-1.982C4.096 5.089 5.605 4 8 4s3.904 1.089 4.802 2.183a6.7 6.7 0 0 1 1.117 1.982a4 4 0 0 1 .06.187l.003.013v.004l.001.002a.5.5 0 0 1-.966.258l-.001-.004l-.008-.025l-.035-.109a5.7 5.7 0 0 0-.945-1.674C11.286 5.912 10.045 5 8 5s-3.285.912-4.028 1.817a5.7 5.7 0 0 0-.945 1.674l-.035.109zM8 7a2.5 2.5 0 1 0 0 5a2.5 2.5 0 0 0 0-5M6.5 9.5a1.5 1.5 0 1 1 3 0a1.5 1.5 0 0 1-3 0" />
+                        </svg>
+                        <span class="label white-text">View Testimonial</span>
+                    </a>
+                    {% endif %}
                 </div>
                 {% endif %}
                 {% endfor %}

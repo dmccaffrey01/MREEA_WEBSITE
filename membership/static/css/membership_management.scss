@@ -1,0 +1,110 @@
+@import '../../../static/css/variables';
+@import '../../../static/css/mixins';
+
+.management-section {
+    padding: 40px 0;
+    justify-content: flex-start;
+    padding-bottom: 100px;
+    min-height: calc(100vh - 100px);
+
+    .section-container {
+        gap: 24px;
+
+        .heading-container {
+            gap: 8px;
+
+            .icon-container {
+                width: calc($subheading-size + 24px);
+                height: calc($subheading-size + 24px);
+                padding: 12px;
+            }
+        }
+    }
+
+    .img-name-container {
+        width: calc(50% - 24px);
+        border-radius: $round-corner-3;
+        padding: 32px;
+        background-color: $gl-1;
+        gap: 16px;
+
+        .img-container {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+        }
+
+        .profile-name {
+            font-size: 1.8rem;
+            font-weight: 600;
+        }
+    }
+
+    .form-container {
+        width: calc(50% - 24px);
+        border-radius: $round-corner-3;
+        padding: 32px;
+        background-color: $gl-1;
+        gap: 24px;
+
+        .input-wrapper {
+            width: 100%;
+            gap: 4px;
+
+            .input-label {
+                margin-left: 16px;
+                color: $gd-3;
+            }
+        }
+
+        .input-container {
+            position: relative;
+
+            input, textarea {
+                padding-left: 16px;
+                padding: 16px;
+            }
+        }
+    }
+
+    .management-btns-container {
+        gap: 4px;
+        margin-top: 12px;
+        width: calc(50% - 24px);
+        padding: 16px;
+        border-radius: $round-corner-2;
+        background-color: $gl-1;
+
+        .save-btn {
+            padding: 0;
+            background-color: $gl-1;
+            border: none;
+        }
+
+        .visit-link {
+            justify-content: flex-start;
+            width: 100%;
+            border-radius: $round-corner-2;
+            background-color: $gl-1;
+            padding: 12px;
+            gap: 8px;
+            cursor: pointer;
+
+            &:hover {
+                background-color: $gl-2;
+
+                .icon-container {
+                    background-color: $gl-1;
+
+                    &.success:hover {
+                        background-color: $success;
+                    }
+
+                    &.error:hover {
+                        background-color: $error;
+                    }
+                }
+            }
+        }
+    }
+}

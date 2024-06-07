@@ -4,7 +4,6 @@ from django.contrib.auth.decorators import login_required
 from membership.models import Membership
 from django.contrib import messages
 from .forms import ManageResourceForm, ManageFolderForm
-from profiles.views import get_url_friendly_name
 
 
 @login_required
@@ -16,13 +15,37 @@ def resources(request):
 
     if membership:
         if not membership.status.valid:
-            messages.error("You must have a valid membership to access this!")
+            messages.error(request, "You must have a valid membership to access this!")
             return redirect(reverse('membership'))
     else:
-        messages.error("You must have a valid membership to access this!")
+        messages.error(request, "You must have a valid membership to access this!")
         return redirect(reverse('membership'))
     
     return redirect(reverse('folder', args=('all',)))
+
+
+@login_required
+def deleted_folders(request):
+
+    user = request.user
+
+    if not user.is_superuser:
+        messages.error(request, "You must be an admin to access this!")
+        return redirect(reverse('home'))
+
+    sub_folders = Folder.objects.filter(is_deleted=True)
+
+    if not sub_folders:
+        no_resources_or_folders = True
+    else:
+        no_resources_or_folders = False
+
+    context = {
+        'sub_folders': sub_folders,
+        'no_resources_or_folders': no_resources_or_folders,
+    }
+
+    return render(request, 'resources/deleted_folders.html', context)
 
 
 @login_required
@@ -34,15 +57,15 @@ def folder(request, folder_name):
 
     if membership:
         if not membership.status.valid:
-            messages.error("You must have a valid membership to access this!")
+            messages.error(request, "You must have a valid membership to access this!")
             return redirect(reverse('membership'))
     else:
-        messages.error("You must have a valid membership to access this!")
+        messages.error(request, "You must have a valid membership to access this!")
         return redirect(reverse('membership'))
     
     folder = Folder.objects.filter(name=folder_name).first()
 
-    sub_folders = Folder.objects.filter(parent_folder=folder).order_by('-created_at')
+    sub_folders = Folder.objects.filter(parent_folder=folder, is_deleted=False).order_by('-created_at')
 
     resources = Resource.objects.filter(folder=folder).order_by('-created_at')
 
@@ -121,14 +144,15 @@ def add_resource(request, folder_name):
             form_data = form.cleaned_data
             resource_friendly_name = form_data['friendly_name']
             resource_url = form_data['url']
+            resource_icon_name = request.POST.get('id_icon_name', 'resource')
+            resource_folder_name = request.POST.get('id_folder_name', 'all')
 
-            url_friendly_name = get_url_friendly_name(resource_url)
-
-            resource_icon = get_icon_from_url(url_friendly_name)
+            resource_icon = Icon.objects.filter(name=resource_icon_name).first()
+            resource_folder = Folder.objects.filter(name=resource_folder_name).first()
 
             new_resource = Resource.objects.create(
                 friendly_name=resource_friendly_name,
-                folder=folder,
+                folder=resource_folder,
                 url=resource_url,
                 icon=resource_icon,
             )
@@ -160,6 +184,14 @@ def add_resource(request, folder_name):
     else:
         no_resources_or_folders = False
 
+    icons = Icon.objects.all()
+
+    default_icon = icons.filter(name='resource').first()
+
+    folders = Folder.objects.all()
+
+    default_folder = folder
+
     context = {
         'form': form,
         'folder': folder,
@@ -170,6 +202,10 @@ def add_resource(request, folder_name):
         'management_name': management_name,
         'management_icon': management_icon,
         'action_url': action_url,
+        'icons': icons,
+        'default_icon': default_icon,
+        'folders': folders,
+        'default_folder': default_folder,
     }
 
     return render(request, 'resources/resource_management.html', context)
@@ -204,14 +240,16 @@ def edit_resource(request, folder_name, resource_name):
             form_data = form.cleaned_data
             resource_friendly_name = form_data['friendly_name']
             resource_url = form_data['url']
+            resource_icon_name = request.POST.get('id_icon_name', 'resource')
+            resource_folder_name = request.POST.get('id_folder_name', 'all')
 
-            url_friendly_name = get_url_friendly_name(resource_url)
-
-            resource_icon = get_icon_from_url(url_friendly_name)
+            resource_icon = Icon.objects.filter(name=resource_icon_name).first()
+            resource_folder = Folder.objects.filter(name=resource_folder_name).first()
 
             resource.friendly_name = resource_friendly_name
             resource.url = resource_url
             resource.icon = resource_icon
+            resource.folder = resource_folder
             resource.save()
 
             messages.success(request, "Successfully edited resource!")
@@ -238,6 +276,14 @@ def edit_resource(request, folder_name, resource_name):
         no_resources_or_folders = True
     else:
         no_resources_or_folders = False
+    
+    icons = Icon.objects.all()
+
+    default_icon = resource.icon
+
+    folders = Folder.objects.all()
+
+    default_folder = folder
 
     context = {
         'form': form,
@@ -251,6 +297,10 @@ def edit_resource(request, folder_name, resource_name):
         'management_icon': management_icon,
         'action_url': action_url,
         'delete_btn': True,
+        'icons': icons,
+        'default_icon': default_icon,
+        'folders': folders,
+        'default_folder': default_folder,
     }
 
     return render(request, 'resources/resource_management.html', context)
@@ -305,12 +355,15 @@ def add_folder(request, folder_name):
         if form.is_valid():
             form_data = form.cleaned_data
             folder_friendly_name = form_data['friendly_name']
+            folder_icon_name = request.POST.get('id_icon_name', 'folder')
+            folder_parent_folder_name = request.POST.get('id_parent_folder_name', 'all')
 
-            folder_icon = Icon.objects.filter(name='folder').first()
+            folder_icon = Icon.objects.filter(name=folder_icon_name).first()
+            folder_parent_folder = Folder.objects.filter(name=folder_parent_folder_name).first()
 
             new_folder = Folder.objects.create(
                 friendly_name=folder_friendly_name,
-                parent_folder=folder,
+                parent_folder=folder_parent_folder,
                 icon=folder_icon,
             )
 
@@ -340,6 +393,14 @@ def add_folder(request, folder_name):
         no_resources_or_folders = True
     else:
         no_resources_or_folders = False
+    
+    icons = Icon.objects.all()
+
+    default_icon = icons.filter(name='folder').first()
+
+    folders = Folder.objects.all()
+
+    default_parent_folder = folder
 
     context = {
         'form': form,
@@ -351,6 +412,10 @@ def add_folder(request, folder_name):
         'management_name': management_name,
         'management_icon': management_icon,
         'action_url': action_url,
+        'icons': icons,
+        'default_icon': default_icon,
+        'folders': folders,
+        'default_parent_folder': default_parent_folder,
     }
 
     return render(request, 'resources/folder_management.html', context)
@@ -384,8 +449,15 @@ def edit_folder(request, folder_name, selected_folder_name):
         if form.is_valid():
             form_data = form.cleaned_data
             folder_friendly_name = form_data['friendly_name']
+            folder_icon_name = request.POST.get('id_icon_name', 'folder')
+            folder_parent_folder_name = request.POST.get('id_parent_folder_name', 'all')
+
+            folder_icon = Icon.objects.filter(name=folder_icon_name).first()
+            folder_parent_folder = Folder.objects.filter(name=folder_parent_folder_name).first()
 
             selected_folder.friendly_name = folder_friendly_name
+            selected_folder.icon = folder_icon
+            selected_folder.parent_folder = folder_parent_folder
             selected_folder.save()
 
             messages.success(request, "Successfully edited folder!")
@@ -412,6 +484,14 @@ def edit_folder(request, folder_name, selected_folder_name):
         no_resources_or_folders = True
     else:
         no_resources_or_folders = False
+    
+    icons = Icon.objects.all()
+
+    default_icon = selected_folder.icon
+
+    folders = Folder.objects.all()
+
+    default_parent_folder = folder
 
     context = {
         'form': form,
@@ -425,6 +505,10 @@ def edit_folder(request, folder_name, selected_folder_name):
         'management_icon': management_icon,
         'action_url': action_url,
         'delete_btn': True,
+        'icons': icons,
+        'default_icon': default_icon,
+        'folders': folders,
+        'default_parent_folder': default_parent_folder,
     }
 
     return render(request, 'resources/folder_management.html', context)
@@ -452,8 +536,30 @@ def delete_folder(request, folder_name, selected_folder_name):
         messages.error(request, "Invalid folder!")
         return redirect(redirect_url)
     
-    selected_folder.delete()
+    selected_folder.is_deleted = True
+    selected_folder.save()
 
     messages.success(request, "Successfully deleted folder!")
     return redirect(redirect_url)
 
+
+@login_required
+def restore_folder(request, selected_folder_name):
+
+    user = request.user
+
+    if not user.is_superuser:
+        messages.error(request, "You must be an admin to restore a folder!")
+        return redirect(reverse('home'))
+    
+    selected_folder = Folder.objects.filter(name=selected_folder_name).first()
+
+    if not selected_folder:
+        messages.error(request, "Invalid folder!")
+        return redirect(reverse('resources'))
+    
+    selected_folder.is_deleted = False
+    selected_folder.save()
+
+    messages.success(request, "Successfully restored folder!")
+    return redirect(reverse('deleted_folders'))

@@ -1,9 +1,11 @@
 from django.shortcuts import render, redirect, reverse
 from .models import Membership, MembershipPackage, MembershipStatus
-from .forms import MembershipPackageForm
+from .forms import MembershipPackageForm, MembershipForm
 from django.utils import timezone
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+from django.contrib.auth.models import User
+from profiles.models import UserProfile
 
 
 @login_required
@@ -157,26 +159,73 @@ def membership_status(request):
 
 
 @login_required
-def membership_cancel(request):
-    if request.method == 'POST':
-        # Check if the cancel button was clicked
-        if 'cancel_membership' in request.POST:
-            user = request.user
-            membership = Membership.objects.filter(user=user).first()
+def membership_management(request, username):
 
-            if membership:
-                # Update membership status to canceled
-                cancel_status = MembershipStatus.objects.get(name="canceled")
-                membership.status = cancel_status
-                membership.make_cancelled()
-                membership.save()
+    user = request.user
 
-                message = 'Successfully Cancelled Membership!'
-                messages.success(request, message)
-
-                return redirect(reverse("membership_redirect"))
+    if not user.is_superuser:
+        messages.error(request, "You must be an admin to continue!")
+        return redirect(reverse('home'))
     
-    message = "Sorry, your action has failed."
-    messages.success(request, message)
-    # If the request is not a POST or the cancel button wasn't clicked, redirect to membership status
-    return redirect(reverse('membership_status'))
+    selected_user = User.objects.filter(username=username).first()
+
+    if not selected_user:
+        messages.error(request, "Invalid user")
+        return redirect(reverse('members_management'))
+    
+    selected_profile = UserProfile.objects.filter(user=selected_user).first()
+
+    if not selected_profile:
+        messages.error(request, "Invalid user profile")
+        return redirect(reverse('membership_management'))
+    
+    selected_membership = Membership.objects.filter(user=selected_user).first()
+
+    if not selected_membership:
+        messages.error(request, "Invalid membership")
+        return redirect(reverse('membership_management'))
+    
+    if request.method == 'POST':
+        form = MembershipForm(request.POST)
+
+        if form.is_valid():
+            form_data = form.cleaned_data
+            purchase_date = form_data['purchase_date']
+            start_date = form_data['start_date']
+            end_date = form_data['end_date']
+
+            package_name = request.POST.get('id_package_name')
+            status_name = request.POST.get('id_status_name')
+
+            membership_package = MembershipPackage.objects.filter(name=package_name).first()
+            membership_status = MembershipStatus.objects.filter(name=status_name).first()
+
+            selected_membership.package = membership_package
+            selected_membership.status = membership_status
+            selected_membership.status_name = status_name
+            selected_membership.purchase_date = purchase_date
+            selected_membership.start_date = start_date
+            selected_membership.end_date = end_date
+            selected_membership.save()
+
+            messages.success(request, "Successfully updated membership!")
+            return redirect(reverse('members_management'))
+        else:
+            for error in form.errors:
+                print(error)
+
+    else:
+        form = MembershipForm(instance=selected_membership)
+    
+    membership_packages = MembershipPackage.objects.all()
+    membership_statuses = MembershipStatus.objects.all()
+    
+    context = {
+        'form': form,
+        'selected_profile': selected_profile,
+        'selected_membership': selected_membership,
+        'membership_packages': membership_packages,
+        'membership_statuses': membership_statuses,
+    }
+
+    return render(request, 'management/membership_management.html', context)

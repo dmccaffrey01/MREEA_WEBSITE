@@ -5,7 +5,8 @@ from .models import Testimonial
 from django.contrib import messages
 from django.contrib.auth.models import User
 from profiles.models import UserProfile
-from django.conf import settings
+from .tasks import new_testimonial_approved_notification, new_testimonial_denied_notification, new_testimonial_notifications
+from membership.models import Membership
 
 
 def index(request):
@@ -18,8 +19,18 @@ def index(request):
 
         testimonial.profile = profile
 
+    intro_profiles = random_testimonials[2:5]
+
+    all_members = Membership.objects.all()
+
+    members_count = all_members.count()
+
+    rounded_members_count = (members_count // 5) * 5
+
     context = {
         'random_testimonials': random_testimonials,
+        'intro_profiles': intro_profiles,
+        'members_count': rounded_members_count,
     }
 
     return render(request, 'home/index.html', context)
@@ -27,14 +38,21 @@ def index(request):
 
 def testimonials(request):
 
-    approved_testimonials = Testimonial.objects.filter(is_approved=True).order_by('?')
-
-    testimonials_count = approved_testimonials.count()
+    approved_testimonials = Testimonial.objects.filter(is_approved=True, is_awaiting_approval=False).order_by('?')
 
     for testimonial in approved_testimonials:
         profile = UserProfile.objects.filter(user=testimonial.user).first()
-
         testimonial.profile = profile
+    
+    if request.user.is_superuser:
+        awaiting_approval_testimonials = Testimonial.objects.filter(is_awaiting_approval=True)
+        for testimonial in awaiting_approval_testimonials:
+            profile = UserProfile.objects.filter(user=testimonial.user).first()
+            testimonial.profile = profile
+    else:
+        awaiting_approval_testimonials = False
+
+    testimonials_count = approved_testimonials.count()
 
     one_third = testimonials_count // 3
 
@@ -78,11 +96,11 @@ def testimonials(request):
                 testimonial = 'full'
                 container.append(testimonial)
         containers.append(container)
-          
-        
+
     context = {
         'testimonials_count': testimonials_count,
         'containers': containers,
+        'awaiting_approval_testimonials': awaiting_approval_testimonials,
     }
 
     return render(request, 'testimonials/testimonials.html', context)
@@ -116,6 +134,8 @@ def add_testimonial(request, username):
             testimonial.message = testimonial_message
 
             testimonial.save()
+
+            # new_testimonial_notifications.delay(testimonial.id) # celery task
 
             messages.success(request, "Successfully added your testimonial! An admin will approve it shortly!")
 
@@ -177,7 +197,11 @@ def edit_testimonial(request, username):
 
             testimonial.is_approved = False
 
+            testimonial.is_awaiting_approval = True
+
             testimonial.save()
+
+            # new_testimonial_notifications.delay(testimonial.id) # celery task
 
             messages.success(request, "Successfully edited your testimonial! An admin will approve it shortly!")
 
@@ -189,15 +213,74 @@ def edit_testimonial(request, username):
     action_url = reverse('edit_testimonial', args=(username,))
     page_heading = 'Edit Testimonial'
 
-
     testimonial_message = testimonial.message
+
+    selected_profile = UserProfile.objects.filter(user=selected_user).first()
 
     context = {
         'form': form,
         'action_url': action_url,
         'page_heading': page_heading,
         'testimonial_message': testimonial_message,
+        'testimonial': testimonial,
+        'selected_profile': selected_profile,
     }
 
     return render(request, 'testimonials/testimonial.html', context)
 
+
+@login_required
+def approve_testimonial(request, testimonial_id):
+
+    user = request.user
+
+    if not user.is_superuser:
+        messages.error(request, "You must be an admin to approve this testimonial")
+        return redirect(reverse('testimonials'))
+    
+    testimonial = Testimonial.objects.filter(id=testimonial_id).first()
+
+    if not testimonial:
+        messages.error(request, "Invalid testimonial")
+        return redirect(reverse('testimonials'))
+    
+    testimonial.is_approved = True
+    testimonial.is_awaiting_approval = False
+    testimonial.save()
+
+    # new_testimonial_approved_notification.delay(testimonial.id) # celery task
+
+    messages.success(request, "Successfully approved testimonial")
+
+    return redirect(reverse('testimonials'))
+
+
+@login_required
+def deny_testimonial(request, testimonial_id):
+
+    user = request.user
+
+    if not user.is_superuser:
+        messages.error(request, "You must be an admin to deny this testimonial")
+        return redirect(reverse('testimonials'))
+    
+    testimonial = Testimonial.objects.filter(id=testimonial_id).first()
+
+    if not testimonial:
+        messages.error(request, "Invalid testimonial")
+        return redirect(reverse('testimonials'))
+    
+    testimonial.is_approved = False
+    testimonial.is_awaiting_approval = False
+    testimonial.save()
+
+    # new_testimonial_denied_notification.delay(testimonial.id) # celery task
+
+    messages.success(request, "Successfully denied testimonial")
+
+    return redirect(reverse('testimonials'))
+
+
+def privacy(request):
+
+    return render(request, 'privacy/privacy.html')

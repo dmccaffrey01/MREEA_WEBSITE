@@ -11,6 +11,7 @@ from allauth.account.views import PasswordChangeView
 from django.urls import reverse_lazy
 import json
 from home.models import Testimonial
+from .tasks import new_password_change_notification
 
 
 def profile(request, username):
@@ -319,6 +320,7 @@ def login_redirect(request):
     user_profile = get_object_or_404(UserProfile, user=user)
 
     if not user_profile.is_password_changed:
+        # new_password_change_notification.delay(user.username) # celery task
         messages.warning(request, "Please change your password!")
         return redirect(reverse('account_change_password'))
     

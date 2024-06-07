@@ -3,9 +3,6 @@
   justify-content: flex-start;
   background: linear-gradient(0deg, rgb(247, 247, 247) 0%, rgb(238, 238, 238) 50%, rgb(247, 247, 247) 100%);
 }
-.events-section .section-container {
-  gap: 24px;
-}
 .events-section .img-container {
   width: 100%;
   height: 160px;
@@ -19,16 +16,26 @@
 }
 .events-section .events-wrapper {
   width: 100%;
-  gap: 24px;
+  gap: 20px;
 }
 .events-section .events-wrapper .heading-container {
   gap: 8px;
   margin-top: 24px;
+  width: 100%;
+  justify-content: flex-start;
+  position: relative;
 }
 .events-section .events-wrapper .heading-container .icon-container {
   width: calc(1.8rem + 24px);
   height: calc(1.8rem + 24px);
   padding: 12px;
+}
+.events-section .events-wrapper .heading-container .view-all-btn {
+  cursor: pointer;
+  position: absolute;
+  right: 24px;
+  top: 50%;
+  translate: 0 -50%;
 }
 .events-section .events-wrapper .add-event-btn {
   width: 100%;
@@ -38,7 +45,7 @@
   cursor: pointer;
 }
 .events-section .events-wrapper .add-event-btn:hover {
-  background-color: #ededed;
+  background-color: #ececec;
 }
 .events-section .events-wrapper .add-event-btn:hover .icon-container {
   background-color: #f7f7f7;
@@ -46,54 +53,40 @@
 .events-section .events-wrapper .upcoming-events-container,
 .events-section .events-wrapper .past-events-container {
   width: 100%;
-  gap: 24px;
+  gap: 40px;
 }
 .events-section .events-wrapper .upcoming-events-container .events-container,
 .events-section .events-wrapper .past-events-container .events-container {
-  width: calc(50% - 12px);
-  gap: 24px;
+  width: calc(50% - 20px);
+  gap: 40px;
 }
 .events-section .events-wrapper .upcoming-events-container .events-container .event-container,
 .events-section .events-wrapper .past-events-container .events-container .event-container {
-  padding: 24px;
+  padding: 32px;
   border-radius: 16px;
   background-color: #f7f7f7;
   width: 100%;
   gap: 12px;
+  position: relative;
 }
 .events-section .events-wrapper .upcoming-events-container .events-container .visit-link,
 .events-section .events-wrapper .past-events-container .events-container .visit-link {
   gap: 8px;
 }
-.events-section .events-wrapper .upcoming-events-container .events-container .visit-link .icon-container,
-.events-section .events-wrapper .past-events-container .events-container .visit-link .icon-container {
-  width: calc(1.3rem + 12px);
-  height: calc(1.3rem + 12px);
-  padding: 6px;
-}
-.events-section .events-wrapper .upcoming-events-container .events-container .event-heading-container,
-.events-section .events-wrapper .past-events-container .events-container .event-heading-container {
-  margin-bottom: 8px;
-}
-.events-section .events-wrapper .upcoming-events-container .events-container .event-heading-container .icon-container,
-.events-section .events-wrapper .past-events-container .events-container .event-heading-container .icon-container {
-  width: 40px;
-  height: 40px;
-  padding: 8px;
+.events-section .events-wrapper .upcoming-events-container .events-container .event-heading-text,
+.events-section .events-wrapper .past-events-container .events-container .event-heading-text {
+  margin-bottom: 4px;
+  font-size: 1.5rem;
 }
 .events-section .events-wrapper .upcoming-events-container .events-container .link-container,
 .events-section .events-wrapper .past-events-container .events-container .link-container {
-  align-self: flex-end;
+  position: absolute;
+  right: 32px;
+  bottom: 32px;
 }
 .events-section .events-wrapper .upcoming-events-container .events-container .description-text,
 .events-section .events-wrapper .past-events-container .events-container .description-text {
-  gap: 1.1rem;
-  margin-bottom: 8px;
-}
-.events-section .events-wrapper .upcoming-events-container .events-container .description-text p,
-.events-section .events-wrapper .past-events-container .events-container .description-text p {
-  font-size: 1.1rem;
-  color: #242424;
+  margin-bottom: 16px;
 }
 
 /*# sourceMappingURL=events.css.map */

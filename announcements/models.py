@@ -1,17 +1,17 @@
 import string
 import random
 from django.db import models
-from django.db.models.signals import post_save
 from django.dispatch import receiver
-from resources.models import Folder
+from resources.models import Folder, Resource
 from django.db.models.signals import pre_delete
 
-class Annoucement(models.Model):
+class Announcement(models.Model):
     name = models.CharField(max_length=255, unique=True, editable=False)
     friendly_name = models.CharField(max_length=255, blank=True, null=True)
-    text = models.TextField(max_length=5000, blank=True, null=True)
+    description = models.TextField(max_length=3000, blank=True, null=True)
     folder = models.ForeignKey(Folder, null=True, blank=True, on_delete=models.SET_NULL)
-    date = models.DateField(null=True, blank=True)
+    is_public = models.BooleanField(default=False)
+    date_made_public = models.DateTimeField(blank=True, null=True)
 
     def __str__(self):
         return self.friendly_name
@@ -25,25 +25,9 @@ class Annoucement(models.Model):
         prefix = 'A'
         suffix = ''.join(random.choices(string.ascii_lowercase + string.digits, k=10))
         return prefix + suffix
-    
-
-@receiver(post_save, sender=Annoucement)
-def create_folder(sender, instance, created, **kwargs):
-    if created and not instance.folder:
-        parent_folder = Folder.objects.get(name="announcements")
-        friendly_name = instance.friendly_name
-
-        folder = Folder.objects.create(
-            name="",
-            friendly_name=friendly_name,
-            parent_folder=parent_folder
-        )
-        folder.save()
-        instance.folder = folder
-        instance.save()
 
 
-@receiver(pre_delete, sender=Annoucement)
+@receiver(pre_delete, sender=Announcement)
 def delete_folder(sender, instance, **kwargs):
     if instance.folder:
         instance.folder.delete()

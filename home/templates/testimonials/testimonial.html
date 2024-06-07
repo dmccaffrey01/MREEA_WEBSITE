@@ -44,17 +44,37 @@
             </p>
             <div class="author-container container-row">
                 <div class="author-img-container img-container">
-                    {% if profile.image %}
-                    <img src="{{ profile.image.url }}" alt="{{ profile.first_name }}'s Profile Image" class="img-100a">
+                    {% if selected_profile.image %}
+                    <img src="{{ selected_profile.image.url }}" alt="{{ selected_profile.first_name }}'s Profile Image" class="img-100a">
                     {% else %}
                     <img src="{{ MEDIA_URL }}default-profile-picture.png" alt="Default Profile Image" class="img-100a">
                     {% endif %}
                 </div>
-                <p class="author-text dark-text-2">{{ profile.first_name }}</p>
+                <p class="author-text dark-text-2">{{ selected_profile.first_name }} {{ selected_profile.last_name }}</p>
             </div>
         </div>
 
         <div class="management-btns-container container-col align-start box-shadow">
+            {% if user.is_superuser %}
+            <a href="{% url 'approve_testimonial' testimonial.id %}" class="visit-link">
+                <span class="icon-container dark-text">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="dark-text" viewBox="0 0 24 24">
+                        <path fill-rule="evenodd" d="M20.207 6.793a1 1 0 0 1 0 1.414l-9.5 9.5a1 1 0 0 1-1.414 0l-4.5-4.5a1 1 0 0 1 1.414-1.414L10 15.586l8.793-8.793a1 1 0 0 1 1.414 0" clip-rule="evenodd" />
+                    </svg>
+                    <span class="sr-only">Check Icon</span>
+                </span>
+                <span class="item-text dark-text small-text">Approve Testimonial</span>
+            </a>
+            <a href="{% url 'deny_testimonial' testimonial.id %}" class="visit-link">
+                <span class="icon-container dark-text">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="dark-text" viewBox="0 0 24 24">
+                        <path fill-rule="evenodd" d="M17.707 7.707a1 1 0 0 0-1.414-1.414L12 10.586L7.707 6.293a1 1 0 0 0-1.414 1.414L10.586 12l-4.293 4.293a1 1 0 1 0 1.414 1.414L12 13.414l4.293 4.293a1 1 0 1 0 1.414-1.414L13.414 12z" clip-rule="evenodd" />
+                    </svg>
+                    <span class="sr-only">X Mark Icon</span>
+                </span>
+                <span class="item-text dark-text small-text">Deny Testimonial</span>
+            </a>
+            {% endif %}
             <button type="submit" class="save-btn visit-link">
                 <span class="icon-container dark-text">
                     <svg xmlns="http://www.w3.org/2000/svg" class="dark-text" viewBox="0 0 16 16">

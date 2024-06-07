@@ -63,7 +63,7 @@ def clear_all_notifications(request, username):
 
     if notifications.count() == 0:
         messages.info(request, 'No notifications to clear!')
-        return redirect(reverse('home'))
+        return redirect(request.META.get('HTTP_REFERER', 'home'))
 
     for notification in notifications:
         notification.cleared_status = True
@@ -72,7 +72,7 @@ def clear_all_notifications(request, username):
     message = 'Successfully cleared the notifications!'
     messages.success(request, message)
 
-    return redirect(reverse('home'))
+    return redirect(request.META.get('HTTP_REFERER', 'home'))
 
 
 @login_required
@@ -82,13 +82,13 @@ def delete_all_notifications(request, username):
 
     if (selected_user != user) and (not user.is_superuser):
         messages.error(request, 'You must be the owner of these notifications!')
-        return redirect(reverse('home'))
+        return redirect(request.META.get('HTTP_REFERER', 'home'))
 
     notifications = Notification.objects.filter(user=user, cleared_status=True)
 
     if notifications.count() == 0:
         messages.info(request, 'No notifications to delete!')
-        return redirect(reverse('home'))
+        return redirect(request.META.get('HTTP_REFERER', 'home'))
 
     for notification in notifications:
         notification.delete()
@@ -96,4 +96,4 @@ def delete_all_notifications(request, username):
     message = 'Successfully deleted the notifications!'
     messages.success(request, message)
 
-    return redirect(reverse('home'))
+    return redirect(request.META.get('HTTP_REFERER', 'home'))

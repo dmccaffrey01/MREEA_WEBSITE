@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% load static %}
-{% block extra_title %}- Membership Redirect{% endblock %}
+{% block extra_title %}- Membership Package{% endblock %}
 
 {% block extra_css %}
 <link rel="stylesheet" type="text/css" href="{% static 'css/membership_redirect.css' %}">
@@ -61,12 +61,12 @@
     
                     <div class="single-package-info-container package-info-container container-col align-start">
                         <div class="info-group container-row space-between">
-                            <p class="dark-text small-text info-left">Price</p>
-                            <p class="dark-text small-text info-right">{{ single_membership_package.price }} USD$</p>
+                            <p class="dark-text info-left">Price</p>
+                            <p class="dark-text info-right">{{ single_membership_package.price }} USD</p>
                         </div>
                         <div class="info-group container-row space-between">
-                            <p class="dark-text small-text info-left">Duration</p>
-                            <p class="dark-text small-text info-right">{{ single_membership_package.duration }} Days</p>
+                            <p class="dark-text info-left">Duration</p>
+                            <p class="dark-text info-right">{{ single_membership_package.duration }} Days</p>
                         </div>
                     </div>
     
@@ -74,12 +74,12 @@
     
                     <div class="multiple-package-info-container package-info-container container-col align-start">
                         <div class="info-group container-row space-between">
-                            <p class="dark-text small-text info-left">Price</p>
-                            <p class="dark-text small-text info-right"><span class="package-price-text">--</span> USD$</p>
+                            <p class="dark-text info-left">Price</p>
+                            <p class="dark-text info-right"><span class="package-price-text">--</span> USD</p>
                         </div>
                         <div class="info-group container-row space-between">
-                            <p class="dark-text small-text info-left">Duration</p>
-                            <p class="dark-text small-text info-right"><span class="package-duration-text">--</span> Days</p>
+                            <p class="dark-text info-left">Duration</p>
+                            <p class="dark-text info-right"><span class="package-duration-text">--</span> Days</p>
                         </div>
                     </div>
     

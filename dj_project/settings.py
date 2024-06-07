@@ -55,11 +55,13 @@ INSTALLED_APPS = [
     'membership',
     'resources',
     'notifications',
-    'custom_admin',
     'announcements',
     'storages',
+    'blog',
     'django_celery_beat',
     'django_celery_results',
+    'ckeditor',
+    'ckeditor_uploader',
 ]
 
 ACCOUNT_AUTHENTICATION_METHOD = 'email'
@@ -206,6 +208,19 @@ else:
     MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/media/'
     DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
+
+# CKEditor settings
+CKEDITOR_UPLOAD_PATH = "uploads/"
+CKEDITOR_IMAGE_BACKEND = "pillow"
+CKEDITOR_CONFIGS = {
+    'default': {
+        'toolbar': 'full',
+        'height': 300,
+        'width': '100%',
+        'filebrowserUploadUrl': '/ckeditor/upload/',
+        'filebrowserBrowseUrl': '/ckeditor/browse/',
+    },
+}
 
 
 # Default primary key field type

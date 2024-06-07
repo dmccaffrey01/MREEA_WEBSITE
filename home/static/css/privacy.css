@@ -1,0 +1,9 @@
+.privacy-section {
+  padding: 80px 0;
+}
+.privacy-section .section-container {
+  gap: 40px;
+  flex-direction: column-reverse;
+}
+
+/*# sourceMappingURL=privacy.css.map */

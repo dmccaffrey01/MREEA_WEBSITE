@@ -20,6 +20,7 @@ class Folder(models.Model):
     parent_folder = models.ForeignKey('self', on_delete=models.CASCADE, null=True, blank=True, related_name='subfolders')
     icon = models.ForeignKey(Icon, null=True, blank=True, on_delete=models.SET_NULL)
     created_at = models.DateTimeField(default=timezone.now)
+    is_deleted = models.BooleanField(default=False)
 
     def __str__(self):
         return self.friendly_name

@@ -6,10 +6,6 @@
     justify-content: flex-start;
     background: $bg-1;
 
-    .section-container {
-        gap: 24px;
-    }
-
     .img-container {
         width: 100%;
         height: 160px;
@@ -25,16 +21,27 @@
 
     .events-wrapper {
         width: 100%;
-        gap: 24px;
+        gap: 20px;
 
         .heading-container {
             gap: 8px;
             margin-top: 24px;
+            width: 100%;
+            justify-content: flex-start;
+            position: relative;
 
             .icon-container {
                 width: calc($subheading-size + 24px);
                 height: calc($subheading-size + 24px);
                 padding: 12px;
+            }
+
+            .view-all-btn {
+                cursor: pointer;
+                position: absolute;
+                right: 24px;
+                top: 50%;
+                translate: 0 -50%;
             }
         }
 
@@ -57,51 +64,38 @@
         .upcoming-events-container,
         .past-events-container {
             width: 100%;
-            gap: 24px;
+            gap: 40px;
     
             .events-container {
-                width: calc(50% - 12px);
-                gap: 24px;
+                width: calc(50% - 20px);
+                gap: 40px;
     
                 .event-container {
-                    padding: 24px;
+                    padding: 32px;
                     border-radius: $round-corner-3;
                     background-color: $gl-1;
                     width: 100%;
                     gap: 12px;
+                    position: relative;
                 }
     
                 .visit-link {
                     gap: 8px;
-
-                    .icon-container {
-                        width: calc($font-size + 12px);
-                        height: calc($font-size + 12px);
-                        padding: 6px;
-                    }
                 }
 
-                .event-heading-container {
-                    margin-bottom: 8px;
-                    .icon-container {
-                        width: 40px;
-                        height: 40px;
-                        padding: 8px;
-                    }
+                .event-heading-text {
+                    margin-bottom: 4px;
+                    font-size: 1.5rem;
                 }
 
                 .link-container {
-                    align-self: flex-end;
+                    position: absolute;
+                    right: 32px;
+                    bottom: 32px;
                 }
 
                 .description-text {
-                    gap: $small-font-size;
-                    margin-bottom: 8px;
-        
-                    p {
-                        font-size: $small-font-size;
-                        color: $gd-1;
-                    }
+                    margin-bottom: 16px;
                 }
             }
         }

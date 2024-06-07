@@ -24,26 +24,15 @@ let showMessages = () => {
     let hideMessageInterval = window.setInterval(() => {
         if (!messagesContainer.classList.contains("show")) {
             clearInterval(hideMessageInterval);
-        } else if (intervalCounter >= 44) {
+        } else if (intervalCounter >= 10) {
             hideMessages();
             clearInterval(hideMessageInterval);
         } else {
-            intervalCounter += 1;
+            intervalCounter += 0.1;
         }
     }, 100);
 }
 
-let addErrorToFields = () => {
-    let fields = document.querySelectorAll(".data-field-id");
-
-    fields.forEach((field) => {
-        let id = field.getAttribute("data-field-id");
-
-        let element = document.getElementById(id);
-
-        element.classList.add("error-message");
-    });
-}
 
 document.addEventListener("DOMContentLoaded", () => {
     let messagesDisplayContainer = document.querySelector(".messages-display-container");
@@ -52,7 +41,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (allMessages.length > 0) {
         showMessages();
-        addErrorToFields();
 
         let messagesCloseBtn = document.querySelector(".messages-close-btn");
 
