@@ -79,7 +79,7 @@ def members(request):
         
     context = {
         'query_profiles': profiles,
-        'num_of_profiles': len(profiles),
+        'num_of_profiles': profiles.count(),
         'category_and_classes': category_and_classes,
         'teaching_states': teaching_states,
         'first_name': first_name,
