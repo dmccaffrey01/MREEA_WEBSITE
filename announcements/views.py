@@ -104,7 +104,7 @@ def add_announcement(request):
             if announcement_is_public:
                 new_announcement.date_made_public = timezone.localtime(timezone.now())
                 new_announcement.save()
-                # new_announcement_notifications.delay(new_announcement.name) # celery task
+                new_announcement_notifications.delay(new_announcement.name) # celery task
 
             messages.success(request, 'Successfully created announcement!')
 
@@ -158,7 +158,7 @@ def edit_announcement(request, announcement_name):
             if (not previous_is_public) and announcement_is_public:
                 selected_announcement.date_made_public = timezone.localtime(timezone.now())
                 selected_announcement.save()
-                # new_announcement_notifications.delay(selected_announcement.name) # celery task
+                new_announcement_notifications.delay(selected_announcement.name) # celery task
 
             messages.success(request, 'Successfully edited announcement!')
 

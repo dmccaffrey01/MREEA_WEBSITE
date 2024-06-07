@@ -192,7 +192,7 @@ def change_membership_status(request, username, is_active):
         membership_status = MembershipStatus.objects.filter(name='active').first()
         membership.status = membership_status
         membership.make_active()
-        # new_membership_approved_notification.delay(username) # celery tasks
+        new_membership_approved_notification.delay(username) # celery tasks
     else:
         if membership.status.name == 'pending':
             membership_status = MembershipStatus.objects.filter(name='payment_unsuccessful').first()
@@ -200,7 +200,7 @@ def change_membership_status(request, username, is_active):
             membership_status = MembershipStatus.objects.filter(name='active_renewal_unsuccessful').first()
         membership.status = membership_status
         membership.make_unsuccessful()
-        # new_membership_denied_notification.delay(username) # celery tasks
+        new_membership_denied_notification.delay(username) # celery tasks
     
     membership.save()
 

@@ -1,0 +1,68 @@
+.blog-section {
+  padding: 40px 0 80px 0;
+  background: #f7f7f7;
+  min-height: calc(100vh - 100px);
+  justify-content: flex-start;
+}
+.blog-section .section-container {
+  gap: 32px;
+}
+.blog-section .content-container {
+  width: 100%;
+  background-color: green;
+}
+.blog-section .content-container .ck.ck-reset {
+  width: 100%;
+  background: #ececec;
+  border: none;
+}
+.blog-section .content-container .ck.ck-reset_all {
+  background: #ececec;
+  padding: 12px;
+  width: 100%;
+  border: none;
+}
+.blog-section .content-container .ck.ck-editor__top .ck-sticky-panel .ck-sticky-panel__content,
+.blog-section .content-container .ck-reset_all :not(.ck-reset_all-excluded *) {
+  background: #ececec;
+  border: none;
+}
+.blog-section .content-container .ck.ck-editor__main > .ck-editor__editable {
+  background: #f7f7f7;
+  border: none;
+}
+.blog-section .management-btns-container {
+  gap: 4px;
+  width: 600px;
+  padding: 16px;
+  border-radius: 16px;
+  background-color: #f7f7f7;
+}
+.blog-section .management-btns-container .save-btn {
+  padding: 0;
+  background-color: #f7f7f7;
+  border: none;
+}
+.blog-section .management-btns-container .visit-link {
+  justify-content: flex-start;
+  width: 100%;
+  border-radius: 12px;
+  background-color: #f7f7f7;
+  padding: 12px;
+  gap: 8px;
+  cursor: pointer;
+}
+.blog-section .management-btns-container .visit-link:hover {
+  background-color: #ececec;
+}
+.blog-section .management-btns-container .visit-link:hover .icon-container {
+  background-color: #f7f7f7;
+}
+.blog-section .management-btns-container .visit-link:hover .icon-container.success:hover {
+  background-color: #399c3e;
+}
+.blog-section .management-btns-container .visit-link:hover .icon-container.error:hover {
+  background-color: #c53d52;
+}
+
+/*# sourceMappingURL=blog_form.css.map */

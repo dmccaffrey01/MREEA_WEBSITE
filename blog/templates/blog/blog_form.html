@@ -2,11 +2,10 @@
 
 {% load static %}
 
-{% block extra_title %}- Testimonials{% endblock %}
+{% block extra_title %}- New Blog Post{% endblock %}
 
 {% block extra_css %}
-<link rel="stylesheet" type="text/css" href="{% static 'css/testimonials.css' %}">
-<link rel="stylesheet" type="text/css" href="{% static 'css/cta-section.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'css/blog_form.css' %}">
 {% endblock %}
 
 {% block extra_js %}
@@ -16,12 +15,17 @@
 {% block content %}
 
 
-<section class="testimonial-section section">
+<section class="blog-section section">
     <form method="POST" class="section-container container-col" enctype="multipart/form-data">
         {% csrf_token %}
-        <h2 class="dark-text-2">New Blog Post</h2>
+        <div class="hidden-input-container sr-only">
+            {{ form.title }}
+            <label for="id_title" class="sr-only">Title</label>
+        </div>
 
-        {{ form.as_p }}
+        <div class="content-container container-col">
+            {{ form.content }}
+        </div>
 
         <button type="submit" class="btn">Save</button>
     </form>

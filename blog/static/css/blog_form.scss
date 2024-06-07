@@ -1,0 +1,84 @@
+@import '../../../static/css/variables';
+@import '../../../static/css/mixins';
+
+.blog-section {
+    padding: 40px 0 80px 0;
+    background: $gl-1;
+    min-height: calc(100vh - 100px);
+    justify-content: flex-start;
+
+    .section-container {
+        gap: 32px;
+    }
+
+    .content-container {
+        width: 100%;
+        background-color: green;
+
+        .ck.ck-reset {
+            width: 100%;
+            background: $gl-2;
+            border: none;
+        }
+
+        .ck.ck-reset_all {
+            background: $gl-2;
+            padding: 12px;
+            width: 100%;
+            border: none;
+        }
+
+        .ck.ck-editor__top .ck-sticky-panel .ck-sticky-panel__content,
+        .ck-reset_all :not(.ck-reset_all-excluded *) {
+            background: $gl-2;
+            border: none;
+        }
+
+        .ck.ck-editor__main>.ck-editor__editable {
+            background: $gl-1;
+            border: none;
+        }
+
+    }
+
+    .management-btns-container {
+        gap: 4px;
+        width: 600px;
+        padding: 16px;
+        border-radius: $round-corner-3;
+        background-color: $gl-1;
+
+        .save-btn {
+            padding: 0;
+            background-color: $gl-1;
+            border: none;
+        }
+
+        .visit-link {
+            justify-content: flex-start;
+            width: 100%;
+            border-radius: $round-corner-2;
+            background-color: $gl-1;
+            padding: 12px;
+            gap: 8px;
+            cursor: pointer;
+
+            &:hover {
+                background-color: $gl-2;
+
+                .icon-container {
+                    background-color: $gl-1;
+
+                    &.success:hover {
+                        background-color: $success;
+                    }
+
+                    &.error:hover {
+                        background-color: $error;
+                    }
+                }
+            }
+        }
+    }
+
+}
