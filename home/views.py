@@ -154,11 +154,14 @@ def add_testimonial(request, username):
     else:
         testimonial_message = ''
 
+    selected_profile = UserProfile.objects.filter(user=selected_user).first()
+
     context = {
         'form': form,
         'action_url': action_url,
         'page_heading': page_heading,
         'testimonial_message': testimonial_message,
+        'selected_profile': selected_profile,
     }
 
     return render(request, 'testimonials/testimonial.html', context)
