@@ -191,7 +191,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
-if not DEBUG:
+if DEBUG:
     AWS_STORAGE_BUCKET_NAME = 'mreea-static-files'
     AWS_S3_REGION_NAME = 'us-east-1'
     AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
@@ -211,19 +211,31 @@ if not DEBUG:
     MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/media/'
     DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
-
-# CKEditor settings
-CKEDITOR_UPLOAD_PATH = "uploads/"
-CKEDITOR_IMAGE_BACKEND = "pillow"
-CKEDITOR_CONFIGS = {
-    'default': {
-        'toolbar': 'full',
-        'height': 300,
-        'width': '100%',
-        'filebrowserUploadUrl': '/ckeditor/upload/',
-        'filebrowserBrowseUrl': '/ckeditor/browse/',
-    },
-}
+    # CKEditor settings
+    CKEDITOR_UPLOAD_PATH = "blog_images/"
+    CKEDITOR_IMAGE_BACKEND = "pillow"
+    CKEDITOR_CONFIGS = {
+        'default': {
+            'toolbar': 'full',
+            'height': 300,
+            'width': '100%',
+            'filebrowserUploadUrl': '/ckeditor/upload/',
+            'filebrowserBrowseUrl': '/ckeditor/browse/',
+        },
+    }
+else:
+    # Local development settings
+    CKEDITOR_UPLOAD_PATH = "uploads/"
+    CKEDITOR_IMAGE_BACKEND = "pillow"
+    CKEDITOR_CONFIGS = {
+        'default': {
+            'toolbar': 'full',
+            'height': 300,
+            'width': '100%',
+            'filebrowserUploadUrl': '/ckeditor/upload/',
+            'filebrowserBrowseUrl': '/ckeditor/browse/',
+        },
+    }
 
 
 # Default primary key field type
