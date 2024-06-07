@@ -184,11 +184,15 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
+STATIC_URL = '/static/'
 STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
+
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
 
 if DEBUG:
-
     STATIC_URL = '/static/'
 
     MEDIA_URL = '/media/'
@@ -200,6 +204,7 @@ else:
     AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
     AWS_S3_FILE_OVERWRITE = False
 
+    STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
     # Static files settings
     STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/static/'
     STATICFILES_STORAGE = 'storages.backends.s3boto3.S3StaticStorage'
