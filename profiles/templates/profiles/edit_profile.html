@@ -2,7 +2,7 @@
 
 {% load static %}
 
-{% block extra_title %}- {{ profile }}{% endblock %}
+{% block extra_title %}- Edit {{ user_profile.first_name }}'s Profile{% endblock %}
 
 {% block extra_css %}
 <link rel="stylesheet" type="text/css" href="{% static 'css/edit_profile.css' %}">

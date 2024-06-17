@@ -59,7 +59,6 @@ INSTALLED_APPS = [
     'storages',
     'blog',
     'django_celery_beat',
-    'django_celery_results',
     'ckeditor',
     'ckeditor_uploader',
 ]
@@ -147,6 +146,17 @@ DATABASES = {
     'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
 }   
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': os.environ.get('DATABASE_NAME'),
+#         'USER': os.environ.get('DATABASE_USER'),
+#         'PASSWORD': os.environ.get('DATABASE_PASSWORD'),
+#         'HOST': os.environ.get('DATABASE_HOST'),  # or your_db_host if different
+#         'PORT': 5432,       # or your_db_port if different
+#     }
+# }
+
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
@@ -191,7 +201,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
-if DEBUG:
+if not DEBUG:
     AWS_STORAGE_BUCKET_NAME = 'mreea-static-files'
     AWS_S3_REGION_NAME = 'us-east-1'
     AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
@@ -262,13 +272,10 @@ CELERY_TASK_SERIALIZER = 'json'
 
 CELERY_TIMEZONE = 'America/New_York'
 
-CELERY_RESULT_BACKEND = 'django-db'
-CELERY_RESULT_EXTENDED = True
-
-CELERY_BEAT_SCHEDULE = {
-    'check-membership-task': {
-        'task': 'membership.tasks.check_memberships',
-        'schedule': crontab(hour=6, minute=0),
-    },
-}
+# CELERY_BEAT_SCHEDULE = {
+#     'check-membership-task': {
+#         'task': 'membership.tasks.check_memberships',
+#         'schedule': crontab(hour=6, minute=0),
+#     },
+# }
 

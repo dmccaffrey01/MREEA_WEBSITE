@@ -80,26 +80,32 @@
         gap: 12px;
         border-radius: $round-corner-3;
         background-color: $gl-1;
+        flex-wrap: wrap;
 
         .search-results-text {
             margin-bottom: 16px;
             color: $gd-3;
+            width: 100%;
         }
 
         .profile-container {
-            width: 100%;
+            width: calc(50% - 6px);
             padding: 16px;
             border-radius: $round-corner-2;
             background-color: $gl-1;
 
             &:hover {
                 background-color: $gl-2;
+
+                .icon-container {
+                    background-color: $gl-1;
+                }
             }
         }
     
         .img-container {
-            width: 100px;
-            height: 100px;
+            width: 120px;
+            height: 120px;
             border-radius: 50%;
         }
     
@@ -114,6 +120,111 @@
     
         .teaching-text {
             cursor: pointer;
+        }
+
+        .states-text {
+            display: none;
+        }
+    }
+
+    /* Large devices (desktops, 1000px to 1279px) */
+    @media (max-width: 1279px) {
+        .search-results-container {
+            flex-direction: column;
+
+            .profile-container {
+                width: 100%;
+            }
+        }
+    }
+
+    /* Small devices (larger phones, 576px to 767px) */
+    @media (max-width: 767px) {
+        .member-search-container {
+            .input-container-group {
+                flex-direction: column;
+    
+                .input-wrapper {
+                    width: 100%;
+                }
+            }
+
+            .search-btn {
+                width: 100%;
+            }
+        }
+
+        .search-results-container {
+            .certifications-text,
+            .comma-text {
+                display: none;
+            }
+
+            .states-text {
+                display: flex;
+            }
+        }
+
+    }
+
+    /* Extra small devices (phones, 380px to 575px) */
+    @media (max-width: 575px) {
+        .section-container {
+            gap: 24px;
+        }
+
+        .members-management-btn {
+            .subheading {
+                font-size: 1.3rem;
+            }
+
+            .icon-container {
+                width: calc(1.3rem + 16px);
+                height: calc(1.3rem + 16px);
+                padding: 8px;
+            }
+        }
+
+        .member-search-container {
+            padding: 24px;
+            gap: 16px;
+
+            .input-container-group {
+                gap: 16px;
+            }
+
+            .heading-container {
+                .icon-container {
+                    display: none;
+                }
+
+                align-self: center;
+                text-align: center;
+            }
+        }
+
+        .search-results-container {
+            padding: 24px;
+
+            .name-text {
+                font-size: 1.3rem;
+            }
+
+            .img-container {
+                width: 80px;
+                height: 80px;
+            }
+
+            .profile-container {
+                padding: 12px;
+                flex-direction: row;
+
+                .text-container {
+                    .visit-link {
+                        display: none;
+                    }
+                }
+            }
         }
     }
 }

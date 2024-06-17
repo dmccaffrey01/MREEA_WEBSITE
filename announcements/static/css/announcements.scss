@@ -4,7 +4,7 @@
 .announcements-section {
     padding: 40px 0 80px 0;
     justify-content: flex-start;
-    background: $bg-1;
+    background: $gl-1;
 
     .img-container {
         width: 100%;
@@ -46,7 +46,7 @@
         }
 
         .add-announcement-btn {
-            width: 100%;
+            width: calc(50% - 20px);
             border-radius: $round-corner-3;
             background-color: $gl-1;
             padding: 16px;
@@ -61,54 +61,101 @@
             }
         }
 
-        .recent-announcements-container,
-        .past-announcements-container,
-        .draft-announcements-container {
-            width: 100%;
+        .announcements-container-row {
             gap: 40px;
-            flex: 1;
-    
-            .announcements-container {
+            width: 100%;
+
+            .announcements-container-wrapper {
                 width: calc(50% - 20px);
                 gap: 40px;
-    
-                .announcement-container {
-                    padding: 32px;
-                    border-radius: $round-corner-3;
-                    background-color: $gl-1;
-                    width: 100%;
-                    gap: 12px;
-                    position: relative;
-                }
-    
-                .visit-link {
-                    gap: 8px;
-                }
+            }
+        }
 
-                .announcement-heading-text {
-                    margin-bottom: 4px;
-                    font-size: 1.5rem;
-                }
+        .announcements-container {
+            width: 100%;
+            gap: 40px;
 
-                .link-container {
-                    flex-direction: row-reverse;
-                }
+            .announcement-container {
+                padding: 32px;
+                border-radius: $round-corner-3;
+                background-color: $gl-1;
+                width: 100%;
+                gap: 12px;
+                position: relative;
+            }
 
-                .description-text {
-                    margin-bottom: 12px;
-                    a {
+            .visit-link {
+                gap: 8px;
+            }
+
+            .announcement-heading-text {
+                margin-bottom: 4px;
+                font-size: 1.5rem;
+            }
+
+            .link-container {
+                flex-direction: row-reverse;
+            }
+
+            .description-text {
+                margin-bottom: 12px;
+                a {
+                    color: $red-1;
+
+                    &:visited {
                         color: $red-1;
-
-                        &:visited {
-                            color: $red-1;
-                        }
                     }
                 }
+            }
 
-                .date-text {
-                    color: $gd-3;
+            .date-text {
+                color: $gd-3;
+            }
+        }
+
+        .draft-announcements-container {
+            width: calc(50% - 20px);
+            gap: 40px;
+            flex: 1;
+        }
+    }
+
+    /* Medium devices (tablets, 768px to 999px) */
+    @media (max-width: 999px) {
+        .announcements-wrapper {
+            .announcements-container-row {
+                flex-direction: column;
+
+                .announcements-container-wrapper {
+                    width: 100%;
                 }
             }
+
+            .draft-announcements-container,
+            .add-announcement-btn {
+                width: 100%;
+            }
+        }
+    }
+
+    /* Small devices (larger phones, 576px to 767px) */
+    @media (max-width: 767px) {
+    
+    }
+
+    /* Extra small devices (phones, 380px to 575px) */
+    @media (max-width: 575px) {
+        .announcements-wrapper {
+            .announcements-container {
+                .announcement-container {
+                    padding: 20px;
+                }
+            }
+
+        }
+
+        .mobile-text {
+            display: none;
         }
     }
 

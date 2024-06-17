@@ -69,9 +69,7 @@ def folder(request, folder_name):
 
     resources = Resource.objects.filter(folder=folder).order_by('-created_at')
 
-    parent_folders = get_parent_folders(folder)
-
-    parent_folders.reverse()
+    parent_folder = folder.parent_folder
 
     if not (sub_folders or resources):
         no_resources_or_folders = True
@@ -82,7 +80,7 @@ def folder(request, folder_name):
         'folder': folder,
         'sub_folders': sub_folders,
         'resources': resources,
-        'parent_folders': parent_folders,
+        'parent_folder': parent_folder,
         'no_resources_or_folders': no_resources_or_folders,
     }
 

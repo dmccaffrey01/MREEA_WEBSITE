@@ -64,7 +64,11 @@
                     <a href="{% url 'resources' %}" class="nav-link">Resources</a>
                     {% endif %}
                     <a href="{% url 'blog_list' %}" class="nav-link">Blog</a>
+                    {% if user.is_superuser %}
+                    <a href="{% url 'testimonials' %}" class="nav-link">Testimonials</a>
+                    {% else %}
                     <a href="{% url 'contact' %}" class="nav-link">Contact</a>
+                    {% endif %}
                 </nav>
 
                 <!-- Notifications and Profile -->

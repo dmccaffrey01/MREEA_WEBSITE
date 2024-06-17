@@ -166,4 +166,101 @@
             }
         }
     }
+
+    /* Large devices (desktops, 1000px to 1279px) */
+    @media (max-width: 1279px) {
+        .purchase-date-text,
+        .end-date-text,
+        .purchase-date-heading,
+        .end-date-heading {
+            display: none;
+        }
+
+        .first-name-heading {
+            width: calc(20% + 60px);
+            padding-left: 72px;
+        }
+    
+        .first-name-text,
+        .last-name-text,
+        .last-name-heading {
+            width: calc(20% - 12px);
+        }
+    
+        .status-text,
+        .status-heading {
+            width: calc(30% - 12px);
+        }
+    
+        .email-text,
+        .email-heading {
+            width: calc(30% - 12px);
+        }
+    }
+
+    /* Medium devices (tablets, 768px to 999px) */
+    @media (max-width: 999px) {
+        .first-name-heading {
+            width: calc(30% + 60px);
+            padding-left: 72px;
+        }
+    
+        .first-name-text,
+        .last-name-text,
+        .last-name-heading {
+            width: calc(30% - 12px);
+        }
+    
+        .status-text,
+        .status-heading {
+            width: calc(40% - 12px);
+        }
+    
+        .email-text,
+        .email-heading {
+            display: none;
+        }
+
+        .user-action-menu-btn {
+            display: flex;
+            z-index: 3;
+
+            &.show {
+                z-index: 4;
+            }
+            
+            .icon-container {
+                background-color: $gl-2;
+                z-index: 3;
+            }
+
+        }
+    }
+
+    /* Small devices (larger phones, 576px to 767px) */
+    @media (max-width: 767px) {
+    
+    }
+
+    /* Extra small devices (phones, 380px to 575px) */
+    @media (max-width: 575px) {
+        .first-name-heading {
+            width: calc(50% + 60px);
+            padding-left: 72px;
+        }
+    
+        .first-name-text {
+            width: calc(50% - 12px);
+        }
+
+        .last-name-text,
+        .last-name-heading {
+            display: none;
+        }
+    
+        .status-text,
+        .status-heading {
+            display: none;
+        }
+    }
 }

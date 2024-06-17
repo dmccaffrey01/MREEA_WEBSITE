@@ -1,5 +1,5 @@
 .blog-section {
-  padding: 40px 0 80px 0;
+  padding: 20px 0 80px 0;
   background: #f7f7f7;
   min-height: calc(100vh - 100px);
   justify-content: flex-start;
@@ -9,27 +9,28 @@
 }
 .blog-section .content-container {
   width: 100%;
-  background-color: green;
 }
-.blog-section .content-container .ck.ck-reset {
+.blog-section .ck.ck-reset {
   width: 100%;
-  background: #ececec;
+}
+.blog-section .ck.ck-editor__top .ck-sticky-panel .ck-sticky-panel__content,
+.blog-section .ck.ck-editor__editable_inline {
   border: none;
 }
-.blog-section .content-container .ck.ck-reset_all {
-  background: #ececec;
-  padding: 12px;
-  width: 100%;
+.blog-section .ck.ck-editor__editable.ck-focused:not(.ck-editor__nested-editable) {
   border: none;
+  box-shadow: none;
 }
-.blog-section .content-container .ck.ck-editor__top .ck-sticky-panel .ck-sticky-panel__content,
-.blog-section .content-container .ck-reset_all :not(.ck-reset_all-excluded *) {
-  background: #ececec;
-  border: none;
-}
-.blog-section .content-container .ck.ck-editor__main > .ck-editor__editable {
+.blog-section .ck.ck-toolbar,
+.blog-section .ck.ck-editor__main > .ck-editor__editable {
   background: #f7f7f7;
-  border: none;
+}
+.blog-section .ck.ck-toolbar .ck-toolbar__items {
+  gap: 4px;
+}
+.blog-section .ck.ck-button,
+.blog-section .ck.ck-button.ck-button_with-text {
+  padding: 8px;
 }
 .blog-section .management-btns-container {
   gap: 4px;

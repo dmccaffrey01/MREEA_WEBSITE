@@ -26,7 +26,7 @@
         .heading-container {
             gap: 8px;
             margin-top: 24px;
-            width: 100%;
+            width: calc(50% - 20px);
             justify-content: flex-start;
             position: relative;
 
@@ -46,7 +46,7 @@
         }
 
         .add-event-btn {
-            width: 100%;
+            width: calc(50% - 20px);
             border-radius: $round-corner-3;
             background-color: $gl-1;
             padding: 16px;
@@ -61,43 +61,96 @@
             }
         }
 
-        .upcoming-events-container,
-        .past-events-container {
-            width: 100%;
+        .events-container {
+            width: calc(50% - 20px);
             gap: 40px;
-    
+
+            .event-container {
+                padding: 32px;
+                border-radius: $round-corner-3;
+                background-color: $gl-1;
+                width: 100%;
+                gap: 12px;
+                position: relative;
+            }
+
+            .visit-link {
+                gap: 8px;
+            }
+
+            .event-heading-text {
+                margin-bottom: 4px;
+                font-size: 1.5rem;
+            }
+
+            .link-container {
+                flex-direction: row-reverse;
+            }
+
+            .description-text {
+                margin-bottom: 16px;
+            }
+        }
+
+        .events-container-row {
+            gap: 40px;
+            width: 100%;
+        }
+
+        .events-container-wrapper {
+            width: calc(50% - 20px);
+            gap: 40px;
+
             .events-container {
-                width: calc(50% - 20px);
+                width: 100%;
                 gap: 40px;
-    
-                .event-container {
-                    padding: 32px;
-                    border-radius: $round-corner-3;
-                    background-color: $gl-1;
+            }
+
+            .heading-container {
+                width: 100%;
+            }
+        }
+    }
+
+    /* Medium devices (tablets, 768px to 999px) */
+    @media (max-width: 999px) {
+        .events-wrapper {
+            .events-container {
+                width: 100%;
+            }
+
+            .events-container-row {
+                flex-direction: column;
+
+                .events-container-wrapper {
                     width: 100%;
-                    gap: 12px;
-                    position: relative;
-                }
-    
-                .visit-link {
-                    gap: 8px;
-                }
-
-                .event-heading-text {
-                    margin-bottom: 4px;
-                    font-size: 1.5rem;
-                }
-
-                .link-container {
-                    position: absolute;
-                    right: 32px;
-                    bottom: 32px;
-                }
-
-                .description-text {
-                    margin-bottom: 16px;
                 }
             }
+
+            .add-event-btn {
+                width: 100%;
+            }
+        }
+    }
+
+    /* Small devices (larger phones, 576px to 767px) */
+    @media (max-width: 767px) {
+    
+    }
+
+    /* Extra small devices (phones, 380px to 575px) */
+    @media (max-width: 575px) {
+        .events-wrapper {
+            .events-container {
+                .events-container {
+                    padding: 20px;
+                }
+            }
+
+        }
+
+        .mobile-text {
+            display: none;
         }
     }
 

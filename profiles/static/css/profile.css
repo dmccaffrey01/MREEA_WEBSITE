@@ -1,6 +1,8 @@
 .profile-section {
   justify-content: flex-start;
-  padding: 40px 0;
+  padding: 40px 0 80px 0;
+  /* Small devices (larger phones, 576px to 767px) */
+  /* Extra small devices (phones, 380px to 575px) */
 }
 .profile-section .items-container {
   width: 600px;
@@ -21,13 +23,6 @@
 }
 .profile-section .item-container .item-text-container {
   gap: 12px;
-}
-.profile-section .item-container .bio-text {
-  gap: 1.1rem;
-}
-.profile-section .item-container .bio-text p {
-  font-size: 1.1rem;
-  color: #242424;
 }
 .profile-section .personal-container {
   position: relative;
@@ -76,6 +71,16 @@
 }
 .profile-section .management-btns-container .visit-link:hover .icon-container.error:hover {
   background-color: #c53d52;
+}
+@media (max-width: 767px) {
+  .profile-section .items-container {
+    width: 496px;
+  }
+}
+@media (max-width: 575px) {
+  .profile-section .items-container {
+    width: 320px;
+  }
 }
 
 /*# sourceMappingURL=profile.css.map */

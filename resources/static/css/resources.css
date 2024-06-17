@@ -3,6 +3,8 @@
   padding: 40px 0;
   min-height: calc(100vh - 100px);
   justify-content: flex-start;
+  /* Small devices (larger phones, 576px to 767px) */
+  /* Extra small devices (phones, 380px to 575px) */
 }
 .resources-section .section-container {
   background-color: #f7f7f7;
@@ -12,10 +14,13 @@
 }
 .resources-section .parent-folder-container {
   width: 100%;
-  gap: 4px;
+  gap: 12px;
 }
 .resources-section .parent-folder-container.admin .parent-folder-text {
-  width: calc(100% - 120px);
+  width: 100%;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
 }
 .resources-section .parent-folder-container.admin .admin-resource-container {
   gap: 12px;
@@ -88,6 +93,12 @@
 .resources-section .resource-wrapper .resource-container.hide {
   display: none;
 }
+.resources-section .resource-wrapper .resource-container .resource-text {
+  width: calc(100% - 52px);
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
 .resources-section .resource-wrapper .edit-resource-btn {
   position: absolute;
   right: 12px;
@@ -99,6 +110,11 @@
 }
 .resources-section .resource-wrapper:hover .edit-resource-btn {
   display: flex;
+}
+@media (max-width: 767px) {
+  .resources-section .section-container {
+    padding: 20px;
+  }
 }
 
 /*# sourceMappingURL=resources.css.map */

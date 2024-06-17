@@ -2,6 +2,10 @@
   padding: 40px 0;
   min-height: calc(100vh - 100px);
   justify-content: flex-start;
+  /* Large devices (desktops, 1000px to 1279px) */
+  /* Medium devices (tablets, 768px to 999px) */
+  /* Small devices (larger phones, 576px to 767px) */
+  /* Extra small devices (phones, 380px to 575px) */
 }
 .user-admin-section .section-container {
   background-color: #f7f7f7;
@@ -129,6 +133,78 @@
 }
 .user-admin-section .user-action-menu-btn .confirm-options .icon-container:hover.error {
   background-color: #c53d52;
+}
+@media (max-width: 1279px) {
+  .user-admin-section .purchase-date-text,
+  .user-admin-section .end-date-text,
+  .user-admin-section .purchase-date-heading,
+  .user-admin-section .end-date-heading {
+    display: none;
+  }
+  .user-admin-section .first-name-heading {
+    width: calc(20% + 60px);
+    padding-left: 72px;
+  }
+  .user-admin-section .first-name-text,
+  .user-admin-section .last-name-text,
+  .user-admin-section .last-name-heading {
+    width: calc(20% - 12px);
+  }
+  .user-admin-section .status-text,
+  .user-admin-section .status-heading {
+    width: calc(30% - 12px);
+  }
+  .user-admin-section .email-text,
+  .user-admin-section .email-heading {
+    width: calc(30% - 12px);
+  }
+}
+@media (max-width: 999px) {
+  .user-admin-section .first-name-heading {
+    width: calc(30% + 60px);
+    padding-left: 72px;
+  }
+  .user-admin-section .first-name-text,
+  .user-admin-section .last-name-text,
+  .user-admin-section .last-name-heading {
+    width: calc(30% - 12px);
+  }
+  .user-admin-section .status-text,
+  .user-admin-section .status-heading {
+    width: calc(40% - 12px);
+  }
+  .user-admin-section .email-text,
+  .user-admin-section .email-heading {
+    display: none;
+  }
+  .user-admin-section .user-action-menu-btn {
+    display: flex;
+    z-index: 3;
+  }
+  .user-admin-section .user-action-menu-btn.show {
+    z-index: 4;
+  }
+  .user-admin-section .user-action-menu-btn .icon-container {
+    background-color: #ececec;
+    z-index: 3;
+  }
+}
+@media (max-width: 575px) {
+  .user-admin-section .first-name-heading {
+    width: calc(50% + 60px);
+    padding-left: 72px;
+  }
+  .user-admin-section .first-name-text {
+    width: calc(50% - 12px);
+  }
+  .user-admin-section .last-name-text,
+  .user-admin-section .last-name-heading {
+    display: none;
+  }
+  .user-admin-section .status-text,
+  .user-admin-section .status-heading {
+    display: none;
+  }
 }
 
 /*# sourceMappingURL=user_admin.css.map */

@@ -3,6 +3,8 @@
   justify-content: flex-start;
   padding-bottom: 100px;
   min-height: calc(100% - 100px);
+  /* Small devices (larger phones, 576px to 767px) */
+  /* Extra small devices (phones, 380px to 575px) */
 }
 .announcement-section .section-container {
   gap: 24px;
@@ -16,7 +18,7 @@
   padding: 12px;
 }
 .announcement-section .announcement-container {
-  width: calc(50% - 24px);
+  width: 600px;
   border-radius: 16px;
   padding: 32px;
   background-color: #f7f7f7;
@@ -39,7 +41,7 @@
 .announcement-section .management-btns-container {
   gap: 4px;
   margin-top: 12px;
-  width: calc(50% - 24px);
+  width: 600px;
   padding: 16px;
   border-radius: 12px;
   background-color: #f7f7f7;
@@ -118,6 +120,18 @@
 }
 .announcement-section .toggle-input-wrapper input:checked + .toggle::before {
   translate: 40px 0;
+}
+@media (max-width: 767px) {
+  .announcement-section .management-btns-container,
+  .announcement-section .announcement-container {
+    width: 496px;
+  }
+}
+@media (max-width: 575px) {
+  .announcement-section .management-btns-container,
+  .announcement-section .announcement-container {
+    width: 320px;
+  }
 }
 
 /*# sourceMappingURL=announcement.css.map */

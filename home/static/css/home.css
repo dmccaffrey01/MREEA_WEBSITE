@@ -919,7 +919,7 @@
 }
 .benefits-section .benefit-cards-wrapper {
   position: relative;
-  max-height: 640px;
+  max-height: 620px;
   overflow-y: hidden;
   overflow-x: visible;
   padding: 40px 0;
@@ -1070,7 +1070,11 @@
     gap: 20px;
   }
   .benefits-section .benefit-cards-wrapper {
+    max-height: 492px;
     padding: 20px 0;
+  }
+  .benefits-section .benefit-cards-wrapper .view-all-overlay {
+    height: 286px;
   }
   .benefits-section .benefit-cards-container {
     width: 880px;
@@ -1096,6 +1100,9 @@
   }
 }
 @media (max-width: 999px) {
+  .benefits-section {
+    padding: 40px 0;
+  }
   .benefits-section .benefit-cards-container {
     width: 668px;
     gap: 40px;
@@ -1150,6 +1157,9 @@
   }
 }
 @media (max-width: 575px) {
+  .benefits-section {
+    padding: 30px 0;
+  }
   .benefits-section .benefit-cards-wrapper .view-all-overlay .view-all-btn {
     font-size: 1.2rem;
   }
@@ -1180,6 +1190,11 @@
 .pricing-section {
   padding: 80px 0;
   background: linear-gradient(0deg, rgb(247, 247, 247) 0%, rgb(238, 238, 238) 50%, rgb(247, 247, 247) 100%);
+  /* Extra large devices (large desktops, 1280px to 1439px) */
+  /* Large devices (desktops, 1000px to 1279px) */
+  /* Medium devices (tablets, 768px to 999px) */
+  /* Small devices (larger phones, 576px to 767px) */
+  /* Extra small devices (phones, 380px to 575px) */
 }
 .pricing-section .section-container {
   justify-content: space-between;
@@ -1249,10 +1264,123 @@
 .pricing-section .observer-show .text-wrapper {
   opacity: 1;
 }
+@media (max-width: 1439px) {
+  .pricing-section .text-container {
+    width: 520px;
+    height: 342px;
+  }
+}
+@media (max-width: 1279px) {
+  .pricing-section .text-container {
+    width: 400px;
+    height: 272px;
+    gap: 16px;
+    padding: 24px;
+  }
+  .pricing-section .text-container .spacing,
+  .pricing-section .text-container .per-year-text {
+    font-size: 1.1rem;
+    line-height: calc(1.1rem + 8px);
+  }
+  .pricing-section .text-container .subheading,
+  .pricing-section .text-container .pricing-text {
+    font-size: 2rem;
+  }
+  .pricing-section .text-container .yellow-btn {
+    font-size: 1.1rem;
+    padding: 8px 12px;
+    border-radius: 8px;
+    min-width: 160px;
+  }
+}
+@media (max-width: 999px) {
+  .pricing-section {
+    padding: 40px 0;
+  }
+  .pricing-section .section-container {
+    justify-content: center;
+    flex-direction: column;
+    gap: 40px;
+  }
+  .pricing-section .text-container {
+    width: 600px;
+    height: fit-content;
+    gap: 24px;
+    padding: 32px;
+  }
+  .pricing-section .text-container .spacing,
+  .pricing-section .text-container .per-year-text {
+    font-size: 1.3rem;
+    line-height: calc(1.3rem + 8px);
+  }
+  .pricing-section .text-container .subheading,
+  .pricing-section .text-container .pricing-text {
+    font-size: 2.5rem;
+  }
+  .pricing-section .text-container .yellow-btn {
+    font-size: 1.3rem;
+    padding: 12px 16px;
+    border-radius: 12px;
+    min-width: 200px;
+  }
+}
+@media (max-width: 767px) {
+  .pricing-section .text-container {
+    width: 480px;
+    gap: 16px;
+    padding: 24px;
+  }
+  .pricing-section .text-container .spacing,
+  .pricing-section .text-container .per-year-text {
+    font-size: 1.1rem;
+    line-height: calc(1.1rem + 8px);
+  }
+  .pricing-section .text-container .subheading,
+  .pricing-section .text-container .pricing-text {
+    font-size: 2rem;
+  }
+  .pricing-section .text-container .yellow-btn {
+    font-size: 1.1rem;
+    padding: 8px 12px;
+    border-radius: 8px;
+    min-width: 160px;
+  }
+}
+@media (max-width: 575px) {
+  .pricing-section {
+    padding: 30px 0;
+  }
+  .pricing-section .text-container {
+    width: 320px;
+    gap: 12px;
+    padding: 20px;
+    align-items: center;
+  }
+  .pricing-section .text-container .spacing,
+  .pricing-section .text-container .per-year-text {
+    font-size: 0.95rem;
+    line-height: calc(0.95rem + 8px);
+    text-align: center;
+  }
+  .pricing-section .text-container .subheading,
+  .pricing-section .text-container .pricing-text {
+    font-size: 1.4rem;
+    text-align: center;
+  }
+  .pricing-section .text-container .yellow-btn {
+    font-size: 0.95rem;
+    padding: 8px 12px;
+    border-radius: 8px;
+    min-width: 160px;
+  }
+}
 
 .testimonial-section {
   padding: 80px 0 120px 0;
   background: #f7f7f7;
+  /* Medium devices (tablets, 768px to 999px) */
+  /* Small devices (larger phones, 576px to 767px) */
+  /* Extra small devices (phones, 380px to 575px) */
 }
 .testimonial-section .carousel-wrapper {
   position: relative;
@@ -1322,6 +1450,67 @@
 }
 .testimonial-section .observer-show .testimonial-container {
   opacity: 1;
+}
+@media (max-width: 999px) {
+  .testimonial-section {
+    padding: 40px 0;
+  }
+}
+@media (max-width: 767px) {
+  .testimonial-section .carousel-wrapper {
+    width: 560px;
+    height: 340px;
+  }
+  .testimonial-section .testimonial-container {
+    width: 400px;
+    padding: 26.6667px;
+    border-radius: 16px;
+    gap: 12px;
+    height: 260px;
+  }
+  .testimonial-section .testimonial-container .testimonial-text {
+    font-size: 1rem;
+    line-height: calc((1.3rem + 8px) * 0.6666667);
+    min-height: 154px;
+  }
+  .testimonial-section .testimonial-container .author-container .author-text {
+    font-size: 1rem;
+  }
+  .testimonial-section .testimonial-container .author-container .author-img-container {
+    width: 40px;
+    height: 40px;
+  }
+}
+@media (max-width: 575px) {
+  .testimonial-section {
+    padding: 30px 0 60px 0;
+  }
+  .testimonial-section .carousel-wrapper {
+    width: 480px;
+    height: 300px;
+  }
+  .testimonial-section .carousel-btns-container .dark-text-2 {
+    font-size: 1.2rem;
+  }
+  .testimonial-section .testimonial-container {
+    width: 320px;
+    padding: 21.3333px;
+    border-radius: 16px;
+    gap: 12px;
+    height: fit-content;
+  }
+  .testimonial-section .testimonial-container .testimonial-text {
+    font-size: 0.8rem;
+    line-height: calc((0.8rem + 8px) * 0.6666667);
+    min-height: 123px;
+  }
+  .testimonial-section .testimonial-container .author-container .author-text {
+    font-size: 0.8rem;
+  }
+  .testimonial-section .testimonial-container .author-container .author-img-container {
+    width: 40px;
+    height: 40px;
+  }
 }
 
 /*# sourceMappingURL=home.css.map */

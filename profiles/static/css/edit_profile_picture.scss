@@ -60,9 +60,11 @@
             cursor: pointer;
             gap: 8px;
             background-color: $gl-1;
+            padding: 12px;
 
             .drop-zone-text {
                 font-size: 1.1rem;
+                text-align: center;
             }
 
             &:hover,
@@ -150,6 +152,24 @@
             .save-btn {
                 display: none;
             }
+        }
+    }
+
+    /* Small devices (larger phones, 576px to 767px) */
+    @media (max-width: 767px) {
+        .items-container {
+            width: 496px;
+        }
+    }
+
+    /* Extra small devices (phones, 380px to 575px) */
+    @media (max-width: 575px) {
+        .items-container {
+            width: 320px;
+        }
+
+        .crop-container {
+            padding: 0;
         }
     }
 

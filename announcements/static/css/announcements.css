@@ -1,7 +1,10 @@
 .announcements-section {
   padding: 40px 0 80px 0;
   justify-content: flex-start;
-  background: linear-gradient(0deg, rgb(247, 247, 247) 0%, rgb(238, 238, 238) 50%, rgb(247, 247, 247) 100%);
+  background: #f7f7f7;
+  /* Medium devices (tablets, 768px to 999px) */
+  /* Small devices (larger phones, 576px to 767px) */
+  /* Extra small devices (phones, 380px to 575px) */
 }
 .announcements-section .img-container {
   width: 100%;
@@ -38,7 +41,7 @@
   translate: 0 -50%;
 }
 .announcements-section .announcements-wrapper .add-announcement-btn {
-  width: 100%;
+  width: calc(50% - 20px);
   border-radius: 16px;
   background-color: #f7f7f7;
   padding: 16px;
@@ -50,22 +53,19 @@
 .announcements-section .announcements-wrapper .add-announcement-btn:hover .icon-container {
   background-color: #f7f7f7;
 }
-.announcements-section .announcements-wrapper .recent-announcements-container,
-.announcements-section .announcements-wrapper .past-announcements-container,
-.announcements-section .announcements-wrapper .draft-announcements-container {
-  width: 100%;
+.announcements-section .announcements-wrapper .announcements-container-row {
   gap: 40px;
-  flex: 1;
+  width: 100%;
 }
-.announcements-section .announcements-wrapper .recent-announcements-container .announcements-container,
-.announcements-section .announcements-wrapper .past-announcements-container .announcements-container,
-.announcements-section .announcements-wrapper .draft-announcements-container .announcements-container {
+.announcements-section .announcements-wrapper .announcements-container-row .announcements-container-wrapper {
   width: calc(50% - 20px);
   gap: 40px;
 }
-.announcements-section .announcements-wrapper .recent-announcements-container .announcements-container .announcement-container,
-.announcements-section .announcements-wrapper .past-announcements-container .announcements-container .announcement-container,
-.announcements-section .announcements-wrapper .draft-announcements-container .announcements-container .announcement-container {
+.announcements-section .announcements-wrapper .announcements-container {
+  width: 100%;
+  gap: 40px;
+}
+.announcements-section .announcements-wrapper .announcements-container .announcement-container {
   padding: 32px;
   border-radius: 16px;
   background-color: #f7f7f7;
@@ -73,41 +73,52 @@
   gap: 12px;
   position: relative;
 }
-.announcements-section .announcements-wrapper .recent-announcements-container .announcements-container .visit-link,
-.announcements-section .announcements-wrapper .past-announcements-container .announcements-container .visit-link,
-.announcements-section .announcements-wrapper .draft-announcements-container .announcements-container .visit-link {
+.announcements-section .announcements-wrapper .announcements-container .visit-link {
   gap: 8px;
 }
-.announcements-section .announcements-wrapper .recent-announcements-container .announcements-container .announcement-heading-text,
-.announcements-section .announcements-wrapper .past-announcements-container .announcements-container .announcement-heading-text,
-.announcements-section .announcements-wrapper .draft-announcements-container .announcements-container .announcement-heading-text {
+.announcements-section .announcements-wrapper .announcements-container .announcement-heading-text {
   margin-bottom: 4px;
   font-size: 1.5rem;
 }
-.announcements-section .announcements-wrapper .recent-announcements-container .announcements-container .link-container,
-.announcements-section .announcements-wrapper .past-announcements-container .announcements-container .link-container,
-.announcements-section .announcements-wrapper .draft-announcements-container .announcements-container .link-container {
+.announcements-section .announcements-wrapper .announcements-container .link-container {
   flex-direction: row-reverse;
 }
-.announcements-section .announcements-wrapper .recent-announcements-container .announcements-container .description-text,
-.announcements-section .announcements-wrapper .past-announcements-container .announcements-container .description-text,
-.announcements-section .announcements-wrapper .draft-announcements-container .announcements-container .description-text {
+.announcements-section .announcements-wrapper .announcements-container .description-text {
   margin-bottom: 12px;
 }
-.announcements-section .announcements-wrapper .recent-announcements-container .announcements-container .description-text a,
-.announcements-section .announcements-wrapper .past-announcements-container .announcements-container .description-text a,
-.announcements-section .announcements-wrapper .draft-announcements-container .announcements-container .description-text a {
+.announcements-section .announcements-wrapper .announcements-container .description-text a {
   color: #c64f4a;
 }
-.announcements-section .announcements-wrapper .recent-announcements-container .announcements-container .description-text a:visited,
-.announcements-section .announcements-wrapper .past-announcements-container .announcements-container .description-text a:visited,
-.announcements-section .announcements-wrapper .draft-announcements-container .announcements-container .description-text a:visited {
+.announcements-section .announcements-wrapper .announcements-container .description-text a:visited {
   color: #c64f4a;
 }
-.announcements-section .announcements-wrapper .recent-announcements-container .announcements-container .date-text,
-.announcements-section .announcements-wrapper .past-announcements-container .announcements-container .date-text,
-.announcements-section .announcements-wrapper .draft-announcements-container .announcements-container .date-text {
+.announcements-section .announcements-wrapper .announcements-container .date-text {
   color: #777777;
+}
+.announcements-section .announcements-wrapper .draft-announcements-container {
+  width: calc(50% - 20px);
+  gap: 40px;
+  flex: 1;
+}
+@media (max-width: 999px) {
+  .announcements-section .announcements-wrapper .announcements-container-row {
+    flex-direction: column;
+  }
+  .announcements-section .announcements-wrapper .announcements-container-row .announcements-container-wrapper {
+    width: 100%;
+  }
+  .announcements-section .announcements-wrapper .draft-announcements-container,
+  .announcements-section .announcements-wrapper .add-announcement-btn {
+    width: 100%;
+  }
+}
+@media (max-width: 575px) {
+  .announcements-section .announcements-wrapper .announcements-container .announcement-container {
+    padding: 20px;
+  }
+  .announcements-section .mobile-text {
+    display: none;
+  }
 }
 
 /*# sourceMappingURL=announcements.css.map */

@@ -3,6 +3,8 @@
   justify-content: flex-start;
   padding-bottom: 100px;
   min-height: calc(100vh - 100px);
+  /* Small devices (larger phones, 576px to 767px) */
+  /* Extra small devices (phones, 380px to 575px) */
 }
 .management-section .section-container {
   gap: 24px;
@@ -16,7 +18,7 @@
   padding: 12px;
 }
 .management-section .img-name-container {
-  width: calc(50% - 24px);
+  width: 600px;
   border-radius: 16px;
   padding: 32px;
   background-color: #f7f7f7;
@@ -32,7 +34,7 @@
   font-weight: 600;
 }
 .management-section .form-container {
-  width: calc(50% - 24px);
+  width: 600px;
   border-radius: 16px;
   padding: 32px;
   background-color: #f7f7f7;
@@ -56,7 +58,7 @@
 .management-section .management-btns-container {
   gap: 4px;
   margin-top: 12px;
-  width: calc(50% - 24px);
+  width: 600px;
   padding: 16px;
   border-radius: 12px;
   background-color: #f7f7f7;
@@ -86,6 +88,20 @@
 }
 .management-section .management-btns-container .visit-link:hover .icon-container.error:hover {
   background-color: #c53d52;
+}
+@media (max-width: 767px) {
+  .management-section .management-btns-container,
+  .management-section .form-container,
+  .management-section .img-name-container {
+    width: 496px;
+  }
+}
+@media (max-width: 575px) {
+  .management-section .management-btns-container,
+  .management-section .form-container,
+  .management-section .img-name-container {
+    width: 320px;
+  }
 }
 
 /*# sourceMappingURL=membership_management.css.map */

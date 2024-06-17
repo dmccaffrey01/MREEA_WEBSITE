@@ -16,11 +16,14 @@
 
     .parent-folder-container {
         width: 100%;
-        gap: 4px;
+        gap: 12px;
 
         &.admin {
             .parent-folder-text {
-                width: calc(100% - 120px);
+                width: 100%;
+                text-overflow: ellipsis;
+                overflow: hidden;
+                white-space: nowrap;
             }
 
             .admin-resource-container {
@@ -108,6 +111,13 @@
             &.hide {
                 display: none;
             }
+
+            .resource-text {
+                width: calc(100% - 52px);
+                text-overflow: ellipsis;
+                overflow: hidden;
+                white-space: nowrap;
+            }
         }
 
         .edit-resource-btn {
@@ -123,5 +133,17 @@
         &:hover .edit-resource-btn {
             display: flex;
         }
+    }
+
+    /* Small devices (larger phones, 576px to 767px) */
+    @media (max-width: 767px) {
+        .section-container {
+            padding: 20px;
+        }
+    }
+
+    /* Extra small devices (phones, 380px to 575px) */
+    @media (max-width: 575px) {
+    
     }
 }

@@ -2,7 +2,7 @@
 @import '../../../static/css/mixins';
 
 .blog-section {
-    padding: 40px 0 80px 0;
+    padding: 20px 0 80px 0;
     background: $gl-1;
     min-height: calc(100vh - 100px);
     justify-content: flex-start;
@@ -13,32 +13,34 @@
 
     .content-container {
         width: 100%;
-        background-color: green;
+    }
 
-        .ck.ck-reset {
-            width: 100%;
-            background: $gl-2;
-            border: none;
-        }
+    .ck.ck-reset {
+        width: 100%;
+    }
 
-        .ck.ck-reset_all {
-            background: $gl-2;
-            padding: 12px;
-            width: 100%;
-            border: none;
-        }
+    .ck.ck-editor__top .ck-sticky-panel .ck-sticky-panel__content,
+    .ck.ck-editor__editable_inline {
+        border: none;
+    }
 
-        .ck.ck-editor__top .ck-sticky-panel .ck-sticky-panel__content,
-        .ck-reset_all :not(.ck-reset_all-excluded *) {
-            background: $gl-2;
-            border: none;
-        }
+    .ck.ck-editor__editable.ck-focused:not(.ck-editor__nested-editable) {
+        border: none;
+        box-shadow: none;
+    }
 
-        .ck.ck-editor__main>.ck-editor__editable {
-            background: $gl-1;
-            border: none;
-        }
+    .ck.ck-toolbar,
+    .ck.ck-editor__main>.ck-editor__editable {
+        background: $gl-1;
+    }
 
+    .ck.ck-toolbar .ck-toolbar__items {
+        gap: 4px;
+    }
+
+    .ck.ck-button,
+    .ck.ck-button.ck-button_with-text {
+        padding: 8px;
     }
 
     .management-btns-container {
