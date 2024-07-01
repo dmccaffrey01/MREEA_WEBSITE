@@ -101,9 +101,6 @@
 .member-search-section .search-results-container .teaching-text {
   cursor: pointer;
 }
-.member-search-section .search-results-container .states-text {
-  display: none;
-}
 @media (max-width: 1279px) {
   .member-search-section .search-results-container {
     flex-direction: column;

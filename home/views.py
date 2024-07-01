@@ -135,7 +135,7 @@ def add_testimonial(request, username):
 
             testimonial.save()
 
-            # new_testimonial_notifications.delay(testimonial.id) # celery task
+            new_testimonial_notifications(testimonial.id) 
 
             messages.success(request, "Successfully added your testimonial! An admin will approve it shortly!")
 
@@ -204,7 +204,7 @@ def edit_testimonial(request, username):
 
             testimonial.save()
 
-            # new_testimonial_notifications.delay(testimonial.id) # celery task
+            new_testimonial_notifications(testimonial.id) 
 
             messages.success(request, "Successfully edited your testimonial! An admin will approve it shortly!")
 
@@ -251,7 +251,7 @@ def approve_testimonial(request, testimonial_id):
     testimonial.is_awaiting_approval = False
     testimonial.save()
 
-    # new_testimonial_approved_notification.delay(testimonial.id) # celery task
+    new_testimonial_approved_notification(testimonial.id) 
 
     messages.success(request, "Successfully approved testimonial")
 
@@ -277,7 +277,7 @@ def deny_testimonial(request, testimonial_id):
     testimonial.is_awaiting_approval = False
     testimonial.save()
 
-    # new_testimonial_denied_notification.delay(testimonial.id) # celery task
+    new_testimonial_denied_notification(testimonial.id) 
 
     messages.success(request, "Successfully denied testimonial")
 

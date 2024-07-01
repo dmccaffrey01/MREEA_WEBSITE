@@ -58,9 +58,6 @@ INSTALLED_APPS = [
     'announcements',
     'storages',
     'blog',
-    'django_celery_beat',
-    'ckeditor',
-    'ckeditor_uploader',
 ]
 
 ACCOUNT_AUTHENTICATION_METHOD = 'email'
@@ -142,21 +139,16 @@ WSGI_APPLICATION = 'dj_project.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-DATABASES = {
-    'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
-}   
-
 # DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': os.environ.get('DATABASE_NAME'),
-#         'USER': os.environ.get('DATABASE_USER'),
-#         'PASSWORD': os.environ.get('DATABASE_PASSWORD'),
-#         'HOST': os.environ.get('DATABASE_HOST'),  # or your_db_host if different
-#         'PORT': 5432,       # or your_db_port if different
-#     }
+#     'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
 # }
 
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
@@ -221,32 +213,6 @@ if not DEBUG:
     MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/media/'
     DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
-    # CKEditor settings
-    CKEDITOR_UPLOAD_PATH = "blog_images/"
-    CKEDITOR_IMAGE_BACKEND = "pillow"
-    CKEDITOR_CONFIGS = {
-        'default': {
-            'toolbar': 'full',
-            'height': 300,
-            'width': '100%',
-            'filebrowserUploadUrl': '/ckeditor/upload/',
-            'filebrowserBrowseUrl': '/ckeditor/browse/',
-        },
-    }
-else:
-    # Local development settings
-    CKEDITOR_UPLOAD_PATH = "uploads/"
-    CKEDITOR_IMAGE_BACKEND = "pillow"
-    CKEDITOR_CONFIGS = {
-        'default': {
-            'toolbar': 'full',
-            'height': 300,
-            'width': '100%',
-            'filebrowserUploadUrl': '/ckeditor/upload/',
-            'filebrowserBrowseUrl': '/ckeditor/browse/',
-        },
-    }
-
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
@@ -260,22 +226,3 @@ EMAIL_USE_TLS = True  # Add this line to enable TLS
 EMAIL_HOST_USER = os.environ.get('HOST_USERNAME')
 DEFAULT_FROM_EMAIL = os.environ.get('HOST_EMAIL')
 EMAIL_HOST_PASSWORD = os.environ.get('HOST_EMAIL_PASSWORD')
-
-
-# REDIS Configuration
-
-CELERY_BROKER_URL = os.environ.get('CELERY_BROKER_URL')
-
-CELERY_ACCEPT_CONTENT = ['json']
-
-CELERY_TASK_SERIALIZER = 'json'
-
-CELERY_TIMEZONE = 'America/New_York'
-
-# CELERY_BEAT_SCHEDULE = {
-#     'check-membership-task': {
-#         'task': 'membership.tasks.check_memberships',
-#         'schedule': crontab(hour=6, minute=0),
-#     },
-# }
-

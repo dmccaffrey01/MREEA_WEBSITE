@@ -5,6 +5,7 @@
     background-color: $gl-1;
     position: relative;
     overflow: hidden;
+    padding: 40px 0;
 
     .section-container {
         gap: 16px;
@@ -31,5 +32,31 @@
 
     .form-container {
         width: 100%;
+    }
+
+    
+
+    /* Small devices (larger phones, 576px to 767px) */
+    @media (max-width: 767px) {
+        .account-container {
+            width: 496px;
+        }
+    }
+
+    /* Extra small devices (phones, 380px to 575px) */
+    @media (max-width: 575px) {
+        .account-container {
+            width: 320px;
+
+            .input-group-container {
+                flex-direction: column;
+                width: 100%;
+                gap: 15px;
+        
+                .input-container {
+                    width: 100%;
+                }
+            }
+        }
     }
 }

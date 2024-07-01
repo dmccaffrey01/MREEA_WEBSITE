@@ -3,6 +3,7 @@
 @import '../../../static/account/css/account';
 
 .membership-status-section {
+    padding: 40px 0;
 
     .form {
         gap: 12px;
@@ -14,5 +15,13 @@
 
     .info-left {
         font-weight: 600;
+    }
+
+    /* Extra small devices (phones, 380px to 575px) */
+    @media (max-width: 575px) {
+        .info-group {
+            flex-direction: column;
+            gap: 8px;
+        }
     }
 }

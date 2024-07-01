@@ -178,7 +178,7 @@
                             </svg>
                             <span class="sr-only">Class Icon</span>
                         </div>
-                        <p class="dark-text-2">{{ p.classes.all|length }} Class(es) <span class="certifications-text">&amp; Certification(s)</span></p>
+                        <p class="dark-text-2">{{ p.classes.all|length }} Classes <span class="certifications-text">&amp; Certifications</span></p>
                     </div>
                     <div class="visit-link">
                         <div class="icon-container">
@@ -188,12 +188,7 @@
                             <span class="sr-only">Location Icon</span>
                         </div>
                         <p class="dark-text-2">
-                            <span class="comma-text">
-                            {% for s in p.teaching_states.all %}
-                                {{ s.code }}{% if not forloop.last %},{% endif %}
-                            {% endfor %}
-                            </span>
-                            <span class="states-text">{{ p.teaching_states.all|length }} State(s)</span>
+                            <span class="states-text">{{ p.teaching_states.all|length }} States</span>
                         </p>
                     </div>
                 </div>

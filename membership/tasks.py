@@ -1,4 +1,3 @@
-from celery import shared_task
 from .models import Membership, MembershipStatus
 from datetime import timedelta
 from django.utils import timezone
@@ -11,7 +10,6 @@ from django.template.loader import render_to_string
 from django.utils.html import strip_tags
 
 
-@shared_task
 def check_memberships():
     today = timezone.now().date()
 
@@ -38,7 +36,7 @@ def check_memberships():
             category = 'membership'
             url = reverse('membership_status')
 
-            new_expiring_membership_notification.delay(membership.user.username, heading, message, category, url)
+            new_expiring_membership_notification(membership.user.username, heading, message, category, url)
 
         if remaining_days in expired_days_remaining:
             heading = f'Membership Expiring in {remaining_days} day(s)'
@@ -48,7 +46,7 @@ def check_memberships():
             category = 'membership'
             url = reverse('membership_status')
 
-            new_expiring_membership_notification.delay(membership.user.username, heading, message, category, url)
+            new_expiring_membership_notification(membership.user.username, heading, message, category, url)
 
             expiring_members_list.append({
                 'username': membership.user.username,
@@ -60,17 +58,16 @@ def check_memberships():
 
     today = today.replace(hour=0, minute=5, second=0, microsecond=0)
 
-    if len(expiring_members_list):
-        time_interval = timedelta(hours=2) / len(expiring_members_list)
+    # if len(expiring_members_list):
+    #     time_interval = timedelta(hours=2) / len(expiring_members_list)
 
-        for i, item in enumerate(expiring_members_list):
-            delay = today + i * time_interval
-            send_new_expiring_membership_email.apply_async((item['username'], item['heading'], item['message']), eta=delay)
+    #     for i, item in enumerate(expiring_members_list):
+    #         delay = today + i * time_interval
+    #         send_new_expiring_membership_email.apply_async((item['username'], item['heading'], item['message']), eta=delay)
 
     return "Successfully checked memberships"
 
 
-@shared_task
 def new_expiring_membership_notification(username, heading, message, category, url):
     user = User.objects.filter(username=username).first()
 
@@ -87,30 +84,29 @@ def new_expiring_membership_notification(username, heading, message, category, u
     return "Successfully added expiring membership notification"
 
 
-@shared_task
-def send_new_expiring_membership_email(username, heading, message):
-    user = User.objects.filter(username=username).first()
+# def send_new_expiring_membership_email(username, heading, message):
+#     user = User.objects.filter(username=username).first()
     
-    subject = f"MREEA - {heading}"
+#     subject = f"MREEA - {heading}"
 
-    membership_status_url = os.environ.get('SITE_URL') + reverse('membership_status')
+#     membership_status_url = os.environ.get('SITE_URL') + reverse('membership_status')
 
-    html_content = render_to_string('email/new_expiring_membership_email_template.html', {'user': user, 'message': message, 'membership_status_url': membership_status_url,})
-    message = strip_tags(html_content)
+#     html_content = render_to_string('email/new_expiring_membership_email_template.html', {'user': user, 'message': message, 'membership_status_url': membership_status_url,})
+#     message = strip_tags(html_content)
               
-    from_email = f"MREEA Website <{os.environ.get('HOST_EMAIL')}>"
-    to_email = [user.email]
-    reply_to = [from_email]
+#     from_email = f"MREEA Website <{os.environ.get('HOST_EMAIL')}>"
+#     to_email = [user.email]
+#     reply_to = [from_email]
 
-    email = EmailMultiAlternatives(
-        subject,
-        message,
-        from_email,
-        to_email,
-        reply_to=reply_to,
-    )
+#     email = EmailMultiAlternatives(
+#         subject,
+#         message,
+#         from_email,
+#         to_email,
+#         reply_to=reply_to,
+#     )
 
-    email.attach_alternative(html_content, "text/html")
-    email.send()
+#     email.attach_alternative(html_content, "text/html")
+#     email.send()
 
-    return "Successfully sent new event email"
+#     return "Successfully sent new event email"

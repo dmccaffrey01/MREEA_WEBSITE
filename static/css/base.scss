@@ -925,6 +925,9 @@ h1.logo-text {
     }
 }
 
+.nav-account-btns-container {
+    display: none;
+}
 
 .profile-container {
     width: 260px;
@@ -1467,6 +1470,19 @@ footer {
 
     footer .footer-contact-container {
         width: 185px;
+    }
+
+    .nav-account-btns-container {
+        display: flex;
+        gap: 32px;
+
+        .small-btn {
+            margin-left: 0;
+        }
+    }
+
+    .account-btns-container {
+        display: none;
     }
 }
 

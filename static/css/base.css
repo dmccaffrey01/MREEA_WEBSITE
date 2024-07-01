@@ -750,6 +750,10 @@ h1.logo-text::before {
   width: calc(100% - 100px);
 }
 
+.nav-account-btns-container {
+  display: none;
+}
+
 .profile-container {
   width: 260px;
   gap: 24px;
@@ -1172,6 +1176,16 @@ footer .footer-contact-container .icon-container {
   }
   footer .footer-contact-container {
     width: 185px;
+  }
+  .nav-account-btns-container {
+    display: flex;
+    gap: 32px;
+  }
+  .nav-account-btns-container .small-btn {
+    margin-left: 0;
+  }
+  .account-btns-container {
+    display: none;
   }
 }
 /* Small devices (larger phones, 576px to 767px) */
