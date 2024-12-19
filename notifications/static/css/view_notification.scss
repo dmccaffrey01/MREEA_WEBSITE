@@ -118,6 +118,20 @@
                     margin-left: 16px;
                 }
             }
+
+            &.clicked {
+                .delete-btn {
+                    background-color: $gl-2;
+                }
+            
+                .icon-container {
+                    background-color: $white;
+                }
+            
+                .confirm-delete-btn {
+                    display: flex;
+                }
+            }
         }
     }
 }

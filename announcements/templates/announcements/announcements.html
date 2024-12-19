@@ -18,7 +18,7 @@
         <label for="id_view_all" class="sr-only">View All</label>
 
         <div class="announcements-wrapper container-col align-start">
-            {% if draft_announcements and user.is_superuser %}
+            {% if user.is_superuser %}
             <div class="heading-container visit-link">
                 <div class="icon-container">
                     <svg xmlns="http://www.w3.org/2000/svg" class="dark-text" viewBox="0 0 24 24">

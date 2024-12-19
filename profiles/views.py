@@ -212,6 +212,9 @@ def edit_profile(request, username):
             user_profile.email = form_data['email']
             user_profile.phone_number = form_data['phone_number']
 
+            if not user_profile.is_profile_changed:
+                user_profile.is_profile_changed = True
+
             user_profile.save()
 
             if user.username == username:
@@ -320,7 +323,22 @@ def login_redirect(request):
     user = request.user
 
     user_profile = get_object_or_404(UserProfile, user=user)
+    
+    membership = Membership.objects.filter(user=user).first()
 
+    if not membership:
+        messages.error(request, "Your membership is invalid")
+        return redirect(reverse('membership_redirect'))
+    
+    today = timezone.now().date()
+    if membership.end_date < today:
+        expired_status = MembershipStatus.objects.filter(name="expired").first()
+        membership.status = expired_status
+        membership.status_name = 'expired'
+        membership.save()
+        messages.error(request, "Your membership is invalid")
+        return redirect(reverse('membership_status'))
+    
     if not user_profile.is_password_changed:
         heading = f'Change Password!'
         message = f'Your password has not been changed. Please change your password from the default. \nClick the button below'
@@ -338,20 +356,22 @@ def login_redirect(request):
         messages.warning(request, "Please change your password!")
         return redirect(reverse('account_change_password'))
     
-    membership = Membership.objects.filter(user=user).first()
+    if not user_profile.is_profile_changed:
+        heading = f'Change Profile!'
+        message = f'Your profile has not been changed. Please change your profile from the default. \nClick the button below'
+        category = 'profile'
+        url = reverse('edit_profile', args=(user.username,))
 
-    if not membership:
-        messages.error(request, "Your membership is invalid")
-        return redirect(reverse('membership_redirect'))
-    
-    today = timezone.now().date()
-    if membership.end_date < today:
-        expired_status = MembershipStatus.objects.filter(name="expired").first()
-        membership.status = expired_status
-        membership.status_name = 'expired'
-        membership.save()
-        messages.error(request, "Your membership is invalid")
-        return redirect(reverse('membership_status'))
+        new_notification = Notification.objects.create(
+            user=user,
+            heading=heading,
+            message=message,
+            category=category,
+            url=url,
+        )
+        new_notification.save()
+        messages.warning(request, "Please change your profile!")
+        return redirect(url)
     
     return redirect(reverse('profile', args=(user.username,)))
 
@@ -359,4 +379,3 @@ def login_redirect(request):
 class CustomPasswordChangeView(LoginRequiredMixin, PasswordChangeView):
     success_url = reverse_lazy('login_redirect')
 
-    

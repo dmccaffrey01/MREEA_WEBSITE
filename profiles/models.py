@@ -86,6 +86,7 @@ class UserProfile(models.Model):
     classes = models.ManyToManyField('Class', blank=True)
     teaching_states = models.ManyToManyField('TeachingState', blank=True)
     is_password_changed = models.BooleanField(default=True)
+    is_profile_changed = models.BooleanField(default=True)
     
     def __str__(self):
         return f'{self.first_name}\'s Profile'
