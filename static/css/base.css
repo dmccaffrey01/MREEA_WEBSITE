@@ -646,7 +646,22 @@ main {
 header {
   width: 100%;
   height: 100px;
-  background-color: #ffffff;
+  background-color: #242424;
+}
+header .dark-text, header .nav-link, header .dark-text-2 {
+  color: #ffffff;
+}
+header .yellow-btn .dark-text-2 {
+  color: #494949;
+}
+header .icon-container path {
+  fill: #ffffff;
+}
+header.home-page {
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 999;
 }
 
 .header-container {

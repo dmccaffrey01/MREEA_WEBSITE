@@ -803,7 +803,26 @@ main {
 header {
     width: 100%;
     height: 100px;
-    background-color: $white;
+    background-color: $gd-1;
+
+    .dark-text, .nav-link, .dark-text-2 {
+        color: $white; 
+    }
+
+    .yellow-btn .dark-text-2 {
+        color: $gd-2;
+    }
+
+    .icon-container path {
+        fill: $white;
+    }
+
+    &.home-page {
+        position: absolute;
+        left: 0;
+        top: 0;
+        z-index: 999;
+    }
 }
 
 .header-container {
@@ -1314,6 +1333,8 @@ h1.logo-text {
             white-space: wrap;
         }
     }
+
+    
 }
 
 footer {

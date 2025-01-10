@@ -1,121 +1,143 @@
-.section-container {
+.new-home-page {
+  width: 100%;
+}
+.new-home-page .home-hero-section {
+  min-height: 100vh;
+  position: relative;
+}
+.new-home-page .home-hero-section .bg-img-container {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  left: 0;
+  top: 0;
+  overflow: hidden;
+}
+.new-home-page .home-hero-section .bg-img-container img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.old-home-page {
+  /* Extra large devices (large desktops, 1280px to 1439px) */
+  /* Large devices (desktops, 1000px to 1279px) */
+  /* Medium devices (tablets, 768px to 999px) */
+  /* Small devices (larger phones, 576px to 767px) */
+  /* Extra small devices (phones, 380px to 575px) */
+}
+.old-home-page .section-container {
   width: 1280px;
 }
-.section-container .visit-link {
+.old-home-page .section-container .visit-link {
   gap: 8px;
 }
-.section-container .section-heading-visit-link {
+.old-home-page .section-container .section-heading-visit-link {
   gap: 16px;
 }
-.section-container .section-heading-visit-link .icon-container {
+.old-home-page .section-container .section-heading-visit-link .icon-container {
   width: calc(2.5rem + 24px);
   height: calc(2.5rem + 24px);
   padding: 12px;
 }
-.section-container .section-heading-visit-link .section-heading {
+.old-home-page .section-container .section-heading-visit-link .section-heading {
   font-size: 2.5rem;
 }
-
-.spacing {
+.old-home-page .spacing {
   line-height: calc(1.3rem + 8px);
 }
-
-/* Extra large devices (large desktops, 1280px to 1439px) */
 @media (max-width: 1439px) {
-  .section-container {
+  .old-home-page .section-container {
     width: 1140px;
   }
 }
-/* Large devices (desktops, 1000px to 1279px) */
 @media (max-width: 1279px) {
-  .section-container {
+  .old-home-page .section-container {
     width: 880px;
   }
-  .section-container .section-heading-visit-link {
+  .old-home-page .section-container .section-heading-visit-link {
     gap: 12px;
   }
-  .section-container .section-heading-visit-link .icon-container {
+  .old-home-page .section-container .section-heading-visit-link .icon-container {
     width: calc(2rem + 20px);
     height: calc(2rem + 20px);
     padding: 10px;
   }
-  .section-container .section-heading-visit-link .section-heading {
+  .old-home-page .section-container .section-heading-visit-link .section-heading {
     font-size: 2rem;
   }
-  .spacing {
+  .old-home-page .spacing {
     line-height: calc(1.1rem + 6px);
   }
 }
-/* Medium devices (tablets, 768px to 999px) */
 @media (max-width: 999px) {
-  .section-container {
+  .old-home-page .section-container {
     width: 668px;
   }
-  .section-container .section-heading-visit-link {
+  .old-home-page .section-container .section-heading-visit-link {
     gap: 16px;
   }
-  .section-container .section-heading-visit-link .icon-container {
+  .old-home-page .section-container .section-heading-visit-link .icon-container {
     width: calc(2.5rem + 24px);
     height: calc(2.5rem + 24px);
     padding: 12px;
   }
-  .section-container .section-heading-visit-link .section-heading {
+  .old-home-page .section-container .section-heading-visit-link .section-heading {
     font-size: 2.5rem;
   }
-  .spacing {
+  .old-home-page .spacing {
     line-height: calc(1.2rem + 6px);
   }
 }
-/* Small devices (larger phones, 576px to 767px) */
 @media (max-width: 767px) {
-  .section-container {
+  .old-home-page .section-container {
     width: 496px;
   }
-  .section-container .section-heading-visit-link {
+  .old-home-page .section-container .section-heading-visit-link {
     gap: 12px;
   }
-  .section-container .section-heading-visit-link .icon-container {
+  .old-home-page .section-container .section-heading-visit-link .icon-container {
     width: calc(2rem + 20px);
     height: calc(2rem + 20px);
     padding: 10px;
   }
-  .section-container .section-heading-visit-link .section-heading {
+  .old-home-page .section-container .section-heading-visit-link .section-heading {
     font-size: 2rem;
   }
 }
-/* Extra small devices (phones, 380px to 575px) */
 @media (max-width: 575px) {
-  .section-container {
+  .old-home-page .section-container {
     width: 320px;
   }
-  .section-container .section-heading-visit-link {
+  .old-home-page .section-container .section-heading-visit-link {
     gap: 12px;
   }
-  .section-container .section-heading-visit-link .icon-container {
+  .old-home-page .section-container .section-heading-visit-link .icon-container {
     width: calc(1.4rem + 16px);
     height: calc(1.4rem + 16px);
     padding: 8px;
   }
-  .section-container .section-heading-visit-link .section-heading {
+  .old-home-page .section-container .section-heading-visit-link .section-heading {
     font-size: 1.4rem;
   }
 }
-.home-hero-section {
+.old-home-page .home-hero-section {
   padding: 40px 0 80px 0;
   min-height: calc(100vh - 100px);
   position: relative;
   background: linear-gradient(0deg, rgb(247, 247, 247) 0%, rgb(238, 238, 238) 50%, rgb(247, 247, 247) 100%);
 }
-.home-hero-section .visit-link .icon-container {
+.old-home-page .home-hero-section .visit-link .icon-container {
   background-color: #ececec;
 }
-.home-hero-section .section-container {
+.old-home-page .home-hero-section .section-container {
   justify-content: space-between;
 }
-.home-hero-section .texts-wrapper {
+.old-home-page .home-hero-section .texts-wrapper {
   position: relative;
 }
-.home-hero-section .texts-wrapper .bg-hover {
+.old-home-page .home-hero-section .texts-wrapper .bg-hover {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -127,10 +149,10 @@
   z-index: 2;
   transition: all 0.2s ease;
 }
-.home-hero-section .texts-wrapper:hover .bg-hover {
+.old-home-page .home-hero-section .texts-wrapper:hover .bg-hover {
   rotate: 6deg;
 }
-.home-hero-section .texts-container {
+.old-home-page .home-hero-section .texts-container {
   padding: 52px;
   background-color: #f7f7f7;
   border-radius: 48px;
@@ -138,68 +160,67 @@
   gap: 28px;
   z-index: 3;
 }
-.home-hero-section .texts-container .hero-text {
+.old-home-page .home-hero-section .texts-container .hero-text {
   line-height: calc(1.3rem + 8px);
 }
-.home-hero-section .texts-container .heading {
+.old-home-page .home-hero-section .texts-container .heading {
   width: 100%;
 }
-.home-hero-section .btns-container {
+.old-home-page .home-hero-section .btns-container {
   gap: 16px;
 }
-.home-hero-section .card-group-container {
+.old-home-page .home-hero-section .card-group-container {
   gap: 24px;
   z-index: 4;
 }
-.home-hero-section .card-group-container.group-1 {
+.old-home-page .home-hero-section .card-group-container.group-1 {
   width: 460px;
   height: 600px;
 }
-.home-hero-section .card-group-container.group-2 {
+.old-home-page .home-hero-section .card-group-container.group-2 {
   width: 100%;
   height: calc(60% - 12px);
 }
-.home-hero-section .card-group-container.group-3 {
+.old-home-page .home-hero-section .card-group-container.group-3 {
   width: calc(50% - 12px);
   height: 100%;
 }
-.home-hero-section .card-group-container .card {
+.old-home-page .home-hero-section .card-group-container .card {
   border-radius: 16px;
   background: #f7f7f7;
   width: 100%;
 }
-.home-hero-section .card-group-container .card-1,
-.home-hero-section .card-group-container .card-2 {
+.old-home-page .home-hero-section .card-group-container .card-1,
+.old-home-page .home-hero-section .card-group-container .card-2 {
   height: calc(50% - 12px);
   padding: 24px;
   gap: 12px;
 }
-.home-hero-section .card-group-container .card-1 .subheading,
-.home-hero-section .card-group-container .card-2 .subheading {
+.old-home-page .home-hero-section .card-group-container .card-1 .subheading,
+.old-home-page .home-hero-section .card-group-container .card-2 .subheading {
   font-size: 1.3rem;
   text-align: center;
 }
-.home-hero-section .card-group-container .card-1 .visit-link,
-.home-hero-section .card-group-container .card-2 .visit-link {
+.old-home-page .home-hero-section .card-group-container .card-1 .visit-link,
+.old-home-page .home-hero-section .card-group-container .card-2 .visit-link {
   gap: 8px;
 }
-.home-hero-section .card-group-container .card-1 {
+.old-home-page .home-hero-section .card-group-container .card-1 {
   border-radius: 48px 16px 16px 16px;
 }
-.home-hero-section .card-group-container .card-2 {
+.old-home-page .home-hero-section .card-group-container .card-2 {
   position: relative;
 }
-.home-hero-section .card-group-container .card-3 {
+.old-home-page .home-hero-section .card-group-container .card-3 {
   height: 100%;
   width: calc(50% - 12px);
   border-radius: 16px 48px 16px 16px;
 }
-.home-hero-section .card-group-container .card-4 {
+.old-home-page .home-hero-section .card-group-container .card-4 {
   height: calc(40% - 12px);
   border-radius: 16px 16px 48px 48px;
 }
-
-.home-hero-section {
+.old-home-page .home-hero-section {
   /* Extra large devices (large desktops, 1280px to 1439px) */
   /* Large devices (desktops, 1000px to 1279px) */
   /* Medium devices (tablets, 768px to 999px) */
@@ -207,307 +228,306 @@
   /* Extra small devices (phones, 380px to 575px) */
 }
 @media (max-width: 1439px) {
-  .home-hero-section .texts-container {
+  .old-home-page .home-hero-section .texts-container {
     padding: 44px;
   }
-  .home-hero-section .texts-container .heading {
+  .old-home-page .home-hero-section .texts-container .heading {
     font-size: 3rem;
   }
-  .home-hero-section .card-group-container.group-1 {
+  .old-home-page .home-hero-section .card-group-container.group-1 {
     width: 400px;
     height: 522px;
   }
-  .home-hero-section .card-group-container .card-1, .home-hero-section .card-group-container .card-2 {
+  .old-home-page .home-hero-section .card-group-container .card-1, .old-home-page .home-hero-section .card-group-container .card-2 {
     padding: 20px;
     gap: 8px;
   }
-  .home-hero-section .card-group-container .card-1 .subheading, .home-hero-section .card-group-container .card-2 .subheading {
+  .old-home-page .home-hero-section .card-group-container .card-1 .subheading, .old-home-page .home-hero-section .card-group-container .card-2 .subheading {
     font-size: 1.1rem;
   }
-  .home-hero-section .card-group-container .card-1 .visit-link .dark-text-2, .home-hero-section .card-group-container .card-2 .visit-link .dark-text-2 {
+  .old-home-page .home-hero-section .card-group-container .card-1 .visit-link .dark-text-2, .old-home-page .home-hero-section .card-group-container .card-2 .visit-link .dark-text-2 {
     font-size: 1.1rem;
   }
-  .home-hero-section .card-group-container .card-1 .visit-link .icon-container, .home-hero-section .card-group-container .card-2 .visit-link .icon-container {
+  .old-home-page .home-hero-section .card-group-container .card-1 .visit-link .icon-container, .old-home-page .home-hero-section .card-group-container .card-2 .visit-link .icon-container {
     width: calc(1.1rem + 16px);
     height: calc(1.1rem + 16px);
     padding: 6px;
   }
 }
 @media (max-width: 1279px) {
-  .home-hero-section {
+  .old-home-page .home-hero-section {
     min-height: fit-content;
   }
-  .home-hero-section .bg-hover {
+  .old-home-page .home-hero-section .bg-hover {
     border-radius: 32px;
   }
-  .home-hero-section .texts-container {
+  .old-home-page .home-hero-section .texts-container {
     padding: 24px;
     gap: 20px;
     border-radius: 32px;
   }
-  .home-hero-section .texts-container .hero-text {
+  .old-home-page .home-hero-section .texts-container .hero-text {
     line-height: calc(1.1rem + 8px);
   }
-  .home-hero-section .texts-container .dark-text-2 {
+  .old-home-page .home-hero-section .texts-container .dark-text-2 {
     font-size: 1.1rem;
   }
-  .home-hero-section .texts-container .heading {
+  .old-home-page .home-hero-section .texts-container .heading {
     font-size: 2rem;
   }
-  .home-hero-section .texts-container .yellow-btn {
+  .old-home-page .home-hero-section .texts-container .yellow-btn {
     font-size: 1.1rem;
     padding: 8px 12px;
     border-radius: 8px;
     min-width: 160px;
   }
-  .home-hero-section .texts-container .icon-container {
+  .old-home-page .home-hero-section .texts-container .icon-container {
     width: calc(1rem + 12px);
     height: calc(1rem + 12px);
     padding: 4px;
   }
-  .home-hero-section .card-group-container.group-1 {
+  .old-home-page .home-hero-section .card-group-container.group-1 {
     width: 300px;
     height: 391.5px;
   }
-  .home-hero-section .card-group-container .card-1, .home-hero-section .card-group-container .card-2 {
+  .old-home-page .home-hero-section .card-group-container .card-1, .old-home-page .home-hero-section .card-group-container .card-2 {
     padding: 12px;
     gap: 4px;
   }
-  .home-hero-section .card-group-container .card-1 .subheading, .home-hero-section .card-group-container .card-2 .subheading {
+  .old-home-page .home-hero-section .card-group-container .card-1 .subheading, .old-home-page .home-hero-section .card-group-container .card-2 .subheading {
     font-size: 1rem;
   }
-  .home-hero-section .card-group-container .card-1 .visit-link .dark-text-2, .home-hero-section .card-group-container .card-2 .visit-link .dark-text-2 {
+  .old-home-page .home-hero-section .card-group-container .card-1 .visit-link .dark-text-2, .old-home-page .home-hero-section .card-group-container .card-2 .visit-link .dark-text-2 {
     font-size: 1rem;
   }
-  .home-hero-section .card-group-container .card-1 .visit-link .icon-container, .home-hero-section .card-group-container .card-2 .visit-link .icon-container {
+  .old-home-page .home-hero-section .card-group-container .card-1 .visit-link .icon-container, .old-home-page .home-hero-section .card-group-container .card-2 .visit-link .icon-container {
     width: calc(1rem + 12px);
     height: calc(1rem + 12px);
     padding: 4px;
   }
-  .home-hero-section .card-group-container .card-1 {
+  .old-home-page .home-hero-section .card-group-container .card-1 {
     border-radius: 32px 12px 12px 12px;
   }
-  .home-hero-section .card-group-container .card-2 {
+  .old-home-page .home-hero-section .card-group-container .card-2 {
     border-radius: 12px;
   }
-  .home-hero-section .card-group-container .card-3 {
+  .old-home-page .home-hero-section .card-group-container .card-3 {
     border-radius: 12px 32px 12px 12px;
   }
-  .home-hero-section .card-group-container .card-4 {
+  .old-home-page .home-hero-section .card-group-container .card-4 {
     border-radius: 12px 12px 32px 32px;
   }
 }
 @media (max-width: 999px) {
-  .home-hero-section .section-container {
+  .old-home-page .home-hero-section .section-container {
     flex-direction: column;
     gap: 40px;
     justify-content: center;
   }
-  .home-hero-section .bg-hover {
+  .old-home-page .home-hero-section .bg-hover {
     border-radius: 36px;
   }
-  .home-hero-section .texts-container {
+  .old-home-page .home-hero-section .texts-container {
     padding: 32px;
     gap: 24px;
     border-radius: 40px;
     width: 560px;
   }
-  .home-hero-section .texts-container .hero-text {
+  .old-home-page .home-hero-section .texts-container .hero-text {
     line-height: calc(1.3rem + 8px);
   }
-  .home-hero-section .texts-container .dark-text-2 {
+  .old-home-page .home-hero-section .texts-container .dark-text-2 {
     font-size: 1.3rem;
   }
-  .home-hero-section .texts-container .heading {
+  .old-home-page .home-hero-section .texts-container .heading {
     font-size: 2.4rem;
   }
-  .home-hero-section .texts-container .yellow-btn {
+  .old-home-page .home-hero-section .texts-container .yellow-btn {
     font-size: 1.3rem;
     padding: 12px 16px;
     border-radius: 8px;
     min-width: 200px;
   }
-  .home-hero-section .texts-container .icon-container {
+  .old-home-page .home-hero-section .texts-container .icon-container {
     width: calc(1.3rem + 16px);
     height: calc(1.3rem + 16px);
     padding: 8px;
   }
-  .home-hero-section .card-group-container.group-1 {
+  .old-home-page .home-hero-section .card-group-container.group-1 {
     width: 560px;
     height: 730px;
   }
-  .home-hero-section .card-group-container .card-1, .home-hero-section .card-group-container .card-2 {
+  .old-home-page .home-hero-section .card-group-container .card-1, .old-home-page .home-hero-section .card-group-container .card-2 {
     padding: 16px;
     gap: 12px;
   }
-  .home-hero-section .card-group-container .card-1 .subheading, .home-hero-section .card-group-container .card-2 .subheading {
+  .old-home-page .home-hero-section .card-group-container .card-1 .subheading, .old-home-page .home-hero-section .card-group-container .card-2 .subheading {
     font-size: 1.5rem;
   }
-  .home-hero-section .card-group-container .card-1 .visit-link .dark-text-2, .home-hero-section .card-group-container .card-2 .visit-link .dark-text-2 {
+  .old-home-page .home-hero-section .card-group-container .card-1 .visit-link .dark-text-2, .old-home-page .home-hero-section .card-group-container .card-2 .visit-link .dark-text-2 {
     font-size: 1.3rem;
   }
-  .home-hero-section .card-group-container .card-1 .visit-link .icon-container, .home-hero-section .card-group-container .card-2 .visit-link .icon-container {
+  .old-home-page .home-hero-section .card-group-container .card-1 .visit-link .icon-container, .old-home-page .home-hero-section .card-group-container .card-2 .visit-link .icon-container {
     width: calc(1.3rem + 16px);
     height: calc(1.3rem + 16px);
     padding: 8px;
   }
-  .home-hero-section .card-group-container .card-1 {
+  .old-home-page .home-hero-section .card-group-container .card-1 {
     border-radius: 40px 12px 12px 12px;
   }
-  .home-hero-section .card-group-container .card-2 {
+  .old-home-page .home-hero-section .card-group-container .card-2 {
     border-radius: 12px;
   }
-  .home-hero-section .card-group-container .card-3 {
+  .old-home-page .home-hero-section .card-group-container .card-3 {
     border-radius: 12px 40px 12px 12px;
   }
-  .home-hero-section .card-group-container .card-4 {
+  .old-home-page .home-hero-section .card-group-container .card-4 {
     border-radius: 12px 12px 40px 40px;
   }
 }
 @media (max-width: 767px) {
-  .home-hero-section .section-container {
+  .old-home-page .home-hero-section .section-container {
     gap: 40px;
   }
-  .home-hero-section .bg-hover {
+  .old-home-page .home-hero-section .bg-hover {
     border-radius: 40px;
   }
-  .home-hero-section .texts-container {
+  .old-home-page .home-hero-section .texts-container {
     padding: 32px;
     gap: 20px;
     border-radius: 40px;
     width: 484px;
   }
-  .home-hero-section .texts-container .hero-text {
+  .old-home-page .home-hero-section .texts-container .hero-text {
     line-height: calc(1.1rem + 8px);
   }
-  .home-hero-section .texts-container .dark-text-2 {
+  .old-home-page .home-hero-section .texts-container .dark-text-2 {
     font-size: 1.1rem;
   }
-  .home-hero-section .texts-container .heading {
+  .old-home-page .home-hero-section .texts-container .heading {
     font-size: 2rem;
   }
-  .home-hero-section .texts-container .yellow-btn {
+  .old-home-page .home-hero-section .texts-container .yellow-btn {
     font-size: 1.1rem;
     padding: 10px 14px;
     border-radius: 8px;
   }
-  .home-hero-section .texts-container .icon-container {
+  .old-home-page .home-hero-section .texts-container .icon-container {
     width: calc(1.1rem + 12px);
     height: calc(1.1rem + 12px);
     padding: 6px;
   }
-  .home-hero-section .card-group-container.group-1 {
+  .old-home-page .home-hero-section .card-group-container.group-1 {
     width: 484px;
     height: 631px;
   }
-  .home-hero-section .card-group-container .card-1, .home-hero-section .card-group-container .card-2 {
+  .old-home-page .home-hero-section .card-group-container .card-1, .old-home-page .home-hero-section .card-group-container .card-2 {
     padding: 16px;
     gap: 8px;
   }
-  .home-hero-section .card-group-container .card-1 .subheading, .home-hero-section .card-group-container .card-2 .subheading {
+  .old-home-page .home-hero-section .card-group-container .card-1 .subheading, .old-home-page .home-hero-section .card-group-container .card-2 .subheading {
     font-size: 1.3rem;
   }
-  .home-hero-section .card-group-container .card-1 .visit-link .dark-text-2, .home-hero-section .card-group-container .card-2 .visit-link .dark-text-2 {
+  .old-home-page .home-hero-section .card-group-container .card-1 .visit-link .dark-text-2, .old-home-page .home-hero-section .card-group-container .card-2 .visit-link .dark-text-2 {
     font-size: 1.1rem;
   }
-  .home-hero-section .card-group-container .card-1 .visit-link .icon-container, .home-hero-section .card-group-container .card-2 .visit-link .icon-container {
+  .old-home-page .home-hero-section .card-group-container .card-1 .visit-link .icon-container, .old-home-page .home-hero-section .card-group-container .card-2 .visit-link .icon-container {
     width: calc(1.1rem + 12px);
     height: calc(1.1rem + 12px);
     padding: 6px;
   }
-  .home-hero-section .card-group-container .card-1 {
+  .old-home-page .home-hero-section .card-group-container .card-1 {
     border-radius: 40px 12px 12px 12px;
   }
-  .home-hero-section .card-group-container .card-2 {
+  .old-home-page .home-hero-section .card-group-container .card-2 {
     border-radius: 12px;
   }
-  .home-hero-section .card-group-container .card-3 {
+  .old-home-page .home-hero-section .card-group-container .card-3 {
     border-radius: 12px 40px 12px 12px;
   }
-  .home-hero-section .card-group-container .card-4 {
+  .old-home-page .home-hero-section .card-group-container .card-4 {
     border-radius: 12px 12px 40px 40px;
   }
 }
 @media (max-width: 575px) {
-  .home-hero-section {
+  .old-home-page .home-hero-section {
     padding: 30px 0 60px 0;
   }
-  .home-hero-section .section-container {
+  .old-home-page .home-hero-section .section-container {
     gap: 32px;
   }
-  .home-hero-section .bg-hover {
+  .old-home-page .home-hero-section .bg-hover {
     border-radius: 32px;
     display: none;
   }
-  .home-hero-section .texts-container {
+  .old-home-page .home-hero-section .texts-container {
     padding: 24px;
     gap: 16px;
     border-radius: 24px;
     width: 320px;
   }
-  .home-hero-section .texts-container br {
+  .old-home-page .home-hero-section .texts-container br {
     display: none;
   }
-  .home-hero-section .texts-container .hero-text {
+  .old-home-page .home-hero-section .texts-container .hero-text {
     line-height: calc(0.95rem + 4px);
   }
-  .home-hero-section .texts-container .dark-text-2 {
+  .old-home-page .home-hero-section .texts-container .dark-text-2 {
     font-size: 0.95rem;
     text-align: center;
   }
-  .home-hero-section .texts-container .heading {
+  .old-home-page .home-hero-section .texts-container .heading {
     font-size: 1.4rem;
     text-align: center;
   }
-  .home-hero-section .texts-container .yellow-btn {
+  .old-home-page .home-hero-section .texts-container .yellow-btn {
     font-size: 0.95rem;
     padding: 8px 12px;
     border-radius: 8px;
     min-width: 140px;
   }
-  .home-hero-section .texts-container .icon-container {
+  .old-home-page .home-hero-section .texts-container .icon-container {
     width: calc(0.95rem + 8px);
     height: calc(0.95rem + 8px);
     padding: 4px;
   }
-  .home-hero-section .texts-container .btns-container {
+  .old-home-page .home-hero-section .texts-container .btns-container {
     width: 100%;
     justify-content: center;
   }
-  .home-hero-section .card-group-container.group-1 {
+  .old-home-page .home-hero-section .card-group-container.group-1 {
     width: 320px;
     height: 417px;
   }
-  .home-hero-section .card-group-container .card-1, .home-hero-section .card-group-container .card-2 {
+  .old-home-page .home-hero-section .card-group-container .card-1, .old-home-page .home-hero-section .card-group-container .card-2 {
     padding: 16px;
     gap: 4px;
   }
-  .home-hero-section .card-group-container .card-1 .subheading, .home-hero-section .card-group-container .card-2 .subheading {
+  .old-home-page .home-hero-section .card-group-container .card-1 .subheading, .old-home-page .home-hero-section .card-group-container .card-2 .subheading {
     font-size: 1.1rem;
   }
-  .home-hero-section .card-group-container .card-1 .visit-link .dark-text-2, .home-hero-section .card-group-container .card-2 .visit-link .dark-text-2 {
+  .old-home-page .home-hero-section .card-group-container .card-1 .visit-link .dark-text-2, .old-home-page .home-hero-section .card-group-container .card-2 .visit-link .dark-text-2 {
     font-size: 0.95rem;
   }
-  .home-hero-section .card-group-container .card-1 .visit-link .icon-container, .home-hero-section .card-group-container .card-2 .visit-link .icon-container {
+  .old-home-page .home-hero-section .card-group-container .card-1 .visit-link .icon-container, .old-home-page .home-hero-section .card-group-container .card-2 .visit-link .icon-container {
     width: calc(0.95rem + 8px);
     height: calc(0.95em + 8px);
     padding: 4px;
   }
-  .home-hero-section .card-group-container .card-1 {
+  .old-home-page .home-hero-section .card-group-container .card-1 {
     border-radius: 24px 12px 12px 12px;
   }
-  .home-hero-section .card-group-container .card-2 {
+  .old-home-page .home-hero-section .card-group-container .card-2 {
     border-radius: 12px;
   }
-  .home-hero-section .card-group-container .card-3 {
+  .old-home-page .home-hero-section .card-group-container .card-3 {
     border-radius: 12px 24px 12px 12px;
   }
-  .home-hero-section .card-group-container .card-4 {
+  .old-home-page .home-hero-section .card-group-container .card-4 {
     border-radius: 12px 12px 24px 24px;
   }
 }
-
-.intro-section {
+.old-home-page .intro-section {
   background: linear-gradient(0deg, rgb(247, 247, 247) 0%, rgb(238, 238, 238) 50%, rgb(247, 247, 247) 100%);
   padding: 160px 0 80px 0;
   /* Extra large devices (large desktops, 1280px to 1439px) */
@@ -516,13 +536,13 @@
   /* Small devices (larger phones, 576px to 767px) */
   /* Extra small devices (phones, 380px to 575px) */
 }
-.intro-section .section-container {
+.old-home-page .intro-section .section-container {
   gap: 160px;
 }
-.intro-section .text-wrapper {
+.old-home-page .intro-section .text-wrapper {
   position: relative;
 }
-.intro-section .text-wrapper .bg-hover {
+.old-home-page .intro-section .text-wrapper .bg-hover {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -534,10 +554,10 @@
   z-index: 2;
   transition: all 0.2s ease;
 }
-.intro-section .text-wrapper:hover .bg-hover {
+.old-home-page .intro-section .text-wrapper:hover .bg-hover {
   rotate: -6deg;
 }
-.intro-section .text-container {
+.old-home-page .intro-section .text-container {
   position: relative;
   z-index: 3;
   gap: 20px;
@@ -546,21 +566,21 @@
   padding: 40px;
   border-radius: 16px;
 }
-.intro-section .text-container .subheading {
+.old-home-page .intro-section .text-container .subheading {
   font-size: 2.5rem;
 }
-.intro-section .mreea-logo-container {
+.old-home-page .intro-section .mreea-logo-container {
   width: 400px;
   height: 400px;
   border-radius: 50%;
   background-color: #f7f7f7;
   padding: 50px;
 }
-.intro-section .img-wrapper {
+.old-home-page .intro-section .img-wrapper {
   position: relative;
 }
-.intro-section .member-container,
-.intro-section .member-amount-container {
+.old-home-page .intro-section .member-container,
+.old-home-page .intro-section .member-amount-container {
   width: 80px;
   height: 80px;
   border-radius: 50%;
@@ -570,274 +590,273 @@
   outline-offset: -2px;
   bottom: 0px;
 }
-.intro-section .member-container.member-1,
-.intro-section .member-amount-container.member-1 {
+.old-home-page .intro-section .member-container.member-1,
+.old-home-page .intro-section .member-amount-container.member-1 {
   left: calc(50% - 100px);
   z-index: 2;
 }
-.intro-section .member-container.member-2,
-.intro-section .member-amount-container.member-2 {
+.old-home-page .intro-section .member-container.member-2,
+.old-home-page .intro-section .member-amount-container.member-2 {
   left: calc(50% - 60px);
   z-index: 3;
 }
-.intro-section .member-container.member-3,
-.intro-section .member-amount-container.member-3 {
+.old-home-page .intro-section .member-container.member-3,
+.old-home-page .intro-section .member-amount-container.member-3 {
   left: calc(50% - 20px);
   z-index: 4;
 }
-.intro-section .member-amount-container {
+.old-home-page .intro-section .member-amount-container {
   background-color: #f7f7f7;
   left: calc(50% + 20px);
   z-index: 5;
 }
-.intro-section .member-amount-container .member-amount-text {
+.old-home-page .intro-section .member-amount-container .member-amount-text {
   font-size: 2rem;
 }
-.intro-section .observer .text-wrapper,
-.intro-section .observer .mreea-logo-container {
+.old-home-page .intro-section .observer .text-wrapper,
+.old-home-page .intro-section .observer .mreea-logo-container {
   opacity: 0;
   transition: all 3s ease;
 }
-.intro-section .observer .text-wrapper {
+.old-home-page .intro-section .observer .text-wrapper {
   transition-delay: 1.25s;
 }
-.intro-section .observer .member-container.member-1 {
+.old-home-page .intro-section .observer .member-container.member-1 {
   opacity: 0;
   transition: all 1s ease;
   transition-delay: 0.25s;
 }
-.intro-section .observer .member-container.member-2 {
+.old-home-page .intro-section .observer .member-container.member-2 {
   opacity: 0;
   transition: all 1s ease;
   transition-delay: 0.5s;
 }
-.intro-section .observer .member-container.member-3 {
+.old-home-page .intro-section .observer .member-container.member-3 {
   opacity: 0;
   transition: all 1s ease;
   transition-delay: 0.75s;
 }
-.intro-section .observer .member-amount-container {
+.old-home-page .intro-section .observer .member-amount-container {
   opacity: 0;
   transition: all 1s ease;
   transition-delay: 1s;
 }
-.intro-section .observer-show .text-wrapper,
-.intro-section .observer-show .mreea-logo-container,
-.intro-section .observer-show .member-container.member-1,
-.intro-section .observer-show .member-container.member-2,
-.intro-section .observer-show .member-container.member-3,
-.intro-section .observer-show .member-amount-container {
+.old-home-page .intro-section .observer-show .text-wrapper,
+.old-home-page .intro-section .observer-show .mreea-logo-container,
+.old-home-page .intro-section .observer-show .member-container.member-1,
+.old-home-page .intro-section .observer-show .member-container.member-2,
+.old-home-page .intro-section .observer-show .member-container.member-3,
+.old-home-page .intro-section .observer-show .member-amount-container {
   opacity: 1;
 }
 @media (max-width: 1439px) {
-  .intro-section .section-container {
+  .old-home-page .intro-section .section-container {
     gap: 120px;
   }
-  .intro-section .text-container {
+  .old-home-page .intro-section .text-container {
     padding: 32px;
     height: 374px;
     width: 594px;
     gap: 16px;
   }
-  .intro-section .mreea-logo-container {
+  .old-home-page .intro-section .mreea-logo-container {
     width: 374px;
     height: 374px;
   }
 }
 @media (max-width: 1279px) {
-  .intro-section .section-container {
+  .old-home-page .intro-section .section-container {
     gap: 100px;
   }
-  .intro-section .text-container {
+  .old-home-page .intro-section .text-container {
     padding: 24px;
     height: fit-content;
     width: 480px;
     gap: 16px;
   }
-  .intro-section .text-container .spacing {
+  .old-home-page .intro-section .text-container .spacing {
     font-size: 1.1rem;
     line-height: calc(1.1rem + 8px);
   }
-  .intro-section .text-container .subheading {
+  .old-home-page .intro-section .text-container .subheading {
     font-size: 2rem;
   }
-  .intro-section .text-container .visit-link .dark-text-2 {
+  .old-home-page .intro-section .text-container .visit-link .dark-text-2 {
     font-size: 1.1rem;
   }
-  .intro-section .text-container .visit-link .icon-container {
+  .old-home-page .intro-section .text-container .visit-link .icon-container {
     width: calc(1.1rem + 16px);
     height: calc(1.1rem + 16px);
     padding: 6px;
   }
-  .intro-section .mreea-logo-container {
+  .old-home-page .intro-section .mreea-logo-container {
     width: 300px;
     height: 300px;
   }
-  .intro-section .member-container,
-  .intro-section .member-amount-container {
+  .old-home-page .intro-section .member-container,
+  .old-home-page .intro-section .member-amount-container {
     width: 60px;
     height: 60px;
   }
-  .intro-section .member-container.member-1,
-  .intro-section .member-amount-container.member-1 {
+  .old-home-page .intro-section .member-container.member-1,
+  .old-home-page .intro-section .member-amount-container.member-1 {
     left: calc(50% - 75px);
   }
-  .intro-section .member-container.member-2,
-  .intro-section .member-amount-container.member-2 {
+  .old-home-page .intro-section .member-container.member-2,
+  .old-home-page .intro-section .member-amount-container.member-2 {
     left: calc(50% - 45px);
   }
-  .intro-section .member-container.member-3,
-  .intro-section .member-amount-container.member-3 {
+  .old-home-page .intro-section .member-container.member-3,
+  .old-home-page .intro-section .member-amount-container.member-3 {
     left: calc(50% - 15px);
   }
-  .intro-section .member-amount-container {
+  .old-home-page .intro-section .member-amount-container {
     left: calc(50% + 15px);
   }
-  .intro-section .member-amount-container .member-amount-text {
+  .old-home-page .intro-section .member-amount-container .member-amount-text {
     font-size: 1.5rem;
   }
 }
 @media (max-width: 999px) {
-  .intro-section {
+  .old-home-page .intro-section {
     padding: 80px 0 40px 0;
   }
-  .intro-section .section-container {
+  .old-home-page .intro-section .section-container {
     flex-direction: column;
   }
-  .intro-section .section-container {
+  .old-home-page .intro-section .section-container {
     gap: 40px;
   }
-  .intro-section .mreea-logo-container {
+  .old-home-page .intro-section .mreea-logo-container {
     width: 400px;
     height: 400px;
   }
-  .intro-section .member-container,
-  .intro-section .member-amount-container {
+  .old-home-page .intro-section .member-container,
+  .old-home-page .intro-section .member-amount-container {
     width: 80px;
     height: 80px;
   }
-  .intro-section .member-container.member-1,
-  .intro-section .member-amount-container.member-1 {
+  .old-home-page .intro-section .member-container.member-1,
+  .old-home-page .intro-section .member-amount-container.member-1 {
     left: calc(50% - 100px);
   }
-  .intro-section .member-container.member-2,
-  .intro-section .member-amount-container.member-2 {
+  .old-home-page .intro-section .member-container.member-2,
+  .old-home-page .intro-section .member-amount-container.member-2 {
     left: calc(50% - 60px);
   }
-  .intro-section .member-container.member-3,
-  .intro-section .member-amount-container.member-3 {
+  .old-home-page .intro-section .member-container.member-3,
+  .old-home-page .intro-section .member-amount-container.member-3 {
     left: calc(50% - 20px);
   }
-  .intro-section .member-amount-container {
+  .old-home-page .intro-section .member-amount-container {
     left: calc(50% + 20px);
   }
-  .intro-section .member-amount-container .member-amount-text {
+  .old-home-page .intro-section .member-amount-container .member-amount-text {
     font-size: 2rem;
   }
-  .intro-section .text-container {
+  .old-home-page .intro-section .text-container {
     padding: 32px;
     width: 600px;
     gap: 24px;
   }
-  .intro-section .text-container .spacing {
+  .old-home-page .intro-section .text-container .spacing {
     font-size: 1.3rem;
     line-height: calc(1.3rem + 8px);
   }
-  .intro-section .text-container .subheading {
+  .old-home-page .intro-section .text-container .subheading {
     font-size: 2.5rem;
   }
-  .intro-section .text-container .visit-link .dark-text-2 {
+  .old-home-page .intro-section .text-container .visit-link .dark-text-2 {
     font-size: 1.3rem;
   }
-  .intro-section .text-container .visit-link .icon-container {
+  .old-home-page .intro-section .text-container .visit-link .icon-container {
     width: calc(1.3rem + 16px);
     height: calc(1.3rem + 16px);
     padding: 8px;
   }
 }
 @media (max-width: 767px) {
-  .intro-section .mreea-logo-container {
+  .old-home-page .intro-section .mreea-logo-container {
     width: 300px;
     height: 300px;
   }
-  .intro-section .member-container,
-  .intro-section .member-amount-container {
+  .old-home-page .intro-section .member-container,
+  .old-home-page .intro-section .member-amount-container {
     width: 60px;
     height: 60px;
   }
-  .intro-section .member-container.member-1,
-  .intro-section .member-amount-container.member-1 {
+  .old-home-page .intro-section .member-container.member-1,
+  .old-home-page .intro-section .member-amount-container.member-1 {
     left: calc(50% - 75px);
   }
-  .intro-section .member-container.member-2,
-  .intro-section .member-amount-container.member-2 {
+  .old-home-page .intro-section .member-container.member-2,
+  .old-home-page .intro-section .member-amount-container.member-2 {
     left: calc(50% - 45px);
   }
-  .intro-section .member-container.member-3,
-  .intro-section .member-amount-container.member-3 {
+  .old-home-page .intro-section .member-container.member-3,
+  .old-home-page .intro-section .member-amount-container.member-3 {
     left: calc(50% - 15px);
   }
-  .intro-section .member-amount-container {
+  .old-home-page .intro-section .member-amount-container {
     left: calc(50% + 15px);
   }
-  .intro-section .member-amount-container .member-amount-text {
+  .old-home-page .intro-section .member-amount-container .member-amount-text {
     font-size: 1.5rem;
   }
-  .intro-section .text-container {
+  .old-home-page .intro-section .text-container {
     padding: 24px;
     height: fit-content;
     width: 480px;
     gap: 16px;
   }
-  .intro-section .text-container .spacing {
+  .old-home-page .intro-section .text-container .spacing {
     font-size: 1.1rem;
     line-height: calc(1.1rem + 8px);
   }
-  .intro-section .text-container .subheading {
+  .old-home-page .intro-section .text-container .subheading {
     font-size: 2rem;
   }
-  .intro-section .text-container .visit-link .dark-text-2 {
+  .old-home-page .intro-section .text-container .visit-link .dark-text-2 {
     font-size: 1.1rem;
   }
-  .intro-section .text-container .visit-link .icon-container {
+  .old-home-page .intro-section .text-container .visit-link .icon-container {
     width: calc(1.1rem + 16px);
     height: calc(1.1rem + 16px);
     padding: 6px;
   }
 }
 @media (max-width: 575px) {
-  .intro-section {
+  .old-home-page .intro-section {
     padding: 60px 0 30px;
   }
-  .intro-section .bg-hover {
+  .old-home-page .intro-section .bg-hover {
     display: none;
   }
-  .intro-section .text-container {
+  .old-home-page .intro-section .text-container {
     padding: 20px;
     width: 320px;
     gap: 12px;
     align-items: center;
   }
-  .intro-section .text-container .spacing {
+  .old-home-page .intro-section .text-container .spacing {
     font-size: 0.95rem;
     line-height: calc(0.95rem + 8px);
     text-align: center;
   }
-  .intro-section .text-container .subheading {
+  .old-home-page .intro-section .text-container .subheading {
     font-size: 1.4rem;
     text-align: center;
   }
-  .intro-section .text-container .visit-link .dark-text-2 {
+  .old-home-page .intro-section .text-container .visit-link .dark-text-2 {
     font-size: 0.95rem;
   }
-  .intro-section .text-container .visit-link .icon-container {
+  .old-home-page .intro-section .text-container .visit-link .icon-container {
     width: calc(0.95rem + 16px);
     height: calc(0.95rem + 16px);
     padding: 6px;
   }
 }
-
-.benefits-scroll-container {
+.old-home-page .benefits-scroll-container {
   width: 100%;
   padding: 40px;
   background-color: #494949;
@@ -847,20 +866,20 @@
   /* Small devices (larger phones, 576px to 767px) */
   /* Extra small devices (phones, 380px to 575px) */
 }
-.benefits-scroll-container .icon-container {
+.old-home-page .benefits-scroll-container .icon-container {
   width: 60px;
   height: 60px;
 }
-.benefits-scroll-container .icon-wrapper {
+.old-home-page .benefits-scroll-container .icon-wrapper {
   gap: 8px;
 }
-.benefits-scroll-container .scroller {
+.old-home-page .benefits-scroll-container .scroller {
   max-width: 800px;
   overflow: hidden;
   -webkit-mask: linear-gradient(90deg, transparent, white 20%, white 80%, transparent);
   mask: linear-gradient(90deg, transparent, white 20%, white 80%, transparent);
 }
-.benefits-scroll-container .scroller-inner {
+.old-home-page .benefits-scroll-container .scroller-inner {
   display: flex;
   flex-wrap: nowrap;
   gap: 80px;
@@ -873,38 +892,37 @@
   }
 }
 @media (max-width: 999px) {
-  .benefits-scroll-container .scroller {
+  .old-home-page .benefits-scroll-container .scroller {
     width: 686px;
   }
 }
 @media (max-width: 767px) {
-  .benefits-scroll-container .scroller {
+  .old-home-page .benefits-scroll-container .scroller {
     width: 496px;
   }
 }
 @media (max-width: 575px) {
-  .benefits-scroll-container {
+  .old-home-page .benefits-scroll-container {
     padding: 24px;
   }
-  .benefits-scroll-container .icon-container {
+  .old-home-page .benefits-scroll-container .icon-container {
     width: 40px;
     height: 40px;
   }
-  .benefits-scroll-container .icon-wrapper {
+  .old-home-page .benefits-scroll-container .icon-wrapper {
     gap: 4px;
   }
-  .benefits-scroll-container .scroller {
+  .old-home-page .benefits-scroll-container .scroller {
     width: 320px;
   }
-  .benefits-scroll-container .scroller-inner {
+  .old-home-page .benefits-scroll-container .scroller-inner {
     gap: 40px;
   }
-  .benefits-scroll-container .white-text {
+  .old-home-page .benefits-scroll-container .white-text {
     font-size: 1.2rem;
   }
 }
-
-.benefits-section {
+.old-home-page .benefits-section {
   padding: 80px 0;
   background-color: #f7f7f7;
   /* Extra large devices (large desktops, 1280px to 1439px) */
@@ -913,18 +931,18 @@
   /* Small devices (larger phones, 576px to 767px) */
   /* Extra small devices (phones, 380px to 575px) */
 }
-.benefits-section .section-container {
+.old-home-page .benefits-section .section-container {
   gap: 40px;
   width: 100%;
 }
-.benefits-section .benefit-cards-wrapper {
+.old-home-page .benefits-section .benefit-cards-wrapper {
   position: relative;
   max-height: 620px;
   overflow-y: hidden;
   overflow-x: visible;
   padding: 40px 0;
 }
-.benefits-section .benefit-cards-wrapper .view-all-overlay {
+.old-home-page .benefits-section .benefit-cards-wrapper .view-all-overlay {
   position: absolute;
   bottom: 0;
   background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, #f7f7f7 100%);
@@ -933,11 +951,11 @@
   height: 360px;
   padding-bottom: 20px;
 }
-.benefits-section .benefit-cards-wrapper .view-all-overlay .view-all-btn {
+.old-home-page .benefits-section .benefit-cards-wrapper .view-all-overlay .view-all-btn {
   cursor: pointer;
   position: relative;
 }
-.benefits-section .benefit-cards-wrapper .view-all-overlay .view-all-btn::after {
+.old-home-page .benefits-section .benefit-cards-wrapper .view-all-overlay .view-all-btn::after {
   position: absolute;
   bottom: -2px;
   left: 0;
@@ -947,29 +965,29 @@
   transition: all 0.3s ease;
   content: "";
 }
-.benefits-section .benefit-cards-wrapper .view-all-overlay .view-all-btn:hover {
+.old-home-page .benefits-section .benefit-cards-wrapper .view-all-overlay .view-all-btn:hover {
   color: #242424;
 }
-.benefits-section .benefit-cards-wrapper .view-all-overlay .view-all-btn:hover::after {
+.old-home-page .benefits-section .benefit-cards-wrapper .view-all-overlay .view-all-btn:hover::after {
   width: 100%;
 }
-.benefits-section .benefit-cards-wrapper.view-all {
+.old-home-page .benefits-section .benefit-cards-wrapper.view-all {
   max-height: max-content;
 }
-.benefits-section .benefit-cards-wrapper.view-all .view-all-overlay {
+.old-home-page .benefits-section .benefit-cards-wrapper.view-all .view-all-overlay {
   display: none;
 }
-.benefits-section .benefit-cards-container {
+.old-home-page .benefits-section .benefit-cards-container {
   gap: 60px;
   width: 1480px;
   flex-wrap: wrap;
   height: max-content;
 }
-.benefits-section .benefit-card-wrapper {
+.old-home-page .benefits-section .benefit-card-wrapper {
   position: relative;
   width: 374.6666666667px;
 }
-.benefits-section .benefit-card-wrapper .bg-hover {
+.old-home-page .benefits-section .benefit-card-wrapper .bg-hover {
   position: absolute;
   width: 50%;
   height: calc(100% + 12px);
@@ -980,7 +998,7 @@
   translate: -50% 0;
   z-index: 2;
 }
-.benefits-section .benefit-card-container {
+.old-home-page .benefits-section .benefit-card-container {
   padding: 24px;
   width: 100%;
   border-radius: 16px;
@@ -990,204 +1008,203 @@
   height: 280px;
   justify-content: flex-start;
 }
-.benefits-section .benefit-card-container .icon-container {
+.old-home-page .benefits-section .benefit-card-container .icon-container {
   width: 80px;
   height: 80px;
 }
-.benefits-section .benefit-card-container .card-text {
+.old-home-page .benefits-section .benefit-card-container .card-text {
   text-align: center;
 }
-.benefits-section .observer .card-1 {
+.old-home-page .benefits-section .observer .card-1 {
   opacity: 0;
   transition: all 3s;
   transition-delay: 0s;
 }
-.benefits-section .observer .card-2 {
+.old-home-page .benefits-section .observer .card-2 {
   opacity: 0;
   transition: all 3s;
   transition-delay: 0.25s;
 }
-.benefits-section .observer .card-3 {
+.old-home-page .benefits-section .observer .card-3 {
   opacity: 0;
   transition: all 3s;
   transition-delay: 0.5s;
 }
-.benefits-section .observer .card-4 {
+.old-home-page .benefits-section .observer .card-4 {
   opacity: 0;
   transition: all 3s;
   transition-delay: 0.75s;
 }
-.benefits-section .observer .card-5 {
+.old-home-page .benefits-section .observer .card-5 {
   opacity: 0;
   transition: all 3s;
   transition-delay: 1s;
 }
-.benefits-section .observer .card-6 {
+.old-home-page .benefits-section .observer .card-6 {
   opacity: 0;
   transition: all 3s;
   transition-delay: 1.25s;
 }
-.benefits-section .observer .view-all-overlay {
+.old-home-page .benefits-section .observer .view-all-overlay {
   opacity: 0;
   transition: all 3s;
   transition-delay: 0.75s;
 }
-.benefits-section .observer-show .card-1 {
+.old-home-page .benefits-section .observer-show .card-1 {
   opacity: 1;
 }
-.benefits-section .observer-show .card-2 {
+.old-home-page .benefits-section .observer-show .card-2 {
   opacity: 1;
 }
-.benefits-section .observer-show .card-3 {
+.old-home-page .benefits-section .observer-show .card-3 {
   opacity: 1;
 }
-.benefits-section .observer-show .card-4 {
+.old-home-page .benefits-section .observer-show .card-4 {
   opacity: 1;
 }
-.benefits-section .observer-show .card-5 {
+.old-home-page .benefits-section .observer-show .card-5 {
   opacity: 1;
 }
-.benefits-section .observer-show .card-6 {
+.old-home-page .benefits-section .observer-show .card-6 {
   opacity: 1;
 }
-.benefits-section .observer-show .view-all-overlay {
+.old-home-page .benefits-section .observer-show .view-all-overlay {
   opacity: 1;
 }
 @media (max-width: 1439px) {
-  .benefits-section .benefit-cards-container {
+  .old-home-page .benefits-section .benefit-cards-container {
     width: 1140px;
     gap: 40px;
   }
-  .benefits-section .benefit-card-wrapper {
+  .old-home-page .benefits-section .benefit-card-wrapper {
     width: 341.3333333333px;
   }
-  .benefits-section .benefit-card-container {
+  .old-home-page .benefits-section .benefit-card-container {
     padding: 20px;
   }
 }
 @media (max-width: 1279px) {
-  .benefits-section .section-container {
+  .old-home-page .benefits-section .section-container {
     gap: 20px;
   }
-  .benefits-section .benefit-cards-wrapper {
+  .old-home-page .benefits-section .benefit-cards-wrapper {
     max-height: 492px;
     padding: 20px 0;
   }
-  .benefits-section .benefit-cards-wrapper .view-all-overlay {
+  .old-home-page .benefits-section .benefit-cards-wrapper .view-all-overlay {
     height: 286px;
   }
-  .benefits-section .benefit-cards-container {
+  .old-home-page .benefits-section .benefit-cards-container {
     width: 880px;
     gap: 32px;
   }
-  .benefits-section .benefit-card-wrapper {
+  .old-home-page .benefits-section .benefit-card-wrapper {
     width: 260px;
   }
-  .benefits-section .benefit-card-container {
+  .old-home-page .benefits-section .benefit-card-container {
     padding: 20px;
     gap: 12px;
     height: 246px;
   }
-  .benefits-section .benefit-card-container .icon-container {
+  .old-home-page .benefits-section .benefit-card-container .icon-container {
     width: 60px;
     height: 60px;
   }
-  .benefits-section .benefit-card-container .subheading {
+  .old-home-page .benefits-section .benefit-card-container .subheading {
     font-size: 1.4rem;
   }
-  .benefits-section .benefit-card-container .card-text {
+  .old-home-page .benefits-section .benefit-card-container .card-text {
     font-size: 1.1rem;
   }
 }
 @media (max-width: 999px) {
-  .benefits-section {
+  .old-home-page .benefits-section {
     padding: 40px 0;
   }
-  .benefits-section .benefit-cards-container {
+  .old-home-page .benefits-section .benefit-cards-container {
     width: 668px;
     gap: 40px;
   }
-  .benefits-section .benefit-card-wrapper {
+  .old-home-page .benefits-section .benefit-card-wrapper {
     width: 302px;
   }
-  .benefits-section .benefit-card-container {
+  .old-home-page .benefits-section .benefit-card-container {
     padding: 24px;
     gap: 16px;
     height: 295px;
   }
-  .benefits-section .benefit-card-container .icon-container {
+  .old-home-page .benefits-section .benefit-card-container .icon-container {
     width: 80px;
     height: 80px;
   }
-  .benefits-section .benefit-card-container .subheading {
+  .old-home-page .benefits-section .benefit-card-container .subheading {
     font-size: 1.8rem;
   }
-  .benefits-section .benefit-card-container .card-text {
+  .old-home-page .benefits-section .benefit-card-container .card-text {
     font-size: 1.3rem;
   }
 }
 @media (max-width: 767px) {
-  .benefits-section .section-container {
+  .old-home-page .benefits-section .section-container {
     gap: 20px;
   }
-  .benefits-section .benefit-cards-wrapper .view-all-overlay .view-all-btn {
+  .old-home-page .benefits-section .benefit-cards-wrapper .view-all-overlay .view-all-btn {
     font-size: 1.4rem;
   }
-  .benefits-section .benefit-cards-container {
+  .old-home-page .benefits-section .benefit-cards-container {
     width: 496px;
     gap: 32px;
   }
-  .benefits-section .benefit-card-wrapper {
+  .old-home-page .benefits-section .benefit-card-wrapper {
     width: 224px;
   }
-  .benefits-section .benefit-card-container {
+  .old-home-page .benefits-section .benefit-card-container {
     padding: 16px;
     gap: 8px;
     height: 256px;
   }
-  .benefits-section .benefit-card-container .icon-container {
+  .old-home-page .benefits-section .benefit-card-container .icon-container {
     width: 48px;
     height: 48px;
   }
-  .benefits-section .benefit-card-container .subheading {
+  .old-home-page .benefits-section .benefit-card-container .subheading {
     font-size: 1.3rem;
   }
-  .benefits-section .benefit-card-container .card-text {
+  .old-home-page .benefits-section .benefit-card-container .card-text {
     font-size: 1.1rem;
   }
 }
 @media (max-width: 575px) {
-  .benefits-section {
+  .old-home-page .benefits-section {
     padding: 30px 0;
   }
-  .benefits-section .benefit-cards-wrapper .view-all-overlay .view-all-btn {
+  .old-home-page .benefits-section .benefit-cards-wrapper .view-all-overlay .view-all-btn {
     font-size: 1.2rem;
   }
-  .benefits-section .benefit-cards-container {
+  .old-home-page .benefits-section .benefit-cards-container {
     width: 320px;
     gap: 32px;
   }
-  .benefits-section .benefit-card-wrapper {
+  .old-home-page .benefits-section .benefit-card-wrapper {
     width: 288px;
   }
-  .benefits-section .benefit-card-container {
+  .old-home-page .benefits-section .benefit-card-container {
     padding: 20px;
     gap: 8px;
     height: 210px;
   }
-  .benefits-section .benefit-card-container .icon-container {
+  .old-home-page .benefits-section .benefit-card-container .icon-container {
     width: 52px;
     height: 52px;
   }
-  .benefits-section .benefit-card-container .subheading {
+  .old-home-page .benefits-section .benefit-card-container .subheading {
     font-size: 1.3rem;
   }
-  .benefits-section .benefit-card-container .card-text {
+  .old-home-page .benefits-section .benefit-card-container .card-text {
     font-size: 0.95rem;
   }
 }
-
-.pricing-section {
+.old-home-page .pricing-section {
   padding: 80px 0;
   background: linear-gradient(0deg, rgb(247, 247, 247) 0%, rgb(238, 238, 238) 50%, rgb(247, 247, 247) 100%);
   /* Extra large devices (large desktops, 1280px to 1439px) */
@@ -1196,13 +1213,13 @@
   /* Small devices (larger phones, 576px to 767px) */
   /* Extra small devices (phones, 380px to 575px) */
 }
-.pricing-section .section-container {
+.old-home-page .pricing-section .section-container {
   justify-content: space-between;
 }
-.pricing-section .text-wrapper {
+.old-home-page .pricing-section .text-wrapper {
   position: relative;
 }
-.pricing-section .text-wrapper .bg-hover-2 {
+.old-home-page .pricing-section .text-wrapper .bg-hover-2 {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -1214,10 +1231,10 @@
   z-index: 2;
   transition: all 0.2s ease;
 }
-.pricing-section .text-wrapper:hover .bg-hover-2 {
+.old-home-page .pricing-section .text-wrapper:hover .bg-hover-2 {
   rotate: -6deg;
 }
-.pricing-section .text-wrapper .bg-hover-1 {
+.old-home-page .pricing-section .text-wrapper .bg-hover-1 {
   position: absolute;
   width: 50%;
   height: calc(100% + 12px);
@@ -1228,7 +1245,7 @@
   z-index: 2;
   translate: -50% 0;
 }
-.pricing-section .text-container {
+.old-home-page .pricing-section .text-container {
   position: relative;
   z-index: 3;
   gap: 20px;
@@ -1236,57 +1253,57 @@
   background-color: #f7f7f7;
   padding: 40px;
   border-radius: 16px;
-  width: 560px;
+  width: calc((50% - 80px) / 2 - 80px);
   height: 312px;
 }
-.pricing-section .text-container.text-2 .dark-text-2 {
+.old-home-page .pricing-section .text-container.text-2 .dark-text-2 {
   text-align: center;
 }
-.pricing-section .text-container .intro-text {
+.old-home-page .pricing-section .text-container .intro-text {
   line-height: calc(1.3rem + 8px);
 }
-.pricing-section .text-container .subheading {
+.old-home-page .pricing-section .text-container .subheading {
   font-size: 2.5rem;
 }
-.pricing-section .pricing-container {
+.old-home-page .pricing-section .pricing-container {
   gap: 4px;
 }
-.pricing-section .pricing-container .pricing-text {
+.old-home-page .pricing-section .pricing-container .pricing-text {
   font-size: 2.5rem;
 }
-.pricing-section .observer .text-wrapper {
+.old-home-page .pricing-section .observer .text-wrapper {
   opacity: 0;
   transition: all 3s ease;
 }
-.pricing-section .observer .text-2 {
+.old-home-page .pricing-section .observer .text-2 {
   transition-delay: 0.25s;
 }
-.pricing-section .observer-show .text-wrapper {
+.old-home-page .pricing-section .observer-show .text-wrapper {
   opacity: 1;
 }
 @media (max-width: 1439px) {
-  .pricing-section .text-container {
+  .old-home-page .pricing-section .text-container {
     width: 520px;
     height: 342px;
   }
 }
 @media (max-width: 1279px) {
-  .pricing-section .text-container {
+  .old-home-page .pricing-section .text-container {
     width: 400px;
     height: 272px;
     gap: 16px;
     padding: 24px;
   }
-  .pricing-section .text-container .spacing,
-  .pricing-section .text-container .per-year-text {
+  .old-home-page .pricing-section .text-container .spacing,
+  .old-home-page .pricing-section .text-container .per-year-text {
     font-size: 1.1rem;
     line-height: calc(1.1rem + 8px);
   }
-  .pricing-section .text-container .subheading,
-  .pricing-section .text-container .pricing-text {
+  .old-home-page .pricing-section .text-container .subheading,
+  .old-home-page .pricing-section .text-container .pricing-text {
     font-size: 2rem;
   }
-  .pricing-section .text-container .yellow-btn {
+  .old-home-page .pricing-section .text-container .yellow-btn {
     font-size: 1.1rem;
     padding: 8px 12px;
     border-radius: 8px;
@@ -1294,30 +1311,30 @@
   }
 }
 @media (max-width: 999px) {
-  .pricing-section {
+  .old-home-page .pricing-section {
     padding: 40px 0;
   }
-  .pricing-section .section-container {
+  .old-home-page .pricing-section .section-container {
     justify-content: center;
     flex-direction: column;
     gap: 40px;
   }
-  .pricing-section .text-container {
+  .old-home-page .pricing-section .text-container {
     width: 600px;
     height: fit-content;
     gap: 24px;
     padding: 32px;
   }
-  .pricing-section .text-container .spacing,
-  .pricing-section .text-container .per-year-text {
+  .old-home-page .pricing-section .text-container .spacing,
+  .old-home-page .pricing-section .text-container .per-year-text {
     font-size: 1.3rem;
     line-height: calc(1.3rem + 8px);
   }
-  .pricing-section .text-container .subheading,
-  .pricing-section .text-container .pricing-text {
+  .old-home-page .pricing-section .text-container .subheading,
+  .old-home-page .pricing-section .text-container .pricing-text {
     font-size: 2.5rem;
   }
-  .pricing-section .text-container .yellow-btn {
+  .old-home-page .pricing-section .text-container .yellow-btn {
     font-size: 1.3rem;
     padding: 12px 16px;
     border-radius: 12px;
@@ -1325,21 +1342,21 @@
   }
 }
 @media (max-width: 767px) {
-  .pricing-section .text-container {
+  .old-home-page .pricing-section .text-container {
     width: 480px;
     gap: 16px;
     padding: 24px;
   }
-  .pricing-section .text-container .spacing,
-  .pricing-section .text-container .per-year-text {
+  .old-home-page .pricing-section .text-container .spacing,
+  .old-home-page .pricing-section .text-container .per-year-text {
     font-size: 1.1rem;
     line-height: calc(1.1rem + 8px);
   }
-  .pricing-section .text-container .subheading,
-  .pricing-section .text-container .pricing-text {
+  .old-home-page .pricing-section .text-container .subheading,
+  .old-home-page .pricing-section .text-container .pricing-text {
     font-size: 2rem;
   }
-  .pricing-section .text-container .yellow-btn {
+  .old-home-page .pricing-section .text-container .yellow-btn {
     font-size: 1.1rem;
     padding: 8px 12px;
     border-radius: 8px;
@@ -1347,42 +1364,41 @@
   }
 }
 @media (max-width: 575px) {
-  .pricing-section {
+  .old-home-page .pricing-section {
     padding: 30px 0;
   }
-  .pricing-section .text-container {
+  .old-home-page .pricing-section .text-container {
     width: 320px;
     gap: 12px;
     padding: 20px;
     align-items: center;
   }
-  .pricing-section .text-container .spacing,
-  .pricing-section .text-container .per-year-text {
+  .old-home-page .pricing-section .text-container .spacing,
+  .old-home-page .pricing-section .text-container .per-year-text {
     font-size: 0.95rem;
     line-height: calc(0.95rem + 8px);
     text-align: center;
   }
-  .pricing-section .text-container .subheading,
-  .pricing-section .text-container .pricing-text {
+  .old-home-page .pricing-section .text-container .subheading,
+  .old-home-page .pricing-section .text-container .pricing-text {
     font-size: 1.4rem;
     text-align: center;
   }
-  .pricing-section .text-container .yellow-btn {
+  .old-home-page .pricing-section .text-container .yellow-btn {
     font-size: 0.95rem;
     padding: 8px 12px;
     border-radius: 8px;
     min-width: 160px;
   }
 }
-
-.testimonial-section {
+.old-home-page .testimonial-section {
   padding: 80px 0 120px 0;
   background: #f7f7f7;
   /* Medium devices (tablets, 768px to 999px) */
   /* Small devices (larger phones, 576px to 767px) */
   /* Extra small devices (phones, 380px to 575px) */
 }
-.testimonial-section .carousel-wrapper {
+.old-home-page .testimonial-section .carousel-wrapper {
   position: relative;
   width: 760px;
   height: 466px;
@@ -1390,7 +1406,7 @@
   -webkit-mask: linear-gradient(90deg, transparent, white 80px, white calc(100% - 80px), transparent);
   mask: linear-gradient(90deg, transparent, white 80px, white calc(100% - 80px), transparent);
 }
-.testimonial-section .carousel-container {
+.old-home-page .testimonial-section .carousel-container {
   height: fit-content;
   position: absolute;
   left: 80px;
@@ -1399,7 +1415,7 @@
   width: max-content;
   transition: all 0.5s ease;
 }
-.testimonial-section .testimonial-container {
+.old-home-page .testimonial-section .testimonial-container {
   width: 600px;
   border-radius: 16px;
   background-color: #f7f7f7;
@@ -1408,7 +1424,7 @@
   gap: 16px;
   height: 386px;
 }
-.testimonial-section .testimonial-container .testimonial-text {
+.old-home-page .testimonial-section .testimonial-container .testimonial-text {
   display: -webkit-box;
   line-height: calc(1.3rem + 8px);
   font-size: 1.5rem;
@@ -1419,95 +1435,95 @@
   -webkit-box-orient: vertical;
   width: 100%;
 }
-.testimonial-section .testimonial-container .author-container {
+.old-home-page .testimonial-section .testimonial-container .author-container {
   gap: 16px;
 }
-.testimonial-section .testimonial-container .author-text {
+.old-home-page .testimonial-section .testimonial-container .author-text {
   font-size: 1.5rem;
 }
-.testimonial-section .testimonial-container .author-img-container {
+.old-home-page .testimonial-section .testimonial-container .author-img-container {
   width: 60px;
   height: 60px;
   border-radius: 50%;
 }
-.testimonial-section .carousel-btns-container {
+.old-home-page .testimonial-section .carousel-btns-container {
   gap: 32px;
 }
-.testimonial-section .carousel-btns-container .carousel-direction-btn {
+.old-home-page .testimonial-section .carousel-btns-container .carousel-direction-btn {
   gap: 4px;
   cursor: pointer;
   width: 64px;
 }
-.testimonial-section .carousel-btns-container .carousel-direction-btn.no-move .dark-text-2 {
+.old-home-page .testimonial-section .carousel-btns-container .carousel-direction-btn.no-move .dark-text-2 {
   color: #777777;
 }
-.testimonial-section .carousel-btns-container .carousel-direction-btn.no-move .dark-text-2 path {
+.old-home-page .testimonial-section .carousel-btns-container .carousel-direction-btn.no-move .dark-text-2 path {
   fill: #777777;
 }
-.testimonial-section .observer .testimonial-container {
+.old-home-page .testimonial-section .observer .testimonial-container {
   opacity: 0;
   transition: all 3s ease;
 }
-.testimonial-section .observer-show .testimonial-container {
+.old-home-page .testimonial-section .observer-show .testimonial-container {
   opacity: 1;
 }
 @media (max-width: 999px) {
-  .testimonial-section {
+  .old-home-page .testimonial-section {
     padding: 40px 0;
   }
 }
 @media (max-width: 767px) {
-  .testimonial-section .carousel-wrapper {
+  .old-home-page .testimonial-section .carousel-wrapper {
     width: 560px;
     height: 340px;
   }
-  .testimonial-section .testimonial-container {
+  .old-home-page .testimonial-section .testimonial-container {
     width: 400px;
     padding: 26.6667px;
     border-radius: 16px;
     gap: 12px;
     height: 260px;
   }
-  .testimonial-section .testimonial-container .testimonial-text {
+  .old-home-page .testimonial-section .testimonial-container .testimonial-text {
     font-size: 1rem;
     line-height: calc((1.3rem + 8px) * 0.6666667);
     min-height: 154px;
   }
-  .testimonial-section .testimonial-container .author-container .author-text {
+  .old-home-page .testimonial-section .testimonial-container .author-container .author-text {
     font-size: 1rem;
   }
-  .testimonial-section .testimonial-container .author-container .author-img-container {
+  .old-home-page .testimonial-section .testimonial-container .author-container .author-img-container {
     width: 40px;
     height: 40px;
   }
 }
 @media (max-width: 575px) {
-  .testimonial-section {
+  .old-home-page .testimonial-section {
     padding: 30px 0 60px 0;
   }
-  .testimonial-section .carousel-wrapper {
+  .old-home-page .testimonial-section .carousel-wrapper {
     width: 480px;
     height: 300px;
   }
-  .testimonial-section .carousel-btns-container .dark-text-2 {
+  .old-home-page .testimonial-section .carousel-btns-container .dark-text-2 {
     font-size: 1.2rem;
   }
-  .testimonial-section .testimonial-container {
+  .old-home-page .testimonial-section .testimonial-container {
     width: 320px;
     padding: 21.3333px;
     border-radius: 16px;
     gap: 12px;
     height: fit-content;
   }
-  .testimonial-section .testimonial-container .testimonial-text {
+  .old-home-page .testimonial-section .testimonial-container .testimonial-text {
     font-size: 0.8rem;
     line-height: calc((0.8rem + 8px) * 0.6666667);
     min-height: 123px;
   }
-  .testimonial-section .testimonial-container .author-container .author-text {
+  .old-home-page .testimonial-section .testimonial-container .author-container .author-text {
     font-size: 0.8rem;
   }
-  .testimonial-section .testimonial-container .author-container .author-img-container {
+  .old-home-page .testimonial-section .testimonial-container .author-container .author-img-container {
     width: 40px;
     height: 40px;
   }

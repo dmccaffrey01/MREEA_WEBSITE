@@ -34,13 +34,14 @@
         <title>MREEA {% block extra_title %}{% endblock %}</title>
     </head>
     <body>
+        
         <!-- Header Logo, Nav Bar and Social Links -->
-        <header class="container-col">
+        <header class="container-col {% if home_page_styling %}home-page{% endif %}">
             <div class="header-container container-row space-between">
                 <!-- Logo -->
                 <div class="logo-container container-row">
                     <a href="{% url 'home' %}" class="logo-img-container img-container">
-                        <img src="{{ MEDIA_URL }}mreea-logo.png" alt="MREEA Logo" class="img-100a">
+                        <img src="{{ MEDIA_URL }}mreea-logo-white.png" alt="MREEA Logo" class="img-100a">
                     </a>
 
                     <h1 class="logo-text dark-text sr-only">MREEA (Maryland Real Estate Educators Association)</h1>

@@ -31,6 +31,7 @@ def index(request):
         'random_testimonials': random_testimonials,
         'intro_profiles': intro_profiles,
         'members_count': rounded_members_count,
+        'home_page_styling': True,
     }
 
     return render(request, 'home/index.html', context)
