@@ -662,16 +662,18 @@ header.home-page {
   left: 0;
   top: 0;
   z-index: 999;
+  background: linear-gradient(to bottom, rgb(0, 0, 0) 0%, rgba(0, 0, 0, 0) 100%);
 }
 
 .header-container {
-  width: 1280px;
+  width: 1440px;
   height: 100%;
   position: relative;
+  justify-content: flex-start;
+  gap: 80px;
 }
 
 .logo-container {
-  width: 260px;
   justify-content: flex-start;
 }
 
@@ -730,7 +732,9 @@ h1.logo-text::before {
 }
 
 .nav-menu {
-  gap: 32px;
+  width: calc(100% - 540px);
+  justify-content: flex-start;
+  gap: 60px;
 }
 .nav-menu.active {
   display: flex;
@@ -748,7 +752,7 @@ h1.logo-text::before {
   left: 0;
   height: 3px;
   width: 0;
-  background-color: #c64f4a;
+  background-color: #ffffff;
   transition: all 0.3s ease;
   content: "";
 }
@@ -757,9 +761,9 @@ h1.logo-text::before {
 }
 
 .account-btns-container {
-  gap: 24px;
+  gap: 40px;
   justify-content: flex-end;
-  width: 260px;
+  width: 280px;
 }
 .account-btns-container .btn {
   width: calc(100% - 100px);
@@ -1068,41 +1072,95 @@ h1.logo-text::before {
   white-space: wrap;
 }
 
-footer {
-  width: 100%;
-  background-color: #ececec;
-  padding: 20px 0 20px 0;
+.buy-membership-section {
+  background: linear-gradient(to bottom, rgb(49, 49, 49) 0%, rgb(24, 24, 24) 100%);
+  padding: 100px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-footer .footer-container {
-  width: 1280px;
+.buy-membership-section .section-container {
+  width: 1440px;
+  justify-content: space-between;
 }
-footer .footer-logo-container {
+.buy-membership-section .section-container .white-text {
+  font-size: 1.5rem;
+  font-weight: 400;
+}
+.buy-membership-section .section-container .subheading, .buy-membership-section .section-container .price-subheading {
+  font-size: 3rem;
+  font-weight: 600;
+}
+.buy-membership-section .section-container .text-container {
+  gap: 24px;
+}
+.buy-membership-section .section-container .text-container .tags-container {
+  gap: 24px;
+}
+.buy-membership-section .section-container .text-container .tag {
+  font-weight: 600;
+  padding: 20px;
+  border-radius: 16px;
+  background-color: #000;
+}
+.buy-membership-section .section-container .card-container {
   gap: 16px;
-  width: 320px;
-  justify-content: flex-start;
 }
-footer .footer-logo-container .img-container {
-  width: 64px;
-  height: 64px;
+.buy-membership-section .section-container .card-container .card {
+  padding: 48px;
+  border-radius: 16px;
+  background-color: #000;
+  gap: 20px;
+  width: 560px;
 }
-footer .footer-nav {
-  gap: 8px;
+.buy-membership-section .section-container .card-container .card .per-year-text {
+  font-size: 1.5rem;
+  font-weight: 400;
 }
-footer .divider {
-  width: 2px;
-  height: 1.2rem;
-  background-color: #494949;
+.buy-membership-section .section-container .card-container .card .yellow-btn {
+  padding: 16px 40px;
+  width: fit-content;
+  font-size: 1.5rem;
 }
-footer .footer-contact-container {
-  width: 320px;
+
+.footer {
+  width: 100%;
+  background-color: rgb(24, 24, 24);
+  padding: 40px 0;
 }
-footer .footer-contact-container .text-container,
-footer .footer-contact-container .visit-link {
-  gap: 8px;
+.footer .footer-container {
+  width: 1440px;
+  gap: 80px;
 }
-footer .footer-contact-container .icon-container {
-  width: 1.5rem;
+.footer .footer-container .img-container {
+  width: 100px;
+  height: 100px;
+}
+.footer .footer-container .footer-nav {
+  width: calc(100% - 180px);
+  justify-content: space-between;
+}
+.footer .footer-container .white-text {
+  font-size: 1.5rem;
+  position: relative;
+}
+.footer .footer-container .white-text::after {
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  height: 3px;
+  width: 0;
+  background-color: #ffffff;
+  transition: all 0.3s ease;
+  content: "";
+}
+.footer .footer-container .white-text:hover::after {
+  width: 100%;
+}
+.footer .footer-container .divider {
+  width: 3px;
   height: 1.5rem;
+  background-color: #ffffff;
 }
 
 /* Extra large devices (large desktops, 1280px to 1439px) */
