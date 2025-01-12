@@ -1,6 +1,8 @@
 .profile-section {
   justify-content: flex-start;
   padding: 40px 0;
+  /* Small devices (larger phones, 576px to 767px) */
+  /* Extra small devices (phones, 380px to 575px) */
 }
 .profile-section .items-container {
   width: 600px;
@@ -48,9 +50,11 @@
   cursor: pointer;
   gap: 8px;
   background-color: #f7f7f7;
+  padding: 12px;
 }
 .profile-section .upload-container .drop-zone .drop-zone-text {
   font-size: 1.1rem;
+  text-align: center;
 }
 .profile-section .upload-container .drop-zone:hover, .profile-section .upload-container .drop-zone.dragover {
   background-color: #ececec;
@@ -118,6 +122,19 @@
 .profile-section .management-btns-container.hide .preview-btn,
 .profile-section .management-btns-container.hide .save-btn {
   display: none;
+}
+@media (max-width: 767px) {
+  .profile-section .items-container {
+    width: 496px;
+  }
+}
+@media (max-width: 575px) {
+  .profile-section .items-container {
+    width: 320px;
+  }
+  .profile-section .crop-container {
+    padding: 0;
+  }
 }
 
 /*# sourceMappingURL=edit_profile_picture.css.map */

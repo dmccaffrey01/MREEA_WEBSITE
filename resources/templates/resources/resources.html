@@ -12,14 +12,7 @@
 
 <section class="resources-section section">
     <div class="section-container container-col align-start box-shadow">
-        <div class="parent-folder-container container-row justify-start {% if user.is_superuser %}admin{% endif %}">
-            <p class="parent-folder-text dark-text">
-                {% if parent_folders %}
-                {% for folder in parent_folders %}<a href="{% url 'folder' folder.name %}" class="dark-text">{{ folder.friendly_name }}</a> / {% endfor %}
-                {% else %}
-                {{ folder.friendly_name }}
-                {% endif %}
-            </p>
+        <div class="parent-folder-container container-col align-start {% if user.is_superuser %}admin{% endif %}">
             {% if user.is_superuser %}
             <div class="admin-resource-container container-row">
                 <a href="{% url 'deleted_folders' %}" class="admin-btn icon-container label-container">
@@ -43,6 +36,12 @@
                 </a>
             </div>
             {% endif %}
+            <p class="parent-folder-text dark-text">
+                {% if parent_folder %}
+                <a href="{% url 'folder' parent_folder.name %}" class="dark-text">{{ parent_folder.friendly_name }}</a> / 
+                {% endif %}
+                {{ folder.friendly_name }}
+            </p>
         </div>
 
         <div class="search-container container-row">
@@ -73,7 +72,7 @@
                         <span class="sr-only">Folder Icon</span>
                         {% endif %}
                     </div>
-                    <p class="dark-text">{{ f.friendly_name }}</p>
+                    <p class="resource-text dark-text">{{ f.friendly_name }}</p>
                 </a>
                 {% if user.is_superuser %}
                 <a href="{% url 'edit_folder' folder.name f.name %}" class="edit-resource-btn container-col">
@@ -102,7 +101,7 @@
                         <span class="sr-only">Document Icon</span>
                         {% endif %}
                     </div>
-                    <p class="dark-text">{{ r.friendly_name }}</p>
+                    <p class="resource-text dark-text">{{ r.friendly_name }}</p>
                 </a>
                 {% if user.is_superuser %}
                 <a href="{% url 'edit_resource' folder.name r.name %}" class="edit-resource-btn container-col">

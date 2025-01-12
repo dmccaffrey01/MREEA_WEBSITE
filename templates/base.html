@@ -34,13 +34,14 @@
         <title>MREEA {% block extra_title %}{% endblock %}</title>
     </head>
     <body>
+        
         <!-- Header Logo, Nav Bar and Social Links -->
-        <header class="container-col">
+        <header class="container-col {% if home_page_styling %}home-page{% endif %}">
             <div class="header-container container-row space-between">
                 <!-- Logo -->
                 <div class="logo-container container-row">
                     <a href="{% url 'home' %}" class="logo-img-container img-container">
-                        <img src="{{ MEDIA_URL }}mreea-logo.png" alt="MREEA Logo" class="img-100a">
+                        <img src="{{ MEDIA_URL }}mreea-logo-white.png" alt="MREEA Logo" class="img-100a">
                     </a>
 
                     <h1 class="logo-text dark-text sr-only">MREEA (Maryland Real Estate Educators Association)</h1>
@@ -55,16 +56,31 @@
 
                 <!-- Nav Menu -->
                 <nav class="nav-menu container-row">
-                    <a href="{% url 'members' %}" class="nav-link">Members</a>
+                    <a href="#" class="nav-link">About</a>
+                    <a href="{% url 'members' %}" class="nav-link">Find</a>
                     {% if is_membership_valid %}
-                    <a href="{% url 'announcements' %}" class="nav-link">Announcements</a>
+                    <a href="{% url 'announcements' %}" class="nav-link">News</a>
                     {% endif %}
                     <a href="{% url 'events' %}" class="nav-link">Events</a>
                     {% if is_membership_valid %}
                     <a href="{% url 'resources' %}" class="nav-link">Resources</a>
                     {% endif %}
                     <a href="{% url 'blog_list' %}" class="nav-link">Blog</a>
+                    <a href="{% url 'testimonials' %}" class="nav-link">Stories</a>
                     <a href="{% url 'contact' %}" class="nav-link">Contact</a>
+                    <div class="container-col nav-account-btns-container">
+                        <a href="{% url 'account_login' %}" class="visit-link">
+                            <span class="btn-icon icon-container">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="dark-text" viewBox="0 0 256 256">
+                                    <path d="M230.92 212c-15.23-26.33-38.7-45.21-66.09-54.16a72 72 0 1 0-73.66 0c-27.39 8.94-50.86 27.82-66.09 54.16a8 8 0 1 0 13.85 8c18.84-32.56 52.14-52 89.07-52s70.23 19.44 89.07 52a8 8 0 1 0 13.85-8M72 96a56 56 0 1 1 56 56a56.06 56.06 0 0 1-56-56" />
+                                </svg>
+                            </span>
+                            <p class="dark-text-2">Login</p>
+                        </a>
+                        <a href="{% url 'account_signup' %}" class="btn small-btn yellow-btn">
+                            <p class="dark-text-2">Join Now</p>
+                        </a>
+                    </div>
                 </nav>
 
                 <!-- Notifications and Profile -->
@@ -333,47 +349,62 @@
             {% endblock %}
         </main>
 
-        <footer class="container-col">
-            <div class="footer-container container-row space-between">
-                <div class="footer-logo-container container-row">
-                    <div class="img-container">
-                        <img src="{{ MEDIA_URL }}mreea-logo-gray.png" alt="Gray Mreea Logo" class="img-100a">
-                    </div>
-                    <div class="text-container">
-                        <p class="dark-text-2">Maryland Real Estate</p>
-                        <p class="dark-text-2">Educators Association</p>
+        {% if is_membership_valid %}
+
+        {% else %}
+        <section class="buy-membership-section">
+            <div class="section-container container-row">
+                <div class="text-container container-col align-start">
+                    <h3 class="subheading white-text">Become A Member Today!</h3>
+                    <p class="white-text">
+                        Join our professional real estate educators group and<br>
+                        unlock all our benefits for only $27 USD per year.
+                    </p>
+                    <p class="white-text">
+                        Our affordable annual membership ensures that you<br>
+                        receive continuous support and opportunities for<br>
+                        professional development within the industry.
+                    </p>
+                    <div class="tags-container container-row">
+                        <p class="tag white-text">All Benefits</p>
+                        <p class="tag white-text">Affordable Price</p>
                     </div>
                 </div>
+                <div class="card-container container-col">
+                    <div class="card container-col">
+                        <h3 class="subheading white-text">Yearly Membership</h3>
+                        <h3 class="price-subheading white-text">$27 <span class="per-year-text">/per year</span></h3>
+                        <a href="{% url 'account_signup' %}" class="yellow-btn btn">Join Now</a>
+                    </div>
+                    <a href="{% url 'contact' %}" class="question-text white-text">Have questions? Contact us!</a>
+                </div>
+            </div>
+        </section>
+        {% endif %}
+
+        <footer class="footer container-col">
+            <div class="footer-container container-row space-between">
+                <a href="{% url 'home' %}" class="img-container">
+                    <img src="{{ MEDIA_URL }}mreea-logo-white.png" alt="White Mreea Logo" class="img-100a">
+                </a>
                 <div class="footer-nav container-row">
                     {% if user.is_authenicated %}
-                    <a href="{% url 'membership_status' %}" class="dark-text-2">Membership</a>
+                    <a href="{% url 'membership_status' %}" class="white-text">Membership</a>
                     {% else %}
-                    <a href="{% url 'account_signup' %}" class="dark-text-2">Join</a>
+                    <a href="{% url 'account_signup' %}" class="white-text">Join</a>
                     {% endif %}
                     <div class="divider"></div>
-                    <a href="{% url 'privacy' %}" class="dark-text-2">Privacy</a>
+                    <a href="#" class="white-text">About</a>
                     <div class="divider"></div>
-                    <a href="{% url 'contact' %}" class="dark-text-2">Contact</a>
-                </div>
-                <div class="footer-contact-container container-col align-end">
-                    <div class="text-container container-col align-start">
-                        <p class="visit-link">
-                            <span class="icon-container btn-icon">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="dark-text-2" viewBox="0 0 16 16">
-                                    <path d="M3.714 5.258C3.523 4 4.41 2.87 5.765 2.456a.99.99 0 0 1 1.214.598l.435 1.16a1 1 0 0 1-.26 1.088L5.86 6.487a.5.5 0 0 0-.152.47l.012.052l.031.13a7.3 7.3 0 0 0 .729 1.805a7.3 7.3 0 0 0 1.296 1.627l.04.036a.5.5 0 0 0 .482.103l1.673-.527a1 1 0 0 1 1.072.319l.792.961c.33.4.29.988-.089 1.341c-1.037.967-2.463 1.165-3.455.368a12.7 12.7 0 0 1-3.024-3.529a12.4 12.4 0 0 1-1.554-4.385m3.043 1.765l1.072-.984a2 2 0 0 0 .521-2.176l-.434-1.16A1.99 1.99 0 0 0 5.473 1.5c-1.683.515-3.034 2.024-2.748 3.909c.2 1.316.661 2.99 1.678 4.738a13.7 13.7 0 0 0 3.262 3.805c1.488 1.195 3.474.787 4.764-.415a1.98 1.98 0 0 0 .179-2.708l-.792-.962a2 2 0 0 0-2.144-.636l-1.389.437a6.6 6.6 0 0 1-.936-1.223a6.3 6.3 0 0 1-.59-1.421" />
-                                </svg>
-                            </span>
-                            <span class="dark-text-2">(555) 5555 555</span>
-                        </p>
-                        <p class="visit-link">
-                            <span class="icon-container btn-icon">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="dark-text-2" viewBox="0 0 16 16">
-                                    <path d="M2 6.038V11a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2zM4 4h8a1 1 0 0 1 1 1v.74L8 8.432L3 5.74V5a1 1 0 0 1 1-1M3 6.876L7.763 9.44a.5.5 0 0 0 .474 0L13 6.876V11a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1z" />
-                                </svg>
-                            </span>
-                            <span class="dark-text-2">mail@mreea.org</span>
-                        </p>
-                    </div>
+                    <a href="{% url 'members' %}" class="white-text">Find</a>
+                    <div class="divider"></div>
+                    <a href="{% url 'events' %}" class="white-text">Events</a>
+                    <div class="divider"></div>
+                    <a href="{% url 'testimonials' %}" class="white-text">Stories</a>
+                    <div class="divider"></div>
+                    <a href="{% url 'privacy' %}" class="white-text">Privacy</a>
+                    <div class="divider"></div>
+                    <a href="{% url 'contact' %}" class="white-text">Contact</a>
                 </div>
             </div>
         </footer>

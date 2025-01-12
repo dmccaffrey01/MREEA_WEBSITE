@@ -89,4 +89,18 @@
             }
         }
     }
+
+    /* Small devices (larger phones, 576px to 767px) */
+    @media (max-width: 767px) {
+        .items-container {
+            width: 496px;
+        }
+    }
+
+    /* Extra small devices (phones, 380px to 575px) */
+    @media (max-width: 575px) {
+        .items-container {
+            width: 320px;
+        }
+    }
 }

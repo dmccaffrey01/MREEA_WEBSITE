@@ -97,5 +97,14 @@
 .view-notification-section .management-btns-container .delete-btn-wrapper .confirm-delete-btn .success {
   margin-left: 16px;
 }
+.view-notification-section .management-btns-container .delete-btn-wrapper.clicked .delete-btn {
+  background-color: #ececec;
+}
+.view-notification-section .management-btns-container .delete-btn-wrapper.clicked .icon-container {
+  background-color: #ffffff;
+}
+.view-notification-section .management-btns-container .delete-btn-wrapper.clicked .confirm-delete-btn {
+  display: flex;
+}
 
 /*# sourceMappingURL=view_notification.css.map */

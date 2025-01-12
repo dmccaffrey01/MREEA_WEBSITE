@@ -1,6 +1,10 @@
 .cta-section {
   padding: 80px 0;
   background: linear-gradient(180deg, rgb(73, 73, 73) 25%, rgb(119, 119, 119) 75%);
+  /* Large devices (desktops, 1000px to 1279px) */
+  /* Medium devices (tablets, 768px to 999px) */
+  /* Small devices (larger phones, 576px to 767px) */
+  /* Extra small devices (phones, 380px to 575px) */
 }
 .cta-section .section-container {
   gap: 40px;
@@ -25,6 +29,88 @@
 .cta-section .btns-container .icon-container {
   width: 40px;
   height: 40px;
+}
+@media (max-width: 1279px) {
+  .cta-section .text-container .message-text {
+    font-size: 1.1rem;
+    line-height: calc(1.1rem + 8px);
+  }
+  .cta-section .text-container .message-heading-text {
+    font-size: 2rem;
+  }
+  .cta-section .text-container .yellow-btn {
+    font-size: 1.1rem;
+    padding: 8px 12px;
+    border-radius: 8px;
+    min-width: 160px;
+  }
+  .cta-section .btns-container .white-text {
+    font-size: 1.1rem;
+  }
+}
+@media (max-width: 999px) {
+  .cta-section {
+    padding: 40px 0;
+  }
+  .cta-section .text-container .message-text {
+    font-size: 1.3rem;
+    line-height: calc(1.3rem + 8px);
+  }
+  .cta-section .text-container .message-heading-text {
+    font-size: 2.5rem;
+  }
+  .cta-section .text-container .yellow-btn {
+    font-size: 1.3rem;
+    padding: 12px 16px;
+    border-radius: 12px;
+    min-width: 200px;
+  }
+  .cta-section .btns-container .white-text {
+    font-size: 1.3rem;
+  }
+}
+@media (max-width: 767px) {
+  .cta-section .text-container .message-text {
+    font-size: 1.1rem;
+    line-height: calc(1.1rem + 8px);
+  }
+  .cta-section .text-container .message-heading-text {
+    font-size: 2rem;
+  }
+  .cta-section .text-container .yellow-btn {
+    font-size: 1.1rem;
+    padding: 8px 12px;
+    border-radius: 8px;
+    min-width: 160px;
+  }
+  .cta-section .btns-container .white-text {
+    font-size: 1.1rem;
+  }
+}
+@media (max-width: 575px) {
+  .cta-section {
+    padding: 30px 0;
+  }
+  .cta-section .text-container .message-text {
+    font-size: 0.95rem;
+    line-height: calc(0.95rem + 6px);
+  }
+  .cta-section .text-container .message-heading-text {
+    font-size: 1.4rem;
+  }
+  .cta-section .text-container .yellow-btn {
+    font-size: 0.95rem;
+    padding: 8px 12px;
+    border-radius: 8px;
+    min-width: 160px;
+  }
+  .cta-section .btns-container .white-text {
+    font-size: 0.95rem;
+  }
+  .cta-section .btns-container .icon-container {
+    width: 1.3rem;
+    height: 1.3rem;
+  }
 }
 
 /*# sourceMappingURL=cta-section.css.map */

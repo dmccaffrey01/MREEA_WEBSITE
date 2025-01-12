@@ -1,11 +1,15 @@
 from django.shortcuts import render, redirect, get_object_or_404, reverse
 from profiles.models import UserProfile, Category, Class, TeachingState
-from membership.models import Membership, MembershipStatus
+from membership.models import Membership, MembershipStatus, MembershipPackage
 from django.http import JsonResponse
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.contrib import messages
 from .tasks import new_membership_approved_notification, new_membership_denied_notification
+from django.db.models import Count, Q
+import csv
+from django.http import HttpResponse
+from datetime import datetime, timedelta
 
 
 def members(request):
@@ -38,6 +42,9 @@ def members(request):
         if last_name:
             profiles = profiles.filter(last_name__icontains=last_name)
 
+        checked_classes = []
+        checked_states = []
+
         for category in categories:
             classes_in_category = Class.objects.filter(category=category)
 
@@ -47,7 +54,7 @@ def members(request):
                 is_class_checked = request.POST.get(class_id)
                 if is_class_checked:
                     c.is_checked = True
-                    profiles = profiles.filter(classes__name=class_name)
+                    checked_classes.append(c)
 
 
             category_and_classes.append({
@@ -61,7 +68,11 @@ def members(request):
             is_state_checked = request.POST.get(state_id)
             if is_state_checked:
                 state.is_checked = True
-                profiles = profiles.filter(teaching_states__code=state_code)
+                checked_states.append(state)
+        
+        profiles = filter_profile_classes(profiles, checked_classes)
+        profiles = filter_profile_teaching_states(profiles, checked_states)
+
     else:
         for category in categories:
             classes_in_category = Class.objects.filter(category=category)
@@ -76,10 +87,12 @@ def members(request):
 
         for state in teaching_states:
             state.is_checked = False
+
+    num_of_profiles = len(profiles)
         
     context = {
         'query_profiles': profiles,
-        'num_of_profiles': profiles.count(),
+        'num_of_profiles': num_of_profiles,
         'category_and_classes': category_and_classes,
         'teaching_states': teaching_states,
         'first_name': first_name,
@@ -87,6 +100,50 @@ def members(request):
     }
 
     return render(request, 'members/members.html', context)
+
+
+def filter_profile_classes(profiles, checked_classes):
+    new_profiles = []
+    for profile in profiles:
+        has_all_classes = check_all_classes(profile, checked_classes)
+        if has_all_classes:
+            new_profiles.append(profile)
+
+    return new_profiles
+
+
+def check_all_classes(profile, checked_classes):
+
+    profile_classes = profile.classes.all()
+
+    for c in checked_classes:
+
+        if not c in profile_classes:
+            return False
+        
+    return True
+
+
+def filter_profile_teaching_states(profiles, checked_teaching_states):
+    new_profiles = []
+    for profile in profiles:
+        has_all_teaching_states = check_all_teaching_states(profile, checked_teaching_states)
+        if has_all_teaching_states:
+            new_profiles.append(profile)
+
+    return new_profiles
+
+
+def check_all_teaching_states(profile, checked_teaching_states):
+
+    profile_teaching_states = profile.teaching_states.all()
+
+    for c in checked_teaching_states:
+
+        if not c in profile_teaching_states:
+            return False
+        
+    return True
 
 
 def get_member_classes(request, username):
@@ -192,7 +249,7 @@ def change_membership_status(request, username, is_active):
         membership_status = MembershipStatus.objects.filter(name='active').first()
         membership.status = membership_status
         membership.make_active()
-        new_membership_approved_notification.delay(username) # celery tasks
+        new_membership_approved_notification(username)
     else:
         if membership.status.name == 'pending':
             membership_status = MembershipStatus.objects.filter(name='payment_unsuccessful').first()
@@ -200,10 +257,9 @@ def change_membership_status(request, username, is_active):
             membership_status = MembershipStatus.objects.filter(name='active_renewal_unsuccessful').first()
         membership.status = membership_status
         membership.make_unsuccessful()
-        new_membership_denied_notification.delay(username) # celery tasks
+        new_membership_denied_notification(username)
     
     membership.save()
 
     messages.success(request, 'Successfully updated membership status!')
     return redirect(reverse('members_management'))
-    

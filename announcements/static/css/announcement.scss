@@ -22,7 +22,7 @@
     }
 
     .announcement-container {
-        width: calc(50% - 24px);
+        width: 600px;
         border-radius: $round-corner-3;
         padding: 32px;
         background-color: $gl-1;
@@ -50,7 +50,7 @@
     .management-btns-container {
         gap: 4px;
         margin-top: 12px;
-        width: calc(50% - 24px);
+        width: 600px;
         padding: 16px;
         border-radius: $round-corner-2;
         background-color: $gl-1;
@@ -150,6 +150,22 @@
             &::before {
                 translate: $toggle-height 0;
             }
+        }
+    }
+
+     /* Small devices (larger phones, 576px to 767px) */
+     @media (max-width: 767px) {
+        .management-btns-container,
+        .announcement-container {
+            width: 496px;
+        }
+    }
+
+    /* Extra small devices (phones, 380px to 575px) */
+    @media (max-width: 575px) {
+        .management-btns-container,
+        .announcement-container {
+            width: 320px;
         }
     }
 }

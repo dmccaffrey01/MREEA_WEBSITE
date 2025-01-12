@@ -31,7 +31,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = 'DEVELOPMENT' in os.environ
 
-ALLOWED_HOSTS = ['mreea.org', 'http://www.mreea.org', '70.32.23.32', 'http://70.32.23.32/~mreeaor1/', 'localhost', '127.0.0.1', 'https://mreea-test-568f4c6ab8fc.herokuapp.com/', 'mreea-test-568f4c6ab8fc.herokuapp.com', 'https://test-mreea-website.onrender.com/', 'test-mreea-website.onrender.com']
+ALLOWED_HOSTS = ['mreea.org', 'https://www.mreea.org', 'https://mreea.org', '70.32.23.32', 'https://70.32.23.32/~mreeaor1/', 'localhost', '127.0.0.1', 'https://mreea-test-568f4c6ab8fc.herokuapp.com/', 'mreea-test-568f4c6ab8fc.herokuapp.com', 'https://test-mreea-website.onrender.com/', 'test-mreea-website.onrender.com']
 
 
 # Application definition
@@ -58,11 +58,8 @@ INSTALLED_APPS = [
     'announcements',
     'storages',
     'blog',
-    'django_celery_beat',
-    'django_celery_results',
-    'ckeditor',
-    'ckeditor_uploader',
 ]
+
 
 ACCOUNT_AUTHENTICATION_METHOD = 'email'
 
@@ -143,10 +140,16 @@ WSGI_APPLICATION = 'dj_project.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-DATABASES = {
-    'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
-}   
+# DATABASES = {
+#     'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
+# }
 
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
@@ -191,7 +194,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
-if DEBUG:
+if not DEBUG:
     AWS_STORAGE_BUCKET_NAME = 'mreea-static-files'
     AWS_S3_REGION_NAME = 'us-east-1'
     AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
@@ -211,32 +214,6 @@ if DEBUG:
     MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/media/'
     DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
-    # CKEditor settings
-    CKEDITOR_UPLOAD_PATH = "blog_images/"
-    CKEDITOR_IMAGE_BACKEND = "pillow"
-    CKEDITOR_CONFIGS = {
-        'default': {
-            'toolbar': 'full',
-            'height': 300,
-            'width': '100%',
-            'filebrowserUploadUrl': '/ckeditor/upload/',
-            'filebrowserBrowseUrl': '/ckeditor/browse/',
-        },
-    }
-else:
-    # Local development settings
-    CKEDITOR_UPLOAD_PATH = "uploads/"
-    CKEDITOR_IMAGE_BACKEND = "pillow"
-    CKEDITOR_CONFIGS = {
-        'default': {
-            'toolbar': 'full',
-            'height': 300,
-            'width': '100%',
-            'filebrowserUploadUrl': '/ckeditor/upload/',
-            'filebrowserBrowseUrl': '/ckeditor/browse/',
-        },
-    }
-
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
@@ -250,25 +227,3 @@ EMAIL_USE_TLS = True  # Add this line to enable TLS
 EMAIL_HOST_USER = os.environ.get('HOST_USERNAME')
 DEFAULT_FROM_EMAIL = os.environ.get('HOST_EMAIL')
 EMAIL_HOST_PASSWORD = os.environ.get('HOST_EMAIL_PASSWORD')
-
-
-# REDIS Configuration
-
-CELERY_BROKER_URL = os.environ.get('CELERY_BROKER_URL')
-
-CELERY_ACCEPT_CONTENT = ['json']
-
-CELERY_TASK_SERIALIZER = 'json'
-
-CELERY_TIMEZONE = 'America/New_York'
-
-CELERY_RESULT_BACKEND = 'django-db'
-CELERY_RESULT_EXTENDED = True
-
-CELERY_BEAT_SCHEDULE = {
-    'check-membership-task': {
-        'task': 'membership.tasks.check_memberships',
-        'schedule': crontab(hour=6, minute=0),
-    },
-}
-

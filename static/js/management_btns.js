@@ -10,7 +10,12 @@ document.addEventListener("DOMContentLoaded", () => {
         deleteBtn.addEventListener("click", () => {
             if (confirmDeleteBtn.classList.contains("hide")) {
                 confirmDeleteBtn.classList.remove("hide");
+                deleteBtnWrapper.classList.toggle("clicked");
             }
+        });
+
+        confirmDeleteBtn.addEventListener("click", () => {
+            deleteBtnWrapper.classList.toggle("clicked");
         });
 
         deleteBtnWrapper.addEventListener("mouseleave", () => {

@@ -2,7 +2,7 @@
 
 {% load static %}
 
-{% block extra_title %}- Edit {{ profile }}{% endblock %}
+{% block extra_title %}- Edit {{ user_profile.first_name }}'s Picture{% endblock %}
 
 {% block extra_css %}
 <link rel="stylesheet" type="text/css" href="{% static 'css/edit_profile_picture.css' %}">
@@ -75,7 +75,7 @@
                         </span>
                     </div>
                     <input type="file" accept="image/*" name="image_file" id="image_file" hidden>
-                    <p class="drop-zone-text dark-text">Drag & drop or click to upload an image</p>
+                    <p class="drop-zone-text dark-text">Drag &amp; drop or click to upload an image</p>
 
                     <label for="profile_picture" class="sr-only">Profile Picture</label>
                     <input type="file" name="profile_picture" accept="image/*" id="profile_picture" class="profile_picture" hidden>

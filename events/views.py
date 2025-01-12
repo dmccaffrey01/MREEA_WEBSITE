@@ -127,7 +127,7 @@ def add_event(request):
             new_event.save()
 
             if event_is_public:
-                new_event_notifications.delay(new_event.name) # celery task
+                new_event_notifications(new_event.name)
 
             messages.success(request, 'Successfully created event!')
 
@@ -223,7 +223,7 @@ def edit_event(request, event_name):
             selected_event.save()
 
             if (not previous_is_public) and event_is_public:
-                new_event_notifications.delay(selected_event.name) # celery task
+                new_event_notifications(selected_event.name)
 
             messages.success(request, 'Successfully edited event!')
 

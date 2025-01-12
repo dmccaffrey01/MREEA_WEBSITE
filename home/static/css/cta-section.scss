@@ -35,4 +35,122 @@
             height: 40px;
         }
     }
+
+
+    /* Large devices (desktops, 1000px to 1279px) */
+    @media (max-width: 1279px) {
+        .text-container {
+            .message-text {
+                font-size: 1.1rem;
+                line-height: calc(1.1rem + 8px);
+            }
+
+            .message-heading-text {
+                font-size: 2rem;
+            }
+
+            .yellow-btn {
+                font-size: 1.1rem;
+                padding: 8px 12px;
+                border-radius: $round-corner-1;
+                min-width: 160px;
+            }
+        }
+
+        .btns-container {
+            .white-text {
+                font-size: 1.1rem;
+            }
+        }
+    }
+
+    /* Medium devices (tablets, 768px to 999px) */
+    @media (max-width: 999px) {
+        padding: 40px 0;
+
+        .text-container {
+            .message-text {
+                font-size: 1.3rem;
+                line-height: calc(1.3rem + 8px);
+            }
+
+            .message-heading-text {
+                font-size: 2.5rem;
+            }
+
+            .yellow-btn {
+                font-size: 1.3rem;
+                padding: 12px 16px;
+                border-radius: $round-corner-2;
+                min-width: 200px;
+            }
+        }
+
+        .btns-container {
+            .white-text {
+                font-size: 1.3rem;
+            }
+        }
+    }
+
+    /* Small devices (larger phones, 576px to 767px) */
+    @media (max-width: 767px) {
+        .text-container {
+            .message-text {
+                font-size: 1.1rem;
+                line-height: calc(1.1rem + 8px);
+            }
+
+            .message-heading-text {
+                font-size: 2rem;
+            }
+
+            .yellow-btn {
+                font-size: 1.1rem;
+                padding: 8px 12px;
+                border-radius: $round-corner-1;
+                min-width: 160px;
+            }
+        }
+
+        .btns-container {
+            .white-text {
+                font-size: 1.1rem;
+            }
+        }
+    }
+
+    /* Extra small devices (phones, 380px to 575px) */
+    @media (max-width: 575px) {
+        padding: 30px 0;
+
+        .text-container {
+            .message-text {
+                font-size: 0.95rem;
+                line-height: calc(0.95rem + 6px);
+            }
+
+            .message-heading-text {
+                font-size: 1.4rem;
+            }
+
+            .yellow-btn {
+                font-size: 0.95rem;
+                padding: 8px 12px;
+                border-radius: $round-corner-1;
+                min-width: 160px;
+            }
+        }
+
+        .btns-container {
+            .white-text {
+                font-size: 0.95rem;
+            }
+
+            .icon-container {
+                width: 1.3rem;
+                height: 1.3rem;
+            }
+        }
+    }
 }

@@ -1,0 +1,11 @@
+.blog-section {
+  padding: 20px 0 80px 0;
+  background: #f7f7f7;
+  min-height: calc(100vh - 100px);
+  justify-content: flex-start;
+}
+.blog-section .section-container {
+  gap: 32px;
+}
+
+/*# sourceMappingURL=blog_list.css.map */

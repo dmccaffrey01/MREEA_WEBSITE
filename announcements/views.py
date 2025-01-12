@@ -27,36 +27,29 @@ def announcements(request):
 
     all_announcements = Announcement.objects.all()
 
-    public_announcements = all_announcements.filter(is_public=True)
-
-    today = timezone.localtime(timezone.now())
-    tomorrow = today + timedelta(days=1)
-    torrow_start = tomorrow.replace(hour=0, minute=0, second=0, microsecond=0)
-    one_month_ago = torrow_start - timedelta(days=30)
-
-    recent_announcements_query = public_announcements.filter(date_made_public__gte=one_month_ago).order_by('-date_made_public')
-    past_announcements_query = public_announcements.filter(date_made_public__lt=one_month_ago).order_by('-date_made_public')
+    public_announcements = all_announcements.filter(is_public=True, is_pinned=False).order_by('-date_made_public')
+    pinned_announcements = all_announcements.filter(is_public=True, is_pinned=True).order_by('-date_made_public')
 
     if request.method == 'POST':
         viewAllValue = request.POST.get('id_view_all')
 
-        if viewAllValue == 'recent':
-            recent_slice = recent_announcements_query.count()
-            past_slice = 4
+        if viewAllValue == 'pinned':
+            pinned_slice = pinned_announcements.count()
+            public_slice = 4
         else:
-            past_slice = past_announcements_query.count()
-            recent_slice = 4
+            public_slice = public_announcements.count()
+            pinned_slice = 4
     else:
-        recent_slice = 4
-        past_slice = 4
+        pinned_slice = 4
+        public_slice = 4
 
     draft_announcements = all_announcements.filter(is_public=False)
-    recent_announcements = recent_announcements_query[:recent_slice]
-    past_announcements = past_announcements_query[:past_slice]
+    pinned_announcements = pinned_announcements[:pinned_slice]
+    public_announcements = public_announcements[:public_slice]
 
     context = {
-        'recent_announcements': recent_announcements,
-        'past_announcements': past_announcements,
+        'pinned_announcements': pinned_announcements,
+        'public_announcements': public_announcements,
         'draft_announcements': draft_announcements,
     }
 
@@ -80,6 +73,7 @@ def add_announcement(request):
             announcement_friendly_name = form_data['friendly_name']
             announcement_description = form_data['description']
             announcement_is_public = form_data['is_public']
+            announcement_is_pinned = form_data['is_pinned']
 
             announcements_parent_folder = Folder.objects.filter(name='announcements').first()
             folder_icon = Icon.objects.filter(name='folder').first()
@@ -95,16 +89,15 @@ def add_announcement(request):
                 description=announcement_description,
                 folder=new_folder,
                 is_public=announcement_is_public,
+                is_pinned=announcement_is_pinned,
             )
-
-            print(new_folder)
 
             new_announcement.save()
 
             if announcement_is_public:
                 new_announcement.date_made_public = timezone.localtime(timezone.now())
                 new_announcement.save()
-                new_announcement_notifications.delay(new_announcement.name) # celery task
+                new_announcement_notifications(new_announcement.name)
 
             messages.success(request, 'Successfully created announcement!')
 
@@ -148,17 +141,19 @@ def edit_announcement(request, announcement_name):
             announcement_friendly_name = form_data['friendly_name']
             announcement_description = form_data['description']
             announcement_is_public = form_data['is_public']
+            announcement_is_pinned = form_data['is_pinned']
             previous_is_public = selected_announcement.is_public
             
             selected_announcement.friendly_name = announcement_friendly_name
             selected_announcement.description = announcement_description
             selected_announcement.is_public = announcement_is_public
+            selected_announcement.is_pinned = announcement_is_pinned
             selected_announcement.save()
 
             if (not previous_is_public) and announcement_is_public:
                 selected_announcement.date_made_public = timezone.localtime(timezone.now())
                 selected_announcement.save()
-                new_announcement_notifications.delay(selected_announcement.name) # celery task
+                new_announcement_notifications(selected_announcement.name)
 
             messages.success(request, 'Successfully edited announcement!')
 

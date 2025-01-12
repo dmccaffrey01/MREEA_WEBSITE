@@ -18,7 +18,7 @@
         <label for="id_view_all" class="sr-only">View All</label>
 
         <div class="announcements-wrapper container-col align-start">
-            {% if draft_announcements or user.is_superuser %}
+            {% if user.is_superuser %}
             <div class="heading-container visit-link">
                 <div class="icon-container">
                     <svg xmlns="http://www.w3.org/2000/svg" class="dark-text" viewBox="0 0 24 24">
@@ -26,7 +26,7 @@
                     </svg>
                     <span class="sr-only">Announcements Icon</span>
                 </div>
-                <h2 class="subheading dark-text-2">Draft Announcements</h2>
+                <h2 class="subheading dark-text-2">Draft <span class="mobile-text">Announcements</span></h2>
             </div>
             <a href="{% url 'add_announcement' %}" class="add-announcement-btn container-col box-shadow">
                 <div class="visit-link">
@@ -44,7 +44,6 @@
 
                 <div class="announcements-container container-col justify-start align-start">
                     {% for announcement in draft_announcements %}
-                    {% if forloop.counter0|divisibleby:2 %}
                     <div class="announcement-container container-col align-start box-shadow">
                         <h2 class="announcement-heading-text dark-text-2">{{ announcement.friendly_name }}</h2>
                         {% if announcement.description %}
@@ -69,198 +68,98 @@
                         </a>
                         {% endif %}
                     </div>
-                    {% endif %}
-                    {% endfor %}
-                </div>
-    
-                <div class="announcements-container container-col justify-start align-start">
-                    {% for announcement in draft_announcements %}
-                    {% if not forloop.counter0|divisibleby:2 %}
-                    <div class="announcement-container container-col align-start box-shadow">
-                        <h2 class="announcement-heading-text dark-text-2">{{ announcement.friendly_name }}</h2>
-                        {% if announcement.description %}
-                        <p class="description-text dark-text-2">
-                            {% with description=announcement.description|urlizetrunc:15 %}
-                            {{ description|linebreaksbr }}
-                            {% endwith %}
-                        </p>
-                        {% endif %}
-                        {% if announcement.date_made_public %}
-                        <p class="date-text dark-text-2 small-text">{{ announcement.date_made_public|date:'M d, Y' }}</p>
-                        {% endif %}
-                        {% if user.is_superuser %}
-                        <a href="{% url 'edit_announcement' announcement.name %}" class="link-container visit-link">
-                            <p class="time-text dark-text-2">Edit</p>
-                            <div class="icon-container">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="dark-text-2" viewBox="0 0 20 20">
-                                    <path d="M17.181 2.927a2.975 2.975 0 0 0-4.259-.054l-9.375 9.375a2.44 2.44 0 0 0-.656 1.194l-.877 3.95a.5.5 0 0 0 .596.597l3.927-.873a2.5 2.5 0 0 0 1.234-.678l9.358-9.358a2.975 2.975 0 0 0 .052-4.153m-3.552.653a1.975 1.975 0 1 1 2.793 2.793l-.671.671l-2.793-2.792zm-1.378 1.38l2.793 2.792l-7.98 7.98a1.5 1.5 0 0 1-.744.409l-3.16.702l.708-3.183c.059-.267.193-.511.386-.704z" />
-                                </svg>
-                                <span class="sr-only">Edit Icon</span>
-                            </div>
-                        </a>
-                        {% endif %}
-                    </div>
-                    {% endif %}
                     {% endfor %}
                 </div>
             </div>
             {% endif %}
-            {% if recent_announcements or user.is_superuser %}
-            <div class="heading-container visit-link">
-                <div class="icon-container">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="dark-text" viewBox="0 0 24 24">
-                        <path fill-rule="evenodd" d="M20.085 16.932a62.152 62.152 0 0 0 0-12.864c-.159-1.525-1.917-2.298-3.148-1.383l-4.103 3.05a7.25 7.25 0 0 1-4.326 1.432H4.68c-.69 0-1.25.56-1.25 1.25v4.166c0 .69.56 1.25 1.25 1.25h.624l-.845 3.155a.75.75 0 0 0 .408.874l3.68 1.717a.75.75 0 0 0 1.042-.486l1.263-4.712a.78.78 0 0 0 .024-.15a7.25 7.25 0 0 1 1.959 1.034l4.103 3.05c1.23.915 2.99.142 3.148-1.383m-1.492-12.71a60.696 60.696 0 0 1 0 12.555a.478.478 0 0 1-.76.334l-4.105-3.05a8.75 8.75 0 0 0-5.22-1.728H4.93V8.667h3.58a8.75 8.75 0 0 0 5.22-1.728l4.103-3.05a.478.478 0 0 1 .76.334m-9.157 9.67a7.256 7.256 0 0 0-.928-.059H6.856L6.07 16.77l2.3 1.073l1.032-3.85a.759.759 0 0 1 .034-.1" clip-rule="evenodd" />
-                    </svg>
-                    <span class="sr-only">Announcements Icon</span>
-                </div>
-                <h2 class="subheading dark-text-2">Recent Announcements</h2>
-                <p class="view-all-btn small-text red-text" data-view-all="recent">View All</p>
-            </div>
-
-            <div class="recent-announcements-container container-row align-start justify-start">
-                <div class="announcements-container container-col justify-start align-start">
-                    {% for announcement in recent_announcements %}
-                    {% if forloop.counter0|divisibleby:2 %}
-                    <div class="announcement-container container-col align-start box-shadow">
-                        <h2 class="announcement-heading-text dark-text-2">{{ announcement.friendly_name }}</h2>
-                        {% if announcement.description %}
-                        <p class="description-text dark-text-2">
-                            {% with description=announcement.description|urlizetrunc:20 %}
-                            {{ description|linebreaksbr }}
-                            {% endwith %}
-                        </p>
-                        {% endif %}
-                        {% if announcement.date_made_public %}
-                        <p class="date-text dark-text-2 small-text">{{ announcement.date_made_public|date:'M d, Y' }}</p>
-                        {% endif %}
-                        {% if user.is_superuser %}
-                        <a href="{% url 'edit_announcement' announcement.name %}" class="link-container visit-link">
-                            <p class="time-text dark-text-2">Edit</p>
-                            <div class="icon-container">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="dark-text-2" viewBox="0 0 20 20">
-                                    <path d="M17.181 2.927a2.975 2.975 0 0 0-4.259-.054l-9.375 9.375a2.44 2.44 0 0 0-.656 1.194l-.877 3.95a.5.5 0 0 0 .596.597l3.927-.873a2.5 2.5 0 0 0 1.234-.678l9.358-9.358a2.975 2.975 0 0 0 .052-4.153m-3.552.653a1.975 1.975 0 1 1 2.793 2.793l-.671.671l-2.793-2.792zm-1.378 1.38l2.793 2.792l-7.98 7.98a1.5 1.5 0 0 1-.744.409l-3.16.702l.708-3.183c.059-.267.193-.511.386-.704z" />
-                                </svg>
-                                <span class="sr-only">Edit Icon</span>
-                            </div>
-                        </a>
-                        {% endif %}
+            <div class="announcements-container-row container-row justify-start align-start">
+                <div class="announcements-container-wrapper container-col justify-start">
+                    {% if pinned_announcements or user.is_superuser %}
+                    <div class="heading-container visit-link">
+                        <div class="icon-container">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="dark-text" viewBox="0 0 16 16">
+                                <path d="M10.059 2.445a1.5 1.5 0 0 0-2.386.354l-2.02 3.79l-2.811.937a.5.5 0 0 0-.196.828L4.793 10.5l-2.647 2.647L2 14l.854-.146L5.5 11.207l2.146 2.147a.5.5 0 0 0 .828-.196l.937-2.81l3.779-2.024a1.5 1.5 0 0 0 .354-2.38zm-1.504.824a.5.5 0 0 1 .796-.118l3.485 3.498a.5.5 0 0 1-.118.794L8.764 9.559a.5.5 0 0 0-.238.283l-.744 2.233l-3.856-3.856l2.232-.744a.5.5 0 0 0 .283-.24z" />
+                            </svg>
+                            <span class="sr-only">Pinned Icon</span>
+                        </div>
+                        <h2 class="subheading dark-text-2">Pinned <span class="mobile-text">Announcements</span></h2>
+                        <p class="view-all-btn small-text red-text" data-view-all="pinned">View All</p>
                     </div>
-                    {% endif %}
-                    {% endfor %}
-                    
-                </div>
-    
-                <div class="announcements-container container-col justify-start align-start">
-                    {% for announcement in recent_announcements %}
-                    {% if not forloop.counter0|divisibleby:2 %}
-                    <div class="announcement-container container-col align-start box-shadow">
-                        <h2 class="announcement-heading-text dark-text-2">{{ announcement.friendly_name }}</h2>
-                        {% if announcement.description %}
-                        <p class="description-text dark-text-2">
-                            {% with description=announcement.description|urlizetrunc:15 %}
-                            {{ description|linebreaksbr }}
-                            {% endwith %}
-                        </p>
-                        {% endif %}
-                        {% if announcement.date_made_public %}
-                        <p class="date-text dark-text-2 small-text">{{ announcement.date_made_public|date:'M d, Y' }}</p>
-                        {% endif %}
-                        {% if user.is_superuser %}
-                        <a href="{% url 'edit_announcement' announcement.name %}" class="link-container visit-link">
-                            <p class="time-text dark-text-2">Edit</p>
-                            <div class="icon-container">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="dark-text-2" viewBox="0 0 20 20">
-                                    <path d="M17.181 2.927a2.975 2.975 0 0 0-4.259-.054l-9.375 9.375a2.44 2.44 0 0 0-.656 1.194l-.877 3.95a.5.5 0 0 0 .596.597l3.927-.873a2.5 2.5 0 0 0 1.234-.678l9.358-9.358a2.975 2.975 0 0 0 .052-4.153m-3.552.653a1.975 1.975 0 1 1 2.793 2.793l-.671.671l-2.793-2.792zm-1.378 1.38l2.793 2.792l-7.98 7.98a1.5 1.5 0 0 1-.744.409l-3.16.702l.708-3.183c.059-.267.193-.511.386-.704z" />
-                                </svg>
-                                <span class="sr-only">Edit Icon</span>
-                            </div>
-                        </a>
-                        {% endif %}
+        
+                    <div class="announcements-container container-col justify-start align-start">
+                        {% for announcement in pinned_announcements %}
+                        <div class="announcement-container container-col align-start box-shadow">
+                            <h2 class="announcement-heading-text dark-text-2">{{ announcement.friendly_name }}</h2>
+                            {% if announcement.description %}
+                            <p class="description-text dark-text-2">
+                                {% with description=announcement.description|urlizetrunc:20 %}
+                                {{ description|linebreaksbr }}
+                                {% endwith %}
+                            </p>
+                            {% endif %}
+                            {% if announcement.date_made_public %}
+                            <p class="date-text dark-text-2 small-text">{{ announcement.date_made_public|date:'M d, Y' }}</p>
+                            {% endif %}
+                            {% if user.is_superuser %}
+                            <a href="{% url 'edit_announcement' announcement.name %}" class="link-container visit-link">
+                                <p class="time-text dark-text-2">Edit</p>
+                                <div class="icon-container">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="dark-text-2" viewBox="0 0 20 20">
+                                        <path d="M17.181 2.927a2.975 2.975 0 0 0-4.259-.054l-9.375 9.375a2.44 2.44 0 0 0-.656 1.194l-.877 3.95a.5.5 0 0 0 .596.597l3.927-.873a2.5 2.5 0 0 0 1.234-.678l9.358-9.358a2.975 2.975 0 0 0 .052-4.153m-3.552.653a1.975 1.975 0 1 1 2.793 2.793l-.671.671l-2.793-2.792zm-1.378 1.38l2.793 2.792l-7.98 7.98a1.5 1.5 0 0 1-.744.409l-3.16.702l.708-3.183c.059-.267.193-.511.386-.704z" />
+                                    </svg>
+                                    <span class="sr-only">Edit Icon</span>
+                                </div>
+                            </a>
+                            {% endif %}
+                        </div>
+                        {% endfor %}
                     </div>
-                    {% endif %}
-                    {% endfor %}
-                    
                 </div>
-            </div>
+                {% endif %}
+                {% if public_announcements or user.is_superuser %}
+                <div class="announcements-container-wrapper container-col">
+                    <div class="heading-container visit-link">
+                        <div class="icon-container">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="dark-text" viewBox="0 0 24 24">
+                                <path fill-rule="evenodd" d="M20.085 16.932a62.152 62.152 0 0 0 0-12.864c-.159-1.525-1.917-2.298-3.148-1.383l-4.103 3.05a7.25 7.25 0 0 1-4.326 1.432H4.68c-.69 0-1.25.56-1.25 1.25v4.166c0 .69.56 1.25 1.25 1.25h.624l-.845 3.155a.75.75 0 0 0 .408.874l3.68 1.717a.75.75 0 0 0 1.042-.486l1.263-4.712a.78.78 0 0 0 .024-.15a7.25 7.25 0 0 1 1.959 1.034l4.103 3.05c1.23.915 2.99.142 3.148-1.383m-1.492-12.71a60.696 60.696 0 0 1 0 12.555a.478.478 0 0 1-.76.334l-4.105-3.05a8.75 8.75 0 0 0-5.22-1.728H4.93V8.667h3.58a8.75 8.75 0 0 0 5.22-1.728l4.103-3.05a.478.478 0 0 1 .76.334m-9.157 9.67a7.256 7.256 0 0 0-.928-.059H6.856L6.07 16.77l2.3 1.073l1.032-3.85a.759.759 0 0 1 .034-.1" clip-rule="evenodd" />
+                            </svg>
+                            <span class="sr-only">Announcements Icon</span>
+                        </div>
+                        <h2 class="subheading dark-text-2">All <span class="mobile-text">Announcements</span></h2>
+                        <p class="view-all-btn small-text red-text" data-view-all="public">View All</p>
+                    </div>
+        
+                    <div class="announcements-container container-col justify-start align-start">
+                        {% for announcement in public_announcements %}
+                        <div class="announcement-container container-col align-start box-shadow">
+                            <h2 class="announcement-heading-text dark-text-2">{{ announcement.friendly_name }}</h2>
+                            {% if announcement.description %}
+                            <p class="description-text dark-text-2">
+                                {% with description=announcement.description|urlizetrunc:15 %}
+                                {{ description|linebreaksbr }}
+                                {% endwith %}
+                            </p>
+                            {% endif %}
+                            {% if announcement.date_made_public %}
+                            <p class="date-text dark-text-2 small-text">{{ announcement.date_made_public|date:'M d, Y' }}</p>
+                            {% endif %}
+                            {% if user.is_superuser %}
+                            <a href="{% url 'edit_announcement' announcement.name %}" class="link-container visit-link">
+                                <p class="time-text dark-text-2">Edit</p>
+                                <div class="icon-container">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="dark-text-2" viewBox="0 0 20 20">
+                                        <path d="M17.181 2.927a2.975 2.975 0 0 0-4.259-.054l-9.375 9.375a2.44 2.44 0 0 0-.656 1.194l-.877 3.95a.5.5 0 0 0 .596.597l3.927-.873a2.5 2.5 0 0 0 1.234-.678l9.358-9.358a2.975 2.975 0 0 0 .052-4.153m-3.552.653a1.975 1.975 0 1 1 2.793 2.793l-.671.671l-2.793-2.792zm-1.378 1.38l2.793 2.792l-7.98 7.98a1.5 1.5 0 0 1-.744.409l-3.16.702l.708-3.183c.059-.267.193-.511.386-.704z" />
+                                    </svg>
+                                    <span class="sr-only">Edit Icon</span>
+                                </div>
+                            </a>
+                            {% endif %}
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
             {% endif %}
-            {% if past_announcements or user.is_superuser %}
-            <div class="heading-container visit-link">
-                <div class="icon-container">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="dark-text" viewBox="0 0 24 24">
-                        <path fill-rule="evenodd" d="M20.085 16.932a62.152 62.152 0 0 0 0-12.864c-.159-1.525-1.917-2.298-3.148-1.383l-4.103 3.05a7.25 7.25 0 0 1-4.326 1.432H4.68c-.69 0-1.25.56-1.25 1.25v4.166c0 .69.56 1.25 1.25 1.25h.624l-.845 3.155a.75.75 0 0 0 .408.874l3.68 1.717a.75.75 0 0 0 1.042-.486l1.263-4.712a.78.78 0 0 0 .024-.15a7.25 7.25 0 0 1 1.959 1.034l4.103 3.05c1.23.915 2.99.142 3.148-1.383m-1.492-12.71a60.696 60.696 0 0 1 0 12.555a.478.478 0 0 1-.76.334l-4.105-3.05a8.75 8.75 0 0 0-5.22-1.728H4.93V8.667h3.58a8.75 8.75 0 0 0 5.22-1.728l4.103-3.05a.478.478 0 0 1 .76.334m-9.157 9.67a7.256 7.256 0 0 0-.928-.059H6.856L6.07 16.77l2.3 1.073l1.032-3.85a.759.759 0 0 1 .034-.1" clip-rule="evenodd" />
-                    </svg>
-                    <span class="sr-only">Announcements Icon</span>
-                </div>
-                <h2 class="subheading dark-text-2">Past Announcements</h2>
-                <p class="view-all-btn small-text red-text" data-view-all="past">View All</p>
             </div>
-
-            <div class="past-announcements-container container-row align-start justify-start">
-                <div class="announcements-container container-col justify-start align-start">
-                    {% for announcement in past_announcements %}
-                    {% if forloop.counter0|divisibleby:2 %}
-                    <div class="announcement-container container-col align-start box-shadow">
-                        <h2 class="announcement-heading-text dark-text-2">{{ announcement.friendly_name }}</h2>
-                        {% if announcement.description %}
-                        <p class="description-text dark-text-2">
-                            {% with description=announcement.description|urlizetrunc:15 %}
-                            {{ description|linebreaksbr }}
-                            {% endwith %}
-                        </p>
-                        {% endif %}
-                        {% if announcement.date_made_public %}
-                        <p class="date-text dark-text-2 small-text">{{ announcement.date_made_public|date:'M d, Y' }}</p>
-                        {% endif %}
-                        {% if user.is_superuser %}
-                        <a href="{% url 'edit_announcement' announcement.name %}" class="link-container visit-link">
-                            <p class="time-text dark-text-2">Edit</p>
-                            <div class="icon-container">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="dark-text-2" viewBox="0 0 20 20">
-                                    <path d="M17.181 2.927a2.975 2.975 0 0 0-4.259-.054l-9.375 9.375a2.44 2.44 0 0 0-.656 1.194l-.877 3.95a.5.5 0 0 0 .596.597l3.927-.873a2.5 2.5 0 0 0 1.234-.678l9.358-9.358a2.975 2.975 0 0 0 .052-4.153m-3.552.653a1.975 1.975 0 1 1 2.793 2.793l-.671.671l-2.793-2.792zm-1.378 1.38l2.793 2.792l-7.98 7.98a1.5 1.5 0 0 1-.744.409l-3.16.702l.708-3.183c.059-.267.193-.511.386-.704z" />
-                                </svg>
-                                <span class="sr-only">Edit Icon</span>
-                            </div>
-                        </a>
-                        {% endif %}
-                    </div>
-                    {% endif %}
-                    {% endfor %}
-                    
-                </div>
-
-                <div class="announcements-container container-col justify-start align-start">
-                    {% for announcement in past_announcements %}
-                    {% if not forloop.counter0|divisibleby:2 %}
-                    <div class="announcement-container container-col align-start box-shadow">
-                        <h2 class="announcement-heading-text dark-text-2">{{ announcement.friendly_name }}</h2>
-                        {% if announcement.description %}
-                        <p class="description-text dark-text-2">
-                            {% with description=announcement.description|urlizetrunc:15 %}
-                            {{ description|linebreaksbr }}
-                            {% endwith %}
-                        </p>
-                        {% endif %}
-                        {% if announcement.date_made_public %}
-                        <p class="date-text dark-text-2 small-text">{{ announcement.date_made_public|date:'M d, Y' }}</p>
-                        {% endif %}
-                        {% if user.is_superuser %}
-                        <a href="{% url 'edit_announcement' announcement.name %}" class="link-container visit-link">
-                            <p class="time-text dark-text-2">Edit</p>
-                            <div class="icon-container">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="dark-text-2" viewBox="0 0 20 20">
-                                    <path d="M17.181 2.927a2.975 2.975 0 0 0-4.259-.054l-9.375 9.375a2.44 2.44 0 0 0-.656 1.194l-.877 3.95a.5.5 0 0 0 .596.597l3.927-.873a2.5 2.5 0 0 0 1.234-.678l9.358-9.358a2.975 2.975 0 0 0 .052-4.153m-3.552.653a1.975 1.975 0 1 1 2.793 2.793l-.671.671l-2.793-2.792zm-1.378 1.38l2.793 2.792l-7.98 7.98a1.5 1.5 0 0 1-.744.409l-3.16.702l.708-3.183c.059-.267.193-.511.386-.704z" />
-                                </svg>
-                                <span class="sr-only">Edit Icon</span>
-                            </div>
-                        </a>
-                        {% endif %}
-                    </div>
-                    {% endif %}
-                    {% endfor %}
-                    
-                </div>
-            </div>
-            {% endif %}
         </div>
     </form>
 </section>

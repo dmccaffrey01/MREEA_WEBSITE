@@ -66,6 +66,21 @@
                     <label for="id_is_public" class="toggle"><span class="sr-only">Is Public</span></label>
                 </div>
             </div>
+            <div class="toggle-input-wrapper input-wrapper container-col align-start">
+                <div class="visit-link">
+                    <div class="icon-container">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="dark-text-2" viewBox="0 0 16 16">
+                            <path d="M10.059 2.445a1.5 1.5 0 0 0-2.386.354l-2.02 3.79l-2.811.937a.5.5 0 0 0-.196.828L4.793 10.5l-2.647 2.647L2 14l.854-.146L5.5 11.207l2.146 2.147a.5.5 0 0 0 .828-.196l.937-2.81l3.779-2.024a1.5 1.5 0 0 0 .354-2.38zm-1.504.824a.5.5 0 0 1 .796-.118l3.485 3.498a.5.5 0 0 1-.118.794L8.764 9.559a.5.5 0 0 0-.238.283l-.744 2.233l-3.856-3.856l2.232-.744a.5.5 0 0 0 .283-.24z" />
+                        </svg>
+                        <span class="sr-only">Pinned Icon</span>
+                    </div>
+                    <p class="dark-text-2 small-text">Make Pinned</p>
+                </div>
+                <div class="toggle-container container-col">
+                    {{ form.is_pinned }}
+                    <label for="id_is_pinned" class="toggle"><span class="sr-only">Is Pinned</span></label>
+                </div>
+            </div>
         </div>
         <div class="management-btns-container container-col align-start box-shadow">
             <button type="submit" class="save-btn visit-link">

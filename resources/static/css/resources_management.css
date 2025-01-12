@@ -2,6 +2,8 @@
   position: relative;
   background-color: #f7f7f7;
   padding: 40px 0 80px 0;
+  /* Small devices (larger phones, 576px to 767px) */
+  /* Extra small devices (phones, 380px to 575px) */
 }
 .management-section .section-container {
   gap: 32px;
@@ -38,6 +40,12 @@
 }
 .management-section .management-container .inputs-container .select-options .select-item:hover .icon-container {
   background-color: #f7f7f7;
+}
+.management-section .management-container .inputs-container .select-options .select-item .friendly-name-text {
+  width: calc(100% - 48px);
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
 }
 .management-section .management-container .inputs-container .visit-link {
   gap: 8px;
@@ -95,6 +103,16 @@
 }
 .management-section .management-container .management-btns-container .delete-btn-wrapper .confirm-delete-btn .success {
   margin-left: 16px;
+}
+@media (max-width: 767px) {
+  .management-section .management-container {
+    width: 496px;
+  }
+}
+@media (max-width: 575px) {
+  .management-section .management-container {
+    width: 320px;
+  }
 }
 
 /*# sourceMappingURL=resources_management.css.map */

@@ -2,14 +2,17 @@
   background-color: #f7f7f7;
   position: relative;
   overflow: hidden;
+  padding: 40px 0;
+  /* Small devices (larger phones, 576px to 767px) */
+  /* Extra small devices (phones, 380px to 575px) */
 }
 .account-section .section-container {
   gap: 16px;
 }
 .account-section .account-container {
   width: 600px;
-  padding: 36px;
-  gap: 28px;
+  padding: 40px;
+  gap: 32px;
   background-color: #f7f7f7;
   border-radius: 16px;
   border-top: 2px solid #c64f4a;
@@ -20,10 +23,28 @@
   gap: 20px;
 }
 .account-section .info-container {
-  gap: 4px;
+  gap: 12px;
 }
 .account-section .form-container {
   width: 100%;
+}
+@media (max-width: 767px) {
+  .account-section .account-container {
+    width: 496px;
+  }
+}
+@media (max-width: 575px) {
+  .account-section .account-container {
+    width: 320px;
+  }
+  .account-section .account-container .input-group-container {
+    flex-direction: column;
+    width: 100%;
+    gap: 15px;
+  }
+  .account-section .account-container .input-group-container .input-container {
+    width: 100%;
+  }
 }
 
 /*# sourceMappingURL=signup.css.map */

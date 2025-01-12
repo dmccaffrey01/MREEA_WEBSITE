@@ -1,4 +1,3 @@
-from celery import shared_task
 from django.shortcuts import reverse
 from django.contrib.auth.models import User
 from notifications.models import Notification
@@ -6,7 +5,6 @@ from .models import Testimonial
 from profiles.models import UserProfile
 
 
-@shared_task
 def new_testimonial_notifications(testimonial_id):
     testimonial = Testimonial.objects.filter(id=testimonial_id).first()
     user_profile = UserProfile.objects.filter(user=testimonial.user).first()
@@ -31,7 +29,6 @@ def new_testimonial_notifications(testimonial_id):
     return "Successfully created notifications"
 
 
-@shared_task
 def new_testimonial_approved_notification(testimonial_id):
     testimonial = Testimonial.objects.filter(id=testimonial_id).first()
 
@@ -52,7 +49,6 @@ def new_testimonial_approved_notification(testimonial_id):
     return "Successfully created notification"
 
 
-@shared_task
 def new_testimonial_denied_notification(testimonial_id):
     testimonial = Testimonial.objects.filter(id=testimonial_id).first()
 

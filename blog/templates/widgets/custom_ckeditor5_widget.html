@@ -1,14 +1,9 @@
 <textarea name="{{ widget.name }}" id="{{ widget.attrs.id }}" cols="40" rows="10">{{ widget.value }}</textarea>
 <script>
-    if (typeof ClassicEditor !== 'undefined') {
-        console.log("CKEditor is loaded successfully.");
-    } else {
-        console.error("CKEditor failed to load.");
-    }
 
     ClassicEditor
         .create(document.querySelector('#{{ widget.attrs.id }}'), {
-            // Custom configuration here
+            
         })
         .catch(error => {
             console.error(error);

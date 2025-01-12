@@ -1,10 +1,8 @@
-from celery import shared_task
 from django.shortcuts import reverse
 from django.contrib.auth.models import User
 from notifications.models import Notification
 
 
-@shared_task
 def new_membership_approved_notification(username):
     user = User.objects.filter(username=username).first()
 
@@ -24,7 +22,6 @@ def new_membership_approved_notification(username):
 
     return "Successfully created notification"
 
-@shared_task
 def new_membership_denied_notification(username):
     user = User.objects.filter(username=username).first()
 

@@ -134,4 +134,84 @@
         }
     }
 
+    /* Small devices (larger phones, 576px to 767px) */
+    @media (max-width: 767px) {
+        .testimonial-input-container {
+            width: 496px;
+            padding: calc(24px * ((496px) / 600px));
+
+            textarea {
+                padding: calc(16px * ((496px) / 600px));
+                font-size: calc(1.5rem * ((496px) / 600px));
+            }
+        }
+
+        .testimonial-container {
+            padding: calc(40px * ((496px) / 600px));
+            width: 496px;
+            height: fit-content;
+
+            .preview-text {
+                font-size: calc(1.5rem * ((320px) / 600px));
+                line-height: calc((1.5rem * ((320px) / 600px)) + 6px);
+                min-height: calc(((1.5rem * ((320px) / 600px)) + 6px) * 8);
+            }
+        }
+
+        .management-btns-container {
+            width: 496px;
+        }
+    }
+
+    /* Extra small devices (phones, 380px to 575px) */
+    @media (max-width: 575px) {
+        .section-heading-visit-link {
+            .subheading {
+                font-size: 1.4rem;
+            }
+
+            .icon-container {
+                width: calc(1.4rem + 16px);
+                height: calc(1.4rem + 16px);
+                padding: 8px;
+            }
+        }
+
+        .testimonial-input-container {
+            width: 320px;
+            padding: calc(24px * ((320px) / 600px));
+
+            textarea {
+                padding: calc(16px * ((320px) / 600px));
+                font-size: calc(1.5rem * ((320px) / 600px));
+                line-height: calc((1.5rem * ((320px) / 600px)) + 6px);
+            }
+        }
+
+        .testimonial-container {
+            padding: calc(40px * ((320px) / 600px));
+            width: 320px;
+            height: fit-content;
+
+            .preview-text {
+                font-size: calc(1.5rem * ((320px) / 600px));
+                line-height: calc((1.5rem * ((320px) / 600px)) + 6px);
+                min-height: calc(((1.5rem * ((320px) / 600px)) + 6px) * 8);
+            }
+
+            .author-text {
+                font-size: calc(1.5rem * ((320px) / 600px));
+            }
+
+            .author-img-container {
+                width: calc(60px * ((320px) / 600px));
+                height: calc(60px * ((320px) / 600px));
+            }
+        }
+
+        .management-btns-container {
+            width: 320px;
+        }
+    }
+
 }

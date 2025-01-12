@@ -12,6 +12,7 @@ class Announcement(models.Model):
     folder = models.ForeignKey(Folder, null=True, blank=True, on_delete=models.SET_NULL)
     is_public = models.BooleanField(default=False)
     date_made_public = models.DateTimeField(blank=True, null=True)
+    is_pinned = models.BooleanField(default=False)
 
     def __str__(self):
         return self.friendly_name

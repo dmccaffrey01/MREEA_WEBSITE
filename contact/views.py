@@ -53,4 +53,5 @@ def send_contact_email(data, request):
         return False
     except Exception as e:
         messages.error(request, 'There was an error sending your message. Please try again later.')
+        print(e)
         return False
