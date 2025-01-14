@@ -800,10 +800,10 @@ main {
 
 /* Header */
 
-header {
+.header {
     width: 100%;
     height: 100px;
-    background-color: $gd-1;
+    background-color: rgb(24, 24, 24);
 
     .dark-text, .nav-link, .dark-text-2 {
         color: $white; 
@@ -880,7 +880,7 @@ h1.logo-text {
         width: 100%;
         height: 5px;
         border-radius: 20px;
-        background-color: $gd-2;
+        background-color: $white;
         transition: all 0.3s ease;
         position: relative;
     }
@@ -966,6 +966,10 @@ h1.logo-text {
 
     .profile-wrapper {
 
+        .dark-text, .dark-text-2 {
+            color: $gd-2;
+        }
+
         .profile-menu-container {
             position: absolute;
             top: calc(100% + 12px);
@@ -1021,13 +1025,17 @@ h1.logo-text {
                 width: 24px;
                 height: 24px;
                 border-radius: 50%;
-                background-color: $gl-2;
-                outline: 4px solid $gl-1;
+                background-color: rgb(24, 24, 24);
+                outline: 4px solid rgb(24, 24, 24);
                 outline-offset: -1px;
                 transition: all 0.3s ease;
     
                 .dark-text {
                     font-size: 0.7rem;
+                }
+
+                path {
+                    fill: $white;
                 }
             }
     
@@ -1043,9 +1051,23 @@ h1.logo-text {
                 display: flex;
             }
         }
+
+        .icon-container {
+            path {
+                fill: $gd-2;
+            }
+        }
+
+        .label {
+            color: $white;
+        }
     }
 
     .notification-wrapper {
+        .dark-text, .dark-text-2 {
+            color: $gd-2;
+        }
+
         .notification-btn-container {
             cursor: pointer;
             position: relative;
@@ -1056,7 +1078,7 @@ h1.logo-text {
                 width: 64px;
                 height: 64px;
                 border-radius: 50%;
-                background-color: $gl-2;
+                background-color: rgb(24, 24, 24);
                 padding: 12px;
             }
     
@@ -1068,11 +1090,12 @@ h1.logo-text {
                 width: 24px;
                 height: 24px;
                 border-radius: 50%;
-                outline: 4px solid $gl-1;
+                outline: 4px solid $red-1;
                 outline-offset: -1px;
     
                 .white-text {
-                    font-size: 0.7rem;
+                    font-size: 0.8rem;
+                    font-weight: 600;
                 }
 
                 &.hide {
@@ -1202,6 +1225,15 @@ h1.logo-text {
                 }
             }
             
+            .icon-container {
+                path {
+                    fill: $gd-2;
+                }
+            }
+
+            .label {
+                color: $white;
+            }
         }
 
         &.show {
@@ -1301,6 +1333,21 @@ h1.logo-text {
 
     &.fade {
         opacity: 1;
+    }
+
+    .dark-text, .dark-text-2 {
+        color: $gd-2;
+    }
+
+
+    .icon-container {
+        path {
+            fill: $gd-2;
+        }
+    }
+
+    .label {
+        color: $white;
     }
 
     .messages-heading-container {
